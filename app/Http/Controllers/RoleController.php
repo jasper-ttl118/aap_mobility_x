@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -62,19 +64,16 @@ class RoleController extends Controller
             'name' => $request->name
         ]);
 
-        if($role->isDirty()){
-            return redirect('role')->with('status', 'Role Updated Successfully');
-        } else {
-            return redirect('role');
-        }
-        
+        $role->refresh(); 
+
+        return redirect('role')->with('status', 'Role Updated Successfully');
     }
 
     public function destroy($roleId)
     {
         $role = Role::find($roleId);
         $role->delete();
-        return redirect('role')->with('status', 'Permission Role Successfully');
+        return redirect('role')->with('status', 'Role Deleted Successfully');
     }
 
     public function addPermissionToRole($roleId)
@@ -102,5 +101,75 @@ class RoleController extends Controller
         $role->syncPermissions($request->permission);
 
         return redirect()->back()->with('status','Permissions added to role');
+    }
+
+    public function addRoleWithPermissions()
+    {  
+        $permissions = Permission::get();
+        return view('role-permission.role.add-role-with-permissions',[
+            'permissions' => $permissions
+        ]);
+    }
+
+    public function saveRoleWithPermissions(Request $request)
+    {  
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'unique:permissions,name'
+            ],
+            'permission' => 'required'
+        ]);
+
+        $role = Role::create([
+            'name' => $request->name
+        ]);
+
+        $role->syncPermissions($request->permission);
+
+
+        return redirect('role')->with('status','Role Created Successfully');
+    }
+
+    public function updateRoleWithPermissions($roleId)
+    {  
+        $role = Role::findorFail($roleId);
+        $permissions = Permission::get();
+        $rolePermissions = DB::table('role_has_permissions')
+                        ->where('role_has_permissions.role_id',$role->id)
+                        ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+                        ->all();
+        return view('role-permission.role.edit-role-with-permissions',[
+            'role' => $role,
+            'permissions' => $permissions,
+            'rolePermissions' => $rolePermissions
+        ]);
+
+    }
+
+    public function editRoleWithPermissions (Request $request, $roleId)
+    {
+        $role = Role::findorFail($roleId);
+
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                'unique:roles,name,'.$role->id
+            ],
+            'permission' => 'required'
+        ]);
+
+        $role->update([
+            'name' => $request->name
+        ]);
+
+        $role->refresh(); 
+        $role = Role::findOrFail($role->id);
+        $role->syncPermissions($request->permission);
+
+        
+        return redirect('role')->with('status', 'Role Updated Successfully');
     }
 }

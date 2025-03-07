@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
-use App\Models\Team;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->get();        
         return view('role-permission.user.index', compact('users'));
     }
 
-    public function create() {
+    public function create()
+    {
         $roles = Role::pluck('name', 'name')->all();
         return view('role-permission.user.create', compact('roles'));
+
     }
 
     public function store(Request $request)
@@ -30,15 +33,15 @@ class UserController extends Controller
             'password' => 'required|string|max:20|min:6',
             'roles' => 'required',
         ]);
-    
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-    
+
         $user->syncRoles($request->roles);
-    
+
         return redirect('/user')->with('status', 'User created successfully with roles');
     }
 
@@ -46,7 +49,7 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $userRoles = $user->roles->pluck('name','name')->all();
-        return view('role-permission.user.edit',[
+        return view('role-permission.user.edit', [
             'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles
@@ -67,7 +70,7 @@ class UserController extends Controller
             'email' => $request->email,
         ];
 
-        if(!empty($request->password)){
+        if (!empty($request->password)) {
             $data += [
                 'password' => Hash::make($request->password),
             ];
@@ -75,8 +78,8 @@ class UserController extends Controller
 
         $user->update($data);
         $user->syncRoles($request->roles);
-        
-        return redirect('/user')->with('status','User updated successfully');
+
+        return redirect('/user')->with('status', 'User updated successfully');
     }
 
     public function destroy($userId)
@@ -84,5 +87,11 @@ class UserController extends Controller
         $user = User::find($userId);
         $user->delete();
         return redirect('user')->with('status', 'User Deleted Successfully');
+    }
+
+    public function viewDashboard()
+    {
+        $users = Auth::user(); // Get the currently authenticated user
+        return view('test_pages.dashboard', compact('users'));
     }
 }
