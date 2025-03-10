@@ -21,7 +21,7 @@
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
         <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <img id="background" class="absolute w-full h-full brightness-50" src="https://images.pexels.com/photos/29586678/pexels-photo-29586678/free-photo-of-abstract-blue-digital-art-landscape-for-desktop.jpeg" alt="Laravel background" />
+            <img id="background" class="absolute w-full h-full brightness-50 object-cover" src="{{ asset('build/assets/bg-image.webp') }}" alt="Laravel background" />
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="flex flex-col items-center justify-start p-6 text-center gap-y-5">
                         {{-- <div class="flex lg:justify-center lg:col-start-2">

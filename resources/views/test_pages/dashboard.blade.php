@@ -48,6 +48,52 @@
             </div> 
           @endcan
         </div>
+
+        <div class="flex flex-wrap gap-2 justify-center p-2 mt-10">
+            <div class="h-auto w-96 rounded-lg bg-gray-50 shadow shadow-gray-400">
+              <div class="h-22 w-96">
+                <img src="https://images.pexels.com/photos/161251/senso-ji-temple-japan-kyoto-landmark-161251.jpeg" alt="" class="h-72 w-96 rounded-t-lg object-cover object-bottom" />
+              </div>
+              <div class="p-7">
+                <h1 class="py-3 text-2xl font-bold text-red-600">TOKYO</h1>
+                <p class="h-32">Japan’s busy capital, mixes the ultramodern and the traditional, from neon-lit skyscrapers to historic temples. The opulent Meiji Shinto Shrine is known for its towering gate and surrounding woods.</p>
+                <div class="my-8">
+                  <a href="https://www.gotokyo.org/en/index.html" class="rounded-md bg-red-600 p-2 font-medium text-white hover:bg-red-950">Learn More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="h-auto w-96 rounded-lg bg-gray-50 shadow shadow-gray-400">
+              <div class="h-72 w-96">
+                <img src="https://images.pexels.com/photos/12061667/pexels-photo-12061667.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-72 w-96 rounded-t-lg object-cover object-bottom" />
+              </div>
+              <div class="p-7">
+                <h1 class="py-3 text-2xl font-bold text-blue-600">SEOUL</h1>
+                <p class="h-32">The capital of South Korea, is a huge metropolis where modern skyscrapers, high-tech subways and pop culture meet Buddhist temples, palaces and street markets..</p>
+                <div class="my-8">
+                  <a href="https://www.britannica.com/place/Seoul" class="rounded-md bg-blue-600 p-2 font-medium text-white hover:bg-blue-950">Learn More</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="h-auto w-96 rounded-lg bg-gray-50 shadow shadow-gray-400">
+                <div class="h-72 w-96">
+                  <img src="https://images.pexels.com/photos/7039842/pexels-photo-7039842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="h-72 w-96 rounded-t-lg object-cover object-center" />
+                </div>
+                <div class="p-7">
+                  <h1 class="py-3 text-2xl font-bold text-green-600">MANILA</h1>
+                  <p class="h-32">the capital of the Philippines, is a densely populated bayside city on the island of Luzon, which mixes Spanish colonial architecture with modern skyscrapers.</p>
+                  <div class="my-8">
+                    <a href="https://www.britannica.com/place/Manila" class="rounded-md bg-green-600 p-2 font-medium text-white hover:bg-blue-950">Learn More</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+        </div>
+
+          
+
       </div>
     </div>
 </body>
