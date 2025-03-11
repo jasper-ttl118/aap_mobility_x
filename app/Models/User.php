@@ -19,10 +19,14 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    protected $primaryKey = 'user_id';
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'employee_id', 
+        'user_name', 
+        'user_password', 
+        'org_id', 
+        'role_id', 
+        'user_status'
     ];
 
     /**
@@ -48,8 +52,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function teams()
+    public function organization()
     {
-        return $this->belongsToMany(Team::class, 'model_has_roles', 'model_id', 'aap_team');
+        return $this->belongsTo(Organization::class, 'org_id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 }
