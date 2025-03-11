@@ -72,6 +72,10 @@ return [
     ],
 
     'column_names' => [
+
+        'role_guard_name' => 'role_guard_name',
+        'permission_guard_name' => 'permission_guard_name',
+        
         /*
          * Change this if you want to name the related pivots other than defaults
          */
