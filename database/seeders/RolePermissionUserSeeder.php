@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
@@ -19,8 +20,12 @@ class RolePermissionUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::findById(5);
-        $permissions = Permission::all();
+        $role = Role::findById(1);
+        $permissions = Permission::findById(1);
+
+        echo $role;
+        echo $permissions;
+
 
         // Assign Permissions to Role
         $role->syncPermissions($permissions);
