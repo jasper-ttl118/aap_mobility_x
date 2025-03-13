@@ -5,35 +5,43 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmployeeController;
+use App\Models\Organization;
+use App\Http\Controllers\OrganizationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+    // route for profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //route for permission
     Route::resource('permission', PermissionController::class);
     Route::get('permission/{permissionId}/delete', [PermissionController::class, 'destroy']);
 
-    Route::get('role/add-role-with-permissions', [RoleController::class, 'addRoleWithPermissions']);
-    Route::put('role/save-role-with-permissions', [RoleController::class, 'saveRoleWithPermissions']);
-
-    Route::get('role/{roldeId}/update-role-with-permissions', [RoleController::class, 'updateRoleWithPermissions']);
-    Route::put('role/{roldeId}/edit-role-with-permissions', [RoleController::class, 'editRoleWithPermissions']);
-
+    //route for role
     Route::resource('role', RoleController::class);
     Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
-    Route::get('role/{roldeId}/give-permission',[RoleController::class, 'addPermissionToRole']);
-    Route::put('role/{roldeId}/give-permission',[RoleController::class, 'givePermissionToRole']);
 
+    //route for user
     Route::resource('user', UserController::class);
     Route::get('user/{userId}/delete', [UserController::class, 'destroy']);
 
+    //route for employee
+    Route::resource('employee', EmployeeController::class);
+    Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy']);
+    Route::get('/employee/search', [EmployeeController::class, 'search']);
 
-Route::get('/dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+    //route for organization
+    Route::resource('organization', OrganizationController::class);
+    Route::get('organization/{orgId}/delete', [OrganizationController::class, 'destroy']);
+
+    //route for login
+    Route::get('/dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 
 require __DIR__.'/auth.php';

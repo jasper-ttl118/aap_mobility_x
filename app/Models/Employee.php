@@ -19,4 +19,9 @@ class Employee extends Model
         'employee_contact_number',
         'employee_status',
     ];
+
+    protected $casts = [
+        'employee_date_created' => 'datetime',
+        'employee_date_updated' => 'datetime',
+    ];
 }

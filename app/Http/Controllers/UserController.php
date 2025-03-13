@@ -8,6 +8,9 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Employee;
+use App\Models\Organization;
+
 
 class UserController extends Controller
 {
@@ -19,8 +22,10 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name', 'name')->all();
-        return view('role-permission.user.create', compact('roles'));
+        $employees = Employee::whereNotIn('employee_id', User::pluck('employee_id'))->get();
+        $organizations = Organization::all();
+
+        return view('role-permission.user.create', compact('employees', 'organizations'));
 
     }
 

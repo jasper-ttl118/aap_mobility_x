@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Contracts\Role;
 
 class Organization extends Model
 {   
@@ -12,5 +13,12 @@ class Organization extends Model
         'org_name', 
         'org_description', 
         'org_logo', 
-        'org_status'];
+        'org_status'
+    ];
+
+    public function roles()
+    {
+        return $this->hasMany(Role::class, 'org_id'); // Ensure 'org_id' matches the column in roles table
+    }
+
 }

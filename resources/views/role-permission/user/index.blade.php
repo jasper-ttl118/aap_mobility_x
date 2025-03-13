@@ -43,9 +43,9 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">User ID</th>
                         <th scope="col" class="px-6 py-3">Username</th>
-                        <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Organization</th>
                         <th scope="col" class="px-6 py-3">Roles</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Actions</th>
                     </tr>
                     </thead>
@@ -54,7 +54,6 @@
                     <tr class="border-b border-gray-200 bg-white">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">{{ $user->user_id }}</th>
                         <td class="px-6 py-4 text-gray-900">{{ $user->user_name }}</td>
-                        <td class="px-6 py-4  text-gray-900">{{ $user->user_status }}</td>
                         <td class="border px-4 py-2">
                             @if($user->organization)
                                 <span class="bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
@@ -74,6 +73,13 @@
                         @else
                             <span class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No Role Assigned</span>
                         @endif
+                        </td>
+                        <td class="px-6 py-4  text-gray-900">
+                            @if ($user->user_status == '1')
+                                <span class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
+                            @else
+                                <span class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
+                            @endif
                         </td>
 
                         <td class="px-6 py-4 flex flex-wrap gap-3 justify-center">
