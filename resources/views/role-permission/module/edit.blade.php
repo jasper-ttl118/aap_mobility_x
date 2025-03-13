@@ -37,7 +37,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ url('module/'.$module->module_id) }}" method="post" enctype="multipart/form-data" class="mx-auto max-w-md bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
+        <form action="{{ url('module/'.$module->module_id) }}" method="post" enctype="multipart/form-data" class="mx-auto max-w-4xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
             @csrf
             @method('PUT')
             <div class="p-6 space-y-6">

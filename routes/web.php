@@ -9,6 +9,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SubmoduleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +44,10 @@ Route::get('/', function () {
     //route for module
     Route::resource('module', ModuleController::class);
     Route::get('module/{orgId}/delete', [ModuleController::class, 'destroy']);
+
+    //route for submodule
+    Route::resource('submodule', SubmoduleController::class);
+    Route::get('submodule/{orgId}/delete', [SubmoduleController::class, 'destroy']);
 
     //route for login
     Route::get('/dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Module</title>
+    <title>Sub-module</title>
     @include("layouts.icons")
     @vite('resources/css/app.css')
 </head>
@@ -37,49 +37,39 @@
                 </ul>
             </div>
         @endif
-        <form action="/module" method="post" enctype="multipart/form-data" class="mx-auto max-w-4xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
+        <form action="/submodule" method="post" enctype="multipart/form-data" class="mx-auto max-w-md bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
             @csrf
             <div class="p-6 space-y-6">
                 <!-- Heading -->
                 <div class="border-b border-gray-200 pb-5">
-                    <h1 class="text-xl font-semibold text-gray-800">Add New Module</h1>
+                    <h1 class="text-xl font-semibold text-gray-800">Add New Sub-Module</h1>
                     <p class="text-sm text-gray-500">
-                        Register a new system module and assign it with available sub-modules.
+                        Add new sub-module and assign it with available modules.
                     </p>
                 </div>
         
-                <!-- Module Name -->
+                <!-- Sub-module Name -->
                 <div>
-                    <label for="module_name" class="block font-medium text-gray-700">Module Name</label>
+                    <label for="module_name" class="block font-medium text-gray-700">Sub-module Name</label>
                     <input type="text" name="module_name" placeholder="Module Name"
                         class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
         
-                <!-- Module Description -->
+                <!-- Sub-Module Description -->
                 <div>
                     <label for="module_description" class="block font-medium text-gray-700">Description</label>
                     <input type="text" name="module_description" placeholder="Description"
                         class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
         
-                <!-- Assign a Sub-Module -->
+                <!-- Assign it to a Module -->
                 <div>
-                    <label for="module_submodule" class="block font-medium text-gray-700">Select Sub-Modules</label>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
-                        @foreach ($submodules as $submodule)
-                        <div class="flex items-center gap-2 bg-gray-50 border border-gray-300 rounded-md px-3 py-2">
-                            <input 
-                                type="checkbox" 
-                                class="rounded border-gray-300 focus:ring-blue-600"
-                                name="submodules[]"    
-                                value="{{ $submodule->submodule_id }}"
-                            />
-                            <label for="submodule-{{ $submodule->submodule_id }}" class="text-gray-700">
-                                {{ $submodule->submodule_name }}
-                            </label>
-                        </div>
+                    <label for="submodule_module" class="block font-medium text-gray-700">Select Modules</label>
+                    <select type="text" name="modules" placeholder="Select Module"class="bg-gray-100 w-full mt-1 h-10 rounded-lg border-1 border-gray-200 px-3 focus:outline-blue-900">
+                        @foreach ($modules as $module)
+                            <option value="{{ $module->module_id }}">{{ $module->module_name }}</option>
                         @endforeach
-                    </div>
+                        </select>
                 </div>
         
                 <!-- Submit Button -->

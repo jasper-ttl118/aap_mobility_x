@@ -34,7 +34,6 @@ class ModuleController extends Controller
         $module = Module::create([
             'module_name' => $request->module_name,
             'module_description' => $request->module_description,
-            'module_status' => 1, // Assuming active by default
         ]);
 
         // Assign selected submodules to this module
@@ -67,6 +66,7 @@ class ModuleController extends Controller
         ]);
 
         // Update the module        
+
         $module->update([
             'module_name' => $request->module_name,
             'module_description' => $request->module_description,
