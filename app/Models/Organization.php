@@ -21,4 +21,10 @@ class Organization extends Model
         return $this->hasMany(Role::class, 'org_id'); // Ensure 'org_id' matches the column in roles table
     }
 
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class, 'module_id');
+    }
+
+
 }

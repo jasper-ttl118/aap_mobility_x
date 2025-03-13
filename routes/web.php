@@ -6,8 +6,8 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
-use App\Models\Organization;
 use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -39,6 +39,10 @@ Route::get('/', function () {
     //route for organization
     Route::resource('organization', OrganizationController::class);
     Route::get('organization/{orgId}/delete', [OrganizationController::class, 'destroy']);
+
+    //route for module
+    Route::resource('module', ModuleController::class);
+    Route::get('module/{orgId}/delete', [ModuleController::class, 'destroy']);
 
     //route for login
     Route::get('/dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
