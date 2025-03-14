@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Contracts\Permission;
+use Spatie\Permission\Contracts\Role;
 
 class Submodule extends Model
 {
@@ -13,16 +14,24 @@ class Submodule extends Model
         'submodule_name', 
         'submodule_description', 
         'submodule_status',
+        'module_id',
     ];
-
-    public function permission()
-    {
-        return $this->belongsToMany(Permission::class, 'permission_id');
-    }
 
     // Belongs to a Module
     public function module()
     {
         return $this->belongsTo(Module::class, 'module_id', 'module_id');
+    }
+
+    public function role()
+    {
+        return $this->belongsToMany(Role::class, 'role_has_submodule_permissions', 'submodule_id', 'role_id')
+            ->withPivot('permission_id');
+    }
+
+    public function permission()
+    {
+        return $this->belongsToMany(Permission::class, 'role_has_submodule_permissions', 'submodule_id', 'role_id')
+            ->withPivot('role_id');
     }
 }

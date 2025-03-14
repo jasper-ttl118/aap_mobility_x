@@ -32,15 +32,26 @@
 
 
         {{-- List of Modules --}}
-        <div class="w-full m-10 rounded-md border bg-white border-gray-100 p-5 shadow shadow-gray-300">
+        <div class="w-full rounded-md border bg-white border-gray-100 p-5 shadow shadow-gray-300">
             <div class="flex justify-between items-center p-5">
+                <!-- Left side -->
                 <h1 class="text-2xl font-bold">List of Available Modules</h1>
-                <a href="module/create" class="flex uppercase rounded-lg items-center bg-blue-900 p-3 text-xs font-bold text-white hover:bg-indigo-800">
-                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
-                    </svg>                      
-                    Add New Module
-                </a>
+                
+                <!-- Right side -->
+                <div class="flex gap-x-2">
+                    <a href="submodule" class="flex uppercase rounded-lg items-center bg-gray-500 p-3 text-xs font-bold text-white hover:bg-indigo-800">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+                        </svg>                      
+                        Configure Sub-modules
+                    </a>
+                    <a href="module/create" class="flex uppercase rounded-lg items-center bg-blue-900 p-3 text-xs font-bold text-white hover:bg-indigo-800">
+                        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
+                        </svg>                      
+                        Add New Module
+                    </a>
+                </div>
             </div>
             <table class="w-full text-center text-sm text-gray-500">
                 <thead class="bg-gray-100 text-xs text-gray-700 uppercase">

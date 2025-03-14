@@ -46,84 +46,95 @@
                         Register a new role and assign it with organization and access to different system modules.
                     </p>
                 </div>
+
+                <!-- Select Organization for the Role -->
+                <div>
+                    <label for="role_org" class="font-medium">Select Organization</label>
+                    <select name="org_id"
+                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                        @foreach ($organizations as $org)
+                            <option value="{{ $org->org_id }}">{{ $org->org_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
         
                 <!-- Role Name -->
                 <div>
                     <label for="role_name" class="font-medium">Role Name</label>
-                    <input type="text" name="org_name" placeholder="Enter ROle Name"
+                    <input type="text" name="role_name" placeholder="Enter Role Name"
+                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                </div>
+
+                <!-- Role Description -->
+                <div>
+                    <label for="role_description" class="font-medium">Description</label>
+                    <input type="text" name="role_description" placeholder="Description"
                         class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
                 </div>
         
-                <!-- Select Organization for the Role -->
+                <!-- Display Modules and Permissions -->
+                @if ($modules)
                 <div>
-                    <label for="role_org" class="font-medium">Select Organization</label>
-                    <select name="org_name"
-                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
-                        <option value="IT">IT</option>
-                    </select>
+                    <label for="role_modules" class="font-medium">Assign Modules and Permissions</label>
+                    <table class="w-full mt-1 border-collapse border border-gray-300">
+                        <thead>
+                            <tr class="bg-gray-100">
+                                <th class="border border-gray-300 px-6 py-3">Modules</th>
+                                <th class="border border-gray-300 px-6 py-3">Sub-Modules</th>
+                                <th class="border border-gray-300 px-6 py-3">Permissions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($modules as $module)
+                                @php
+                                    $rowspan = count($module->submodules);
+                                @endphp
+                                @foreach ($module->submodules as $index => $submodule)
+                                    <tr>
+                                        @if ($index === 0)
+                                            <td class="border border-gray-300 px-6 py-3 font-semibold" rowspan="{{ $rowspan }}">
+                                                <input type="checkbox" 
+                                                       class="module-checkbox"
+                                                       name="module_id[]"
+                                                       value="{{ $module->module_id }}" 
+                                                       data-module-id="{{ $module->module_id }}" 
+                                                       id="module_{{ $module->module_id }}">
+                                                {{ $module->module_name }}
+                                            </td>
+                                        @endif
+                                        <td class="border border-gray-300 px-6 py-3">
+                                            <input type="checkbox" 
+                                                   class="submodule-checkbox" 
+                                                   name="submodule_id[]" 
+                                                   value="{{ $submodule->submodule_id }}" 
+                                                   data-module-id="{{ $module->module_id }}" 
+                                                   data-submodule-id="{{ $submodule->submodule_id }}" 
+                                                   id="submodule_{{ $submodule->submodule_id }}">
+                                            {{ $submodule->submodule_name }}
+                                        </td>
+                                        <td class="border border-gray-300 px-6 py-3">
+                                            <div class="flex gap-2">
+                                                @foreach ($permissions as $permission)
+                                                    <label>
+                                                        <input type="checkbox"
+                                                                name="permission_id[{{ $submodule->submodule_id }}][]" 
+                                                                value="{{ $permission->permission_id }}"  
+                                                               class="permission-checkbox" 
+                                                               data-module-id="{{ $module->module_id }}" 
+                                                               data-submodule-id="{{ $submodule->submodule_id }}" 
+                                                               id="permission_{{ $permission->permission_id }}">
+                                                        {{ $permission->permission_name }}
+                                                    </label>
+                                                @endforeach
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-        
-                <!-- Select Permission to the Role -->
-                <div>
-                    <label for="role_permissions" class="font-medium">Select Permission</label>
-                    <div class="overflow-x-auto">
-                        <table class="w-full border-collapse border border-gray-300">
-                            <thead>
-                                <tr class="bg-gray-100">
-                                    <th class="border border-gray-300 px-6 py-3">Modules</th>
-                                    <th class="border border-gray-300 px-6 py-3">Sub-Module</th>
-                                    <th class="border border-gray-300 px-6 py-3">Privileges</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- Dashboard -->
-                                <tr>
-                                    <td class="border border-gray-300 px-6 py-3 font-semibold" rowspan="2">Dashboard</td>
-                                    <td class="border border-gray-300 px-6 py-3">Sub-module 1</td>
-                                    <td class="border border-gray-300 px-6 py-3">
-                                        <div class="flex gap-2">
-                                            <label><input type="checkbox"> View</label>
-                                            <label><input type="checkbox"> Edit</label>
-                                            <label><input type="checkbox"> Delete</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-gray-300 px-6 py-3">Sub-module 2</td>
-                                    <td class="border border-gray-300 px-6 py-3">
-                                        <div class="flex gap-2">
-                                            <label><input type="checkbox"> View</label>
-                                            <label><input type="checkbox"> Edit</label>
-                                            <label><input type="checkbox"> Delete</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- User Management -->
-                                <tr>
-                                    <td class="border border-gray-300 px-6 py-3 font-semibold" rowspan="2">User Management</td>
-                                    <td class="border border-gray-300 px-6 py-3">Sub-module 1</td>
-                                    <td class="border border-gray-300 px-6 py-3">
-                                        <div class="flex gap-2">
-                                            <label><input type="checkbox"> View</label>
-                                            <label><input type="checkbox"> Edit</label>
-                                            <label><input type="checkbox"> Delete</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-gray-300 px-6 py-3">Sub-module 2</td>
-                                    <td class="border border-gray-300 px-6 py-3">
-                                        <div class="flex gap-2">
-                                            <label><input type="checkbox"> View</label>
-                                            <label><input type="checkbox"> Edit</label>
-                                            <label><input type="checkbox"> Delete</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            @endif
         
                 <!-- Submit Button -->
                 <button type="submit"
@@ -147,6 +158,89 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle module checkbox change
+        document.querySelectorAll('.module-checkbox').forEach(moduleCheckbox => {
+            moduleCheckbox.addEventListener('change', function () {
+                const moduleId = this.dataset.moduleId;
+                const isChecked = this.checked;
+
+                // Select all submodules and permissions under this module
+                document.querySelectorAll(`.submodule-checkbox[data-module-id="${moduleId}"]`).forEach(submodule => {
+                    submodule.checked = isChecked;
+                });
+                document.querySelectorAll(`.permission-checkbox[data-module-id="${moduleId}"]`).forEach(permission => {
+                    permission.checked = isChecked;
+                });
+            });
+        });
+
+        // Handle submodule checkbox change
+        document.querySelectorAll('.submodule-checkbox').forEach(submoduleCheckbox => {
+            submoduleCheckbox.addEventListener('change', function () {
+                const moduleId = this.dataset.moduleId;
+                const submoduleId = this.dataset.submoduleId;
+                const isChecked = this.checked;
+
+                // Select or deselect permissions under this submodule
+                document.querySelectorAll(`.permission-checkbox[data-submodule-id="${submoduleId}"]`).forEach(permission => {
+                    permission.checked = isChecked;
+                });
+
+                // If a submodule is selected, ensure the parent module is selected
+                if (isChecked) {
+                    document.getElementById(`module_${moduleId}`).checked = true;
+                } else {
+                    // If no submodules are selected under this module, uncheck the parent module
+                    const allChecked = [...document.querySelectorAll(`.submodule-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(submodule => submodule.checked);
+
+                    if (!allChecked) {
+                        document.getElementById(`module_${moduleId}`).checked = false;
+                    }
+                }
+            });
+        });
+
+        // Handle permission checkbox change
+        document.querySelectorAll('.permission-checkbox').forEach(permissionCheckbox => {
+            permissionCheckbox.addEventListener('change', function () {
+                const moduleId = this.dataset.moduleId;
+                const submoduleId = this.dataset.submoduleId;
+                const isChecked = this.checked;
+
+                // If a permission is selected, ensure the parent submodule and module are selected
+                if (isChecked) {
+                    document.getElementById(`submodule_${submoduleId}`).checked = true;
+                    document.getElementById(`module_${moduleId}`).checked = true;
+                } else {
+                    // If no permissions are selected under this submodule, uncheck the submodule
+                    const allChecked = [...document.querySelectorAll(`.permission-checkbox[data-submodule-id="${submoduleId}"]`)]
+                        .some(permission => permission.checked);
+
+                    if (!allChecked) {
+                        document.getElementById(`submodule_${submoduleId}`).checked = false;
+                    }
+
+                    // If no submodules or permissions are checked under the module, uncheck the module
+                    const anySubmoduleChecked = [...document.querySelectorAll(`.submodule-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(submodule => submodule.checked);
+
+                    const anyPermissionChecked = [...document.querySelectorAll(`.permission-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(permission => permission.checked);
+
+                    if (!anySubmoduleChecked && !anyPermissionChecked) {
+                        document.getElementById(`module_${moduleId}`).checked = false;
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 </body>
 
 

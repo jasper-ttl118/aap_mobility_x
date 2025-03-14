@@ -51,21 +51,21 @@
                 <!-- Sub-module Name -->
                 <div>
                     <label for="module_name" class="block font-medium text-gray-700">Sub-module Name</label>
-                    <input type="text" name="module_name" placeholder="Module Name"
+                    <input type="text" name="submodule_name" placeholder="Module Name"
                         class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
         
                 <!-- Sub-Module Description -->
                 <div>
                     <label for="module_description" class="block font-medium text-gray-700">Description</label>
-                    <input type="text" name="module_description" placeholder="Description"
+                    <input type="text" name="submodule_description" placeholder="Description"
                         class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
         
                 <!-- Assign it to a Module -->
                 <div>
                     <label for="submodule_module" class="block font-medium text-gray-700">Select Modules</label>
-                    <select type="text" name="modules" placeholder="Select Module"class="bg-gray-100 w-full mt-1 h-10 rounded-lg border-1 border-gray-200 px-3 focus:outline-blue-900">
+                    <select type="text" name="module_id" placeholder="Select Module"class="bg-gray-100 w-full mt-1 h-10 rounded-lg border-1 border-gray-200 px-3 focus:outline-blue-900">
                         @foreach ($modules as $module)
                             <option value="{{ $module->module_id }}">{{ $module->module_name }}</option>
                         @endforeach

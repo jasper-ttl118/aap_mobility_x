@@ -4,56 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Modules</title>
+    <title>Permissions</title>
     @include("layouts.icons")
     @vite('resources/css/app.css')
    
 </head>
-    {{-- <body>
-        @include('layouts.navbar')
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-12">
-
-                    @if (session('status'))
-                        <div class="alert alert-success">{{ session('status') }}</div>
-                    @endif
-
-                    <div class="card mt-3">
-                        <div class="card-header">
-                            <h4 class="p-3">MODULES
-                                <a href="permission/create" class="btn btn-primary float-end">Add Module</a>
-                            </h4>
-                        </div>
-                        <div class="card-body">
-                            <table class="table table-responsive table-striped table-auto text-wrap text-center table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($permission as $permission )
-                                    <tr>
-                                        <td>{{ $permission->id }}</td>
-                                        <td>{{ $permission->name }}</td>
-                                        <td>
-                                            <a href="{{ url('permission/'.$permission->id.'/edit') }}" class="btn btn-success btn-sm">Edit</a>
-                                            <a href="{{ url('permission/'.$permission->id.'/delete') }}" class="btn btn-danger btn-sm">Delete</a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body> --}}
-
 
     <body class="flex flex-row">
         @include('layouts.navbar')
@@ -82,37 +37,45 @@
                         <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                             <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
                         </svg>                      
-                        Add New Module
+                        Add Permission
                     </a>
                 </div>
                 <table class="w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                     <tr>
-                        <th scope="col" class="px-6 py-3">Module ID</th>
+                        <th scope="col" class="px-6 py-3">Permission ID</th>
                         <th scope="col" class="px-6 py-3">Name</th>
+                        <th scope="col" class="px-6 py-3">Description</th>
+                        <th scope="col" class="px-6 py-3">Status</th>
                         <th scope="col" class="px-6 py-3">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach ($permission as $permission )
+                    @foreach ($permissions as $permission )
                     <tr class="border-b border-gray-200 bg-white">
-                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">{{ $permission->id }}</th>
-                        <td class="px-6 py-4  text-gray-900">{{ $permission->name }}</td>
+                        <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">{{ $permission->permission_id }}</th>
+                        <td class="px-6 py-4  text-gray-900">{{ $permission->permission_name }}</td>
+                        <td class="px-6 py-4  text-gray-900">{{ $permission->permission_description }}</td>
+                        <td class="px-auto py-4  text-gray-900">
+                            @if ($permission->permission_status == '1')
+                                <span class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
+                            @else
+                                <span class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-4">
                             <div class="flex flex-row justify-center items-center gap-2">
-                                <a href="{{ url('permission/'.$permission->id.'/edit') }}" class="flex items-center gap-1 font-medium text-blue-800 underline">
+                                <a href="{{ url('permission/'.$permission->permission_id.'/edit') }}" class="flex items-center gap-1 font-medium text-blue-800 underline">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                         <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z"/>
                                         <path d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z"/>
                                         <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z"/>
                                     </svg>
-                                    Edit
                                 </a>
-                                <a href="javascript:void(0)" onclick="openModal('{{ url('permission/'.$permission->id.'/delete') }}')" class="flex items-center gap-1 font-medium text-red-700 underline">
+                                <a href="javascript:void(0)" onclick="openModal('{{ url('permission/'.$permission->permission_id.'/delete') }}')" class="flex items-center gap-1 font-medium text-red-700 underline">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                         <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd"/>
                                     </svg>
-                                    Delete
                                 </a>
                             </div>
                         </td>

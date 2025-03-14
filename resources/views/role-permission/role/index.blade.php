@@ -88,6 +88,7 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">Role ID</th>
                         <th scope="col" class="px-6 py-3">Role Name</th>
+                        <th scope="col" class="px-6 py-3">Role Description</th>
                         <th scope="col" class="px-6 py-3">Organization</th>
                         <th scope="col" class="px-6 py-3">Privileges</th>
                         <th scope="col" class="px-6 py-3">Actions</th>
@@ -98,9 +99,10 @@
                     <tr class="border-b border-gray-200 bg-white">
                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">{{ $role->role_id }}</th>
                         <td class="px-6 py-4  text-gray-900">{{ $role->role_name }}</td>
+                        <td class="px-6 py-4  text-gray-900">{{ $role->role_description }}</td>
                         <td class="px-6 py-4">
                             @if($role->organization)
-                                    <span class=" bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $organization->org_name }}</span>
+                                    <span class=" bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $role->organization->org_name }}</span>
                             @else
                                 <span class=" bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No Organization Assigned</span>
                             @endif
@@ -122,13 +124,11 @@
                                         <path d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z"/>
                                         <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z"/>
                                     </svg>
-                                    Edit
                                 </a>
                                 <a href="javascript:void(0)" onclick="openModal('{{ url('role/'.$role->role_id.'/delete') }}')" class="flex items-center gap-1 font-medium text-red-700 underline">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                         <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd"/>
                                     </svg>
-                                    Delete
                                 </a>
                             </div>
                         </td>

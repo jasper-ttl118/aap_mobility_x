@@ -41,7 +41,7 @@
 
 <body class="flex flex-row">
     @include('layouts.navbar')
-    <div class="flex flex-col w-full h-auto">
+    <div class="flex flex-col justify-center w-full h-auto">
         @if ($errors->any())
             <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
                 <div class="flex items-center">
@@ -66,21 +66,50 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ url('permission/'.$permission->id) }}" method="post" class="w-full">
+        <form action="{{ url('permission/'.$permission->permission_id) }}" method="post" enctype="multipart/form-data" class="mx-auto max-w-4xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
             @csrf
             @method('PUT')
-            <div class="text-gray-700 m-20 ">
-                <div class="flex flex-col pb-5 mb-5 border-b-2 border-gray-200">
-                    <h1 class="text-lg font-bold uppercase">Add Module</h1>
-                    <p class="text-sm">Edit Module Name</p>
+            <div class="p-6 space-y-6">
+                <!-- Heading -->
+                <div class="border-b border-gray-200 pb-5">
+                    <h1 class="text-xl font-semibold text-gray-800">Add New Permission</h1>
+                    <p class="text-sm text-gray-500">
+                        Register a new permission to serve as access for the modules..
+                    </p>
                 </div>
-                <div class="flex flex-col gap-7">
-                    <div class="flex flex-col gap-2 w-96">
-                        <label for="" class="font-medium">Module Name</label>
-                        <input type="text" value="{{ $permission->name }}" name="name" placeholder="Enter Role Name"class="bg-gray-100 h-10 rounded-lg border-1 border-gray-200 px-3 focus:outline-blue-900 ">
+        
+                <!-- Permission Name -->
+                <div>
+                    <label for="module_name" class="block font-medium text-gray-700">Permission Name</label>
+                    <input type="text" value="{{ $permission->permission_name }}"  name="permission_name" placeholder="Permission Name"
+                        class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+        
+                <!-- Permission Description -->
+                <div>
+                    <label for="permission_description" class="block font-medium text-gray-700">Description</label>
+                    <input type="text" value="{{ $permission->permission_description }}" name="permission_description" placeholder="Description"
+                        class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                {{-- status --}}
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                    <label for="status" class="font-medium">Set Status</label>
+                    <select name="permission_status" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                        <option value='1' @selected(intval(old('employee_status', $permission->permission_status)) === 1)>Active</option>
+                        <option value='0' @selected(intval(old('employee_status', $permission->permission_status)) === 0)>Inactive</option>
+                    </select>
                     </div>
                 </div>
-                <Button type="submit" class="mt-10 bg-blue-800 text-white px-3 py-2 rounded-lg hover:bg-blue-900">Update</Button>
+        
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200">
+                        Create
+                    </button>
+                </div>
             </div>
         </form>
     </div>

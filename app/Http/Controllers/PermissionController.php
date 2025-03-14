@@ -10,9 +10,7 @@ class PermissionController extends Controller
     public function index()
     {
         $permissions = Permission::get();
-        return view('role-permission.permission.index', [
-            'permission' => $permissions
-        ]);
+        return view('role-permission.permission.index', compact('permissions'));
     }
 
     public function create()
@@ -23,15 +21,13 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:permissions,name'
-            ]
-            ]);
+            'permission_name' => 'required|string|max:255',
+            'permission_description' => 'nullable|string|max:500',
+        ]);
 
             Permission::create([
-                'name' => $request->name
+                'permission_name' => $request->permission_name,
+                'permission_description' => $request->permission_description
             ]);
 
             return redirect('permission')->with('status','Permission Created Successfully');
@@ -47,23 +43,23 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $request->validate([
-            'name' => [
-                'required',
-                'string',
-                'unique:permissions,name,'.$permission->id
-            ]
-            ]);
+            'permission_name' => 'required|string|max:255',
+            'permission_description' => 'nullable|string|max:500',
+            'permission_status' => 'required|integer|in:0,1',
+        ]);
 
-            $permission->update([
-                'name' => $request->name
-            ]);
+        $permission->update([
+            'permission_name' => $request->permission_name,
+            'permission_description' => $request->permission_description,
+            'permission_status' => $request->permission_status
+        ]);
 
             return redirect('permission')->with('status', 'Permission Updated Successfully');
         }
 
-    public function destroy($permissionId)
+    public function destroy($id)
     {
-        $permission = Permission::find($permissionId);
+        $permission = Permission::find($id);
         $permission->delete();
         return redirect('permission')->with('status', 'Permission Deleted Successfully');
     }

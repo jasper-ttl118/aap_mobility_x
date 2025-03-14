@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Submodule;
+use Spatie\Permission\Models\Role;
 
 class Module extends Model
 {
@@ -24,6 +25,11 @@ class Module extends Model
     public function organization()
     {
         return $this->belongsToMany(Organization::class, 'org_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_has_modules', 'module_id', 'role_id');
     }
 
 }

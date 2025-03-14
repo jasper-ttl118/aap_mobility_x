@@ -27,6 +27,7 @@ class SubmoduleController extends Controller
         $request->validate([
             'submodule_name' => 'required|string|max:255',
             'submodule_description' => 'nullable|string|max:500',
+            'module_id' => 'nullable|exists:modules,module_id',
             'modules' => 'nullable|string|max:255',
         ]);
 
@@ -34,6 +35,8 @@ class SubmoduleController extends Controller
         Submodule::create([
             'submodule_name' => $request->submodule_name,
             'submodule_description' => $request->submodule_description,
+            'module_id' => $request->module_id,
+
         ]);
 
 
@@ -64,13 +67,13 @@ class SubmoduleController extends Controller
             'module_id' => $request->module_id, // Correct key name
         ]);
     
-        return redirect('submodule')->with('status', 'Submodule Updated Successfully');
+        return redirect('submodule')->with('status', 'Submodule Updated Successfully ' .  $request->module_id);
     }
 
     public function destroy($id)
     {
-        $module = Module::find($id);
+        $module = Submodule::find($id);
         $module->delete();
-        return redirect('module')->with('status', 'Module Deleted Successfully');
+        return redirect('submodule')->with('status', 'Sub-module Deleted Successfully');
     }
 }
