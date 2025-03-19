@@ -49,7 +49,7 @@
 </nav> --}}
 
 <div class="flex">
-  <div class="h-dvh sticky top-0 w-64 flex-col bg-gradient-to-r from-blue-800 to-indigo-900 p-6 font-sans shadow-md">
+  <div class="h-dvh fixed top-0 w-64 flex-col bg-gradient-to-r from-blue-800 to-indigo-900 p-6 font-sans shadow-md">
     <div class="mx-auto mb-5 flex w-40 items-center justify-center">
       <a href="https://ibb.co/3m6zQj6d">
         <img src="{{ asset('build/assets/aap_logo.png') }}" alt="aap-logo" class="max-w-full h-auto" />
