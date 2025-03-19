@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employees</title>
+    <title>Roles</title>
     @include("layouts.icons")
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex flex-row justify-center items-center h-screen">
+<body class="flex flex-row h-screen">
     @include('layouts.navbar')
-    <div class="flex flex-col w-full h-auto">
+    <div class="flex flex-col w-full ml-64 overflow-y-auto py-6">
         @if ($errors->any())
             <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
                 <div class="flex items-center">
@@ -36,105 +36,109 @@
                 </ul>
             </div>
         @endif
-        <form action="/role" method="post" class="mx-auto max-w-7xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
+        <form action="/role" method="post" class="mx-auto max-w-7xl bg-white shadow-md rounded-lg border border-gray-200">
             @csrf
-            <div class="text-gray-700 p-8 space-y-6">
+            <div class="text-gray-700 p-6 sm:p-8 space-y-6">
                 <!-- Heading -->
                 <div class="border-b border-gray-200 pb-5">
-                    <h1 class="text-xl font-bold uppercase">Add New Role</h1>
+                    <h1 class="text-lg sm:text-xl font-bold uppercase">Add New Role</h1>
                     <p class="text-sm text-gray-600">
                         Register a new role and assign it with organization and access to different system modules.
                     </p>
                 </div>
-
-                <!-- Select Organization for the Role -->
-                <div>
-                    <label for="role_org" class="font-medium">Select Organization</label>
-                    <select name="org_id"
-                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
-                        @foreach ($organizations as $org)
-                            <option value="{{ $org->org_id }}">{{ $org->org_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
         
-                <!-- Role Name -->
-                <div>
-                    <label for="role_name" class="font-medium">Role Name</label>
-                    <input type="text" name="role_name" placeholder="Enter Role Name"
-                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
-                </div>
-
-                <!-- Role Description -->
-                <div>
-                    <label for="role_description" class="font-medium">Description</label>
-                    <input type="text" name="role_description" placeholder="Description"
-                        class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Select Organization for the Role -->
+                    <div>
+                        <label for="role_org" class="font-medium">Select Organization</label>
+                        <select name="org_id"
+                            class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                            @foreach ($organizations as $org)
+                                <option value="{{ $org->org_id }}">{{ $org->org_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+        
+                    <!-- Role Name -->
+                    <div>
+                        <label for="role_name" class="font-medium">Role Name</label>
+                        <input type="text" name="role_name" placeholder="Enter Role Name"
+                            class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                    </div>
+        
+                    <!-- Role Description -->
+                    <div class="md:col-span-2">
+                        <label for="role_description" class="font-medium">Description</label>
+                        <input type="text" name="role_description" placeholder="Description"
+                            class="w-full bg-gray-100 h-12 rounded border border-gray-300 px-4 mt-1 focus:outline-blue-500">
+                    </div>
                 </div>
         
                 <!-- Display Modules and Permissions -->
                 @if ($modules)
-                <div>
-                    <label for="role_modules" class="font-medium">Assign Modules and Permissions</label>
-                    <table class="w-full mt-1 border-collapse border border-gray-300">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="border border-gray-300 px-6 py-3">Modules</th>
-                                <th class="border border-gray-300 px-6 py-3">Sub-Modules</th>
-                                <th class="border border-gray-300 px-6 py-3">Permissions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($modules as $module)
-                                @php
-                                    $rowspan = count($module->submodules);
-                                @endphp
-                                @foreach ($module->submodules as $index => $submodule)
-                                    <tr>
-                                        @if ($index === 0)
-                                            <td class="border border-gray-300 px-6 py-3 font-semibold" rowspan="{{ $rowspan }}">
-                                                <input type="checkbox" 
-                                                       class="module-checkbox"
-                                                       name="module_id[]"
-                                                       value="{{ $module->module_id }}" 
-                                                       data-module-id="{{ $module->module_id }}" 
-                                                       id="module_{{ $module->module_id }}">
-                                                {{ $module->module_name }}
-                                            </td>
-                                        @endif
-                                        <td class="border border-gray-300 px-6 py-3">
-                                            <input type="checkbox" 
-                                                   class="submodule-checkbox" 
-                                                   name="submodule_id[]" 
-                                                   value="{{ $submodule->submodule_id }}" 
-                                                   data-module-id="{{ $module->module_id }}" 
-                                                   data-submodule-id="{{ $submodule->submodule_id }}" 
-                                                   id="submodule_{{ $submodule->submodule_id }}">
-                                            {{ $submodule->submodule_name }}
-                                        </td>
-                                        <td class="border border-gray-300 px-6 py-3">
-                                            <div class="flex gap-2">
-                                                @foreach ($permissions as $permission)
-                                                    <label>
-                                                        <input type="checkbox"
-                                                                name="permission_id[{{ $submodule->submodule_id }}][]" 
-                                                                value="{{ $permission->permission_id }}"  
-                                                               class="permission-checkbox" 
-                                                               data-module-id="{{ $module->module_id }}" 
-                                                               data-submodule-id="{{ $submodule->submodule_id }}" 
-                                                               id="permission_{{ $permission->permission_id }}">
-                                                        {{ $permission->permission_name }}
-                                                    </label>
-                                                @endforeach
-                                            </div>
-                                        </td>
+                    <div>
+                        <label for="role_modules" class="font-medium">Assign Modules and Permissions</label>
+                        <div class="overflow-x-auto">
+                            <table class="w-full mt-1 border-collapse border border-gray-300 min-w-max">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3 text-left text-sm sm:text-base">Modules</th>
+                                        <th class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3 text-left text-sm sm:text-base">Sub-Modules</th>
+                                        <th class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3 text-left text-sm sm:text-base">Permissions</th>
                                     </tr>
-                                @endforeach
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @endif
+                                </thead>
+                                <tbody>
+                                    @foreach ($modules as $module)
+                                        @php
+                                            $rowspan = count($module->submodules);
+                                        @endphp
+                                        @foreach ($module->submodules as $index => $submodule)
+                                            <tr>
+                                                @if ($index === 0)
+                                                    <td class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3 font-semibold align-top" rowspan="{{ $rowspan }}">
+                                                        <input type="checkbox" 
+                                                            class="module-checkbox"
+                                                            name="module_id[]"
+                                                            value="{{ $module->module_id }}" 
+                                                            data-module-id="{{ $module->module_id }}" 
+                                                            id="module_{{ $module->module_id }}">
+                                                        {{ $module->module_name }}
+                                                    </td>
+                                                @endif
+                                                <td class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3">
+                                                    <input type="checkbox" 
+                                                        class="submodule-checkbox" 
+                                                        name="submodule_id[]" 
+                                                        value="{{ $submodule->submodule_id }}" 
+                                                        data-module-id="{{ $module->module_id }}" 
+                                                        data-submodule-id="{{ $submodule->submodule_id }}" 
+                                                        id="submodule_{{ $submodule->submodule_id }}">
+                                                    {{ $submodule->submodule_name }}
+                                                </td>
+                                                <td class="border border-gray-300 px-3 sm:px-6 py-2 sm:py-3">
+                                                    <div class="flex flex-wrap gap-2">
+                                                        @foreach ($permissions as $permission)
+                                                            <label class="text-sm">
+                                                                <input type="checkbox"
+                                                                    name="permission_id[{{ $submodule->submodule_id }}][]" 
+                                                                    value="{{ $permission->permission_id }}"  
+                                                                    class="permission-checkbox" 
+                                                                    data-module-id="{{ $module->module_id }}" 
+                                                                    data-submodule-id="{{ $submodule->submodule_id }}" 
+                                                                    id="permission_{{ $permission->permission_id }}">
+                                                                {{ $permission->permission_name }}
+                                                            </label>
+                                                        @endforeach
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                @endif
         
                 <!-- Submit Button -->
                 <button type="submit"
@@ -143,6 +147,7 @@
                 </button>
             </div>
         </form>
+        
         
     </div>
 

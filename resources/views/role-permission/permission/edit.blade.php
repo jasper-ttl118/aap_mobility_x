@@ -39,9 +39,9 @@
     </div>
 </body> --}}
 
-<body class="flex flex-row">
+<body class="flex flex-row h-screen">
     @include('layouts.navbar')
-    <div class="flex flex-col justify-center w-full h-auto">
+    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-centers">
         @if ($errors->any())
             <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
                 <div class="flex items-center">
