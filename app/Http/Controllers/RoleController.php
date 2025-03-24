@@ -86,7 +86,7 @@ class RoleController extends Controller
     {   
         $request->validate([
             'role_name' => 'required|string|max:255',
-            'role_description' => 'required|string',
+            'role_description' => 'nullable|string',
             'org_id' => 'required|exists:organizations,org_id',
             'module_id' => 'required|array',
             'module_id.*' => 'exists:modules,module_id',
@@ -209,41 +209,39 @@ class RoleController extends Controller
             'module_id.*' => 'exists:modules,module_id',
             'submodule_id' => 'required|array',
             'submodule_id.*' => 'exists:submodules,submodule_id',
-            'permission_id' => 'required|array',
+            'permission_id' => 'nullable|array', // Allow nullable because some permissions might be deselected
             'permission_id.*' => 'exists:permissions,permission_id',
             'role_status' => 'required|integer|in:0,1',
         ]);
-
+    
         // ✅ Assign modules to a role
         $role->modules()->sync($request->module_id);
-
+    
         // ✅ Assign organization to a role (belongs-to) 
         $role->update([
             'org_id' => $request->org_id,
+            'role_name' => $request->role_name,
+            'role_description' => $request->role_description,
             'role_status' => $request->role_status,
         ]);
-
-        // ✅ Assign submodule with multiple permissions in a role
+    
+        // ✅ Remove existing permissions for the selected submodules
+        DB::table('role_has_submodule_permissions')
+            ->where('role_id', $role->role_id)
+            ->whereIn('submodule_id', $request->submodule_id)
+            ->delete();
+    
+        // ✅ Assign new permissions
         if (is_array($request->permission_id)) {
             foreach ($request->submodule_id as $submoduleId) {
-                // Get unique permissions for this submodule
                 $permissions = $request->permission_id[$submoduleId] ?? [];
-        
-                // Avoid duplicates by using sync or checking for existing records
+    
                 foreach (array_unique($permissions) as $permissionId) {
-                    // Insert only if the record doesn't already exist
-                    DB::table('role_has_submodule_permissions')->updateOrInsert(
-                        [
-                            'role_id' => $role->role_id,
-                            'submodule_id' => $submoduleId,
-                            'permission_id' => $permissionId,
-                        ],
-                        [
-                            'role_id' => $role->role_id,
-                            'submodule_id' => $submoduleId,
-                            'permission_id' => $permissionId,
-                        ]
-                    );
+                    DB::table('role_has_submodule_permissions')->insert([
+                        'role_id' => $role->role_id,
+                        'submodule_id' => $submoduleId,
+                        'permission_id' => (int) $permissionId,
+                    ]);
                 }
             }
         }

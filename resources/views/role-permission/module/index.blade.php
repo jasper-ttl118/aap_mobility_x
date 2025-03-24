@@ -11,7 +11,7 @@
 </head>
 <body class="flex flex-row h-screen" x-data="{ open: false, deleteUrl: '', viewOpen: false, employee: {} }">
     @include('layouts.navbar')
-    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center">
+    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
         @if (session('status'))
             <div id="toast-success" class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100" role="alert" x-data="{ show: true }" x-show="show" x-init="setTimeout(() => show = false, 10000)">
                 <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">

@@ -29,8 +29,8 @@
                         </div> --}}
 
                     <div class="flex flex-col gap-2 text-white">
-                        <h1 class="text-6xl font-bold">RBAC Demo App</h1>
-                        <p class="text-lg font-normal">Using Laravel 11 with Spatie Roles and Permissions</p>
+                        <h1 class="text-6xl font-bold">RBAC Demo</h1>
+                        <p class="text-lg font-normal">Using Laravel with organization, roles, and permission</p>
                     </div>
 
                     <div class="flex flex-col gap-2">
@@ -50,7 +50,7 @@
                                     >
                                         Log in
                                     </a>
-
+{{-- 
                                     @if (Route::has('register'))
                                         <a
                                             href="{{ route('register') }}"
@@ -58,7 +58,7 @@
                                         >
                                             Register
                                         </a>
-                                    @endif
+                                    @endif --}}
                                 @endauth
                             </nav>
                         @endif

@@ -22,7 +22,7 @@ class RolePermissionUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::findById(1);
+        $role = Role::findById(30);
         // $permissions = Permission::findById(1);
 
         // echo $role;
@@ -32,14 +32,14 @@ class RolePermissionUserSeeder extends Seeder
         // // Assign Permissions to Role
         // $role->syncPermissions($permissions);
 
-        //  // Find User
-        // $user = User::find(2);
+         // Find User
+        $user = User::find(24);
 
-        // // Assign Role to User
-        // $user->assignRole($role);
+        // Assign Role to User
+        $user->assignRole($role);
 
-        $permissions = Permission::whereIn('permission_id', [1, 2])->get();
-        $role->syncPermissions($permissions);
+        // $permissions = Permission::whereIn('permission_id', [1, 2])->get();
+        // $role->syncPermissions($permissions);
 
 
         

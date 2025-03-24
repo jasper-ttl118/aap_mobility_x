@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Contracts\Role;
+use Spatie\Permission\Models\Role;
 
 class Organization extends Model
 {   

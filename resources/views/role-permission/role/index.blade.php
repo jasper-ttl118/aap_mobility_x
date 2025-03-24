@@ -12,8 +12,29 @@
 </head>
 
 <body class="flex flex-row">
+
+    @php
+        $user = auth()->user()->load('roles.submodules');
+
+        $submodules = $user->roles
+            ->flatMap(function ($role) {
+                return $role->submodules->map(function ($submodule) use ($role) {
+                    return [
+                        'submodule_name' => $submodule->submodule_name,
+                        'permissions' => $submodule
+                            ->permissionsForRole($role->role_id)
+                            ->pluck('permission_name')
+                            ->toArray(),
+                    ];
+                });
+            })
+            ->unique('submodule_name')
+            ->values();
+
+    @endphp
+
     @include('layouts.navbar')
-    <div class="flex flex-col justify-center items-center w-full bg-gray-50 p-10 ml-64 h-screen">
+    <div class="flex flex-col justify-center items-center w-full bg-gray-50 p-10 ml-64 h-screen bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -41,216 +62,238 @@
             </div>
         @endif
 
-        <div class="w-full m-10 rounded-md border bg-white border-gray-100 p-5 shadow shadow-gray-300">
-            <div class="flex justify-between items-center p-5">
-                <h1 class="text-2xl font-bold">List of Roles</h1>
-                <a href="role/create"
-                    class="flex uppercase items-center rounded-lg bg-blue-900 p-3 text-xs font-bold text-white hover:bg-indigo-800">
-                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                        fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    Add a Role
-                </a>
-            </div>
+        @if (
+            $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Roles Table' &&
+                    in_array('View', $submodule['permissions'])))
 
-            <!-- Alpine.js Data Setup -->
-            <div x-data="{
-                viewOpen: false,
-                role: {},
-                organization: {},
-                modules: [],
-                permissions: []
-            }">
-                <table class="w-full text-left text-sm text-gray-500">
-                    <thead class="bg-gray-100 text-xs text-left  text-gray-700 uppercase">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">Role ID</th>
-                            <th scope="col" class="px-6 py-3">Role Name</th>
-                            <th scope="col" class="px-6 py-3">Role Description</th>
-                            <th scope="col" class="px-6 py-3">Organization</th>
-                            <th scope="col" class="px-6 py-3">Status</th>
-                            <th scope="col" class="px-6 py-3">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($roles as $role)
-                            <tr class="border-b border-gray-200 bg-white">
-                                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">
-                                    {{ $role->role_id }}</th>
-                                <td class="px-6 py-4 text-gray-900">{{ $role->role_name }}</td>
-                                <td class="px-6 py-4 text-gray-900">{{ $role->role_description }}</td>
-                                <td class="px-6 py-4">
-                                    @if ($role->organization)
-                                        <span
-                                            class="bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $role->organization->org_name }}</span>
-                                    @else
-                                        <span
-                                            class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No
-                                            Organization Assigned</span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4  text-gray-900">
-                                    @if ($role->role_status == '1')
-                                        <span
-                                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
-                                    @else
-                                        <span
-                                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
-                                    @endif
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="flex flex-row justify-center items-center gap-2">
-                                        <a href="#"
-                                            @click.prevent="
+            <div class="w-full m-10 rounded-md border bg-white border-gray-100 p-5 shadow shadow-gray-300">
+                <div class="flex justify-between items-center p-5">
+                    <h1 class="text-2xl font-bold">List of Roles</h1>
+                    @if (
+                        $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Roles Table' &&
+                                in_array('Add', $submodule['permissions'])))
+                        <a href="role/create"
+                            class="flex uppercase items-center rounded-lg bg-blue-900 p-3 text-xs font-bold text-white hover:bg-indigo-800">
+                            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Add a Role
+                        </a>
+                    @endif
+                </div>
+
+                <!-- Alpine.js Data Setup -->
+                <div x-data="{
+                    viewOpen: false,
+                    role: {},
+                    organization: {},
+                    modules: [],
+                    permissions: []
+                }">
+                    <table class="w-full text-left text-sm text-gray-500">
+                        <thead class="bg-gray-100 text-xs text-left  text-gray-700 uppercase">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">Role ID</th>
+                                <th scope="col" class="px-6 py-3">Role Name</th>
+                                <th scope="col" class="px-6 py-3">Role Description</th>
+                                <th scope="col" class="px-6 py-3">Organization</th>
+                                <th scope="col" class="px-6 py-3">Status</th>
+                                <th scope="col" class="px-6 py-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($roles as $role)
+                                <tr class="border-b border-gray-200 bg-white">
+                                    <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">
+                                        {{ $role->role_id }}</th>
+                                    <td class="px-6 py-4 text-gray-900">{{ $role->role_name }}</td>
+                                    <td class="px-6 py-4 text-gray-900">{{ $role->role_description }}</td>
+                                    <td class="px-6 py-4">
+                                        @if ($role->organization)
+                                            <span
+                                                class="bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $role->organization->org_name }}</span>
+                                        @else
+                                            <span
+                                                class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No
+                                                Organization Assigned</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4  text-gray-900">
+                                        @if ($role->role_status == '1')
+                                            <span
+                                                class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
+                                        @else
+                                            <span
+                                                class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
+                                        @endif
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex flex-row justify-center items-center gap-2">
+                                            <a href="#"
+                                                @click.prevent="
                                             viewOpen = true;
                                             role = {{ json_encode($role) }};
                                             organization = {{ json_encode($role->organization) }};
                                             modules = {{ json_encode($role->prepared_modules) }};
                                             permissions = {{ json_encode($permissions) }};
                                         "
-                                            class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="size-4">
-                                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                                <path fill-rule="evenodd"
-                                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </a>
-                                        <a href="{{ url('role/' . $role->role_id . '/edit') }}"
-                                            class="flex items-center gap-1 font-medium text-blue-800 underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="size-4">
-                                                <path
-                                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
-                                                <path
-                                                    d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                                <path
-                                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                            </svg>
-                                        </a>
-                                        <a href="javascript:void(0)"
-                                            onclick="openModal('{{ url('role/' . $role->role_id . '/delete') }}')"
-                                            class="flex items-center gap-1 font-medium text-red-700 underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="size-4">
-                                                <path fill-rule="evenodd"
-                                                    d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </a>
+                                                class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="currentColor" class="size-4">
+                                                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </a>
+                                            @if (
+                                                $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Roles Table' &&
+                                                        in_array('Edit', $submodule['permissions'])))
+                                                <a href="{{ url('role/' . $role->role_id . '/edit') }}"
+                                                    class="flex items-center gap-1 font-medium text-blue-800 underline">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="size-4">
+                                                        <path
+                                                            d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
+                                                        <path
+                                                            d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                                        <path
+                                                            d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                                    </svg>
+                                                </a>
+                                            @endif
+                                            @if (
+                                                $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Roles Table' &&
+                                                        in_array('Delete', $submodule['permissions'])))
+                                                <a href="javascript:void(0)"
+                                                    onclick="openModal('{{ url('role/' . $role->role_id . '/delete') }}')"
+                                                    class="flex items-center gap-1 font-medium text-red-700 underline">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                        fill="currentColor" class="size-4">
+                                                        <path fill-rule="evenodd"
+                                                            d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </a>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                    <!-- Overlay -->
+                    <div x-show="viewOpen" class="fixed inset-0 bg-black bg-opacity-50 z-40" @click="viewOpen = false">
+                    </div>
+
+                    <!-- Modal Content -->
+                    <div x-show="viewOpen" x-transition class="fixed inset-0 flex items-center justify-center z-50">
+                        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 max-h-[80vh] flex flex-col">
+                            <!-- Modal Header -->
+                            <div class="flex justify-between items-center border-b pb-3">
+                                <h2 class="text-xl font-semibold">Role Details</h2>
+                                <button @click="viewOpen = false" class="text-gray-400 hover:text-gray-600">
+                                    &#10005;
+                                </button>
+                            </div>
+
+                            <!-- Modal Body - This will scroll -->
+                            <div class="text-gray-700 p-4 space-y-4 overflow-y-auto flex-1">
+
+                                <div class="grid grid-cols-2 gap-2">
+                                    <!-- Roles Name -->
+                                    <div>
+                                        <label class="font-medium">Role Name</label>
+                                        <p class="mt-1" x-text="role.role_name"></p>
                                     </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
 
-                <!-- Overlay -->
-                <div x-show="viewOpen" class="fixed inset-0 bg-black bg-opacity-50 z-40" @click="viewOpen = false">
-                </div>
-
-                <!-- Modal Content -->
-                <div x-show="viewOpen" x-transition class="fixed inset-0 flex items-center justify-center z-50">
-                    <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 max-h-[80vh] flex flex-col">
-                        <!-- Modal Header -->
-                        <div class="flex justify-between items-center border-b pb-3">
-                            <h2 class="text-xl font-semibold">Role Details</h2>
-                            <button @click="viewOpen = false" class="text-gray-400 hover:text-gray-600">
-                                &#10005;
-                            </button>
-                        </div>
-
-                        <!-- Modal Body - This will scroll -->
-                        <div class="text-gray-700 p-4 space-y-4 overflow-y-auto flex-1">
-
-                            <div class="grid grid-cols-2 gap-2">
-                                <!-- Roles Name -->
-                                <div>
-                                    <label class="font-medium">Role Name</label>
-                                    <p class="mt-1" x-text="role.role_name"></p>
+                                    <!-- Role Organization -->
+                                    <div>
+                                        <label class="font-medium">Organization</label>
+                                        <p class="mt-1"
+                                            x-text="organization ? organization.org_name : 'No Organization Assigned'">
+                                        </p>
+                                    </div>
                                 </div>
 
-                                <!-- Role Organization -->
+                                <!-- Role Description -->
                                 <div>
-                                    <label class="font-medium">Organization</label>
-                                    <p class="mt-1"
-                                        x-text="organization ? organization.org_name : 'No Organization Assigned'"></p>
+                                    <label class="font-medium">Description</label>
+                                    <p class="mt-1" x-text="role.role_description"></p>
                                 </div>
-                            </div>
 
-                            <!-- Role Description -->
-                            <div>
-                                <label class="font-medium">Description</label>
-                                <p class="mt-1" x-text="role.role_description"></p>
-                            </div>
-
-                            <!-- Table -->
-                            <div x-show="role.prepared_modules && role.prepared_modules.length > 0">
-                                <label class="font-medium">Permissions</label>
-                                <div class="overflow-x-auto">
-                                    <table class="w-full mt-1 border-collapse border border-gray-300">
-                                        <thead>
-                                            <tr class="bg-gray-100">
-                                                <th class="border border-gray-300 px-6 py-3">Modules</th>
-                                                <th class="border border-gray-300 px-6 py-3">Sub-Modules</th>
-                                                <th class="border border-gray-300 px-6 py-3">Permissions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <template x-for="module in role.prepared_modules" :key="module.module_id">
-                                                <template x-for="(submodule, index) in module.submodules"
-                                                    :key="submodule.submodule_id">
-                                                    <tr>
-                                                        <template x-if="index === 0">
-                                                            <td class="border border-gray-300 px-6 py-3 font-semibold"
-                                                                :rowspan="module.submodules.length">
-                                                                <span x-text="module.module_name"></span>
+                                <!-- Table -->
+                                <div x-show="role.prepared_modules && role.prepared_modules.length > 0">
+                                    <label class="font-medium">Permissions</label>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full mt-1 border-collapse border border-gray-300">
+                                            <thead>
+                                                <tr class="bg-gray-100">
+                                                    <th class="border border-gray-300 px-6 py-3">Modules</th>
+                                                    <th class="border border-gray-300 px-6 py-3">Sub-Modules</th>
+                                                    <th class="border border-gray-300 px-6 py-3">Permissions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <template x-for="module in role.prepared_modules"
+                                                    :key="module.module_id">
+                                                    <template x-for="(submodule, index) in module.submodules"
+                                                        :key="submodule.submodule_id">
+                                                        <tr>
+                                                            <template x-if="index === 0">
+                                                                <td class="border border-gray-300 px-6 py-3 font-semibold"
+                                                                    :rowspan="module.submodules.length">
+                                                                    <span x-text="module.module_name"></span>
+                                                                </td>
+                                                            </template>
+                                                            <td class="border border-gray-300 px-6 py-3">
+                                                                <span x-text="submodule.submodule_name"></span>
                                                             </td>
-                                                        </template>
-                                                        <td class="border border-gray-300 px-6 py-3">
-                                                            <span x-text="submodule.submodule_name"></span>
-                                                        </td>
-                                                        <td class="border border-gray-300 px-6 py-3">
-                                                            <div class="flex gap-2 flex-wrap">
-                                                                <template x-for="permission in submodule.permissions"
-                                                                    :key="permission.permission_id">
-                                                                    <span
-                                                                        class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
-                                                                        x-text="permission.permission_name"></span>
-                                                                </template>
-                                                                <template x-if="submodule.permissions.length === 0">
-                                                                    <span class="text-gray-500 text-xs">No permissions
-                                                                        assigned</span>
-                                                                </template>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            <td class="border border-gray-300 px-6 py-3">
+                                                                <div class="flex gap-2 flex-wrap">
+                                                                    <template
+                                                                        x-for="permission in submodule.permissions"
+                                                                        :key="permission.permission_id">
+                                                                        <span
+                                                                            class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+                                                                            x-text="permission.permission_name"></span>
+                                                                    </template>
+                                                                    <template
+                                                                        x-if="submodule.permissions.length === 0">
+                                                                        <span class="text-gray-500 text-xs">No
+                                                                            permissions
+                                                                            assigned</span>
+                                                                    </template>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </template>
                                                 </template>
-                                            </template>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div x-show="!role.prepared_modules || role.prepared_modules.length === 0">
+                                    <p class="text-gray-500">No modules or permissions assigned to this role.</p>
                                 </div>
                             </div>
-                            <div x-show="!role.prepared_modules || role.prepared_modules.length === 0">
-                                <p class="text-gray-500">No modules or permissions assigned to this role.</p>
-                            </div>
-                        </div>
 
-                        <!-- Modal Footer -->
-                        <div class="flex justify-end gap-2 border-t pt-3">
-                            <button @click="viewOpen = false"
-                                class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
-                                Close
-                            </button>
+                            <!-- Modal Footer -->
+                            <div class="flex justify-end gap-2 border-t pt-3">
+                                <button @click="viewOpen = false"
+                                    class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">
+                                    Close
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 
     <!-- Delete Confirmation Modal -->

@@ -31,7 +31,13 @@ class Submodule extends Model
 
     public function permission()
     {
-        return $this->belongsToMany(Permission::class, 'role_has_submodule_permissions', 'submodule_id', 'role_id')
+        return $this->belongsToMany(Permission::class, 'role_has_submodule_permissions', 'submodule_id', 'permission_id')
             ->withPivot('role_id');
+    }
+
+    public function permissionsForRole($roleId)
+    {
+        return $this->belongsToMany(Permission::class, 'role_has_submodule_permissions', 'submodule_id', 'permission_id')
+        ->where('role_has_submodule_permissions.role_id', $roleId);
     }
 }

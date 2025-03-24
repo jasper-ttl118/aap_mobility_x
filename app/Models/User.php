@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
-use Spatie\Permission\Contracts\Role;
+use Spatie\Permission\Models\Role;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -21,6 +21,8 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+
+    public $timestamps = false;
     protected $primaryKey = 'user_id';
     protected $fillable = [
         'employee_id', 
@@ -30,6 +32,18 @@ class User extends Authenticatable
         'role_id', 
         'user_status'
     ];
+
+
+    public function username()
+    {
+        return 'user_name';
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->user_password;
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -68,7 +82,7 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->morphToMany(
-            \Spatie\Permission\Models\Role::class, // Use the actual Role model, NOT the contract
+            Role::class, // Use the actual Role model, NOT the contract
             'model',
             'model_has_roles',
             'model_id',
@@ -96,32 +110,32 @@ class User extends Authenticatable
     }
 
     public function assignRole($roles)
-{
-    $roles = is_array($roles) ? $roles : [$roles];
+    {
+        $roles = is_array($roles) ? $roles : [$roles];
 
-    foreach ($roles as $role) {
-        if (is_string($role)) {
-            $role = Role::findByName($role, $this->getGuardName());
-        }
+        foreach ($roles as $role) {
+            if (is_string($role)) {
+                $role = Role::findByName($role, $this->getGuardName());
+            }
 
-        if (!$role) {
-            throw new \Exception("Role not found.");
-        }
+            if (!$role) {
+                throw new \Exception("Role not found.");
+            }
 
-        // Check guard match
-        $this->ensureModelSharesGuard($role);
+            // Check guard match
+            $this->ensureModelSharesGuard($role);
 
-        // Insert into model_has_roles
-        $exists = $this->roles()
-            ->where('model_has_roles.role_id', $role->role_id) // Correct role_id
-            ->exists();
+            // Insert into model_has_roles
+            $exists = $this->roles()
+                ->where('model_has_roles.role_id', $role->role_id) // Correct role_id
+                ->exists();
 
-        if (!$exists) {
-            // Include org_id if necessary
-            $this->roles()->attach($role->role_id, ['org_id' => $this->org_id]);
+            if (!$exists) {
+                // Include org_id if necessary
+                $this->roles()->attach($role->role_id, ['org_id' => $this->org_id]);
+            }
         }
     }
-}
 
 
 

@@ -169,7 +169,7 @@
                 <!-- Submit Button -->
                 <button type="submit"
                     class="mt-6 w-full bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 transition duration-200">
-                    Create
+                    Update
                 </button>
             </div>
         </form>
