@@ -104,10 +104,16 @@ class UserController extends Controller
             'user_status' => 'required|integer|in:0,1',
         ]);
 
+        //Stopper if the user_password is empty
+        if (!empty($request->user_password)) {
+            $user->update([
+                'user_password' => Hash::make($request->user_password),
+            ]);
+        }
+
         $user->update([
             'employee_id' => $request->employee_id,
             'user_name' => $request->user_name,
-            'user_password' => Hash::make($request->user_password),
             'org_id' => $request->org_id,
             'role_id' => $request->role_id,
             'user_status' => $request->user_status,

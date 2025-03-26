@@ -13,6 +13,12 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                inter: ['Inter', ...defaultTheme.fontFamily.sans],
+                boldonse: ['Boldonse' , ...defaultTheme.fontFamily.sans],
+                poppins: ['Poppins' , ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto' , ...defaultTheme.fontFamily.sans],
+                robotoflex: ['Roboto Flex' , ...defaultTheme.fontFamily.sans],
+                
             },
         },
     },

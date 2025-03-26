@@ -31,10 +31,10 @@
 
     @endphp
     @include('layouts.navbar')
-    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
+    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
-                class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
+                class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
                 role="alert">
                 <div
                     class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -58,16 +58,12 @@
                 </button>
             </div>
         @endif
-        @if (
-            $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' &&
-                    in_array('View', $submodule['permissions'])))
+        {{-- @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('View', $submodule['permissions'])))
 
             <div class="w-full rounded-md border bg-white border-gray-100 p-5 shadow shadow-gray-300">
                 <div class="flex justify-between items-center p-5">
                     <h1 class="text-2xl font-bold">List of Users</h1>
-                    @if (
-                        $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' &&
-                                in_array('Add', $submodule['permissions'])))
+                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Add', $submodule['permissions'])))
                         <a href="user/search/find"
                             class="flex uppercase rounded-lg bg-blue-900 p-3 text-xs font-bold text-white hover:bg-indigo-800">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -135,9 +131,7 @@
                                 </td>
 
                                 <td class="px-6 py-4 flex flex-wrap gap-3 justify-center">
-                                    @if (
-                                        $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' &&
-                                                in_array('Edit', $submodule['permissions'])))
+                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Edit', $submodule['permissions'])))
                                         <a href="{{ url('user/' . $user->user_id . '/edit') }}"
                                             class="flex items-center gap-1 font-medium text-blue-800 underline">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -151,9 +145,7 @@
                                             </svg>
                                         </a>
                                     @endif
-                                    @if (
-                                        $submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' &&
-                                                in_array('Delete', $submodule['permissions'])))
+                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Delete', $submodule['permissions'])))
                                         <a href="javascript:void(0)"
                                             onclick="openModal('{{ url('user/' . $user->user_id) }}')"
                                             class="flex items-center gap-1 font-medium text-red-700 underline">
@@ -172,11 +164,171 @@
                     </tbody>
                 </table>
             </div>
-        @endif
+        @endif --}}
+
+
+
+        <!-- Breadcrumbs-->
+        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
+            <a href="/user" class="hover:underline">RBAC Management</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="#" class="hover:underline font-semibold">Users</a>
+        </div>
+
+        <!-- Title and Subtitle -->
+        <div class="">
+            <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
+            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
+                organization.</p>
+        </div>
+
+        <!-- Options Container -->
+        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
+            <div class="flex h-14 border-b border-gray-200">
+                <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
+                    <a href="#" class="font-semibold text-blue-900 ">Users</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/organization" class="text-gray-600 hover:text-blue-800">Organizations</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/role" class="text-gray-600 hover:text-blue-800">Roles</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-7">
+                <div>
+                    <h2 class="font-semibold text-blue-900">Manage users</h2>
+                    <p class="text-gray-900 text-sm">Create, update, and delete user accounts.</p>
+                </div>
+
+                {{-- Add User --}}
+                <div> 
+                    <a href="user/search/find"
+                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Add New User
+                    </a>
+                </div>
+                
+            </div>
+
+            <div class="mx-7 mb-10 rounded-sm">
+                <table class="w-full text-center text-sm text-gray-500">
+                    <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">User ID</th>
+                            <th scope="col" class="px-6 py-3">Employee Name</th>
+                            <th scope="col" class="px-6 py-3">Username</th>
+                            <th scope="col" class="px-6 py-3">Organization</th>
+                            <th scope="col" class="px-6 py-3">Roles</th>
+                            <th scope="col" class="px-6 py-3">Status</th>
+                            <th scope="col" class="px-6 py-3">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($users as $user)
+                            <tr class="border-b border-gray-200 bg-white">
+                                <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap text-gray-900">
+                                    {{ $user->user_id }}</th>
+                                <td class="px-6 py-4 text-gray-900">{{ $user->employee->employee_firstname }}
+                                    {{ $user->employee->employee_lastname }}</td>
+                                <td class="px-6 py-4 text-gray-900">{{ $user->user_name }}</td>
+                                <td class="px-4 py-2">
+                                    @if ($user->organization)
+                                        <span
+                                            class="bg-blue-900 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
+                                            {{ $user->organization->org_name }}
+                                        </span>
+                                    @else
+                                        <span
+                                            class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
+                                            No Organization Assigned
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4">
+                                    @if ($user->roles->isNotEmpty())
+                                        @foreach ($user->roles as $role)
+                                            <span
+                                                class="bg-blue-900 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $role->role_name }}</span>
+                                        @endforeach
+                                    @else
+                                        <span
+                                            class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No
+                                            Role Assigned</span>
+                                    @endif
+                                </td>
+                                <td class="px-6 py-4  text-gray-900">
+                                    @if ($user->user_status == '1')
+                                        <span
+                                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
+                                    @else
+                                        <span
+                                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
+                                    @endif
+                                </td>
+
+                                <td class="px-6 py-4 flex flex-wrap gap-3 justify-center">
+                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Edit', $submodule['permissions'])))
+                                        <a href="{{ url('user/' . $user->user_id . '/edit') }}"
+                                            class="flex items-center gap-1 font-medium text-blue-800 underline">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4">
+                                                <path
+                                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
+                                                <path
+                                                    d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                                <path
+                                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                            </svg>
+                                        </a>
+                                    @endif
+                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Delete', $submodule['permissions'])))
+                                        <a href="javascript:void(0)"
+                                            onclick="openModal('{{ url('user/' . $user->user_id) }}')"
+                                            class="flex items-center gap-1 font-medium text-red-700 underline">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4">
+                                                <path fill-rule="evenodd"
+                                                    d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                    @endif
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+
+
+
+
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div id="delete-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900 bg-opacity-50">
+    <div id="delete-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center hidden bg-gray-900 bg-opacity-50">
         <div class="bg-white rounded-lg shadow-lg w-96 p-6 dark:bg-gray-800">
             <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Confirm Deletion</h2>
             <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">

@@ -1,16 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @include("layouts.icons")
+    @include('layouts.icons')
     @vite('resources/css/app.css')
     <title>Dashboard</title>
 </head>
+
 <body class="flex flex-row h-screen">
     @include('layouts.navbar')
-    
+
+    {{-- <!-- Main Container -->
+    <div class="flex flex-1 ml-64 flex-col overflow-y-auto">
+        <!-- Title and Subtitle -->
+        <div class="space-y-2 p-7">
+            <h1 class="text-xl font-bold uppercase">RBAC Management</h1>
+            <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <!-- Options Container -->
+        <div class="mx-7 rounded-sm bg-gray-100">
+            <div class="flex h-14 border-b border-gray-200">
+                <div class="w-32 border-b-2 border-blue-500 p-4 text-center">
+                    <a href="#" class="font-medium text-blue-700">Users</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-500">Organizations</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-500">Roles</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-500">Modules</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-500">Permissions</a>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between p-7">
+                <div>
+                    <h2 class="font-bold">Manage Users</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+                <div>
+                    <button class="rounded-sm bg-blue-900 p-2 text-white">Add new user</button>
+                </div>
+            </div>
+
+            <div class="mx-7 mb-10 h-96 rounded-sm bg-gray-200"></div>
+        </div>
+    </div>
+    </div> --}}
+
     <div class="flex flex-col w-full ml-64 overflow-y-auto bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center p-10">
         <div class="flex h-30 w-auto justify-start">
           <div class="flex flex-row items-center text-3xl py-10 font-bold bg-gradient-to-r from-sky-500  to-blue-900 bg-clip-text text-transparent">Welcome, {{ $users->employee->employee_firstname}} {{ $users->employee->employee_lastname}}!
@@ -18,7 +64,7 @@
           </div>
         </div>
     
-        {{-- <div class="flex flex-wrap h-auto w-auto bg-white justify-center">
+        <div class="flex flex-wrap h-auto w-auto bg-white justify-center">
           
             <div class="p-5 w-80 flex m-5 h-40 w-100 items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-indigo-900 bg-gray-50 shadow shadow-stone-100">
                 <div class="text-6xl font-medium text-indigo-900">125</div>
@@ -86,11 +132,12 @@
               </div>
             </div>
         
-        </div> --}}
+        </div>
 
           
 
       </div>
     </div>
 </body>
+
 </html>
