@@ -96,7 +96,7 @@
 
             <div class="flex items-center justify-between p-7">
                 <div>
-                    <h1 class="font-semibold text-blue-900">Search Employee Record</h1>
+                    <h1 class="font-semibold text-lg text-blue-900">Search Employee Record</h1>
 
                     <p class="text-gray-900 text-sm">In order to complete the user registration process, the user must
                         already be recorded in the employee database.</p>

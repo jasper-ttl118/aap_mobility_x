@@ -208,7 +208,7 @@
 
             <div class="flex items-center justify-between p-7">
                 <div>
-                    <h2 class="font-semibold text-blue-900">Manage users</h2>
+                    <h2 class="font-semibold text-lg text-blue-900">Manage users</h2>
                     <p class="text-gray-900 text-sm">Create, update, and delete user accounts.</p>
                 </div>
 
@@ -250,7 +250,7 @@
                                 <td class="px-4 py-2">
                                     @if ($user->organization)
                                         <span
-                                            class="bg-blue-900 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
+                                            class="{{ $user->organization->org_color }} whitespace-nowrap text-xs font-medium px-2 py-1 rounded-full">
                                             {{ $user->organization->org_name }}
                                         </span>
                                     @else
@@ -263,12 +263,14 @@
                                 <td class="px-6 py-4">
                                     @if ($user->roles->isNotEmpty())
                                         @foreach ($user->roles as $role)
-                                            <span
-                                                class="bg-blue-900 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">{{ $role->role_name }}</span>
+                                        <div class="flex items-center gap-2 text-gray-900 justify-center">
+                                            <div class="h-2 w-2 rounded-full  {{ $user->organization->org_color }}"></div>
+                                            <span>{{ $role->role_name }}</span>
+                                          </div>
                                         @endforeach
                                     @else
                                         <span
-                                            class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">No
+                                            class="whitespace-nowrap text-gray-200 text-xs font-medium">No
                                             Role Assigned</span>
                                     @endif
                                 </td>
@@ -283,7 +285,7 @@
                                 </td>
 
                                 <td class="px-6 py-4 flex flex-wrap gap-3 justify-center">
-                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Edit', $submodule['permissions'])))
+                                   
                                         <a href="{{ url('user/' . $user->user_id . '/edit') }}"
                                             class="flex items-center gap-1 font-medium text-blue-800 underline">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -296,8 +298,7 @@
                                                     d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                                             </svg>
                                         </a>
-                                    @endif
-                                    @if ($submodules->contains(fn($submodule) => $submodule['submodule_name'] === 'List of Users Table' && in_array('Delete', $submodule['permissions'])))
+                                   
                                         <a href="javascript:void(0)"
                                             onclick="openModal('{{ url('user/' . $user->user_id) }}')"
                                             class="flex items-center gap-1 font-medium text-red-700 underline">
@@ -308,7 +309,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </a>
-                                    @endif
+                                        
                                 </td>
 
                             </tr>

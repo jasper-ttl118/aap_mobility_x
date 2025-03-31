@@ -23,8 +23,9 @@ class OrganizationController extends Controller
     {
         $request->validate([
             'org_name' => 'required|string|max:255',
-            'org_description' => 'required|string|max:255',
+            'org_description' => 'required|string',
             'org_logo' => 'required|image|mimes:jpeg,png,jpg,gif,webp',
+            'org_color' => 'required|string|max:255',
         ]);
 
         $path = null;
@@ -39,6 +40,7 @@ class OrganizationController extends Controller
             'org_name' => $request->org_name,
             'org_description' => $request->org_description,
             'org_logo' => $path, // Save the path in the database
+            'org_color' => $request->org_color,
         ]);
 
         return redirect('/organization')->with('status', 'Organization \''.$request->org_name.'\' has been created successfully');
@@ -53,8 +55,9 @@ class OrganizationController extends Controller
     {
         $request->validate([
             'org_name' => 'required|string|max:255',
-            'org_description' => 'required|string|max:255',
+            'org_description' => 'required|string',
             'org_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp', //Allow nullable logo
+            'org_color' => 'required|string|max:255',
             'org_status' => 'required|integer|in:0,1',
         ]);
     
@@ -62,6 +65,7 @@ class OrganizationController extends Controller
             'org_name' => $request->org_name,
             'org_description' => $request->org_description,
             'org_status' => $request->org_status,
+            'org_color' => $request->org_color,
         ];
     
         //Only update the logo if a new file is uploaded

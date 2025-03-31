@@ -101,9 +101,11 @@
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
-                <h1 class="font-semibold text-blue-900">Create User Account for <span
-                        class="text-blue-900">{{ $employee->employee_firstname }}
-                        {{ $employee->employee_lastname }}</h1>
+                <h1 class="font-semibold text-lg text-blue-900">Create User Account for 
+                    <span class="text-blue-900">{{ $employee->employee_firstname }}
+                        {{ $employee->employee_lastname }}
+                    </span>
+                </h1>
 
                 <p class="text-gray-900 text-sm">Set up a unique username and password for this employee.</p>
 

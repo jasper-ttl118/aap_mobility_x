@@ -95,7 +95,7 @@
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-4">
-                <h1 class="font-semibold text-blue-900">Update User Information for <span
+                <h1 class="font-semibold text-lg text-blue-900">Update User Information for <span
                         class="text-blue-900">{{ $employee->employee_firstname }}
                         {{ $employee->employee_lastname }}</span></h1>
 
@@ -251,7 +251,7 @@
                                     {{ old('user_status', $user->user_status) == 1 ? 'checked' : '' }}
                                     value="1" onchange="this.value = this.checked ? 1 : 0">
                                     <div
-                                        class="relative w-14 h-8 bg-gray-200 rounded-full 
+                                        class="relative w-14 h-8 bg-red-500 rounded-full 
                                                 dark:bg-gray-700 
                                                 peer 
                                                 peer-checked:bg-green-600 
@@ -265,7 +265,7 @@
                                                 after:h-6 
                                                 after:bg-white 
                                                 after:border 
-                                                after:border-gray-300 
+                                                after:border-gray-100 
                                                 after:rounded-full">
                                     </div>
                                     <span

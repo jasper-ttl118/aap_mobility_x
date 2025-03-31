@@ -13,7 +13,8 @@ class Organization extends Model
         'org_name', 
         'org_description', 
         'org_logo', 
-        'org_status'
+        'org_status',
+        'org_color',
     ];
 
     public function roles()

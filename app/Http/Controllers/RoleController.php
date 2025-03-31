@@ -203,7 +203,7 @@ class RoleController extends Controller
     {
         $request->validate([
             'role_name' => 'required|string|max:255',
-            'role_description' => 'required|string',
+            'role_description' => 'nullable|string',
             'org_id' => 'required|exists:organizations,org_id',
             'module_id' => 'required|array',
             'module_id.*' => 'exists:modules,module_id',

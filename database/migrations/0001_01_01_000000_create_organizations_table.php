@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('organizations', function (Blueprint $table) {
             $table->id('org_id');
             $table->string('org_name');
-            $table->text('org_description')->nullable();
+            $table->longText('org_description')->nullable();
             $table->string('org_logo')->nullable();
+            $table->string('org_color');
             $table->boolean('org_status')->default(1);
             $table->timestamp('org_date_created')->useCurrent();
             $table->timestamp('org_date_updated')->useCurrent()->useCurrentOnUpdate();
