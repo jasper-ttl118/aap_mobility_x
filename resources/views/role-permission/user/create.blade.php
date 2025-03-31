@@ -251,7 +251,8 @@
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign an Organization and Role</h1>
                         <p class="text-sm italic text-gray-600">Select an organization and assign a corresponding role
-                            to the user.</p>
+                            to the user. If role is not in the selection, add new in the <a href="/role/create"
+                            class="font-semibold underline" target=_parent>Role Management</a>.</p>
                     </div>
                     <div class="col-span-6">
                         <div class="grid grid-cols-3 justify-between gap-2">
