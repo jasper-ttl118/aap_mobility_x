@@ -18,6 +18,7 @@ class ModuleController extends Controller
     public function create()
     {
         $submodules = Submodule::get();
+        
         return view('role-permission.module.create', compact('submodules'));
     }
 
