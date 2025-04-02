@@ -7,5 +7,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@layer components {
+    .profile_edit_input {
+        @apply w-full rounded-lg border-sky-500 font-light
+    }
+}
 
