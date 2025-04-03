@@ -11,6 +11,12 @@
 </head>
 
 <body class="flex flex-row min-h-screen">
+
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
+
     @include('layouts.navbar')
 
 
@@ -87,9 +93,9 @@
                 <div class="w-32 p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
@@ -170,8 +176,9 @@
                                         class="flex flex-col gap-4 rounded border border-gray-200 bg-gray-50 p-5 text-sm shadow-sm">
                                         <div class="flex space-x-2">
                                             <div>
-                                                <input type="checkbox" class="module-checkbox rounded border border-gray-400" name="module_id[]"
-                                                    value="{{ $module->module_id }}"
+                                                <input type="checkbox"
+                                                    class="module-checkbox rounded border border-gray-400"
+                                                    name="module_id[]" value="{{ $module->module_id }}"
                                                     data-module-id="{{ $module->module_id }}"
                                                     id="module_{{ $module->module_id }}">
                                             </div>
@@ -189,7 +196,8 @@
                                         @foreach ($module->submodules as $submodule)
                                             <div class="ml-5 flex justify-between rounded bg-gray-100 p-3">
                                                 <div class="flex items-center gap-2">
-                                                    <input type="checkbox" class="submodule-checkbox rounded border border-gray-400"
+                                                    <input type="checkbox"
+                                                        class="submodule-checkbox rounded border border-gray-400"
                                                         name="submodule_id[]" value="{{ $submodule->submodule_id }}"
                                                         data-module-id="{{ $module->module_id }}"
                                                         data-submodule-id="{{ $submodule->submodule_id }}"
@@ -235,7 +243,8 @@
                         <div class="grid grid-cols-2 justify-between gap-2">
                             <div class="flex flex-col justify-center gap-2">
                                 <Button type="submit"
-                                    class="w-48 px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Add role</Button>
+                                    class="w-48 px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Add
+                                    role</Button>
                             </div>
                         </div>
                     </div>
@@ -251,7 +260,7 @@
 
 
 
-    
+
     <script>
         function closeErrorToast() {
             const toast = document.getElementById('toast-error');

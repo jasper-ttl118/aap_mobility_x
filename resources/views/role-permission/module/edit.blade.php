@@ -1,32 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Module</title>
-    @include("layouts.icons")
+    @include('layouts.icons')
     @vite('resources/css/app.css')
+
 </head>
 
 
-<body class="flex flex-row h-screen">
+<body class="flex flex-row min-h-screen">
+
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
     @include('layouts.navbar')
-    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center">
+
+    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if ($errors->any())
-            <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
+            <div id="toast-error"
+                class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
+                role="alert">
                 <div class="flex items-center">
-                    <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm-1 5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0V5Zm1 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 10 12Z"/>
+                    <div
+                        class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm-1 5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0V5Zm1 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 10 12Z" />
                         </svg>
                         <span class="sr-only">Error icon</span>
                     </div>
                     <span class="ms-3 font-semibold">Error:</span>
-                    <button type="button" onclick="closeErrorToast()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-red-400 hover:text-red-900 rounded-lg focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-red-100 inline-flex items-center justify-center h-8 w-8 dark:text-red-500 dark:hover:text-white dark:bg-red-800 dark:hover:bg-red-700" aria-label="Close">
+                    <button type="button" onclick="closeErrorToast()"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-white text-red-400 hover:text-red-900 rounded-lg focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-red-100 inline-flex items-center justify-center h-8 w-8 dark:text-red-500 dark:hover:text-white dark:bg-red-800 dark:hover:bg-red-700"
+                        aria-label="Close">
                         <span class="sr-only">Close</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                     </button>
                 </div>
@@ -37,7 +54,231 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ url('module/'.$module->module_id) }}" method="post" enctype="multipart/form-data" class="mx-auto max-w-4xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
+
+        <!-- Breadcrumbs-->
+        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
+            <a href="/module" class="hover:underline">RBAC Management</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="/module" class="hover:underline">Modules</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="#" class="hover:underline font-semibold">Update Module</a>
+        </div>
+
+        <!-- Title and Subtitle -->
+        <div class="">
+            <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
+            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
+                organization.</p>
+        </div>
+
+        <!-- Options Container -->
+        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
+            <div class="flex h-14 border-b border-gray-200">
+                <div class="w-32 p-4 text-center">
+                    <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/organization" class="text-gray-600 hover:text-blue-800">Organizations</a>
+                </div>
+                <div class="w-32 p-4 text-center">
+                    <a href="/role" class="text-gray-600 hover:text-blue-800">Roles</a>
+                </div>
+                <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
+                    <a href="/module" class="font-semibold text-blue-900">Modules</a>
+                </div>
+                {{-- <div class="w-32 p-4 text-center">
+                    <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
+                </div> --}}
+            </div>
+
+            <div class="flex items-center justify-between p-7">
+                <div>
+                    <h2 class="font-semibold text-lg text-blue-900">Edit Module</h2>
+                    <p class="text-gray-900 text-sm">
+                        Create a new module and assign the available submodules.</p>
+                </div>
+
+            </div>
+
+            <form action="{{ url('module/' . $module->module_id) }}" method="post" class="flex flex-col p-7 gap-7">
+                @csrf
+                @method('PUT')
+
+                {{-- Role Details --}}
+                <div class="grid grid-cols-10 gap-10 items-start">
+                    <div class="col-span-4">
+                        <h1 class="font-medium text-blue-900">Module Details</h1>
+                        <p class="text-sm italic text-gray-600">Edit module and its description.</p>
+                        <span class="flex items-center gap-1 text-xs text-gray-500">
+                            <p class="italic">The system uses predefined module names. Please contact the system
+                                administrator for naming conventions.
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="size-4 text-red-500 inline-block">
+                                    <path fill-rule="evenodd"
+                                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </p>
+                        </span>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="flex flex-col gap-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex flex-col justify-center gap-2">
+                                    <label for="module_name" class="text-sm font-medium text-blue-900">Module
+                                        Name</label>
+                                    <input type="text" name="module_name" placeholder=""
+                                        value="{{ $module->module_name }}"
+                                        class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
+                                </div>
+                            </div>
+                            <div class="flex flex-col justify-center gap-2">
+                                <label for="module_description"
+                                    class="text-sm font-medium text-blue-900">Description</label>
+                                <input type="text" name="module_description" placeholder=""
+                                    value="{{ $module->module_description }}"
+                                    class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <hr class="border-gray-200">
+
+                {{-- Assign Sub-modules --}}
+                <div class="grid grid-cols-10 gap-8 items-start">
+                    <!-- Module Details Section -->
+                    <div class="col-span-4 space-y-1">
+                        <h1 class="font-medium text-blue-900">Re-assign submodule</h1>
+                        <p class="text-sm italic text-gray-600">Select available sub-modules to define specific
+                            functionalities for this module.</p>
+                    </div>
+
+                    <!-- Submodule Selection Section -->
+                    <div class="col-span-6">
+                        <div class="space-y-2">
+                            <label for="module_name" class="block text-sm font-medium text-blue-900">Available
+                                Sub-modules</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                @php $hasAvailableSubmodule = false; @endphp
+
+                                @foreach ($all_submodules as $submodule)
+                                    @if (empty($submodule->module_id) || $submodule->module_id == $module->module_id)
+                                        {{-- Check if module_id is null or empty --}}
+                                        @php $hasAvailableSubmodule = true; @endphp
+                                        <div
+                                            class="flex items-center gap-3 bg-gray-50 border border-gray-300 rounded-lg px-4 py-2">
+                                            <input type="checkbox" id="submodule-{{ $submodule->submodule_id }}"
+                                                name="submodules[]" value="{{ $submodule->submodule_id }}"
+                                                {{ in_array($submodule->submodule_id, old('submodules', $module->submodules->pluck('submodule_id')->toArray())) ? 'checked' : '' }}
+                                                class="rounded border-gray-300 focus:ring-blue-600" />
+                                            <label for="submodule-{{ $submodule->submodule_id }}"
+                                                class="text-gray-700 text-sm">
+                                                {{ $submodule->submodule_name }}
+                                            </label>
+                                        </div>
+                                    @endif
+                                @endforeach
+
+                                @if (!$hasAvailableSubmodule)
+                                    <p class="text-sm text-gray-500 italic">No available submodule.</p>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {{-- Set Status --}}
+
+                <div class="grid grid-cols-10 items-center gap-10">
+                    <div class="col-span-4">
+                        <div class="flex gap-2 items-center">
+                            <h1 class="font-medium text-blue-900">Set Status</h1>
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-4 text-blue-900">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" clip-rule="evenodd" />
+                            </svg> --}}
+                        </div>
+                        <p class="text-sm italic text-gray-600">
+                            Set the module as active or inactive.
+                        </p>
+                    </div>
+                    <div class="col-span-6">
+                        <div class="">
+                            <div class="flex flex-col justify-center gap-2">
+                                <label for="module_status" class="text-sm font-medium text-blue-900">Status</label>
+                                <div class="flex items-center gap-1">
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <!-- Hidden input to send '0' if checkbox is unchecked -->
+                                        <input type="hidden" name="module_status" value="0">
+                                        <input type="checkbox" name="module_status" id="module_status"
+                                            class="sr-only peer toggle-checkbox"
+                                            {{ old('module_status', $module->module_status) == 1 ? 'checked' : '' }}
+                                            value="1">
+                                        <div
+                                            class="relative w-16 h-8 bg-red-500 rounded-full 
+                                                    dark:bg-gray-700 
+                                                    peer 
+                                                    peer-checked:bg-green-600 
+                                                    dark:peer-checked:bg-green-600 
+                                                    peer-checked:after:translate-x-8 
+                                                    after:content-[''] 
+                                                    after:absolute 
+                                                    after:top-1 
+                                                    after:start-[4px] 
+                                                    after:w-6 
+                                                    after:h-6 
+                                                    after:bg-white 
+                                                    after:border 
+                                                    after:border-gray-100 
+                                                    after:rounded-full">
+                                        </div>
+                                    </label>
+                                    <span
+                                        class="toggle-label ms-3 font-medium text-sm text-gray-600 dark:text-gray-300">
+                                        {{ old('module_status', $module->module_status) == 1 ? 'Active' : 'Inactive' }}
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                {{-- Button --}}
+                <div class="grid grid-cols-10 items-center pt-8 gap-10">
+                    <div class="col-span-4">
+                    </div>
+                    <div class="col-span-6">
+                        <div class="grid grid-cols-2 justify-between gap-2">
+                            <div class="flex flex-col justify-center gap-2">
+                                <Button type="submit"
+                                    class="w-48 px-4 py-2 bg-blue-900 text-white rounded-lg hover:bg-blue-800">Update</Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+        {{-- <form action="{{ url('module/' . $module->module_id) }}" method="post" enctype="multipart/form-data"
+            class="mx-auto max-w-4xl bg-white shadow-md rounded-lg overflow-hidden border border-gray-200">
             @csrf
             @method('PUT')
             <div class="p-6 space-y-6">
@@ -48,55 +289,81 @@
                         Update module information or re-assign it to the available sub-modules.
                     </p>
                 </div>
-        
+
                 <!-- Module Name -->
                 <div>
                     <label for="module_name" class="block font-medium text-gray-700">Module Name</label>
-                    <input type="text" name="module_name" value="{{ $module->module_name }}" placeholder="Module Name"
-                        class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                </div>
-        
-                <!-- Module Description -->
-                <div>
-                    <label for="module_description" class="block font-medium text-gray-700">Description</label>
-                    <input type="text" name="module_description" value="{{ $module->module_description }}" placeholder="Description"
+                    <input type="text" name="module_name" value="{{ $module->module_name }}"
+                        placeholder="Module Name"
                         class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                 </div>
 
-                {{-- status --}}
+                <!-- Module Description -->
+                <div>
+                    <label for="module_description" class="block font-medium text-gray-700">Description</label>
+                    <input type="text" name="module_description" value="{{ $module->module_description }}"
+                        placeholder="Description"
+                        class="w-full bg-gray-50 border border-gray-300 rounded-md px-4 py-2 mt-1 text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                    <label for="status" class="font-medium">Set Status</label>
-                    <select name="module_status" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
-                        <option value='1' @selected(intval(old('employee_status', $module->module_status)) === 1)>Active</option>
-                        <option value='0' @selected(intval(old('employee_status', $module->module_status)) === 0)>Inactive</option>
-                    </select>
+                        <label for="status" class="font-medium">Set Status</label>
+                        <select name="module_status"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                            <option value='1' @selected(intval(old('employee_status', $module->module_status)) === 1)>Active</option>
+                            <option value='0' @selected(intval(old('employee_status', $module->module_status)) === 0)>Inactive</option>
+                        </select>
                     </div>
                 </div>
-        
+
                 <!-- Assign a Sub-Module -->
                 <div>
                     <label for="module_submodule" class="block font-medium text-gray-700">Select Sub-Modules</label>
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-2">
                         @foreach ($all_submodules as $submodule)
-                            <div class="flex items-center gap-2 bg-gray-100 border border-gray-300 rounded-md px-3 py-2">
-                                <input 
-                                    type="checkbox" 
-                                    class="rounded border-gray-300  focus:ring-blue-600"
-                                    name="submodules[]"    
-                                    value="{{ $submodule->submodule_id }}"
-                                    id="submodule-{{ $submodule->submodule_id }}"
-                                    {{-- Keep it checked if it's already attached or was checked previously --}}
-                                    {{ in_array($submodule->submodule_id, old('submodules', $module->submodules->pluck('submodule_id')->toArray())) ? 'checked' : '' }}
-                                />
+                            <div
+                                class="flex items-center gap-2 bg-gray-100 border border-gray-300 rounded-md px-3 py-2">
+                                <input type="checkbox" class="rounded border-gray-300  focus:ring-blue-600"
+                                    name="submodules[]" value="{{ $submodule->submodule_id }}"
+                                    id="submodule-{{ $submodule->submodule_id }}" 
+                                    {{ in_array($submodule->submodule_id, old('submodules', $module->submodules->pluck('submodule_id')->toArray())) ? 'checked' : '' }} />
                                 <label for="submodule-{{ $submodule->submodule_id }}" class="text-gray-700">
                                     {{ $submodule->submodule_name }}
                                 </label>
                             </div>
                         @endforeach
+
+
+                        @php $hasAvailableSubmodule = false; @endphp
+
+                        @foreach ($all_submodules as $submodule)
+                            @if (empty($submodule->module_id) || $submodule->module_id == $module->module_id)
+                              
+                                @php $hasAvailableSubmodule = true; @endphp
+                                <div
+                                    class="flex items-center gap-3 bg-gray-50 border border-gray-300 rounded-lg px-4 py-2">
+                                    <input type="checkbox" id="submodule-{{ $submodule->submodule_id }}"
+                                        name="submodules[]" value="{{ $submodule->submodule_id }}"
+                                        {{ in_array($submodule->submodule_id, old('submodules', $module->submodules->pluck('submodule_id')->toArray())) ? 'checked' : '' }}
+                                        class="rounded border-gray-300 focus:ring-blue-600" />
+                                    <label for="submodule-{{ $submodule->submodule_id }}"
+                                        class="text-gray-700 text-sm">
+                                        {{ $submodule->submodule_name }}
+                                    </label>
+                                </div>
+                            @endif
+                        @endforeach
+
+                        @if (!$hasAvailableSubmodule)
+                            <p class="text-sm text-gray-500 italic">No available submodule.</p>
+                        @endif
+
+
                     </div>
                 </div>
-        
+
                 <!-- Submit Button -->
                 <div>
                     <button type="submit"
@@ -105,9 +372,23 @@
                     </button>
                 </div>
             </div>
-        </form>
+        </form> --}}
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkbox = document.querySelector('.toggle-checkbox');
+            const labelElement = document.querySelector('.toggle-label');
+
+            // Set initial state for label text
+            labelElement.textContent = checkbox.checked ? 'Active' : 'Inactive';
+
+            checkbox.addEventListener('change', function() {
+                this.value = this.checked ? '1' : '0'; // ✅ Ensure value updates correctly
+                labelElement.textContent = this.checked ? 'Active' : 'Inactive';
+            });
+        });
+    </script>
     <script>
         function closeErrorToast() {
             const toast = document.getElementById('toast-error');
@@ -116,17 +397,17 @@
                 toast.classList.add('hidden'); // Hide after fade-out
             }, 500); // Matches the transition duration
         }
-    
+
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
 
         var loadFile = function(event) {
-            
+
             var input = event.target;
             var file = input.files[0];
             var type = file.type;
 
-           var output = document.getElementById('preview_img');
+            var output = document.getElementById('preview_img');
 
 
             output.src = URL.createObjectURL(event.target.files[0]);
@@ -134,7 +415,7 @@
                 URL.revokeObjectURL(output.src) // free memory
             }
         };
-
     </script>
 </body>
+
 </html>

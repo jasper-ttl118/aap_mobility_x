@@ -11,10 +11,11 @@
 </head>
 
 <body class="flex flex-row min-h-screen">
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
     @include('layouts.navbar')
-
-
-
 
 
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
@@ -90,19 +91,20 @@
                 <div class="w-32 p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
-                <h1 class="font-semibold text-lg text-blue-900">Edit Organization | <span class="text-gray-500">{{$organization->org_name}}</span></a></h1>
+                <h1 class="font-semibold text-lg text-blue-900">Edit Organization | <span
+                        class="text-gray-500">{{ $organization->org_name }}</span></a></h1>
                 <p class="text-gray-900 text-sm">Set up your organization.</p>
 
             </div>
 
-            <form action="{{ url('organization/' . $organization->org_id) }}" method="post" enctype="multipart/form-data"
-                class="flex flex-col p-7 gap-7">
+            <form action="{{ url('organization/' . $organization->org_id) }}" method="post"
+                enctype="multipart/form-data" class="flex flex-col p-7 gap-7">
                 @csrf
                 @method('PUT')
 
@@ -148,7 +150,7 @@
                                 <div class="flex gap-2">
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                            {{  old('org_color', $organization->org_color) == 'bg-red-500 text-red-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-red-500 text-red-50' ? 'checked' : '' }}
                                             value="bg-red-500 text-red-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-red-500 peer-checked:border-4 peer-checked:border-blue-500">
@@ -157,7 +159,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-orange-500 text-orange-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-orange-500 text-orange-50' ? 'checked' : '' }}
                                             value="bg-orange-500 text-orange-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-orange-500 peer-checked:border-4 peer-checked:border-blue-500">
@@ -166,7 +168,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-amber-500 text-amber-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-amber-500 text-amber-50' ? 'checked' : '' }}
                                             value="bg-amber-500 text-amber-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-amber-500 text-orange-900 peer-checked:border-4 peer-checked:border-blue-500">
@@ -175,7 +177,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-lime-500 text-lime-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-lime-500 text-lime-50' ? 'checked' : '' }}
                                             value="bg-lime-500 text-lime-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-lime-500 text-green-900 peer-checked:border-4 peer-checked:border-blue-500">
@@ -184,7 +186,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-teal-500 text-teal-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-teal-500 text-teal-50' ? 'checked' : '' }}
                                             value="bg-teal-500 text-teal-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-teal-500 text-teal-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -193,7 +195,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-aky-500 text-sky-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-aky-500 text-sky-50' ? 'checked' : '' }}
                                             value="bg-sky-500 text-sky-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-sky-500 text-sky-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -202,7 +204,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-indigo-500 text-indigo-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-indigo-500 text-indigo-50' ? 'checked' : '' }}
                                             value="bg-indigo-500 text-indigo-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-indigo-500 text-indigo-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -211,7 +213,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-fuchsia-500 text-fuchsia-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-fuchsia-500 text-fuchsia-50' ? 'checked' : '' }}
                                             value="bg-fuchsia-500 text-fuchsia-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-fuchsia-500 text-fuchsia-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -220,7 +222,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-rose-500 text-rose-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-rose-500 text-rose-50' ? 'checked' : '' }}
                                             value="bg-rose-500 text-rose-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-rose-500 text-rose-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -229,7 +231,7 @@
 
                                     <label class="flex cursor-pointer items-center">
                                         <input type="radio" name="org_color" class="peer hidden"
-                                        {{ old('org_color', $organization->org_color) == 'bg-slate-500 text-slate-50' ? 'checked' : '' }}
+                                            {{ old('org_color', $organization->org_color) == 'bg-slate-500 text-slate-50' ? 'checked' : '' }}
                                             value="bg-slate-500 text-slate-50" />
                                         <div
                                             class="h-10 w-10 rounded-full border-2 border-gray-100 bg-slate-500 text-slate-50 peer-checked:border-4 peer-checked:border-blue-500">
@@ -291,7 +293,8 @@
                                     <label class="inline-flex items-center cursor-pointer">
                                         <!-- Hidden input to send '0' if checkbox is unchecked -->
                                         <input type="hidden" name="org_status" value="0">
-                                        <input type="checkbox" name="org_status" id="org_status" class="sr-only peer toggle-checkbox"
+                                        <input type="checkbox" name="org_status" id="org_status"
+                                            class="sr-only peer toggle-checkbox"
                                             {{ old('org_status', $organization->org_status) == 1 ? 'checked' : '' }}
                                             value="1">
                                         <div
@@ -313,11 +316,12 @@
                                                     after:rounded-full">
                                         </div>
                                     </label>
-                                    <span class="toggle-label ms-3 font-medium text-sm text-gray-600 dark:text-gray-300">
+                                    <span
+                                        class="toggle-label ms-3 font-medium text-sm text-gray-600 dark:text-gray-300">
                                         {{ old('org_status', $organization->org_status) == 1 ? 'Active' : 'Inactive' }}
                                     </span>
                                 </div>
-                                    
+
                             </div>
                         </div>
 
@@ -352,10 +356,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const checkbox = document.querySelector('.toggle-checkbox');
             const labelElement = document.querySelector('.toggle-label');
-    
+
             // Set initial state for label text
             labelElement.textContent = checkbox.checked ? 'Active' : 'Inactive';
-    
+
             checkbox.addEventListener('change', function() {
                 this.value = this.checked ? '1' : '0'; // ✅ Ensure value updates correctly
                 labelElement.textContent = this.checked ? 'Active' : 'Inactive';

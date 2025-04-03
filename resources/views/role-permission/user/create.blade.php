@@ -12,6 +12,10 @@
 </head>
 
 <body class="flex flex-row h-screen">
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
     @include('layouts.navbar')
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if ($errors->any())
@@ -95,13 +99,13 @@
                 <div class="w-32 p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
-                <h1 class="font-semibold text-lg text-blue-900">Create User Account for 
+                <h1 class="font-semibold text-lg text-blue-900">Create User Account for
                     <span class="text-blue-900">{{ $employee->employee_firstname }}
                         {{ $employee->employee_lastname }}
                     </span>
@@ -183,7 +187,7 @@
                         <h1 class="font-medium text-blue-900">Assign an Organization and Role</h1>
                         <p class="text-sm italic text-gray-600">Select an organization and assign a corresponding role
                             to the user. If role is not in the selection, add new in the <a href="/role/create"
-                            class="font-semibold underline" target=_parent>Role Management</a>.</p>
+                                class="font-semibold underline" target=_parent>Role Management</a>.</p>
                     </div>
                     <div class="col-span-6">
                         <div class="grid grid-cols-3 justify-between gap-2">

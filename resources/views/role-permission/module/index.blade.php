@@ -20,7 +20,13 @@
 </head>
 
 <body class="flex flex-row h-screen" x-data="{ open: false, deleteUrl: '', viewOpen: false, employee: {} }">
+
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
     @include('layouts.navbar')
+
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
@@ -51,7 +57,7 @@
 
         <!-- Breadcrumbs-->
         <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/user" class="hover:underline">RBAC Management</a>
+            <a href="/module" class="hover:underline">RBAC Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
@@ -71,7 +77,7 @@
         <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 p-4 text-center">
-                    <a href="#" class="text-gray-600 hover:text-blue-800">Users</a>
+                    <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
                 <div class="w-32 p-4 text-center">
                     <a href="/organization" class="text-gray-600 hover:text-blue-800">Organizations</a>
@@ -82,9 +88,9 @@
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="/module" class="font-semibold text-blue-900">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex items-center justify-between p-7">
@@ -111,7 +117,7 @@
                     {{-- Submodule Settings --}}
                     <div>
                         <a href="submodule"
-                            class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            class="flex items-center gap-2 rounded-md bg-gray-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="w-5 h-5">
                                 <path fill-rule="evenodd"
@@ -150,12 +156,14 @@
                                     <div class="flex flex-wrap gap-2 justify-start items-center">
                                         @if ($module->submodules->isNotEmpty())
                                             @foreach ($module->submodules as $submodule)
-                                                <span class="bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
+                                                <span
+                                                    class="bg-blue-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
                                                     {{ $submodule->submodule_name }}
                                                 </span>
                                             @endforeach
                                         @else
-                                            <span class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
+                                            <span
+                                                class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
                                                 No Sub-Module Assigned
                                             </span>
                                         @endif

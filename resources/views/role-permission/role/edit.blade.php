@@ -11,6 +11,11 @@
 </head>
 
 <body class="flex flex-row min-h-screen">
+
+    @php
+        $navbar_selected = 'RBAC Management';
+    @endphp
+
     @include('layouts.navbar')
 
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
@@ -61,7 +66,7 @@
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="#" class="hover:underline font-semibold">Edit Organization</a>
+            <a href="#" class="hover:underline font-semibold">Edit Role</a>
         </div>
 
         <!-- Title and Subtitle -->
@@ -86,9 +91,9 @@
                 <div class="w-32 p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
@@ -97,7 +102,7 @@
 
             </div>
 
-            <form action="{{ url('role/'.$role->role_id) }}" method="post" class="flex flex-col p-7 gap-7">
+            <form action="{{ url('role/' . $role->role_id) }}" method="post" class="flex flex-col p-7 gap-7">
                 @csrf
                 @method('PUT')
 
@@ -140,14 +145,16 @@
                                 <div class="flex flex-col justify-center gap-2">
                                     <label for="role_name" class="text-sm font-medium text-blue-900">Role
                                         Name</label>
-                                    <input type="text" value="{{ $role->role_name }}" name="role_name" placeholder=""
+                                    <input type="text" value="{{ $role->role_name }}" name="role_name"
+                                        placeholder=""
                                         class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
                                 </div>
                             </div>
                             <div class="flex flex-col justify-center gap-2">
                                 <label for="role_description"
                                     class="text-sm font-medium  text-blue-900">Description</label>
-                                <input type="text" value="{{ $role->role_description }}" name="role_description" placeholder=""
+                                <input type="text" value="{{ $role->role_description }}" name="role_description"
+                                    placeholder=""
                                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
                             </div>
                         </div>
@@ -168,7 +175,8 @@
                         @if ($selected_role->prepared_modules)
                             <div class="flex flex-col gap-4">
                                 @foreach ($all_modules as $module)
-                                    <div class="flex flex-col gap-4 rounded border border-gray-200 bg-gray-50 p-5 text-sm shadow-sm">
+                                    <div
+                                        class="flex flex-col gap-4 rounded border border-gray-200 bg-gray-50 p-5 text-sm shadow-sm">
                                         <div class="flex space-x-2">
                                             <input type="checkbox"
                                                 class="module-checkbox rounded border border-gray-400"
@@ -177,7 +185,7 @@
                                                 id="module_{{ $module->module_id }}"
                                                 {{ in_array($module['module_id'], array_column($selected_role->prepared_modules, 'module_id')) ? 'checked' : '' }}>
 
-                                            <div  class="flex flex-col text-start">
+                                            <div class="flex flex-col text-start">
                                                 <label for="module_{{ $module->module_id }}"
                                                     class="font-medium text-blue-900">
                                                     {{ $module->module_name }}
@@ -200,10 +208,10 @@
                                                             data-module-id="{{ $module->module_id }}"
                                                             data-submodule-id="{{ $submodule->submodule_id }}"
                                                             id="submodule_{{ $submodule->submodule_id }}"
-                                                            {{ collect($selected_role->prepared_modules)
-                                                                ->firstWhere('module_id', $module->module_id)['submodules'] ?? collect()
-                                                                ->firstWhere('submodule_id', $submodule->submodule_id)['permissions'] ?? []
-                                                                ? 'checked' : '' }}>
+                                                            {{ collect($selected_role->prepared_modules)->firstWhere('module_id', $module->module_id)['submodules'] ??
+                                                            (collect()->firstWhere('submodule_id', $submodule->submodule_id)['permissions'] ?? [])
+                                                                ? 'checked'
+                                                                : '' }}>
                                                         <label for="submodule_{{ $submodule->submodule_id }}"
                                                             class="text-gray-700">
                                                             {{ $submodule->submodule_name }}
@@ -220,13 +228,8 @@
                                                                     data-module-id="{{ $module->module_id }}"
                                                                     data-submodule-id="{{ $submodule->submodule_id }}"
                                                                     id="permission_{{ $permission->permission_id }}"
-                                                                    {{ collect($selected_role->prepared_modules)
-                                                                        ->flatMap(fn($module) => $module['submodules'] ?? [])
-                                                                        ->filter(fn($s) => $s['submodule_id'] === $submodule->submodule_id)
-                                                                        ->flatMap(fn($s) => $s['permissions'] ?? [])
-                                                                        ->pluck('permission_id')
-                                                                        ->contains($permission->permission_id) 
-                                                                        ? 'checked' 
+                                                                    {{ collect($selected_role->prepared_modules)->flatMap(fn($module) => $module['submodules'] ?? [])->filter(fn($s) => $s['submodule_id'] === $submodule->submodule_id)->flatMap(fn($s) => $s['permissions'] ?? [])->pluck('permission_id')->contains($permission->permission_id)
+                                                                        ? 'checked'
                                                                         : '' }}>
                                                                 <label
                                                                     for="permission_{{ $permission->permission_id }}"
@@ -271,7 +274,8 @@
                                     <label class="inline-flex items-center cursor-pointer">
                                         <!-- Hidden input to send '0' if checkbox is unchecked -->
                                         <input type="hidden" name="role_status" value="0">
-                                        <input type="checkbox" name="role_status" id="role_status" class="sr-only peer toggle-checkbox"
+                                        <input type="checkbox" name="role_status" id="role_status"
+                                            class="sr-only peer toggle-checkbox"
                                             {{ old('role_status', $role->role_status) == 1 ? 'checked' : '' }}
                                             value="1">
                                         <div
@@ -293,11 +297,12 @@
                                                     after:rounded-full">
                                         </div>
                                     </label>
-                                    <span class="toggle-label ms-3 font-medium text-sm text-gray-600 dark:text-gray-300">
+                                    <span
+                                        class="toggle-label ms-3 font-medium text-sm text-gray-600 dark:text-gray-300">
                                         {{ old('role_status', $role->role_status) == 1 ? 'Active' : 'Inactive' }}
                                     </span>
                                 </div>
-                                    
+
                             </div>
                         </div>
 
@@ -331,10 +336,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             const checkbox = document.querySelector('.toggle-checkbox');
             const labelElement = document.querySelector('.toggle-label');
-    
+
             // Set initial state for label text
             labelElement.textContent = checkbox.checked ? 'Active' : 'Inactive';
-    
+
             checkbox.addEventListener('change', function() {
                 this.value = this.checked ? '1' : '0'; // ✅ Ensure value updates correctly
                 labelElement.textContent = this.checked ? 'Active' : 'Inactive';

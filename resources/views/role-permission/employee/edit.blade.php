@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Employees</title>
-    @include("layouts.icons")
+    @include('layouts.icons')
     @vite('resources/css/app.css')
 </head>
 
 <body class="flex flex-row h-screen">
+
+    @php
+        $navbar_selected = 'Employee Management';
+    @endphp
+
     @include('layouts.navbar')
     <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center">
         @if ($errors->any())
-            <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
+            <div id="toast-error"
+                class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
+                role="alert">
                 <div class="flex items-center">
-                    <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
-                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm-1 5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0V5Zm1 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 10 12Z"/>
+                    <div
+                        class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 20 20">
+                            <path
+                                d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm-1 5a1 1 0 0 1 2 0v4a1 1 0 0 1-2 0V5Zm1 7a1.25 1.25 0 1 1-1.25 1.25A1.25 1.25 0 0 1 10 12Z" />
                         </svg>
                         <span class="sr-only">Error icon</span>
                     </div>
                     <span class="ms-3 font-semibold">Error:</span>
-                    <button type="button" onclick="closeErrorToast()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-red-400 hover:text-red-900 rounded-lg focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-red-100 inline-flex items-center justify-center h-8 w-8 dark:text-red-500 dark:hover:text-white dark:bg-red-800 dark:hover:bg-red-700" aria-label="Close">
+                    <button type="button" onclick="closeErrorToast()"
+                        class="ms-auto -mx-1.5 -my-1.5 bg-white text-red-400 hover:text-red-900 rounded-lg focus:ring-2 focus:ring-red-300 p-1.5 hover:bg-red-100 inline-flex items-center justify-center h-8 w-8 dark:text-red-500 dark:hover:text-white dark:bg-red-800 dark:hover:bg-red-700"
+                        aria-label="Close">
                         <span class="sr-only">Close</span>
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                         </svg>
                     </button>
                 </div>
@@ -36,7 +51,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ url('employee/'.$employee->employee_id) }}" method="post" class="mx-auto">
+        <form action="{{ url('employee/' . $employee->employee_id) }}" method="post" class="mx-auto">
             @csrf
             @method('PUT')
             <div class="text-gray-700 p-6 space-y-6">
@@ -47,40 +62,53 @@
                         Update employee's personal details, including contact information, position, and department.
                     </p>
                 </div>
-        
+
                 <!-- Employee Name -->
                 <div>
                     <label for="employee_fullname" class="font-medium">Employee Name</label>
                     <div class="flex gap-2 mt-1">
-                        <input type="text" value="{{ $employee->employee_firstname }}" name="employee_firstname" placeholder="First Name" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
-                        <input type="text" value="{{ $employee->employee_middlename }}" name="employee_middlename" placeholder="Middle Name" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
-                        <input type="text" value="{{ $employee->employee_lastname }}" name="employee_lastname" placeholder="Last Name" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                        <input type="text" value="{{ $employee->employee_firstname }}" name="employee_firstname"
+                            placeholder="First Name"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                        <input type="text" value="{{ $employee->employee_middlename }}" name="employee_middlename"
+                            placeholder="Middle Name"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                        <input type="text" value="{{ $employee->employee_lastname }}" name="employee_lastname"
+                            placeholder="Last Name"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
                     </div>
                 </div>
-        
+
                 <!-- Contact Number -->
                 <div>
                     <label for="employee_contact_number" class="font-medium">Contact Number</label>
-                    <input type="text" value="{{ $employee->employee_contact_number }}" name="employee_contact_number" placeholder="Enter Contact Number" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                    <input type="text" value="{{ $employee->employee_contact_number }}"
+                        name="employee_contact_number" placeholder="Enter Contact Number"
+                        class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
                 </div>
-        
+
                 <!-- Email -->
                 <div>
                     <label for="employee_email" class="font-medium">Email</label>
-                    <input type="email" value="{{ $employee->employee_email }}" name="employee_email" placeholder="sample@email.com" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                    <input type="email" value="{{ $employee->employee_email }}" name="employee_email"
+                        placeholder="sample@email.com"
+                        class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
                 </div>
-        
+
                 <!-- Address -->
                 <div>
                     <label for="employee_address" class="font-medium">Address</label>
-                    <input type="text" value="{{ $employee->employee_address }}" name="employee_address" placeholder="Enter Address" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                    <input type="text" value="{{ $employee->employee_address }}" name="employee_address"
+                        placeholder="Enter Address"
+                        class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
                 </div>
-        
+
                 <!-- Department & Position -->
                 <div class="grid grid-cols-2 gap-2">
                     <div>
                         <label for="employee_department" class="font-medium">Department</label>
-                        <select name="employee_department" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                        <select name="employee_department"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
                             <option value="IT" @selected(old('employee_department', $employee->employee_department) === 'IT')>IT</option>
                             <option value="HR" @selected(old('employee_department', $employee->employee_department) === 'HR')>HR</option>
                             <option value="Finance" @selected(old('employee_department', $employee->employee_department) === 'Finance')>Finance</option>
@@ -90,7 +118,8 @@
                     </div>
                     <div>
                         <label for="employee_position" class="font-medium">Position</label>
-                        <select name="employee_position" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                        <select name="employee_position"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
                             <option value="Manager" @selected(old('employee_position', $employee->employee_position) === 'Manager')>Manager</option>
                             <option value="Supervisor" @selected(old('employee_position', $employee->employee_position) === 'Supervisor')>Supervisor</option>
                             <option value="Staff" @selected(old('employee_position', $employee->employee_position) === 'Staff')>Staff</option>
@@ -101,21 +130,22 @@
                 {{-- status --}}
                 <div class="grid grid-cols-2 gap-2">
                     <div>
-                    <label for="status" class="font-medium">Set Status</label>
-                    <select name="employee_status" class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
-                        <option value='1' @selected(intval(old('employee_status', $employee->employee_status)) === 1)>Active</option>
-                        <option value='0' @selected(intval(old('employee_status', $employee->employee_status)) === 0)>Inactive</option>
-                    </select>
+                        <label for="status" class="font-medium">Set Status</label>
+                        <select name="employee_status"
+                            class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                            <option value='1' @selected(intval(old('employee_status', $employee->employee_status)) === 1)>Active</option>
+                            <option value='0' @selected(intval(old('employee_status', $employee->employee_status)) === 0)>Inactive</option>
+                        </select>
                     </div>
                 </div>
-        
+
                 <!-- Submit Button -->
                 <button type="submit" class="mt-6 w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                     Update
                 </button>
             </div>
         </form>
-        
+
     </div>
 
     <script>
@@ -126,7 +156,7 @@
                 toast.classList.add('hidden'); // Hide after fade-out
             }, 500); // Matches the transition duration
         }
-    
+
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>

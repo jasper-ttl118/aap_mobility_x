@@ -67,7 +67,7 @@ class SubmoduleController extends Controller
             'module_id' => $request->module_id, // Correct key name
         ]);
     
-        return redirect('submodule')->with('status', 'Submodule Updated Successfully ' .  $request->module_id);
+        return redirect('submodule')->with('status', 'Submodule Updated Successfully ');
     }
 
     public function destroy($id)

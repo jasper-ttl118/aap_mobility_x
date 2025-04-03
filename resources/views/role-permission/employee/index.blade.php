@@ -13,6 +13,8 @@
 
 <body class="flex flex-row h-screen" x-data="{ open: false, deleteUrl: '', viewOpen: false, employee: {} }">
     @php
+
+        $navbar_selected = 'Employee Management';
         $user = auth()->user()->load('roles.submodules');
 
         $submodules = $user->roles
@@ -32,7 +34,8 @@
 
     @endphp
     @include('layouts.navbar')
-    <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
+    <div
+        class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"

@@ -12,6 +12,7 @@
 
 <body class="flex flex-row h-screen">
     @php
+        $navbar_selected = 'RBAC Management';
         $user = auth()->user()->load('roles.submodules');
 
         $submodules = $user->roles
@@ -201,9 +202,9 @@
                 <div class="w-32 p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div>
+                </div> --}}
             </div>
 
             <div class="flex items-center justify-between p-7">
