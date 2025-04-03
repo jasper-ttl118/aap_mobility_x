@@ -7,5 +7,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+    .profile_edit_input {
+        @apply w-full rounded-lg border-none outline outline-1 outline-sky-500 font-light transition;
 
+        &:focus {
+            @apply outline-2 outline-sky-800;
+        }
+    }
+}
 

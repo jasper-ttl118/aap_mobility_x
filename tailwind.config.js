@@ -20,8 +20,11 @@ export default {
                 robotoflex: ['Roboto Flex' , ...defaultTheme.fontFamily.sans],
                 
             },
+            colors: {
+                aapblue: '#151848'
+            }
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, require('@tailwindcss/container-queries')],
 };
