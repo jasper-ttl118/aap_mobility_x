@@ -103,7 +103,7 @@ class RoleController extends Controller
             'org_id' => $request->org_id,
         ]);
 
-    
+        
         // ✅ Assign modules to a role
         $role->modules()->sync($request->module_id);
     
