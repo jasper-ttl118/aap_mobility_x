@@ -165,8 +165,7 @@
                 <div class="grid grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
-                        <p class="text-sm italic text-gray-600">The file upload only allows image types like jpg, jpeg,
-                            png, and gif </p>
+                        <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by assigning relevant modules and their associated submodules.</p>
                     </div>
                     <div class="col-span-6">
                         @if ($modules)

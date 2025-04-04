@@ -185,23 +185,40 @@ class UserController extends Controller
                     }
                 }
             }
+
+            // Create the user
+            $user = User::create([
+                'employee_id' => $request->employee_id,
+                'user_name' => $request->user_name,
+                'user_password' => Hash::make($request->user_password),
+                'org_id' => $request->org_id,
+                'role_id' => $role->role_id,
+            ]);
+
+            DB::table('model_has_roles')->insert([
+                'model_id' => $user->user_id,
+                'role_id' => $role->role_id,
+                'org_id' => $request->org_id,
+                'model_type' => 'App\Models\User',
+            ]);
+        } else {
+
+            // Create the user
+            $user = User::create([
+                'employee_id' => $request->employee_id,
+                'user_name' => $request->user_name,
+                'user_password' => Hash::make($request->user_password),
+                'org_id' => $request->org_id,
+                'role_id' => $request->role_id,
+            ]);
+
+            DB::table('model_has_roles')->insert([
+                'model_id' => $user->user_id,
+                'role_id' => $request->role_id,
+                'org_id' => $request->org_id,
+                'model_type' => 'App\Models\User',
+            ]);
         }
-
-        // Create the user
-        $user = User::create([
-            'employee_id' => $request->employee_id,
-            'user_name' => $request->user_name,
-            'user_password' => Hash::make($request->user_password),
-            'org_id' => $request->org_id,
-            'role_id' => $role->role_id,
-        ]);
-
-        DB::table('model_has_roles')->insert([
-            'model_id' => $user->user_id,
-            'role_id' => $role->role_id,
-            'org_id' => $request->org_id,
-            'model_type' => 'App\Models\User',
-        ]);
 
 
 
@@ -218,6 +235,8 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
+
+        // Validate the basic fields
         $request->validate([
             'employee_id' => 'required',
             'user_name' => 'required|string|max:255',
@@ -227,33 +246,134 @@ class UserController extends Controller
             'user_status' => 'required|integer|in:0,1',
         ]);
 
-        //Stopper if the user_password is empty
+        // Check if a new role is being created
+        if (!empty($request->new_role_name)) {
+
+            // Validate the fields related to the new role
+            $request->validate([
+                'new_role_name' => 'required|string|max:255',
+                'new_role_description' => 'nullable|string|max:500',
+                'org_id' => 'required|exists:organizations,org_id',
+                'module_id' => 'required|array',
+                'module_id.*' => 'exists:modules,module_id',
+                'submodule_id' => 'required|array',
+                'submodule_id.*' => 'exists:submodules,submodule_id',
+                'permission_id' => 'required|array',
+                'permission_id.*' => 'exists:permissions,permission_id',
+            ]);
+
+            // Create the new role
+            $role = Role::create([
+                'role_name' => $request->new_role_name,
+                'role_description' => $request->new_role_description,
+                'org_id' => $request->org_id,
+            ]);
+
+            $user->update([
+                'role_id' => $role->role_id,
+            ]);
+
+
+            // Check if a record with the given model_id already exists
+            $existingRecord = DB::table('model_has_roles')
+                ->where('model_id', '=', $user->user_id)
+                ->exists();
+
+            if ($existingRecord) {
+                // If the record exists, update it
+                DB::table('model_has_roles')->where('model_id', '=', $user->user_id)->update([
+                    'role_id' => $role->role_id,
+                ]);
+            } else {
+                // If the record does not exist, you can either insert or take other actions
+                DB::table('model_has_roles')->insert([
+                    'org_id' => $request->org_id,
+                    'model_type' => 'App\Models\User',
+                    'model_id' => $user->user_id,
+                    'role_id' => $role->role_id,
+                ]);
+            }
+
+
+            // Sync modules with the role
+            $role->modules()->sync($request->module_id);
+
+            // Assign permissions to submodules in the role
+            if (is_array($request->submodule_id) && is_array($request->permission_id)) {
+                foreach ($request->submodule_id as $submoduleId) {
+                    $permissions = $request->permission_id[$submoduleId] ?? [];
+
+                    // Use sync or updateOrInsert to avoid duplicates
+                    foreach (array_unique($permissions) as $permissionId) {
+                        DB::table('role_has_submodule_permissions')->updateOrInsert(
+                            [
+                                'role_id' => $role->role_id,
+                                'submodule_id' => $submoduleId,
+                                'permission_id' => $permissionId
+                            ],
+                            [
+                                'role_id' => $role->role_id,
+                                'submodule_id' => $submoduleId,
+                                'permission_id' => $permissionId
+                            ]
+                        );
+                    }
+                }
+            }
+        } else {
+            // If no new role is created, just update the existing role
+            $user->update([
+                'role_id' => $request->role_id,
+            ]);
+
+            // Update the model_has_roles pivot table with org_id and other details
+            $existingRecord = DB::table('model_has_roles')
+                ->where('model_id', '=', $user->user_id)
+                ->exists();
+
+            if ($existingRecord) {
+                // If the record exists, update it
+                DB::table('model_has_roles')->where('model_id', '=', $user->user_id)->update([
+                    'role_id' => $request->role_id,
+                ]);
+            } else {
+                // If the record does not exist, you can either insert or take other actions
+                DB::table('model_has_roles')->insert([
+                    'org_id' => $request->org_id,
+                    'model_type' => 'App\Models\User',
+                    'model_id' => $user->user_id,
+                    'role_id' => $request->role_id,
+                ]);
+            }
+        }
+
+        // Update the user password if provided
         if (!empty($request->user_password)) {
             $user->update([
                 'user_password' => Hash::make($request->user_password),
             ]);
         }
 
+        // Update the remaining user details
         $user->update([
             'employee_id' => $request->employee_id,
             'user_name' => $request->user_name,
             'org_id' => $request->org_id,
-            'role_id' => $request->role_id,
             'user_status' => $request->user_status,
+
         ]);
 
-        $for_pivot = DB::table('model_has_roles')->where('model_id', '=', $user->user_id);
-
-
-        $for_pivot->update([
-            'role_id' => $request->role_id,
+        // Update the model_has_roles pivot table with org_id and other details
+        DB::table('model_has_roles')->where('model_id', '=', $user->user_id)->update([
             'org_id' => $request->org_id,
             'model_type' => 'App\Models\User',
             'model_id' => $user->user_id,
         ]);
 
+        // Redirect back to the user list page with a success message
         return redirect('/user')->with('status', 'User updated successfully');
     }
+
 
     public function destroy($id)
     {
@@ -267,5 +387,18 @@ class UserController extends Controller
         $users = User::with('roles', 'organization', 'employee')->where('user_id', '=', Auth::user()->user_id)->first();
 
         return view('test_pages.dashboard', compact('users'));
+    }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->user_status = $request->input('user_status');
+        $user->save();
+
+        return response()->json([
+            'status' => 'success', 
+            'user_status' => $user->user_status,
+            'message' => 'User status updated successfully'
+        ]);
     }
 }

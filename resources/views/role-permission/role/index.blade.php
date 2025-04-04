@@ -323,36 +323,43 @@
                                             <tbody>
                                                 <template x-for="module in role.prepared_modules"
                                                     :key="module.module_id">
-                                                    <template x-for="(submodule, index) in module.submodules"
-                                                        :key="submodule.submodule_id">
-                                                        <tr>
-                                                            <template x-if="index === 0">
-                                                                <td class="border border-gray-300 px-6 py-3 font-semibold"
-                                                                    :rowspan="module.submodules.length">
-                                                                    <span x-text="module.module_name"></span>
+
+                                                    <!-- Check if any submodule has at least one permission -->
+                                                    <template
+                                                        x-if="module.submodules.some(s => s.permissions && s.permissions.length > 0)">
+
+                                                        <template x-for="(submodule, index) in module.submodules"
+                                                            :key="submodule.submodule_id">
+                                                            <tr x-show="submodule.permissions.length > 0">
+                                                                <!-- Render module name only on first row -->
+                                                                <template x-if="index === 0">
+                                                                    <td class="border border-gray-300 px-6 py-3 font-semibold"
+                                                                        :rowspan="module.submodules.filter(s => s.permissions && s
+                                                                            .permissions.length > 0).length">
+                                                                        <span x-text="module.module_name"></span>
+                                                                    </td>
+                                                                </template>
+
+                                                                <!-- Submodule name -->
+                                                                <td class="border border-gray-300 px-6 py-3">
+                                                                    <span x-text="submodule.submodule_name"></span>
                                                                 </td>
-                                                            </template>
-                                                            <td class="border border-gray-300 px-6 py-3">
-                                                                <span x-text="submodule.submodule_name"></span>
-                                                            </td>
-                                                            <td class="border border-gray-300 px-6 py-3">
-                                                                <div class="flex gap-2 flex-wrap">
-                                                                    <template
-                                                                        x-for="permission in submodule.permissions"
-                                                                        :key="permission.permission_id">
-                                                                        <span
-                                                                            class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
-                                                                            x-text="permission.permission_name"></span>
-                                                                    </template>
-                                                                    <template
-                                                                        x-if="submodule.permissions.length === 0">
-                                                                        <span class="text-gray-500 text-xs">No
-                                                                            permissions
-                                                                            assigned</span>
-                                                                    </template>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
+
+                                                                <!-- Permissions -->
+                                                                <td class="border border-gray-300 px-6 py-3">
+                                                                    <div class="flex gap-2 flex-wrap">
+                                                                        <template
+                                                                            x-for="permission in submodule.permissions"
+                                                                            :key="permission.permission_id">
+                                                                            <span
+                                                                                class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs"
+                                                                                x-text="permission.permission_name">
+                                                                            </span>
+                                                                        </template>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </template>
                                                     </template>
                                                 </template>
                                             </tbody>

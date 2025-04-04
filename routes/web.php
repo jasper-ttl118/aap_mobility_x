@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     
         //route for user
         Route::post('/user/get-role', [UserController::class, 'displayRoleAccess']);
+        Route::post('/user/{id}/update-status', [UserController::class, 'updateStatus']);
 
         Route::get('user/search/find', [UserController::class, 'find']);
         Route::get('user/search', [UserController::class, 'search']);

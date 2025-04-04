@@ -168,8 +168,7 @@
                 <div class="grid grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
-                        <p class="text-sm italic text-gray-600">The file upload only allows image types like jpg, jpeg,
-                            png, and gif </p>
+                        <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by assigning relevant modules and their associated submodules.</p>
                     </div>
                     <div class="col-span-6">
                         @if ($selected_role->prepared_modules)
@@ -208,8 +207,11 @@
                                                             data-module-id="{{ $module->module_id }}"
                                                             data-submodule-id="{{ $submodule->submodule_id }}"
                                                             id="submodule_{{ $submodule->submodule_id }}"
-                                                            {{ collect($selected_role->prepared_modules)->firstWhere('module_id', $module->module_id)['submodules'] ??
-                                                            (collect()->firstWhere('submodule_id', $submodule->submodule_id)['permissions'] ?? [])
+                                                            {{ !empty(
+                                                                collect(
+                                                                    collect($selected_role->prepared_modules)->firstWhere('module_id', $module->module_id)['submodules'] ?? [],
+                                                                )->firstWhere('submodule_id', $submodule->submodule_id)['permissions'] ?? []
+                                                            )
                                                                 ? 'checked'
                                                                 : '' }}>
                                                         <label for="submodule_{{ $submodule->submodule_id }}"

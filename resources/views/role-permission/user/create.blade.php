@@ -217,16 +217,13 @@
                 <div class="grid grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
-                        <p class="text-sm italic text-gray-600">The file upload only allows image types like jpg,
-                            jpeg,
-                            png, and gif </p>
+                        <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by
+                            assigning relevant modules and their associated submodules.</p>
                     </div>
                     <div class="col-span-6">
                         <div id="modulesContainer" class="">
-                            <p>Select a role to see the available modules.</p>
+                            <p class="text-sm italic text-gray-400">Select a role to see the available modules.</p>
                         </div>
-
-
                     </div>
                 </div>
 
@@ -423,8 +420,9 @@
                                         assignedSubmodule = assignedModule.submodules.find(
                                             s => s.submodule_id === submodule
                                             .submodule_id);
-                                        isSubmoduleChecked = assignedSubmodule !==
-                                            undefined;
+                                        isSubmoduleChecked = Array.isArray(assignedSubmodule
+                                                .permissions) &&
+                                            assignedSubmodule.permissions.length > 0;
                                     }
 
                                     // Store original selections
@@ -432,6 +430,8 @@
                                         originalRoleSelections.submodules.add(submodule
                                             .submodule_id);
                                     }
+
+                                    console.log(assignedSubmodule + isSubmoduleChecked);
 
                                     html += `
                             <div class="flex justify-between items-center bg-gray-100 rounded-lg p-3">
@@ -520,7 +520,7 @@
                         </div>
                         <div class="mt-4">
                             <label for="new_role_name" class="block text-sm font-medium text-gray-700 mb-1">New Role Name</label>
-                            <input type="text" id="new_role_name" name="new_role_name" class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:border-blue-500" required>
+                            <input type="text" id="new_role_name" name="new_role_name" class="w-full p-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:border-blue-500">
                             <input type="hidden" id="is_new_role" name="is_new_role" value="0">
                         </div>
                         <div class="mt-4">
@@ -659,20 +659,40 @@
                 const newRoleContainer = document.getElementById('newRoleContainer');
                 const isNewRoleInput = document.getElementById('is_new_role');
 
-
                 if (newRoleContainer) {
+                    if (show) {
+                        // Show the container and set required
+                        const nameField = document.getElementById('new_role_name');
+                        const descField = document.getElementById('new_role_description');
+
+                        if (nameField) {
+                            nameField.setAttribute('required', ''); // Set required when shown
+                        }
+
+                        if (descField) {
+                            descField.setAttribute('required', ''); // Set required when shown
+                        }
+                    } else {
+                        // Clear fields and remove required attribute when hiding
+                        const nameField = document.getElementById('new_role_name');
+                        const descField = document.getElementById('new_role_description');
+
+                        if (nameField) {
+                            nameField.value = '';
+                            nameField.removeAttribute('required'); // Remove required when hidden
+                        }
+
+                        if (descField) {
+                            descField.value = '';
+                            descField.removeAttribute('required'); // Remove required when hidden
+                        }
+                    }
+
+                    // Toggle visibility
                     newRoleContainer.style.display = show ? 'block' : 'none';
 
                     if (isNewRoleInput) {
                         isNewRoleInput.value = show ? '1' : '0';
-                    }
-
-                    // Clear fields when hiding
-                    if (!show) {
-                        const nameField = document.getElementById('new_role_name');
-                        const descField = document.getElementById('new_role_description');
-                        if (nameField) nameField.value = '';
-                        if (descField) descField.value = '';
                     }
                 }
             };
@@ -681,6 +701,7 @@
             const removeNewRoleField = () => {
                 toggleNewRoleField(false);
             };
+
 
 
 

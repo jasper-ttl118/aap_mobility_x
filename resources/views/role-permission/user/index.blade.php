@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex flex-row h-screen">
+<body class="flex flex-row w-h-screen">
     @php
         $navbar_selected = 'RBAC Management';
         $user = auth()->user()->load('roles.submodules');
@@ -214,7 +214,7 @@
                 </div>
 
                 {{-- Add User --}}
-                <div> 
+                <div>
                     <a href="user/search/find"
                         class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -224,7 +224,7 @@
                         Add New User
                     </a>
                 </div>
-                
+
             </div>
 
             <div class="mx-7 mb-10 rounded-sm">
@@ -264,53 +264,82 @@
                                 <td class="px-6 py-4">
                                     @if ($user->roles->isNotEmpty())
                                         @foreach ($user->roles as $role)
-                                        <div class="flex items-center gap-2 text-gray-900 justify-center">
-                                            <div class="h-2 w-2 rounded-full  {{ $user->organization->org_color }}"></div>
-                                            <span>{{ $role->role_name }}</span>
-                                          </div>
+                                            <div class="flex items-center gap-2 text-gray-900 justify-center">
+                                                <div
+                                                    class="h-2 w-2 rounded-full  {{ $user->organization->org_color }}">
+                                                </div>
+                                                <span>{{ $role->role_name }}</span>
+                                            </div>
                                         @endforeach
                                     @else
-                                        <span
-                                            class="whitespace-nowrap text-gray-500 text-xs font-medium">No
+                                        <span class="whitespace-nowrap text-gray-500 text-xs font-medium">No
                                             Role Assigned</span>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4  text-gray-900">
-                                    @if ($user->user_status == '1')
+                                    {{-- @if ($user->user_status == '1')
                                         <span
                                             class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
                                     @else
                                         <span
                                             class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
-                                    @endif
+                                    @endif --}}
+
+                                    <label class="inline-flex items-center cursor-pointer">
+                                        <input type="hidden" name="user_status[{{ $user->user_id }}]"
+                                            value="0">
+
+                                        <input type="checkbox" class="sr-only peer toggle-checkbox user-status-toggle"
+                                            value="1" data-user-id="{{ $user->user_id }}"
+                                            {{ $user->user_status == 1 ? 'checked' : '' }}>
+
+                                        <div
+                                            class="relative w-14 h-8 bg-red-500 rounded-full 
+                                                       dark:bg-gray-700 
+                                                       peer 
+                                                       peer-checked:bg-green-600 
+                                                       dark:peer-checked:bg-green-600 
+                                                       peer-checked:after:translate-x-full 
+                                                       after:content-[''] 
+                                                       after:absolute 
+                                                       after:top-1 
+                                                       after:start-[4px] 
+                                                       after:w-6 
+                                                       after:h-6 
+                                                       after:bg-white 
+                                                       after:border 
+                                                       after:border-gray-100 
+                                                       after:rounded-full">
+                                        </div>
+                                    </label>
                                 </td>
 
                                 <td class="px-6 py-4 flex flex-wrap gap-3 justify-center">
-                                   
-                                        <a href="{{ url('user/' . $user->user_id . '/edit') }}"
-                                            class="flex items-center gap-1 font-medium text-blue-800 underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="size-4">
-                                                <path
-                                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
-                                                <path
-                                                    d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                                <path
-                                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                            </svg>
-                                        </a>
-                                   
-                                        <a href="javascript:void(0)"
-                                            onclick="openModal('{{ url('user/' . $user->user_id) }}')"
-                                            class="flex items-center gap-1 font-medium text-red-700 underline">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="currentColor" class="size-4">
-                                                <path fill-rule="evenodd"
-                                                    d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                        </a>
-                                        
+
+                                    <a href="{{ url('user/' . $user->user_id . '/edit') }}"
+                                        class="flex items-center gap-1 font-medium text-blue-800 underline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            fill="currentColor" class="size-4">
+                                            <path
+                                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
+                                            <path
+                                                d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                            <path
+                                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                        </svg>
+                                    </a>
+
+                                    <a href="javascript:void(0)"
+                                        onclick="openModal('{{ url('user/' . $user->user_id) }}')"
+                                        class="flex items-center gap-1 font-medium text-red-700 underline">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            fill="currentColor" class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+
                                 </td>
 
                             </tr>
@@ -353,17 +382,80 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        function closeToast() {
-            const toast = document.getElementById('toast-success');
-            toast.classList.add('opacity-0'); // Trigger fade-out animation
-            setTimeout(() => {
-                toast.classList.add('hidden'); // Hide after fade-out
-            }, 500); // Wait for animation to complete (500ms)
+        $(document).ready(function() {
+            $('.user-status-toggle').change(function() {
+                const userId = $(this).data('user-id');
+                const newStatus = this.checked ? 1 : 0;
+
+                $.ajax({
+                    url: '/user/' + userId + '/update-status',
+                    method: 'POST',
+                    data: {
+                        user_status: newStatus,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        // After successful AJAX, use the response message to trigger the toast
+                        if (response.status === 'success') {
+                            // Trigger the toast with the response message
+                            showToast(response.message);
+                        }
+                    },
+                    error: function(xhr) {
+                        alert('Error updating user status.');
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+
+        // Function to display toast notification
+        function showToast(message) {
+            let toast = `
+        <div id="toast-success" class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100" role="alert">
+            <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                </svg>
+                <span class="sr-only">Check icon</span>
+            </div>
+            <div class="ms-3 text-sm font-normal">${message}</div>
+            <button type="button" onclick="closeToast()" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+    `;
+            $('body').append(toast);
+
+            setTimeout(function() {
+                closeToast();
+            }, 5000); // Automatically close after 5 seconds
         }
 
-        // Auto-hide the toast after 5 seconds
-        setTimeout(closeToast, 10000);
+        // Close the toast
+        function closeToast() {
+            $('#toast-success').fadeOut(function() {
+                $(this).remove();
+            });
+        }
+    </script>
+
+    <script>
+        // function closeToast() {
+        //     const toast = document.getElementById('toast-success');
+        //     toast.classList.add('opacity-0'); // Trigger fade-out animation
+        //     setTimeout(() => {
+        //         toast.classList.add('hidden'); // Hide after fade-out
+        //     }, 500); // Wait for animation to complete (500ms)
+        // }
+
+        // // Auto-hide the toast after 5 seconds
+        // setTimeout(closeToast, 10000);
 
         function openModal(deleteUrl) {
             document.getElementById("delete-form").setAttribute("action", deleteUrl);
