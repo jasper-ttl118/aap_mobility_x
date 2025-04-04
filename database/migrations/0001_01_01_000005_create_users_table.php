@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
-            $table->foreignId('employee_id')->constrained('employees', 'employee_id')->onDelete('cascade');
+            $table->foreignId('employee_id')->constrained('employees', 'employee_id')->onDelete('SET NULL');
             $table->string('user_name');
             $table->string('user_password');
-            $table->foreignId('org_id')->constrained('organizations','org_id')->onDelete('cascade');
-            $table->foreignId('role_id')->constrained('roles', 'role_id')->onDelete('cascade');
+            $table->foreignId('org_id')->constrained('organizations','org_id')->onDelete('SET NULL');
+            $table->foreignId('role_id')->constrained('roles', 'role_id')->onDelete('SET NULL');
             $table->boolean('user_status')->default(1);
             $table->timestamp('user_date_created')->useCurrent();
             $table->timestamp('user_date_updated')->useCurrent()->useCurrentOnUpdate();

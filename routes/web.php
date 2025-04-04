@@ -10,6 +10,8 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubmoduleController;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +32,8 @@ Route::middleware('auth')->group(function () {
         Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
     
         //route for user
+        Route::post('/user/get-role', [UserController::class, 'displayRoleAccess']);
+
         Route::get('user/search/find', [UserController::class, 'find']);
         Route::get('user/search', [UserController::class, 'search']);
         Route::get('user/{userId}/create', [UserController::class, 'create']);

@@ -271,7 +271,7 @@
                                         @endforeach
                                     @else
                                         <span
-                                            class="whitespace-nowrap text-gray-200 text-xs font-medium">No
+                                            class="whitespace-nowrap text-gray-500 text-xs font-medium">No
                                             Role Assigned</span>
                                     @endif
                                 </td>
