@@ -197,6 +197,7 @@ class RoleController extends Controller
         }
 
         return view('role-permission.role.edit', compact('role', 'selected_role', 'permissions', 'all_modules', 'organizations' ));
+        
     }
 
     public function update(Request $request, Role $role)

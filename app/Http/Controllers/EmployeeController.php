@@ -90,7 +90,7 @@ class EmployeeController extends Controller
     {
         $user = Employee::find($id);
         $user->delete();
-        return redirect('user')->with('status', 'User Deleted Successfully');
+        return redirect('employee')->with('status', 'Employee Deleted Successfully');
     }
 
     public function search(Request $request)
