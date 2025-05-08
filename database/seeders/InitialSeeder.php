@@ -82,6 +82,22 @@ class InitialSeeder extends Seeder
             'module_updated' => now(),
         ]);
 
+        DB::table('modules')->insert([
+            'module_name' => 'RBAC Management',
+            'module_description' => 'Main dashboard module',
+            'module_status' => 1,
+            'module_created' => now(),
+            'module_updated' => now(),
+        ]);
+
+        DB::table('modules')->insert([
+            'module_name' => 'Employee Management',
+            'module_description' => 'Main dashboard module',
+            'module_status' => 1,
+            'module_created' => now(),
+            'module_updated' => now(),
+        ]);
+
         // Insert submodule
         $submoduleId = DB::table('submodules')->insertGetId([
             'module_id' => $moduleId,
@@ -108,6 +124,16 @@ class InitialSeeder extends Seeder
         DB::table('role_has_modules')->insert([
             'role_id' => $roleId,
             'module_id' => $moduleId,
+        ]);
+
+        DB::table('role_has_modules')->insert([
+            'role_id' => $roleId,
+            'module_id' => 2,
+        ]);
+
+        DB::table('role_has_modules')->insert([
+            'role_id' => $roleId,
+            'module_id' => 3,
         ]);
 
         // Pivot: role_has_submodules
