@@ -2,8 +2,6 @@
 /node_modules
 /storage/*.key
 /storage/pail
-/vendor/*
-!/vendor/spatie
 .env
 .env.backup
 .env.production
