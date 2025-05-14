@@ -10,7 +10,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex flex-row h-screen">
+<body class="flex flex-row h-screen" >
     @php
         $navbar_selected = 'Employee Management';
     @endphp
