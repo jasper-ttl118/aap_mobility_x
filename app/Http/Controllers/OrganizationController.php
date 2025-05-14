@@ -42,7 +42,7 @@ class OrganizationController extends Controller
             'org_logo' => $path, // Save the path in the database
             'org_color' => $request->org_color,
         ]);
-
+        
         return redirect('/organization')->with('status', 'Organization \''.$request->org_name.'\' has been created successfully');
     }
 

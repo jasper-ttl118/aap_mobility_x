@@ -52,8 +52,6 @@ class PermissionRegistrar
     /**
      * PermissionRegistrar constructor.
      */
-
-    
     public function __construct(CacheManager $cacheManager)
     {
         $this->permissionClass = config('permission.models.permission');

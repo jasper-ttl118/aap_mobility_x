@@ -525,17 +525,17 @@ trait HasPermissions
         return $permissions;
     }
 
-    // /**
-    //  * @param  Permission|Role  $roleOrPermission
-    //  *
-    //  * @throws GuardDoesNotMatch
-    //  */
-    // protected function ensureModelSharesGuard($roleOrPermission)
-    // {
-    //     if (! $this->getGuardNames()->contains($roleOrPermission->guard_name)) {
-    //         throw GuardDoesNotMatch::create($roleOrPermission->guard_name, $this->getGuardNames());
-    //     }
-    // }
+    /**
+     * @param  Permission|Role  $roleOrPermission
+     *
+     * @throws GuardDoesNotMatch
+     */
+    protected function ensureModelSharesGuard($roleOrPermission)
+    {
+        if (! $this->getGuardNames()->contains($roleOrPermission->guard_name)) {
+            throw GuardDoesNotMatch::create($roleOrPermission->guard_name, $this->getGuardNames());
+        }
+    }
 
     protected function getGuardNames(): Collection
     {

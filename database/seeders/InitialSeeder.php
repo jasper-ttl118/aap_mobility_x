@@ -67,7 +67,7 @@ class InitialSeeder extends Seeder
             'user_name' => 'superadmin',
             'user_password' => Hash::make('password'),
             'org_id' => $orgId,
-            'role_id' => $roleId,
+            'role_id' => 1,
             'user_status' => 1,
             'user_date_created' => now(),
             'user_date_updated' => now(),
@@ -147,6 +147,14 @@ class InitialSeeder extends Seeder
             'role_id' => $roleId,
             'submodule_id' => $submoduleId,
             'permission_id' => $permissionId,
+        ]);
+
+        // Pivot: model_has_roles
+        DB::table('model_has_roles')->insert([
+            'role_id' => 1,
+            'model_type' => "App\Models\User",
+            'model_id' => 1,
+            'org_id' => 1
         ]);
     }
 }
