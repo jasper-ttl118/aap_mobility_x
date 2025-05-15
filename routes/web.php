@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     
         //route for employee
         Route::resource('employee', EmployeeController::class);
-        Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy']);
+        Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
     
         //route for organization
