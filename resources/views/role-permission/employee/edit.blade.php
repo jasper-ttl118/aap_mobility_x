@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employees</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row h-screen">
-
-    @php
-        $navbar_selected = 'Employee Management';
-    @endphp
-
-    @include('layouts.navbar')
     <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center">
         @if ($errors->any())
             <div id="toast-error"
@@ -160,7 +143,6 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
-</body>
+</x-app-layout>
 
 
-</html>
