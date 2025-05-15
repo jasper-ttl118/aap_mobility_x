@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -57,6 +59,10 @@ Route::middleware('auth')->group(function () {
         //route for submodule
         Route::resource('submodule', SubmoduleController::class);
         Route::get('submodule/{orgId}/delete', [SubmoduleController::class, 'destroy']);
+
+        // route for members (CRM)
+        Route::resource('member', MemberController::class);
+        Route::resource('customer', CustomerController::class);
 });
 
     //route for login
