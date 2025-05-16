@@ -4,18 +4,19 @@ namespace App\Livewire\Customer;
 
 use App\Models\Customer;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CustomerTable extends Component
 {
-    public $customers = [];
+    use WithPagination; 
+    protected $paginationTheme = "tailwind";
 
-    public function mount()
-    {
-        $this->customers = Customer::all();
-    }
-    
     public function render()
     {
-        return view('livewire.customer.customer-table');
+        $customers = Customer::paginate(4);
+
+        return view('livewire.customer.customer-table', [
+            'customers' => $customers
+        ]);
     }
 }

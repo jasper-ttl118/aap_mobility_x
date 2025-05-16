@@ -1,5 +1,11 @@
-<table class="w-full text-center text-sm text-gray-500">
-       
+@props(["customers" => ""])
+
+<table class="w-full text-center text-sm text-gray-500">   
+    {{-- @php
+        $month = date('n');
+        dd($month);
+    @endphp --}}
+
     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
         <tr>    
             <th scope="col" class="w-[6.25%] py-3">Customer ID</th>
@@ -70,7 +76,11 @@
                 </td>
             </tr>
         @endforeach
-
-
+            <tr>
+                <td colspan="5">
+                    {{ $customers->onEachSide(1)->links() }}
+                </td>
+            </tr>
     </tbody>
+
 </table>
