@@ -17,7 +17,6 @@ class BirthdayTable extends Component
     public $date;
     public $current_day;
     public $reset_url = true;
-
     public function changeBirthdayFilter($birthday_filter)
     {
         // dd("test", $birthday_filter);

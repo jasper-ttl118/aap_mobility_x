@@ -7,7 +7,16 @@ use Livewire\Component;
 class BirthdayReminderModal extends Component
 {
     public $show = false;
+    public $selected_tab;
+    public function showCustomerList()
+    {
+        $this->selected_tab = 'list';
+    }
 
+    public function showBirthdayMessage()
+    {
+        $this->selected_tab = 'message';
+    }
     public function display()
     {
         $this->show = true;

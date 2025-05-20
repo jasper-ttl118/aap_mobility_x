@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row w-h-screen">
     @php
-        $navbar_selected = 'RBAC Management';
         $user = auth()->user()->load('roles.submodules');
 
         $submodules = $user->roles
@@ -29,9 +17,9 @@
             })
             ->unique('submodule_name')
             ->values();
-
     @endphp
-    @include('layouts.navbar')
+
+    {{-- @include('layouts.navbar') --}}
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
@@ -166,8 +154,6 @@
                 </table>
             </div>
         @endif --}}
-
-
 
         <!-- Breadcrumbs-->
         <div class="flex items-center gap-x-1 text-blue-900 text-sm">
@@ -348,13 +334,6 @@
                 </table>
             </div>
         </div>
-
-
-
-
-
-
-
     </div>
 
     <!-- Delete Confirmation Modal -->
@@ -467,6 +446,4 @@
         }
     </script>
 
-</body>
-
-</html>
+</x-app-layout>

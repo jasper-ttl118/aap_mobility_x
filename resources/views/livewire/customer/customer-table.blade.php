@@ -1,5 +1,5 @@
 @props(["customers" => ""])
-
+<div>
 <table class="w-full text-center text-sm text-gray-500">   
     {{-- @php
         $month = date('n');
@@ -77,10 +77,16 @@
             </tr>
         @endforeach
             <tr>
-                <td colspan="5">
-                    {{ $customers->onEachSide(1)->links() }}
-                </td>
+             
+
+               
             </tr>
     </tbody>
 
 </table>
+
+<div class="flex w-full justify-center">
+    {{ $customers->onEachSide(1)->links() }}
+</div>
+
+</div>

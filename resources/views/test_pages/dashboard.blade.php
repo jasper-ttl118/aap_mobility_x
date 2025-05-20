@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Dashboard'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-    <title>Dashboard</title>
-</head>
-
-<body class="flex flex-row min-h-screen">
-    @php
+    {{-- @php
         $navbar_selected = 'Dashboard';
     @endphp
-    @include('layouts.navbar')
+    @include('layouts.navbar') --}}
 
     {{-- <!-- Main Container -->
     <div class="flex flex-1 ml-64 flex-col overflow-y-auto">
@@ -159,6 +148,4 @@
 
     </div>
     </div>
-</body>
-
-</html>
+</x-app-layout>

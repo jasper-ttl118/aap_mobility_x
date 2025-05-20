@@ -58,8 +58,11 @@
                 <p class="text-gray-900 text-sm">Placeholder Text</p>
             </div>
 
+            @php
+              $selected_tab = "list";
+            @endphp
             {{-- Birthday Reminder --}}
-            <livewire:customer.birthday-reminder-modal>
+            <livewire:customer.birthday-reminder-modal :$selected_tab>
            
         </div>
 
