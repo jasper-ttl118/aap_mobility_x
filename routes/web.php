@@ -60,8 +60,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('submodule', SubmoduleController::class);
         Route::get('submodule/{orgId}/delete', [SubmoduleController::class, 'destroy']);
 
-        // route for members (CRM)
-        Route::resource('member', MemberController::class);
+        // route for customers (CRM)
+        Route::get('/customer/contacts', [CustomerController::class, 'contacts'])->name('contacts');
+        Route::get('/customer/email-marketing', [CustomerController::class, 'emailMarketing'])->name('email-marketing');
+        Route::get('/customer/corporate', [CustomerController::class, 'corporate'])->name('corporate');
+        Route::get('/customer/sale-tracking', [CustomerController::class, 'salesTracking'])->name('sales-tracking');
         Route::resource('customer', CustomerController::class);
 });
 

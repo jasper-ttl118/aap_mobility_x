@@ -15,7 +15,7 @@ class CustomerController extends Controller
         // $customers = Customer::paginate(10);
 
         // dd($customers);
-        return view("crm.customer.index");
+        return view("crm.dashboard.index");
     }
 
     /**
@@ -64,5 +64,25 @@ class CustomerController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function contacts()
+    {
+        return view('crm.customer.index');
+    }
+
+    public function emailMarketing()
+    {
+        return view('crm.email-marketing.index');
+    }
+
+    public function corporate()
+    {
+        return view('crm.corporate.index');
+    }
+
+    public function salesTracking()
+    {
+        return view('crm.sales-tracking.index');
     }
 }

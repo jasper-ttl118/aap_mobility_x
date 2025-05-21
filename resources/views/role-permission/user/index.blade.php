@@ -155,23 +155,12 @@
             </div>
         @endif --}}
 
-        <!-- Breadcrumbs-->
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/user" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Users</a>
-        </div>
-
         <!-- Title and Subtitle -->
-        <div class="">
+        {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
             <p class="text-gray-700 text-sm"> Manage user access and permissions within the
                 organization.</p>
-        </div>
+        </div> --}}
 
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
@@ -193,7 +182,20 @@
                 </div> --}}
             </div>
 
+            {{-- Breadcrumbs --}}
+            <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
+                <a href="/user" class="hover:underline">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold">Users</a>
+            </div>
+
             <div class="flex items-center justify-between p-7">
+    
+
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Manage users</h2>
                     <p class="text-gray-900 text-sm">Create, update, and delete user accounts.</p>
@@ -210,7 +212,6 @@
                         Add New User
                     </a>
                 </div>
-
             </div>
 
             <div class="mx-7 mb-10 rounded-sm">
