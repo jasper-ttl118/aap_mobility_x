@@ -6,22 +6,44 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Role;
+
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasRoles, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
      */
+
+    public $timestamps = false;
+    protected $primaryKey = 'user_id';
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'employee_id', 
+        'user_name', 
+        'user_password', 
+        'org_id', 
+        'role_id', 
+        'user_status'
     ];
+
+
+    public function username()
+    {
+        return 'user_name';
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->user_password;
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,4 +67,77 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+
+    public function organization()
+    {
+        return $this->belongsTo(Organization::class, 'org_id');
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
+    }
+
+    public function roles()
+    {
+        return $this->morphToMany(
+            Role::class, // Use the actual Role model, NOT the contract
+            'model',
+            'model_has_roles',
+            'model_id',
+            'role_id'
+        );
+    }
+
+    public function getGuardName()
+    {
+        return config('auth.defaults.guard');
+    }
+
+    // Fix for ensureModelSharesGuard
+    protected function ensureModelSharesGuard($role)
+    {
+        $givenGuard = $role->getGuardName(); // Use the overridden method from Role
+        $expectedGuard = $this->getGuardName();
+
+        if ($givenGuard !== $expectedGuard) {
+            throw \Spatie\Permission\Exceptions\GuardDoesNotMatch::create(
+                $givenGuard ?? 'null',
+                collect([$expectedGuard])
+            );
+        }
+    }
+
+    public function assignRole($roles)
+    {
+        $roles = is_array($roles) ? $roles : [$roles];
+
+        foreach ($roles as $role) {
+            if (is_string($role)) {
+                $role = Role::findByName($role, $this->getGuardName());
+            }
+
+            if (!$role) {
+                throw new \Exception("Role not found.");
+            }
+
+            // Check guard match
+            $this->ensureModelSharesGuard($role);
+
+            // Insert into model_has_roles
+            $exists = $this->roles()
+                ->where('model_has_roles.role_id', $role->role_id) // Correct role_id
+                ->exists();
+
+            if (!$exists) {
+                // Include org_id if necessary
+                $this->roles()->attach($role->role_id, ['org_id' => $this->org_id]);
+            }
+        }
+    }
+
+
+
+
 }
