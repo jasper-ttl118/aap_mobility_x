@@ -1,7 +1,7 @@
 <div class="fixed flex flex-row w-full h-12 bg-[#5556AB] mb-6 z-0 items-center justify-between px-4">
     
     <div class="flex items-center">
-        <button class="text-white sm:hidden" onclick="menuToggle()">☰</button>
+        <button class="text-white lg:hidden" onclick="menuToggle()">☰</button>
     </div>
 
     <div class="flex flex-row items-center space-x-4">

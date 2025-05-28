@@ -62,8 +62,8 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
 // dd($modules_access);
 @endphp
 
-<div class="fixed md:flex hidden top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-gradient-to-r bg-indigo-900 py-4 text-white z-10" id="menu">
-  <button class="self-end mr-4 text-white sm:hidden" onclick="menuToggle()">✖</button>
+<div class="fixed lg:flex hidden top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-gradient-to-r bg-indigo-900 py-4 text-white z-10" id="menu">
+  <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
   <div class="w-40 flex justify-center">
     <a href="https://ibb.co/3m6zQj6d">
       <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" />

@@ -1,12 +1,12 @@
 <div>
     <a wire:click="display"
         class="flex items-center gap-2 rounded-md bg-[#5556AB] px-4 py-2 text-sm font-medium text-white transition-colors cursor-pointer hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
-        Celebrant List
+        Birthday Reminders
     </a>
 
     @if ($show)
         <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50">
-            <div class="bg-white lg:overflow-y-auto shadow-lg lg:w-full w-3/4 max-w-4xl p-6 h-3/4 lg:h-[620px]">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-4xl p-6 ">
                 <!-- Modal Header -->
                 {{-- <div class="flex justify-between items-center border-b pb-3">
                     <h2 class="text-xl font-semibold text-blue-900">Birthday Reminder</h2>
@@ -25,7 +25,7 @@
                     </div>
 
                     {{-- bg-[#E3D400] --}}
-                    <div class="flex flex-row justify-between w-[800px] lg:w-full mt-0 gap-x-2 border-4 border-gray-100 bg-gray-100 rounded-md {{ ($selected_tab === 'list') ? 'p-0' : 'py-3'}}">
+                    <div class="flex justify-between mt-0 gap-x-2 border-4 border-gray-100 bg-gray-100 rounded-md {{ ($selected_tab === 'list') ? 'p-0' : 'py-3'}}">
                         <div class="flex justify-start items-center">
                              {{-- <button class="p-2 m-2 bg-[#5556AB] text-white font-semibold text-sm rounded-md cursor-pointer hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400" wire:click="showCustomerList" >Customer List</button> --}}
                             {{-- <button class="p-2 m-2 bg-[#5556AB] text-white font-semibold text-sm rounded-md cursor-pointer hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400" wire:click="showBirthdayMessage">Customize Message</button> --}}
@@ -50,7 +50,7 @@
                         </div>
                         @if ($selected_tab === 'list')
                            {{-- Filter dropdown --}}
-                            <div class="flex">
+                            <div class="flex justify-end">
                                 <livewire:crm.email-marketing.birthday-filter>  
                             </div>
                         @endif

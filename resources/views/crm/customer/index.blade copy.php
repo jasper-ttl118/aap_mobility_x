@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
 
-<div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7">
+<div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">
@@ -9,48 +9,48 @@
     </div> --}}
 
     <!-- Options Container -->
-    <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-gray-50 w-[670px] lg:w-full lg:-mb-5">
-        <div class="flex flex-row w-full">
+    <div class=" rounded-md border-2 border-gray-100 bg-gray-50 ">
+        <div class="flex h-14 border-b border-gray-200">
             <div class="w-32 p-4 text-center">
                 <a href="{{ route('customer.index') }}" class="text-gray-600 ">Dashboard</a>
             </div>
             <div class="w-32 p-4 text-center border-b-2 border-blue-900">
                 <a href="{{ route('contacts') }}" class="font-semibold text-blue-900  hover:text-blue-800">Members</a>
             </div>
-            <div class="w-auto p-4 text-center">
+            <div class=" p-4 text-center">
                 <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
             </div>
             <div class="w-32 p-4 text-center">
                 <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
             </div>
-            <div class="w-auto p-4 text-center">
+            <div class="p-4 text-center">
                 <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
             </div>
         </div>
 
-    </div>
-    <!-- Breadcrumbs-->
-   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
-       <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-           <path fill-rule="evenodd"
-               d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-               clip-rule="evenodd" />
-       </svg>
-       <a href="{{ route('contacts') }}" class="hover:underline font-semibold">Members</a>
-   </div>
+         <!-- Breadcrumbs-->
+        <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
+            <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="{{ route('contacts') }}" class="hover:underline font-semibold">Members</a>
+        </div>
 
-   <div class="flex flex-col w-[670px] lg:w-full h-full bg-gray-50 border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5">
         <div class="flex items-center justify-between p-7 pt-3">
             <div>
-                <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of all Members</h2>
+                <h2 class="font-semibold text-lg text-blue-900">List of all Members</h2>
+                <p class="text-gray-900 text-sm">Placeholder Text</p>
             </div>
         </div>
 
         {{-- List of Customers --}}
-        <div class="lg:mx-7 mb-10 mr-15 justify-center -ml-2 lg:ml-7">
+        <div class="mx-7 mb-10 rounded-sm">
             <livewire:crm.customer.customer-table>
         </div>
-   </div>
+    </div>
+
 </div>
 </x-app-layout>

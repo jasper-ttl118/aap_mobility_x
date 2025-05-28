@@ -6,7 +6,7 @@
         dd($month);
     @endphp --}}
 
-    <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
+    <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[670px] lg:w-full">
         <tr>    
             <th scope="col" class="w-[6.25%] py-3">Member ID</th>
             <th scope="col" class="w-[19.0%] py-3">Name</th>
@@ -19,15 +19,15 @@
     </thead>
     <tbody>
         @foreach ($customers as $customer)
-            <tr class="border-b border-gray-200 bg-white">
-                <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
+            <tr class="border-b border-gray-200 bg-white gap-5">
+                <th scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900">
                     {{ $customer->customer_id }}</th>
-                <td class="w-[12.5%] py-4  text-gray-900 pl-5">{{ $customer->customer_firstname }}
+                <td class="w-auto py-4  text-gray-900 pl-5">{{ $customer->customer_firstname }}
                     {{ $customer->customer_surname }}</td>
-                <td class="w-[12.5%] py-4  text-gray-900">{{ $customer->customer_email }}</td>
-                <td class="w-[12.5%] py-4  text-gray-900 px-1">{{ $customer->customer_mobile_number }}</td>
-                <td class="w-[12.5%] py-4  text-gray-900 px-3">{{ $customer->customer_organization }}</td>
-                <td class="w-[12.5%] py-4  text-gray-900 text-center">
+                <td class="w-auto py-4  text-gray-900">{{ $customer->customer_email }}</td>
+                <td class="w-auto py-4  text-gray-900 px-1">{{ $customer->customer_mobile_number }}</td>
+                <td class="w-auto py-4  text-gray-900 px-3">{{ $customer->customer_organization }}</td>
+                <td class="w-auto py-4  text-gray-900 text-center">
                     @if ($customer->customer_status == '1')
                         <span
                             class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
@@ -36,8 +36,8 @@
                             class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
                     @endif
                     </td>
-                <td class="w-[12.5%] py-4">
-                    <div class="flex flex-row justify-center items-center gap-2">
+                <td class="w-auto py-4">
+                    <div class="flex flex-row justify-center items-center lg:gap-2">
                 {{-- {{$customer->customer_id}} --}}
                         <a href="#"
                             class="flex items-center gap-1 font-normal text-[#5556AB] cursor-pointer">
@@ -71,8 +71,8 @@
 
 </table>
 
-<div class="flex w-full justify-center">
-    {{ $customers->onEachSide(1)->links() }}
+<div class="flex w-full justify-center lg:justify-center">
+   {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
 </div>
 
 </div>

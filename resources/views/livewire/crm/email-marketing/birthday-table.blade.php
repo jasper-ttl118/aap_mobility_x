@@ -1,8 +1,8 @@
 
 <div>
-    <table class="w-full text-sm text-gray-500">
+    <table class="w-full text-sm text-gray-500 ">
      
-        <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
+        <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[100%]">
             <tr>    
                 <th scope="col" class="w-[6.25%] py-3">ID</th>
                 <th scope="col" class="w-[19.0%] py-3">Name</th>
@@ -11,16 +11,16 @@
                 <th scope="col" class="w-[12.5%] py-3" hidden></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody >
             @foreach ($customers as $customer)
                 <tr class="border-b border-gray-200 bg-white">
-                    <td scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900 text-center">
+                    <td scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900 text-center">
                         {{ $customer->customer_id }}</td>
-                    <td class="w-[12.5%] py-4  text-gray-900 pl-16">{{ $customer->customer_firstname }}
+                    <td class="w-auto py-4  text-gray-900 pl-16">{{ $customer->customer_firstname }}
                         {{ $customer->customer_surname }}</td>
-                    <td class="w-[12.5%] py-4  text-gray-900 text-center">{{ $customer->customer_birthdate}}</td>
-                    <td class="w-[12.5%] py-4">
-                        <div class="flex flex-row justify-center items-center gap-2">
+                    <td class="w-auto py-4  text-gray-900 text-center">{{ $customer->customer_birthdate}}</td>
+                    <td class="w-auto py-4">
+                        <div class="flex flex-row justify-center items-center lg:gap-2">
                     {{-- {{$customer->customer_id}} --}}
                             <a href="#"
                                 class="flex items-center gap-1 font-normal text-[#5556AB] cursor-pointer">
