@@ -17,3 +17,22 @@
     }
 }
 
+@media (orientation: landscape) {
+  .landscape\:w-full {
+    width: 100%;
+  }
+
+   .landscape\:h-full {
+    height: 100%;
+  }
+
+  .landscape\:flex-row {
+    flex-direction: row;
+  }
+
+  .landscape\:flex-col {
+    flex-direction: column;
+  }
+
+  /* Add other utilities as needed */
+}

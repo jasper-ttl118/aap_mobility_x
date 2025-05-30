@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Organizations</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-
-</head>
-
-<body class="flex flex-row min-h-screen" x-data="{ open: false, deleteUrl: '', viewOpen: false, employee: {} }">
+<x-app-layout class='flex flex-row min-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
     @php
         $navbar_selected = 'None';
     @endphp
@@ -196,6 +182,5 @@
             </div>
         </main>
     </div>
-</body>
+</x-app-layout>
 
-</html>

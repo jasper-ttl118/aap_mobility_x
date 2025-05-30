@@ -13,7 +13,7 @@
   height: 20px;
   width: 20px;
   border-bottom-right-radius: 0.25rem;
-  background-color: #312e81;
+  background-color: #151847;
   z-index: 2;
 }
 
@@ -25,7 +25,7 @@
   height: 20px;
   width: 20px;
   border-top-right-radius: 0.25rem;
-  background-color: #312e81;
+  background-color: #151847;
   z-index: 2;
 }
 
@@ -60,7 +60,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
 
 @endphp
 
-<div class="fixed top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-gradient-to-r bg-indigo-900 py-4 text-white">
+<div class="fixed top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-gradient-to-b from-[#151847] to-[#333AAD] py-4 text-white">
   
   <div class="w-40 flex justify-center">
     <a href="https://ibb.co/3m6zQj6d">
@@ -104,21 +104,6 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
         </div>
       @endif
     @endforeach
-  </div>
-
-  <div class="mt-auto w-full px-4 pb-6">
-    <div class="flex flex-col gap-4">
-      <div>
-        <a href="{{ route('profile.edit') }}" class="hover:underline font-medium">
-          {{ $user->employee->employee_firstname }} {{ $user->employee->employee_lastname }}
-        </a>
-        <span class="text-sm block">{{ $user->roles->first()->role_name ?? 'No Role Assigned' }}</span>
-      </div>
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button class="bg-red-600 hover:bg-red-700 text-white font-medium uppercase px-3 py-2 rounded text-xs" type="submit">Logout</button>
-      </form>
-    </div>
   </div>
 </div>
 

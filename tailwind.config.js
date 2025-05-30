@@ -11,6 +11,23 @@ export default {
 
     theme: {
         extend: {
+            keyframes: {
+                wiggle: {
+                    '0%, 100%': { transform: 'rotate(-12deg)' },
+                    '50%': { transform: 'rotate(12deg)' },
+                },
+                fadeInUp: {
+                    '0%': { opacity: 0, transform: 'translateY(20px)' },
+                    '100%': { opacity: 1, transform: 'translateY(0)' },
+                }
+            },
+
+            animation: {
+                wiggle: 'wiggle 0.5s ease-in-out infinite',
+                fadeInUp: 'fadeInUp 0.5s ease-out',
+            },
+
+
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
                 inter: ['Inter', ...defaultTheme.fontFamily.sans],

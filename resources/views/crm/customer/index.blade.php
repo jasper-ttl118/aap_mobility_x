@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
 
-<div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7">
+<div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7 bg-[#f3f4f6]">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">
@@ -9,7 +9,7 @@
     </div> --}}
 
     <!-- Options Container -->
-    <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-gray-50 w-[670px] lg:w-full lg:-mb-5">
+    <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-white w-[670px] shadow-md lg:w-full lg:-mb-5">
         <div class="flex flex-row w-full">
             <div class="w-32 p-4 text-center">
                 <a href="{{ route('customer.index') }}" class="text-gray-600 ">Dashboard</a>
@@ -40,7 +40,7 @@
        <a href="{{ route('contacts') }}" class="hover:underline font-semibold">Members</a>
    </div>
 
-   <div class="flex flex-col w-[670px] lg:w-full h-full bg-gray-50 border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5">
+   <div class="flex flex-col w-[670px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5">
         <div class="flex items-center justify-between p-7 pt-3">
             <div>
                 <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of all Members</h2>

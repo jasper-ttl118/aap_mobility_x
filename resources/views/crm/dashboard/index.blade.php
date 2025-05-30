@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7">
+    <div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7 bg-[#f3f4f6]">
         <!-- Title and Subtitle -->
         {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>
@@ -7,7 +7,7 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-gray-50 w-[670px] lg:w-full lg:-mb-5">
+        <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-white shadow-md w-[670px] lg:w-full lg:-mb-5">
             <div class="flex flex-row w-full">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="{{ route('customer.index') }}" class="font-semibold text-blue-900 ">Dashboard</a>
