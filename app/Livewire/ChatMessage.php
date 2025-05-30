@@ -4,13 +4,14 @@ namespace App\Livewire;
 
 use App\Models\Employee;
 use Livewire\Component;
+use App\Events\MessageEvent;
 
 class ChatMessage extends Component
 {
-    protected $listeners = ['openChatModal', 'resetChat'];
+    protected $listeners = ['openChatModal', 'resetChat', 'echo:chat,MessageEvent' => 'addMessage'];
     public $employee_id;
     public $employee;
-    public $message;
+    public $messages;
 
     public function openChatModal($employee_id)
     {
@@ -22,12 +23,18 @@ class ChatMessage extends Component
     {
         $this->employee = null;
         $this->employee_id = null;
-        $this->message = null;
+        $this->messages = null;
+    }
+
+    public function addMessage($event)
+    {
+        $this->messages = $event['message'] ?? '[No message received]';
+
     }
 
     public function sendMessage()
     {
-        dump($this->message);
+        broadcast(new MessageEvent($this->messages));
     }
     
     public function render()
