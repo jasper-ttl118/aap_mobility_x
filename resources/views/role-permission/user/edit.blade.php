@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Create User</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row min-h-screen">
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-    @include('layouts.navbar')
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if ($errors->any())
             <div id="toast-error"
@@ -52,7 +35,6 @@
             </div>
         @endif
 
-
         <div class="flex items-center gap-x-1 text-blue-900 text-sm">
             <a href="/user" class="hover:underline">RBAC Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
@@ -68,8 +50,6 @@
             </svg>
             <a href="#" class="hover:underline font-semibold">Edit User</a>
         </div>
-
-
 
         <!-- Title and Subtitle -->
         <div class="">
@@ -298,8 +278,6 @@
                         </div>
                     </div>
                 </div>
-
-
                 {{-- Button --}}
                 <div class="grid grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
@@ -313,13 +291,7 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
             </form>
-
-
         </div>
     </div>
 
@@ -1019,6 +991,4 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
-</body>
-
-</html>
+</x-app-layout>
