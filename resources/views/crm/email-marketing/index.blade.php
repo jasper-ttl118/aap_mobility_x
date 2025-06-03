@@ -8,7 +8,7 @@
     </div> --}}
 
     <!-- Options Container -->
-    <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-[85px] border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
+    <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-fit border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
             <div class="flex min-w-[600px] lg:min-w-0">
                 <div class="flex-none w-32 p-4 text-center">
                     <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800 font-inter">Dashboard</a>
@@ -27,38 +27,28 @@
                 </div>
             </div>
     </div>
+
     <!-- Breadcrumbs-->
-   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
+   <div class="flex h-7 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
        <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter">Customer Relationship Management</a>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
            <path fill-rule="evenodd"
                d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                clip-rule="evenodd" />
        </svg>
-       <a href="{{ route('contacts') }}" class="hover:underline font-semibold text-[#151848] font-inter">Members</a>
+       <a href="{{ route('contacts') }}" class="hover:underline font-semibold text-[#151848] font-inter">Celebrant List</a>
    </div>
 
-   <div class="flex justify-between">
-        <div class="flex gap-x-4 ">
-            <a href="#" class="border-2 p-1.5 px-4 py-2 bg-[#151848] text-white text-sm text-center rounded-lg font-inter">Celebrant List</a>
-            <a href="#" class="border-2 p-1.5 px-4 py-2 bg-[#151848] text-white text-sm text-center rounded-lg font-inter">Message Templates</a>
-            <a href="#" class="border-2 p-1.5 px-4 py-2 bg-[#151848] text-white text-sm text-center rounded-lg font-inter">Message List</a>
-        </div>
+   {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
+   <x-email-marketing.tab-buttons />
 
-        <div class="flex gap-x-4">
-            <a href="#" class="border-2 p-1.5 px-4 py-2 bg-[#FFC628] text-sm text-center rounded-lg font-inter">Send To All Via Email</a>
-            <a href="#" class="border-2 p-1.5 px-4 py-2 bg-[#FFC628] text-sm text-center rounded-lg font-inter">Send To All Via Mobile No.</a>
-
-        </div>
-   </div>
-
-   <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-       
-        <div class="flex items-start p-7 pt-1 justify-between">
+   <div class="flex flex-col w-[440px] -mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+        <div class="flex items-start p-7 pt-7 justify-between">
             <div class="flex items-start">
                 <h2 class="font-semibold text-2xl text-[#151848] font-inter">Birthday Celebrant List</h2>
             </div>
 
+            {{-- Birthday Month Dropdown --}}
             <livewire:crm.email-marketing.birthday-filter>
         </div>
 
@@ -67,10 +57,11 @@
             <table class="w-full text-sm md:justify-center text-gray-500">   
                 <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
                     <tr>    
-                        <th scope="col" class="w-[6.25%] py-3 font-inter">Member ID</th>
+                        <th scope="col" class="w-[12.25%] py-3 font-inter">Member ID</th>
                         <th scope="col" class="w-[19.0%] py-3 font-inter">Name</th>
                         <th scope="col" class="w-[12.5%] py-3 font-inter">Email</th>
                         <th scope="col" class="w-[12.5%] py-3 font-inter">Mobile Number</th>
+                        <th scope="col" class="w-[12.5%] py-3 font-inter">Birthdate</th>
                         <th scope="col" class="w-[12.5%] py-3 font-inter">Status</th>
                         <th scope="col" class="w-[12.5%] py-3 font-inter">Actions</th>
                     </tr>
@@ -82,8 +73,9 @@
                                 {{ $customer->customer_id }}</th>
                             <td class="w-auto py-4  text-gray-900 pl-5">{{ $customer->customer_firstname }}
                                 {{ $customer->customer_surname }}</td>
-                            <td class="w-auto py-4  text-gray-900">{{ $customer->customer_email }}</td>
-                            <td class="w-auto py-4  text-gray-900 px-1 text-center">{{ $customer->customer_mobile_number }}</td>
+                            <td class="w-auto py-4 text-gray-900">{{ $customer->customer_email }}</td>
+                            <td class="w-auto py-4 text-gray-900 px-1 text-center">{{ $customer->customer_mobile_number }}</td>
+                            <td class="w-auto py-4 text-gray-900 px-1 text-center">{{ $customer->customer_birthdate}}</td>
                             <td class="w-auto py-4  text-gray-900 text-center">
                                 @if ($customer->customer_status == '1')
                                     <span
