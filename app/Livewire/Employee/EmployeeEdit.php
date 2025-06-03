@@ -3,20 +3,38 @@
 namespace App\Livewire\Employee;
 
 use App\Models\Employee;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class EmployeeEdit extends Component
 {
     public $employee;
     public $employee_id;
+    #[Rule('required|alpha')]
     public $employee_firstname;
+
+    #[Rule('required|regex:/^[A-Za-z .]+$/')]
     public $employee_middlename;
+
+    #[Rule('required|alpha')]
     public $employee_lastname;
+
+    #[Rule('required|email')]
     public $employee_email;
+
+    #[Rule('required|regex:/^[A-Za-z0-9 ._-]+$/')]
     public $employee_address;
+
+    #[Rule('required')]
     public $employee_position;
+
+    #[Rule('required')]
     public $employee_department;
+
+    #[Rule('required|regex:/^[09][0-9]+/|min:11')]
     public $employee_contact_number;
+
+    #[Rule('required')]
     public $employee_status;
 
     public function mount(Employee $employee)
@@ -35,6 +53,8 @@ class EmployeeEdit extends Component
 
     public function edit()
     {   
+        $this->validate();
+
         $query = Employee::find($this->employee_id)->update([
             'employee_firstname' => $this->employee_firstname, 
             'employee_middlename' => $this->employee_middlename,

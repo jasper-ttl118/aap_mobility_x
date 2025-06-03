@@ -11,7 +11,8 @@ class ChatMessage extends Component
     protected $listeners = ['openChatModal', 'resetChat', 'echo:chat,MessageEvent' => 'addMessage'];
     public $employee_id;
     public $employee;
-    public $messages;
+    public $messages = [];
+    public $message = '';
 
     public function openChatModal($employee_id)
     {
@@ -21,20 +22,25 @@ class ChatMessage extends Component
 
     public function resetChat()
     {
-        $this->employee = null;
-        $this->employee_id = null;
-        $this->messages = null;
+        $this->reset('employee');
+        $this->reset('employee_id');
+        $this->reset('messages');
+        $this->reset('message');
     }
 
     public function addMessage($event)
     {
-        $this->messages = $event['message'] ?? '[No message received]';
-
+        $this->messages[] = $event['message'] ?? '[No message received]';
     }
 
     public function sendMessage()
     {
-        broadcast(new MessageEvent($this->messages));
+        if(empty($this->message))
+            return;
+
+        $this->messages[] = $this->message;
+        broadcast(new MessageEvent($this->message));
+        $this->message = '';
     }
     
     public function render()

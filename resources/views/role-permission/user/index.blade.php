@@ -194,8 +194,6 @@
             </div>
 
             <div class="flex items-center justify-between p-7">
-    
-
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Manage users</h2>
                     <p class="text-gray-900 text-sm">Create, update, and delete user accounts.</p>

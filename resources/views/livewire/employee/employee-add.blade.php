@@ -17,10 +17,15 @@
             <div class="flex gap-2 mt-1">
                 <input type="text" name="employee_firstname" placeholder="First Name" wire:model="employee_firstname"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_firstname') <em>{{ $message }}</em> @enderror 
+
                 <input type="text" name="employee_middlename" placeholder="Middle Name" wire:model="employee_middlename"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_middlename') <em>{{ $message }}</em> @enderror 
+
                 <input type="text" name="employee_lastname" placeholder="Last Name" wire:model="employee_lastname"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_lastname') <em>{{ $message }}</em> @enderror 
             </div>
         </div>
 
@@ -29,6 +34,7 @@
             <label for="employee_contact_number" class="font-medium">Contact Number</label>
             <input type="text" name="employee_contact_number" placeholder="Enter Contact Number" wire:model="employee_contact_number"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+            @error('employee_contact_number') <em>{{ $message }}</em> @enderror 
         </div>
 
         <!-- Email -->
@@ -36,6 +42,7 @@
             <label for="employee_email" class="font-medium">Email</label>
             <input type="email" name="employee_email" placeholder="sample@email.com" wire:model="employee_email"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+            @error('employee_email') <em>{{ $message }}</em> @enderror 
         </div>
 
         <!-- Address -->
@@ -43,6 +50,7 @@
             <label for="employee_address" class="font-medium">Address</label>
             <input type="text" name="employee_address" placeholder="Enter Address" wire:model="employee_address"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+            @error('employee_address') <em>{{ $message }}</em> @enderror
         </div>
 
         <!-- Department & Position -->
@@ -61,6 +69,7 @@
                     <option value="COO">COO</option>
                     <option value="EO">EO</option>
                 </select>
+                @error('employee_department') <em>{{ $message }}</em> @enderror
             </div>
             <div>
                 <label for="employee_position" class="font-medium">Company Position</label>

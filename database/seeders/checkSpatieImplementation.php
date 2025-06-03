@@ -8,7 +8,6 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Carbon\Carbon;
 
-
 class checkSpatieImplementation extends Seeder
 {
     /**
