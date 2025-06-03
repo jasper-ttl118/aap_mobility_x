@@ -38,18 +38,20 @@
         </div>
 
         {{-- body --}}
-        <div class="flex flex-row h-[300px] w-full -mt-10 bg-[#f3f3f3] shadow-md rounded-md gap-5 items-center justify-between">
-            <div class="h-[90%] w-[48%] flex flex-row justify-evenly items-center">
-                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly ">
-                    <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
+        <div class="flex flex-row h-[300px] w-full -mt-10 bg-[#f3f3f3] shadow-md rounded-md px-4 gap-3 items-center justify-center ">
+            <div class="h-[90%] w-[50%] flex flex-row justify-center items-center gap-x-3">
+                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly gap-y-5">
+                    <div class="w-full h-[48%] bg-white shadow-md rounded-md">
+
+                    </div>
                     <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
                 </div>
-                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly">
+                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly gap-y-5">
                     <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
                     <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
                 </div>
             </div>
-            <div class="flex h-[90%] w-[48%] items-center justify-center bg-white shadow-md rounded-md">
+            <div class="flex h-[90%] w-[50%] items-center justify-center shadow-md rounded-md bg-white">
 
             </div>
         </div>
