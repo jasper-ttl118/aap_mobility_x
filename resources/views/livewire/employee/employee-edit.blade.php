@@ -17,12 +17,17 @@
                 <input type="text" value="{{ $employee->employee_firstname }}" name="employee_firstname"
                     placeholder="First Name" wire:model="employee_firstname"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_firstname') <em>{{ $message }}</em> @enderror
+
                 <input type="text" value="{{ $employee->employee_middlename }}" name="employee_middlename"
                     placeholder="Middle Name" wire:model="employee_middlename"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_middlename') <em>{{ $message }}</em> @enderror
+
                 <input type="text" value="{{ $employee->employee_lastname }}" name="employee_lastname"
                     placeholder="Last Name" wire:model="employee_lastname"
                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 focus:outline-blue-500">
+                    @error('employee_lastname') <em>{{ $message }}</em> @enderror
             </div>
         </div>
 
@@ -32,6 +37,7 @@
             <input type="text" value="{{ $employee->employee_contact_number }}"
                 name="employee_contact_number" placeholder="Enter Contact Number" wire:model="employee_contact_number"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                @error('employee_contact_number') <em>{{ $message }}</em> @enderror
         </div>
 
         <!-- Email -->
@@ -40,6 +46,7 @@
             <input type="email" value="{{ $employee->employee_email }}" name="employee_email" wire:model="employee_email"
                 placeholder="sample@email.com"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                @error('employee_email') <em>{{ $message }}</em> @enderror
         </div>
 
         <!-- Address -->
@@ -48,6 +55,7 @@
             <input type="text" value="{{ $employee->employee_address }}" name="employee_address" wire:model="employee_address"
                 placeholder="Enter Address"
                 class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 mt-1 focus:outline-blue-500">
+                @error('employee_address') <em>{{ $message }}</em> @enderror
         </div>
 
         <!-- Department & Position -->
@@ -62,6 +70,7 @@
                     <option value="Marketing" @selected(old('employee_department', $employee->employee_department) === 'Marketing')>Marketing</option>
                     <option value="Sales" @selected(old('employee_department', $employee->employee_department) === 'Sales')>Sales</option>
                 </select>
+                @error('employee_department') <em>{{ $message }}</em> @enderror
             </div>
             <div>
                 <label for="employee_position" class="font-medium">Position</label>
@@ -71,6 +80,7 @@
                     <option value="Supervisor" @selected(old('employee_position', $employee->employee_position) === 'Supervisor')>Supervisor</option>
                     <option value="Staff" @selected(old('employee_position', $employee->employee_position) === 'Staff')>Staff</option>
                 </select>
+                @error('employee_position') <em>{{ $message }}</em> @enderror
             </div>
         </div>
 
@@ -83,6 +93,7 @@
                     <option value='1' @selected(intval(old('employee_status', $employee->employee_status)) === 1)>Active</option>
                     <option value='0' @selected(intval(old('employee_status', $employee->employee_status)) === 0)>Inactive</option>
                 </select>
+                @error('employee_status') <em>{{ $message }}</em> @enderror
             </div>
         </div>
 

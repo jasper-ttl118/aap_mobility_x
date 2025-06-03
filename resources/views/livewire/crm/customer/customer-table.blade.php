@@ -1,11 +1,5 @@
-@props(["customers" => ""])
 <div>
 <table class="w-full text-sm md:justify-center text-gray-500">   
-    {{-- @php
-        $month = date('n');
-        dd($month);
-    @endphp --}}
-
     <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
         <tr>    
             <th scope="col" class="w-[6.25%] py-3">Member ID</th>

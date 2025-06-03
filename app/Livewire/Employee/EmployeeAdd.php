@@ -3,20 +3,44 @@
 namespace App\Livewire\Employee;
 
 use App\Models\Employee;
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class EmployeeAdd extends Component
 {
-    public $employee_firstname;
-    public $employee_middlename;
-    public $employee_lastname;
-    public $employee_email;
-    public $employee_address;
-    public $employee_position;
-    public $employee_department;
-    public $employee_contact_number;
+    #[Rule('required|alpha')]
+    public $employee_firstname = '';
+
+    #[Rule('required|alpha')]
+    public $employee_middlename = '';
+
+    #[Rule('required|alpha')]
+    public $employee_lastname = '';
+
+    #[Rule('required|email')]
+    public $employee_email = '';
+
+    #[Rule('required|alpha_dash')]
+    public $employee_address = '';
+    
+    #[Rule('required')]
+    public $employee_position = '';
+
+    #[Rule('required')]
+    public $employee_department = '';
+
+    #[Rule('required|numeric|min:11')]
+    public $employee_contact_number = '';
+    
+    public function mount()
+    {
+        $this->employee_department = 'IST';
+        $this->employee_position = 'Manager';
+    }
     public function add()
     {
+        $this->validate();
+
         $query = Employee::create([
             'employee_firstname' => $this->employee_firstname,
             'employee_middlename' => $this->employee_middlename,

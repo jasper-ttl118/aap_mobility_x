@@ -7,7 +7,7 @@
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>
             <p class="text-gray-700 text-sm"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem aliquid, in minus voluptate optio illo suscipit possimus fuga explicabo necessitatibus aperiam vel at consequatur corrupti tempora sint veniam libero nisi.</p>
         </div> --}}
-
+        
         <!-- Options Container -->
         <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
             <div class="flex min-w-[600px] lg:min-w-0">

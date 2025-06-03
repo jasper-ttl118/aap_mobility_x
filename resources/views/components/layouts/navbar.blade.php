@@ -114,6 +114,21 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
     @endforeach
   </div>
 
+  <div class="mt-auto w-full px-4 pb-6">
+    <div class="flex flex-col gap-4">
+      <div>
+        <a href="{{ route('profile.edit') }}" class="hover:underline font-medium">
+          {{ $user->employee->employee_firstname }} {{ $user->employee->employee_lastname }}
+        </a>
+        <span class="text-sm block">{{ $user->roles->first()->role_name ?? 'No Role Assigned' }}</span>
+      </div>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button class="bg-red-600 hover:bg-red-700 text-white font-medium uppercase px-3 py-2 rounded text-xs" type="submit">Logout</button>
+      </form>
+    </div>
+  </div>
+  
 </div>
 
 <script>
