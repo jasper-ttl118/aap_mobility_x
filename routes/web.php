@@ -12,6 +12,7 @@ use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubmoduleController;
+use App\Http\Controllers\NoteController;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -70,6 +71,7 @@ Route::middleware('auth')->group(function () {
 
     //route for login
     Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/notes', [NoteController::class, 'index']);
 
     Route::get('/send-message', function () {
         broadcast(new MessageSent('Hello from Reverb + Livewire!'));
