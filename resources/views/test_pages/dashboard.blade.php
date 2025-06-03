@@ -50,10 +50,10 @@
     </div> --}}
 
     <div
-        class="flex flex-col w-full ml-64 overflow-y-auto bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center p-10">
-        <div class="flex h-30 w-auto justify-start">
+        class="flex flex-col w-full lg:ml-64 overflow-y-auto bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center p-10">
+        <div class="flex h-30 w-auto justify-center lg:justify-start">
             <div
-                class="flex flex-row items-center text-3xl py-10 font-bold bg-gradient-to-r from-sky-500  to-blue-900 bg-clip-text text-transparent">
+                class="flex flex-row items-center text-3xl  font-bold bg-gradient-to-r from-sky-500  to-blue-900 bg-clip-text text-transparent">
                 Welcome, {{ $users->employee->employee_firstname }} {{ $users->employee->employee_lastname }}!
                 <img class="w-10 h-10 mx-2"
                     src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExb2I3ZmR2aXY5eW41MDR5djB4MGd6ZjBiN21rYTEzdmh0emtwMXk4YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/IpM4kYGnxqmE02P9rr/giphy.gif"
@@ -61,10 +61,10 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap h-auto w-auto bg-white justify-center">
+        <div class="flex flex-col lg:flex-row h-auto w-auto justify-center items-center">
 
             <div
-                class="p-5 w-80 flex m-5 h-40 w-100 items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-indigo-900 bg-gray-50 shadow shadow-stone-100">
+                class="p-5 flex m-5 h-40 w-full items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-indigo-900 bg-gray-50 shadow shadow-stone-100">
                 <div class="text-6xl font-medium text-indigo-900">125</div>
                 <div class="flex flex-col">
                     <div class="font-bold text-indigo-900">Number of Sales</div>
@@ -73,7 +73,7 @@
             </div>
 
             <div
-                class="p-5  w-80 flex m-5 h-40 w-100 items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-green-900 bg-gray-50 shadow shadow-stone-100">
+                class="p-5 flex m-5 h-40 w-full items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-green-900 bg-gray-50 shadow shadow-stone-100">
                 <div class="text-6xl font-medium text-green-900">10%</div>
                 <div class="flex flex-col">
                     <div class="font-bold text-green-900">Revenue</div>
@@ -82,7 +82,7 @@
             </div>
 
             <div
-                class="p-5 w-80 flex m-5 h-40 w-100 items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-red-700 bg-gray-50 shadow shadow-stone-100">
+                class="p-5 flex m-5 h-40 w-full items-center justify-center space-x-5 rounded-md border-2 border-r-4 border-gray-300 border-r-red-700 bg-gray-50 shadow shadow-stone-100">
                 <div class="text-6xl font-medium text-red-600">12%</div>
                 <div class="flex flex-col">
                     <div class="font-bold text-red-600">Net Loss</div>

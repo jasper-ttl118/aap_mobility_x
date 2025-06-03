@@ -20,8 +20,8 @@
         @endif
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-        <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-            <img id="background" class="absolute w-full h-full brightness-50 object-cover" src="{{ asset('build/assets/bg-image.webp') }}" alt="Laravel background" />
+        <div class="bg-[#151847] text-black/50 dark:bg-black dark:text-white/50 flex justify-center p-20">
+            <img id="background" class="absolute flex w-[20%] h-[30%] mt-10" src="{{ asset('aaplogo1.png') }}" alt="Laravel background" />
             <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
                 <div class="flex flex-col items-center justify-start p-6 text-center gap-y-5">
                         {{-- <div class="flex lg:justify-center lg:col-start-2">
@@ -48,7 +48,7 @@
                                         href="{{ route('login') }}"
                                         class="rounded-md bg-blue-700 px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
                                     >
-                                        Log in
+                                        START
                                     </a>
 {{-- 
                                     @if (Route::has('register'))
