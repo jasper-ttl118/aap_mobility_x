@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-64 overflow-y-auto lg:p-10 lg:gap-7 bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col lg:ml-64 hide-scrollbar lg:p-10 lg:gap-7 bg-[#f3f4f6]">
         <!-- Title and Subtitle -->
         {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>
@@ -7,25 +7,24 @@
         </div> --}}
 
         <!-- Options Container -->
-       <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-white shadow-md w-[670px] lg:w-full lg:-mb-5">
-            <div class="flex flex-row w-full">
-                <div class="w-32 p-4 text-center">
+        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
+            <div class="flex min-w-[600px] lg:min-w-0">
+                <div class="flex-none w-32 p-4 text-center">
                     <a href="{{ route('customer.index') }}" class="text-gray-600 hover:text-blue-800">Dashboard</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                <div class="flex-none w-32 p-4 text-center">
                     <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800">Members</a>
                 </div>
-                <div class=" p-4 text-center">
+                <div class="flex-none w-auto p-4 text-center">
                     <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
                 </div>
-                <div class="w-32 p-4 text-center">
-                    <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800 ">Corporate</a>
+                <div class="flex-none w-32 p-4 text-center">
+                    <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
                 </div>
-                <div class="p-4 text-center border-b-2 border-blue-900">
-                    <a href="{{ route('sales-tracking') }}" class="font-semibold text-blue-800">Sales Tracking</a>
+                <div class="flex-none w-auto p-4 font-semibold border-b-2 border-blue-900 text-center">
+                    <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
                 </div>
             </div>
-
         </div>
         <!-- Breadcrumbs-->
         <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0">
@@ -36,6 +35,23 @@
                     clip-rule="evenodd" />
             </svg>
             <a href="{{ route('customer.index') }}" class="hover:underline font-semibold">Sales Tracking</a>
+        </div>
+
+        {{-- body --}}
+        <div class="flex flex-row h-[300px] w-full -mt-10 bg-[#f3f3f3] shadow-md rounded-md gap-5 items-center justify-between">
+            <div class="h-[90%] w-[48%] flex flex-row justify-evenly items-center">
+                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly ">
+                    <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
+                    <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
+                </div>
+                <div class="flex flex-col w-[48%] h-[90%] items-center justify-evenly">
+                    <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
+                    <div class="w-full h-[48%] bg-white shadow-md rounded-md"></div>
+                </div>
+            </div>
+            <div class="flex h-[90%] w-[48%] items-center justify-center bg-white shadow-md rounded-md">
+
+            </div>
         </div>
     </div>
 </x-app-layout>

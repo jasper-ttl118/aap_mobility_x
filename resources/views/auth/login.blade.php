@@ -17,7 +17,7 @@
                 <div class="bg-[#f3f4f6] border-r-2 border-[#dedede] z-10 rounded-md shadow-lg h-full w-[10%] justify-center items-center flex">
                     <x-image-input image="contacts.png"/>
                 </div>
-                <x-text-input id="user_name" class="block w-full" type="text" name="user_name" placeholder="&nbsp;&nbsp;Username" :value="old('user_name')" required autofocus autocomplete="username" />
+                <x-text-input id="user_name" class="block w-full" type="text" name="user_name" placeholder="Username" :value="old('user_name')" required autofocus autocomplete="username" />
             </div>
             <div class="flex w-full">
             <x-input-error :messages="$errors->get('user_name')" class="mt-2" />
@@ -32,7 +32,7 @@
                     <x-image-input image="lock.png"/>
                 </div>
                 <x-text-input id="password" class="block w-full"
-                                placeholder="&nbsp;&nbsp;Password"
+                                placeholder="Password"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />

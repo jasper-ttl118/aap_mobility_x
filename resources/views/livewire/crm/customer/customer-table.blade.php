@@ -1,12 +1,12 @@
 @props(["customers" => ""])
 <div>
-<table class="w-full text-sm text-gray-500">   
+<table class="w-full text-sm md:justify-center text-gray-500">   
     {{-- @php
         $month = date('n');
         dd($month);
     @endphp --}}
 
-    <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[670px] lg:w-full">
+    <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
         <tr>    
             <th scope="col" class="w-[6.25%] py-3">Member ID</th>
             <th scope="col" class="w-[19.0%] py-3">Name</th>
@@ -71,7 +71,7 @@
 
 </table>
 
-<div class="flex w-full justify-center lg:justify-center">
+<div class="flex w-full justify-start lg:justify-center">
    {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
 </div>
 

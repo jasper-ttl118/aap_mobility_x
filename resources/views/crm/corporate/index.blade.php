@@ -7,25 +7,24 @@
         </div> --}}
 
         <!-- Options Container -->
-       <div class="mt-10 mx-5 lg:mx-0 lg:mt-0 rounded-md border-2 border-gray-100 bg-white w-[670px] lg:w-full lg:-mb-5">
-            <div class="flex flex-row w-full">
-                <div class="w-32 p-4 text-center">
-                    <a href="{{ route('customer.index') }}" class="text-gray-600 hover:text-blue-800">Dashboard</a>
+        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
+            <div class="flex min-w-[600px] lg:min-w-0">
+                <div class="flex-none w-32 p-4 text-center">
+                    <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                <div class="flex-none w-32 p-4 text-center">
                     <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800">Members</a>
                 </div>
-                <div class="w-auto p-4 text-center">
+                <div class="flex-none w-auto p-4 text-center">
                     <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
                 </div>
-                <div class="w-32 p-4 text-center border-b-2 border-blue-900">
-                    <a href="{{ route('corporate') }}" class="font-semibold text-blue-800">Corporate</a>
+                <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
+                    <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
                 </div>
-                <div class="w-auto p-4 text-center">
+                <div class="flex-none w-auto p-4 text-center">
                     <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
                 </div>
             </div>
-
         </div>
         <!-- Breadcrumbs-->
         <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0">
