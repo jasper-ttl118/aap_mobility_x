@@ -39,7 +39,7 @@
    </div>
 
    <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex items-center justify-center p-7 pt-3">
+        <div class="flex items-center p-7 pt-3">
             <div>
                 <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of all Members</h2>
             </div>
