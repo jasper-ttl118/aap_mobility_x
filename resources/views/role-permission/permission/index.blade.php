@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Permissions</title>
-    @include("layouts.icons")
-    @vite('resources/css/app.css')
-   
-</head>
+<x-app-layout class='flex flex-row h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-    <body class="flex flex-row h-screen">
-        @include('layouts.navbar')
         <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center">
             @if (session('status'))
                 <div id="toast-success" class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100" role="alert">
@@ -131,6 +119,4 @@
 
         </script>
 
-    </body>
-
-</html>
+</x-app-layout>

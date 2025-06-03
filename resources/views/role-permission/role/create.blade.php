@@ -1,24 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Roles</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row min-h-screen">
-
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-
-    @include('layouts.navbar')
-
+<x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if ($errors->any())
@@ -363,7 +343,4 @@
         });
     </script>
 
-</body>
-
-
-</html>
+</x-app-layout>

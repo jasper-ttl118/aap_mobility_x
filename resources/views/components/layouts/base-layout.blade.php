@@ -17,6 +17,7 @@
             display: none !important;
         }
     </style>
+@livewireScripts
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
@@ -26,7 +27,9 @@
         {{ $slot }}
     </div>
 
-    
+    <x-layouts.chat />
+    @livewireStyles
+
 </body>
 
 </html>

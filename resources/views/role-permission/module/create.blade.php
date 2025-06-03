@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Module</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-
-<body class="flex flex-row  w-h-screen">
-
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-    @include('layouts.navbar')
+<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
     <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
         @if ($errors->any())
@@ -228,6 +209,4 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
-</body>
-
-</html>
+</x-app-layout>

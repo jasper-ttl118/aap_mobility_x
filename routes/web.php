@@ -71,5 +71,9 @@ Route::middleware('auth')->group(function () {
     //route for login
     Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
+    Route::get('/send-message', function () {
+        broadcast(new MessageSent('Hello from Reverb + Livewire!'));
+        return 'Message Sent!';
+    });
 
 require __DIR__.'/auth.php';

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Employee;
 
+use App\Models\Employee;
 use DateTime;
 use Livewire\Component;
 
@@ -12,10 +13,9 @@ class EmployeeModals extends Component
     public $viewOpen = false;
     protected $listeners = ['toggleModal' => 'toggle'];
 
-    public function toggle($employee)
+    public function toggle($employeeId)
     {
-        $this->employee =  (object) $employee;
-        // dd(new DateTime($this->employee->employee_date_created));
+        $this->employee = Employee::findOrFail($employeeId);
         $this->viewOpen = true;
     }
 
