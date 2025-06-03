@@ -29,6 +29,7 @@ class UserEdit extends Component
         
         $moduleIds = Module::all();
         
+    
         // $this->modules = Module::whereIn('module_id', $moduleIds)->get();
 
         dump($this->roles);

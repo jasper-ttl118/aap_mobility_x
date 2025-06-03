@@ -78,4 +78,6 @@ Route::middleware('auth')->group(function () {
         return 'Message Sent!';
     });
 
+    
+
 require __DIR__.'/auth.php';
