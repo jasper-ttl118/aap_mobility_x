@@ -3,10 +3,11 @@
     'labels' => [],
     'data' => [],
     'chartType' => 'bar',
-    'color' => ['rgba(54, 162, 235, 0.6)']
+    'color' => ['rgba(54, 162, 235, 0.6)'],
+    'axis' => 'x'
 ])
 
-<div class="w-full max-w-2xl mx-auto bg-white p-4 rounded-xl shadow-md overflow-auto h-full hide-scrollbar  ">
+<div class="w-full max-w-2xl mx-auto bg-white p-4 overflow-auto h-full hide-scrollbar  ">
     {{-- <h2 class="text-xl font-semibold text-center text-gray-800 mb-4">{{ $title }}</h2> --}}
     <canvas id="chart-{{ Str::slug($title, '-') }}"></canvas>
 
@@ -26,6 +27,7 @@
                     }]
                 },
                 options: {
+                    indexAxis: '{{ $axis }}',
                     animation: false,
                     responsive: true,
                     maintainAspectRatio: false,
