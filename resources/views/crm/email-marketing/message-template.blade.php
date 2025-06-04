@@ -29,7 +29,13 @@
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('contacts') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message Templates</a>
+            <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter">Email Marketing</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="{{ route('message-template') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message Templates</a>
         </div>
 
         {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
@@ -93,7 +99,7 @@
                     </p>
                     <button class="bg-white p-2 rounded-lg font-semibold">View Template -></button>
                 </div>
-                    <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                     <h1 class="text-white font-semibold">Message Template 1</h1>
                     <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 

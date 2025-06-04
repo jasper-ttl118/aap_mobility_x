@@ -29,7 +29,13 @@
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('contacts') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message List</a>
+            <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter">Email Marketing</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message List</a>
         </div>
 
         <x-email-marketing.tab-buttons />
@@ -58,6 +64,7 @@
                             class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#151847] hover:text-white">Drafted</button>
                     </div>
                 </div>
+
             </div>
             
             {{-- List of Sent Messages --}}
