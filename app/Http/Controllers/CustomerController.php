@@ -73,7 +73,18 @@ class CustomerController extends Controller
 
     public function emailMarketing()
     {
-        return view('crm.email-marketing.index');
+        $customers = Customer::paginate(perPage: 5);
+        return view('crm.email-marketing.index', ['customers' => $customers]);
+    }
+    
+    public function messageTemplate()
+    {
+        return view('crm.email-marketing.message-template');
+    }
+
+    public function messageList()
+    {
+        return view('crm.email-marketing.message-list');
     }
 
     public function corporate()

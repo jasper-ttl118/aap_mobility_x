@@ -17,6 +17,8 @@
     }
 }
 
+@import "@fontsource/inter";
+
 @media (orientation: landscape) {
   .landscape\:w-full {
     width: 100%;

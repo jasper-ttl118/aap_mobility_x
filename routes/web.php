@@ -63,7 +63,12 @@ Route::middleware('auth')->group(function () {
 
         // route for customers (CRM)
         Route::get('/customer/contacts', [CustomerController::class, 'contacts'])->name('contacts');
+
+        // Routes for email marketing submodule (CRM)
         Route::get('/customer/email-marketing', [CustomerController::class, 'emailMarketing'])->name('email-marketing');
+        Route::get('/customer/email-marketing/message-template', [CustomerController::class, 'messageTemplate'])->name('message-template');
+        Route::get('/customer/email-marketing/message-list', [CustomerController::class, 'messageList'])->name('message-list');
+
         Route::get('/customer/corporate', [CustomerController::class, 'corporate'])->name('corporate');
         Route::get('/customer/sale-tracking', [CustomerController::class, 'salesTracking'])->name('sales-tracking');
         Route::resource('customer', CustomerController::class);
