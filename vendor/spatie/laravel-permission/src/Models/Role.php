@@ -80,7 +80,6 @@ class Role extends Model implements RoleContract
 
      public function getAttribute($key)
      {
-         
          if ($key === 'guard_name') {
              return $this->attributes['role_guard_name'] ?? null;
          }

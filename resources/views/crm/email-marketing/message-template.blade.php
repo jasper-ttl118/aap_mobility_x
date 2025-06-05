@@ -1,5 +1,40 @@
 <x-app-layout  class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div x-data="{ open: false, view_edit: false }">
+    {{-- <div class="fixed top-14 right-14 z-50 space-y-2 w-[300px]">
+        <div 
+            x-data="{ show: true }" 
+            x-init="setTimeout(() => show = false, 3000)" 
+            x-show="show" 
+            x-transition 
+            class="bg-[#039856] p-3 h-fit rounded-lg flex flex-row gap-x-2"
+        >
+            <div class="flex justify-center items-center bg-[#D2FBDF] w-10 h-10 rounded-lg">
+                <svg class="size-[22px] border-2 p-[2px] rounded-md border-[#039856]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#039856" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-semibold text-white">Success</span>
+                <span class="text-white text-xs">Template Updated Successfully!</span>
+            </div>
+        </div>
+
+        <div 
+            x-data="{ show: true }" 
+            x-init="setTimeout(() => show = false, 5000)" 
+            x-show="show" 
+            x-transition 
+            class="bg-[#E54E4F] p-3 h-fit rounded-lg flex flex-row gap-x-2"
+        >
+            <div class="flex justify-center items-center bg-white w-10 h-10 rounded-lg">
+                <span class="text-xs font-semibold w-5 h-5 border-2 text-center text-[#E54E4F] rounded-md border-[#E54E4F]">X</span>
+            </div>
+            <div class="flex flex-col">
+                <span class="font-semibold text-white">Failed</span>
+                <span class="text-white text-xs">An Error Occured!</span>
+            </div>
+        </div>
+    </div> --}}
+    <div x-data="{ toast: false, open: false, view_edit: false }">
 
         <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]"> 
             <!-- Options Container -->
@@ -143,6 +178,10 @@
             <div @click.away="view_edit = false" class="bg-white p-6 rounded-md shadow-lg max-w-4xl w-[90%]">
                 <livewire:crm.email-marketing.edit-message-template />
             </div>
+        </div>
+
+        <div class="fixed top-14 right-14 z-50 space-y-2 w-[300px]">
+            <livewire:crm.email-marketing.success-toast />
         </div>
 
      </div>
