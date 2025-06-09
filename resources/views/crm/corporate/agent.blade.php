@@ -40,14 +40,14 @@
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('corporate') }}" class="hover:underline font-semibold">Reseller</a>
+            <a href="{{ route('agent') }}" class="hover:underline font-semibold">Agent</a>
         </div>
 
         <div x-data="{ corporate:'resellers' }" class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
             <div class="flex flex-row w-full h-[20%] items-center ">
                 <div class="flex items-center w-[50%] justify-center lg:justify-start p-7 pt-3 px-7">
                     <div>
-                        <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of Resellers</h2>
+                        <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of Agents</h2>
                     </div>
                 </div>
                 <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
@@ -57,7 +57,7 @@
             </div>
             {{-- List of Customers --}}
             <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-                <livewire:crm.corporate.reseller-table>            
+                <livewire:crm.corporate.agent-table>            
             </div>
         </div>
     </div>

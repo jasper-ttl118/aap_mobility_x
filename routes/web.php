@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\CorporateController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
@@ -72,6 +73,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/customer/corporate', [CustomerController::class, 'corporate'])->name('corporate');
         Route::get('/customer/sale-tracking', [CustomerController::class, 'salesTracking'])->name('sales-tracking');
         Route::resource('customer', CustomerController::class);
+
+        // routes for corporate (CRM)
+        Route::get('/customer/corporate/agent',[CorporateController::class,'Agent'])->name('agent');
 });
 
     //route for login

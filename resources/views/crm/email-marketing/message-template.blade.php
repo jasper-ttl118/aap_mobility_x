@@ -1,4 +1,4 @@
-<x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
+<x-app-layout x-data="{ open:false }" class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
     <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]"> 
         <!-- Options Container -->
         <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-fit border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
@@ -47,7 +47,7 @@
                     <h2 class="font-semibold text-2xl text-[#151848] font-inter">List of Templates</h2>
                 </div>
 
-                <button class="flex items-center bg-[#151848] rounded-lg py-1 text-white gap-x-2 px-3 justify-center">
+                <button @click="open=true" class="flex items-center bg-[#151848] rounded-lg py-1 text-white gap-x-2 px-3 justify-center">
                     <span class="text-2xl leading-none mb-[2px] font-semibold">+</span>
                     <span class="font-semibold mr-1">Add</span>
                 </button>
@@ -128,6 +128,11 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div x-show="open" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div @click.away="open = false" class="bg-white p-6 rounded-lg shadow-lg max-w-4xl w-[90%]">
+            <livewire:crm.email-marketing.create-message-template />
+        </div>
     </div>
 </x-app-layout>
