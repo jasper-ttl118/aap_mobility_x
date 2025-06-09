@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-64 hide-scrollbar lg:p-10 lg:gap-7 bg-[#f3f4f6] ">
+    <div x-data="{ selected : 'reseller' }" class="flex flex-1 flex-col lg:ml-64 hide-scrollbar lg:p-10 lg:gap-7 bg-[#f3f4f6] ">
         <!-- Title and Subtitle -->
         {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>
@@ -26,6 +26,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Breadcrumbs-->
         <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
             <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
@@ -47,18 +48,49 @@
             <div class="flex flex-row w-full h-[20%] items-center ">
                 <div class="flex items-center w-[50%] justify-center lg:justify-start p-7 pt-3 px-7">
                     <div>
-                        <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of Resellers</h2>
+                        <h2 class="font-semibold text-2xl pt-5 text-blue-900" x-text="selected === 'reseller' ? 'List of Resellers' : 'List of Agents'"></h2>
                     </div>
                 </div>
                 <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
                     {{-- Buttons --}}
-                    <x-corporate.buttons/>
+                    {{-- <x-corporate.buttons/> --}}
+                    <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">
+                        <a @click="selected='reseller'"
+
+                            class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#151847] hover:text-white"
+                            :class="selected === 'reseller' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white' ">
+                                Resellers
+                        </a>
+
+                        <a @click="selected='agent'"
+                            class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#151847] hover:text-white"
+                            :class="selected === 'agent' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white' ">
+                                Agents
+                        </a>
+                    </div>
                 </div>
             </div>
-            {{-- List of Customers --}}
-            <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-                <livewire:crm.corporate.reseller-table>            
-            </div>
+
+            {{-- List of Resellers --}}
+            <template x-if="selected === 'reseller'">
+                <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
+                    <livewire:crm.corporate.reseller-table>            
+                </div>
+
+            </template>
+
+            {{-- List of Agents --}}
+            <template x-if="selected === 'agent'">
+                <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
+                    <livewire:crm.corporate.agent-table>            
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <div x-show="open" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div >
+            <livewire:crm.corporate.resellers-profile wire:key="resellers-profile"/>
         </div>
     </div>
 </x-app-layout>

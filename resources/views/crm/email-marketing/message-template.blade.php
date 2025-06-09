@@ -98,7 +98,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -107,7 +107,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -116,7 +116,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -125,7 +125,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -134,7 +134,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -143,7 +143,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -152,7 +152,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -161,7 +161,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
                     </div>
                 </div>
             </div>

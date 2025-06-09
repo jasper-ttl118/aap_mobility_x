@@ -20,7 +20,7 @@
     @endphp
 
     {{-- @include('layouts.navbar') --}}
-    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -163,7 +163,7 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>

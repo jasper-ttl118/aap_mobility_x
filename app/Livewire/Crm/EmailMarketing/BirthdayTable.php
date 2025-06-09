@@ -17,7 +17,7 @@ class BirthdayTable extends Component
     public $current_day;
     public $reset_url = true;
 
-  public function updatingFilter()
+    public function updatingFilter()
     {
         $this->resetPage();
     }

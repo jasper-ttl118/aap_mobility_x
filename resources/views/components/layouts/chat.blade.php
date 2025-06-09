@@ -1,5 +1,5 @@
 <div x-data="{ show: false, active_chat: 'chat_list' ,employee_id: null, display: false }" class="bg-white fixed bottom-5 right-0 mr-7 mb-7 text-[#151847] flex items-end justify-end w-auto h-auto">
-    <div x-show="show" x-on:click.outside="show = false; display=false; active_chat='chat_list'; window.Livewire.dispatch('resetChat');">
+    <div x-show="show" x-cloak x-on:click.outside="show = false; display=false; active_chat='chat_list'; window.Livewire.dispatch('resetChat');">
         <template x-if="active_chat === 'chat_list'">
             <livewire:chat-list />
         </template>

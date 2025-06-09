@@ -4,27 +4,31 @@ namespace App\Livewire\Crm\Corporate;
 
 use App\Models\Customer;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ResellerTable extends Component
 {
+    use WithPagination;
+    public $reset_url = true;
 
-    public $selectedCustomerId;
-    public $selectedCustomer;
-    protected $listeners = ['openProfileModal'];
-
-    public function openProfileModal($customer_id)
+    public function openProfileModal($reseller_id)
     {
-        dump( $customer_id);
+        $this->dispatch('viewResellerProfile', reseller_id: $reseller_id)
+        ->to('crm.corporate.resellers-profile');
     }
-    // public function display($customer_id)
-    // {
-    //     $this->selectedCustomerId = $customer_id;
-    //     $this->selectedCustomer = Customer::find($customer_id);
-    //     dump($this->selectedCustomer);
-    // }
+
+    public function mount()
+    {
+        if($this->reset_url)
+        {
+            $this->reset_url = false;
+            $this->resetPage();
+        }
+    }
+
     public function render()
     {
-        $corporates = Customer::paginate(perPage: 5);
+        $corporates = Customer::paginate(4);
         return view('livewire.crm.corporate.reseller-table', ['corporates' => $corporates]);
     }
 }
