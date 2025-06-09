@@ -1,40 +1,5 @@
 <x-app-layout  class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    {{-- <div class="fixed top-14 right-14 z-50 space-y-2 w-[300px]">
-        <div 
-            x-data="{ show: true }" 
-            x-init="setTimeout(() => show = false, 3000)" 
-            x-show="show" 
-            x-transition 
-            class="bg-[#039856] p-3 h-fit rounded-lg flex flex-row gap-x-2"
-        >
-            <div class="flex justify-center items-center bg-[#D2FBDF] w-10 h-10 rounded-lg">
-                <svg class="size-[22px] border-2 p-[2px] rounded-md border-[#039856]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#039856" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </div>
-            <div class="flex flex-col">
-                <span class="font-semibold text-white">Success</span>
-                <span class="text-white text-xs">Template Updated Successfully!</span>
-            </div>
-        </div>
-
-        <div 
-            x-data="{ show: true }" 
-            x-init="setTimeout(() => show = false, 5000)" 
-            x-show="show" 
-            x-transition 
-            class="bg-[#E54E4F] p-3 h-fit rounded-lg flex flex-row gap-x-2"
-        >
-            <div class="flex justify-center items-center bg-white w-10 h-10 rounded-lg">
-                <span class="text-xs font-semibold w-5 h-5 border-2 text-center text-[#E54E4F] rounded-md border-[#E54E4F]">X</span>
-            </div>
-            <div class="flex flex-col">
-                <span class="font-semibold text-white">Failed</span>
-                <span class="text-white text-xs">An Error Occured!</span>
-            </div>
-        </div>
-    </div> --}}
-    <div x-data="{ toast: false, open: false, view_edit: false }">
+  <div x-data="{ open: false, view_edit: false }">
 
         <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]"> 
             <!-- Options Container -->
@@ -72,7 +37,7 @@
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-template') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message Templates</a>
+                <a href="{{ route('message-template') }}" class="hover:underline font-semibold text-[#151848] font-inter">Compose Email</a>
             </div>
 
             {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
@@ -81,12 +46,12 @@
             <div class="flex flex-col w-[440px] -mt-2 pt-4 lg:w-full lg:ml-0 lg:px-0 px-5 justify-center gap-y-4">
                 <div class="flex items-start justify-between">
                     <div class="flex items-start">
-                        <h2 class="font-semibold text-2xl text-[#151848] font-inter">List of Templates</h2>
+                        <h2 class="font-semibold text-2xl text-[#151848] font-inter">Choose A Message Template</h2>
                     </div>
 
                     <button @click="open=true" class="flex items-center bg-[#151848] rounded-lg py-1 text-white gap-x-2 px-3 justify-center">
                         <span class="text-2xl leading-none mb-[2px] font-semibold">+</span>
-                        <span class="font-semibold mr-1">Add</span>
+                        <span class="font-semibold mr-1">Compose New Message</span>
                     </button>
                 </div>
 
@@ -98,7 +63,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -107,7 +72,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -116,7 +81,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -125,7 +90,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -134,7 +99,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -143,7 +108,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -152,7 +117,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
@@ -161,7 +126,7 @@
                             We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
                             Use code [Coupon Code] at ...
                         </p>
-                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">Use Template -></button>
                     </div>
                 </div>
             </div>
@@ -169,21 +134,16 @@
         </div>
 
         <div x-show="open" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open = false" class="bg-white p-6 rounded-md shadow-lg max-w-4xl w-[90%]">
-                <livewire:crm.email-marketing.create-message-template />
+            <div @click.away="open = false" >
+                <livewire:crm.email-marketing.compose-new-email />
             </div>
         </div> 
 
         <div x-show="view_edit" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div @click.away="view_edit = false" class="bg-white p-6 rounded-md shadow-lg max-w-4xl w-[90%]">
-                <livewire:crm.email-marketing.edit-message-template />
+                <livewire:crm.email-marketing.use-template />
             </div>
-        </div>
-
-        <div class="fixed top-14 right-14 z-50 space-y-2 w-[300px]">
-            <livewire:crm.email-marketing.success-toast />
         </div>
 
      </div>
 </x-app-layout>
-

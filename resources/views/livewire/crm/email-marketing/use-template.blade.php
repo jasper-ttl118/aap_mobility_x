@@ -1,7 +1,7 @@
 <!-- Modal overlay -->
 <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
   <!-- Modal content -->
-  <div @click.outside="open=false" 
+  <div @click.outside="view_edit=false" 
         x-transition:leave="transition ease-in duration-200"
         x-transition:leave-start="opacity-100 scale-100"
         x-transition:leave-end="opacity-0 scale-90"
@@ -9,22 +9,47 @@
 
     <div class="flex justify-between rounded-t-lg p-3 px-5 items-center bg-[#494949]">
         <h1 class="text-white text-sm">New Message Template</h1>
-        <button @click="open=false" class="text-white hover:text-gray-800 text-xl font-bold">&times;</button>
+        <button @click="view_edit=false" class="text-white hover:text-gray-800 text-xl font-bold">&times;</button>
     </div>
+
     <div class="flex justify-center">
-        <div class="flex w-[96%] h-10 border-1 border-[#979595] rounded-lg items-center">
-            <span class="bg-[#151848] h-full p-2 text-white text-sm rounded-l-md">Subject</span>
-            <input type="text" class="h-full w-full p-2 rounded-r-md">
+        <div class="flex w-[96%] h-10 items-center">
+            <span class="h-full p-2 text-gray-400 text-sm border-b-2 border-gray-400">To:</span>
+            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400" value="Everyone">
        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <div class="flex w-[96%] h-10 items-center">
+            <span class="h-full p-2 text-gray-400 text-sm border-b-2 border-gray-400">Subject:</span>
+            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400" value="Message Template 1">
+       </div>
+    </div>
+
+    <div x-data="{ today: (new Date()).toISOString().split('T')[0] }" class="flex justify-center">
+        <div class="flex w-[96%] h-10 items-center">
+            <span class="h-10 w-40 flex items-center pl-2 text-gray-400 text-sm border-b-2 border-gray-400 leading-none">
+               Schedule Date:
+            </span>
+            <input
+                type="date"
+                class="-ml-[30px] h-full w-full border-0 border-b-2 pt-1 border-gray-400"
+                :value="today"
+                />
+        </div>
     </div>
 
     <div class="flex flex-row w-full h-full justify-evenly px-4 gap-4">
         <div class="flex justify-center items-center  w-[70%] h-[272px]">
             <!-- Left form section -->
-            <form class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between">
+            <form class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between ">
                 <label for="message" class="block mb-2 text-md font-bold text-[#151848]">Message</label>
-                <textarea id="message" rows="4" class="overflow-auto hide-scrollbar resize-none h-[200px] block p-4 w-full text-sm text-gray-900 border-0 bg-gray-100 rounded-lg dark:bg-gray-300 dark:placeholder-gray-600" placeholder="Enter Your Message...">
+                <textarea id="message" rows="4" class="overflow-auto hide-scrollbar resize-none h-[200px] block p-4 w-full text-sm text-gray-900 border-0 bg-gray-100 rounded-lg dark:bg-gray-300 dark:placeholder-gray-600" placeholder="Enter Your Message...">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
+We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+Use code [Coupon Code] at checkout. This exclusive offer is valid until [Validity Date], so don’t miss out!
+
+Happy shopping! 🛍️
                 </textarea>
             </form>
         </div>
@@ -43,9 +68,9 @@
         
             <div class="flex justify-end w-full gap-x-4">
                 <button type="submit" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
-                    Create
+                    Send
                 </button>
-                <button @click="open=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button @click="view_edit=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Cancel  
                 </button>
             </div>

@@ -69,6 +69,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/customer/email-marketing', [CustomerController::class, 'emailMarketing'])->name('email-marketing');
         Route::get('/customer/email-marketing/message-template', [CustomerController::class, 'messageTemplate'])->name('message-template');
         Route::get('/customer/email-marketing/message-list', [CustomerController::class, 'messageList'])->name('message-list');
+        Route::get('/customer/email-marketing/compose-email', [CustomerController::class, 'composeEmail'])->name('compose-email');
+        Route::get('/customer/email-marketing/compose-mobile', [CustomerController::class, 'composeMobile'])->name('compose-mobile');
 
         Route::get('/customer/corporate', [CustomerController::class, 'corporate'])->name('corporate');
         Route::get('/customer/sale-tracking', [CustomerController::class, 'salesTracking'])->name('sales-tracking');

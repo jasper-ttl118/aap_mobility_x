@@ -87,6 +87,16 @@ class CustomerController extends Controller
         return view('crm.email-marketing.message-list');
     }
 
+    public function composeEmail()
+    {
+        return view('crm.email-marketing.compose-email');
+    }
+
+    public function composeMobile()
+    {
+        return view('crm.email-marketing.compose-mobile');
+    }
+
     public function corporate()
     {
         return view('crm.corporate.index');
