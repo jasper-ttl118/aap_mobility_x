@@ -50,7 +50,7 @@
                         <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of Resellers</h2>
                     </div>
                 </div>
-                <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
+                <div class="flex justify-end w-[50%] h-[40%] items-center px-7">    
                     {{-- Buttons --}}
                     <x-corporate.buttons/>
                 </div>
