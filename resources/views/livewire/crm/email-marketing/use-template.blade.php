@@ -67,7 +67,7 @@ Happy shopping! 🛍️
             </div>
         
             <div class="flex justify-end w-full gap-x-4">
-                <button type="submit" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button wire:click="create" @click="view_edit=false" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Send
                 </button>
                 <button @click="view_edit=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">
@@ -75,6 +75,10 @@ Happy shopping! 🛍️
                 </button>
             </div>
         </div>
+    </div>
+
+    <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+        <livewire:crm.email-marketing.success-toast />
     </div>
 
   </div>

@@ -61,7 +61,7 @@
             </div>
         
             <div class="flex justify-end w-full gap-x-4">
-                <button type="submit" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button wire:click="create" @click="open=false" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Send
                 </button>
                 <button @click="open=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">

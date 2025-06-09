@@ -17,7 +17,7 @@
                 <div class="flex w-[96%] h-10 items-center">
                     <span class="h-full p-2 text-gray-400 text-sm border-b-2 border-gray-400">To:</span>
                     <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400" value="Everyone">
-            </div>
+                </div>
             </div>
 
             <div class="flex justify-center">
@@ -30,7 +30,7 @@
             <div class="flex flex-row w-full h-full justify-evenly px-4 gap-4">
                 <div class="flex justify-center items-center  w-[70%] h-[272px]">
                     <!-- Left form section -->
-                    <form class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between ">
+                    <div class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between ">
                         <label for="message" class="block mb-2 text-md font-bold text-[#151848]">Message</label>
                         <textarea id="message" rows="4" class="overflow-auto hide-scrollbar resize-none h-[200px] block p-4 w-full text-sm text-gray-900 border-0 bg-gray-100 rounded-lg dark:bg-gray-300 dark:placeholder-gray-600" placeholder="Enter Your Message...">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
@@ -39,7 +39,7 @@
 
         Happy shopping! 🛍️
                         </textarea>
-                    </form>
+                    </div>
                 </div>
                 <div class="flex flex-col w-[30%] h-full justify-evenly items-center gap-3">
                     <!-- Right variable section -->

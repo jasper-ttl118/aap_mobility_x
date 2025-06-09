@@ -180,7 +180,7 @@
             </div>
         </div>
 
-        <div class="fixed top-14 right-14 z-50 space-y-2 w-[300px]">
+        <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
             <livewire:crm.email-marketing.success-toast />
         </div>
 

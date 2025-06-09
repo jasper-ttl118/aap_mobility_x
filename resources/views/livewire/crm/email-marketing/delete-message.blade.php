@@ -22,8 +22,8 @@
             <span class="text-xl font-semibold text-[#151847]">Delete</span>
             <span class="text-lg text-[#151847]">Would you like to delete this message?</span>
             <div class="flex gap-x-6">
-                <button class="bg-[#151847] rounded-lg p-2 w-40 text-white font-semibold">Confirm</button>
-                <button class="bg-[#605E5E] rounded-lg p-2 text-white w-40 font-semibold"">Cancel</button>
+                <button wire:click="delete" @click="display_delete=false" class="bg-[#151847] rounded-lg p-2 w-40 text-white font-semibold">Confirm</button>
+                <button @click="display_delete=false" class="bg-[#605E5E] rounded-lg p-2 text-white w-40 font-semibold">Cancel</button>
             </div>
         </div>
 

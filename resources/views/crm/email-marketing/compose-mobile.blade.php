@@ -37,7 +37,7 @@
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-template') }}" class="hover:underline font-semibold text-[#151848] font-inter">Compose Email</a>
+                <a href="{{ route('message-template') }}" class="hover:underline font-semibold text-[#151848] font-inter">Compose Message</a>
             </div>
 
             {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
@@ -144,6 +144,9 @@
                 <livewire:crm.email-marketing.use-template />
             </div>
         </div>
-
+        
+        <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+            <livewire:crm.email-marketing.success-toast />
+        </div>
      </div>
 </x-app-layout>

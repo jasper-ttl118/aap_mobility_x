@@ -1,35 +1,45 @@
-
-<div>
-    <table class="w-full text-sm text-gray-500 ">
-     
-        <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[100%]">
+<div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
+    <table class="w-full text-sm md:justify-center text-gray-500">   
+        <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
             <tr>    
-                <th scope="col" class="w-[6.25%] py-3">ID</th>
-                <th scope="col" class="w-[19.0%] py-3">Name</th>
-                <th scope="col" class="w-[17.0%] py-3">Birthdate</th>
-                <th scope="col" class="w-[12.5%] py-3">Send Reminder</th>
-                <th scope="col" class="w-[12.5%] py-3" hidden></th>
+                <th scope="col" class="w-[12.25%] py-3 font-inter">Member ID</th>
+                <th scope="col" class="w-[19.0%] py-3 font-inter">Name</th>
+                <th scope="col" class="w-[12.5%] py-3 font-inter">Email</th>
+                <th scope="col" class="w-[12.5%] py-3 font-inter">Mobile Number</th>
+                <th scope="col" class="w-[12.5%] py-3 font-inter">Birthdate</th>
+                <th scope="col" class="w-[12.5%] py-3 font-inter">Status</th>
+                <th scope="col" class="w-[12.5%] py-3 font-inter">Actions</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody>
             @foreach ($customers as $customer)
-                <tr class="border-b border-gray-200 bg-white">
-                    <td scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900 text-center">
-                        {{ $customer->customer_id }}</td>
-                    <td class="w-auto py-4  text-gray-900 pl-16">{{ $customer->customer_firstname }}
+                <tr wire:key="customer-{{ $customer->id }}" class="border-b border-gray-200 bg-white gap-5 font-inter">
+                    <th scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900">
+                        {{ $customer->customer_id }}</th>
+                    <td class="w-auto py-4  text-gray-900 pl-5">{{ $customer->customer_firstname }}
                         {{ $customer->customer_surname }}</td>
-                    <td class="w-auto py-4  text-gray-900 text-center">{{ $customer->customer_birthdate}}</td>
+                    <td class="w-auto py-4 text-gray-900">{{ $customer->customer_email }}</td>
+                    <td class="w-auto py-4 text-gray-900 px-1 text-center">{{ $customer->customer_mobile_number }}</td>
+                    <td class="w-auto py-4 text-gray-900 px-1 text-center">{{ $customer->customer_birthdate}}</td>
+                    <td class="w-auto py-4  text-gray-900 text-center">
+                        @if ($customer->customer_status == '1')
+                            <span
+                                class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
+                        @else
+                            <span
+                                class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
+                        @endif
+                        </td>
                     <td class="w-auto py-4">
                         <div class="flex flex-row justify-center items-center lg:gap-2">
                     {{-- {{$customer->customer_id}} --}}
                             <a href="#"
                                 class="flex items-center gap-1 font-normal text-[#5556AB] cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                                     <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
                                     <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                                 </svg>
                             </a>
-
                             <a href="#"
                                 class="flex items-center gap-1 font-medium text-[#dfd436]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
@@ -47,15 +57,10 @@
                     </td>
                 </tr>
             @endforeach
-                <tr>
-                </tr>
-
         </tbody>
     </table>
 
-    <div class="flex w-full justify-center">
+    <div class="flex w-full justify-start lg:justify-center">
         {{ $customers->onEachSide(1)->links() }}
     </div>
-
 </div>
-

@@ -16,6 +16,12 @@ class BirthdayTable extends Component
     public $date;
     public $current_day;
     public $reset_url = true;
+
+  public function updatingFilter()
+    {
+        $this->resetPage();
+    }
+
     public function changeBirthdayFilter($birthday_filter)
     {
         // dd("test", $birthday_filter);
@@ -39,7 +45,7 @@ class BirthdayTable extends Component
     }
     public function render()
     {
-        $customers = Customer::whereRaw('MONTH(customer_birthdate) = ?',  $this->filter)->paginate(5);
+        $customers = Customer::whereMonth('customer_birthdate', $this->filter)->paginate(4);
 
         return view('livewire.crm.email-marketing.birthday-table', ['customers' => $customers]);
     }
