@@ -70,10 +70,8 @@
                                 class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#151847] hover:text-white">Drafted</button>
                         </div>
                     </div>
-
                 </div>
                 
-
                 <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7" >
                     {{-- List of Sent Messages --}}
                     <template x-if="selected === 'sent'">
@@ -260,10 +258,8 @@
             </div>
         </div> 
 
-        <div x-show="toast">
-            <livewire:crm.email-marketing.success-toast />
-        </div>
-
+        <livewire:crm.email-marketing.success-toast />
+    
     </div>
 </x-app-layout>
 

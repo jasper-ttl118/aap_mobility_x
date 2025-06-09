@@ -7,10 +7,11 @@
         setTimeout(() => display = false, 3000);"
 
     x-show="display" 
-    x-transition 
+    x-transition
     class="p-3 h-fit rounded-lg flex flex-row gap-x-2"
     :class="toastTitle == 'Success' ? 'bg-[#039856] ' : 'bg-[#E54E4F]'"
 >
+
     <template x-if="toastTitle == 'Success'">
         <div class="flex flex-row gap-x-2">
             <div class="flex justify-center items-center bg-[#D2FBDF] w-10 h-10 rounded-lg">
