@@ -17,7 +17,7 @@
             </div>
             <div class="w-full h-[70%] flex flex-col items-center justify-start -gap-1 lg:gap-1 pt-[60px] lg:pt-[75px]">
                 <div class="text-xs text-[#939393] lowercase flex justify-center items-end  w-full h-auto">{{ $customer->customer_email }}</div>
-                <div class="text-xl lg:text-2xl font-bold text-[#151847] flex flex-row justify-center items-center w-full h-auto ">{{ $customer->customer_firstname }} {{ $customer->customer_middlename }} {{ $customer->customer_surname}}</div>
+                <div class="text-xl lg:text-2xl font-bold text-[#151847] lowercase flex flex-row justify-center items-center w-full h-auto">{{ $customer->customer_firstname }} {{ $customer->customer_middlename }} {{ $customer->customer_surname}}</div>
                 <div class="text-xs text-[#151847] lowercase flex flex-row justify-evenly items-center w-[40%] h-auto mb-1">
                     <div class="font-bold">{{ $customer->customer_organization }}</div> 
                     <div class="text-[#151847]">|</div> 
@@ -25,14 +25,8 @@
                 </div>
                 <div class="text-xs text-[#151847] lowercase flex flex-row justify-center items-center w-full h-auto">
                     <div class="flex w-full h-full gap-2 justify-center items-center">
-                        <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#151847] border-2 border-[#151847] rounded-md font-bold hover:bg-[#151847] hover:text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
-                            </svg>
-                            Message</button>
-                        <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#151847] border-2 border-[#151847] rounded-md font-bold hover:bg-[#151847] hover:text-white">
-                            <svg  class="size-4" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none"/><path d="M159.4,40A80.1,80.1,0,0,1,216,96.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M151.1,70.9a47.9,47.9,0,0,1,34,34" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M92.5,124.8a83.6,83.6,0,0,0,39,38.9,8,8,0,0,0,7.9-.6l25-16.7a7.9,7.9,0,0,1,7.6-.7l46.8,20.1a7.9,7.9,0,0,1,4.8,8.3A48,48,0,0,1,176,216,136,136,0,0,1,40,80,48,48,0,0,1,81.9,32.4a7.9,7.9,0,0,1,8.3,4.8l20.1,46.9a8,8,0,0,1-.6,7.5L93,117A8,8,0,0,0,92.5,124.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
-                            Call</button>
+                        <button class="h-6 w-[30%] text-[#151847] border border-[#151847] rounded-md ">Message</button>
+                        <button class="h-6 w-[30%] text-[#151847] border border-[#151847] rounded-md ">Call</button>
                     </div>
                 </div>
                 <div class="text-xs text-[#151847] lowercase flex flex-row text-center w-[70%] h-[30%] mt-1 mb-2">
@@ -60,7 +54,7 @@
                     <div class="h-[60%] border border-[#605e5e] flex"></div>
                     <div class="w-[50%] h-full flex justify-end items-center px-5">
                         @if ($customer->customer_status == '1')
-                            <span 
+                            <span onclick="profile.showModal()"
                                 class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
                         @else
                             <span
@@ -121,7 +115,7 @@
                 <svg fill="currentColor" class="size-5" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M0 1.5C0 1.22386 0.223858 1 0.5 1H2.5C2.77614 1 3 1.22386 3 1.5C3 1.77614 2.77614 2 2.5 2H0.5C0.223858 2 0 1.77614 0 1.5ZM4 1.5C4 1.22386 4.22386 1 4.5 1H14.5C14.7761 1 15 1.22386 15 1.5C15 1.77614 14.7761 2 14.5 2H4.5C4.22386 2 4 1.77614 4 1.5ZM4 4.5C4 4.22386 4.22386 4 4.5 4H11.5C11.7761 4 12 4.22386 12 4.5C12 4.77614 11.7761 5 11.5 5H4.5C4.22386 5 4 4.77614 4 4.5ZM0 7.5C0 7.22386 0.223858 7 0.5 7H2.5C2.77614 7 3 7.22386 3 7.5C3 7.77614 2.77614 8 2.5 8H0.5C0.223858 8 0 7.77614 0 7.5ZM4 7.5C4 7.22386 4.22386 7 4.5 7H14.5C14.7761 7 15 7.22386 15 7.5C15 7.77614 14.7761 8 14.5 8H4.5C4.22386 8 4 7.77614 4 7.5ZM4 10.5C4 10.2239 4.22386 10 4.5 10H11.5C11.7761 10 12 10.2239 12 10.5C12 10.7761 11.7761 11 11.5 11H4.5C4.22386 11 4 10.7761 4 10.5ZM0 13.5C0 13.2239 0.223858 13 0.5 13H2.5C2.77614 13 3 13.2239 3 13.5C3 13.7761 2.77614 14 2.5 14H0.5C0.223858 14 0 13.7761 0 13.5ZM4 13.5C4 13.2239 4.22386 13 4.5 13H14.5C14.7761 13 15 13.2239 15 13.5C15 13.7761 14.7761 14 14.5 14H4.5C4.22386 14 4 13.7761 4 13.5Z" fill="currentColor" fill-rule="evenodd"/></svg>
                 <span class="text-center text-white uppercase text-xl font-inter">Activity Log</span>
             </div>
-            <div class="w-full h-[35%] relative min-h-0 overflow-hidden mt-0.5 border rounded-b-xl border-[#151847] hidden lg:block">
+            <div class="w-full h-[35%] relative min-h-0 overflow-hidden mt-0.5 border-[#151847] hidden lg:block">
                 {{-- Table Header --}}
                 <div class="w-full h-[20%] border border-[#151847] flex flex-row items-center">
                     <div class="w-[20%] h-full flex items-center border-r border-[#151847]">
@@ -141,7 +135,7 @@
                     </div>
                 </div>
                 {{-- Data --}}
-                <div class="w-full h-[80%] overflow-x-auto hide-scrollbar border rounded-b-xl border-[#151847]">
+                <div class="w-full h-[80%] overflow-x-auto hide-scrollbar rounded-b-xl border border-[#151847]">
                     <div class="w-full flex flex-col ">
                         <div class="w-full h-8 flex border-b border-[#151847]">
                             <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">

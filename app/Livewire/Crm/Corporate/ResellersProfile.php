@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class ResellersProfile extends Component
 {
+    
     public $corporates;
 
     public function mount($customer_id){

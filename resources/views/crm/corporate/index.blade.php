@@ -40,25 +40,47 @@
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('corporate') }}" class="hover:underline font-semibold">Reseller</a>
+            <a href="{{ route('corporate') }}" 
+                class="hover:underline font-semibold">Resellers/Agents
+            </a>
         </div>
 
-        <div x-data="{ corporate:'resellers' }" class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+        <div x-data="{ corporate: 'reseller' }" class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
             <div class="flex flex-row w-full h-[20%] items-center ">
                 <div class="flex items-center w-[50%] justify-center lg:justify-start p-7 pt-3 px-7">
                     <div>
-                        <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of Resellers</h2>
+                        <h2 
+                            class="font-semibold text-2xl text-[#151848] font-inter"
+                            x-text="corporate === 'reseller' 
+                                    ? 'List of Resellers' 
+                                    : corporate === 'agent' 
+                                        ? 'List of Agents' 
+                                        : 'Contract'">
+                        </h2>
                     </div>
                 </div>
                 <div class="flex justify-end w-[50%] h-[40%] items-center px-7">    
                     {{-- Buttons --}}
-                    <x-corporate.buttons/>
+                    <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">                        
+                        <button @click="corporate = 'reseller'" :class="corporate === 'reseller' ? 'bg-[#151847] text-white' : 'text-[#151847]'" 
+                                    class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[50%] h-full text-center rounded-l-md hover:bg-[#151847] hover:text-white">Resellers</button>
+                        <button @click="corporate = 'agent'" :class="corporate === 'agent' ? 'bg-[#151847] text-white' : 'text-[#151847]'" 
+                                    class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[50%] h-full text-center rounded-r-md hover:bg-[#151847] hover:text-white">Agents</button>
+                    </div>
                 </div>
             </div>
             {{-- List of Customers --}}
             <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-                <livewire:crm.corporate.reseller-table>            
+                {{-- Resellers --}}
+                <template x-if="corporate === 'reseller'">
+                    <livewire:crm.corporate.reseller-table>
+                </template>  
+                    {{-- Agents --}}
+                <template x-if="corporate === 'agent'">                 
+                    <livewire:crm.corporate.agent-table>
+                </template>
             </div>
+            
         </div>
     </div>
 </x-app-layout>
