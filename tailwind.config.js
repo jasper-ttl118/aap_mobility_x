@@ -44,4 +44,5 @@ export default {
     },
 
     plugins: [forms, require('@tailwindcss/container-queries'),],
+    
 };

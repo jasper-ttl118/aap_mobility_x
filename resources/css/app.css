@@ -6,6 +6,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "daisyui";
+@source "../node_modules/flowbite-datepicker";
 
 @layer components {
     .profile_edit_input {

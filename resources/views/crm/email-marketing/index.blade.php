@@ -101,7 +101,6 @@
                                             <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                                         </svg>
                                     </a>
-
                                     <a href="#"
                                         class="flex items-center gap-1 font-medium text-[#dfd436]">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">

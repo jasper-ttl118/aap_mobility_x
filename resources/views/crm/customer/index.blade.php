@@ -8,7 +8,7 @@
     </div> --}}
 
     <!-- Options Container -->
-    <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-[77px] border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
+    <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-[76px] border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
             <div class="flex min-w-[600px] lg:min-w-0">
                 <div class="flex-none w-32 p-4 text-center">
                     <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
