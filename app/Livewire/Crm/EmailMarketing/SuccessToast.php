@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class SuccessToast extends Component
 {
-    
     public $toast_title = '';
     public $toast_content = '';
     public function render()

@@ -1,10 +1,7 @@
 <!-- Modal overlay -->
-<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+<div x-show="view_edit" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
   <div @click.outside="view_edit=false" 
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-90"
         class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] max-w-4xl pb-6 gap-y-4">
 
     <div class="flex justify-between rounded-t-lg p-3 px-5 items-center bg-[#494949]">
@@ -15,14 +12,14 @@
     <div class="flex justify-center">
         <div class="flex w-[96%] h-10 items-center">
             <span class="h-full p-2 text-gray-400 text-sm border-b-2 border-gray-400">To:</span>
-            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400" value="Everyone">
+            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400 text-[#151848]" value="Everyone">
        </div>
     </div>
 
     <div class="flex justify-center">
         <div class="flex w-[96%] h-10 items-center">
             <span class="h-full p-2 text-gray-400 text-sm border-b-2 border-gray-400">Subject:</span>
-            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400" value="Message Template 1">
+            <input type="text" class="h-full w-full border-0 border-b-2 p-2 pt-1 border-gray-400 text-[#151848]" value="Message Template 1">
        </div>
     </div>
 
@@ -33,7 +30,7 @@
             </span>
             <input
                 type="date"
-                class="-ml-[30px] h-full w-full border-0 border-b-2 pt-1 border-gray-400"
+                class="-ml-[30px] h-full w-full border-0 border-b-2 pt-1 border-gray-400 text-[#151848]"
                 :value="today"
                 />
         </div>

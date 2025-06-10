@@ -6,7 +6,6 @@ use Livewire\Component;
 
 class ComposeNewEmail extends Component
 {
-
     public function create()
     {
         $this->dispatch('show-toast', [

@@ -14,7 +14,7 @@
                     <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
                 </div>
                 <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
-                    <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800">Members</a>
+                    <a href="{{ route('contacts') }}" class="text-[#151848] hover:text-blue-800">Members</a>
                 </div>
                 <div class="flex-none w-auto p-4 text-center">
                     <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
@@ -29,26 +29,16 @@
     </div>
     <!-- Breadcrumbs-->
    <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
-       <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
+       <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848]">Customer Relationship Management</a>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
            <path fill-rule="evenodd"
                d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                clip-rule="evenodd" />
        </svg>
-       <a href="{{ route('contacts') }}" class="hover:underline font-semibold">Members</a>
+       <a href="{{ route('contacts') }}" class="hover:underline text-[#151848] font-semibold">Members</a>
    </div>
 
-   <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex items-center justify-center lg:justify-start p-7 pt-3">
-            <div>
-                <h2 class="font-semibold text-2xl pt-5 text-blue-900">List of all Members</h2>
-            </div>
-        </div>
-
-        {{-- List of Customers --}}
-        <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-            <livewire:crm.customer.customer-table>
-        </div>
-   </div>
+   <livewire:crm.customer.customer-table>
+    
 </div>
 </x-app-layout>

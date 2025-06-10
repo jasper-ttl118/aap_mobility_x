@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
+    <div x-data="{open_profile : false, open_email : false, open_mobile : false }" class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">
@@ -48,18 +48,19 @@
    {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
    <x-email-marketing.tab-buttons />
 
-   <div class="flex flex-col w-[440px] -mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex items-start p-7 pt-7 justify-between">
-            <div class="flex items-start">
-                <h2 class="font-semibold text-2xl text-[#151848] font-inter">Birthday Celebrant List</h2>
-            </div>
+    {{-- List of Customers --}}
+    <livewire:crm.email-marketing.birthday-table wire:key="birthday-table"/>
 
-            {{-- Birthday Month Dropdown --}}
-            <livewire:crm.email-marketing.birthday-filter wire:key="birthday-filter">
-        </div>
+    <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+        <livewire:crm.email-marketing.success-toast />
+    </div>
 
-        {{-- List of Customers --}}
-        <livewire:crm.email-marketing.birthday-table wire:key="birthday-table"/>
-   </div>
+    <div x-show="open_email" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <livewire:crm.email-marketing.compose-new-email />
+    </div> 
+
+    <div x-show="open_mobile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <livewire:crm.email-marketing.compose-new-mobile-message />
+    </div> 
 </div>
 </x-app-layout>

@@ -165,19 +165,14 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div x-show="open" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open = false" class="bg-white p-6 rounded-md shadow-lg max-w-4xl w-[90%]">
-                <livewire:crm.email-marketing.create-message-template />
-            </div>
+        <div x-show="open" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <livewire:crm.email-marketing.create-message-template />
         </div> 
 
-        <div x-show="view_edit" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="view_edit = false" class="bg-white p-6 rounded-md shadow-lg max-w-4xl w-[90%]">
-                <livewire:crm.email-marketing.edit-message-template />
-            </div>
+        <div x-show="view_edit" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <livewire:crm.email-marketing.edit-message-template />
         </div>
 
         <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">

@@ -21,6 +21,34 @@
     }
 }
 
+:root {
+  --pf: #000000; 
+  --p: #000000;  
+  --bc: #ffffff; 
+}
+
+[data-theme="dark"] {
+  --pf: #000000;
+  --p: #000000;
+  --bc: #ffffff;
+}
+
+body, input, button, select, textarea {
+  color: black;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(2);
+    opacity: 1;
+  }
+}
+
 @media (orientation: landscape) {
   .landscape\:w-full {
     width: 100%;

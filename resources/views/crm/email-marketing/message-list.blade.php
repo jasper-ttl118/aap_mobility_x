@@ -229,7 +229,7 @@
             </div>  
         </div>
 
-        <div x-show="open" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div x-show="open" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div @click.away="open = false">
                 <x-email-marketing.view-message>
                     <div class="flex justify-between rounded-t-lg px-4 py-3 items-center" :class='header_color'>
@@ -240,22 +240,16 @@
             </div>
         </div>
         
-        <div x-show="edit_sched" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="edit_sched = false">
-                <livewire:crm.email-marketing.edit-sched-message />
-            </div>
+        <div x-show="edit_sched" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <livewire:crm.email-marketing.edit-sched-message />
         </div> 
 
-        <div x-show="edit_draft" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="edit_draft = false">
-                <livewire:crm.email-marketing.edit-draft-message />
-            </div>
+        <div x-show="edit_draft" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <livewire:crm.email-marketing.edit-draft-message />
         </div> 
 
-        <div x-show="display_delete" x-cloak x-transition class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="display_delete = false">
-                <livewire:crm.email-marketing.delete-message />
-            </div>
+        <div x-show="display_delete" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+             <livewire:crm.email-marketing.delete-message />
         </div> 
 
         <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
