@@ -1,7 +1,7 @@
 <div x-data="{ show: false }">
-    <div class="flex w-[250px] h-[300px] card card-border border-2 border-[#605E5E] bg-base-100 mr-2">
+    <div class="flex w-[250px] h-[300px] border-2 border-[#605E5E] bg-base-100 mr-2">
             {{-- w-[250px] h-[300px] --}}
-        <div class="card-body w-full" x-on:click.outside="show=false">
+        <div class="body w-full" x-on:click.outside="show=false">
             <div class="border-b-2 border-[#605E5E] p-1 pl-2">
                 <h2 class="card-title">Chat List</h2>
             </div>
