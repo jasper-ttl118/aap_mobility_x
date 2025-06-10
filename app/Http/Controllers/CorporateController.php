@@ -66,6 +66,9 @@ class CorporateController extends Controller
     {
         //
     }
+    public function Commission(){
+        return view('crm.corporate.commission');
+    }
 
     public function Agent(){
         return view('crm.corporate.agent');

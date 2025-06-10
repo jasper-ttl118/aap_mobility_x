@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
 
         // routes for corporate (CRM)
         Route::get('/customer/corporate/agent',[CorporateController::class,'Agent'])->name('agent');
+        Route::get('/customer/corporate/commission',[CorporateController::class,'Commission'])->name('commission');
 });
 
     //route for login

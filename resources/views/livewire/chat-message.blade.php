@@ -1,5 +1,5 @@
-<div class="flex w-[250px] h-[300px] card card-border border-2 border-[#605E5E] bg-base-100 mr-2">
-  <div class="card-body w-full flex flex-col">
+<div class="flex w-[250px] h-[300px] border-2 border-[#605E5E] bg-base-100 mr-2">
+  <div class="body w-full flex flex-col">
     <div class="flex border-b-2 border-[#605E5E] p-1 pl-2 justify-between">
         <div class="flex">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2">

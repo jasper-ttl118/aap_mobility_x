@@ -27,7 +27,7 @@
             </div>
         </div>
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
+        <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 overflow-x-auto hide-scrollbar w-[440px] lg:w-full">
             <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"

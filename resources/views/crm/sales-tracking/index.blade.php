@@ -43,7 +43,7 @@
             <div class="h-[50%] lg:h-[90%] lg:w-[50%] w-full flex flex-row justify-center items-center gap-x-3 ">
                 <div class="flex flex-col w-full lg:w-[50%] h-full lg:h-[90%] items-center justify-evenly gap-y-5">
                     {{-- First Box --}}
-                    <div onclick="my_modal_first.showModal()" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                    <div  onclick="my_modal_first.showModal()" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
                         <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                             <svg fill="#000000" width="30px" height="30px" viewBox="0 0 24 24" id="phillippine-peso" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M11,15H8V3h3a6,6,0,0,1,6,6h0A6,6,0,0,1,11,15ZM8,3V21" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
                             </path><path id="primary-2" data-name="primary" d="M4,7H20M4,11H20" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
@@ -57,7 +57,7 @@
                         </div>
                         <dialog id="my_modal_first" class="modal rounded-xl border border-[#151847] hide-scrollbar w-[60%] h-[50%]">
                             <div class="modal-box flex flex-row p-3">
-                                <form method="dialog">
+                                <form method="dialog" class="modal-backdrop">
                                     <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                                 </form>
                                 <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">

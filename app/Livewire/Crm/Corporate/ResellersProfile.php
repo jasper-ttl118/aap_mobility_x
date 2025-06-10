@@ -19,6 +19,7 @@ class ResellersProfile extends Component
         $this->reseller = null;
     }
 
+
     public function render()
     {
         return view('livewire.crm.corporate.resellers-profile');
