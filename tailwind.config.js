@@ -43,6 +43,15 @@ export default {
         },
     },
 
-    plugins: [forms, require('@tailwindcss/container-queries'),],
+    plugins: [
+        forms,
+        require('@tailwindcss/container-queries'),
+        require('daisyui'),
+    ],
+
+    daisyui: {
+        themes: false,
+        darkTheme: false,
+    },
     
 };

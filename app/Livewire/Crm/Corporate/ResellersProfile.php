@@ -6,12 +6,20 @@ use Livewire\Component;
 
 class ResellersProfile extends Component
 {
-    
-    public $corporates;
+    protected $listeners = ['viewResellerProfile', 'resetResellerProfile'];
+    public $reseller;
 
-    public function mount($customer_id){
-        $this->corporates = Customer::where("customer_id", $customer_id)->get();
+
+    public function viewResellerProfile($reseller_id)
+    {
+        $this->reseller = Customer::find($reseller_id);
     }
+
+    public function resetResellerProfile()
+    {
+        $this->reseller = null;
+    }
+
     public function render()
     {
         return view('livewire.crm.corporate.resellers-profile');
