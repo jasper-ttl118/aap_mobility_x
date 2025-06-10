@@ -13,7 +13,7 @@ class AgentTable extends Component
     
     public function viewAgentProfile($agent_id)
     {
-        dump($agent_id);
+        // dump($agent_id);
     }
 
     public function mount()
