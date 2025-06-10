@@ -1,7 +1,8 @@
    <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex w-full items-center justify-between p-7 pt-3">
-            <h2 class="font-semibold text-2xl mt-5 text-[#151848]">List of all Members</h2>
-            <div class="flex justify-center items-center mt-5 space-x-2">
+        <div class="flex w-full items-center justify-between p-7 ">
+            <h2 class="font-semibold text-2xl  text-[#151848]">List of all Members</h2>
+
+            <div class="flex justify-center items-center space-x-2">
                 <label for="member_filter" class="text-[#151848] text-sm">Filter:</label>
                 <select name="member_filter" id="member_filter"
                         class="text-[#151848] font-bold border-none bg-gray-100 text-sm cursor-pointer"
@@ -82,7 +83,7 @@
             </table>
 
             <div class="flex w-full justify-start lg:justify-center">
-            {{ $customers->onEachSide(1)->links() }}
+                {{ $customers->onEachSide(1)->links() }}
             </div>
         </div>
 

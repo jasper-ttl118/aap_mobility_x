@@ -1,7 +1,7 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
     {{-- @include('layouts.navbar') --}}
 
-    <div class="flex flex-1 flex-col ml-64 mt-12 overflow-y-auto p-10 gap-7 bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col ml-52 mt-12 overflow-y-auto p-10 gap-7 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"

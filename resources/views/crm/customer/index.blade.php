@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">
@@ -39,6 +39,6 @@
    </div>
 
    <livewire:crm.customer.customer-table>
-    
+
 </div>
 </x-app-layout>

@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div x-data="{ selected : 'reseller' }" class="flex flex-1 flex-col lg:ml-64 hide-scrollbar lg:p-10 lg:gap-7 bg-[#f3f4f6] ">
+    <div x-data="{ selected : 'reseller' }" class="flex flex-1 flex-col lg:ml-52 hide-scrollbar lg:p-10 lg:gap-7 bg-[#f3f4f6] ">
         <!-- Title and Subtitle -->
         {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>

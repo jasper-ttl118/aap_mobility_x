@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
 
-<div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+<div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">

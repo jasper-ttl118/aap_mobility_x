@@ -4,7 +4,7 @@
 
 .back {
   position: relative;
-  background: white;
+  background: #F3F4F6;
 }
 
 .back:before {
@@ -62,15 +62,15 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
 // dd($modules_access);
 @endphp
 
-<div class="fixed lg:flex hidden top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-[#151847] py-4 text-white z-50" id="menu">
+<div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#151847] py-4 text-white z-50" id="menu">
   <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
-  <div class="w-40 flex justify-center">
+  <div class="w-28 flex justify-center">
     <a href="{{ route('dashboard') }}">
       <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" />
     </a>
   </div>
   
-  <div class="space-y-2 w-full">
+  <div class="text-xs w-full">
     @foreach($modules_access as $module)
       @php
         $links = [
