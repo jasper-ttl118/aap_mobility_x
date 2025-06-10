@@ -1,6 +1,3 @@
-{{-- Filter dropdown --}}
-
-
 <div class="flex items-center space-x-2">
     <label for="birthday_filter" class="text-[#151848] text-sm">Filter:</label>
     <select name="birthday_filter" id="birthday_filter"

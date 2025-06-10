@@ -1,10 +1,7 @@
 <!-- Modal overlay -->
-<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+<div x-show="open" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
   <div @click.outside="open=false" 
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-90"
         class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] max-w-4xl pb-6 gap-y-4">
 
     <div class="flex justify-between rounded-t-lg p-3 px-5 items-center bg-[#494949]">
@@ -14,19 +11,18 @@
     <div class="flex justify-center">
         <div class="flex w-[96%] h-10 border-1 border-[#979595] rounded-lg items-center">
             <span class="bg-[#151848] h-full p-2 text-white text-sm rounded-l-md">Subject</span>
-            <input type="text" class="h-full w-full p-2 rounded-r-md">
+            <input wire:model="subject" type="text" class="h-full w-full p-2 rounded-r-md">
        </div>
     </div>
 
     <div class="flex flex-row w-full h-full justify-evenly px-4 gap-4">
         <div class="flex justify-center items-center  w-[70%] h-[272px]">
             <!-- Left form section -->
-            <form class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between">
+            <div class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between">
                 <label for="message" class="block mb-2 text-md font-bold text-[#151848]">Message</label>
-                <textarea id="message" rows="4" class="overflow-auto hide-scrollbar resize-none h-[200px] block p-4 w-full text-sm text-gray-900 border-0 bg-gray-100 rounded-lg dark:bg-gray-300 dark:placeholder-gray-600" placeholder="Enter Your Message...">
-
+                <textarea wire:model="content" id="message" rows="4" class="overflow-auto hide-scrollbar resize-none h-[200px] block p-4 w-full text-sm text-gray-900 border-0 bg-gray-100 rounded-lg dark:bg-gray-300 dark:placeholder-gray-600" placeholder="Enter Your Message...">
                 </textarea>
-            </form>
+            </div>
         </div>
         <div class="flex flex-col w-[30%] h-full justify-evenly items-center gap-3">
             <!-- Right variable section -->
@@ -42,7 +38,7 @@
             </div>
         
             <div class="flex justify-end w-full gap-x-4">
-                <button type="submit" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button wire:click="create" @click="open=false" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Create
                 </button>
                 <button @click="open=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">

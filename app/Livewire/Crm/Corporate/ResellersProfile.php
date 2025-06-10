@@ -9,7 +9,6 @@ class ResellersProfile extends Component
     protected $listeners = ['viewResellerProfile', 'resetResellerProfile'];
     public $reseller;
 
-
     public function viewResellerProfile($reseller_id)
     {
         $this->reseller = Customer::find($reseller_id);
@@ -19,6 +18,7 @@ class ResellersProfile extends Component
     {
         $this->reseller = null;
     }
+
 
     public function render()
     {

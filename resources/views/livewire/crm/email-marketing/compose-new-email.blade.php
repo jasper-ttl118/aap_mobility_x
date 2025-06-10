@@ -1,15 +1,12 @@
 <!-- Modal overlay -->
-<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+<div x-show="open_email" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
-  <div @click.outside="open=false" 
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-90"
+  <div @click.outside="open_email=false" 
         class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] max-w-4xl pb-6 gap-y-4">
 
     <div class="flex justify-between rounded-t-lg p-3 px-5 items-center bg-[#494949]">
         <h1 class="text-white text-sm">New Message</h1>
-        <button @click="open=false" class="text-white hover:text-gray-800 text-xl font-bold">&times;</button>
+        <button @click="open_email=false" class="text-white hover:text-gray-800 text-xl font-bold">&times;</button>
     </div>
 
     <div class="flex justify-center">
@@ -61,10 +58,10 @@
             </div>
         
             <div class="flex justify-end w-full gap-x-4">
-                <button type="submit" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button wire:click="create" @click="open_email=false" class="border-2 bg-[#151848] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Send
                 </button>
-                <button @click="open=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">
+                <button @click="open_email=false" class="border-2 bg-[#605E5E] p-2 rounded-lg text-white w-[50%] font-semibold">
                     Cancel  
                 </button>
             </div>

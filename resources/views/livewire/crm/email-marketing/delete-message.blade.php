@@ -1,10 +1,7 @@
 <!-- Modal overlay -->
-<div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+<div x-show="display_delete" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
   <div @click.outside="display_delete=false" 
-        x-transition:leave="transition ease-in duration-200"
-        x-transition:leave-start="opacity-100 scale-100"
-        x-transition:leave-end="opacity-0 scale-90"
         class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] h-[50%] max-w-lg pb-6 gap-y-4 p-2 pr-3">
 
         <div class="flex justify-end">
@@ -22,8 +19,8 @@
             <span class="text-xl font-semibold text-[#151847]">Delete</span>
             <span class="text-lg text-[#151847]">Would you like to delete this message?</span>
             <div class="flex gap-x-6">
-                <button class="bg-[#151847] rounded-lg p-2 w-40 text-white font-semibold">Confirm</button>
-                <button class="bg-[#605E5E] rounded-lg p-2 text-white w-40 font-semibold"">Cancel</button>
+                <button wire:click="delete" @click="display_delete=false" class="bg-[#151847] rounded-lg p-2 w-40 text-white font-semibold">Confirm</button>
+                <button @click="display_delete=false" class="bg-[#605E5E] rounded-lg p-2 text-white w-40 font-semibold">Cancel</button>
             </div>
         </div>
 

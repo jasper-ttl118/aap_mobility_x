@@ -6,9 +6,6 @@ use Livewire\Component;
 
 class EditMessageTemplate extends Component
 {
-    public $toast_title = '';
-    public $toast_content = '';
-
     public function save()
     {
        $this->dispatch('show-toast', [

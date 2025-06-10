@@ -103,10 +103,10 @@ class CorporateController extends Controller
         return view('crm.sales-tracking.index');
     }
 
-    public function showModal()
-    {
-        $corporates = Customer::all(); // Replace with your actual query
+    // public function showModal()
+    // {
+    //     $corporates = Customer::all(); 
 
-        return view('crm.corporate.resellers-profile', ['corporates'=> $corporates]);
-    }
+    //     return view('crm.corporate.resellers-profile', ['corporates'=> $corporates]);
+    // }
 }

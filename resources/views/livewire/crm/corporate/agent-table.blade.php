@@ -1,8 +1,8 @@
-<div x-show="corporate === 'agent'" x-cloak>
+<div>
 <table class="w-full text-sm md:justify-center text-gray-500">   
     <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
         <tr>    
-            <th scope="col" class="w-[6.25%] py-3">Agents ID</th>
+            <th scope="col" class="w-[10.25%] py-3">Agents ID</th>
             <th scope="col" class="w-[19.0%] py-3">Name</th>
             <th scope="col" class="w-[12.5%] py-3">Email</th>
             <th scope="col" class="w-[12.5%] py-3">Mobile Number</th>
@@ -12,17 +12,17 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($corporates as $customer)
+        @foreach ($corporates as $agent)
             <tr class="border-b border-gray-200 bg-white gap-5">
                 <th scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900">
-                    {{ $customer->customer_id }}</th>
-                <td class="w-auto py-4  text-gray-900 pl-5">{{ $customer->customer_firstname }}
-                    {{ $customer->customer_surname }}</td>
-                <td class="w-auto py-4  text-gray-900">{{ $customer->customer_email }}</td>
-                <td class="w-auto py-4  text-gray-900 px-1">{{ $customer->customer_mobile_number }}</td>
-                <td class="w-auto py-4  text-gray-900 px-3">{{ $customer->customer_organization }}</td>
+                    {{ $agent->customer_id }}</th>
+                <td class="w-auto py-4  text-gray-900 pl-5">{{ $agent->customer_firstname }}
+                    {{ $agent->customer_surname }}</td>
+                <td class="w-auto py-4  text-gray-900">{{ $agent->customer_email }}</td>
+                <td class="w-auto py-4  text-gray-900 px-1">{{ $agent->customer_mobile_number }}</td>
+                <td class="w-auto py-4  text-gray-900 px-3">{{ $agent->customer_organization }}</td>
                 <td class="w-auto py-4  text-gray-900 text-center">
-                    @if ($customer->customer_status == '1')
+                    @if ($agent->customer_status == '1')
                         <span
                             class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
                     @else
@@ -54,15 +54,12 @@
                 </td>
             </tr>
         @endforeach
-            <tr>
-            
-            </tr>
     </tbody>
 
 </table>
 
 <div class="flex w-full justify-start lg:justify-center">
-   {{ $corporates->onEachSide(1)->links('vendor.pagination.tailwind') }}
+  {{ $corporates->onEachSide(1)->links() }}
 </div>
 
 </div>

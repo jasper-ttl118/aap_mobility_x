@@ -13,7 +13,6 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::orderByDesc('customer_id')->paginate(perPage: 10);
-
         // dd($customers);
         return view("crm.dashboard.index", ['customers' => $customers]);
     }

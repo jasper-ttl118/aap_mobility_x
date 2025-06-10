@@ -70,7 +70,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
     </a>
   </div>
   
-  <div class="w-full text-xs">
+  <div class="text-xs w-full">
     @foreach($modules_access as $module)
       @php
         $links = [

@@ -27,19 +27,18 @@ export default {
                 fadeInUp: 'fadeInUp 0.5s ease-out',
             },
 
-
             fontFamily: {
                 sans: ['Inter', ...defaultTheme.fontFamily.sans],
                 inter: ['Inter', ...defaultTheme.fontFamily.sans],
-                boldonse: ['Boldonse' , ...defaultTheme.fontFamily.sans],
-                poppins: ['Poppins' , ...defaultTheme.fontFamily.sans],
-                roboto: ['Roboto' , ...defaultTheme.fontFamily.sans],
-                robotoflex: ['Roboto Flex' , ...defaultTheme.fontFamily.sans],
-                
+                boldonse: ['Boldonse', ...defaultTheme.fontFamily.sans],
+                poppins: ['Poppins', ...defaultTheme.fontFamily.sans],
+                roboto: ['Roboto', ...defaultTheme.fontFamily.sans],
+                robotoflex: ['Roboto Flex', ...defaultTheme.fontFamily.sans],
             },
+
             colors: {
-                aapblue: '#151848'
-            }
+                aapblue: '#151848',
+            },
         },
     },
 
@@ -53,5 +52,4 @@ export default {
         themes: false,
         darkTheme: false,
     },
-    
 };

@@ -2,10 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "@fontsource/inter";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @plugin "daisyui";
 @source "../node_modules/flowbite-datepicker";
 
@@ -19,7 +21,33 @@
     }
 }
 
-@import "@fontsource/inter";
+:root {
+  --pf: #000000; 
+  --p: #000000;  
+  --bc: #ffffff; 
+}
+
+[data-theme="dark"] {
+  --pf: #000000;
+  --p: #000000;
+  --bc: #ffffff;
+}
+
+body, input, button, select, textarea {
+  color: black;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(2);
+    opacity: 1;
+  }
+}
 
 @media (orientation: landscape) {
   .landscape\:w-full {

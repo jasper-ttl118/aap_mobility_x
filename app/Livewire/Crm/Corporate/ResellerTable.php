@@ -11,6 +11,7 @@ class ResellerTable extends Component
     use WithPagination;
     public $reset_url = true;
 
+
     public function openProfileModal($reseller_id)
     {
         $this->dispatch('viewResellerProfile', reseller_id: $reseller_id)
@@ -28,7 +29,7 @@ class ResellerTable extends Component
 
     public function render()
     {
-        $corporates = Customer::paginate(5);
+        $corporates = Customer::paginate(4);
         return view('livewire.crm.corporate.reseller-table', ['corporates' => $corporates]);
     }
 }
