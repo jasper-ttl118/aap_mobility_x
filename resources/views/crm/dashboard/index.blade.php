@@ -9,28 +9,30 @@
         </div> --}}
         
         <!-- Options Container -->
-        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
-            <div class="flex min-w-[600px] lg:min-w-0">
-                <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
-                    <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
-                </div>
-                <div class="flex-none w-32 p-4 text-center">
-                    <a href="{{ route('contacts') }}" class= " text-gray-600 hover:text-blue-800">Members</a>
-                </div>
-                <div class="flex-none w-auto p-4 text-center">
-                    <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
-                </div>
-                <div class="flex-none w-32 p-4 text-center">
-                    <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
-                </div>
-                <div class="flex-none w-auto p-4 text-center">
-                    <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
+        <div class="flex md:justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 shadow-md w-[440px] md:w-[80%] lg:w-full">
+                <div class="flex min-w-[680px] lg:min-w-0">
+                    <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
+                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
+                    </div>
+                    <div class="flex-none w-32 p-4 text-center">
+                        <a href="{{ route('contacts') }}" class= " text-gray-600 hover:text-blue-800">Members</a>
+                    </div>
+                    <div class="flex-none w-auto p-4 text-center">
+                        <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
+                    </div>
+                    <div class="flex-none w-32 p-4 text-center">
+                        <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
+                    </div>
+                    <div class="flex-none w-auto p-4 text-center">
+                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0">
+        <div class="flex h-10 items-start gap-x-1 text-[#151847] text-sm px-12 lg:px-7 pt-2 lg:pt-0 md:ml-20 lg:ml-0">
             <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
@@ -39,9 +41,8 @@
             </svg>
             <a href="{{ route('customer.index') }}" class="hover:underline font-semibold">Dashboard</a>
         </div>
-        
         {{-- body --}}
-        <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full h-[1210px] lg:h-[400px] gap-5 lg:-mt-10 ">
+        <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full h-[1210px] lg:h-[400px] gap-5 lg:-mt-10 md:items-center">
             <div class="flex flex-col lg:flex-row justify-evenly h-[1200px] lg:h-full w-[440px] lg:w-full gap-5 lg:ml-0 ml-5">
                 <div class="flex flex-col justify-evenly lg:justify-between w-full lg:w-[70%] h-[1000px] lg:h-full gap-3">
                         {{-- Sales Div --}}
@@ -54,7 +55,7 @@
                                         <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                         <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                     </svg>
-                                    <span class="text-white font-extrabold text-xl lg:text-xs uppercase tracking-widest">Daily Sales</span>
+                                    <span class="text-white font-extrabold text-xl lg:text-xs uppercase tracking-widest truncate">Daily Sales</span>
                                 </div>
                                 <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
                                     <span class="text-white font-bold text-3xl lg:text-lg">₱153.04</span>
@@ -69,7 +70,7 @@
                                         <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                         <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                     </svg>
-                                    <span class="text-[#151847] font-extrabold text-xl lg:text-xs uppercase tracking-widest">Weekly Sales</span>
+                                    <span class="text-[#151847] font-extrabold text-xl lg:text-xs uppercase tracking-widest truncate">Weekly Sales</span>
                                 </div>
                                 <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
                                     <span class="text-[#151847] font-bold text-3xl lg:text-lg">₱1,240.40</span>
@@ -84,7 +85,7 @@
                                         <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                         <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                     </svg>
-                                    <span class="text-[#151847] font-extrabold text-xl lg:text-xs uppercase tracking-widest">Monthly Sales</span>
+                                    <span class="text-[#151847] font-extrabold text-xl lg:text-xs uppercase tracking-widest truncate">Monthly Sales</span>
                                 </div>
                                 <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
                                     <span class="text-[#151847] font-bold text-3xl lg:text-lg">₱5,192.75</span>
@@ -114,7 +115,7 @@
                                 </div>
                             </div>
                             {{-- Line --}}
-                            <div class="flex border-2 border-[#c6c7c8] h-[90%] rounded-lg hidden md:block"></div>
+                            <div class="flex border-2 border-[#c6c7c8] h-[90%] rounded-lg hidden lg:block"></div>
                             {{-- Email --}}
                             <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center gap-3 ">
                                 <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
@@ -182,9 +183,9 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col ml-5 lg:ml-0 lg:flex-row w-[440px] lg:w-full h-[600px] lg:h-[300px] gap-5 mt-3 lg:-mt-2">
+        <div class="flex flex-col ml-5 lg:ml-0 lg:flex-row w-[440px] lg:w-full h-[600px] lg:h-[300px] gap-5 mt-3 lg:-mt-2 md:w-full md:items-center md:ml-2.5">
             {{-- CALENDAR --}}
-            <div class="flex pt-2 bg-white shadow-lg h-full lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar">
+            <div class="flex pt-2 bg-white shadow-lg h-full lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar md:w-[440px]">
                 <div x-data="calendar()" x-init="init()" class="w-[90%] flex flex-col items-center justify-between">
                     <div class="flex flex-row justify-between items-center w-full">
                         <div class="flex justify-start w-[50%] items-center h-full">
@@ -234,7 +235,7 @@
 
             </div>
             {{-- REVENUE --}}
-            <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-full lg:w-[50%] rounded-lg shadow-xs justify-center items-center gap-3">
+            <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-full lg:w-[50%] rounded-lg shadow-xs justify-center items-center gap-3 md:w-[440px]">
                 <div class="flex flex-row h-[10%] w-[90%] items-center gap-2">
                     <div class="flex flex-row w-[50%] h-full justify-start items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#151847]">

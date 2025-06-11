@@ -8,7 +8,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-fit border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
+        <div class="flex md:justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
                     <div class="flex-none w-32 p-4 text-center">
                         <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800 font-inter">Dashboard</a>
@@ -26,10 +27,11 @@
                         <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800 font-inter">Sales Tracking</a>
                     </div>
                 </div>
+            </div>
         </div>
 
     <!-- Breadcrumbs-->
-   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full">
+   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-11 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full md:ml-20 lg:ml-0">
        <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter truncate">Customer Relationship Management</a>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
            <path fill-rule="evenodd"

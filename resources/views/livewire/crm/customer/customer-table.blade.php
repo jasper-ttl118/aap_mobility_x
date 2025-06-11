@@ -1,5 +1,6 @@
-   <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex w-full items-center justify-between p-7 ">
+<div class="md:w-full md:justify-center flex">
+    <div class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-start md:justify-center">
+        <div class="flex flex-col lg:flex-row w-full items-center justify-between p-7 ">
             <h2 class="font-semibold text-2xl  text-[#151848]">List of all Members</h2>
 
             <div class="flex justify-center items-center space-x-2">
@@ -83,8 +84,10 @@
             </table>
 
             <div class="flex w-full justify-start lg:justify-center">
-                {{ $customers->onEachSide(1)->links() }}
+                {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
             </div>
         </div>
 
    </div>
+
+</div>
