@@ -85,7 +85,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
       @endphp
       
       @if(isset($links[$module]))
-        <div class="flex items-center px-2 py-3 gap-2 ml-2 {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : '' }}">
+        <div class="group cursor-pointer flex items-center px-2 py-3 gap-2 ml-2 rounded-l-xl {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : '' }}">
           <span class="edge"></span>
           <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             @switch($module)
