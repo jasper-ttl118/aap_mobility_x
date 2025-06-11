@@ -90,13 +90,14 @@
             <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
                 Are you sure you want to delete this employee? This action cannot be undone.
             </p>
-            <div class="mt-4 flex justify-end space-x-3">
+
+            <div class="mt-4 flex justify-end items-center space-x-3">
                 <button @click="open = false"
                     class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
                     Cancel
                 </button>
-                {{-- TBC --}}
-                <form id="delete-form" :action="deleteUrl" method="POST">
+
+                <form id="delete-form" :action="deleteUrl" method="POST" class="inline-block m-0 p-0">
                     @csrf
                     @method('GET')
                     <button type="submit"
@@ -105,6 +106,7 @@
                     </button>
                 </form>
             </div>
+            
         </div>
     </div>
 

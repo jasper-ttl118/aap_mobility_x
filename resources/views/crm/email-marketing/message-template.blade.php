@@ -55,7 +55,7 @@
                     </button>
                 </div>
 
-                <div class="flex flex-wrap gap-y-6 w-full justify-between">
+                <div class="flex flex-wrap gap-y-6 w-full justify-evenly">
                     <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
                         <h1 class="text-white font-semibold">Message Template 1</h1>
                         <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥

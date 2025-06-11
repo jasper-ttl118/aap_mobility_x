@@ -2,7 +2,7 @@
  
     <div x-data="{ toast: false, open: false, title: 'Sent Message', header_color: 'bg-[#10A13C]', edit_sched: false, edit_draft: false, display_delete: false }">
 
-        <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]" x-data="{ selected : 'sent'}"> 
+        <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]" x-data="{ selected : 'sent'}"> 
             <!-- Options Container -->
             <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-fit border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
                     <div class="flex min-w-[600px] lg:min-w-0">

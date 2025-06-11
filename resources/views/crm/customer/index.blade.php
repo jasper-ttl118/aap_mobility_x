@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
-    <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
+    <div x-data="{open_profile : false, open_email : false, open_mobile : false }" class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
     
     <!-- Title and Subtitle -->
     {{-- <div class="">
@@ -40,5 +40,16 @@
 
    <livewire:crm.customer.customer-table>
 
+    <div x-show="open_email" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <livewire:crm.email-marketing.compose-new-email />
+    </div> 
+
+    <div x-show="open_mobile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <livewire:crm.email-marketing.compose-new-mobile-message />
+    </div> 
+
+    <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+        <livewire:crm.email-marketing.success-toast />
+    </div>
 </div>
 </x-app-layout>
