@@ -19,7 +19,6 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
             </svg>
         </a>
 
-
         <div class="relative inline-block text-left">
             <a href="#" class="text-[#151847] group transform duration-300 hover:text-white inline-flex" id="dropdownProfile">
                 <div class="flex flex-row gap-2 group-hover:bg-[#151847] p-1 group-focus:border rounded-md group-focus:border-[#151847] group-focus:mx-0">

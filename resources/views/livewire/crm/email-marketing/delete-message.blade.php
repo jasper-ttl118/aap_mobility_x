@@ -2,7 +2,7 @@
 <div x-show="display_delete" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
   <div @click.outside="display_delete=false" 
-        class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] h-[50%] max-w-lg pb-6 gap-y-4 p-2 pr-3">
+        class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] h-[50%] max-w-lg pb-6 gap-y-6 p-2 pr-3">
 
         <div class="flex justify-end">
             <button @click="display_delete=false" class="w-5 h-5 text-white flex items-center justify-center text-xs border-2 border-[#605E5E] rounded-full bg-[#605E5E]">

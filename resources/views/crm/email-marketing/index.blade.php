@@ -29,7 +29,7 @@
         </div>
 
     <!-- Breadcrumbs-->
-   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full">
+   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-11 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full">
        <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter truncate">Customer Relationship Management</a>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
            <path fill-rule="evenodd"
@@ -53,6 +53,12 @@
 
         <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
             <livewire:crm.email-marketing.success-toast />
+        </div>
+
+        <div x-show="open_profile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+            <div >
+                <livewire:crm.customer.member-profile wire:key="member-profile"/>
+            </div>
         </div>
 
         <div x-show="open_email" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">

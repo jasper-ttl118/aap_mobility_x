@@ -14,6 +14,12 @@ class CustomerTable extends Component
     use WithPagination; 
     protected $paginationTheme = "tailwind";
     public $member_filter = 1;
+    
+    public function openProfileModal($customer_id)
+    {
+         $this->dispatch('viewMemberProfile', member_id : $customer_id)
+        ->to('crm.customer.member-profile');
+    }
 
     public function changeMemberFilter()
     {
