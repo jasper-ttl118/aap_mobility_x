@@ -1,5 +1,5 @@
-<div class="flex flex-col w-[440px] -mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-    <div class="flex items-start p-7 pt-7 justify-between">
+<div class="flex flex-col w-[440px] mt-2 lg:-mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+    <div class="flex flex-col lg:flex-row lg:items-start items-center p-7 pt-7 lg:justify-between">
         <div class="flex items-start">
             <h2 class="font-semibold text-2xl text-[#151848] font-inter">Birthday Celebrant List</h2>
         </div>
@@ -93,7 +93,7 @@
         </table>
 
         <div class="flex w-full justify-start lg:justify-center">
-            {{ $customers->onEachSide(1)->links() }}
+            {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
         </div>
 
     </div>

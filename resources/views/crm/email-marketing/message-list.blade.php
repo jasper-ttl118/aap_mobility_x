@@ -2,7 +2,7 @@
  
     <div x-data="{ toast: false, open: false, title: 'Sent Message', header_color: 'bg-[#10A13C]', edit_sched: false, edit_draft: false, display_delete: false }">
 
-        <div class="flex flex-1 flex-col lg:ml-64 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]" x-data="{ selected : 'sent'}"> 
+        <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]" x-data="{ selected : 'sent'}"> 
             <!-- Options Container -->
             <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-fit border-gray-100 bg-white shadow-md w-[440px] lg:w-full">
                     <div class="flex min-w-[600px] lg:min-w-0">
@@ -26,26 +26,26 @@
 
             <!-- Breadcrumbs-->
             <div class="flex h-7 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8">
-                <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter">Customer Relationship Management</a>
+                <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter truncate">Customer Relationship Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter">Email Marketing</a>
+                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter truncate">Email Marketing</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message List</a>
+                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter truncate">Message List</a>
             </div>
 
             <x-email-marketing.tab-buttons />
             
-            <div class="flex flex-col w-[440px] -mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-                <div class="flex items-start p-7 pt-7 justify-between">
-                    <div class="flex items-start">
+            <div class="flex flex-col w-[440px] mt-2 lg:-mt-4 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+                <div class="flex flex-col lg:flex-row p-5 justify-between">
+                    <div class="flex items-center justify-center lg:justify-start lg:items-start">
                         <h2 
                             class="font-semibold text-2xl text-[#151848] font-inter"
                             x-text="selected === 'sent' 
@@ -57,8 +57,8 @@
                     </div>
 
                     {{-- Selection Tabs (Sent, Scheduled, Drafted) --}}
-                    <div class="flex justify-end w-[50%] h-full items-center">
-                        <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[100%] border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">
+                    <div class="flex lg:justify-end w-full lg:w-[50%] h-full justify-center items-center">
+                        <div class="flex flex-row w-[80%] lg:w-[50%] h-10 border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">
                             <button @click="selected = 'sent', title = 'Sent Message', header_color = 'bg-[#10A13C]'" 
                                 :class="selected === 'sent' ? 'text-white bg-[#151847]' : 'text-[#151847]'"
                                 class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#151847] hover:text-white">Sent</button>
@@ -72,11 +72,11 @@
                     </div>
                 </div>
                 
-                <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7" >
+                <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
                     {{-- List of Sent Messages --}}
                     <template x-if="selected === 'sent'">
                         <table class="w-full text-sm md:justify-center text-gray-500">   
-                            <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
+                            <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase">
                                 <tr>    
                                     <th scope="col" class="w-[12.25%] py-3 font-inter">Message ID</th>
                                     <th scope="col" class="w-[12.5%] py-3 font-inter">Subject</th>
