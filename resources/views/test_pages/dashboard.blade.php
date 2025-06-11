@@ -50,7 +50,7 @@
     </div> --}}
 
     <div
-        class="flex flex-col w-full lg:ml-64 overflow-y-auto bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-center p-10">
+        class="flex flex-col w-full lg:ml-52 overflow-y-auto bg-[url('/public/build/assets/bgdiv.jpg')] bg-cover bg-[#f3f4f6] mt-10 bg-center p-10">
         <div class="flex h-30 w-auto justify-center lg:justify-start">
             <div
                 class="flex flex-row items-center text-3xl  font-bold bg-gradient-to-r from-sky-500  to-blue-900 bg-clip-text text-transparent">

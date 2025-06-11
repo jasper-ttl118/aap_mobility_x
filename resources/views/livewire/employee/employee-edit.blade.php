@@ -1,7 +1,7 @@
 <form wire:submit="edit" class="mx-auto">
     @csrf
     @method('PUT')
-    <div class="text-gray-700 p-6 space-y-6">
+    <div class="text-gray-700 p-6 space-y-6 bg-white shadow-lg mt-40">
         <!-- Heading -->
         <div class="border-b border-gray-200 pb-5">
             <h1 class="text-lg font-bold uppercase">Update Employee</h1>

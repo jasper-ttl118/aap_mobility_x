@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
-    <div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col ml-52 bg-[#F3F4F6] overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -35,7 +35,7 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
+        <div class=" rounded-md border-2 border-gray-100 mt-10 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
@@ -192,12 +192,13 @@
             <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
                 Are you sure you want to delete this module? All sub-module on this module will be unassigned.
             </p>
-            <div class="mt-4 flex justify-end space-x-3">
+            <div class="mt-4 flex justify-end items-center space-x-3">
                 <button @click="open = false"
                     class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
                     Cancel
                 </button>
-                <form id="delete-form" :action="deleteUrl" method="POST">
+
+                <form id="delete-form" :action="deleteUrl" method="POST" class="inline-block m-0 p-0">
                     @csrf
                     @method('GET')
                     <button type="submit"
