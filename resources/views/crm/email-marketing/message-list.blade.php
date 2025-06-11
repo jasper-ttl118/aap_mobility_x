@@ -1,4 +1,4 @@
-<x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
+<x-app-layout class='flex flex-row h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
  
     <div x-data="{ toast: false, open: false, title: 'Sent Message', header_color: 'bg-[#10A13C]', edit_sched: false, edit_draft: false, display_delete: false }">
 
@@ -34,13 +34,13 @@
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter truncate">Email Marketing</a>
+                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter">Email Marketing</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter truncate">Message List</a>
+                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message List</a>
             </div>
 
             <x-email-marketing.tab-buttons />

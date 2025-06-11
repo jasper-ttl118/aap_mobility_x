@@ -40,7 +40,14 @@
        <a href="{{ route('contacts') }}" class="hover:underline text-[#151848] font-semibold">Members</a>
    </div>
 
-   <livewire:crm.customer.customer-table>
+    {{-- Members list table --}}
+    <livewire:crm.customer.customer-table>
+
+    <div x-show="open_profile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div >
+            <livewire:crm.customer.member-profile wire:key="member-profile"/>
+        </div>
+    </div>
 
     <div x-show="open_email" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
         <livewire:crm.email-marketing.compose-new-email />

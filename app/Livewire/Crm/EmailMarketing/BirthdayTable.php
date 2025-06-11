@@ -16,6 +16,12 @@ class BirthdayTable extends Component
     public $current_day;
     public $reset_url = true;
 
+    public function openProfileModal($customer_id)
+    {
+         $this->dispatch('viewMemberProfile', member_id : $customer_id)
+        ->to('crm.customer.member-profile');
+    }
+
     public function updatingBirthdayFilter()
     {
         $this->resetPage();
