@@ -52,7 +52,7 @@
         <livewire:crm.email-marketing.birthday-table wire:key="birthday-table"/>
 
         <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
-            <livewire:crm.email-marketing.success-toast />
+            <livewire:toast.toast />
         </div>
 
         <div x-show="open_profile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
