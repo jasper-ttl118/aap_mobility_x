@@ -2,7 +2,7 @@
 <div x-show="open_mobile" x-transition class="fixed inset-0 z-50 flex items-center justify-center">
   <!-- Modal content -->
   <div @click.outside="open_mobile=false" 
-        class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[50%] max-w-4xl pb-6 gap-y-4">
+        class="relative flex flex-col bg-white rounded-b-lg rounded-t-xl shadow-lg w-[80%] max-w-4xl pb-6 gap-y-4">
 
     <div class="flex justify-between rounded-t-lg p-3 px-5 items-center bg-[#494949]">
         <h1 class="text-white text-sm">New Message</h1>
@@ -35,8 +35,8 @@
         </div>
     </div>
 
-    <div class="flex flex-row w-full h-full justify-evenly px-4 gap-4">
-        <div class="flex justify-center items-center  w-[70%] h-[272px]">
+    <div class="flex flex-col lg:flex-row h-[300px] w-full lg:h-full justify-evenly px-4 gap-4 overflow-x-auto hide-scrollbar ">
+        <div class="flex justify-center items-center h-[70%] w-full lg:w-[70%] lg:h-[272px] lg:mt-0 mt-8">
             <!-- Left form section -->
             <form class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between ">
                 <label for="message" class="block mb-2 text-md font-bold text-[#151848]">Message</label>
@@ -44,7 +44,7 @@
                 </textarea>
             </form>
         </div>
-        <div class="flex flex-col w-[30%] h-full justify-evenly items-center gap-3">
+        <div class="flex flex-col w-full h-[30%] lg:w-[30%] lg:h-full justify-evenly items-center gap-3">
             <!-- Right variable section -->
             <div class="flex flex-col w-full h-[200px] p-4 gap-4 bg-[#EAE8E8] rounded-lg">
                 <p class="font-semibold text-[#151848]">Add Variable:</p>

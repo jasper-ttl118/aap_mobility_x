@@ -52,4 +52,5 @@ export default {
         themes: false,
         darkTheme: false,
     },
+
 };

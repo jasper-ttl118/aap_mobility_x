@@ -45,7 +45,7 @@
             {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
             <x-email-marketing.tab-buttons />
 
-            <div class="flex md:w-full md:justify-center md:-ml-2.5">
+            <div class="flex md:w-full md:justify-center md:-ml-2.5 lg:ml-0">
                 <div class="flex flex-col w-[440px]  lg:-mt-8 pt-4 lg:w-full lg:ml-0 lg:px-0 px-5 justify-center gap-y-4">
                     <div class="flex items-start justify-between px-1 w-[440px] lg:w-full">
                         <div class="flex items-start ml-1">

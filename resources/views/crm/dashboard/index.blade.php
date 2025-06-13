@@ -10,7 +10,7 @@
         
         <!-- Options Container -->
         <div class="flex md:justify-center w-full">
-            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 shadow-md w-[440px] md:w-[80%] lg:w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 bg-white border-gray-100 shadow-md w-[440px] md:w-[80%] lg:w-full">
                 <div class="flex min-w-[680px] lg:min-w-0">
                     <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
                         <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>

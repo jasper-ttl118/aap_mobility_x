@@ -37,8 +37,8 @@
         </div>
     </div>
 
-    <div class="flex flex-row w-full h-full justify-evenly px-4 gap-4">
-        <div class="flex justify-center items-center  w-[70%] h-[272px]">
+    <div class="flex flex-col lg:flex-row w-full h-[300px] lg:h-full justify-evenly px-4 gap-4 overflow-x-auto hide-scrollbar">
+        <div class="flex justify-center items-center w-full h-[70%] mt-8 lg:mt-0 lg:w-[70%] lg:h-[272px]">
             <!-- Left form section -->
             <div class=" w-full h-[252px] bg-[#EAE8E8] p-4 rounded-lg  flex flex-col justify-between ">
                 <label for="message" class="block mb-2 text-md font-bold text-[#151848]">Message</label>
@@ -51,7 +51,7 @@ Happy shopping! 🛍️
                 </textarea>
             </div>
         </div>
-        <div class="flex flex-col w-[30%] h-full justify-evenly items-center gap-3">
+        <div class="flex flex-col lg:w-[30%] lg:h-full w-full h-[30%] justify-evenly items-center gap-3 mt-3 lg:mt-0">
             <!-- Right variable section -->
             <div class="flex flex-col w-full h-[200px] p-4 gap-4 bg-[#EAE8E8] rounded-lg">
                 <p class="font-semibold text-[#151848]">Add Variable:</p>
