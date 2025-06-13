@@ -52,11 +52,20 @@ class EmployeeAdd extends Component
             'employee_contact_number' => $this->employee_contact_number,
         ]);
         
-        if($query)
-            dump("Success");
-        else
-            dump("Failed");
+        if($query){      
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Employee Added Successfully!',
+            ]);
+        }
+        else{
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An Error Occured!',
+            ]);
+        }
     }
+    
     public function render()
     {
         return view('livewire.employee.employee-add');
