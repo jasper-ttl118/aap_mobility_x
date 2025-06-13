@@ -1,7 +1,7 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
     {{-- @include('layouts.navbar') --}}
 
-    <div class="flex flex-1 flex-col ml-52 mt-12 overflow-y-auto p-10 gap-7 bg-[#f3f4f6]">
+    <div x-data="{ selected : 'employees'}" class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -29,61 +29,77 @@
             </div>
         @endif
 
-        <!-- Title and Subtitle -->
-        {{-- <div class="">
-            <h1 class="text-2xl font-semibold text-blue-900">Employee Alphalist</h1>
-            <p class="text-gray-700 text-sm"> Manage employees of Automobile Association of the Philippines</p>
-        </div> --}}
-
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Alphalist</a>
                 </div>
-                {{-- <div class="w-32 p-4 text-center">
-                    <a href="/organization" class="text-gray-600 hover:text-blue-800">Organizations</a>
+                <div class="flex-none w-auto p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
                 </div>
-                <div class="w-32 p-4 text-center">
-                    <a href="/role" class="text-gray-600 hover:text-blue-800">Roles</a>
+                <div class="flex-none w-auto p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Manpower Requisition</a>
                 </div>
-                <div class="w-32 p-4 text-center">
-                    <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
-                </div> --}}
-                {{-- <div class="w-32 p-4 text-center">
-                    <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
-                </div> --}}
             </div>
 
-            <!-- Breadcrumbs-->
-            <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
-                <a href="/employee" class="hover:underline">Employee Management</a>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                    <path fill-rule="evenodd"
-                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                        clip-rule="evenodd" />
-                </svg>
-                <a href="#" class="hover:underline font-semibold">Employee Alphalist</a>
+            <div class="flex justify-between">
+                 {{-- Breadcrumbs --}}
+                <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
+                    <a href="/employee" class="hover:underline">Employee Management</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                        <path fill-rule="evenodd"
+                            d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <a href="#" class="hover:underline font-semibold">Employee Alphalist</a>
+                </div>
+                 {{-- Top-right: Toggle + Add Buttons --}}
+                <div class="flex justify-end px-7 pt-6">
+                    <div class="flex items-center gap-4">
+                         {{-- Toggle  --}}
+                        <div class="flex border border-[#151847] rounded-md overflow-hidden w-[220px] h-[30px]">
+                            <a @click="selected='employees'"
+                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            :class="selected === 'employees' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
+                                Employees
+                            </a>
+                            <a @click="selected='ojt'"
+                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            :class="selected === 'ojt' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
+                                OJT Interns
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="flex items-center justify-between p-7">
+            <div class="flex items-center justify-between px-7 py-6">
                 <div>
-                    <h2 class="font-semibold text-lg text-blue-900">Manage AAP Employees</h2>
-                    <p class="text-gray-900 text-sm">Create, update, and delete employee details.</p>
+                    <h2 class="font-semibold text-lg text-blue-900" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
+                    <p class="text-gray-900 text-sm" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
                 </div>
 
-                {{-- Add Employee --}}
-                <div>
-                    <a href="employee/create"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <div class="flex items-center gap-4">
+
+                    <a x-show="selected == 'employees'" href="employee/create"
+                    class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Add New Employee
                     </a>
-                </div>
 
+                    <a x-show="selected == 'ojt'" href="#"
+                    class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        Add New OJT Intern
+                    </a>
+                </div>
             </div>
 
             {{-- List of Employees --}}
@@ -177,12 +193,6 @@
             </div>
         </div>
         
-        {{-- <div x-data="{ count: 0 }">
-            <p>Counter: <span x-text="count"></span></p>
-            <button x-on:click="count++">Increment</button>
-             <button x-on:click="count--">Decrement</button>
-        </div>
-     --}}
     </div>
  
     {{-- Employee Modals (VIEW, DELETE) --}}

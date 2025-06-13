@@ -33,7 +33,7 @@
   --bc: #ffffff;
 }
 
-body, input, button, select, textarea {
+input, button, select, textarea {
   color: black;
 }
 

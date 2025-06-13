@@ -23,7 +23,7 @@
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
     <x-navbar :$navbar_selected />
-    <div class="flex flex-col w-full gap-5">
+    <div class="flex flex-col w-full">
         <x-layouts.header />
         {{ $slot }}
     </div>
