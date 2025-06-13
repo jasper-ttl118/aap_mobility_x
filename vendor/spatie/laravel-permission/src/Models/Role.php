@@ -31,9 +31,7 @@ class Role extends Model implements RoleContract
 
     public $timestamps = false;
     protected $primaryKey = 'role_id';
-
     protected $guard_name = 'web';
-
     protected $guarded = [];
 
     public function __construct(array $attributes = [])
@@ -74,7 +72,7 @@ class Role extends Model implements RoleContract
 
 
 
-    
+
 
      // Modifications for guard_name conflict
 
@@ -96,12 +94,12 @@ class Role extends Model implements RoleContract
  
          return parent::setAttribute($key, $value);
      }
- 
+
      public function getGuardName()
      {
          return $this->role_guard_name ?? config('auth.defaults.guard');
      }
- 
+
      protected function ensureModelSharesGuard($permission)
      {
          $givenGuard = $permission->getAttribute('guard_name'); // Use the overridden getAttribute

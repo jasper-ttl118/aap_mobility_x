@@ -55,92 +55,69 @@
                     </button>
                 </div>
 
-                <div class="gap-y-10 w-[440px] lg:w-full flex flex-col justify-center items-center">
-                    {{-- First Half --}}
-                    <div class="flex flex-col lg:flex-row w-[440px] lg:w-full gap-x-10 gap-y-5 justify-center items-center">
-                        <div class="flex flex-row w-full justify-between">
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+                <div class="flex flex-wrap gap-y-6 w-full justify-between">
+                    <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
-
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                        </div>
-                        <div class="flex flex-row w-full justify-between">
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
-
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
-
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                        </div>
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
                     </div>
-                    {{-- Second Half --}}
-                    <div class="flex flex-col lg:flex-row w-[440px] lg:w-full gap-x-10 gap-y-5 justify-center items-center">
-                        <div class="flex flex-row w-full justify-between">
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+                                        <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                    </div>
+                                        <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                        </div>
-                        <div class="flex flex-row w-full justify-between">
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                    </div>
+                                        <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                            <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
-                                <h1 class="text-white font-semibold">Message Template 1</h1>
-                                <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                    </div>
+                                        <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
 
-                                    We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
-                                    Use code [Coupon Code] at ...
-                                </p>
-                                <button class="hover:bg-[#F6D400] hover:text-[#151847] hover:border border-white hover:scale-105 duration-300 transform bg-white p-2 rounded-lg font-semibold text-[#151848]" @click="view_edit=true">View Template -></button>
-                            </div>
-                        </div>
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                    </div>
+                                        <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
+                    </div>
+                    <div class="flex flex-col border-2 rounded-lg bg-[#151848] h-[270px] w-[235px] flex-none p-5 gap-y-4">
+                        <h1 class="text-white font-semibold">Message Template 1</h1>
+                        <p class="text-white whitespace-pre-line text-xs">💥 A Special Surprise Just for You, [Customer Name]! 💥
+
+                            We couldn’t keep this deal a secret—enjoy 15% off your next purchase as a thank-you for being part of our community! 🙌
+                            Use code [Coupon Code] at ...
+                        </p>
+                        <button class="bg-white p-2 rounded-lg font-semibold" @click="view_edit=true">View Template -></button>
                     </div>
                 </div>
             </div>
@@ -160,4 +137,3 @@
 
      </div>
 </x-app-layout>
-

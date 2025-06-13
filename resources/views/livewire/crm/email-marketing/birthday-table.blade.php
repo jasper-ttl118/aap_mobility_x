@@ -26,7 +26,7 @@
             </select>
         </div>
     </div>
-
+    
     {{-- List of Customers --}}  
     <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
         <table class="w-full text-sm md:justify-center text-gray-500">   
@@ -59,7 +59,7 @@
                                 <span
                                     class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
                             @endif
-                            </td>
+                        </td>
                         <td class="w-auto py-4">
                             <div class="flex flex-row justify-center items-center lg:gap-2">
                         {{-- {{$customer->customer_id}} --}}
@@ -93,7 +93,7 @@
         </table>
 
         <div class="flex w-full justify-start lg:justify-center">
-            {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
+            {{ $customers->onEachSide(1)->links() }}
         </div>
 
     </div>

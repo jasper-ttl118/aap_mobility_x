@@ -5,7 +5,7 @@
         addToast(toast) {
             toast.id = this.toastId++;
             this.toasts.push(toast);
-            
+            console.log(toast.id);
             setTimeout(() => {
                 this.toasts = this.toasts.filter(t => t.id !== toast.id);
             }, 3500);

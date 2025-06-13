@@ -3,7 +3,7 @@
         $navbar_selected = 'None';
     @endphp
     @include('layouts.navbar')
-    <div class="@container/main flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-3.5">
+    <div class="@container/main flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
             <h2 class="text-2xl font-medium">Profile Information</h2>
             <h4 class="text-lg font-light">View and edit your personal details, username, and password</h4>
