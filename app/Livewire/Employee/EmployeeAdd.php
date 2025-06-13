@@ -40,7 +40,7 @@ class EmployeeAdd extends Component
     public function add()
     {
         $this->validate();
-
+        
         $query = Employee::create([
             'employee_firstname' => $this->employee_firstname,
             'employee_middlename' => $this->employee_middlename,
@@ -51,12 +51,21 @@ class EmployeeAdd extends Component
             'employee_department' => $this->employee_department,
             'employee_contact_number' => $this->employee_contact_number,
         ]);
-
-        if($query)
-            dump("Success");
-        else
-            dump("Failed");
+        
+        if($query){      
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Employee Added Successfully!',
+            ]);
+        }
+        else{
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An Error Occured!',
+            ]);
+        }
     }
+    
     public function render()
     {
         return view('livewire.employee.employee-add');

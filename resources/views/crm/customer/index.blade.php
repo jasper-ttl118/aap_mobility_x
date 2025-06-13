@@ -1,11 +1,11 @@
 <x-app-layout class='flex flex-row w-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
     <div x-data="{open_profile : false, open_email : false, open_mobile : false }" class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]">
-    
-    <!-- Title and Subtitle -->
-    {{-- <div class="">
-        <h1 class="text-2xl font-semibold text-blue-900">Contacts</h1>
-        <p class="text-gray-700 text-sm"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem aliquid, in minus voluptate optio illo suscipit possimus fuga explicabo necessitatibus aperiam vel at consequatur corrupti tempora sint veniam libero nisi.</p>
-    </div> --}}
+        
+        <!-- Title and Subtitle -->
+        {{-- <div class="">
+            <h1 class="text-2xl font-semibold text-blue-900">Contacts</h1>
+            <p class="text-gray-700 text-sm"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem aliquid, in minus voluptate optio illo suscipit possimus fuga explicabo necessitatibus aperiam vel at consequatur corrupti tempora sint veniam libero nisi.</p>
+        </div> --}}
 
     <!-- Options Container -->
     <div class="flex md:justify-center w-full">
@@ -40,14 +40,7 @@
        <a href="{{ route('contacts') }}" class="hover:underline text-[#151848] font-semibold">Members</a>
    </div>
 
-    {{-- Members list table --}}
-    <livewire:crm.customer.customer-table>
-
-    <div x-show="open_profile" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div >
-            <livewire:crm.customer.member-profile wire:key="member-profile"/>
-        </div>
-    </div>
+   <livewire:crm.customer.customer-table>
 
     <div x-show="open_email" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
         <livewire:crm.email-marketing.compose-new-email />

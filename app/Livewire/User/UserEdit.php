@@ -27,12 +27,14 @@ class UserEdit extends Component
     {
         $this->roles = Role::where('org_id', $value)->get();
         
-        $moduleIds = Module::all();
+        // dump($this->roles->modules());
+        // $moduleIds = Module::all();
         
+        // dump($value[0]->role_id);
     
         // $this->modules = Module::whereIn('module_id', $moduleIds)->get();
 
-        dump($this->roles);
+        // dump($this->roles);
     }
 
     // public function updatedSelectedRole($value)

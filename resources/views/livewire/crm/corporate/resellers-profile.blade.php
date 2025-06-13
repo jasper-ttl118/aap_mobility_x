@@ -11,7 +11,6 @@
         <div @click.outside="
             open = false;
             setTimeout(() => window.Livewire.dispatch('resetResellerProfile'), 400);"
-
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-90"

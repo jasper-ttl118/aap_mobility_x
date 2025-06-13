@@ -67,10 +67,18 @@ class EmployeeEdit extends Component
             'employee_status' => $this->employee_status,
         ]);
 
-        if($query)
-             dump("Success Edit!");
-        else   
-            dump("Edit Failed/Error");
+        if($query){
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Employee Updated Successfully!',
+            ]);
+        }
+        else{
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An Error Occured!',
+            ]);
+        }
     }
     
     public function render()

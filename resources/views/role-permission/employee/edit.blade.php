@@ -36,8 +36,15 @@
         @endif
 
         <livewire:employee.employee-edit :$employee>
+
+        <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+            <livewire:toast.toast />
+        </div>
     </div>
 
+
+
+{{-- 
     <script>
         function closeErrorToast() {
             const toast = document.getElementById('toast-error');
@@ -49,7 +56,7 @@
 
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
-    </script>
+    </script> --}}
 </x-app-layout>
 
 
