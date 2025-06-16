@@ -11,41 +11,41 @@
         <div class="flex md:justify-center w-full">
             <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
-                    <div class="flex-none w-32 p-4 text-center">
-                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800 font-inter">Dashboard</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800 font-inter">Dashboard</a>
                     </div>
-                    <div class="flex-none w-32 p-4 text-center">
-                        <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800 font-inter">Members</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                        <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800 font-inter">Members</a>
                     </div>
-                    <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#151848]">
-                        <a href="{{ route('email-marketing') }}" class="text-[#151848] hover:text-blue-800 font-inter">Email Marketing</a>
+                    <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#071d49]">
+                        <a href="{{ route('email-marketing') }}" class="text-[#071d49] hover:text-blue-800 font-inter">Email Marketing</a>
                     </div>
-                    <div class="flex-none w-32 p-4 text-center">
-                        <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800 font-inter">Corporate</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                        <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-gray-800 font-inter">Corporate</a>
                     </div>
-                    <div class="flex-none w-auto p-4 text-center">
-                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800 font-inter">Sales Tracking</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
+                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800 font-inter">Sales Tracking</a>
                     </div>
                 </div>
             </div>
         </div>
 
-    <!-- Breadcrumbs-->
-   <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-11 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full md:ml-20 lg:ml-0">
-       <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter truncate">Customer Relationship Management</a>
-       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-           <path fill-rule="evenodd"
-               d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-               clip-rule="evenodd" />
-       </svg>
-        <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter truncate">Email Marketing</a>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-            <path fill-rule="evenodd"
-                d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                clip-rule="evenodd" />
-        </svg>
-       <a href="{{ route('email-marketing') }}" class="hover:underline font-semibold text-[#151848] font-inter truncate">Celebrant List</a>
-   </div>
+        <!-- Breadcrumbs-->
+        <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-11 -mb-3 overflow-x-auto hide-scrollbar w-[440px] lg:w-full md:ml-20 lg:ml-0">
+            <a href="{{ route('customer.index') }}" class="hover:underline text-[#071d49] font-inter truncate">Customer Relationship Management</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#071d49] font-inter truncate">Email Marketing</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+            <a href="{{ route('email-marketing') }}" class="hover:underline font-semibold text-[#071d49] font-inter truncate">Celebrant List</a>
+        </div>
 
         {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
         <x-email-marketing.tab-buttons />

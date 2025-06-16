@@ -10,27 +10,27 @@
         <div class="flex md:justify-center w-full">
             <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2  border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
-                    <div class="flex-none w-32 p-4 text-center">
-                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800">Dashboard</a>
                     </div>
-                    <div class="flex-none w-32 p-4 text-center">
-                        <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800">Members</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                        <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800">Members</a>
                     </div>
-                    <div class="flex-none w-auto p-4 text-center">
-                        <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-blue-800">Email Marketing</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
+                        <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-gray-800">Email Marketing</a>
                     </div>
                     <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
                         <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
                     </div>
-                    <div class="flex-none w-auto p-4 text-center">
-                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800">Sales Tracking</a>
+                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
+                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800">Sales Tracking</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-[#151847] text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 md:ml-20 lg:ml-0">
+        <div class="flex h-10 items-start gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 md:ml-20 lg:ml-0">
             <a href="{{ route('customer.index') }}" class="hover:underline truncate">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
@@ -47,27 +47,27 @@
         </div>
 
         <div class="flex md:w-full md:justify-center">
-            <div x-data="{ corporate:'reseller' }" class="flex flex-col w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+            <div x-data="{ corporate:'reseller' }" class="flex flex-col w-[440px] md:ml-0 md:w-[80%] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
                 <div class="flex flex-row w-full h-[20%] items-center ">
                     <div class="flex items-center w-[50%] justify-center lg:justify-start p-7 pt-3 px-7">
                         <div>
-                            <h2 class="font-semibold text-2xl pt-5 text-blue-900" x-text="selected === 'reseller' ? 'List of Resellers' : 'List of Agents'"></h2>
+                            <h2 class="font-extrabold text-xl uppercase tracking-widest font-inter pt-5 text-[#071d49]" x-text="selected === 'reseller' ? 'List of Resellers' : 'List of Agents'"></h2>
                         </div>
                     </div>
                     <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
                         {{-- Buttons --}}
                         {{-- <x-corporate.buttons/> --}}
-                        <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">
+                        <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
                             <a @click="selected='reseller'"
 
-                                class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#151847] hover:text-white"
-                                :class="selected === 'reseller' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white' ">
+                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#071d49] hover:text-white"
+                                :class="selected === 'reseller' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Resellers
                             </a>
 
                             <a @click="selected='agent'"
-                                class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#151847] hover:text-white"
-                                :class="selected === 'agent' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white' ">
+                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#071d49] hover:text-white"
+                                :class="selected === 'agent' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Agents
                             </a>
                         </div>

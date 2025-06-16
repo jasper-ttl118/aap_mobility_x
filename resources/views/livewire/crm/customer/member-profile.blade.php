@@ -15,58 +15,58 @@
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-90"
-            class="relative flex flex-col lg:flex-row bg-[#151847] rounded-[36px] justify-center shadow-lg w-[80%] h-[600px] lg:h-[80%] max-w-4xl items-center gap-3">
+            class="relative flex flex-col lg:flex-row bg-[#071d49] rounded-[36px] justify-center shadow-lg w-[80%] h-[600px] lg:h-[80%] max-w-4xl items-center gap-3">
         
             <div class="lg:w-[40%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-center items-center ">
-                <div class="w-full h-[30%] bg-gradient-to-t from-[#262c7d] via-[#151847] to-[#090d40] rounded-b-2xl rounded-t-[36px]">
+                <div class="w-full h-[30%] bg-gradient-to-t from-[#262c7d] via-[#071d49] to-[#090d40] rounded-b-2xl rounded-t-[36px]">
                     <div class="flex relative justify-center mt-8 lg:mt-16 h-full w-full">
                         <img src="{{ asset('aaplogo1.png') }}" alt="aaplogo" class="size-28 lg:size-40 bg-[#f3f4f6] rounded-full p-3 border">
                     </div>
                 </div>
                 <div class="w-full h-[70%] flex flex-col items-center justify-start -gap-1 lg:gap-1 pt-[60px] lg:pt-[75px]">
                     <div class="text-xs text-[#939393] lowercase flex justify-center items-end  w-full h-auto">{{ $member->customer_email }}</div>
-                    <div class="text-xl lg:text-2xl font-bold text-[#151847] flex flex-row justify-center items-center w-full h-auto truncate">{{ $member->customer_firstname }} {{ $member->customer_middlename }} {{ $member->customer_surname}}</div>
-                    <div class="text-xs text-[#151847] flex flex-row justify-evenly items-center w-[40%] h-auto mb-1">
+                    <div class="text-xl lg:text-2xl font-bold text-[#071d49] flex flex-row justify-center items-center w-full h-auto truncate">{{ $member->customer_firstname }} {{ $member->customer_middlename }} {{ $member->customer_surname}}</div>
+                    <div class="text-xs text-[#071d49] flex flex-row justify-evenly items-center w-[40%] h-auto mb-1">
                         <div class="font-bold">{{ $member->customer_organization }}</div> 
-                        <div class="text-[#151847]">|</div> 
+                        <div class="text-[#071d49]">|</div> 
                         <div>{{ $member->customer_birthdate }}</div>
                     </div>
-                    <div class="text-xs text-[#151847] flex flex-row justify-center items-center w-full h-auto">
+                    <div class="text-xs text-[#071d49] flex flex-row justify-center items-center w-full h-auto">
                         <div class="flex w-full h-full gap-2 justify-center items-center">
-                            <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#151847] border-2 border-[#151847] rounded-md font-bold hover:bg-[#151847] hover:text-white">
+                            <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#071d49] border-2 border-[#071d49] rounded-md font-bold hover:bg-[#071d49] hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
                                 </svg>
                                 Message</button>
-                            <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#151847] border-2 border-[#151847] rounded-md font-bold hover:bg-[#151847] hover:text-white">
+                            <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#071d49] border-2 border-[#071d49] rounded-md font-bold hover:bg-[#071d49] hover:text-white">
                                 <svg  class="size-4" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"><rect fill="none"/><path d="M159.4,40A80.1,80.1,0,0,1,216,96.6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M151.1,70.9a47.9,47.9,0,0,1,34,34" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><path d="M92.5,124.8a83.6,83.6,0,0,0,39,38.9,8,8,0,0,0,7.9-.6l25-16.7a7.9,7.9,0,0,1,7.6-.7l46.8,20.1a7.9,7.9,0,0,1,4.8,8.3A48,48,0,0,1,176,216,136,136,0,0,1,40,80,48,48,0,0,1,81.9,32.4a7.9,7.9,0,0,1,8.3,4.8l20.1,46.9a8,8,0,0,1-.6,7.5L93,117A8,8,0,0,0,92.5,124.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
                                 Call</button>
                         </div>
                     </div>
-                    <div class="text-xs text-[#151847] flex flex-row text-center w-[70%] h-[30%] mt-1 mb-2">
+                    <div class="text-xs text-[#071d49] flex flex-row text-center w-[70%] h-[30%] mt-1 mb-2">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum iste, deleniti labore saepe minus ut?
                     </div>
-                    <div class="flex border border-[#151847] w-[90%] rounded-lg hidden lg:flex"></div>
-                    <div class="text-xs text-[#151847] flex flex-row justify-evenly items-center w-full h-auto mt-2 hidden lg:flex">
-                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                    <div class="flex border border-[#071d49] w-[90%] rounded-lg hidden lg:flex"></div>
+                    <div class="text-xs text-[#071d49] flex flex-row justify-evenly items-center w-full h-auto mt-2 hidden lg:flex">
+                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                        <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                     </div>
                 </div>  
             </div>
-            <div x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center p-5">
+            <div data-theme="light" x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center">
                 {{-- Information --}}
-                <div class="w-[110%] h-[15%] lg:h-[10%] text-[#151847] font-bold text-xl lg:text-2xl flex lg:justify-start justify-center items-center shadow-lg px-10 gap-10 lg:gap-3">
-                    <button @click="profile='information'" :class="selected === 'reseller' ? 'underline text-blue-500' : 'text-[#151847] hover:text-blue-500' "
-                            class="text-lg uppercase text-[#151847] font-semibold focus:underline focus:text-blue-500 h-full text-start hover:text-blue-500">
+                <div x-data="{profile:information}; active" class="w-full h-[20%] lg:h-[15%] bg-white rounded-t-[36px] text-[#071d49] border-b-2 border-[#071d49] font-bold text-xl lg:text-2xl flex relative lg:justify-between justify-center items-center px-10 pt-[18px] lg:pt-10 mt-1 lg:mt-0 gap-10 lg:gap-0">
+                    <a @click="profile='information'" :class="profile === 'information' ? 'bg-white text-blue-500 border-[#071d49] border-t-2 border-r-2 border-l-2' : 'bg-white border-b-2 border-[#071d49] hover:text-blue-500'"
+                            class="cursor-pointer text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] left-[10%] lg:left-[5%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
                         Information
-                    </button>
-                    <button @click="profile ='activityLog'" :class="selected === 'reseller' ? 'underline text-blue-500' : 'text-[#151847] hover:text-blue-500' "
-                            class="text-lg uppercase text-[#151847] font-semibold focus:underline focus:text-blue-500 h-full text-start hover:text-blue-500">
+                    </a>
+                    <a @click="profile ='activityLog'" :class="profile === 'activityLog' ? 'bg-white text-blue-500 border-[#071d49] border-t-2 border-r-2 border-l-2' : 'bg-white border-b-2 border-[#071d49] hover:text-blue-500'"
+                            class="cursor-pointer text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] right-[10%]  lg:right-[34%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
                         Activity Log
-                    </button>
+                    </a>
                 </div>
-                <div class="w-full h-full mt-2 lg:mt-5 overflow-x-auto hide-scrollbar">
+                <div class="w-full h-full mt-2 lg:mt-5 overflow-x-auto hide-scrollbar px-5">
                     <div class="flex flex-col w-full h-[400px] lg:h-full items-center " x-show="profile === 'information'">
                         <div class="flex flex-col w-full h-full lg:h-[70%]">
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -77,7 +77,7 @@
                                     </svg>
                                     Email
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">{{ $member->customer_email}}</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -96,7 +96,7 @@
                                     </svg>
                                     <span class="truncate">Membership Type</span>
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">Regular Membership</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -109,7 +109,7 @@
                                     </svg>
                                     <span class=" truncate">Expiration Date</span>
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">December 21, 2025</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -119,7 +119,7 @@
                                     </svg>
                                     Status
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] h-full flex justify-start items-center px-5">
                                     @if ($member->customer_status == '1')
                                         <span 
@@ -138,7 +138,7 @@
                                     </svg>
                                     <span class=" truncate">Number of Vehicle(s)</span>
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">3</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -147,7 +147,7 @@
                                     <g id="organization"><path d="M21,17.18V13a1,1,0,0,0-1-1H13V8.86a4,4,0,1,0-2,0V12H4a1,1,0,0,0-1,1v4.18a3,3,0,1,0,2,0V14h6v3.18a3,3,0,1,0,2,0V14h6v3.18a3,3,0,1,0,2,0ZM10,5a2,2,0,1,1,2,2A2,2,0,0,1,10,5ZM4,21a1,1,0,0,1,0-2A1,1,0,0,1,4,21Zm8,0a1,1,0,0,1,0-2A1,1,0,0,1,12,21Zm8,0a1,1,0,0,1,0-2A1,1,0,0,1,20,21Z"/></g></svg>
                                     Organization
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">{{ $member->customer_organization}}</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -157,7 +157,7 @@
                                     </svg>
                                     Phone
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">{{ $member->customer_mobile_number}}</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -167,7 +167,7 @@
                                     </svg>
                                     Birthdate
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">{{ $member->customer_birthdate}}</div>
                             </div>
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -175,15 +175,15 @@
                                     <svg fill="#ffffff" class="size-4" viewBox="0 0 24 24" id="contact-book" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><path id="secondary" d="M22,13v2a1,1,0,0,1-1,1H19a1,1,0,0,1-1-1V13a1,1,0,0,1,1-1h2A1,1,0,0,1,22,13ZM21,6H19a1,1,0,0,0-1,1V9a1,1,0,0,0,1,1h2a1,1,0,0,0,1-1V7A1,1,0,0,0,21,6Z"></path><rect id="primary" x="2" y="2" width="18" height="20" rx="2" style="fill: #605e5e;"></rect><path id="secondary-2" data-name="secondary" d="M13.4,11.8A3,3,0,0,0,14,10a3,3,0,0,0-6,0,3,3,0,0,0,.6,1.8A4,4,0,0,0,7,15v1a1,1,0,0,0,1,1h6a1,1,0,0,0,1-1V15A4,4,0,0,0,13.4,11.8Z"></path></svg>
                                     Last Contacted
                                 </div>
-                                <div class="h-[60%] text-[#151847] items-center flex">:</div>
+                                <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">March 16, 2025 at 2:30 PM</div>
                             </div>
                         </div>
-                        <div class="flex border border-[#151847] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
-                        <div class="text-xs text-[#151847] lowercase flex flex-row justify-evenly items-center w-full h-auto mt-2 lg:hidden">
-                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#151847] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                        <div class="flex border border-[#071d49] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
+                        <div class="text-xs text-[#071d49] lowercase flex flex-row justify-evenly items-center w-full h-auto mt-2 lg:hidden">
+                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
+                            <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         </div>
                     </div>
                     <div x-show="profile === 'activityLog'" class="w-full h-full">

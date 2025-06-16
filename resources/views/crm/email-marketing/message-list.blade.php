@@ -7,20 +7,20 @@
             <div class="flex md:justify-center w-full">
                 <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
                     <div class="flex min-w-[600px] lg:min-w-0">
-                        <div class="flex-none w-32 p-4 text-center">
-                            <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800 font-inter">Dashboard</a>
+                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                            <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800 font-inter">Dashboard</a>
                         </div>
-                        <div class="flex-none w-32 p-4 text-center">
-                            <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-blue-800 font-inter">Members</a>
+                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                            <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800 font-inter">Members</a>
                         </div>
-                        <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#151848]">
-                            <a href="{{ route('email-marketing') }}" class="text-[#151848] hover:text-blue-800 font-inter">Email Marketing</a>
+                        <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#071d49]">
+                            <a href="{{ route('email-marketing') }}" class="text-[#071d49] hover:text-blue-800 font-inter">Email Marketing</a>
                         </div>
-                        <div class="flex-none w-32 p-4 text-center">
-                            <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800 font-inter">Corporate</a>
+                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
+                            <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-gray-800 font-inter">Corporate</a>
                         </div>
-                        <div class="flex-none w-auto p-4 text-center">
-                            <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-blue-800 font-inter">Sales Tracking</a>
+                        <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
+                            <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800 font-inter">Sales Tracking</a>
                         </div>
                     </div>
                 </div>
@@ -28,29 +28,29 @@
 
             <!-- Breadcrumbs-->
             <div class="flex h-7 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-6 md:ml-20 lg:ml-0">
-                <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] font-inter truncate">Customer Relationship Management</a>
+                <a href="{{ route('customer.index') }}" class="hover:underline text-[#071d49] font-inter truncate">Customer Relationship Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#151848] font-inter">Email Marketing</a>
+                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#071d49] font-inter">Email Marketing</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#151848] font-inter">Message List</a>
+                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#071d49] font-inter">Message List</a>
             </div>
 
             <x-email-marketing.tab-buttons />
             
             <div class="flex md:w-full md:justify-center">
-                <div class="flex flex-col w-[440px] mt-2 lg:-mt-4 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-                    <div class="flex flex-col lg:flex-row p-5 justify-between">
+                <div class="flex flex-col w-[440px] mt-2 lg:-mt-4 md:w-[80%] md:ml-0 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+                    <div class="flex flex-col md:flex-row lg:flex-row px-8 py-5 justify-between">
                         <div class="flex items-center justify-center lg:justify-start lg:items-start">
                             <h2 
-                                class="font-semibold text-2xl text-[#151848] font-inter"
+                                class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter"
                                 x-text="selected === 'sent' 
                                         ? 'Sent Messages List' 
                                         : selected === 'scheduled' 
@@ -60,17 +60,17 @@
                         </div>
 
                         {{-- Selection Tabs (Sent, Scheduled, Drafted) --}}
-                        <div class="flex lg:justify-end w-full lg:w-[50%] h-full justify-center items-center">
-                            <div class="flex flex-row w-[80%] lg:w-[50%] h-10 border border-[#151847] rounded-md justify-between items-center px-0.5 py-0.5">
+                        <div class="flex lg:justify-end w-full md:w-[50%] lg:w-[50%] h-full justify-center items-center">
+                            <div class="flex flex-row w-[80%] lg:w-[50%] h-10 border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
                                 <button @click="selected = 'sent', title = 'Sent Message', header_color = 'bg-[#10A13C]'" 
-                                    :class="selected === 'sent' ? 'text-white bg-[#151847]' : 'text-[#151847]'"
-                                    class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#151847] hover:text-white truncate">Sent</button>
-                                <button @click="selected = 'scheduled', title = 'Scheduled Message', header_color = 'bg-[#151847]'" 
-                                    :class="selected === 'scheduled' ? 'text-white bg-[#151847]' : 'text-[#151847]'"
-                                    class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center hover:bg-[#151847] hover:text-white truncate">Scheduled</button>
+                                    :class="selected === 'sent' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Sent</button>
+                                <button @click="selected = 'scheduled', title = 'Scheduled Message', header_color = 'bg-[#071d49]'" 
+                                    :class="selected === 'scheduled' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white truncate">Scheduled</button>
                                 <button @click="selected = 'drafted', title = 'Drafted Message', header_color='bg-[#D17E0E]'" 
-                                    :class="selected === 'drafted' ? 'text-white bg-[#151847]' : 'text-[#151847]'"
-                                    class="text-xs uppercase text-[#151847] font-semibold focus:bg-[#151847] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#151847] hover:text-white truncate">Drafted</button>
+                                    :class="selected === 'drafted' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">Drafted</button>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                                 <span class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Sent</span>
                                             </td>
                                             <td class="w-auto py-4 text-gray-900">
-                                                <div class="flex justify-center items-center text-[#151847]">
+                                                <div class="flex justify-center items-center text-[#071d49]">
                                                     <a @click="open=true" class="cursor-pointer">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -140,10 +140,10 @@
                                             <td class="w-auto py-4 text-gray-900 text-center">Email</td>
                                             <td class="w-auto py-4 text-gray-900 text-center">2025-04-02</td>
                                             <td class="w-auto py-4 text-gray-900 text-center">
-                                                <span class="bg-[#C4D8F2] whitespace-nowrap text-[#151847] text-xs font-medium px-2 py-1 rounded-full text-center">Scheduled</span>
+                                                <span class="bg-[#C4D8F2] whitespace-nowrap text-[#071d49] text-xs font-medium px-2 py-1 rounded-full text-center">Scheduled</span>
                                             </td>
                                             <td class="w-auto py-4 text-gray-900">
-                                                <div class="flex justify-center items-center text-[#151847] gap-x-2">
+                                                <div class="flex justify-center items-center text-[#071d49] gap-x-2">
                                                     <a @click="open=true" class="cursor-pointer">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -197,7 +197,7 @@
                                                 <span class="bg-[#D17E0E] whitespace-nowrap text-[#FEF3C7] text-xs font-medium px-2 py-1 rounded-full text-center">Drafted</span>
                                             </td>
                                             <td class="w-auto py-4 text-gray-900">
-                                                <div class="flex justify-center items-center text-[#151847] gap-x-2">
+                                                <div class="flex justify-center items-center text-[#071d49] gap-x-2">
                                                     <a @click="open=true" class="cursor-pointer">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />

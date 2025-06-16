@@ -38,7 +38,7 @@
         </div> --}}
         @foreach ($messages as $message)
           <div class="w-full p-2 flex min-w-0 justify-end">
-            <p class="border-2 rounded-xl p-2 text-sm bg-[#151847] text-white max-w-[160px] break-words min-w-0">
+            <p class="border-2 rounded-xl p-2 text-sm bg-[#071d49] text-white max-w-[160px] break-words min-w-0">
                   {{ $message }}
             </p>
           </div>
