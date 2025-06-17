@@ -185,14 +185,14 @@
         </div>
         <div class="flex flex-col ml-5 lg:ml-0 lg:flex-row w-[440px] lg:w-full h-[600px] lg:h-[300px] gap-5 mt-3 lg:-mt-2 md:w-full md:items-center md:ml-0">
             {{-- CALENDAR --}}
-            <div class="flex pt-2 bg-white shadow-lg h-full md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar">
+            <div class="flex pt-2 bg-white shadow-lg h-full md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar mx-auto">
                 <div x-data="calendar()" x-init="init()" class="w-[90%] flex flex-col items-center justify-between">
                     <div class="flex flex-row justify-between items-center w-full">
                         <div class="flex justify-start w-[50%] items-center h-full">
-                            <span class="text-[#071d49] text-base  tracking-widest font-extrabold ">CALENDAR</span>
+                            <span class="text-[#071d49] text-base tracking-widest font-extrabold">CALENDAR</span>
                         </div>
                         <div class="flex justify-between w-[50%] h-[70%] px-3 bg-[#071d49] rounded-md">
-                            <div class="flex justify-between items-center mb-4 w-full h-full ">
+                            <div class="flex justify-between items-center mb-4 w-full h-full">
                                 <button @click="prevMonth()" class="text-white font-bold">&lt;</button>
                                 <h2 class="text-base uppercase font-semibold text-white" x-text="monthName + ' ' + year"></h2>
                                 <button @click="nextMonth()" class="text-white font-bold">&gt;</button>
@@ -200,7 +200,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-7 gap-2 text-center text-[#071d49] mb-2 font-semibold w-full ">
+                    <div class="grid grid-cols-7 gap-2 text-center text-[#071d49] mb-2 font-semibold w-full">
                         <template x-for="day in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
                             <div x-text="day"></div>
                         </template>
@@ -213,9 +213,14 @@
 
                         <template x-for="day in daysInMonth" :key="day">
                             <div @click="openNote(day)"
-                                class="relative border border-[#071d49] rounded-md h-16 p-1 group hover:bg-[#071d49] cursor-pointer z-auto">
-                                <div class="text-sm font-bold group-hover:text-white text-[#071d49]" x-text="day"></div>
-                                <div class="text-xs text-[#071d49] mt-1 truncate group-hover:text-white" x-text="notes[day]"></div>
+                                class="relative border border-[#071d49] rounded-md h-16 p-1 group hover:bg-[#071d49] cursor-pointer z-auto"
+                                :class="isToday(day) ? 'bg-[#071d49] text-white' : 'hover:bg-[#071d49]'">
+                                <div class="text-sm font-bold" 
+                                    :class="isToday(day) ? 'text-white' : 'text-[#071d49] group-hover:text-white'" 
+                                    x-text="day"></div>
+                                <div class="text-xs mt-1 truncate" 
+                                    :class="isToday(day) ? 'text-white' : 'text-[#071d49] group-hover:text-white'" 
+                                    x-text="notes[day]"></div>
                             </div>
                         </template>
                     </div>
@@ -232,7 +237,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             {{-- REVENUE --}}
             <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-full lg:w-[50%] md:w-[80%] rounded-lg shadow-xs justify-center items-center gap-3">
@@ -246,11 +250,11 @@
                     <div class="flex justify-end w-[50%] h-full items-center">
                         {{-- Buttons --}}
                         <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
-                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#ffffff]' : 'text-[#071d49]'"
+                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#fffff1]' : 'text-[#071d49]'"
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white">Weekly</button>
-                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#ffffff]' : 'text-[#071d49]'"
+                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#fffff1]' : 'text-[#071d49]'"
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white">Monthly</button>
-                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#ffffff]' : 'text-[#071d49]'"
+                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#fffff1]' : 'text-[#071d49]'"
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white">Annual</button>
                         </div>
                     </div>
@@ -298,6 +302,7 @@
                 showModal: false,
                 activeDay: null,
                 notes: {},
+                today: new Date(),
                 get monthName() {
                     return new Date(this.year, this.month).toLocaleString('default', { month: 'long' });
                 },
@@ -331,6 +336,11 @@
                 },
                 saveNote() {
                     this.showModal = false;
+                },
+                isToday(day) {
+                    return this.today.getDate() === day && 
+                           this.today.getMonth() === this.month && 
+                           this.today.getFullYear() === this.year;
                 }
             };
         }

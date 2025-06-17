@@ -34,13 +34,13 @@
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#071d49] font-inter">Email Marketing</a>
+                <a href="{{ route('email-marketing') }}" class="hover:underline text-[#071d49] font-inter truncate">Email Marketing</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#071d49] font-inter">Message List</a>
+                <a href="{{ route('message-list') }}" class="hover:underline font-semibold text-[#071d49] font-inter truncate">Message List</a>
             </div>
 
             <x-email-marketing.tab-buttons />
@@ -63,13 +63,13 @@
                         <div class="flex lg:justify-end w-full md:w-[50%] lg:w-[50%] h-full justify-center items-center">
                             <div class="flex flex-row w-[80%] lg:w-[50%] h-10 border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
                                 <button @click="selected = 'sent', title = 'Sent Message', header_color = 'bg-[#10A13C]'" 
-                                    :class="selected === 'sent' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    :class="selected === 'sent' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
                                     class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Sent</button>
                                 <button @click="selected = 'scheduled', title = 'Scheduled Message', header_color = 'bg-[#071d49]'" 
-                                    :class="selected === 'scheduled' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    :class="selected === 'scheduled' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
                                     class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white truncate">Scheduled</button>
                                 <button @click="selected = 'drafted', title = 'Drafted Message', header_color='bg-[#D17E0E]'" 
-                                    :class="selected === 'drafted' ? 'text-[#FFFFFF] bg-[#071d49]' : 'text-[#071d49]'"
+                                    :class="selected === 'drafted' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
                                     class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">Drafted</button>
                             </div>
                         </div>

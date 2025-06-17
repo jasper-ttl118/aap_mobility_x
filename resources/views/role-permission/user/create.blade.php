@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-    <div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col w-full max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"

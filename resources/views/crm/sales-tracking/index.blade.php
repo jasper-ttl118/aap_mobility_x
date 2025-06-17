@@ -266,7 +266,7 @@
                                                 class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Last Month</button>
                                             <template x-if="isFirst">
                                                 <button @click="isFirst=false" 
-                                                    class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Custom Range</button>
+                                                    class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase truncate">Custom Range</button>
                                             </template>
                                             <template x-if="!isFirst">
                                                 <input @click="isFirst=true" 
@@ -284,8 +284,8 @@
                             <div x-show="activeFilter === 'Today'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="Today"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
+                                    :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -293,8 +293,8 @@
                             <div x-show="activeFilter === 'Yesterday'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="Yesterday"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
+                                    :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -302,8 +302,8 @@
                             <div x-show="activeFilter === 'This Week'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="This Week"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
+                                    :data="[120, 150, 180, 90, 140, 150, 180]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -311,8 +311,8 @@
                             <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="Last 7 Days"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
+                                    :data="[120, 150, 180, 90, 140, 150, 180]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -320,8 +320,8 @@
                             <div x-show="activeFilter === 'This Month'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="This Month"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                    :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -329,8 +329,8 @@
                             <div x-show="activeFilter === 'Last Month'" x-cloak class="h-full w-full absolute">
                                 <x-analytics-display
                                     title="Last Month"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
+                                    :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                    :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -366,8 +366,8 @@
                                         <div x-show="activeFilter === 'Today'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="Today"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -375,8 +375,8 @@
                                         <div x-show="activeFilter === 'Yesterday'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="Yesterday"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -384,8 +384,8 @@
                                         <div x-show="activeFilter === 'This Week'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="This Week"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
+                                                :data="[120, 150, 180, 90, 140, 150, 180]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -393,8 +393,8 @@
                                         <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="Last 7 Days"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
+                                                :data="[120, 150, 180, 90, 140, 150, 180]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -402,8 +402,8 @@
                                         <div x-show="activeFilter === 'This Month'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="This Month"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -411,8 +411,8 @@
                                         <div x-show="activeFilter === 'Last Month'" x-cloak class="w-full h-full p-2">
                                             <x-analytics-display
                                                 title="Last Month"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
+                                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
                                                 chartType="line"
                                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                             />
@@ -512,11 +512,11 @@
                                     <div class="flex hover:scale-105 duration-300 transform justify-end w-[40%] lg:w-[50%] h-full items-center">
                                         {{-- Buttons --}}
                                         <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
-                                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'" 
+                                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'" 
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Revenue</button>
-                                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'"
+                                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white">Deals</button>
-                                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'"
+                                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">New Customer</button>
                                         </div>
                                     </div>
@@ -570,11 +570,11 @@
                                     {{-- Button --}}
                                     <div class="flex hover:scale-105 duration-300 transform justify-end w-[40%] lg:w-[50%] h-full items-center">
                                         <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
-                                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'" 
+                                            <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'" 
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Revenue</button>
-                                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'"
+                                            <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white">Deals</button>
-                                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49]'"
+                                            <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
                                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">New Customer</button>
                                         </div>
                                     </div>
@@ -849,46 +849,31 @@
                     </div>
                 </div>
                 {{-- Sales by Product/Service --}}
-                <div @click="open='openProducts'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-col w-full lg:w-[60%] h-[50%] lg:h-full bg-white shadow-md rounded-md">
-                    <div class="flex flex-col w-full h-full bg-white shadow-md rounded-md items-center justify-center">
-                        <div class="flex flex-row w-[90%] h-[10%] justify-start items-center gap-2">
-                            <div class="w-full h-full flex flex-row justify-start items-center gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
-                                    <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="text-sm lg:text-base text-[#071d49] font-extrabold uppercase group-hover:text-sm lg:group-hover:text-base">Sales by Product/Service</span>
-                            </div>
-                        </div>
-                        <div class="flex flex-row w-[90%] h-[75%] justify-center items-center text-sm lg:rounded-md">
-                            <x-analytics-display
-                                title="Sales by Product/Service"
-                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                :data="[120, 150, 180, 90, 150]"
-                                chartType="bar"
-                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                axis="x"
-                            />
-                        </div>
-                    </div>   
-                </div>
-                <!-- Modal overlay -->
-                <div x-cloak x-show="open == 'openProducts'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
-                    <!-- Modal content -->
-                    <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
-                            <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
+                <div x-data="{activeChart: 'products'}" class="flex flex-col w-full lg:w-[60%] h-[50%] lg:h-full">
+                    <div class="group cursor-pointer hover:scale-105 duration-300 transform flex flex-col w-full h-full bg-white shadow-md rounded-md">
+                        <div class="flex flex-col w-full h-full bg-white shadow-md rounded-md items-center justify-center">
+                            <div class="flex flex-row w-[90%] h-[10%] justify-start items-center gap-2">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
                                         <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
                                     </svg>
-                                    <span class="text-sm lg:text-2xl text-[#071d49] font-extrabold uppercase">Sales by Product/Service</span>
+                                    <span class="text-sm lg:text-base text-[#071d49] font-extrabold uppercase group-hover:text-sm lg:group-hover:text-base">Sales by Product/Service</span>
                                 </div>
+                                <div class="flex hover:scale-105 duration-300 transform justify-end w-[40%] lg:w-[50%] h-full items-center">
+                                    {{-- Buttons --}}
+                                    <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                                        <button @click="activeChart = 'products'" :class="activeChart === 'products' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'" 
+                                            class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[50%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Products</button>
+                                        <button @click="activeChart = 'services'" :class="activeChart === 'services' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
+                                            class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[50%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white">Services</button>
+                                    </div>
+                                </div>
+                                <img src="{{ asset('full.png') }}" @click="open='openProducts'" alt="full" class="size-5 hidden cursor-pointer group-hover:block flex-justify-end duration-399 transform">
                             </div>
-                            <div class="flex flex-col lg:flex-row w-full h-[80%] justify-center items-center text-sm lg:rounded-md">
-                                <div class="bg-yellow w-full lg:w-[70%] h-[50%] lg:h-full p-2">
+                            <div class="flex h-[75%] w-[90%] relative">
+                                <div x-show="activeChart === 'products'" x-cloak class="h-full w-full absolute">
                                     <x-analytics-display
-                                        title="Sales by Product/Service"
+                                        title="Sales by Product"
                                         :labels="['January', 'February', 'March', 'April', 'May']"
                                         :data="[120, 150, 180, 90, 150]"
                                         chartType="bar"
@@ -896,12 +881,63 @@
                                         axis="x"
                                     />
                                 </div>
-                                <div class="flex flex-col w-[80%] lg:w-[30%] h-[50%] lg:h-[90%] justify-start items-start py-3 pr-3">
-                                    <span class="text-base lg:text-xl text-[#071d49] font-bold">Title</span>
-                                    <span class="text-sm lg:text-base text-[#071d49]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sequi deserunt distinctio! Molestiae voluptatem est veniam, obcaecati quaerat recusandae dolorem! Recusandae eveniet dolor laboriosam voluptatibus impedit quo voluptate nisi minus!</span>
+                                <div x-show="activeChart === 'services'" x-cloak class="h-full w-full absolute">
+                                    <x-analytics-display
+                                        title="Sales by Services"
+                                        :labels="['January', 'February', 'March', 'April', 'May']"
+                                        :data="[120, 150, 180, 90, 150]"
+                                        chartType="bar"
+                                        :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        axis="x"
+                                    />
                                 </div>
                             </div>
                         </div>   
+                    </div>
+                    <!-- Modal overlay -->
+                    <div x-cloak x-show="open == 'openProducts'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
+                        <!-- Modal content -->
+                        <div @click.outside="open=''" 
+                                class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                            <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                                <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
+                                    <div class="w-full h-full flex flex-row justify-start items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
+                                            <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-sm lg:text-2xl text-[#071d49] font-extrabold uppercase">Sales by Product/Service</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col lg:flex-row w-full h-[80%] justify-center items-center text-sm lg:rounded-md">
+                                    <div class="bg-yellow w-full lg:w-[70%] h-[50%] lg:h-full p-2">
+                                        <div x-show="activeChart === 'products'" x-cloak class="h-full w-full p-2">
+                                            <x-analytics-display
+                                                title="Sales by Product"
+                                                :labels="['January', 'February', 'March', 'April', 'May']"
+                                                :data="[120, 150, 180, 90, 150]"
+                                                chartType="bar"
+                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                                axis="x"
+                                            />
+                                        </div>
+                                        <div x-show="activeChart === 'services'" x-cloak class="h-full w-full p-2">
+                                            <x-analytics-display
+                                                title="Sales by Services"
+                                                :labels="['January', 'February', 'March', 'April', 'May']"
+                                                :data="[120, 150, 180, 90, 150]"
+                                                chartType="bar"
+                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                                axis="x"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-[80%] lg:w-[30%] h-[50%] lg:h-[90%] justify-start items-start py-3 pr-3">
+                                        <span class="text-base lg:text-xl text-[#071d49] font-bold">Title</span>
+                                        <span class="text-sm lg:text-base text-[#071d49]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sequi deserunt distinctio! Molestiae voluptatem est veniam, obcaecati quaerat recusandae dolorem! Recusandae eveniet dolor laboriosam voluptatibus impedit quo voluptate nisi minus!</span>
+                                    </div>
+                                </div>
+                            </div>   
+                        </div>
                     </div>
                 </div>
             </div>

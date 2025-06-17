@@ -63,7 +63,7 @@
                     </span>
                 </div>
                 <div class="w-full h-[15%] uppercase font-bold text-[#071d49] flex items-center justify-start -mt-3 px-5 gap-3 cursor-pointer group hover:text-[#424ec2]"> 
-                    <span class="flex items-center gap-2 border-b-2 border-current group-hover:border-indigo-600 group-hover:no-underline">
+                    <span class="flex items-center gap-2 border-b-2 border-current group-hover:border-indigo-600 h-[90%] ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                             <path fill-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" clip-rule="evenodd" />
                         </svg>
@@ -71,7 +71,7 @@
                     </span>
                 </div>
                 <div class="w-full h-full overflow-y-auto hide-scrollbar">
-                    <table class="table-fixed w-full h-[15%] border-[#071d49]">
+                    <table class="table-fixed w-[800px] lg:w-full h-[15%] border-[#071d49]">
                         {{-- Table Header --}}
                         <thead class="gap-5 text-xs text-gray-700 uppercase w-[440px] md:w-[80%] lg:w-full">
                              <tr>
@@ -86,7 +86,7 @@
                         </thead>
                     </table>
                     {{-- Data --}}
-                    <div class="h-[70%] w-full overflow-x-auto hide-scrollbar">
+                    <div class="h-[70%] w-[800px] lg:w-full overflow-x-auto hide-scrollbar">
                         <table class="table-fixed w-full h-[40%]e">
                             <tbody class="w-[440px] md:w-[80%] lg:w-full">
                                 {{-- 1 --}}
@@ -183,7 +183,7 @@
                         </table>
                     </div>
                     {{-- Table Footer --}}
-                    <table class="table-fixed w-full h-[15%] rounded-b-xl border-[#071d49]">
+                    <table class="table-fixed w-[800px] lg:w-full h-[15%] rounded-b-xl border-[#071d49]">
                         <tfoot class="w-[440px] md:w-[80%] lg:w-full">
                             <tr>
                                 <td class="w-[14.3%] border-t border-[#d0d0d0]"></td>
@@ -203,57 +203,50 @@
         <div x-data="{card:''}" class="flex md:w-full md:justify-center">
             <div class="w-[440px] lg:w-full h-[400px] lg:h-[200px] md:ml-0 md:w-[80%]  flex flex-col lg:flex-row mt-3 lg:-mt-3 gap-4 ml-5 lg:ml-0">
                 {{-- Unpaid Commission --}}
-                <div class="flex flex-col items-center justify-center w-full lg:w-[70%] h-full bg-white rounded-xl shadow-md">
+                <div class="flex flex-col items-center justify-start w-full lg:w-[70%] h-full bg-white rounded-xl shadow-md">
                     <div class="bg-[#bec1d8] w-full h-[25%] rounded-t-xl flex justify-start items-center text-[#3584e3] px-5 gap-2">
                         <img src="{{ asset('warning.png') }}" alt="warning" class="size-6">
                         <span class="text-center text-[#071d49] uppercase text-base font-extrabold tracking-w font-inter">
                             Unpaid Commissions
                         </span>
                     </div>
-                    {{-- Card Animation with Modal --}}
+                    {{-- Card Animation with Modal
                     <div class="group h-[75%] grid  items-center">
-                        {{-- Yellow --}}
                         <div @click="card='yellow'" class="absolute ease-in-out transition duration-300 cursor-pointer shadow-md w-20 h-24 transform group-hover:translate-x-[40px] group-hover:rotate-[40deg] hover:!translate-x-[60px] hover:!rotate-[0deg] bg-yellow-300"></div>
-                        <!-- Modal overlay -->
                         <div x-cloak x-show="card == 'yellow'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
-                            <!-- Modal content -->
                             <div @click.outside="card=''" 
                                     class="relative flex flex-row w-[30%] h-[80%] bg-yellow-300 shadow-lg justify-center">
                                 <span class="items-center flex uppercase text-black text-2xl font-extrabold tracking-widest">yellow</span>
                             </div>
                         </div>
-                        {{-- Blue --}}
                         <div @click="card='blue'" class="absolute ease-in-out transition duration-300 cursor-pointer shadow-md w-20 h-24 transform group-hover:translate-x-[20px] group-hover:rotate-[30deg] hover:!translate-x-[40px] hover:!rotate-[0deg] bg-blue-500"></div>
-                        <!-- Modal overlay -->
                         <div x-cloak x-show="card == 'blue'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
-                            <!-- Modal content -->
                             <div @click.outside="card=''" 
                                     class="relative flex flex-row w-[30%] h-[80%] bg-blue-500 shadow-lg justify-center">
                                 <span class="items-center flex uppercase text-white text-2xl font-extrabold tracking-widest">blue</span>
                             </div>
                         </div>
-                        {{-- Green --}}
                         <div @click="card='green'" class="absolute ease-in-out transition duration-300 cursor-pointer shadow-md w-20 h-24 transform group-hover:translate-x-[0px] group-hover:rotate-[20deg] hover:!translate-x-[20px] hover:!rotate-[0deg] bg-green-500"></div>
-                        <!-- Modal overlay -->
                         <div x-cloak x-show="card == 'green'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
-                            <!-- Modal content -->
                             <div @click.outside="card=''" 
                                     class="relative flex flex-row w-[30%] h-[80%] bg-green-500 shadow-lg justify-center">
                                 <span class="items-center flex uppercase text-black text-2xl font-extrabold tracking-widest">green</span>
                             </div>
                         </div>
-                        {{-- Red --}}
                         <div @click="card='red'" class="absolute ease-in-out transition duration-300 cursor-pointer shadow-md w-20 h-24 transform group-hover:-translate-x-[20px] group-hover:rotate-[10deg] hover:!-translate-x-[20px] hover:!rotate-[0deg] bg-red-500"></div>
-                        <!-- Modal overlay -->
                         <div x-cloak x-show="card == 'red'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
-                            <!-- Modal content -->
                             <div @click.outside="card=''" 
                                     class="relative flex flex-row w-[30%] h-[80%] bg-red-500 shadow-lg justify-center">
                                 <span class="items-center flex uppercase text-white text-2xl font-extrabold tracking-widest">red</span>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                    <div class="flex flex-row w-[15%] h-[75%] justify-center items-center gap-[5px]">
+                        <p class="h-[80%] duration-200 cursor-pointer overflow-hidden transform transition-all flex border border-[#071d49] justify-center items-center flex-1 hover:flex-[4] group hover:bg-red-400"><span class="flex hover:px-2 font-bold  -rotate-[90deg] group-hover:rotate-[0deg] duration-300 text-black">I</span></p>
+                        <p class="h-[80%] duration-200 cursor-pointer overflow-hidden transform transition-all flex border border-[#071d49] justify-center items-center flex-1 hover:flex-[4] group hover:bg-yellow-400"><span class="flex hover:px-2 font-bold  -rotate-[90deg] group-hover:rotate-[0deg] duration-300 text-black">LOVE</span></p>
+                        <p class="h-[80%] duration-200 cursor-pointer overflow-hidden transform transition-all flex border border-[#071d49] justify-center items-center flex-1 hover:flex-[4] group hover:bg-blue-400"><span class="flex hover:px-2 font-bold  -rotate-[90deg] group-hover:rotate-[0deg] duration-300 text-black">YOU</span></p>
+                    </div> --}}
+                </div> 
                 {{-- Quick Actions --}}
                 <div class="flex w-full lg:w-[30%] h-full flex-col bg-white rounded-xl shadow-md">
                     <div class="bg-[#bec1d8] w-full h-[25%] rounded-t-xl flex justify-start items-center px-5 text-[#3584e3] gap-2">

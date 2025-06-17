@@ -10,7 +10,7 @@
     content: '';
     width: 48px;
     height: 5px;
-    background: #f0808050;
+    background: #afaeae;
     position: absolute;
     top: 60px;
     left: 0;
@@ -22,7 +22,7 @@
     content: '';
     width: 100%;
     height: 100%;
-    background: #f08080;
+    background: #071d49;
     position: absolute;
     top: 0;
     left: 0;
@@ -67,7 +67,7 @@
 </style>
 
 <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-    <div class="flex flex-col items-center justify-center gap-y-6 w-[30%] h-[40%] bg-white p-6 rounded-lg">
+    <div class="flex flex-col items-center justify-center gap-y-6 w-[60%] lg:w-[30%] h-[40%] bg-white p-6 rounded-lg">
             {{-- <span class="loading loading-spinner loading-2xl w-20 h-20 text-[#071d49]"></span> --}}
             {{-- <p class="text-[#071d49] text-lg font-medium">Retrieving Profile Information...</p> --}}
             <div class="loader"></div>

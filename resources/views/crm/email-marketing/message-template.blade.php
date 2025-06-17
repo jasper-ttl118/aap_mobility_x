@@ -57,7 +57,8 @@
                             <span class="font-semibold mr-1">Add</span>
                         </button>
                     </div>
-
+                    
+                    {{-- Carousel --}}
                     <div class="gap-y-10 w-[440px] lg:w-full flex flex-col md:w-[84%] justify-center items-center lg:ml-0">
                         <div class="carousel carousel-center bg-[#abcae9] w-[440px] rounded-box space-x-4 p-4 md:w-full lg:w-full border-2 border-[#071d49]">
                             <div class="carousel-item">

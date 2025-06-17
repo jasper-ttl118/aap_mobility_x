@@ -46,9 +46,8 @@
                                 @else
                                     <a
                                         href="{{ route('login') }}"
-                                        class="rounded-md bg-blue-700 px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
-                                    >
-                                        START
+                                        class="rounded-xl font-extrabold tracking-wide hover:bg-[#dfd436] hover:scale-110 duration-300 bg-white px-3 py-2 text-[#071D49]">
+                                        Get started
                                     </a>
 {{-- 
                                     @if (Route::has('register'))

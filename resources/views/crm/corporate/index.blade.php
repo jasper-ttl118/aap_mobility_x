@@ -61,13 +61,13 @@
                             <a @click="selected='reseller'"
 
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#071d49] hover:text-white"
-                                :class="selected === 'reseller' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
+                                :class="selected === 'reseller' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Resellers
                             </a>
 
                             <a @click="selected='agent'"
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#071d49] hover:text-white"
-                                :class="selected === 'agent' ? 'bg-[#071d49] text-[#FFFFFF]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
+                                :class="selected === 'agent' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Agents
                             </a>
                         </div>
