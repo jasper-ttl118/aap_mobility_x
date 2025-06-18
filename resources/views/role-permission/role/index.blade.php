@@ -52,7 +52,7 @@
 
     @endphp
 
-    <div class="flex flex-1 flex-col ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
 
         <!-- Title and Subtitle -->
         {{-- <div class="">
@@ -102,7 +102,7 @@
                 {{-- Add Role --}}
                 <div>
                     <a href="role/create"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="truncate flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -114,12 +114,12 @@
             </div>
 
 
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
 
                 <!-- Alpine.js Data Setup -->
                 <div x-data="{ viewOpen: false, role: {}, organization: {}, modules: [], permissions: [] }">
 
-                    <table class="w-full table-fixed text-center text-sm text-gray-500">
+                    <table class="w-[700px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" class="w-1/12 py-3">Role ID</th>

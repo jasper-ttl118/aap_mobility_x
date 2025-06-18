@@ -20,7 +20,7 @@
     @endphp
 
     {{-- @include('layouts.navbar') --}}
-    <div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6] ">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -193,7 +193,7 @@
                 <a href="#" class="hover:underline font-semibold">Users</a>
             </div>
 
-            <div class="flex items-center justify-between p-7">
+            <div class="flex flex-row items-center justify-between p-7 w-full">
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Manage users</h2>
                     <p class="text-gray-900 text-sm">Create, update, and delete user accounts.</p>
@@ -202,9 +202,9 @@
                 {{-- Add User --}}
                 <div>
                     <a href="user/search/find"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                            stroke="currentColor" class="w-5 h-5">
+                        class="flex flex-row items-center rounded-md bg-blue-900 text-center justify-center px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-5 h-5 flex">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Add New User
@@ -212,7 +212,7 @@
                 </div>
             </div>
 
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                 <table class="w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>

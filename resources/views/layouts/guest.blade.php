@@ -17,7 +17,7 @@
 </head>
 
 <body class="flex flex-col landscape:flex-row md:flex-row lg:flex-row w-screen h-screen font-sans text-gray-900 antialiased">
-    <div class="bg-gradient-to-b from-[#151847] to-[#333AAD] h-[30%] md:h-full md:w-[50%] w-full landscape:h-full lg:w-[50%] lg:h-full flex justify-center items-center">
+    <div class="bg-gradient-to-b from-[#071d49] to-[#333AAD] h-[30%] md:h-full md:w-[50%] w-full landscape:h-full lg:w-[50%] lg:h-full flex justify-center items-center">
         <img class="flex w-[30%] md:w-[40%] lg:w-[60%] animate-fadeInUp duration-1000" src="aaplogo1.png" alt="aaplogo">
     </div>
     {{-- <div class="h-[30%] md:h-full md:w-[50%] w-full landscape:h-full lg:w-[50%] lg:h-full flex  justify-center items-center">

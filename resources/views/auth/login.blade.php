@@ -6,7 +6,7 @@
     <form class="w-[70%] 2xl:h-[80%] flex flex-col justify-center items-center gap-3" method="POST" action="{{ route('login') }}">
         @csrf
 
-        <div class="text-[20px] lg:text-[30px] text-[#151847] font-black justify-start w-full">
+        <div class="flex flex-row text-[20px] lg:text-[30px] text-[#151847] font-black justify-start w-full">
             Login
         </div>
 

@@ -1,7 +1,7 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
     {{-- @include('layouts.navbar') --}}
 
-    <div x-data="{ selected : 'employees'}" class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ selected : 'employees'}" class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto p-10 gap-7 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -103,9 +103,9 @@
             </div>
 
             {{-- List of Employees --}}
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
-                <table class="w-full text-center text-sm text-gray-500">
+                <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>    
                             <th scope="col" class="w-[6.25%] py-3">Employee ID</th>

@@ -1,166 +1,157 @@
 <div>
-        {{-- Activity Log --}}
-    <div class="bg-[#151847] w-full h-10 rounded-t-xl lg:mt-2 flex justify-start items-center px-5 text-white gap-2">
-        <svg fill="currentColor" class="size-5" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M0 1.5C0 1.22386 0.223858 1 0.5 1H2.5C2.77614 1 3 1.22386 3 1.5C3 1.77614 2.77614 2 2.5 2H0.5C0.223858 2 0 1.77614 0 1.5ZM4 1.5C4 1.22386 4.22386 1 4.5 1H14.5C14.7761 1 15 1.22386 15 1.5C15 1.77614 14.7761 2 14.5 2H4.5C4.22386 2 4 1.77614 4 1.5ZM4 4.5C4 4.22386 4.22386 4 4.5 4H11.5C11.7761 4 12 4.22386 12 4.5C12 4.77614 11.7761 5 11.5 5H4.5C4.22386 5 4 4.77614 4 4.5ZM0 7.5C0 7.22386 0.223858 7 0.5 7H2.5C2.77614 7 3 7.22386 3 7.5C3 7.77614 2.77614 8 2.5 8H0.5C0.223858 8 0 7.77614 0 7.5ZM4 7.5C4 7.22386 4.22386 7 4.5 7H14.5C14.7761 7 15 7.22386 15 7.5C15 7.77614 14.7761 8 14.5 8H4.5C4.22386 8 4 7.77614 4 7.5ZM4 10.5C4 10.2239 4.22386 10 4.5 10H11.5C11.7761 10 12 10.2239 12 10.5C12 10.7761 11.7761 11 11.5 11H4.5C4.22386 11 4 10.7761 4 10.5ZM0 13.5C0 13.2239 0.223858 13 0.5 13H2.5C2.77614 13 3 13.2239 3 13.5C3 13.7761 2.77614 14 2.5 14H0.5C0.223858 14 0 13.7761 0 13.5ZM4 13.5C4 13.2239 4.22386 13 4.5 13H14.5C14.7761 13 15 13.2239 15 13.5C15 13.7761 14.7761 14 14.5 14H4.5C4.22386 14 4 13.7761 4 13.5Z" fill="currentColor" fill-rule="evenodd"/></svg>
-        <span class="text-center text-white uppercase text-xl font-inter">Activity Log</span>
+    <div class="w-full h-[10%] flex flex-row justify-end items-center px-3 gap-2">
+        <label for="member_filter" class="text-[#071d49] text-sm text-center">Filter:</label>
+        <select name="member_filter" id="member_filter"
+                class="text-[#071d49] h-[80%] w-[30%] font-bold border-none bg-white text-sm cursor-pointer rounded-md focus:ring-[#071d49]">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+        </select>
     </div>
-    <div class="w-full h-40 lg:h-[50%] relative min-h-0 overflow-hidden mt-0.5 border rounded-b-xl border-[#151847]">
-        {{-- Table Header --}}
-        <div class="w-full h-[25%] border border-[#151847] flex flex-row items-center">
-            <div class="w-[20%] h-full flex items-center border-r border-[#151847]">
-                <span class="text-[#151847] text-xs font-bold px-3">Id</span>
+    <div class="flex flex-row w-full h-[180px] lg:h-[90%] rounded-xl items-center shadow-xl overflow-x-auto hide-scrollbar">
+        {{-- Left Panel --}}
+        <div class="flex flex-col w-[30%] h-full items-center justify-start py-4">
+            {{-- First --}}
+            <span class="text-sm font-inter font-bold text-[#071d49]">May 27, 2025</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
             </div>
-            <div class="w-[20%] h-full flex items-center border-r border-[#151847]">
-                <span class="text-[#151847] text-xs font-bold px-3">Date</span>
+            {{-- Second --}}
+            <span class="text-sm font-inter font-bold text-[#071d49]">May 27, 2025</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
             </div>
-            <div class="w-[20%] h-full flex items-center border-r border-[#151847]">
-                <span class="text-[#151847] text-xs font-bold px-3">Activity</span>
+            {{-- Third --}}
+            <span class="text-sm font-inter font-bold text-[#071d49]">May 27, 2025</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
             </div>
-            <div class="w-[20%] h-full flex items-center border-r border-[#151847]">
-                <span class="text-[#151847] text-xs font-bold px-3">Remark</span>
+            {{-- Fourth --}}
+            <span class="text-sm font-inter font-bold text-[#071d49]">May 27, 2025</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-11 lg:mr-16 ml-2 lg:ml-7">13:23:06</span>
+                    <div class="w-[12px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                </div>
             </div>
-            <div class="w-[20%] h-full flex items-center">
-                <span class="text-[#151847] text-xs font-bold px-3">Status</span>
-            </div>  
         </div>
-        {{-- Data --}}
-        <div class="w-full h-[75%] lg:h-[85%] overflow-x-auto hide-scrollbar border rounded-b-xl border-[#151847]">
-            <div class="w-full flex flex-col">
-                <div class="w-full h-8 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">1</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+        <div class="w-full h-full flex items-start">
+            <div class="border-2 border-[#071d49] h-[340px] lg:h-[90%] flex rounded-xl"></div>
+        </div>
+        {{-- Right Panel --}}
+        <div class="flex flex-col w-[70%] h-full py-4 mr-1">
+            {{-- First --}}
+            <span class="text-sm font-inter font-bold text-white">l</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">New Product Order</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] lg:mr-14 ml-5 truncate">Order Status Change from Available to Payment Hold</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">3</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+                <div class="flex w-full flex-row mb-3">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">Contacted Customer Services</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">4</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+            </div>
+            {{-- Second --}}
+            <span class="text-sm font-inter font-bold text-white">l</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">New Product Order</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">5</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] lg:mr-14 ml-5 truncate">Order Status Change from Available to Payment Hold</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">6</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+                <div class="flex w-full flex-row mb-3">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">Contacted Customer Services</span>
                 </div>
-                <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">7</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+            </div>
+            {{-- Third --}}
+            <span class="text-sm font-inter font-bold text-white">l</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">New Product Order</span>
                 </div>
-                 <div class="w-full h-10 flex border-b border-[#151847]">
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">8</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">2020-08-02</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Nothing</span>
-                    </div>
-                    <div class="w-[20%] h-full border-r border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Good</span>
-                    </div>
-                    <div class="w-[20%] h-full border-[#151847] flex items-center justify-start">
-                        <span class="px-3 text-[#151847] text-xs">Done</span>
-                    </div>
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] lg:mr-14 ml-5 truncate">Order Status Change from Available to Payment Hold</span>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">Contacted Customer Services</span>
+                </div>
+            </div>
+            {{-- Fourth --}}
+            <span class="text-sm font-inter font-bold text-white">l</span>
+            <div class="flex flex-col w-full items-start">
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">New Product Order</span>
+                </div>
+                <div class="flex w-full flex-row">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] lg:mr-14 ml-5 truncate">Order Status Change from Available to Payment Hold</span>
+                </div>
+                <div class="flex w-full flex-row mb-3">
+                    <div class="w-[10px] lg:w-[15px] h-[4px] bg-black my-1.5"></div>
+                    <span class="text-[10px] font-inter font-light text-[#071d49] mr-14 ml-5 truncate">Contacted Customer Services</span>
                 </div>
             </div>
         </div>

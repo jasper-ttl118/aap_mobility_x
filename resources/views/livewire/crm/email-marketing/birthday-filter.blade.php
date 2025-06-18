@@ -1,7 +1,7 @@
 <div class="flex items-center space-x-2">
-    <label for="birthday_filter" class="text-[#151848] text-sm">Filter:</label>
+    <label for="birthday_filter" class="text-[#071d49] text-sm">Filter:</label>
     <select name="birthday_filter" id="birthday_filter"
-            class="text-[#151848] font-bold border-none bg-gray-100 text-sm cursor-pointer"
+            class="text-[#071d49] font-bold border-none bg-gray-100 text-sm cursor-pointer"
             wire:model="birthday_filter"
             wire:change="changeBirthdayFilter">
         <option value="1">January</option>

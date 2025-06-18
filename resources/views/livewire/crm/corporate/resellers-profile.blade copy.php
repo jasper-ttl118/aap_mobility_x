@@ -11,6 +11,7 @@
         <div @click.outside="
             open = false;
             setTimeout(() => window.Livewire.dispatch('resetResellerProfile'), 400);"
+
             x-transition:leave="transition ease-in duration-200"
             x-transition:leave-start="opacity-100 scale-100"
             x-transition:leave-end="opacity-0 scale-90"
@@ -53,21 +54,30 @@
                     </div>
                 </div>  
             </div>
-            <div data-theme="light" x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center ">
+            <div x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center p-5">
                 {{-- Information --}}
-                <div x-data="{profile:information}; active" class="w-full h-[20%] lg:h-[15%] bg-white rounded-t-[36px] text-[#071d49] border-b-2 border-[#071d49] font-bold text-xl lg:text-2xl flex relative lg:justify-between justify-center items-center px-10 pt-[18px] lg:pt-10 gap-10 lg:gap-0 ">
-                    <a @click="profile='information'" :class="profile === 'information' ? 'bg-white text-blue-500 border-[#071d49] border-t-2 border-r-2 border-l-2' : 'bg-white border-b-2 border-[#071d49] hover:text-blue-500'"
-                            class="cursor-pointer text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] left-[10%] lg:left-[5%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
+                <div class="w-[110%] h-[15%] lg:h-[10%] text-[#071d49] font-bold text-xl lg:text-2xl flex lg:justify-start justify-center items-center shadow-lg px-10 gap-10 lg:gap-3">
+                    <button @click="profile='information'" 
+                            class="text-lg uppercase text-[#071d49] font-semibold focus:underline focus:text-blue-500 h-full text-start hover:text-blue-500">
                         Information
-                    </a>
-                    <a @click="profile ='activityLog'" :class="profile === 'activityLog' ? 'bg-white text-blue-500 border-[#071d49] border-t-2 border-r-2 border-l-2' : 'bg-white border-b-2 border-[#071d49] hover:text-blue-500'"
-                            class="cursor-pointer text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] right-[10%]  lg:right-[34%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
+                    </button>
+                    <button @click="profile ='activityLog'"
+                            class="text-lg uppercase text-[#071d49] font-semibold focus:underline focus:text-blue-500 h-full text-start hover:text-blue-500">
                         Activity Log
-                    </a>
+                    </button>
                 </div>
-
-                <div class="w-full h-[90%] mt-5 flex justify-center items-center">
-                    <div class="flex flex-col w-[90%] h-full items-center " x-show="profile === 'information'">
+                <!-- <div class="w-full h-[20%] lg:h-[15%] bg-white rounded-t-[36px] text-[#071d49] border-b-2 border-[#071d49] font-bold text-xl lg:text-2xl flex relative lg:justify-between justify-center items-center px-10 pt-[18px] lg:pt-10 gap-10 lg:gap-0 ">
+                    <button @click="profile='information'" :class="selected === 'reseller' ? "
+                            class="text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] left-[10%] lg:left-[5%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
+                        Information
+                    </button>
+                    <button @click="profile ='activityLog'"
+                            class="text-base lg:text-lg uppercase text-[#071d49] font-semibold focus:bg-[#ffffff] focus:text-blue-500 h-[70%]  lg:h-[50%] right-[10%]  lg:right-[34%] text-start absolute hover:text-blue-500 px-4 rounded-t-lg focus:border-t-2 focus:border-[#071d49] focus:border-r-2 focus:border-l-2 z-2 lg:pt-1">
+                        Activity Log
+                    </button>
+                </div> -->
+                <div class="w-full h-full mt-5">
+                    <div class="flex flex-col w-full h-full items-center " x-show="profile === 'information'">
                         <div class="flex flex-col w-full h-[70%] lg:h-[40%]">
                             <div class="flex flex-row items-center w-full h-[20%]">
                                 <div class="w-[35%] text-[#605e5e] h-full flex flex-row justify-start items-center px-5 gap-2 text-sm lg:text-base">
@@ -136,7 +146,7 @@
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         </div>
                     </div>
-                    <div x-show="profile === 'activityLog'" class="w-[90%] h-full">
+                    <div x-show="profile === 'activityLog'" class="w-full h-full">
                         <livewire:crm.corporate.resellers-activitylog>
                     </div>
                 </div>
@@ -146,5 +156,5 @@
     @endif
 
     </div>
-    
+
 </div>

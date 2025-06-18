@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    <div class="flex flex-col w-full ml-52 overflow-y-auto p-10 h-screen justify-center bg-[#F3F4F6] items-center">
+    <div class="flex flex-col w-full lg:ml-28 pt-24 lg:pt-12 overflow-y-auto p-10 h-screen justify-center bg-[#F3F4F6] items-center">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"

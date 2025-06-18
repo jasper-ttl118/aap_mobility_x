@@ -1,6 +1,6 @@
 <x-app-layout class="flex flex-row w-h-screen" :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-    <div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -28,30 +28,6 @@
             </div>
         @endif
 
-        <!-- Breadcrumbs-->
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/module" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/module" class="hover:underline">Modules</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Manage Submodules</a>
-        </div>
-
-        <!-- Title and Subtitle -->
-        <div class="">
-            <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
-            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
-                organization.</p>
-        </div>
-
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
@@ -72,6 +48,24 @@
                 </div> --}}
             </div>
 
+            
+            <!-- Breadcrumbs-->
+            <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
+                <a href="/module" class="hover:underline truncate">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/module" class="hover:underline truncate">Modules</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold truncate">Manage Submodules</a>
+            </div>
+
             <div class="flex items-center justify-between p-7">
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Manage Submodules</h2>
@@ -83,7 +77,7 @@
                     {{-- Add Module Button --}}
                     <div>
                         <a href="submodule/create"
-                            class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            class="flex items-center rounded-md bg-blue-900 px-3 justify-center text-center py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -96,8 +90,8 @@
 
             </div>
 
-            <div class="mx-7 mb-10 rounded-sm">
-                <table class="w-full text-center text-sm text-gray-500">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
+                <table class="w-[700px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="w-1/12 py-3">ID</th>

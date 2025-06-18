@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
-    <div class="flex flex-1 flex-col ml-52 bg-[#F3F4F6] overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -72,7 +72,7 @@
                         configurations.</p>
                 </div>
 
-                <div class="flex gap-2">
+                <div class="flex flex-col lg:flex-row gap-2">
 
                     {{-- Add Module Button --}}
                     <div>
@@ -104,7 +104,7 @@
 
             </div>
 
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                 <table class="w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>

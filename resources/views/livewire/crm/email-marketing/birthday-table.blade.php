@@ -1,15 +1,15 @@
 <div class="flex md:w-full md:justify-center">
-    <div class="flex flex-col w-[440px] mt-2 lg:-mt-2 lg:w-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+    <div class="flex flex-col w-[440px] mt-2 lg:-mt-2 lg:w-full md:w-[80%] md:ml-0 bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
         <div class="flex flex-col lg:flex-row lg:items-start items-center p-7 pt-7 lg:justify-between">
             <div class="flex items-start">
-                <h2 class="font-semibold text-2xl text-[#151848] font-inter">Birthday Celebrant List</h2>
+                <h2 class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter">Birthday Celebrant List</h2>
             </div>
 
             {{-- Birthday Month Dropdown --}}
             <div class="flex items-center space-x-2">
-                <label for="birthday_filter" class="text-[#151848] text-sm">Filter:</label>
+                <label for="birthday_filter" class="text-[#071d49] text-sm">Filter:</label>
                 <select name="birthday_filter" id="birthday_filter"
-                        class="text-[#151848] font-bold border-none bg-gray-100 text-sm cursor-pointer"
+                        class="text-[#071d49] font-bold border-none rounded-xl bg-gray-100 text-sm cursor-pointer"
                         wire:model="birthday_filter"
                         wire:change="changeBirthdayFilter">
                     <option value="1">January</option>
@@ -64,7 +64,7 @@
                             <td class="w-auto py-4">
                                 <div class="flex flex-row justify-center items-center lg:gap-2">
                             {{-- {{$customer->customer_id}} --}}
-                                    <a @click="open_profile=true" wire:click="openProfileModal({{ $customer->customer_id }})" class="cursor-pointer text-[#151847]">
+                                    <a @click="open_profile=true" wire:click="openProfileModal({{ $customer->customer_id }})" class="cursor-pointer text-[#071d49]">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                             <path fill-rule="evenodd" d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z" clip-rule="evenodd" />

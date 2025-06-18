@@ -1,6 +1,6 @@
 <x-app-layout class="flex flex-row min-h-screen" :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-    <div class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -35,36 +35,6 @@
             </div>
         @endif
 
-        <!-- Breadcrumbs-->
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/module" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/module" class="hover:underline">Modules</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/submodule" class="hover:underline">Manage Submodules</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Edit Submodule</a>
-        </div>
-
-        <!-- Title and Subtitle -->
-        <div class="">
-            <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
-            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
-                organization.</p>
-        </div>
-
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
@@ -85,6 +55,29 @@
                 </div> --}}
             </div>
 
+            <!-- Breadcrumbs-->
+            <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-7">
+                <a href="/module" class="hover:underline truncate">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/module" class="hover:underline truncate">Modules</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/submodule" class="hover:underline truncate">Manage Submodules</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold truncate">Edit Submodule</a>
+            </div>
+
             <div class="flex items-center justify-between p-7">
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Edit Module</h2>
@@ -100,7 +93,7 @@
                 @method('PUT')
 
                 {{-- Role Details --}}
-                <div class="grid grid-cols-10 gap-10 items-start">
+                <div class="grid lg:grid-cols-10 gap-10 items-start">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Submodule Details</h1>
                         <p class="text-sm italic text-gray-600">Define submodule name with description.</p>
@@ -142,7 +135,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Assign to a module --}}
-                <div class="grid grid-cols-10 gap-8 items-start">
+                <div class="grid lg:grid-cols-10 gap-8 items-start">
                     <!-- Module Details Section -->
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Select a Module</h1>
@@ -157,7 +150,7 @@
                             </label>
 
                             <select type="text" name="module_id" placeholder="Select Module"
-                                class="w-96 bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
+                                class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
                                 @foreach ($modules as $module)
                                     <option value="{{ $module->module_id }}"
                                         {{ old('module_id') == $module->module_id || (isset($submodule) && $submodule->module_id == $module->module_id) ? 'selected' : '' }}>
@@ -173,7 +166,7 @@
 
                 {{-- Set Status --}}
 
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <div class="flex gap-2 items-center">
                             <h1 class="font-medium text-blue-900">Set Status</h1>
@@ -230,7 +223,7 @@
 
 
                 {{-- Button --}}
-                <div class="grid grid-cols-10 items-center pt-8 gap-10">
+                <div class="grid lg:grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
                     </div>
                     <div class="col-span-6">

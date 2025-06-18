@@ -15,7 +15,7 @@
   height: 20px;
   width: 20px;
   border-bottom-right-radius: 0.25rem;
-  background-color: #151847;
+  background-color: #071d49;
   z-index: 2;
 }
 
@@ -27,7 +27,7 @@
   height: 20px;
   width: 20px;
   border-top-right-radius: 0.25rem;
-  background-color: #151847;
+  background-color: #071d49;
   z-index: 2;
 }
 
@@ -62,7 +62,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
 // dd($modules_access);
 @endphp
 
-<div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#151847] py-4 text-white z-50" id="menu">
+<div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">
   <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
   <div class="w-28 flex justify-center">
     <a href="{{ route('dashboard') }}">

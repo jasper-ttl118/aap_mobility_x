@@ -18,7 +18,7 @@
             ->values();
     @endphp
 
-    <div class="flex flex-1 flex-col ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -93,7 +93,7 @@
                 {{-- Add User --}}
                 <div>
                     <a href="organization/create"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="flex items-center flex-row text-center justify-center rounded-md bg-blue-900 px-1 md:px-2 lg:px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -105,8 +105,8 @@
             </div>
 
 
-            <div class="mx-7 mb-10 rounded-sm">
-                <table class="w-full text-center text-sm text-gray-500">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
+                <table class="w-[700px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="w-[7.14%] py-3">ID</th>
