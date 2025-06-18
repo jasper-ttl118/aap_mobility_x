@@ -93,8 +93,8 @@
                 </tbody>
             </table>
 
-            <div class="flex w-full justify-start lg:justify-center md:justify-center">
-                {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
+            <div class="flex w-full justify-start lg:justify-center">
+                {{ $customers->onEachSide(1)->links() }}
             </div>
 
         </div>
