@@ -80,7 +80,7 @@
             </table>
 
             <div class="flex w-full justify-start lg:justify-center">
-                {{ $customers->onEachSide(1)->links('vendor.pagination.tailwind') }}
+                {{ $customers->onEachSide(1)->links() }}
             </div>
         </div>
 
