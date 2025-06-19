@@ -12,11 +12,14 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
     </div>
 
     <div class="flex flex-row items-center space-x-4">
-        <a href="#" class="text-[#151847] border-r-2 border-[#151847] ">
+        <a href="#" onmouseenter="playHoverSound()" onclick="playNotificationSound()" class="text-[#151847] border-r-2 border-[#151847] ">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mx-3 hover:animate-wiggle hover:text-yellow-400 duration-150">
                 <path d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
                 <path fill-rule="evenodd" d="M12 2.25A6.75 6.75 0 0 0 5.25 9v.75a8.217 8.217 0 0 1-2.119 5.52.75.75 0 0 0 .298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 1 0 7.48 0 24.583 24.583 0 0 0 4.83-1.244.75.75 0 0 0 .298-1.205 8.217 8.217 0 0 1-2.118-5.52V9A6.75 6.75 0 0 0 12 2.25ZM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 0 0 4.496 0l.002.1a2.25 2.25 0 1 1-4.5 0Z" clip-rule="evenodd" />
             </svg>
+            <audio id="hoverSound" preload="auto">
+                <source src="{{ asset('minion.mp3') }}" type="audio/wav">
+            </audio>
         </a>
 
         <div class="relative inline-block text-left">
@@ -62,29 +65,36 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
 </div>
 
 <script>
-  const toggle = document.getElementById('dropdownProfile');
-  const content = document.getElementById('dropdownContent');
-  const icon = document.getElementById('drop');
-  let rotated = false;
+    const toggle = document.getElementById('dropdownProfile');
+    const content = document.getElementById('dropdownContent');
+    const icon = document.getElementById('drop');
+    let rotated = false;
 
-  toggle.addEventListener('click', (e) => {
-    e.preventDefault(); // prevent navigation
-    content.classList.toggle('hidden');
+    let isSoundOn = true;
 
-    rotated = !rotated;
-    icon.classList.toggle('rotate-180', rotated);
-    icon.classList.toggle('rotate-0', !rotated);
-  });
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // prevent navigation
+        content.classList.toggle('hidden');
 
-  document.addEventListener('click', (e) => {
-    if (!toggle.contains(e.target) && !content.contains(e.target)) {
-    content.classList.add('hidden');
+        rotated = !rotated;
+        icon.classList.toggle('rotate-180', rotated);
+        icon.classList.toggle('rotate-0', !rotated);
+    });
 
-    rotated = false;
-    icon.classList.toggle('rotate-180', rotated);
-    icon.classList.toggle('rotate-0', !rotated);
+    document.addEventListener('click', (e) => {
+        if (!toggle.contains(e.target) && !content.contains(e.target)) {
+        content.classList.add('hidden');
+
+        rotated = false;
+        icon.classList.toggle('rotate-180', rotated);
+        icon.classList.toggle('rotate-0', !rotated);
+        }
+    });
+
+    function playHoverSound() {
+        const audio = document.getElementById('hoverSound');
+        audio.currentTime = 0;
+        audio.play().catch(e => console.log('Audio play failed:', e));
     }
-  });
 
-        
 </script>

@@ -27,7 +27,7 @@
             </div>
 
             <!-- Breadcrumbs-->
-            <div class="flex h-7 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-6 md:ml-20 lg:ml-0">
+            <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-5 lg:pt-1 pb-3 lg:-mb-6 md:ml-20 lg:ml-0">
                 <a href="{{ route('customer.index') }}" class="hover:underline text-[#071d49] font-inter truncate">Customer Relationship Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
@@ -47,7 +47,7 @@
             
             <div class="flex md:w-full md:justify-center">
                 <div class="flex flex-col w-[440px] mt-2 lg:-mt-4 md:w-[80%] md:ml-0 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-                    <div class="flex flex-col md:flex-row lg:flex-row px-8 py-5 justify-between">
+                    <div class="flex flex-col md:flex-row lg:flex-row px-8 gap-y-3 py-5 justify-between">
                         <div class="flex items-center justify-center lg:justify-start lg:items-start">
                             <h2 
                                 class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter"
@@ -61,16 +61,16 @@
 
                         {{-- Selection Tabs (Sent, Scheduled, Drafted) --}}
                         <div class="flex lg:justify-end w-full md:w-[50%] lg:w-[50%] h-full justify-center items-center">
-                            <div class="flex flex-row w-[80%] lg:w-[50%] h-10 border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                            <div class="flex flex-row w-[80%] lg:w-[50%] h-8 border border-[#071d49] rounded-md justify-between items-center">
                                 <button @click="selected = 'sent', title = 'Sent Message', header_color = 'bg-[#10A13C]'" 
                                     :class="selected === 'sent' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
-                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Sent</button>
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Sent</button>
                                 <button @click="selected = 'scheduled', title = 'Scheduled Message', header_color = 'bg-[#071d49]'" 
                                     :class="selected === 'scheduled' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
-                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white truncate">Scheduled</button>
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center hover:bg-[#071d49] hover:text-white truncate">Scheduled</button>
                                 <button @click="selected = 'drafted', title = 'Drafted Message', header_color='bg-[#D17E0E]'" 
                                     :class="selected === 'drafted' ? 'text-[#FFFFF1] bg-[#071d49]' : 'text-[#071d49]'"
-                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">Drafted</button>
+                                    class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">Drafted</button>
                             </div>
                         </div>
                     </div>

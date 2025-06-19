@@ -8,7 +8,7 @@
             @csrf
             @method('PUT')
 
-            <div class="text-gray-700 p-4 space-y-3 bg-white shadow-md mt-1 rounded border border-gray-200">
+            <div class="text-gray-700 py-6 px-4 space-y-3 bg-white shadow-md mt-1 rounded border border-gray-200">
 
                 <!-- Heading -->
                 <div class="border-b border-gray-200 pb-3">

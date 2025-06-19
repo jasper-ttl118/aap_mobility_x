@@ -1,5 +1,5 @@
 <form wire:submit="add"
-    class="max-w-sm mx-auto bg-white shadow rounded border border-gray-200 text-sm">
+    class="bg-white shadow-lg rounded-lg border border-gray-200 text-sm">
     @csrf
     <div class="text-gray-700 p-4 space-y-3">
         <!-- Heading -->

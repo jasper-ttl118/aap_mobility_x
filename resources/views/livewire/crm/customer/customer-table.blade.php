@@ -79,7 +79,7 @@
                 </tbody>
             </table>
 
-            <div class="flex w-full justify-start lg:justify-center">
+            <div class="flex w-full justify-center">
                 {{ $customers->onEachSide(1)->links() }}
             </div>
         </div>

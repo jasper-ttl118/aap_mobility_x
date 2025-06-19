@@ -1,6 +1,6 @@
-<form wire:submit="add" class="w-full max-w-md mx-auto bg-white shadow rounded border border-gray-200 text-sm" @click.stop>
+<form wire:submit="add" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
     @csrf
-    <div class="text-gray-700 p-4 space-y-3">
+    <div class="text-gray-700 py-6 px-4 space-y-3">
         <!-- Heading -->
         <div class="border-b border-gray-200 pb-3">
             <h1 class="text-base font-semibold uppercase">Add Intern</h1>

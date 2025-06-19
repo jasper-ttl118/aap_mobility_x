@@ -85,9 +85,9 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
       @endphp
       
       @if(isset($links[$module]))
-        <div class="flex items-center px-2 py-3 gap-2 ml-2 {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : '' }}">
+        <div class="flex items-center px-2 py-3 gap-2 ml-2 {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : 'hover:text-[#F6D400]' }}">
           <span class="edge"></span>
-          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             @switch($module)
               @case('Dashboard')
                 <path fill-rule="evenodd" d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm4.5 7.5a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0v-2.25a.75.75 0 0 1 .75-.75Zm3.75-1.5a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0V12Zm2.25-3a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 1-1.5 0V9.75A.75.75 0 0 1 13.5 9Zm3.75-1.5a.75.75 0 0 0-1.5 0v9a.75.75 0 0 0 1.5 0v-9Z" clip-rule="evenodd" />

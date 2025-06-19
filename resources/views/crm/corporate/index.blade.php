@@ -30,7 +30,7 @@
         </div>
 
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 lg:-mb-8 md:ml-20 lg:ml-0">
+        <div class="flex h-10 items-center gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-1 lg:pb-2 lg:-mb-8 md:ml-20 lg:ml-0">
             <a href="{{ route('customer.index') }}" class="hover:underline truncate">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
@@ -57,16 +57,16 @@
                     <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
                         {{-- Buttons --}}
                         {{-- <x-corporate.buttons/> --}}
-                        <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                        <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center">
                             <a @click="selected='reseller'"
 
-                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#071d49] hover:text-white"
+                                class="cursor-pointer text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-l-md hover:bg-[#071d49] hover:text-white"
                                 :class="selected === 'reseller' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Resellers
                             </a>
 
                             <a @click="selected='agent'"
-                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#071d49] hover:text-white"
+                                class="cursor-pointer text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] flex items-center justify-center focus:text-white w-[50%] h-full rounded-r-md hover:bg-[#071d49] hover:text-white"
                                 :class="selected === 'agent' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49] hover:bg-[#071d49] hover:text-white' ">
                                     Agents
                             </a>

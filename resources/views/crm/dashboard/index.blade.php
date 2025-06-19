@@ -32,7 +32,7 @@
         </div>
 
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 md:ml-20 lg:ml-0">
+        <div class="flex h-10 items-center gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-2 lg:pb-4 md:ml-20 lg:ml-0">
             <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                 <path fill-rule="evenodd"
@@ -214,7 +214,7 @@
                         <template x-for="day in daysInMonth" :key="day">
                             <div @click="openNote(day)"
                                 class="relative border border-[#071d49] rounded-md h-16 p-1 group hover:bg-[#071d49] cursor-pointer z-auto"
-                                :class="isToday(day) ? 'bg-[#071d49] text-white' : 'hover:bg-[#071d49]'">
+                                :class="isToday(day) ? 'bg-[#F6D400] text-white' : 'hover:bg-[#071d49]'">
                                 <div class="text-sm font-bold" 
                                     :class="isToday(day) ? 'text-white' : 'text-[#071d49] group-hover:text-white'" 
                                     x-text="day"></div>
@@ -227,13 +227,15 @@
 
                     <!-- Note modal -->
                     <div x-show="showModal" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-                        <div class="bg-white rounded-lg shadow-lg p-6 w-96 border-2 border-[#071d49]">
-                            <h3 class="text-lg font-semibold mb-2 uppercase text-[#071d49]">Note for <span x-text="monthName + ' ' + activeDay + ', ' + year"></span></h3>
-                            <textarea x-model="notes[activeDay]" class="w-full border-2 border-[#071d49] rounded-md p-2 h-24 resize-none"></textarea>
-                            <div class="flex justify-end mt-4 gap-2">
-                                <button @click="showModal = false" class="px-4 py-1 bg-gray-300 rounded hover:bg-gray-400">Close</button>
-                                <button @click="saveNote()" class="px-4 py-1 border bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold">Save</button>
+                        <div class="bg-white rounded-lg shadow-lg px-5 py-4 w-96 border-2 h-64 border-[#071d49]">
+                            <div class="flex flex-row w-full justify-between items-center gap-5 h-[20%]">
+                                <h3 class="flex text-lg font-semibold uppercase text-[#071d49]">Note for&nbsp<span x-text="monthName + ' ' + activeDay + ', ' + year" class="underline cursor-pointer hover:scale-105 duration-300"></span></h3>
+                                <div class="flex justify-center gap-2 ">
+                                    <button @click="saveNote()" class=" w-4 h-8 items-center justify-center flex px-4 py-1 border bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
+                                    <button @click="showModal = false" class=" w-4 h-8 items-center justify-center flex px-4 py-1 bg-gray-300 rounded hover:bg-gray-400"><i class="fas fa-times"></i></button>
+                                </div>
                             </div>
+                            <textarea x-model="notes[activeDay]" class="w-full border-2 border-[#071d49] rounded-md p-2 h-[80%] resize-none"></textarea>
                         </div>
                     </div>
                 </div>
@@ -249,7 +251,7 @@
                     </div>
                     <div class="flex justify-end w-[50%] h-full items-center">
                         {{-- Buttons --}}
-                        <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                        <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center">
                             <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#fffff1]' : 'text-[#071d49]'"
                                 class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white">Weekly</button>
                             <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#fffff1]' : 'text-[#071d49]'"

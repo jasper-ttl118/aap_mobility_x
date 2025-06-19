@@ -29,7 +29,7 @@
             </div>
         </div>
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-start gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 md:ml-20 lg:ml-0">
+        <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-3 lg:pb-5 md:ml-20 lg:ml-0">
             <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
@@ -56,25 +56,144 @@
                                     <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wide lg:tracking-wider">Total Sales</span>
                                     <span class="text-green-400 font-bold text-xs lg:text-sm  bg-green-400 bg-opacity-20  rounded-md"> +22%</span>
                                 </div>
-                                <span class="text-[#071d49] font-bold text-lg lg:text-xl truncate">₱2,533,970.40</span>
+                                <span class="text-[#071d49] font-bold text-lg lg:text-xl truncate">₱22,533,970.40</span>
                             </div>
                         </div>
                         <!-- Modal overlay -->
                         <div x-cloak x-show="open == 'open1'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
-                                    class="relative flex flex-row bg-white rounded-b-lg rounded-t-xl shadow-lg">
-
-                                 <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
-                                    <svg fill="#000000" width="30px" height="30px" viewBox="0 0 24 24" id="phillippine-peso" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M11,15H8V3h3a6,6,0,0,1,6,6h0A6,6,0,0,1,11,15ZM8,3V21" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-                                    </path><path id="primary-2" data-name="primary" d="M4,7H20M4,11H20" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
-                                </div>
-                                <div class="flex flex-col w-full h-[70%] justify-center items-start py-2">
-                                    <div class="flex flex-row w-full gap-2">
-                                        <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wide lg:tracking-wider">Total Sales</span>
-                                        <span class="text-green-400 font-bold text-xs lg:text-sm  bg-green-400 bg-opacity-20  rounded-md"> +22%</span>
+                                    class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                        <div class="flex flex-row w-full h-[60%]">
+                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
+                                                {{-- Total Sales --}}
+                                                <div class="flex flex-col w-full">
+                                                    <div class="flex flex-row w-full gap-2">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Total Sales</span>
+                                                        <span class="text-green-400 font-regular text-sm bg-opacity-20  rounded-md"> +22%</span>
+                                                    </div>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱22,533,970.40</span>
+                                                </div>
+                                                {{-- Percentage --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Year-to-date:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱1,970,050.00</span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Target/Year:</span>
+                                                    <span class="text-green-400 font-regular text-sm bg-opacity-20 rounded-md">(40% Achieved)</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> ₱5,000,000.00</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col w-[50%] justify-center h-full gap-y-4">
+                                                {{-- Highest Sales --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Largest Sales</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">March: ₱890,650.00</span>
+                                                </div>
+                                                {{-- Lowest Sales --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Smallest Sales</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">January: ₱355,120.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col w-full justify-center h-[50%]">
+                                            <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                        </div>
                                     </div>
-                                    <span class="text-[#071d49] font-bold text-lg lg:text-xl">₱2,533,970.40</span>
+                                    
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
+                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Sales Summary</div>
+                                        <div class="border-[#151847] border w-full h-[70%]">
+                                            <table class="table-fixed w-full h-[15%] bg-[#f3f4f6] rounded-t-md">
+                                                <thead class="gap-5 w-full h-full">
+                                                    <tr>
+                                                        <th class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-center text-[#071d49] text-sm font-medium">Last Year</th>
+                                                        <th class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-center text-[#071d49] text-sm font-medium">Month</th>
+                                                        <th class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-center text-[#071d49] text-sm font-medium">Total Sales</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <div class="h-[70%] w-full overflow-x-auto hide-scrollbar">
+                                                <table class="table-fixed w-full h-full">
+                                                    <tbody class="w-[440px] md:w-[80%] lg:w-full">
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Jan 2024 - [₱300,120.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">January 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] bg-red-500/60 px-3 py-2 text-right text-xs text-[#071d49]">₱355,120.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Feb 2024 - [₱370,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">February 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-right text-xs text-[#071d49]">₱490,100.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Mar 2024 - [₱520,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">March 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] bg-green-500/60 px-3 py-2 text-right text-xs text-[#071d49]">₱890,650.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Apr 2024 - [₱520,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">April 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-right text-xs text-[#071d49]">₱555,120.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">May 2024 - [₱220,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">May 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-right text-xs text-[#071d49]">₱375,720.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Jun 2024 - [₱580,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">June 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-right text-xs text-[#071d49]">₱661,200.00</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="w-[40%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">Jul 2024 - [₱410,100.00]</td>
+                                                            <td class="w-[30%] border-b border-r border-[#d0d0d0] px-3 py-2 text-left text-xs text-[#071d49]">July 2025</td>
+                                                            <td class="w-[30%] border-b border-[#d0d0d0] px-3 py-2 text-right text-xs text-[#071d49]">₱455,120.00</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <table class="table-fixed w-full h-[15%] rounded-b-md">
+                                                <thead class="gap-5 w-full h-full border-t border-[#d0d0d0]">
+                                                    <tr>
+                                                        <th class="w-[40%] border-r border-[#d0d0d0] px-3 py-2 text-center text-[#071d49] text-sm font-medium"></th>
+                                                        <th class="w-[30%] border-r border-[#d0d0d0] px-3 py-2 text-center text-[#071d49] text-sm font-medium"></th>
+                                                        <th class="w-[30%] border-[#d0d0d0] bg-blue-500/60 px-3 py-2 text-right text-[#071d49] text-xs font-medium">₱1,970,050.00</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+
+                                        </div>
+                                        <div class="w-full h-[15%] flex flex-row items-center gap-x-2">
+                                            <span class="flex items-center h-[40%] text-sm text-[#071d49]">Label:</span>
+                                            <div class="flex flex-row w-[80%] h-[60%] items-center text-sm text-[#071d49]">
+                                                <div class="gap-x-2 flex flex-row w-[34%] lg:w-[35%] h-full items-center">
+                                                    <div class="w-[12%] h-[40%] bg-red-500/60 border border-black"></div>
+                                                    <span class="truncate">
+                                                        Smallest Sales
+                                                    </span>
+                                                </div>
+                                                <div class="gap-x-2 flex flex-row w-[34%] h-full items-center">
+                                                    <div class="w-[12%] h-[40%] bg-green-500/60 border border-black"></div>
+                                                    <span class="truncate">
+                                                        Largest Sales
+                                                    </span>
+                                                </div>
+                                                <div class="gap-x-2 flex flex-row w-[34%] h-full items-center">
+                                                    <div class="w-[12%] h-[40%] bg-blue-500/60 border border-black"></div>
+                                                    <span class="truncate">
+                                                        Year-to-date
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -85,21 +204,77 @@
                             </div>
                             <div class="flex flex-col w-full h-[70%] justify-center items-start py-2">
                                 <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wider lg:tracking-wider">Average Deals Sized</span>                             
-                                <span class="text-[#071d49] font-bold text-lg lg:text-xl">109,073</span>
+                                <span class="text-[#071d49] font-bold text-lg lg:text-xl">₱10,000</span>
                             </div>
                         </div>
                         <!-- Modal overlay -->
                         <div x-cloak x-show="open == 'open2'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
-                                    class="relative flex flex-row bg-white rounded-b-lg rounded-t-xl shadow-lg">
-
-                                <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
-                                    <svg fill="#000000" width="30px" height="30px" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><path d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 13.8554 45.8008 C 11.5117 45.8008 10.1992 44.5586 10.1992 42.1211 L 10.1992 13.8789 C 10.1992 11.4414 11.5117 10.1992 13.8554 10.1992 L 42.1679 10.1992 C 44.4882 10.1992 45.8007 11.4414 45.8007 13.8789 L 45.8007 42.1211 C 45.8007 44.5586 44.4882 45.8008 42.1679 45.8008 Z M 27.9648 22.1289 C 29.6523 22.1289 30.8476 21.0039 30.8476 19.5508 C 30.8476 17.8867 29.6757 16.7383 27.9648 16.7383 C 26.3944 16.7383 25.1757 17.9102 25.1757 19.5508 C 25.1757 21.0039 26.3944 22.1289 27.9648 22.1289 Z M 18.8944 29.9571 L 37.1523 29.9571 C 38.4648 29.9571 39.3554 29.2539 39.3554 28.0118 C 39.3554 26.7461 38.5117 26.0430 37.1523 26.0430 L 18.8944 26.0430 C 17.5351 26.0430 16.6679 26.7461 16.6679 28.0118 C 16.6679 29.2539 17.5820 29.9571 18.8944 29.9571 Z M 27.9648 39.2383 C 29.6523 39.2383 30.8476 38.0898 30.8476 36.6367 C 30.8476 34.9961 29.6757 33.8477 27.9648 33.8477 C 26.3944 33.8477 25.1757 34.9961 25.1757 36.6367 C 25.1757 38.0898 26.3944 39.2383 27.9648 39.2383 Z"/></svg>
-                                </div>
-                                <div class="flex flex-col w-full h-[70%] justify-center items-start py-2">
-                                    <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wider lg:tracking-wider">Average Deals Sized</span>                             
-                                    <span class="text-[#071d49] font-bold text-lg lg:text-xl">109,073</span>
+                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                        <div class="flex flex-row w-full h-[60%]">
+                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
+                                                {{-- Overall --}}
+                                                <div class="flex flex-col w-full">
+                                                    <div class="flex flex-row w-full gap-2">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Overall Average:</span>
+                                                    </div>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱10,000.00</span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Target Average:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> ₱12,000.00</span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Gap to Target:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> ₱2,000.00 <span class="text-green-500">(2.6%)</span></span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="flex flex-col w-[50%] justify-center h-full gap-y-4">
+                                                {{-- Highest Sales --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Highest Deal</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱25,000.00</span>
+                                                </div>
+                                                 {{-- Median Sales --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Median Deal</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱15,000.00</span>
+                                                </div>
+                                                {{-- Lowest Sales --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Lowest Deal</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">₱5,000.00</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col w-full justify-center h-[50%]">
+                                            <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
+                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Disitribution Analysis</div>
+                                        <div class="flex flex-col w-full h-[85%]">
+                                            <span class="text-[#071d49] font-regular text-sm">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</span>
+                                            <span class="text-[#071d49] font-regular text-sm">20 deals ₱5,000 - ₱20,000 (55.6% of deals, 48.3% of revenue)</span>
+                                            <span class="text-[#071d49] font-regular text-sm">11 deals < ₱5,000 (30.6% of deals, 6.5% of revenue)</span>
+                                            <div class="flex w-full h-[300px]">
+                                                <x-analytics-display
+                                                    title="Deals"
+                                                    :labels="['Deal 1', 'Deal 2', 'Deal 3', 'Deal 4', 'Deal 5']"
+                                                    :data="[120, 150, 180, 90, 150]"
+                                                    chartType="line"
+                                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                                    axis="x"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -157,52 +332,70 @@
                         <div x-cloak x-show="open == 'open3'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
-                                    class="relative flex flex-row bg-white rounded-b-lg rounded-t-xl shadow-lg">
-
-                                <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
-                                    <svg height="30px" width="30px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                                            viewBox="0 0 512 512"  xml:space="preserve">
-                                        <style type="text/css">
-                                            .st0{fill:#000000;}
-                                        </style>
-                                        <g>
-                                            <path class="st0" d="M255.366,141.046c-7.4,3.583-14.732,8.548-21.533,15.357c-34.091,34.098-65.081,65.088-65.081,65.088
-                                                l0.013,0.02c-0.185,0.186-0.371,0.338-0.557,0.53c-8.824,8.831-9.174,22.909-1.025,32.146c0.323,0.371,0.668,0.736,1.025,1.086
-                                                c9.161,9.174,24.036,9.196,33.232,0l35.797-35.797c6.176,2.263,12.248,3.583,18.074,4.243c7.937,0.88,15.392,0.55,22.022-0.385
-                                                c16.162-2.29,14.47-1.623,23.844-4.704c9.353-3.068,19.862-9.354,19.862-9.354l6.362,6.355
-                                                c0.701,0.681,16.919,16.925,25.192,25.185c1.465,1.471,2.709,2.682,3.542,3.549c0.956,0.997,2.022,1.719,2.682,2.682l41.278,41.279
-                                                c11.898-13.35,25.488-33.232,23.81-56.058L320.763,129.14C320.763,129.14,285.062,126.589,255.366,141.046z"/>
-                                            <path class="st0" d="M261.115,394.362c-9.134-9.147-23.961-9.147-33.101,0l-6.794,6.794c9.119-9.132,9.112-23.926-0.021-33.066
-                                                c-9.14-9.126-23.947-9.126-33.087,0.007c9.14-9.133,9.14-23.94,0-33.087c-9.133-9.148-23.947-9.133-33.087,0
-                                                c9.14-9.133,9.14-23.947,0-33.095c-9.134-9.132-23.947-9.132-33.088,0.014l-20.46,20.453c-9.14,9.147-9.14,23.947,0,33.094
-                                                c9.133,9.134,23.941,9.134,33.08,0c-9.14,9.134-9.14,23.947,0,33.087c9.147,9.133,23.954,9.133,33.094,0
-                                                c-9.14,9.133-9.14,23.941,0,33.088c9.14,9.133,23.947,9.133,33.088,0l6.802-6.809c-9.119,9.147-9.113,23.94,0.02,33.081
-                                                c9.14,9.132,23.947,9.132,33.088,0l20.467-20.468C270.248,418.302,270.248,403.495,261.115,394.362z"/>
-                                            <path class="st0" d="M507.987,178.28L387.543,57.822c-5.351-5.337-14.002-5.337-19.339,0l-38.631,38.63
-                                                c-5.337,5.337-5.337,13.989,0,19.333l120.458,120.451c5.33,5.35,13.996,5.35,19.326,0l38.63-38.638
-                                                C513.338,192.276,513.338,183.624,507.987,178.28z M473.655,204.992c-5.75,5.736-15.048,5.736-20.777,0
-                                                c-5.735-5.743-5.735-15.041,0-20.777c5.729-5.736,15.027-5.736,20.777,0C479.391,189.951,479.384,199.249,473.655,204.992z"/>
-                                            <path class="st0" d="M182.417,99.864l-38.624-38.63c-5.336-5.337-13.995-5.337-19.332,0L4.003,181.691
-                                                c-5.337,5.323-5.337,13.989,0,19.319l38.631,38.644c5.33,5.331,14.002,5.331,19.325,0l120.458-120.458
-                                                C187.761,113.859,187.761,105.207,182.417,99.864z M59.118,208.403c-5.736,5.729-15.04,5.729-20.777,0
-                                                c-5.735-5.742-5.735-15.041,0-20.777c5.736-5.735,15.041-5.735,20.777,0C64.854,193.362,64.854,202.66,59.118,208.403z"/>
-                                            <path class="st0" d="M397.528,312.809l-7.468-7.482l-72.509-72.509l-4.883,2.166l-5.316,1.919l-0.384,0.117
-                                                c-0.936,0.296-9.684,2.971-26.932,5.412c-9.12,1.273-18.156,1.431-26.904,0.434c-3.459-0.385-6.898-0.95-10.296-1.692
-                                                l-27.757,27.744c-16.678,16.678-43.836,16.678-60.514,0c-0.585-0.591-1.149-1.19-1.671-1.781l-0.179-0.2
-                                                c-10.529-11.939-13.204-28.28-8.252-42.461l10.673-16.609l-0.02-0.02l65.081-65.074c2.647-2.641,5.426-5.103,8.314-7.428
-                                                c-20.281-3.982-37.296-2.806-37.296-2.806L88.093,235.679c-1.389,18.988,11.651,39.799,20.928,51.952
-                                                c16.692-15.963,43.239-15.756,59.641,0.654c6.107,6.1,9.952,13.617,11.574,21.498c7.895,1.637,15.406,5.475,21.513,11.582
-                                                c6.107,6.114,9.952,13.631,11.575,21.519c7.888,1.623,15.412,5.46,21.513,11.568c4.078,4.078,7.152,8.783,9.222,13.817
-                                                c11.1-0.137,22.242,4.016,30.688,12.455c16.65,16.636,16.643,43.733,0,60.363l-6.809,6.822l3.411,3.412
-                                                c9.148,9.147,23.954,9.147,33.095,0c9.14-9.134,9.14-23.947,0-33.088l6.808,6.83c9.147,9.133,23.947,9.133,33.087,0
-                                                c9.14-9.147,9.147-23.954,0-33.101c9.147,9.147,23.947,9.147,33.087,0c9.134-9.126,9.154-23.94,0-33.088
-                                                c9.154,9.148,23.954,9.148,33.088,0c9.147-9.132,9.147-23.947,0-33.08L397.528,312.809z"/>
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div class="flex flex-col w-full h-[70%] justify-center items-start py-2">
-                                    <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wider lg:tracking-wider">Deals Closed</span>                             
-                                    <span class="text-[#071d49] font-bold text-lg lg:text-xl">109,073</span>
+                                    class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                        <div class="flex flex-row w-full h-[60%]">
+                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
+                                                {{-- Overall --}}
+                                                <div class="flex flex-col w-full">
+                                                    <div class="flex flex-row w-full gap-2">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Overall Deal Closed:</span>
+                                                    </div>
+                                                    <span class="text-[#071d49] font-regular text-sm">109,073</span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Period:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> Q1 2025</span>
+                                                </div>
+                                                {{-- Deals --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Period Deal Closed:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> 21,423 <span class="text-green-500">(+2.6%)</span></span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Target:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> 20,000</span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="flex flex-col w-[50%] justify-center h-full gap-y-4">
+                                                {{-- Deals --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Previous Period:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> 18,300 <span class="text-green-500"> (+18% growth)</span></span>
+                                                </div>
+                                                {{-- Monthly Ave --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Monthly Average</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">2500</span>
+                                                </div>
+                                                 {{-- Weekly Ave --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Weekly Average</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">500</span>
+                                                </div>
+                                                {{-- Daily Ave --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Daily Average</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">80-100</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col w-full justify-center h-[50%]">
+                                            <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
+                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Team Performance</div>
+                                        <div class="flex flex-col w-full h-[85%]">
+                                            <span class="text-[#071d49] font-regular text-sm">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</span>
+                                            <span class="text-[#071d49] font-regular text-sm">20 deals ₱5,000 - ₱20,000 (55.6% of deals, 48.3% of revenue)</span>
+                                            <span class="text-[#071d49] font-regular text-sm">11 deals < ₱5,000 (30.6% of deals, 6.5% of revenue)</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -511,13 +704,13 @@
                                     </div>
                                     <div class="flex hover:scale-105 duration-300 transform justify-end w-[40%] lg:w-[50%] h-full items-center">
                                         {{-- Buttons --}}
-                                        <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                                        <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center">
                                             <button @click="activeChart = 'chart1'" :class="activeChart === 'chart1' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'" 
-                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Revenue</button>
+                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Revenue</button>
                                             <button @click="activeChart = 'chart2'" :class="activeChart === 'chart2' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
-                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center hover:bg-[#071d49] hover:text-white">Deals</button>
+                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center hover:bg-[#071d49] hover:text-white">Deals</button>
                                             <button @click="activeChart = 'chart3'" :class="activeChart === 'chart3' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"
-                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[33.3%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">New Customer</button>
+                                                class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[34%] h-full text-center rounded-r-md hover:bg-[#071d49] hover:text-white truncate">New Customer</button>
                                         </div>
                                     </div>
                                 </div>
@@ -861,7 +1054,7 @@
                                 </div>
                                 <div class="flex hover:scale-105 duration-300 transform justify-end w-[40%] lg:w-[50%] h-full items-center">
                                     {{-- Buttons --}}
-                                    <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center px-0.5 py-0.5">
+                                    <div class="flex flex-row w-full lg:w-[90%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center">
                                         <button @click="activeChart = 'products'" :class="activeChart === 'products' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'" 
                                             class="text-xs uppercase text-[#071d49] font-semibold focus:bg-[#071d49] focus:text-white w-[50%] h-full text-center rounded-l-md hover:bg-[#071d49] hover:text-white truncate">Products</button>
                                         <button @click="activeChart = 'services'" :class="activeChart === 'services' ? 'bg-[#071d49] text-[#FFFFF1]' : 'text-[#071d49]'"

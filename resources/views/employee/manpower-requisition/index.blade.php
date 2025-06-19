@@ -1,7 +1,8 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
     {{-- @include('layouts.navbar') --}}
 
-    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" 
+        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -30,29 +31,31 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
-                <div class="w-32 p-4 text-center">
-                    <a href="/employee" class="text-gray-600 hover:text-blue-800 font-inter">Alphalist</a>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14">
+                <div class="group hover:border-b-2 w-32 p-4 text-center">
+                    <a href="/employee" class="text-gray-600 hover:text-gray-600 font-inter">Alphalist</a>
                 </div>
                 <div class="flex-none w-auto border-b-2 border-blue-900 p-4 text-center">
-                    <a href="{{ route('manpower-requisition') }}" class="font-semibold text-blue-900">Manpower Requisition</a>
+                    <a href="{{ route('manpower-requisition') }}" class="font-semibold text-[#071d49]">Manpower Requisition</a>
                 </div>
-                <div class="flex-none w-auto p-4 text-center">
-                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
+                <div class="group hover:border-b-2 flex-none w-auto p-4 text-center">
+                    <a href="#" class="text-gray-600 hover:text-gray-600 font-inter">Vacancy List</a>
                 </div>
             </div>
+        </div>
 
-            <div class="flex justify-between">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+            <div class="flex flex-row justify-between">
                  {{-- Breadcrumbs --}}
-                <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
-                    <a href="/employee" class="hover:underline">Employee Management</a>
+                <div class="flex items-center gap-x-1 text-[#071d49] text-sm px-7 pt-5">
+                    <a href="/employee" class="hover:underline truncate">Employee Management</a>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="#" class="hover:underline font-semibold">Manpower Requisition</a>
+                    <a href="#" class="hover:underline font-semibold truncate">Manpower Requisition</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex justify-end px-7 pt-6">
@@ -76,14 +79,15 @@
 
             <div class="flex items-center justify-between px-7 py-6">
                 <div>
-                    <h2 class="font-semibold text-lg text-blue-900" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
+                    <h2 class="font-semibold text-lg text-[#071d49]" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
                     <p class="text-gray-900 text-sm" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
                 </div>
 
                 <div class="flex items-center gap-4">
 
-                    <a x-show="selected == 'employees'" @click="open_add=true"
-                    class="flex cursor-pointer items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <a x-show="selected == 'employees'" @click="open_add=true" 
+                    :class="selected == 'employees' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
+                    class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -103,9 +107,9 @@
             </div>
 
             {{-- List of Employees --}}
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
-                <table class="w-full text-center text-sm text-gray-500">
+                <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>    
                             <th scope="col" class=" py-3">Ticket ID</th>

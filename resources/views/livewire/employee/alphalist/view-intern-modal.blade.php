@@ -2,11 +2,11 @@
     @if ($viewOpen)
          <div x-cloak x-show="open_view_intern" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
             <!-- View Intern Modal -->
-            <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6" @click.stop @click.away="open_view_intern=false">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6" @click.stop @click.away="open_view_intern=false">
                 <!-- Modal Header -->
                 <div class="flex justify-between items-center border-b pb-3">
                     <h2 class="text-xl font-semibold text-[#151847]">Intern Details</h2>
-                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600" wire:click="close">
+                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600" @click="open_view_intern=false">
                         &#10005;
                     </button>
                 </div>
@@ -73,7 +73,7 @@
 
                 <!-- Modal Footer -->
                 <div class="flex justify-end gap-2 border-t pt-3">       
-                    <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-[#151847]" wire:click="close">
+                    <button class="px-4 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 text-[#151847]" @click="open_view_intern=false">
                         Close
                     </button>
                 </div>
