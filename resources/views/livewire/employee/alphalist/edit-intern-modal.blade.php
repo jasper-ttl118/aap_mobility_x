@@ -57,6 +57,14 @@
                         class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
                     @error('employee_contact_number') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
                 </div>
+                
+                <!-- School -->
+                <div>
+                    <label class="font-medium text-xs">School</label>
+                    <input type="text" wire:model="employee_school" placeholder="University of Caloocan City"
+                        class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
+                    @error('employee_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
 
                 <!-- Email -->
                 <div>

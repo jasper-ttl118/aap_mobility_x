@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" class="flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
        
         @if (session('status'))
             <div id="toast-success"
@@ -29,8 +29,8 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 p-4 text-center">
                     <a href="/employee" class="text-gray-600 hover:text-blue-800 font-inter">Alphalist</a>
                 </div>
@@ -41,7 +41,9 @@
                     <a href="{{ route('vacancy-list') }}" class="font-semibold text-blue-900">Vacancy List</a>
                 </div>
             </div>
+        </div>
 
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             <div class="flex justify-between">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
@@ -81,8 +83,8 @@
 
                 <div class="flex items-center gap-4">
 
-                    <a x-show="selected == 'employees'" @click="open_add=true"
-                    class="flex cursor-pointer items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <a @click="open_add=true" 
+                    class="{{ request()->routeIs('vacancy-list') ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'}} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -102,9 +104,9 @@
             </div>
 
             {{-- List of Employees --}}
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
-                <table class="w-full text-center text-sm text-gray-500">
+                <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>    
                             <th scope="col" class=" py-3">Ticket ID</th>

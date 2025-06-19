@@ -388,12 +388,38 @@
                                             <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
-                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Team Performance</div>
-                                        <div class="flex flex-col w-full h-[85%]">
-                                            <span class="text-[#071d49] font-regular text-sm">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</span>
-                                            <span class="text-[#071d49] font-regular text-sm">20 deals ₱5,000 - ₱20,000 (55.6% of deals, 48.3% of revenue)</span>
-                                            <span class="text-[#071d49] font-regular text-sm">11 deals < ₱5,000 (30.6% of deals, 6.5% of revenue)</span>
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md gap-y-8">
+                                        <div class="flex flex-col w-full h-[50%]">
+                                            <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Team Performance</span>
+                                            <span class="text-[#071d49] font-regular text-sm">Top Closer: Alex Smith (417 deals - 41.7% of total)</span>
+                                            <span class="text-[#071d49] font-regular text-sm">Team Contribution:</span>
+                                            <div class="flex flex-col px-7">
+                                                <span class="text-[#071d49] font-regular text-sm">Alex Smith (417 deals - 41.7% of total)</span>
+                                                <span class="text-[#071d49] font-regular text-sm">Lebron James (320 deals - 32.0% of total)</span>
+                                                <span class="text-[#071d49] font-regular text-sm">Carlos Yulo (183 deals - 18.3% of total)</span>
+                                                <span class="text-[#071d49] font-regular text-sm">Kathryn Bernardo (80 deals - 8% of total)</span>
+                                            </div>
+                                            <span class="text-[#071d49] font-regular text-sm">Deals per Rep Average: 80 deals</span>
+                                            <span class="text-[#071d49] font-regular text-sm">Top Performer Impact: Alex closes 2.1x the team average</span>
+                                        </div>
+                                        <div class="flex flex-row w-full h-[50%]">
+                                            <div class="flex flex-col w-[50%]">
+                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Efficiency Metrics</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Average Closing Time:</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">14 days</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Fastest Close: 3 days</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Longest Close: 45 days</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Median Closing Time: 12 days</span>
+                                            </div>
+                                            <div class="flex flex-col w-[50%]">
+                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Deals Composition</span>
+                                                <div class="flex flex-row w-full items-center">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase">Growth Rate:</span><span class="text-green-500"> (+20%)</span>
+                                                </div>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Retention Rate: 83.3% (based on renewals)</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">Expansion Rate: 37.5% (6 upsells from existing base)</span>
+                                                <span class="text-[#071d49] font-regular text-sm uppercase">New Client Acquisition: 20 new relationships</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

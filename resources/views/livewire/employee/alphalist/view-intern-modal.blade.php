@@ -5,7 +5,7 @@
     @if ($viewOpen)
          <div wire:loading.remove x-cloak x-show="open_view_intern" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
             <!-- View Intern Modal -->
-            <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6" @click.stop @click.away="open_view_intern=false">
+            <div class="overflow-x-auto hide-scrollbar bg-white rounded-lg shadow-lg h-[90%] lg:h-[93%] w-[90%] lg:w-full max-w-lg p-6" @click.stop @click.away="open_view_intern=false">
                 <!-- Modal Header -->
                 <div class="flex justify-between items-center border-b pb-3">
                     <h2 class="text-xl font-semibold text-[#151847]">Intern Details</h2>

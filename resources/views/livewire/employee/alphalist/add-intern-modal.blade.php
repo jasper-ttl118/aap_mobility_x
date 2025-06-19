@@ -51,6 +51,15 @@
             @error('intern_contact_number') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
 
+        <!-- School -->
+        <div>
+            <label class="text-xs font-medium">School</label>
+            <input type="text" name="intern_school" wire:model="intern_school"
+                class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                placeholder="University of Caloocan City">
+            @error('intern_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+        </div>
+        
         <!-- Email -->
         <div>
             <label class="text-xs font-medium">Email</label>
