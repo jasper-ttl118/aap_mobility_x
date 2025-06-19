@@ -27,6 +27,7 @@
                 <label class="text-xs font-medium">Type</label>
                 <select name="internship_type" wire:model="internship_type"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-xs mt-1 focus:outline-blue-500">
+                    <option value="">Select</option>
                     <option value="Voluntary">Voluntary</option>
                     <option value="School Required">School Required</option>
                 </select>
@@ -98,7 +99,7 @@
         </div>
 
         <!-- Submit -->
-        <button type="submit"
+        <button type="submit" @click=""
             class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700">
             Create
         </button>

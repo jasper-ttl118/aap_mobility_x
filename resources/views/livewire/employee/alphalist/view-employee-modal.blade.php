@@ -1,7 +1,11 @@
 <div>
+    <div wire:loading>
+        <x-loading-modal />
+    </div>
+
     @if ($viewOpen)
         <!-- View Employee Modal -->
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6" @click.stop @click.away="open_view_employee=false">
+        <div wire:loading.remove class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6" @click.stop @click.away="open_view_employee=false">
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b pb-3">
                 <h2 class="text-xl font-semibold text-[#151847]">Employee Details</h2>

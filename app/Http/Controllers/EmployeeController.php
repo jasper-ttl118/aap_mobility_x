@@ -108,4 +108,9 @@ class EmployeeController extends Controller
         return view('employee.manpower-requisition.index');
     }
 
+    public function vacancyList()
+    {
+        return view('employee.vacancy-list.index');
+    }
+
 }

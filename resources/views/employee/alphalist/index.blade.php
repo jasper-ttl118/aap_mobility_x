@@ -43,7 +43,7 @@
                     <a href="{{ route('manpower-requisition') }}" class="text-gray-600 hover:text-blue-800 font-inter">Manpower Requisition</a>
                 </div>
                 <div class="flex-none w-auto p-4 text-center">
-                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
+                    <a href="{{ route('vacancy-list') }}" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
                 </div>
             </div>
 
@@ -274,7 +274,7 @@
                                             </a>
 
                                             <a href="javascript:void(0)"
-                                                @click="open_delete_employee = true; deleteUrl = '{{ url('employee/' . $employee->employee_id . '/delete') }}'"
+                                                @click="open_delete_intern = true; deleteUrl = '{{ url('employee/' . $employee->employee_id . '/delete') }}'"
                                                 class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="size-4">
@@ -325,14 +325,20 @@
     
         <template x-if="open_add_intern">
             <div @click="open_add_intern=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                    <livewire:employee.alphalist.add-intern-modal />
+                <livewire:employee.alphalist.add-intern-modal />
             </div>
         </template>
 
-        <div x-show="  open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div x-show="open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="  open_edit_intern=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.alphalist.edit-intern-modal />
             </div>
+        </div>
+
+        <div x-cloak id="delete-modal" 
+            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
+            x-show="open_delete_intern">
+                <livewire:employee.alphalist.delete-intern-modal />
         </div>
 
         <livewire:employee.alphalist.view-intern-modal />

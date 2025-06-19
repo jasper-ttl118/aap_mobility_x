@@ -3,13 +3,11 @@
 namespace App\Livewire\Employee\Alphalist;
 
 use App\Models\Employee;
-use Illuminate\Foundation\Exceptions\Renderer\Listener;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class AddEmployeModal extends Component
 {
-
     #[Rule('required|alpha')]
     public $employee_firstname = '';
 

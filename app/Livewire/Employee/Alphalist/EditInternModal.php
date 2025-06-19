@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Employee\Alphalist;
 
+use Livewire\Attributes\Rule;
 use Livewire\Component;
 use App\Models\Employee;
 
 class EditInternModal extends Component
 {
-    
     public $employee;
     public $employee_id;
     #[Rule('required|alpha')]

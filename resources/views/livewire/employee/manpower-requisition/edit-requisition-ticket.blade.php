@@ -4,8 +4,8 @@
     <div class="text-gray-700 p-4 space-y-3">
         <!-- Heading -->
         <div class="border-b border-gray-200 pb-3">
-            <h1 class="text-base font-semibold uppercase">Add Requisition Ticket</h1>
-            <p class="text-xs text-gray-600">Submit a manpower requisition form.</p>
+            <h1 class="text-base font-semibold uppercase">Edit Requisition Ticket</h1>
+            <p class="text-xs text-gray-600">Edit manpower requisition form.</p>
         </div>
 
         <!-- Job Position -->
@@ -85,7 +85,7 @@
         <!-- Submit Button -->
         <button type="submit"
             class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700">
-            Create
+            Edit
         </button>
     </div>
 </form>
