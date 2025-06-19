@@ -87,7 +87,7 @@
 
             </div>
 
-            <form action="/module" method="post" class="flex flex-col p-7 gap-7">
+            <form action="/submodule" method="post" class="flex flex-col p-7 gap-7">
                 @csrf
 
                 {{-- Role Details --}}
@@ -156,7 +156,6 @@
                     </div>
                 </div>
 
-
                 {{-- Button --}}
                 <div class="grid lg:grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
@@ -171,8 +170,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </form>
 
 

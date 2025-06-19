@@ -31,15 +31,7 @@
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
-                <div class="w-32 p-4 text-center">
-                    <a href="/employee" class="text-gray-600 hover:text-blue-800 font-inter">Alphalist</a>
-                </div>
-                <div class="flex-none w-auto p-4 text-center">
-                    <a href="{{ route('manpower-requisition') }}" class="text-gray-600 hover:text-blue-800 font-inter">Manpower Requisition</a>
-                </div>
-                <div class="flex-none w-auto p-4 border-b-2 border-blue-900 text-center">
-                    <a href="{{ route('vacancy-list') }}" class="font-semibold text-blue-900">Vacancy List</a>
-                </div>
+               <x-employee.submodules selected="Vacancy List" />
             </div>
 
             <div class="flex justify-between">
