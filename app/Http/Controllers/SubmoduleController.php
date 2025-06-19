@@ -23,6 +23,7 @@ class SubmoduleController extends Controller
 
     public function store(Request $request)
     {
+       
         // Validate the form inputs
         $request->validate([
             'submodule_name' => 'required|string|max:255',

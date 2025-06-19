@@ -30,19 +30,10 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
-            <div class="flex h-14">
-                <div class="group hover:border-b-2 w-32 p-4 text-center">
-                    <a href="/employee" class="text-gray-600 hover:text-gray-600 font-inter">Alphalist</a>
-                </div>
-                <div class="flex-none w-auto border-b-2 border-blue-900 p-4 text-center">
-                    <a href="{{ route('manpower-requisition') }}" class="font-semibold text-[#071d49]">Manpower Requisition</a>
-                </div>
-                <div class="group hover:border-b-2 flex-none w-auto p-4 text-center">
-                    <a href="{{ route('vacancy-list') }}" class="text-gray-600 hover:text-gray-600 font-inter">Vacancy List</a>
-                </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
+            <div class="flex h-14 border-b border-gray-200">
+               <x-employee.submodules selected="Manpower Requisition" />
             </div>
-        </div>
 
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             <div class="flex flex-col lg:flex-row justify-between">
@@ -320,7 +311,7 @@
                                                         d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
                                                     <path
                                                         d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                                    <path
+                                                    <path   
                                                         d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
                                                 </svg>
                                             </a>
