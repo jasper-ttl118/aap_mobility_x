@@ -12,7 +12,7 @@ class EditEmployeeModal extends Component
     public $employee_id;
     #[Rule('required|alpha')]
     public $employee_firstname;
-
+                                                                                        
     #[Rule('required|regex:/^[A-Za-z .]+$/')]
     public $employee_middlename;
 
@@ -100,6 +100,7 @@ class EditEmployeeModal extends Component
             ]);
         }
     }
+    
     public function render()
     {
         return view('livewire.employee.alphalist.edit-employee-modal');

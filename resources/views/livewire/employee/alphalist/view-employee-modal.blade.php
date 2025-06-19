@@ -1,14 +1,27 @@
 <div>
+    <div wire:loading>
+        <x-loading-modal />
+    </div>
+
     @if ($viewOpen)
-         <div x-cloak x-show="open_view_employee" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
-            <!-- View Intern Modal -->
-            <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6" @click.stop @click.away="open_view_employee=false">
-                <!-- Modal Header -->
-                <div class="flex justify-between items-center border-b pb-3">
-                    <h2 class="text-xl font-semibold text-[#151847]">Employee Details</h2>
-                    <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600" @click="open_view_employee=false">
-                        &#10005;
-                    </button>
+        <!-- View Employee Modal -->
+        <div wire:loading.remove class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6" @click.stop @click.away="open_view_employee=false">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center border-b pb-3">
+                <h2 class="text-xl font-semibold text-[#151847]">Employee Details</h2>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600" wire:click="close">
+                    &#10005;
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="text-gray-700 p-4 space-y-4">
+                <!-- Employee Name -->
+                <div>
+                    <label class="font-medium text-[#151847]">Employee Name</label>
+                    <p class="mt-1">
+                        {{ $employee->employee_firstname . ' ' . $employee->employee_middlename . ' ' . $employee->employee_lastname }}
+                    </p>
                 </div>
 
                 <!-- Modal Body -->

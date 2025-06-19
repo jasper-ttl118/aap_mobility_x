@@ -50,7 +50,6 @@
                     </div>
                 </div>
 
-
                 <!-- Contact Number -->
                 <div>
                     <label class="font-medium text-xs">Contact Number</label>
