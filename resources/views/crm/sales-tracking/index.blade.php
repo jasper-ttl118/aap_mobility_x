@@ -64,8 +64,8 @@
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
-                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
                                         <div class="flex flex-row w-full h-[60%]">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
                                                 {{-- Total Sales --}}
@@ -212,8 +212,8 @@
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
                                      class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
-                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
                                         <div class="flex flex-row w-full h-[60%]">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
                                                 {{-- Overall --}}
@@ -257,7 +257,7 @@
                                             <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
                                         <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Disitribution Analysis</div>
                                         <div class="flex flex-col w-full h-[85%]">
                                             <span class="text-[#071d49] font-regular text-sm">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</span>
@@ -333,8 +333,8 @@
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
-                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0">
+                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4">
                                         <div class="flex flex-row w-full h-[60%]">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
                                                 {{-- Overall --}}
@@ -385,40 +385,79 @@
                                             </div>
                                         </div>
                                         <div class="flex flex-col w-full justify-center h-[50%]">
-                                            <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                            <span class="text-[#071d49] font-extra text-sm truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md gap-y-8">
-                                        <div class="flex flex-col w-full h-[50%]">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md gap-2">
+                                        <div class="flex flex-col w-full h-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
                                             <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Team Performance</span>
-                                            <span class="text-[#071d49] font-regular text-sm">Top Closer: Alex Smith (417 deals - 41.7% of total)</span>
-                                            <span class="text-[#071d49] font-regular text-sm">Team Contribution:</span>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                <span class="text-[#071d49] font-semibold text-sm uppercase">Top Closer:</span>
+                                                <span class=" text-[#071d49] text-sm">Alex Smith (417 deals - 41.7% of total)</span>
+                                            </div>
+                                            <span class="text-[#071d49] font-bold text-sm">Team Contribution:</span>
                                             <div class="flex flex-col px-7">
-                                                <span class="text-[#071d49] font-regular text-sm">Alex Smith (417 deals - 41.7% of total)</span>
-                                                <span class="text-[#071d49] font-regular text-sm">Lebron James (320 deals - 32.0% of total)</span>
-                                                <span class="text-[#071d49] font-regular text-sm">Carlos Yulo (183 deals - 18.3% of total)</span>
-                                                <span class="text-[#071d49] font-regular text-sm">Kathryn Bernardo (80 deals - 8% of total)</span>
-                                            </div>
-                                            <span class="text-[#071d49] font-regular text-sm">Deals per Rep Average: 80 deals</span>
-                                            <span class="text-[#071d49] font-regular text-sm">Top Performer Impact: Alex closes 2.1x the team average</span>
-                                        </div>
-                                        <div class="flex flex-row w-full h-[50%]">
-                                            <div class="flex flex-col w-[50%]">
-                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Efficiency Metrics</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Average Closing Time:</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">14 days</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Fastest Close: 3 days</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Longest Close: 45 days</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Median Closing Time: 12 days</span>
-                                            </div>
-                                            <div class="flex flex-col w-[50%]">
-                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Deals Composition</span>
-                                                <div class="flex flex-row w-full items-center">
-                                                    <span class="text-[#071d49] font-bold text-sm uppercase">Growth Rate:</span><span class="text-green-500"> (+20%)</span>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Alex Smith </span>
+                                                    <span class=" text-[#071d49] text-sm">(417 deals - 41.7% of total)</span>
                                                 </div>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Retention Rate: 83.3% (based on renewals)</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">Expansion Rate: 37.5% (6 upsells from existing base)</span>
-                                                <span class="text-[#071d49] font-regular text-sm uppercase">New Client Acquisition: 20 new relationships</span>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Lebron James </span>
+                                                    <span class=" text-[#071d49] text-sm">(320 deals - 32.0% of total)</span>
+                                                </div>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Carlos Yulo</span>
+                                                    <span class=" text-[#071d49] text-sm">(183 deals - 18.3% of total)</span>
+                                                </div>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Kathryn Bernardo</span>
+                                                    <span class=" text-[#071d49] text-sm">(80 deals - 8% of total)</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Deals per Rep Average:</span>
+                                                    <span class=" text-[#071d49] text-sm">80 deals</span>
+                                            </div>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Top Performer Impact:</span>
+                                                    <span class=" text-[#071d49] text-sm">Alex closes 2.1x the team average</span>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row w-full h-[50%] gap-x-2">
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
+                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Efficiency Metrics</span>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Average Closing Time:</span>
+                                                    <span class=" text-[#071d49] text-sm">14 days</span>
+                                                </div>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Fastest Close: </span><span class="text-sm text-[#071d49]">3 days</span>
+                                                </div>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Longest Close: </span><span class="text-sm text-[#071d49]">45 days</span>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Median Closing Time:</span>
+                                                    <span class=" text-[#071d49] text-sm">12 days</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
+                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Deals Composition</span>
+                                                <div class="flex flex-row w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Growth Rate:</span><span class="text-green-500 text-sm"> (+20%)</span>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Retention Rate: 83.3%</span>
+                                                    <span class=" text-[#071d49] text-sm">(based on renewals)</span>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Expansion Rate: 37.5%</span>
+                                                    <span class="text-[#071d49] text-sm">(6 upsells from existing base)</span>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">New Client Acquisition: 20</span>
+                                                    <span class="text-[#071d49] text-sm">(new relationships)</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

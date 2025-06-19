@@ -34,8 +34,8 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14">
                 <x-employee.submodules selected="Alphalist" />
             </div>
         </div>

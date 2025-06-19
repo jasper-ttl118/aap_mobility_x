@@ -30,10 +30,11 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14 ">
                <x-employee.submodules selected="Manpower Requisition" />
             </div>
+        </div>
 
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             <div class="flex flex-col lg:flex-row justify-between">
@@ -681,7 +682,7 @@
 
                 {{-- Rejected Table --}}
                 <template x-if="selected === 'rejected'">
-                    <table class="w-[1000px] w-full text-center text-sm text-gray-500">
+                    <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>    
                                 <th scope="col" class=" py-3">Ticket ID</th>
