@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('user', UserController::class);
     
         //route for employee
+        Route::get('/employee/manpower-requisition', [EmployeeController::class, 'manpowerRequisition'])->name('manpower-requisition');
+        Route::get('/employee/vacancy-list', [EmployeeController::class, 'vacancyList'])->name('vacancy-list');
         Route::resource('employee', EmployeeController::class);
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);

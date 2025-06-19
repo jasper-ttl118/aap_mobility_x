@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Employee;
+namespace App\Livewire\Employee\Alphalist;
 
-use App\Models\Employee;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use App\Models\Employee;
 
-class EmployeeEdit extends Component
+class EditInternModal extends Component
 {
     public $employee;
     public $employee_id;
@@ -36,6 +36,30 @@ class EmployeeEdit extends Component
 
     #[Rule('required')]
     public $employee_status;
+
+    public $required_hours;
+
+    protected $listeners = ["loadEmployeeInfo", "resetEmployeeProfile"];
+
+    public function loadEmployeeInfo($employee_id)
+    {
+         $this->employee = Employee::find($employee_id);
+         $this->employee_firstname =  $this->employee->employee_firstname;
+         $this->employee_middlename = $this->employee->employee_middlename;
+         $this->employee_lastname =  $this->employee->employee_lastname;
+         $this->employee_email = $this->employee->employee_email;
+         $this->employee_address = $this->employee->employee_address;
+         $this->employee_position = $this->employee->employee_position;
+         $this->employee_department = $this->employee->employee_department;
+         $this->employee_contact_number = $this->employee->employee_contact_number;
+         $this->employee_status = $this->employee->employee_status;
+         $this->required_hours = 400;
+    }
+
+    public function resetEmployeeProfile()
+    {
+        $this->employee = null;
+    }
 
     public function mount(Employee $employee)
     {
@@ -80,9 +104,9 @@ class EmployeeEdit extends Component
             ]);
         }
     }
-    
+
     public function render()
     {
-        return view('livewire.employee.employee-edit');
+        return view('livewire.employee.alphalist.edit-intern-modal');
     }
 }

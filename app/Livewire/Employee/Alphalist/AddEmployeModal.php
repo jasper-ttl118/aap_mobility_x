@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Livewire\Employee;
+namespace App\Livewire\Employee\Alphalist;
 
 use App\Models\Employee;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
-class EmployeeAdd extends Component
+class AddEmployeModal extends Component
 {
     #[Rule('required|alpha')]
     public $employee_firstname = '';
@@ -65,9 +65,10 @@ class EmployeeAdd extends Component
             ]);
         }
     }
-    
+
+
     public function render()
     {
-        return view('livewire.employee.employee-add');
+        return view('livewire.employee.alphalist.add-employe-modal');
     }
 }

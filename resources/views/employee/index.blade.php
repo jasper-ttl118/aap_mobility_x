@@ -36,10 +36,10 @@
                     <a href="#" class="font-semibold text-blue-900 ">Alphalist</a>
                 </div>
                 <div class="flex-none w-auto p-4 text-center">
-                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Manpower Requisition</a>
                 </div>
                 <div class="flex-none w-auto p-4 text-center">
-                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Manpower Requisition</a>
+                    <a href="#" class="text-gray-600 hover:text-blue-800 font-inter">Vacancy List</a>
                 </div>
             </div>
 

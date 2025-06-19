@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Livewire\Employee;
+namespace App\Livewire\Employee\Alphalist;
 
 use App\Models\Employee;
-use DateTime;
 use Livewire\Component;
 
-class EmployeeModals extends Component
+class ViewEmployeeModal extends Component
 {
-
     public $employee;
     public $viewOpen = false;
     protected $listeners = ['toggleModal' => 'toggle'];
@@ -23,9 +21,8 @@ class EmployeeModals extends Component
     {
         $this->viewOpen = false;
     }
-
     public function render()
     {
-        return view('livewire.employee.employee-modals');
+        return view('livewire.employee.alphalist.view-employee-modal');
     }
 }
