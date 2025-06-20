@@ -2,27 +2,67 @@
 
 namespace App\Livewire\Employee\ManpowerRequisition;
 
+use App\Models\Requisition;
 use Livewire\Component;
 
 class ViewRequisitionTicket extends Component
 {
-    public $job_position;
-    public $job_description;
-    public $department;
-    public $requisition_type;
-    public $requestor_name;
-    public $salary_min;
-    public $salary_max;
-    public function mount()
+
+    public $requisition;
+    protected $listeners = ['loadRequisitionRequest'];
+
+    public function loadRequisitionRequest($requisition_id)
     {
-         $this->job_position = "Junior Full Stack Developer";
-         $this->job_description = "Proficient In Laravel\nKnowledgeable in MySQL";
-         $this->department;
-         $this->requisition_type;
-         $this->requestor_name = "John Doe";
-         $this->salary_min = 200000;
-         $this->salary_max = 250000;
+        $this->requisition = Requisition::find($requisition_id);
     }
+    public function approve()
+    {
+        $query = Requisition::find($this->requisition->requisition_id)->update(
+[
+                'requisition_status' => 2
+            ]
+        );
+
+        if($query){      
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Requisition Approved!',
+            ]);
+
+            $this->dispatch('close-modal');
+        }
+        else{
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An Error Occured!',
+            ]);
+        }
+    }
+
+    public function reject()
+    {
+        $query = Requisition::find($this->requisition->requisition_id)->update(
+[
+                'requisition_status' => 3
+            ]
+        );
+
+        if($query){      
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Requisition Rejected!',
+            ]);
+
+            $this->dispatch('close-modal');
+        }
+        else{
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An Error Occured!',
+            ]);
+        }
+    }
+
     public function render()
     {
         return view('livewire.employee.manpower-requisition.view-requisition-ticket');

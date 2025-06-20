@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Intern;
+use App\Models\Requisition;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Models\Employee;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
 
 class EmployeeController extends Controller
 {
@@ -107,12 +106,19 @@ class EmployeeController extends Controller
 
     public function manpowerRequisition()
     {
-        return view('employee.manpower-requisition.index');
+        $requisitions = Requisition::whereIn('requisition_status', [1, 2, 3])->get()->groupBy('requisition_status');
+
+        $pendingRequisitions  = $requisitions->get(1, collect());
+        $approvedRequisitions = $requisitions->get(2, collect());
+        $rejectedRequisitions = $requisitions->get(3, collect());
+
+        return view('employee.manpower-requisition.index', compact('pendingRequisitions', 'approvedRequisitions', 'rejectedRequisitions'));
     }
 
     public function vacancyList()
     {
-        return view('employee.vacancy-list.index');
+        $approvedRequisitions = Requisition::where('requisition_status', '=', 2)->get();
+        return view('employee.vacancy-list.index', compact('approvedRequisitions'));
     }
 
 }

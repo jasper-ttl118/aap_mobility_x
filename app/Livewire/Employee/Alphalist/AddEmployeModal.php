@@ -11,7 +11,7 @@ class AddEmployeModal extends Component
     #[Rule('required|alpha')]
     public $employee_firstname = '';
 
-    #[Rule('required|alpha')]
+    #[Rule('regex:/^[A-Za-z.]+$/')]
     public $employee_middlename = '';
 
     #[Rule('required|alpha')]
@@ -57,6 +57,8 @@ class AddEmployeModal extends Component
                 'title' => 'Success',
                 'content' => 'Employee Added Successfully!',
             ]);
+
+            $this->dispatch('close-modal');
         }
         else{
             $this->dispatch('show-toast', [
@@ -65,7 +67,6 @@ class AddEmployeModal extends Component
             ]);
         }
     }
-
 
     public function render()
     {

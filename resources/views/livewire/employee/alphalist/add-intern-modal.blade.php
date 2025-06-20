@@ -11,11 +11,11 @@
         <div>
             <label class="font-medium text-xs">Intern Name</label>
             <div class="grid grid-cols-3 gap-2 mt-1">
-                <input type="text" name="intern_firstname" placeholder="First" wire:model="intern_firstname"
+                <input type="text" name="intern_firstname" placeholder="First Name" wire:model="intern_firstname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_middlename" placeholder="Middle" wire:model="intern_middlename"
+                <input type="text" name="intern_middlename" placeholder="Middle Name" wire:model="intern_middlename"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_lastname" placeholder="Last" wire:model="intern_lastname"
+                <input type="text" name="intern_lastname" placeholder="Last Name" wire:model="intern_lastname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
             </div>
             @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
@@ -56,7 +56,7 @@
             <label class="text-xs font-medium">School</label>
             <input type="text" name="intern_school" wire:model="intern_school"
                 class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
-                placeholder="University of Caloocan City">
+                placeholder="e.g. University of Caloocan City">
             @error('intern_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
         

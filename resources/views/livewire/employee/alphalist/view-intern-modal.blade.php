@@ -3,7 +3,7 @@
         <x-loading-modal />
     </div>
     @if ($viewOpen)
-         <div wire:loading.remove x-cloak x-show="open_view_intern" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
+         <div wire:loading.remove x-cloak x-show="open_view_intern" id="viewinternModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
             <!-- View Intern Modal -->
             <div class="overflow-x-auto hide-scrollbar bg-white rounded-lg shadow-lg h-[90%] lg:h-[93%] w-[90%] lg:w-full max-w-lg p-6" @click.stop @click.away="open_view_intern=false">
                 <!-- Modal Header -->
@@ -20,56 +20,56 @@
                     <div>
                         <label class="font-medium text-[#151847]">Intern Name</label>
                         <p class="mt-1">
-                            {{ $employee->employee_firstname . ' ' . $employee->employee_middlename . ' ' . $employee->employee_lastname }}
+                            {{ $intern->intern_firstname . ' ' . $intern->intern_middlename . ' ' . $intern->intern_lastname }}
                         </p>
                     </div>
 
                     <!-- Contact Number -->
                     <div>
                         <label class="font-medium text-[#151847]">Contact Number</label>
-                        <p class="mt-1" >{{ $employee->employee_contact_number }}</p>
+                        <p class="mt-1" >{{ $intern->intern_contact_number }}</p>
                     </div>
 
                     <!-- Email -->
                     <div>
                         <label class="font-medium text-[#151847]">Email</label>
-                        <p class="mt-1">{{ $employee->employee_email }}</p>
+                        <p class="mt-1">{{ $intern->intern_email }}</p>
                     </div>
 
                     <!-- Address -->
                     <div>
                         <label class="font-medium text-[#151847]">Address</label>
-                        <p class="mt-1">{{ $employee->employee_address }}</p>
+                        <p class="mt-1">{{ $intern->intern_address }}</p>
                     </div>
 
                     <!-- Department & Position -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="font-medium text-[#151847]">Department</label>
-                            <p class="mt-1 text-md">{{ $employee->employee_department }}</p>
+                            <p class="mt-1 text-md">{{ $intern->intern_department }}</p>
                         </div>
                         <div>
                             <label class="font-medium text-[#151847]">Position</label>
-                            <p class="mt-1 text-md">{{ $employee->employee_position }}</p>
+                            <p class="mt-1 text-md">{{ $intern->intern_position }}</p>
                         </div>
                     </div>
 
                     <!-- Status -->
                     <div>
                         <label class="font-medium text-[#151847]">Status</label>
-                        <span class="inline-block px-3 py-1 rounded-full text-sm font-medium {{ ($employee->employee_status == '1') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}"
-                        >{{ ($employee->employee_status == '1') ? 'Active' : 'Inactive'}}</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-sm font-medium {{ ($intern->intern_status == '1') ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}"
+                        >{{ ($intern->intern_status == '1') ? 'Active' : 'Inactive'}}</span>
                     </div>
 
                     <!-- Created At -->
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="font-medium text-[#151847]">Created At</label>
-                            <p class="mt-1">{{ date('F j, Y - g:i A',strtotime($employee->employee_date_created)) }}</p>
+                            <p class="mt-1">{{ date('F j, Y - g:i A',strtotime($intern->intern_date_created)) }}</p>
                         </div>
                         <div>
                             <label class="font-medium text-[#151847]">Updated At</label>
-                            <p class="mt-1">{{ date('F j, Y - g:i A',strtotime($employee->employee_date_updated)) }}</p>
+                            <p class="mt-1">{{ date('F j, Y - g:i A',strtotime($intern->intern_date_updated)) }}</p>
                         </div>
                     </div>
                 </div>

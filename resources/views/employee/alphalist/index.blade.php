@@ -76,7 +76,6 @@
 
             {{-- List of Employees --}}
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-                 {{-- <livewire:employee.employee-table :$employees> --}}
                 <template x-if="selected === 'employees'">
                     <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
@@ -97,6 +96,7 @@
                                     <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
                                         {{ $employee->employee_id }}</th>
                                     <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}
+                                        {{ $employee->employee_middlename }}
                                         {{ $employee->employee_lastname }}</td>
                                     <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_email }}</td>
                                     <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_number }}</td>
@@ -114,17 +114,17 @@
                                     <td class="w-[12.5%] py-4">
                                         <div class="flex flex-row justify-center items-center gap-2">
                                     {{-- {{$employee->employee_id}} --}}
-                                        <a
+                                            <a
                                                 x-data="{ disabled: false }"
                                                 x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
                                                 @click="
                                                     if (!disabled) {
                                                         disabled = true;
                                                         open_view_employee = true;
-                                                        Livewire.dispatch('toggleModal', { employeeId: {{ $employee->employee_id }} });
+                                                        Livewire.dispatch('toggleModal', { employee_id: {{ $employee->employee_id }} });
                                                         setTimeout(() => disabled = false, 1000); 
                                                     }
-                                                "class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
+                                                " class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                             >
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="size-4">
@@ -151,7 +151,7 @@
                                             </a>
 
                                             <a href="javascript:void(0)"
-                                                @click="open_delete_employee = true; deleteUrl = '{{ url('employee/' . $employee->employee_id . '/delete') }}'"
+                                                @click="open_delete_employee = true; Livewire.dispatch('getEmployeeId', { employee_id : {{ $employee->employee_id }} });"
                                                 class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="size-4">
@@ -266,7 +266,7 @@
         {{-- Add Employee Modal --}}
         <template x-if="open_add_employee">
             <div @click="open_add_employee=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
+                <div @click.stop>
                     <livewire:employee.alphalist.add-employe-modal />
                 </div>
             </div>
@@ -274,11 +274,11 @@
         
         {{-- Edit Employee Modal --}}
         <div x-show="open_edit_employee" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.alphalist.edit-employee-modal />
             </div>
         </div>
-
+        
         {{-- Delete Employee Alert --}}
         <div x-cloak id="delete-modal" 
             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
@@ -298,7 +298,7 @@
         </template>
 
         <div x-show="open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit_intern=false; window.Livewire.dispatch('resetInternProfile')">
+            <div @click.away="open_edit_intern=false; window.Livewire.dispatch('resetInternProfile')">
                 <livewire:employee.alphalist.edit-intern-modal />
             </div>
         </div>

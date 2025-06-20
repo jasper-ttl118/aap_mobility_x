@@ -11,7 +11,7 @@ class EditInternModal extends Component
     public $intern;
     #[Rule('required|alpha')]
     public $intern_firstname;
-    #[Rule('required|alpha')]
+    #[Rule('regex:/^[A-Za-z .]+$/')]
     public $intern_middlename;
     #[Rule('required|alpha')]
     public $intern_lastname;

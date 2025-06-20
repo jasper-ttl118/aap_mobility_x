@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Intern extends Model
 {
-    public $timestamps = false;
+    // public $timestamps = false;
     protected $primaryKey = 'intern_id';
     protected $fillable = [
         'intern_firstname',

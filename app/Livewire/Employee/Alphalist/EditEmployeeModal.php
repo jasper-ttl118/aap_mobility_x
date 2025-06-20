@@ -13,8 +13,8 @@ class EditEmployeeModal extends Component
     #[Rule('required|alpha')]
     public $employee_firstname;
                                                                                         
-    #[Rule('required|regex:/^[A-Za-z .]+$/')]
-    public $employee_middlename;
+    #[Rule('regex:/^[A-Za-z .]+$/')]
+    public $employee_middlename = '';
 
     #[Rule('required|alpha')]
     public $employee_lastname;
@@ -41,6 +41,7 @@ class EditEmployeeModal extends Component
     public function loadEmployeeInfo($employee_id)
     {
          $this->employee = Employee::find($employee_id);
+         $this->employee_id = $employee_id;
          $this->employee_firstname =  $this->employee->employee_firstname;
          $this->employee_middlename = $this->employee->employee_middlename;
          $this->employee_lastname =  $this->employee->employee_lastname;
@@ -55,20 +56,6 @@ class EditEmployeeModal extends Component
     public function resetEmployeeProfile()
     {
         $this->employee = null;
-    }
-
-    public function mount(Employee $employee)
-    {
-        $this->employee_id = $employee->employee_id;
-        $this->employee_firstname = $employee->employee_firstname;
-        $this->employee_middlename = $employee->employee_middlename;
-        $this->employee_lastname = $employee->employee_lastname;
-        $this->employee_email = $employee->employee_email;
-        $this->employee_address = $employee->employee_address;
-        $this->employee_position = $employee->employee_position;
-        $this->employee_department = $employee->employee_department;
-        $this->employee_contact_number = $employee->employee_contact_number;
-        $this->employee_status = $employee->employee_status;
     }
 
     public function edit()

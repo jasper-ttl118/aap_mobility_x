@@ -9,7 +9,6 @@
             @method('PUT')
 
             <div class="text-gray-700 py-6 px-4 space-y-3 bg-white shadow-md mt-1 rounded-xl border border-gray-200">
-
                 <!-- Heading -->
                 <div class="border-b border-gray-200 pb-3">
                     <h1 class="text-base font-semibold uppercase">Update Employee</h1>
