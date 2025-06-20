@@ -201,7 +201,7 @@
         </div>
 
         <div x-data="{card:''}" class="flex md:w-full md:justify-center">
-            <div class="w-[440px] lg:w-full h-[400px] lg:h-[200px] md:ml-0 md:w-[80%]  flex flex-col lg:flex-row mt-3 lg:-mt-3 gap-4 ml-5 lg:ml-0">
+            <div class="w-[440px] lg:w-full h-[400px] lg:h-[200px] md:ml-0 md:w-[80%] md:h-[250px]  flex flex-col md:flex-row lg:flex-row mt-3 lg:-mt-3 gap-4 ml-5 lg:ml-0">
                 {{-- Unpaid Commission --}}
                 <div class="flex flex-col items-center justify-start w-full lg:w-[70%] h-full bg-white rounded-xl shadow-md">
                     <div class="bg-[#bec1d8] w-full h-[25%] rounded-t-xl flex justify-start items-center text-[#3584e3] px-5 gap-2">

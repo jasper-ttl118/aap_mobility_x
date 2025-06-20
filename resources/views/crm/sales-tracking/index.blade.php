@@ -59,19 +59,22 @@
                                 <span class="text-[#071d49] font-bold text-lg lg:text-xl truncate">₱22,533,970.40</span>
                             </div>
                         </div>
+                        
                         <!-- Modal overlay -->
                         <div x-cloak x-show="open == 'open1'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
-                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                        <div class="flex flex-row w-full h-[60%]">
+                                <div class="flex flex-col lg:flex-row w-full h-[730px] lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[50%] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar bg-pink-200">
+                                        <div class="flex flex-row w-full h-full lg:h-[60%]">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
                                                 {{-- Total Sales --}}
                                                 <div class="flex flex-col w-full">
-                                                    <div class="flex flex-row w-full gap-2">
-                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Total Sales</span>
+                                                    <div class="flex flex-row w-full gap-x-2">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider whitespace-normal">
+                                                            <img src="{{ asset('deal.png') }}" class="inline-block align-text-top size-4" alt="deals">
+                                                            Total Sales</span>
                                                         <span class="text-green-400 font-regular text-sm bg-opacity-20  rounded-md"> +22%</span>
                                                     </div>
                                                     <span class="text-[#071d49] font-regular text-sm">₱22,533,970.40</span>
@@ -88,7 +91,7 @@
                                                     <span class="text-[#071d49] font-regular text-sm"> ₱5,000,000.00</span>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col w-[50%] justify-center h-full gap-y-4">
+                                            <div class="flex flex-col w-[50%] justify-start h-full gap-y-4">
                                                 {{-- Highest Sales --}}
                                                 <div class="flex w-full flex-col">
                                                     <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Largest Sales</span>
@@ -102,12 +105,13 @@
                                             </div>
                                         </div>
                                         <div class="flex flex-col w-full justify-center h-[50%]">
-                                            <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                            <span class="text-[#071d49] font-extra text-sm truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
                                     
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md">
-                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Sales Summary</div>
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[60%] overflow-x-auto hide-scrollbar lg:h-full justify-center items-center rounded-md">
+                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center gap-x-2">
+                                            Sales Summary</div>
                                         <div class="border-[#151847] border w-full h-[70%]">
                                             <table class="table-fixed w-full h-[15%] bg-[#f3f4f6] rounded-t-md">
                                                 <thead class="gap-5 w-full h-full">
@@ -170,7 +174,7 @@
                                             </table>
 
                                         </div>
-                                        <div class="w-full h-[15%] flex flex-row items-center gap-x-2">
+                                        <div class="w-full h-[15%] flex flex-row justify-center items-center gap-x-2">
                                             <span class="flex items-center h-[40%] text-sm text-[#071d49]">Label:</span>
                                             <div class="flex flex-row w-[80%] h-[60%] items-center text-sm text-[#071d49]">
                                                 <div class="gap-x-2 flex flex-row w-[34%] lg:w-[35%] h-full items-center">
@@ -213,12 +217,13 @@
                             <div @click.outside="open=''" 
                                      class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
                                 <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                        <div class="flex flex-row w-full h-[60%]">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[1000px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar bg-yellow-200">
+                                        <div class="flex flex-row w-full h-[50%]">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
                                                 {{-- Overall --}}
                                                 <div class="flex flex-col w-full">
-                                                    <div class="flex flex-row w-full gap-2">
+                                                    <div class="flex flex-row w-full gap-x-2">
+                                                        <img src="{{ asset('forecasting.png') }}" class="size-4" alt="sales">
                                                         <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Overall Average:</span>
                                                     </div>
                                                     <span class="text-[#071d49] font-regular text-sm">₱10,000.00</span>
@@ -257,13 +262,15 @@
                                             <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                        <div class="text-base font-bold text-[#071d49] w-full h-[15%] uppercase flex items-center">Disitribution Analysis</div>
-                                        <div class="flex flex-col w-full h-[85%]">
-                                            <span class="text-[#071d49] font-regular text-sm">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</span>
-                                            <span class="text-[#071d49] font-regular text-sm">20 deals ₱5,000 - ₱20,000 (55.6% of deals, 48.3% of revenue)</span>
-                                            <span class="text-[#071d49] font-regular text-sm">11 deals < ₱5,000 (30.6% of deals, 6.5% of revenue)</span>
-                                            <div class="flex w-full h-[300px]">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[800px] lg:h-full justify-center items-center border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar bg-green-200">
+                                        <div class="text-base font-bold text-[#071d49] w-full h-full lg:h-[15%] uppercase flex items-center gap-x-2">
+                                            <img src="{{ asset('distribution.png') }}" class="size-4" alt="sales">
+                                            Disitribution Analysis</div>
+                                        <div class="flex flex-col w-full h-full lg:h-[85%] ">
+                                            <li class="text-[#071d49] font-regular text-sm px-2">5 deals > ₱20,000 (13.9% of deals, 45.2% of revenue)</li>
+                                            <li class="text-[#071d49] font-regular text-sm px-2">20 deals ₱5,000 - ₱20,000 (55.6% of deals, 48.3% of revenue)</li>
+                                            <li class="text-[#071d49] font-regular text-sm px-2">11 deals < ₱5,000 (30.6% of deals, 6.5% of revenue)</li>
+                                            <div class="flex w-full h-[300px] mt-4">
                                                 <x-analytics-display
                                                     title="Deals"
                                                     :labels="['Deal 1', 'Deal 2', 'Deal 3', 'Deal 4', 'Deal 5']"
@@ -333,14 +340,16 @@
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
-                                <div class="flex flex-col lg:flex-row w-full lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[300px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4">
-                                        <div class="flex flex-row w-full h-[60%]">
-                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-4">
+                                <div class="flex flex-col lg:flex-row w-full h-[730px] lg:h-full justify-start items-start py-8 lg:py-6 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[800px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4 overflow-x-auto hide-scrollbar bg-green-200">
+                                        <div class="flex flex-row w-full h-full lg:h-[60%] gap-y-10">
+                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-2">
                                                 {{-- Overall --}}
                                                 <div class="flex flex-col w-full">
-                                                    <div class="flex flex-row w-full gap-2">
-                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Overall Deal Closed:</span>
+                                                    <div class="flex flex-row w-full">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider whitespace-normal">
+                                                            <img src="{{ asset('deal.png') }}" class="inline-block align-text-top size-4 mr-2" alt="deals">
+                                                            Overall Deal Closed:</span>
                                                     </div>
                                                     <span class="text-[#071d49] font-regular text-sm">109,073</span>
                                                 </div>
@@ -389,28 +398,30 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md gap-2">
-                                        <div class="flex flex-col w-full h-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                            <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Team Performance</span>
+                                        <div class="flex flex-col w-full h-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-yellow-200">
+                                            <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2 flex items-center gap-x-2">
+                                                <img src="{{ asset('trophy.png') }}" class="size-4" alt="deals">
+                                                Team Performance</span>
                                             <div class="flex flex-row w-full items-start gap-x-2">
                                                 <span class="text-[#071d49] font-semibold text-sm uppercase">Top Closer:</span>
                                                 <span class=" text-[#071d49] text-sm">Alex Smith (417 deals - 41.7% of total)</span>
                                             </div>
                                             <span class="text-[#071d49] font-bold text-sm">Team Contribution:</span>
-                                            <div class="flex flex-col px-7">
+                                            <div class="flex flex-col">
                                                 <div class="flex flex-row w-full items-start gap-x-2">
-                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Alex Smith </span>
+                                                    <li class="text-[#071d49] font-semibold text-sm uppercase px-2">Alex Smith </li>
                                                     <span class=" text-[#071d49] text-sm">(417 deals - 41.7% of total)</span>
                                                 </div>
                                                 <div class="flex flex-row w-full items-start gap-x-2">
-                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Lebron James </span>
+                                                    <li class="text-[#071d49] font-semibold text-sm uppercase px-2">Lebron James </li>
                                                     <span class=" text-[#071d49] text-sm">(320 deals - 32.0% of total)</span>
                                                 </div>
                                                 <div class="flex flex-row w-full items-start gap-x-2">
-                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Carlos Yulo</span>
+                                                    <li class="text-[#071d49] font-semibold text-sm uppercase px-2">Carlos Yulo</li>
                                                     <span class=" text-[#071d49] text-sm">(183 deals - 18.3% of total)</span>
                                                 </div>
                                                 <div class="flex flex-row w-full items-start gap-x-2">
-                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Kathryn Bernardo</span>
+                                                    <li class="text-[#071d49] font-semibold text-sm uppercase px-2">Kathryn Bernardo</li>
                                                     <span class=" text-[#071d49] text-sm">(80 deals - 8% of total)</span>
                                                 </div>
                                             </div>
@@ -424,8 +435,10 @@
                                             </div>
                                         </div>
                                         <div class="flex flex-row w-full h-[50%] gap-x-2">
-                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Efficiency Metrics</span>
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-blue-200">
+                                                <span class="text-[#071d49] font-bold font-regular text-sm uppercase mb-2 flex gap-x-2 items-center">
+                                                    <img src="{{ asset('stopwatch.png') }}" class="size-4" alt="deals">
+                                                    Efficiency Metrics</span>
                                                 <div class="flex flex-col w-full items-start">
                                                     <span class="text-[#071d49] font-semibold text-sm uppercase">Average Closing Time:</span>
                                                     <span class=" text-[#071d49] text-sm">14 days</span>
@@ -441,8 +454,10 @@
                                                     <span class=" text-[#071d49] text-sm">12 days</span>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar">
-                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2">Deals Composition</span>
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-orange-200">
+                                                <span class="text-[#071d49] font-bold font-regular text-sm uppercase mb-2 gap-x-2 flex items-center">
+                                                    <img src="{{ asset('target.png') }}" class="size-4" alt="deals">
+                                                    Deals Composition</span>
                                                 <div class="flex flex-row w-full items-start gap-x-2">
                                                     <span class="text-[#071d49] font-semibold text-sm uppercase">Growth Rate:</span><span class="text-green-500 text-sm"> (+20%)</span>
                                                 </div>
@@ -478,13 +493,136 @@
                         <div x-cloak x-show="open == 'open4'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
                             <div @click.outside="open=''" 
-                                    class="relative flex flex-row bg-white rounded-b-lg rounded-t-xl shadow-lg">
-                                <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
-                                    <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.25 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5zm-1.543 9.207a1 1 0 0 1-1.414-1.414l14-14a1 1 0 1 1 1.414 1.414l-14 14zM13 17.25a3.75 3.75 0 1 0 7.5 0 3.75 3.75 0 0 0-7.5 0zM7.25 8.5a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zm11.25 8.75a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0z" fill="#000000"/></svg>
-                                </div>
-                                <div class="flex flex-col w-full h-[70%] justify-center items-start py-2">
-                                    <span class="text-[#071d49] font-extrabold text-xs lg:text-sm uppercase tracking-wider lg:tracking-wider">Success Rate</span>                             
-                                    <span class="text-[#071d49] font-bold text-lg lg:text-xl">64%</span>
+                                    class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
+                                <div class="flex flex-col lg:flex-row w-full h-[730px] lg:h-full justify-start items-start py-6 lg:py-4 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[1200px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4 overflow-x-auto hide-scrollbar bg-blue-200">
+                                        <div class="flex flex-row w-full h-full lg:h-[60%]">
+                                            <div class="flex flex-col justify-center w-[50%] h-full gap-y-2">
+                                                {{-- Overall --}}
+                                                <div class="flex flex-col w-full">
+                                                    <div class="flex flex-row w-full gap-2">
+                                                        <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider whitespace-normal">
+                                                            <img src="{{ asset('success.png') }}" class="inline-block align-text-top size-4" alt="deals">
+                                                            Overall Success Rate:</span>
+                                                    </div>
+                                                    <span class="text-[#071d49] font-regular text-sm">64%</span>
+                                                </div>
+                                                {{-- Target --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Target Success Rate:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">75%</span>
+                                                </div>
+                                                {{-- Gap --}}
+                                                <div class="flex w-full flex-col items-start ">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Gap to Target:</span>
+                                                    <div class=" flex flex-row w-full justify-start gap-x-2">
+                                                        <span class="text-red-500 font-regular text-sm"> -11% </span>
+                                                        <span class="text-[#071d49] text-sm">(Far from target)</span>   
+                                                    </div>
+                                                </div>
+                                                {{-- Opportunities --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Total Opportunities:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">1,275</span>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="flex flex-col w-[50%] justify-center h-full gap-y-4">
+                                                {{-- Deals --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Deals Won:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm"> 816</span>
+                                                </div>
+                                                {{-- Monthly Ave --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Deals Lost:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">459</span>
+                                                </div>
+                                                 {{-- Weekly Ave --}}
+                                                <div class="flex w-full flex-col">
+                                                    <span class="text-[#071d49] font-bold text-sm uppercase tracking-wide lg:tracking-wider">Win-Lost Ratio:</span>
+                                                    <span class="text-[#071d49] font-regular text-sm">1.71:1</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col w-full justify-center h-[50%]">
+                                            <span class="text-[#071d49] font-extra text-sm truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[360px] lg:h-full justify-center items-center rounded-md gap-2">
+                                        <div class="flex flex-col w-full h-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-orange-200">
+                                            <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2 flex gap-x-2 items-center">
+                                                <img src="{{ asset('famous.png') }}" class="size-4" alt="deals">
+                                                Individual Performance</span>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                <span class="text-[#071d49] font-semibold text-sm uppercase">Top Performer:</span>
+                                                <span class=" text-[#071d49] text-sm">Alex Smith: 75% (15/20)</span>
+                                            </div>
+                                            <div class="flex flex-col w-full items-start px-2">
+                                                <li class=" text-[#071d49] text-sm">Above target by +5%</li>
+                                                <li class=" text-[#071d49] text-sm">25% of total opportunities, 41.7% of wins</li>
+                                            </div>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                <span class="text-[#071d49] font-semibold text-sm uppercase">Solid Performer:</span>
+                                                <span class=" text-[#071d49] text-sm">Maria Lopez: 67% (12/18)</span>
+                                            </div>
+                                            <div class="flex flex-col w-full items-start px-2">
+                                                <li class=" text-[#071d49] text-sm">Just 3% below target</li>
+                                                <li class=" text-[#071d49] text-sm">34% of total opportunities, 33.3% of wins</li>
+                                            </div>
+                                            <div class="flex flex-row w-full items-start gap-x-2">
+                                                <span class="text-[#071d49] font-semibold text-sm uppercase">Needs Support:</span>
+                                                <span class=" text-[#071d49] text-sm">John Doe: 60% (9/15)</span>
+                                            </div>
+                                            <div class="flex flex-col w-full items-start px-2">
+                                                <li class=" text-[#071d49] text-sm">10% below target</li>
+                                                <li class=" text-[#071d49] text-sm">28% of total opportunities, 25% of wins</li>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row w-full h-[50%] gap-x-2">
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-green-200">
+                                                <span class="text-[#071d49] font-bold text-base uppercase mb-2  gap-x-2 whitespace-normal">
+                                                    <img src="{{ asset('report1.png') }}" class="inline-block align-text-top size-4 " alt="deals"> 
+                                                    Pipeline Analysis & Drop-off Points</span>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Proposal Stage:</span>
+                                                    <li class=" text-[#071d49] text-sm px-2">Most common drop-off point</li>
+                                                </div>
+                                                <span class="text-[#071d49] font-semibold text-sm uppercase">Stage-by-Stage Conversion:</span>
+                                                <div class="flex flex-col w-full items-start px-2">
+                                                    <li class=" text-[#071d49] text-sm">Initial Contact → Qualified: 85%</li>
+                                                    <li class=" text-[#071d49] text-sm">Qualified → Proposal: 78%</li>
+                                                    <li class=" text-[#071d49] text-sm">Proposal → Negotiation: 62% ⚠️ Critical bottleneck</li>
+                                                    <li class=" text-[#071d49] text-sm">Negotiation → Close: 89%</li>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Average Sales Cycle: </span>
+                                                    <li class=" text-[#071d49] text-sm px-2">14 days (efficient!)</li>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col w-[50%] border-2 border-[#071d49] py-2 px-4 rounded-lg overflow-x-auto hide-scrollbar bg-yellow-200">
+                                                <span class="text-[#071d49] font-bold font-regular text-base uppercase mb-2 whitespace-normal gap-x-2">
+                                                    <img src="{{ asset('target.png') }}" class="inline-block align-text-top size-4" alt="deals">
+                                                    Performance Insights</span>
+                                                <div class="flex flex-col w-full items-start">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Team Consistency: </span>
+                                                    <li class=" text-[#071d49] text-sm px-2">15% spread between top and bottom performer</li>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Proposal Challenge: </span>
+                                                    <li class="text-[#071d49] text-sm px-2">38% of deals lost at proposal stage</li>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Negotiation Strength: </span>
+                                                    <li class="text-[#071d49] text-sm px-2">High close rate once deals reach negotiation</li>
+                                                </div>
+                                                <div class="flex flex-col w-full items-start gap-x-2">
+                                                    <span class="text-[#071d49] font-semibold text-sm uppercase">Volume vs Quality: </span>
+                                                    <li class="text-[#071d49] text-sm px-2">Alex balances both effectively</li>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

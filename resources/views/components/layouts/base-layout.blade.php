@@ -12,13 +12,13 @@
     @include('layouts.icons')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
 
     <style>
         [x-cloak] {
             display: none !important;
         }
     </style>
-@livewireScripts
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
@@ -29,8 +29,8 @@
     </div>
 
     <x-layouts.chat />
-    @livewireStyles
-
+    
+    @livewireScripts
 </body>
 
 </html>

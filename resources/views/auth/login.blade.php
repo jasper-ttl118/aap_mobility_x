@@ -1,5 +1,5 @@
 
-<x-guest-layout>
+<x-guest-layout >
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -51,8 +51,9 @@
             </label>
         </div> --}}
 
-        <div class="text-xs text-[#151847] font-extralight justify-start w-full">
-            Forgot password?
+        <div class="flex flex-row text-xs text-[#151847] font-extralight justify-between w-full">
+            <a href="#" class="hover:text-blue-900 hover:underline">Forgot password?</a>
+            <a href="/" class="hover:text-blue-900 hover:underline">Back to home</a>
         </div>
 
         <div class="flex items-center justify-center w-full">
@@ -62,7 +63,7 @@
                 </a>
             @endif --}}
 
-            <x-primary-button class="w-full flex justify-center items-center">
+            <x-primary-button class="w-full justify-center items-center">
                 {{ __('Login') }}
             </x-primary-button>
         </div>

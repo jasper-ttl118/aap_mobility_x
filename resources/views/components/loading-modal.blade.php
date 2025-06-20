@@ -15,7 +15,7 @@
     top: 60px;
     left: 0;
     border-radius: 50%;
-    animation: shadow324 0.5s linear infinite;
+    animation: shadow324 0.7s linear infinite;
     }
 
     .loader:after {
@@ -27,7 +27,7 @@
     top: 0;
     left: 0;
     border-radius: 4px;
-    animation: jump7456 0.5s linear infinite;
+    animation: jump7456 0.7s linear infinite;
     }
 
     @keyframes jump7456 {
@@ -68,8 +68,8 @@
 
 <div class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
     <div class="flex flex-col items-center justify-center gap-y-6 w-[60%] lg:w-[30%] h-[40%] bg-white p-6 rounded-lg">
-            <span class="loading loading-spinner loading-2xl w-20 h-20 text-[#071d49]"></span>
-            <p class="text-[#071d49] text-lg font-medium">Retrieving Profile Information...</p>
-            {{-- <div class="loader"></div> --}}
+            {{-- <span class="loading loading-spinner loading-2xl w-20 h-20 text-[#071d49]"></span> --}}
+            <div class="loader"></div>
+            <p class="text-[#071d49] text-lg font-medium">Retrieving Profile Information...</p> 
     </div>
 </div>

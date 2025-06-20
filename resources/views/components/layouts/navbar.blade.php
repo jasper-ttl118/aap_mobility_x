@@ -114,6 +114,11 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
     @endforeach
   </div>
 
+  <div class="items-end w-full h-full flex">
+            <livewire:clock />
+  </div>
+  
+
   {{-- <div class="mt-auto w-full px-4 pb-6">
     <div class="flex flex-col gap-4">
       <div>

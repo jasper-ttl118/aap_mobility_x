@@ -91,7 +91,7 @@
             </div>
 
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-                <table class="w-[700px] lg:w-full text-center text-sm text-gray-500">
+                <table class="w-[700px] md:w-full lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="w-1/12 py-3">ID</th>

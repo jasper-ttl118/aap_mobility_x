@@ -10,7 +10,7 @@
     $uniqueId = uniqid(Str::slug($title, '-'));
 @endphp
 
-<div class="w-full max-w-2xl mx-auto bg-white p-4 overflow-x-auto h-full hide-scrollbar ">
+<div class="w-full max-w-2xl mx-auto bg-white rounded-xl p-4 overflow-x-auto h-full hide-scrollbar ">
     {{-- <h2 class="text-xl font-semibold text-center text-gray-800 mb-4">{{ $title }}</h2> --}}
     <canvas id="chart-{{ $uniqueId }}"></canvas>
 

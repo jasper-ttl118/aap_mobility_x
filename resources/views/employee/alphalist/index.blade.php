@@ -107,7 +107,7 @@
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
                  <template x-if="selected === 'employees'">
-                    <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
+                    <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>    
                                 <th scope="col" class="w-[6.25%] py-3">Employee ID</th>
@@ -198,7 +198,7 @@
                 </template>
 
                 <template x-if="selected === 'ojt'">
-                    <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
+                    <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>    
                                 <th scope="col" class="w-[6.25%] py-3">Intern ID</th>
