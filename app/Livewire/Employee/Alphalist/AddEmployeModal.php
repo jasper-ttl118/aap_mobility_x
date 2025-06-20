@@ -20,7 +20,7 @@ class AddEmployeModal extends Component
     #[Rule('required|email')]
     public $employee_email = '';
 
-    #[Rule('required|alpha_dash')]
+    #[Rule('required|string')]
     public $employee_address = '';
     
     #[Rule('required')]

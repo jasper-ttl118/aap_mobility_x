@@ -1,38 +1,11 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    {{-- @include('layouts.navbar') --}}
-
+  
     <div x-data="{ selected : 'employees', open_add_employee : false, open_delete_employee : false, 
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
                 }" 
         class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
-        @if (session('status'))
-            <div id="toast-success"
-                class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
-                role="alert">
-                <div
-                    class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                        viewBox="0 0 20 20">    
-                        <path
-                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
-                    </svg>
-                    <span class="sr-only">Check icon</span>
-                </div>
-                <div class="ms-3 text-sm font-normal">{{ session('status') }}</div>
-                <button type="button" onclick="closeToast()"
-                    class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-                    aria-label="Close">
-                    <span class="sr-only">Close</span>
-                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 14 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                    </svg>
-                </button>
-            </div>
-        @endif
-
+      
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14">
@@ -41,7 +14,6 @@
         </div>
 
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
-
             <div class="flex flex-col lg:flex-row justify-between">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-[#071d49] text-sm px-7 pt-5">
@@ -51,7 +23,7 @@
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="#" class="hover:underline font-semibold">Employee Alphalist</a>
+                    <a href="#" class="hover:underline font-semibold">Alphalist</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex flex-start lg:justify-end px-7 pt-6">
@@ -80,7 +52,6 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-
                     <a x-show="selected == 'employees'" @click="open_add_employee=true"
                     :class="selected == 'employees' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
                     class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
@@ -91,7 +62,7 @@
                         Add New Employee
                     </a>
 
-                    <a x-show="selected == 'ojt'" href="#" @click="open_add_intern=true"
+                    <a x-show="selected == 'ojt'" @click="open_add_intern=true" 
                     :class="selected == 'ojt' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
                     class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -106,7 +77,7 @@
             {{-- List of Employees --}}
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
-                 <template x-if="selected === 'employees'">
+                <template x-if="selected === 'employees'">
                     <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>    
@@ -212,18 +183,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employees as $employee)
+                            @foreach ($interns as $intern)
                                 <tr class="border-b border-gray-200 bg-white">
-                                    <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
-                                        {{ $employee->employee_id }}</th>
-                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}
-                                        {{ $employee->employee_lastname }}</td>
-                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_email }}</td>
-                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_number }}</td>
-                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_department }}</td>
-                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_position }}</td>
+                                    <td scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
+                                        {{ $intern->intern_id }}</td>
+                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_firstname }}
+                                        {{ $intern->intern_lastname }}</td>
+                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_email }}</td>
+                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_contact_number }}</td>
+                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_department }}</td>
+                                    <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_position }}</td>
                                     <td class="w-[12.5%] py-4  text-gray-900">
-                                        @if ($employee->employee_status == '1')
+                                        @if ($intern->intern_status == '1')
                                             <span
                                                 class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
                                         @else
@@ -241,7 +212,7 @@
                                                     if (!disabled) {
                                                         disabled = true;
                                                         open_view_intern = true;
-                                                        Livewire.dispatch('toggleInternModal', { intern_id: {{ $employee->employee_id }} });
+                                                        Livewire.dispatch('toggleInternModal', { intern_id: {{ $intern->intern_id }} });
                                                         setTimeout(() => disabled = false, 1000); 
                                                     }
                                                 "class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
@@ -256,7 +227,7 @@
                                             </a>
 
                                             <a @click="open_edit_intern = true; 
-                                                    window.Livewire.dispatch('loadEmployeeInfo', { employee_id: {{ $employee->employee_id }} });
+                                                    window.Livewire.dispatch('loadInternInfo', { intern_id: {{ $intern->intern_id }} });
                                                 "
                                                 class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -271,7 +242,9 @@
                                             </a>
 
                                             <a href="javascript:void(0)"
-                                                @click="open_delete_intern = true; deleteUrl = '{{ url('employee/' . $employee->employee_id . '/delete') }}'"
+                                                @click="open_delete_intern = true; 
+                                                        Livewire.dispatch('getInternId', { intern_id: {{ $intern->intern_id }} });
+                                                     "
                                                 class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                     fill="currentColor" class="size-4">
@@ -290,8 +263,6 @@
             </div>
         </div>
         
-        
-
         {{-- Add Employee Modal --}}
         <template x-if="open_add_employee">
             <div @click="open_add_employee=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
@@ -315,11 +286,11 @@
                 <livewire:employee.alphalist.delete-employee-alert />
         </div>
 
-        {{-- Currently toggling with livewire, will transfer the modal visibility with alpinejs next time --}}
+        {{-- Currently toggling with livewire, will transfer the modal visibility with alpinejs next time :> --}}
         <div x-cloak x-show="open_view_employee" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
             <livewire:employee.alphalist.view-employee-modal />
         </div>
-    
+
         <template x-if="open_add_intern">
             <div @click="open_add_intern=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
                 <livewire:employee.alphalist.add-intern-modal />
@@ -327,7 +298,7 @@
         </template>
 
         <div x-show="open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="  open_edit_intern=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit_intern=false; window.Livewire.dispatch('resetInternProfile')">
                 <livewire:employee.alphalist.edit-intern-modal />
             </div>
         </div>
@@ -336,6 +307,10 @@
             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
             x-show="open_delete_intern">
                 <livewire:employee.alphalist.delete-intern-modal />
+        </div>
+
+        <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+            <livewire:toast.toast />
         </div>
 
         <livewire:employee.alphalist.view-intern-modal />

@@ -1,4 +1,4 @@
-<form wire:submit="add" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
+<form wire:submit="add" @close-modal.window="open_add_intern=false" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
     @csrf
     <div class="text-gray-700 py-6 px-4 space-y-3">
         <!-- Heading -->
@@ -35,10 +35,10 @@
             </div>
             <div>
                 <label class="text-xs font-medium">Required Hours</label>
-                <input type="number" name="required_hours" wire:model="required_hours"
+                <input type="number" name="intern_required_hours" wire:model="intern_required_hours"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
                     placeholder="e.g. 300">
-                @error('required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                @error('intern_required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
             </div>
         </div>
 
@@ -108,7 +108,7 @@
         </div>
 
         <!-- Submit -->
-        <button type="submit" @click=""
+        <button type="submit"
             class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700">
             Create
         </button>
