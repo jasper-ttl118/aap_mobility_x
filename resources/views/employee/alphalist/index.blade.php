@@ -295,15 +295,13 @@
         {{-- Add Employee Modal --}}
         <template x-if="open_add_employee">
             <div @click="open_add_employee=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
-                    <livewire:employee.alphalist.add-employe-modal />
-                </div>
+                <livewire:employee.alphalist.add-employe-modal />
             </div>
         </template>
         
         {{-- Edit Employee Modal --}}
         <div x-show="open_edit_employee" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div class="rounded shadow-lg max-w-md w-full" @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.alphalist.edit-employee-modal />
             </div>
         </div>
@@ -327,7 +325,7 @@
         </template>
 
         <div x-show="open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="  open_edit_intern=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div class="rounded shadow-lg max-w-md w-full" @click.away="  open_edit_intern=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.alphalist.edit-intern-modal />
             </div>
         </div>

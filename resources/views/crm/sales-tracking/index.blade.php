@@ -639,10 +639,12 @@
                                 <span class="w-[65%] h-full justify-between flex items-center text-[#071d49] font-extrabold text-base tracking-widest" >SALES</span>         
                             
                                 <div x-data="{ open: false }" class="h-7 w-[50%] relative inline-block ">
-                                    <button x-text="activeFilter" @click="open = !open"  id="filter" class="flex justify-between items-center w-full h-full rounded-md border border-[#071d49] shadow-sm px-2 py-2 uppercase bg-white text-xs font-bold text-[#071d49] hover:text-white  hover:bg-[#071d49]">
+                                    <button x-text="activeFilter" @click="open = !open"  id="filter" class="flex flex-row justify-between items-center w-full h-full rounded-md border border-[#071d49] shadow-sm px-2 py-2 uppercase bg-white text-xs font-bold text-[#071d49] hover:text-white  hover:bg-[#071d49]">
                                         Today
-                                        <svg class="size-4 text-[#071d49]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 inline-flex">
+                                            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                                        </svg>
+
                                     </button>
                                         
                                     <div x-show="open" @click.away="open = false" x-transition 
@@ -746,8 +748,8 @@
                     <div x-cloak x-show="open == 'openFilter'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                         <!-- Modal content -->
                         <div @click.outside="open=''" 
-                                class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                            <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                                class="relative flex items-center justify-center flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                            <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                                 <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                     <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -864,8 +866,8 @@
                 <div x-cloak x-show="open == 'openPerformer'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                     <!-- Modal content -->
                     <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            class="relative flex flex-row shadow-lg justify-center items-center w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                             <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -954,8 +956,8 @@
                     <div x-cloak x-show="open == 'openTarget'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                         <!-- Modal content -->
                         <div @click.outside="open=''" 
-                                class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                            <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                                class="relative flex flex-row items-center justify-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                            <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                                 <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                     <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -1046,8 +1048,8 @@
                 <div x-cloak x-show="open == 'openRegion'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                     <!-- Modal content -->
                     <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            class="relative flex flex-row items-center justify-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                             <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -1101,8 +1103,8 @@
                 <div x-cloak x-show="open == 'openCustomer'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                     <!-- Modal content -->
                     <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            class="relative flex flex-row items-center justify-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                             <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -1155,8 +1157,8 @@
                 <div x-cloak x-show="open == 'openStage'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                     <!-- Modal content -->
                     <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            class="relative flex flex-row justify-center items-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                             <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -1215,8 +1217,8 @@
                 <div x-cloak x-show="open == 'openDeals'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                     <!-- Modal content -->
                     <div @click.outside="open=''" 
-                            class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                        <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            class="relative flex flex-row justify-center items-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                             <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                 <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
@@ -1294,8 +1296,8 @@
                     <div x-cloak x-show="open == 'openProducts'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
                         <!-- Modal content -->
                         <div @click.outside="open=''" 
-                                class="relative flex flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                            <div class="flex flex-col lg:w-[90%] lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                                class="relative flex flex-row justify-center items-center shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                            <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
                                 <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
                                     <div class="w-full h-full flex flex-row justify-start items-center gap-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">

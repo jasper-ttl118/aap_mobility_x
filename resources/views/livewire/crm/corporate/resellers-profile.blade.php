@@ -45,12 +45,12 @@
                     <div class="text-xs text-[#071d49] lowercase flex flex-row text-center w-[70%] h-[30%] mt-1 mb-2">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum iste, deleniti labore saepe minus ut?
                     </div>
-                    <div class="flex border border-[#071d49] w-[90%] rounded-lg hidden lg:flex"></div>
+                    {{-- <div class="flex border border-[#071d49] w-[90%] rounded-lg hidden lg:flex"></div>
                     <div class="text-xs text-[#071d49] lowercase flex flex-row justify-evenly items-center w-full h-auto mt-2 hidden lg:flex">
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                    </div>
+                    </div> --}}
                 </div>  
             </div>
             <div data-theme="light" x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center ">
@@ -129,12 +129,12 @@
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">{{ $reseller->customer_birthdate}}</div>
                             </div>
                         </div>
-                        <div class="flex border border-[#071d49] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
+                        {{-- <div class="flex border border-[#071d49] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
                         <div class="text-xs text-[#071d49] lowercase flex flex-row justify-evenly items-center w-full h-auto mt-2 lg:hidden">
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                        </div>
+                        </div> --}}
                     </div>
                     <div x-show="profile === 'activityLog'" class="w-[90%] h-full">
                         <livewire:crm.corporate.resellers-activitylog>

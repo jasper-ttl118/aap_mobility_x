@@ -76,9 +76,9 @@
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        class="rounded-xl font-extrabold tracking-wide hover:bg-[#ffffff] hover:text-[#071d49] hover:scale-110 duration-300 bg-[#dfd436] px-3 py-2 text-[#071d49]"
                                     >
-                                        Dashboard
+                                        Go back to Dashboard
                                     </a>
                                 @else
                                     <a

@@ -7,8 +7,11 @@ use Livewire\Component;
 
 class Clock extends Component
 {
-    public $currentTime;
+    public $currentHour;
+    public $currentMinute;
+    public $currentMeridiem;
     public $currentDate;
+
 
     public function mount()
     {
@@ -18,8 +21,10 @@ class Clock extends Component
     public function updateTime()
     {
         $now = Carbon::now('Asia/Manila');
-        $this->currentTime = $now->format('h:i:s A');
+        $this->currentHour = $now->format('h');
+        $this->currentMinute = $now->format('i');
         $this->currentDate = $now->format('l, F j, Y');
+        $this->currentMeridiem = $now->format('A');
     }
 
     public function render()

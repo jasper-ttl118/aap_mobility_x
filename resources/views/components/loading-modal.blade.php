@@ -70,6 +70,6 @@
     <div class="flex flex-col items-center justify-center gap-y-6 w-[60%] lg:w-[30%] h-[40%] bg-white p-6 rounded-lg">
             {{-- <span class="loading loading-spinner loading-2xl w-20 h-20 text-[#071d49]"></span> --}}
             <div class="loader"></div>
-            <p class="text-[#071d49] text-lg font-medium">Retrieving Profile Information...</p> 
+            <p class="text-[#071d49] text-lg text-center font-medium">Retrieving Profile Information...</p> 
     </div>
 </div>

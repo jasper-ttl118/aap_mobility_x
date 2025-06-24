@@ -165,12 +165,12 @@
                                             </span>
                                         </td>
                                         <td class="flex items-center w-[10%]">              
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 text-[#071d49]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5  cursor-pointer hover:scale-125 duration-300 text-[#071d49]">
                                                 <path fill-rule="evenodd" d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z" clip-rule="evenodd" />
                                             </svg>
                                         </td>
                                         <td class="flex items-center w-[10%]">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4  cursor-pointer hover:scale-125 duration-300 text-[#071d49]">
                                                 <path fill-rule="evenodd" d="M15 3.75a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-1.5 0V5.56l-4.72 4.72a.75.75 0 1 1-1.06-1.06l4.72-4.72h-2.69a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
                                                 <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
                                             </svg>
@@ -188,8 +188,31 @@
             <div class="flex pt-2 bg-white shadow-lg h-full md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar mx-auto">
                 <div x-data="calendar()" x-init="init()" class="w-[90%] flex flex-col items-center justify-between">
                     <div class="flex flex-row justify-between items-center w-full">
-                        <div class="flex justify-start w-[50%] items-center h-full">
+                        <div class="flex justify-start w-[45%] items-center h-full gap-x-2">
                             <span class="text-[#071d49] text-base tracking-widest font-extrabold">CALENDAR</span>
+                            <!-- Categories Info Button -->
+                            <div class="relative">
+                                <button @mouseenter="showCategoriesInfo = true" 
+                                        @mouseleave="showCategoriesInfo = false"
+                                        class="items-center justify-center flex border-2 border-[#071d49] bg-[#071d49] text-white rounded-full hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold transition-colors duration-200">
+                                    <i class="fas fa-info-circle text-xs"></i>
+                                </button>
+                                
+                                <!-- Categories Info Modal -->
+                                <div x-show="showCategoriesInfo" 
+                                    x-cloak
+                                    class="absolute z-50 bg-gray-800 text-white p-4 rounded-lg shadow-lg text-xs pointer-events-none left-0 top-full mt-2 w-36">
+                                    <div class="font-semibold mb-3 text-yellow-300 text-center">Event Categories</div>
+                                    <div class="space-y-2">
+                                        <template x-for="category in eventCategories" :key="category.id">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-4 h-4 rounded-full flex-shrink-0" :style="'background-color: ' + category.color"></div>
+                                                <span class="text-white" x-text="category.name"></span>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="flex justify-between w-[50%] h-[70%] px-3 bg-[#071d49] rounded-md">
                             <div class="flex justify-between items-center mb-4 w-full h-full">
@@ -213,33 +236,93 @@
 
                         <template x-for="day in daysInMonth" :key="day">
                             <div @click="openNote(day)"
-                                class="relative border border-[#071d49] rounded-md h-16 p-1 group hover:bg-[#071d49] cursor-pointer z-auto"
-                                :class="isToday(day) ? 'bg-[#F6D400] text-white' : 'hover:bg-[#071d49]'">
+                                @mouseenter="showPreview = day"
+                                @mouseleave="showPreview = null"
+                                class="relative border border-[#071d49] rounded-md h-16 p-1 group hover:bg-[#071d49] cursor-pointer"
+                                :class="getDateClass(day)">
+                                
+                                <!-- Day number -->
                                 <div class="text-sm font-bold" 
-                                    :class="isToday(day) ? 'text-white' : 'text-[#071d49] group-hover:text-white'" 
+                                    :class="getDayNumberClass(day)" 
                                     x-text="day"></div>
+                                
+                                <!-- Holiday indicator (star icon) -->
+                                <div x-show="isHoliday(day)" 
+                                    class="absolute bottom-1 right-1 text-yellow-400 text-xs">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                
+                                <!-- Category indicator (colored bar) -->
+                                <div x-show="hasNote(day)" 
+                                    class="absolute top-1 right-1 w-3 h-1 rounded-full"
+                                    :style="'background-color: ' + getCategoryColor(day)"></div>
+                                
+                                <!-- Note/Holiday preview -->
                                 <div class="text-xs mt-1 truncate" 
-                                    :class="isToday(day) ? 'text-white' : 'text-[#071d49] group-hover:text-white'" 
-                                    x-text="notes[day]"></div>
+                                    :class="getTextClass(day)" 
+                                    x-text="getDisplayText(day)"></div>
+                                
+                                <!-- Hover preview tooltip -->
+                                <div x-show="showPreview === day && (hasNote(day) || isHoliday(day))" 
+                                    x-cloak
+                                    class="absolute z-50 bg-gray-800 text-white p-3 rounded-lg shadow-lg text-xs pointer-events-none"
+                                    :class="getTooltipPosition(day)"
+                                    style="white-space: normal; word-wrap: break-word;">
+                                    <div x-show="isHoliday(day)" class="mb-2">
+                                        <div class="font-semibold text-yellow-300 mb-1">
+                                            <i class="fas fa-star mr-1"></i>Holiday
+                                        </div>
+                                        <div class="leading-relaxed text-yellow-100" x-text="getHolidayName(day)"></div>
+                                    </div>
+                                    <div x-show="hasNote(day)">
+                                        <div class="font-semibold mb-1 text-green-300" x-text="getCategoryName(day)"></div>
+                                        <div class="leading-relaxed" x-text="getNote(day)"></div>
+                                    </div>
+                                </div>
                             </div>
                         </template>
                     </div>
-
+                    
                     <!-- Note modal -->
                     <div x-show="showModal" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-                        <div class="bg-white rounded-lg shadow-lg px-5 py-4 w-96 border-2 h-64 border-[#071d49]">
-                            <div class="flex flex-row w-full justify-between items-center gap-5 h-[20%]">
-                                <h3 class="flex text-lg font-semibold uppercase text-[#071d49]">Note for&nbsp<span x-text="monthName + ' ' + activeDay + ', ' + year" class="underline cursor-pointer hover:scale-105 duration-300"></span></h3>
-                                <div class="flex justify-center gap-2 ">
-                                    <button @click="saveNote()" class=" w-4 h-8 items-center justify-center flex px-4 py-1 border bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
-                                    <button @click="showModal = false" class=" w-4 h-8 items-center justify-center flex px-4 py-1 bg-gray-300 rounded hover:bg-gray-400"><i class="fas fa-times"></i></button>
+                        <div class="bg-white rounded-lg shadow-lg px-5 py-4 w-96 border-2 h-auto border-[#071d49]">
+                            <div class="flex flex-row w-full justify-between items-start gap-5 mb-3">
+                                <h3 class="flex flex-col text-lg font-semibold  uppercase text-[#071d49]">
+                                    Event for:&nbsp<span x-text="monthName + ' ' + activeDay + ', ' + year" class="underline cursor-pointer hover:text-yellow-400"></span>
+                                    <span x-show="isHoliday(activeDay)" class="text-sm font-semibold text-yellow-600 normal-case mt-1">
+                                        <i class="fas fa-star mr-1"></i><span x-text="getHolidayName(activeDay)"></span>
+                                    </span>
+                                </h3>
+                                <div class="flex flex-col justify-start items-end">
+                                    <div class="flex flex-row gap-x-2">
+                                        <button @click="saveNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-[#071d49] bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
+                                        <button @click="deleteCurrentNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-red-600 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 hover:border-red-600 font-bold"><i class="fas fa-trash"></i></button>
+                                        <button @click="showModal = false" class="w-4 h-8 items-center justify-center flex px-4 py-1 bg-white border-2 border-[#071d49] rounded hover:bg-[#071d49] hover:text-white"><i class="fas fa-times"></i></button>
+                                    </div>
                                 </div>
                             </div>
-                            <textarea x-model="notes[activeDay]" class="w-full border-2 border-[#071d49] rounded-md p-2 h-[80%] resize-none"></textarea>
+                            
+                            <!-- Category Selection -->
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium text-[#071d49] mb-2">Category</label>
+                                <select x-model="currentCategory" class="w-full border-2 border-[#071d49] rounded-md p-2 text-sm ">
+                                    <template x-for="category in eventCategories" :key="category.id">
+                                        <option :value="category.id" x-text="category.name "></option>
+                                    </template>
+                                </select>
+                            </div>
+                            
+                            <!-- Note Textarea -->
+                            <div class="mb-3">
+                                <label class="block text-sm font-medium text-[#071d49] mb-2">Note</label>
+                                <textarea x-ref="noteTextarea" x-model="currentNote" class="w-full border-2 border-[#071d49] rounded-md p-2 h-40 resize-none text-sm" placeholder="Enter your note here..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
             {{-- REVENUE --}}
             <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-full lg:w-[50%] md:w-[80%] rounded-lg shadow-xs justify-center items-center gap-3">
                 <div class="flex flex-row h-[10%] w-[90%] items-center gap-2">
@@ -303,7 +386,72 @@
                 showModal: false,
                 activeDay: null,
                 notes: {},
+                categories: {}, // Store category for each date
+                currentNote: '', // Current note being edited
+                currentCategory: 'personal', // Current category being edited
+                showPreview: null, // Track which day is being hovered
+                showCategoriesInfo: false, // Track categories info modal
+                eventCategories: [
+                    { id: 'personal', name: 'Personal', color: '#10B981' },
+                    { id: 'work', name: 'Work', color: '#3B82F6' },
+                    { id: 'health', name: 'Health', color: '#EF4444' },
+                    { id: 'family', name: 'Family', color: '#8B5CF6' },
+                    { id: 'education', name: 'Education', color: '#F59E0B' },
+                    { id: 'finance', name: 'Finance', color: '#D9CD91' },
+                    { id: 'hobby', name: 'Hobby', color: '#EC4899' },
+                    { id: 'travel', name: 'Travel', color: '#84CC16' },
+                    { id: 'holiday', name: 'Holiday', color: '#FFD700' }
+                ],
                 today: new Date(),
+                // Philippine holidays for 2025
+                philippineHolidays: {
+
+                    // 2025 Holidays
+                    '2025-0-1': 'New Year\'s Day',
+                    '2025-0-29': 'Chinese New Year',
+                    '2025-1-25': 'People Power Revolution',
+                    '2025-3-1': 'Eid\'l Fitr',
+                    '2025-3-9': 'The Day of Valor',
+                    '2025-3-17': 'Maundy Thursday',
+                    '2025-3-18': 'Good Friday',
+                    '2025-3-19': 'Black Saturday',
+                    '2025-4-1': 'Labor Day',
+                    '2025-4-12': 'Eid\'l Fitr (May 12)',
+                    '2025-5-6': 'Eidul Adha',
+                    '2025-5-12': 'Independence Day',
+                    '2025-5-26': 'Enrollment UCC',
+                    '2025-6-27': 'Founding Anniversary of the INC',
+                    '2025-7-21': 'Ninoy Aquino Day',
+                    '2025-7-25': 'National Heroes\' Day',
+                    '2025-9-31': 'Additional Special Non-Working Day',
+                    '2025-10-1': 'All Saints\' Day',
+                    '2025-10-30': 'Bonifacio Day',
+                    '2025-11-8': 'Immaculate Conception Day',
+                    '2025-11-24': 'Christmas Eve',
+                    '2025-11-25': 'Christmas Day',
+                    '2025-11-30': 'Rizal Day',
+                    '2025-11-31': 'New Year\'s Eve',
+
+                    // 2026 Holidays
+                    '2026-0-1': 'New Year\'s Day',
+                    '2026-1-17': 'Chinese New Year',
+                    '2026-1-25': 'People Power Revolution',
+                    '2026-2-20': 'Eid\'l Fitr',
+                    '2026-3-2': 'Maundy Thursday',
+                    '2026-3-3': 'Good Friday',
+                    '2026-3-4': 'Black Saturday',
+                    '2026-3-9': 'The Day of Valor',
+                    '2026-4-1': 'Labor Day',
+                    '2026-4-28': 'Eidul Adha',
+                    '2026-5-12': 'Independence Day',
+                    '2026-7-21': 'Ninoy Aquino Day',
+                    '2026-7-31': 'National Heroes\' Day',
+                    '2026-10-1': 'All Saints\' Day',
+                    '2026-10-30': 'Bonifacio Day',
+                    '2026-11-8': 'Immaculate Conception Day',
+                    '2026-11-25': 'Christmas Day',
+                    '2026-11-30': 'Rizal Day'
+                },
                 get monthName() {
                     return new Date(this.year, this.month).toLocaleString('default', { month: 'long' });
                 },
@@ -331,17 +479,148 @@
                     }
                     this.updateCalendar();
                 },
+                // Helper function to create a unique date key
+                getDateKey(day, month = this.month, year = this.year) {
+                    return `${year}-${month}-${day}`;
+                },
+                // Check if a specific day has notes
+                hasNote(day) {
+                    const dateKey = this.getDateKey(day);
+                    return this.notes[dateKey] && this.notes[dateKey].trim() !== '';
+                },
+                // Get note for a specific day
+                getNote(day) {
+                    const dateKey = this.getDateKey(day);
+                    return this.notes[dateKey] || '';
+                },
+                // Check if a day is a Philippine holiday
+                isHoliday(day) {
+                    const dateKey = this.getDateKey(day);
+                    return this.philippineHolidays.hasOwnProperty(dateKey);
+                },
+                // Get holiday name for a specific day
+                getHolidayName(day) {
+                    const dateKey = this.getDateKey(day);
+                    return this.philippineHolidays[dateKey] || '';
+                },
+                // Get display text (holiday or note)
+                getDisplayText(day) {
+                    if (this.isHoliday(day)) {
+                        return this.getHolidayName(day);
+                    }
+                    return this.getNote(day);
+                },
+                // Get date class for styling
+                getDateClass(day) {
+                    let classes = '';
+                    if (this.isToday(day)) {
+                        classes += 'bg-[#1c5b0e] ';
+                    } else if (this.isHoliday(day)) {
+                        classes += 'bg-yellow-100 hover:bg-[#071d49] ';
+                    } else {
+                        classes += 'hover:bg-[#071d49] ';
+                    }
+                    return classes;
+                },
+                // Get day number class for styling
+                getDayNumberClass(day) {
+                    if (this.isToday(day)) {
+                        return 'text-white';
+                    } else if (this.isHoliday(day)) {
+                        return 'text-yellow-700 group-hover:text-white';
+                    } else {
+                        return 'text-[#071d49] group-hover:text-white';
+                    }
+                },
+                // Get text class for styling
+                getTextClass(day) {
+                    if (this.isToday(day)) {
+                        return 'text-white';
+                    } else if (this.isHoliday(day)) {
+                        return 'text-yellow-700 group-hover:text-white';
+                    } else {
+                        return 'text-[#071d49] group-hover:text-white';
+                    }
+                },
                 openNote(day) {
                     this.activeDay = day;
+                    this.currentNote = this.getNote(day); // Load existing note
+                    this.currentCategory = this.getCategory(day); // Load existing category
                     this.showModal = true;
                 },
                 saveNote() {
+                    if (this.activeDay) {
+                        const dateKey = this.getDateKey(this.activeDay);
+                        this.notes[dateKey] = this.currentNote;
+                        this.categories[dateKey] = this.currentCategory;
+                    }
                     this.showModal = false;
+                },
+                deleteCurrentNote() {
+                    if (this.activeDay) {
+                        const dateKey = this.getDateKey(this.activeDay);
+                        delete this.notes[dateKey];
+                        delete this.categories[dateKey];
+                        this.currentNote = '';
+                        this.currentCategory = 'personal';
+                    }
+                    this.showModal = false;
+                },
+                // Get category for a specific day
+                getCategory(day) {
+                    const dateKey = this.getDateKey(day);
+                    return this.categories[dateKey] || 'personal';
+                },
+                // Get category color for a specific day
+                getCategoryColor(day) {
+                    if (!this.hasNote(day)) {
+                        return 'transparent'; 
+                    }
+                    const categoryId = this.getCategory(day);
+                    const category = this.eventCategories.find(cat => cat.id === categoryId);
+                    return category ? category.color : '#10B981';
+                },
+                // Get category name for a specific day
+                getCategoryName(day) {
+                    const categoryId = this.getCategory(day);
+                    const category = this.eventCategories.find(cat => cat.id === categoryId);
+                    return category ? category.name : 'Personal';
+                },
+                // Get responsive tooltip position based on day position
+                getTooltipPosition(day) {
+                    const dayOfWeek = (day + this.startDay - 1) % 7; // 0 = Sunday, 6 = Saturday
+                    const weekNumber = Math.floor((day + this.startDay - 1) / 7); // Which week row
+                    const totalWeeks = Math.ceil((this.daysInMonth + this.startDay) / 7);
+                    
+                    let classes = 'w-64 sm:w-72 md:w-80'; // Responsive width
+                    
+                    // Vertical positioning - show above if in bottom rows, below if in top rows
+                    if (weekNumber >= totalWeeks - 2) { // Bottom 2 rows
+                        classes += ' bottom-full mb-2';
+                    } else { // Top rows
+                        classes += ' top-full mt-2';
+                    }
+                    
+                    // Horizontal positioning - prevent overflow on sides
+                    if (dayOfWeek <= 1) { // Sunday or Monday - position to right
+                        classes += ' left-0';
+                    } else if (dayOfWeek >= 5) { // Friday or Saturday - position to left
+                        classes += ' right-0';
+                    } else { // Middle days - center
+                        classes += ' left-1/2 transform -translate-x-1/2';
+                    }
+                    
+                    return classes;
+                },
+                // Delete note for a specific day
+                deleteNote(day) {
+                    const dateKey = this.getDateKey(day);
+                    delete this.notes[dateKey];
                 },
                 isToday(day) {
                     return this.today.getDate() === day && 
-                           this.today.getMonth() === this.month && 
-                           this.today.getFullYear() === this.year;
+                        this.today.getMonth() === this.month && 
+                        this.today.getFullYear() === this.year;
                 }
             };
         }

@@ -97,10 +97,10 @@
                                 </svg>
                             </div>
                             <input type="search" id="employee-search"
-                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full p-4 ps-10 text-base text-white border bg-[#071d49] rounded-lg focus:ring-0"
                                 placeholder="Search Employee Name" />
                             <button type="button" id="search-button"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                class="text-[#071d49] absolute end-2.5 bottom-2.5 bg-[#F6D400] hover:bg-white border-2 border-[#071d49] hover:border-[#F6D400] font-medium rounded-lg text-sm px-4 py-2">Search</button>
                         </div>
 
                         <!-- Add this div for search results -->
