@@ -36,8 +36,8 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg hide-scrollbar overflow-x-auto flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
                 </div>
@@ -54,7 +54,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
                 <a href="/user" class="hover:underline truncate">RBAC Management</a>

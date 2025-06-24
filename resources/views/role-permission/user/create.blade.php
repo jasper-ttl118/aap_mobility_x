@@ -35,38 +35,12 @@
             </div>
         @endif
 
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/user" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/user" class="hover:underline">Userss</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/user/search/find" class="hover:underline">Search Employee Record</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Add Users</a>
-        </div>
-
-        <!-- Title and Subtitle -->
-        <div class="">
-            <h1 class="text-2xl text-blue-900 font-semibold">RBAC Management</h1>
-            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
-                organization.</p>
-        </div>
+       
+            
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14 ">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
                 </div>
@@ -82,6 +56,29 @@
                 {{-- <div class="w-32 p-4 text-center">
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
+            </div>
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+            <div class="px-7 pt-7 flex items-center gap-x-1 text-blue-900 text-sm">
+                <a href="/user" class="hover:underline truncate">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/user" class="hover:underline truncate">Users</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/user/search/find" class="hover:underline truncate">Search Employee Record</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold truncate">Add Users</a>
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
@@ -104,7 +101,7 @@
 
 
                 {{-- Employee Name --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Employee Full Name</h1>
                         <p class="text-sm italic text-gray-600">The information indicated here are from the employee
@@ -141,7 +138,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Username --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Create Username</h1>
                         <p class="text-sm italic text-gray-600">Create a unique username with alphanumeric
@@ -162,7 +159,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Organization and Role --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign an Organization and Role</h1>
                         <p class="text-sm italic text-gray-600">Select an organization and assign a corresponding role
@@ -194,7 +191,7 @@
 
                 <hr class="border-gray-200">
 
-                <div class="grid grid-cols-10 items-start gap-10">
+                <div class="grid lg:grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
                         <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by
@@ -213,7 +210,7 @@
 
                 {{-- Password --}}
 
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Create Password</h1>
                         <p class="text-sm italic text-gray-600">Must be 6 to 12 characters long, including letters,
@@ -231,7 +228,7 @@
                 </div>
 
                 {{-- Button --}}
-                <div class="grid grid-cols-10 items-center pt-8 gap-10">
+                <div class="grid lg:grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
                     </div>
                     <div class="col-span-6">

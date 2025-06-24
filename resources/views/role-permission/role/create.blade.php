@@ -36,8 +36,8 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14 ">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
@@ -54,8 +54,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
-            
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
                 <a href="/user" class="hover:underline truncate">RBAC Management</a>
@@ -64,7 +64,7 @@
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="/organization" class="hover:underline truncate">Organizations</a>
+                <a href="/role" class="hover:underline truncate">Roles</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"

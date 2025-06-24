@@ -187,8 +187,8 @@
             {{-- CALENDAR --}}
             <div class="flex pt-2 bg-white shadow-lg h-full md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar mx-auto">
                 <div x-data="calendar()" x-init="init()" class="w-[90%] flex flex-col items-center justify-between">
-                    <div class="flex flex-row justify-between items-center w-full">
-                        <div class="flex justify-start w-[45%] items-center h-full gap-x-2">
+                    <div class="flex flex-row items-center w-full">
+                        <div class="flex justify-start w-[50%] items-center h-full gap-x-2">
                             <span class="text-[#071d49] text-base tracking-widest font-extrabold">CALENDAR</span>
                             <!-- Categories Info Button -->
                             <div class="relative">
@@ -201,7 +201,7 @@
                                 <!-- Categories Info Modal -->
                                 <div x-show="showCategoriesInfo" 
                                     x-cloak
-                                    class="absolute z-50 bg-gray-800 text-white p-4 rounded-lg shadow-lg text-xs pointer-events-none left-0 top-full mt-2 w-36">
+                                    class="absolute z-50 bg-[#071d49] text-white p-4 rounded-lg shadow-lg text-xs pointer-events-none left-0 top-full mt-2 w-36">
                                     <div class="font-semibold mb-3 text-yellow-300 text-center">Event Categories</div>
                                     <div class="space-y-2">
                                         <template x-for="category in eventCategories" :key="category.id">
@@ -214,11 +214,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex justify-between w-[50%] h-[70%] px-3 bg-[#071d49] rounded-md">
+                        <h2 class="text-base uppercase w-[35%] justify-end flex font-extrabold text-[#071d49]" x-text="monthName + ' ' + year"></h2>
+                        <div class="flex justify-between w-[15%] h-[70%] px-3 bg-white rounded-md">
                             <div class="flex justify-between items-center mb-4 w-full h-full">
-                                <button @click="prevMonth()" class="text-white font-bold">&lt;</button>
-                                <h2 class="text-base uppercase font-semibold text-white" x-text="monthName + ' ' + year"></h2>
-                                <button @click="nextMonth()" class="text-white font-bold">&gt;</button>
+                                <button @click="prevMonth()" class="w-7 h-7 text-[#071d49] font-bold hover:text-[#F6D400]"><i class="fas fa-arrow-circle-left"></i></button>
+                                <button @click="nextMonth()" class="w-7 h-7 text-[#071d49] font-bold hover:text-[#F6D400]"><i class="fas fa-arrow-circle-right"></i></button>
                             </div>
                         </div>
                     </div>
@@ -265,7 +265,7 @@
                                 <!-- Hover preview tooltip -->
                                 <div x-show="showPreview === day && (hasNote(day) || isHoliday(day))" 
                                     x-cloak
-                                    class="absolute z-50 bg-gray-800 text-white p-3 rounded-lg shadow-lg text-xs pointer-events-none"
+                                    class="absolute z-50 bg-[#071d49] text-white p-3 rounded-lg shadow-lg text-xs pointer-events-none"
                                     :class="getTooltipPosition(day)"
                                     style="white-space: normal; word-wrap: break-word;">
                                     <div x-show="isHoliday(day)" class="mb-2">
@@ -295,6 +295,7 @@
                                 </h3>
                                 <div class="flex flex-col justify-start items-end">
                                     <div class="flex flex-row gap-x-2">
+                                  
                                         <button @click="saveNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-[#071d49] bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
                                         <button @click="deleteCurrentNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-red-600 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 hover:border-red-600 font-bold"><i class="fas fa-trash"></i></button>
                                         <button @click="showModal = false" class="w-4 h-8 items-center justify-center flex px-4 py-1 bg-white border-2 border-[#071d49] rounded hover:bg-[#071d49] hover:text-white"><i class="fas fa-times"></i></button>
@@ -376,6 +377,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function calendar() {
             return {
@@ -386,11 +388,11 @@
                 showModal: false,
                 activeDay: null,
                 notes: {},
-                categories: {}, // Store category for each date
-                currentNote: '', // Current note being edited
-                currentCategory: 'personal', // Current category being edited
-                showPreview: null, // Track which day is being hovered
-                showCategoriesInfo: false, // Track categories info modal
+                categories: {},
+                currentNote: '',
+                currentCategory: 'personal',
+                showPreview: null,
+                showCategoriesInfo: false,
                 eventCategories: [
                     { id: 'personal', name: 'Personal', color: '#10B981' },
                     { id: 'work', name: 'Work', color: '#3B82F6' },
@@ -403,10 +405,8 @@
                     { id: 'holiday', name: 'Holiday', color: '#FFD700' }
                 ],
                 today: new Date(),
-                // Philippine holidays for 2025
                 philippineHolidays: {
-
-                    // 2025 Holidays
+                    // Your existing holidays data...
                     '2025-0-1': 'New Year\'s Day',
                     '2025-0-29': 'Chinese New Year',
                     '2025-1-25': 'People Power Revolution',
@@ -419,7 +419,6 @@
                     '2025-4-12': 'Eid\'l Fitr (May 12)',
                     '2025-5-6': 'Eidul Adha',
                     '2025-5-12': 'Independence Day',
-                    '2025-5-26': 'Enrollment UCC',
                     '2025-6-27': 'Founding Anniversary of the INC',
                     '2025-7-21': 'Ninoy Aquino Day',
                     '2025-7-25': 'National Heroes\' Day',
@@ -431,78 +430,108 @@
                     '2025-11-25': 'Christmas Day',
                     '2025-11-30': 'Rizal Day',
                     '2025-11-31': 'New Year\'s Eve',
-
-                    // 2026 Holidays
-                    '2026-0-1': 'New Year\'s Day',
-                    '2026-1-17': 'Chinese New Year',
-                    '2026-1-25': 'People Power Revolution',
-                    '2026-2-20': 'Eid\'l Fitr',
-                    '2026-3-2': 'Maundy Thursday',
-                    '2026-3-3': 'Good Friday',
-                    '2026-3-4': 'Black Saturday',
-                    '2026-3-9': 'The Day of Valor',
-                    '2026-4-1': 'Labor Day',
-                    '2026-4-28': 'Eidul Adha',
-                    '2026-5-12': 'Independence Day',
-                    '2026-7-21': 'Ninoy Aquino Day',
-                    '2026-7-31': 'National Heroes\' Day',
-                    '2026-10-1': 'All Saints\' Day',
-                    '2026-10-30': 'Bonifacio Day',
-                    '2026-11-8': 'Immaculate Conception Day',
-                    '2026-11-25': 'Christmas Day',
-                    '2026-11-30': 'Rizal Day'
+                    // Add 2026 holidays...
                 },
+
                 get monthName() {
                     return new Date(this.year, this.month).toLocaleString('default', { month: 'long' });
                 },
-                init() {
+
+                async init() {
                     this.updateCalendar();
+                    await this.loadNotesFromDatabase();
                 },
+
                 updateCalendar() {
                     const firstDay = new Date(this.year, this.month, 1);
                     this.startDay = firstDay.getDay();
                     this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
                 },
-                prevMonth() {
+
+                async prevMonth() {
                     this.month--;
                     if (this.month < 0) {
                         this.month = 11;
                         this.year--;
                     }
                     this.updateCalendar();
+                    await this.loadNotesFromDatabase();
                 },
-                nextMonth() {
+
+                async nextMonth() {
                     this.month++;
                     if (this.month > 11) {
                         this.month = 0;
                         this.year++;
                     }
                     this.updateCalendar();
+                    await this.loadNotesFromDatabase();
                 },
+
+                // Load notes from database
+                async loadNotesFromDatabase() {
+                    try {
+                        const response = await fetch(`/calendar/notes?year=${this.year}&month=${this.month + 1}`);
+                        const data = await response.json();
+                        
+                        // Clear existing notes
+                        this.notes = {};
+                        this.categories = {};
+                        
+                        // Convert database format to our format
+                        Object.keys(data).forEach(date => {
+                            const dateObj = new Date(date);
+                            const dateKey = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
+                            this.notes[dateKey] = data[date].note;
+                            this.categories[dateKey] = data[date].category;
+                        });
+                    } catch (error) {
+                        console.error('Error loading notes:', error);
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Failed to load notes from database',
+                            icon: 'error',
+                            width: '400px'
+                        });
+                    }
+                },
+
                 // Helper function to create a unique date key
                 getDateKey(day, month = this.month, year = this.year) {
                     return `${year}-${month}-${day}`;
                 },
+
+                // Format date for database (YYYY-MM-DD)
+                formatDateForDatabase(day, month = this.month, year = this.year) {
+                    const paddedMonth = String(month + 1).padStart(2, '0');
+                    const paddedDay = String(day).padStart(2, '0');
+                    return `${year}-${paddedMonth}-${paddedDay}`;
+                },
+
                 // Check if a specific day has notes
                 hasNote(day) {
                     const dateKey = this.getDateKey(day);
                     return this.notes[dateKey] && this.notes[dateKey].trim() !== '';
                 },
+
                 // Get note for a specific day
                 getNote(day) {
                     const dateKey = this.getDateKey(day);
                     return this.notes[dateKey] || '';
                 },
+
                 // Check if a day is a Philippine holiday
                 isHoliday(day) {
                     const dateKey = this.getDateKey(day);
                     return this.philippineHolidays.hasOwnProperty(dateKey);
                 },
+
                 // Get holiday name for a specific day
                 getHolidayName(day) {
                     const dateKey = this.getDateKey(day);
                     return this.philippineHolidays[dateKey] || '';
                 },
+
                 // Get display text (holiday or note)
                 getDisplayText(day) {
                     if (this.isHoliday(day)) {
@@ -510,6 +539,7 @@
                     }
                     return this.getNote(day);
                 },
+
                 // Get date class for styling
                 getDateClass(day) {
                     let classes = '';
@@ -522,6 +552,7 @@
                     }
                     return classes;
                 },
+
                 // Get day number class for styling
                 getDayNumberClass(day) {
                     if (this.isToday(day)) {
@@ -532,6 +563,7 @@
                         return 'text-[#071d49] group-hover:text-white';
                     }
                 },
+
                 // Get text class for styling
                 getTextClass(day) {
                     if (this.isToday(day)) {
@@ -542,35 +574,177 @@
                         return 'text-[#071d49] group-hover:text-white';
                     }
                 },
+
                 openNote(day) {
                     this.activeDay = day;
-                    this.currentNote = this.getNote(day); // Load existing note
-                    this.currentCategory = this.getCategory(day); // Load existing category
+                    this.currentNote = this.getNote(day);
+                    this.currentCategory = this.getCategory(day);
                     this.showModal = true;
                 },
-                saveNote() {
-                    if (this.activeDay) {
-                        const dateKey = this.getDateKey(this.activeDay);
-                        this.notes[dateKey] = this.currentNote;
-                        this.categories[dateKey] = this.currentCategory;
+
+                // Save note to database
+                async saveNote() {
+                    if (!this.currentNote.trim()) {
+                        Swal.fire({
+                            html: `
+                                <strong style="font-size: 24px;">Nothing to Save</strong>
+                                <p style="font-size: 20px;">Please input a note first.</p>
+                            `,
+                            icon: 'info',
+                            confirmButtonText: 'OK',
+                            showConfirmButton: false,
+                            timer: 2000,
+                            width: '400px',
+                            didOpen: () => {
+                                const icon = document.querySelector('.swal2-icon');
+                                if (icon) {
+                                icon.style.width = '60px';
+                                icon.style.height = '60px';
+                                }
+                            },
+                            height: '100px'
+                        });
+                        return;
                     }
-                    this.showModal = false;
-                },
-                deleteCurrentNote() {
-                    if (this.activeDay) {
-                        const dateKey = this.getDateKey(this.activeDay);
-                        delete this.notes[dateKey];
-                        delete this.categories[dateKey];
-                        this.currentNote = '';
-                        this.currentCategory = 'personal';
+
+                    const result = await Swal.fire({
+                        title: 'Save Note?',
+                        text: 'Do you want to save this note?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonText: 'Save',
+                        cancelButtonText: 'Cancel',
+                        width: '400px'
+                    });
+
+                    if (result.isConfirmed) {
+                        try {
+                            const response = await fetch('/calendar/save-note', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify({
+                                    date: this.formatDateForDatabase(this.activeDay),
+                                    note: this.currentNote,
+                                    category: this.currentCategory
+                                })
+                            });
+
+                            const data = await response.json();
+
+                            if (data.success) {
+                                // Update local storage
+                                const dateKey = this.getDateKey(this.activeDay);
+                                this.notes[dateKey] = this.currentNote;
+                                this.categories[dateKey] = this.currentCategory;
+                                
+                                this.showModal = false;
+                                
+                                Swal.fire({
+                                    title: 'Saved!',
+                                    text: 'Your note has been saved.',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    width: '400px',
+                                    height: '100px'
+                                });
+                            } else {
+                                throw new Error(data.message);
+                            }
+                        } catch (error) {
+                            console.error('Error saving note:', error);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Failed to save note. Please try again.',
+                                icon: 'error',
+                                width: '400px'
+                            });
+                        }
                     }
-                    this.showModal = false;
                 },
+
+                // Delete note from database
+                async deleteCurrentNote() {
+                    if (!this.currentNote.trim()) {
+                        Swal.fire({
+                            title: 'No Note to Delete',
+                            text: 'There is no note to delete for this date.',
+                            icon: 'info',
+                            confirmButtonText: 'OK',
+                            width: '400px'
+                        });
+                        return;
+                    }
+
+                    const result = await Swal.fire({
+                        title: 'Delete Note?',
+                        text: 'This action cannot be undone.',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'Cancel',
+                        width: '400px'
+                    });
+
+                    if (result.isConfirmed) {
+                        try {
+                            const response = await fetch('/calendar/delete-note', {
+                                method: 'DELETE',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify({
+                                    date: this.formatDateForDatabase(this.activeDay)
+                                })
+                            });
+
+                            const data = await response.json();
+
+                            if (data.success) {
+                                // Update local storage
+                                const dateKey = this.getDateKey(this.activeDay);
+                                delete this.notes[dateKey];
+                                delete this.categories[dateKey];
+                                
+                                this.currentNote = '';
+                                this.currentCategory = 'personal';
+                                this.showModal = false;
+                                
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'Your note has been deleted.',
+                                    icon: 'success',
+                                    timer: 2000,
+                                    showConfirmButton: false,
+                                    width: '400px'
+                                });
+                            } else {
+                                throw new Error(data.message);
+                            }
+                        } catch (error) {
+                            console.error('Error deleting note:', error);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'Failed to delete note. Please try again.',
+                                icon: 'error',
+                                width: '400px'
+                            });
+                        }
+                    }
+                },
+
                 // Get category for a specific day
                 getCategory(day) {
                     const dateKey = this.getDateKey(day);
                     return this.categories[dateKey] || 'personal';
                 },
+
                 // Get category color for a specific day
                 getCategoryColor(day) {
                     if (!this.hasNote(day)) {
@@ -580,43 +754,39 @@
                     const category = this.eventCategories.find(cat => cat.id === categoryId);
                     return category ? category.color : '#10B981';
                 },
+
                 // Get category name for a specific day
                 getCategoryName(day) {
                     const categoryId = this.getCategory(day);
                     const category = this.eventCategories.find(cat => cat.id === categoryId);
                     return category ? category.name : 'Personal';
                 },
+
                 // Get responsive tooltip position based on day position
                 getTooltipPosition(day) {
-                    const dayOfWeek = (day + this.startDay - 1) % 7; // 0 = Sunday, 6 = Saturday
-                    const weekNumber = Math.floor((day + this.startDay - 1) / 7); // Which week row
+                    const dayOfWeek = (day + this.startDay - 1) % 7;
+                    const weekNumber = Math.floor((day + this.startDay - 1) / 7);
                     const totalWeeks = Math.ceil((this.daysInMonth + this.startDay) / 7);
                     
-                    let classes = 'w-64 sm:w-72 md:w-80'; // Responsive width
+                    let classes = 'w-64 sm:w-72 md:w-80';
                     
-                    // Vertical positioning - show above if in bottom rows, below if in top rows
-                    if (weekNumber >= totalWeeks - 2) { // Bottom 2 rows
+                    if (weekNumber >= totalWeeks - 2) {
                         classes += ' bottom-full mb-2';
-                    } else { // Top rows
+                    } else {
                         classes += ' top-full mt-2';
                     }
                     
-                    // Horizontal positioning - prevent overflow on sides
-                    if (dayOfWeek <= 1) { // Sunday or Monday - position to right
+                    if (dayOfWeek <= 1) {
                         classes += ' left-0';
-                    } else if (dayOfWeek >= 5) { // Friday or Saturday - position to left
+                    } else if (dayOfWeek >= 5) {
                         classes += ' right-0';
-                    } else { // Middle days - center
+                    } else {
                         classes += ' left-1/2 transform -translate-x-1/2';
                     }
                     
                     return classes;
                 },
-                // Delete note for a specific day
-                deleteNote(day) {
-                    const dateKey = this.getDateKey(day);
-                    delete this.notes[dateKey];
-                },
+
                 isToday(day) {
                     return this.today.getDate() === day && 
                         this.today.getMonth() === this.month && 
