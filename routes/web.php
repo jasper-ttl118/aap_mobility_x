@@ -14,6 +14,8 @@ use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubmoduleController;
 use App\Http\Controllers\NoteController;
+
+use App\Http\Controllers\CalendarController;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -91,6 +93,12 @@ Route::middleware('auth')->group(function () {
         broadcast(new MessageSent('Hello from Reverb + Livewire!'));
         return 'Message Sent!';
     });
+
+    // Notes
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
+    Route::post('/calendar/save-note', [CalendarController::class, 'saveNote'])->name('calendar.save-note');
+    Route::delete('/calendar/delete-note', [CalendarController::class, 'deleteNote'])->name('calendar.delete-note');
+    Route::get('/calendar/notes', [CalendarController::class, 'getNotes'])->name('calendar.notes');
 
     
 

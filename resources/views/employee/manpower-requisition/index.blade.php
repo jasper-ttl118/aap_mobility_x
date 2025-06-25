@@ -101,21 +101,21 @@
         </div>
 
         <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.stop>
+            <div class="rounded shadow-lg max-w-sm w-full" @click.stop>
                 <livewire:employee.manpower-requisition.view-requisition-ticket />
             </div>
         </div>
 
         <template x-if="open_add">
             <div @click="open_add=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
+                <div class="rounded shadow-lg max-w-sm w-full" @click.stop>
                     <livewire:employee.manpower-requisition.add-requisition-req />
                 </div>
             </div>
         </template>
         
         <div x-show="open_edit" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open_edit=false; window.Livewire.dispatch('resetRequisitionData')">
+            <div class="rounded shadow-lg max-w-sm w-full" @click.away="open_edit=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.manpower-requisition.edit-requisition-ticket />
             </div>
         </div>

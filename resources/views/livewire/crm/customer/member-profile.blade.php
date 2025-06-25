@@ -46,12 +46,12 @@
                     <div class="text-xs text-[#071d49] flex flex-row text-center w-[70%] h-[30%] mt-1 mb-2">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum iste, deleniti labore saepe minus ut?
                     </div>
-                    <div class="flex border border-[#071d49] w-[90%] rounded-lg hidden lg:flex"></div>
+                    {{-- <div class="flex border border-[#071d49] w-[90%] rounded-lg hidden lg:flex"></div>
                     <div class="text-xs text-[#071d49] flex flex-row justify-evenly items-center w-full h-auto mt-2 hidden lg:flex">
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                         <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                    </div>
+                    </div> --}}
                 </div>  
             </div>
             <div data-theme="light" x-data="{profile: 'information'}" class="lg:w-[60%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-start items-center">
@@ -73,7 +73,6 @@
                                 <div class="w-[50%] text-[#605e5e] h-full flex flex-row justify-start items-center px-5 gap-2 text-sm lg:text-base">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                         <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                                        <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
                                     </svg>
                                     Email
                                 </div>
@@ -179,12 +178,12 @@
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">March 16, 2025 at 2:30 PM</div>
                             </div>
                         </div>
-                        <div class="flex border border-[#071d49] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
+                        {{-- <div class="flex border border-[#071d49] w-[90%] rounded-lg lg:hidden items-center mt-3"></div>
                         <div class="text-xs text-[#071d49] lowercase flex flex-row justify-evenly items-center w-full h-auto mt-2 lg:hidden">
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
                             <span class="flex w-[25%] truncate uppercase p-1 h-6 text-[10px] border border-[#071d49] text-center justify-center items-center font-semibold rounded-md">Fast Learner</span>
-                        </div>
+                        </div> --}}
                     </div>
                     <div x-show="profile === 'activityLog'" class="w-full h-full">
                         <livewire:crm.customer.member-activity-log />

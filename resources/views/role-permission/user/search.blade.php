@@ -36,8 +36,8 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg hide-scrollbar overflow-x-auto flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
                 </div>
@@ -54,7 +54,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
                 <a href="/user" class="hover:underline truncate">RBAC Management</a>
@@ -97,10 +98,10 @@
                                 </svg>
                             </div>
                             <input type="search" id="employee-search"
-                                class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="block w-full p-4 ps-10 text-base text-white border bg-[#071d49] rounded-lg focus:ring-0"
                                 placeholder="Search Employee Name" />
                             <button type="button" id="search-button"
-                                class="text-white absolute end-2.5 bottom-2.5 bg-blue-900 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                                class="text-[#071d49] absolute end-2.5 bottom-2.5 bg-[#F6D400] hover:bg-white border-2 border-[#071d49] hover:border-[#F6D400] font-medium rounded-lg text-sm px-4 py-2">Search</button>
                         </div>
 
                         <!-- Add this div for search results -->

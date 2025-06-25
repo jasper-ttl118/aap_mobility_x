@@ -20,7 +20,7 @@
     @endphp
 
     {{-- @include('layouts.navbar') --}}
-    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col lg:ml-52 p-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -163,8 +163,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14 ">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
                 </div>
@@ -181,6 +181,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
+        </div>
+        <div class=" rounded-md border-2 bg-white shadow-lg -mt-4">
 
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
@@ -213,7 +215,7 @@
             </div>
 
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-                <table class="w-full text-center text-sm text-gray-500">
+                <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="px-6 py-3">User ID</th>

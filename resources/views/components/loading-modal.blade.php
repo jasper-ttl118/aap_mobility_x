@@ -15,7 +15,7 @@
     top: 60px;
     left: 0;
     border-radius: 50%;
-    animation: shadow324 0.5s linear infinite;
+    animation: shadow324 0.7s linear infinite;
     }
 
     .loader:after {
@@ -27,7 +27,7 @@
     top: 0;
     left: 0;
     border-radius: 4px;
-    animation: jump7456 0.5s linear infinite;
+    animation: jump7456 0.7s linear infinite;
     }
 
     @keyframes jump7456 {

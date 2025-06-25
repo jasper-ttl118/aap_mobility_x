@@ -12,13 +12,14 @@
     @include('layouts.icons')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
         [x-cloak] {
             display: none !important;
         }
     </style>
-@livewireScripts
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
@@ -29,8 +30,8 @@
     </div>
 
     <x-layouts.chat />
-    @livewireStyles
-
+    
+    @livewireScripts
 </body>
 
 </html>

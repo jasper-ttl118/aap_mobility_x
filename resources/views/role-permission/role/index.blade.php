@@ -62,8 +62,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg hide-scrollbar overflow-x-auto flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
@@ -80,7 +80,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>
@@ -119,7 +120,7 @@
                 <!-- Alpine.js Data Setup -->
                 <div x-data="{ viewOpen: false, role: {}, organization: {}, modules: [], permissions: [] }">
 
-                    <table class="w-[700px] lg:w-full text-center text-sm text-gray-500">
+                    <table class="w-[700px] md:w-full lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" class="w-1/12 py-3">Role ID</th>
