@@ -9,31 +9,55 @@ use Livewire\Component;
 class EditInternModal extends Component
 {
     public $intern;
-    #[Rule('required|alpha')]
     public $intern_firstname;
-    #[Rule('regex:/^[A-Za-z .]+$/')]
     public $intern_middlename;
-    #[Rule('required|alpha')]
     public $intern_lastname;
-    #[Rule('required')]
     public $intern_type;
-    #[Rule('required|numeric')]
     public $intern_required_hours;
-    #[Rule('required|numeric|min:11')]
     public $intern_contact_number;
-    #[Rule('required|email')]
     public $intern_email;
-    #[Rule('required|string')]
     public $intern_address;
-    #[Rule('required')]
     public $intern_department;
-    #[Rule('required')]
     public $intern_position;
-    #[Rule('required|alpha')]
     public $intern_school;
     public $intern_status;
     public $intern_id;
     protected $listeners = ['loadInternInfo', 'resetInternProfile'];
+
+    public function rules()
+    {
+        return [
+            'intern_firstname' => 'required',
+            'intern_lastname' => 'required',
+            'internship_type' => 'required',
+            'intern_required_hours' => 'required|integer',
+            'intern_contact_number' => 'required|min:11',
+            'intern_email' => 'required',
+            'intern_address' => 'required',
+            'intern_department' => 'required',
+            'intern_position' => 'required',
+            'intern_school' => 'required'   
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'intern_firstname.required' => 'First name is required.',
+            'intern_lastname.required' => 'Last name is required.',
+            'internship_type.required' => 'Internship type is required.',
+            'intern_required_hours.required' => 'Required hours is required.',
+            'intern_required_hours.integer' => 'Must be an integer.',
+            'intern_contact_number.required' => 'Contact number is required.',
+            'intern_contact_number.min' => 'Must be at least 11 characters.',
+            'intern_email.required' => 'Email is required.',
+            'intern_address.required' => 'Address is required.',
+            'intern_department.required' => 'Department is required.',
+            'intern_position.required' => 'Intern position is required.',
+            'intern_school.required' => 'School name is required.'
+        ];
+    }
+
 
     public function loadInternInfo($intern_id)
     {
@@ -76,12 +100,12 @@ class EditInternModal extends Component
         ]);
 
         if($query){
+            $this->dispatch('refreshTable', 'interns');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Intern Updated Successfully!',
             ]);
-
-            $this->dispatch('close-modal');
         }
         else{
             $this->dispatch('show-toast', [
@@ -89,6 +113,9 @@ class EditInternModal extends Component
                 'content' => 'An Error Occured!',
             ]);
         }
+        
+        $this->resetInternProfile();
+        $this->dispatch('close-modal');
     }
 
     public function render()

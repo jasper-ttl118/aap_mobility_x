@@ -11,14 +11,25 @@
         <div>
             <label class="font-medium text-xs">Intern Name</label>
             <div class="grid grid-cols-3 gap-2 mt-1">
-                <input type="text" name="intern_firstname" placeholder="First Name" wire:model="intern_firstname"
+                <div class="flex flex-col">
+                    <input type="text" name="intern_firstname" placeholder="First Name" wire:model="intern_firstname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_middlename" placeholder="Middle Name" wire:model="intern_middlename"
+                     @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+                
+                <div class="flex flex-col">
+                    <input type="text" name="intern_middlename" placeholder="Middle Name" wire:model="intern_middlename"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_lastname" placeholder="Last Name" wire:model="intern_lastname"
+                    @error('intern_middlename') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
+                <div class="flex flex-col">
+                    <input type="text" name="intern_lastname" placeholder="Last Name" wire:model="intern_lastname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                    @error('intern_lastname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
             </div>
-            @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
 
         <!-- Internship Type & Required Hours -->

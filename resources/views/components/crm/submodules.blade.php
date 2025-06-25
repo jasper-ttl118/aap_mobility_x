@@ -1,7 +1,7 @@
-@props(['selected' => 'Alphalist'])
+@props(['selected' => 'Dashboard'])
 
 @php
-    $moduleId = 3; // Module id of Employee
+    $moduleId = 4; // Module id of Employee
 
     $submodules = auth()->user()->roles
         ->flatMap->submodules
@@ -10,9 +10,11 @@
         ->toArray();
 
     $links = [
-        'Alphalist' => '/employee',
-        'Manpower Requisition' => '/employee/manpower-requisition',
-        'Vacancy List' => '/employee/vacancy-list'
+        'Dashboard' => '/customer',
+        'Members' => '/customer/contacts',
+        'Email Marketing' => '/customer/email-marketing',
+        'Corporate' => '/customer/corporate',
+        'Sales Tracking' => '/customer/sale-tracking'
     ];
 
 @endphp
@@ -28,4 +30,3 @@
         </div>
     @endif
 @endforeach
-

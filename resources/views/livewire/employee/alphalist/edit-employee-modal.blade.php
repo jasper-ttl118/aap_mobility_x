@@ -4,7 +4,7 @@
     </div>
 
     @if ($employee)
-        <form wire:loading.remove wire:submit="edit" class="max-w-md mx-auto text-sm">
+        <form wire:loading.remove wire:submit="edit" @close-modal.window="open_edit_employee=false" class="max-w-md mx-auto text-sm">
             @csrf
             @method('PUT')
 
@@ -19,14 +19,24 @@
                 <div>
                     <label class="font-medium text-xs">Name</label>
                     <div class="flex gap-1 mt-1">
-                        <input type="text" wire:model="employee_firstname" placeholder="First"
+                        <div class="flex flex-col">
+                            <input type="text" wire:model="employee_firstname" placeholder="First"
                             class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
-                        <input type="text" wire:model="employee_middlename" placeholder="Middle"
+                            @error('employee_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                        </div>
+
+                        <div class="flex flex-col">
+                            <input type="text" wire:model="employee_middlename" placeholder="Middle"
                             class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
-                        <input type="text" wire:model="employee_lastname" placeholder="Last"
+                            @error('employee_middlename') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                        </div>
+
+                        <div class="flex flex-col">
+                            <input type="text" wire:model="employee_lastname" placeholder="Last"
                             class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
+                            @error('employee_lastname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                        </div>
                     </div>
-                    @error('employee_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
                 </div>
 
                 <!-- Contact Number -->

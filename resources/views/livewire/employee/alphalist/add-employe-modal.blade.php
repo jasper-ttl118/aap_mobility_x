@@ -12,14 +12,26 @@
         <div>
             <label for="employee_fullname" class="font-medium text-xs">Employee Name</label>
             <div class="flex gap-1 mt-1">
-                <input type="text" name="employee_firstname" placeholder="First Name" wire:model="employee_firstname"
+
+                <div class="flex flex-col">
+                    <input type="text" name="employee_firstname" placeholder="First Name" wire:model="employee_firstname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="employee_middlename" placeholder="Middle Name" wire:model="employee_middlename"
+                    @error('employee_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
+                <div class="flex flex-col">
+                    <input type="text" name="employee_middlename" placeholder="Middle Name" wire:model="employee_middlename"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="employee_lastname" placeholder="Last Name" wire:model="employee_lastname"
+                    @error('employee_middlename') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
+                <div class="flex flex-col">
+                   <input type="text" name="employee_lastname" placeholder="Last Name" wire:model="employee_lastname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                     @error('employee_lastname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
             </div>
-            @error('employee_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
 
         <!-- Contact Number -->

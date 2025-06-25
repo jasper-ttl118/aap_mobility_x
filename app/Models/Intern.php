@@ -8,6 +8,8 @@ class Intern extends Model
 {
     // public $timestamps = false;
     protected $primaryKey = 'intern_id';
+    const CREATED_AT = 'intern_date_created';
+    const UPDATED_AT = 'intern_date_updated';
     protected $fillable = [
         'intern_firstname',
         'intern_middlename', 
@@ -22,4 +24,5 @@ class Intern extends Model
         'intern_contact_number',
         'intern_status',
     ];
+
 }

@@ -24,6 +24,8 @@ class ViewRequisitionTicket extends Component
         );
 
         if($query){      
+            $this->dispatch('refreshTable', 'approved');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Requisition Approved!',
@@ -48,6 +50,9 @@ class ViewRequisitionTicket extends Component
         );
 
         if($query){      
+
+            $this->dispatch('refreshTable', 'rejected');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Requisition Rejected!',

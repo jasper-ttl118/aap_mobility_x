@@ -75,18 +75,25 @@
 
                 <!-- Salary Range (Min & Max) -->
                 <div>
-                    <label class="font-medium text-xs">Salary Range</label>
-                    <div class="flex gap-2 mt-1">
+                    <label class="font-medium text-xs">Salary Range (₱)</label>
+                    <div class="flex justify-between gap-2 mt-1">
+                        <div class="flex flex-col">
                         <input type="number" name="requisition_salary_min" placeholder="Min"
                             wire:model="requisition_salary_min"
-                            class="w-1/2 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                        <input type="number" name="requisition_salary_max" placeholder="Max"
+                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                            @error('requisition_salary_min') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                        </div>
+                        <div class="flex text-center">
+                            <span class="text-lg">To</span> 
+                        </div>
+                        <div class="flex flex-col">
+                            <input type="number" name="requisition_salary_max" placeholder="Max"
                             wire:model="requisition_salary_max"
-                            class="w-1/2 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                            @error('requisition_salary_max') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                        </div>
                     </div>
-                    @error('requisition_salary_min') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    @error('requisition_salary_max') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
+        </div>
 
                 <!-- Submit Button -->
                 <button type="submit"

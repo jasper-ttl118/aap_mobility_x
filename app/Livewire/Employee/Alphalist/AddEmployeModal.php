@@ -8,35 +8,49 @@ use Livewire\Component;
 
 class AddEmployeModal extends Component
 {
-    #[Rule('required|alpha')]
     public $employee_firstname = '';
-
-    #[Rule('regex:/^[A-Za-z.]+$/')]
     public $employee_middlename = '';
-
-    #[Rule('required|alpha')]
     public $employee_lastname = '';
-
-    #[Rule('required|email')]
     public $employee_email = '';
-
-    #[Rule('required|string')]
     public $employee_address = '';
-    
-    #[Rule('required')]
     public $employee_position = '';
-
-    #[Rule('required')]
     public $employee_department = '';
-
-    #[Rule('required|numeric|min:11')]
     public $employee_contact_number = '';
     
+    public function rules()
+    {
+        return [
+            'employee_firstname' => 'required',
+            'employee_lastname' => 'required',
+            'employee_email' => 'required',
+            'employee_address' => 'required',
+            'employee_position' => 'required',
+            'employee_department' => 'required',
+            'employee_contact_number' => 'required|min:11'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'employee_firstname.required' => 'First name is required.',
+            'employee_lastname.required' => 'Last name is required.',
+            'employee_email.required' => 'Email is required.',
+            'employee_address.required' => 'Address is required.',
+            'employee_position.required' => 'Employee Position is required.',
+            'employee_department.required' => 'Department is required.',
+            'employee_contact_number.required' => 'Contact Number is required.',
+            'employee_contact_number.min' => 'Must be at least 11 characters.'
+
+        ];
+    }
+
     public function mount()
     {
         $this->employee_department = 'IST';
         $this->employee_position = 'Manager';
     }
+    
     public function add()
     {
         $this->validate();
@@ -53,12 +67,12 @@ class AddEmployeModal extends Component
         ]);
         
         if($query){      
+            $this->dispatch('refreshTable', 'employees');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Employee Added Successfully!',
             ]);
-
-            $this->dispatch('close-modal');
         }
         else{
             $this->dispatch('show-toast', [
@@ -66,6 +80,8 @@ class AddEmployeModal extends Component
                 'content' => 'An Error Occured!',
             ]);
         }
+
+        $this->dispatch('close-modal');
     }
 
     public function render()

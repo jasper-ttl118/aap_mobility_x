@@ -35,7 +35,7 @@
             </div>
         </div>
         
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadoxw-lg -mt-4">
             <div class="flex justify-between">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
@@ -50,7 +50,7 @@
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex justify-end px-7 pt-6">
                     <div class="flex items-center gap-4">
-                         {{-- Toggle  --}}
+                        {{-- Toggle  --}}
                         {{-- <div class="flex border border-[#151847] rounded-md overflow-hidden w-[220px] h-[30px]">
                             <a @click="selected='employees'"
                             class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
@@ -74,14 +74,14 @@
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <a @click="open_add=true" 
+                    {{-- <a @click="open_add=true" 
                     class="{{ request()->routeIs('vacancy-list') ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'}} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         Create Requisition Request
-                    </a>
+                    </a> --}}
 
                     <a x-show="selected == 'ojt'" href="#"
                     class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
@@ -94,116 +94,40 @@
                 </div>
             </div>
 
-            {{-- List of Employees --}}
+            {{-- List of Vacant Jobs --}}
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-                 {{-- <livewire:employee.employee-table :$employees> --}}
-                <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
-                    <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
-                        <tr>    
-                            <th scope="col" class=" py-3">Request ID</th>
-                            <th scope="col" class=" py-3">Job Position</th>
-                            <th scope="col" class=" py-3">Requisition Type</th>
-                            <th scope="col" class=" py-3">Department</th>
-                            <th scope="col" class=" py-3">Requestor Name</th>
-                            <th scope="col" class=" py-3">Salary Range</th>
-                            {{-- <th scope="col" class=" py-3">Status</th> --}}
-                            <th scope="col" class=" py-3">Actions</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @forelse ($approvedRequisitions as $approvedRequisition)
-                            <tr>
-                                <td class="p-2">{{ $approvedRequisition->requisition_id }}</td>
-                                <td class="p-2">{{ $approvedRequisition->requisition_job_position }}</td>
-                                <td>{{ $approvedRequisition->requisition_type }}</td>
-                                <td class="p-2">{{ $approvedRequisition->requisition_department }}</td>
-                                <td class="p-2">{{ $approvedRequisition->requisition_requestor_name }}</td>
-                                <td class="p-2">₱{{ $approvedRequisition->requisition_salary_min }} - ₱{{ $approvedRequisition->requisition_salary_max}}</td>
-                                {{-- <td class="p-2">
-                                    <span class="bg-green-600 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg ">Approved</span>
-                                </td> --}}
-                                <td class="p-2">
-                                    <div class="flex flex-row justify-center items-center gap-2">
-                                            <a
-                                                x-data="{ disabled: false }"
-                                                x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
-                                                @click="open_view = true;       
-                                                    window.Livewire.dispatch('loadRequisitionRequest', { requisition_id: {{ $approvedRequisition->requisition_id }} });
-                                                    "
-                                                class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
-                                            >
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="currentColor" class="size-4">
-                                                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
-                                                    <path fill-rule="evenodd"
-                                                        d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </a>
-
-                                            <a @click="open_edit = true; 
-                                                       window.Livewire.dispatch('loadEditRequisitionRequest', { requisition_id: {{ $approvedRequisition->requisition_id }}})
-                                                "
-                                                class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="currentColor" class="size-4">
-                                                    <path
-                                                        d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
-                                                    <path
-                                                        d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                                    <path
-                                                        d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                                </svg>
-                                            </a>
-
-                                            <a href="javascript:void(0)"
-                                                @click="open_delete = true; Livewire.dispatch('getRequisitionId', { requisition_id: {{ $approvedRequisition->requisition_id }} });"
-                                                class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="currentColor" class="size-4">
-                                                    <path fill-rule="evenodd"
-                                                        d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-                                            </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="8" class="py-3">No Approved Requisition Request Yet...</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                <livewire:employee.vacancy-list.vacant-table />
             </div>
         </div>
         
         <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div @click.stop>
-                <livewire:employee.manpower-requisition.view-requisition-ticket />
+                <livewire:employee.vacancy-list.view-vacant-job />
             </div>
         </div>
 
-        <template x-if="open_add">
+        {{-- <template x-if="open_add">
             <div @click="open_add=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
                 <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
                     <livewire:employee.manpower-requisition.add-requisition-req />
                 </div>
             </div>
-        </template>
+        </template> --}}
         
         <div x-show="open_edit" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open_edit=false; window.Livewire.dispatch('resetRequisitionData')">
-                <livewire:employee.manpower-requisition.edit-requisition-ticket />
+            <div @click.away="open_edit=false; window.Livewire.dispatch('resetVacantJob')">
+                <livewire:employee.vacancy-list.edit-vacant-job />
             </div>
         </div>
 
         <div x-show="open_delete" x-cloak id="delete-modal" 
             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
-                <livewire:employee.manpower-requisition.delete-requisition-ticket />
+                <livewire:employee.vacancy-list.delete-vacant-job />
+        </div>
+
+        <div class="fixed top-14 right-10 z-50 space-y-2 w-[300px]">
+            <livewire:toast.toast />
         </div>
     </div>
- 
+
 </x-app-layout>

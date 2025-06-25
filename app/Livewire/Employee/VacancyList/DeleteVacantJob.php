@@ -1,28 +1,27 @@
 <?php
 
-namespace App\Livewire\Employee\ManpowerRequisition;
+namespace App\Livewire\Employee\VacancyList;
 
 use App\Models\Requisition;
 use Livewire\Component;
 
-class DeleteRequisitionTicket extends Component
+class DeleteVacantJob extends Component
 {
     public $requisition_id;
-    public $status; // Used for updating/refreshing the table
-    protected $listeners = ['getRequisitionId'];
+    protected $listeners = ['getVacantJobId'];
     
-    public function getRequisitionId($requisition_id, $status)
+    public function getVacantJobId($requisition_id)
     {
         $this->requisition_id = $requisition_id;
-        $this->status = $status;
     }
+
     public function delete()
     {
         $requisition = Requisition::find($this->requisition_id);
         $query = $requisition->delete();
 
         if($query){
-            $this->dispatch('refreshTable', $this->status);
+            $this->dispatch('refreshVacancyTable');
 
             $this->dispatch('show-toast', [
                 'title' => 'Success',
@@ -38,8 +37,9 @@ class DeleteRequisitionTicket extends Component
 
         $this->dispatch('close-modal');
     }
+
     public function render()
     {
-        return view('livewire.employee.manpower-requisition.delete-requisition-ticket');
+        return view('livewire.employee.vacancy-list.delete-vacant-job');
     }
 }

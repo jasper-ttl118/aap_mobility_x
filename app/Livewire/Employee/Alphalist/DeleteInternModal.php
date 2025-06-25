@@ -20,12 +20,12 @@ class DeleteInternModal extends Component
         $query = $intern->delete();
 
         if($query){
+            $this->dispatch('refreshTable', 'interns');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Intern Deleted Successfully!',
             ]);
-
-            $this->dispatch('close-modal');
         }
         else{
             $this->dispatch('show-toast', [
@@ -33,6 +33,8 @@ class DeleteInternModal extends Component
                 'content' => 'An Error Occured!',
             ]);
         }
+        
+        $this->dispatch('close-modal');
     }
     public function render()
     {
