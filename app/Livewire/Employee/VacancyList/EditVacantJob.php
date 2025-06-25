@@ -1,65 +1,38 @@
 <?php
 
-namespace App\Livewire\Employee\ManpowerRequisition;
+namespace App\Livewire\Employee\VacancyList;
 
 use App\Models\Requisition;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
 
-class EditRequisitionTicket extends Component
+class EditVacantJob extends Component
 {
     public $requisition;
     public $requisition_id;
+    #[Rule('required')]
     public $requisition_job_position;
+    #[Rule('required')]
     public $requisition_job_description;
+    #[Rule('required')]
     public $requisition_type;
+    #[Rule('required')]
     public $requisition_department;
+    #[Rule('required')]
     public $requisition_requestor_name;
+    #[Rule('required|integer|min:1', message: ['requisition_salary_min.min' => 'Number must be greater than zero.'])]
     public $requisition_salary_min;
+    #[Rule('required|integer|min:1', message: ['requisition_salary_max.min' => 'Number must be greater than zero.'])]
     public $requisition_salary_max;
-    public $status; // for updating of table
 
-    protected $listeners = ['loadEditRequisitionRequest', 'resetRequisitionData'];
-    protected function rules()
-    {
-        return [
-            'requisition_job_position' => 'required|string',
-            'requisition_job_description' => 'required|string',
-            'requisition_type' => 'required',
-            'requisition_department' => 'required',
-            'requisition_requestor_name' => 'required|string',
-            'requisition_salary_min' => ['required', 'integer', 'min:1'],
-            'requisition_salary_max' => ['required', 'integer', 'min:1', function ($attribute, $value, $fail) {
-                if ($this->requisition_salary_min && $value < $this->requisition_salary_min) {
-                    $fail('Maximum salary must be greater than the minimum salary.');
-                }
-            }],
-        ];
-    }
-
-    protected function messages()
-    {
-        return [
-            'requisition_job_position.required' => 'Job position is required.',
-            'requisition_job_description.required' => 'Job description is required.',
-            'requisition_type.required' => 'Requisition type is required.',
-            'requisition_department.required' => 'Department is required.',
-            'requisition_requestor_name.required' => 'Requestor name is required.',
-            'requisition_salary_min.required' => 'Minimum salary is required.',
-            'requisition_salary_max.required' => 'Maximum salary is required.',
-            'requisition_salary_min.min' => 'Number must be greater than zero.',
-            'requisition_salary_max.min' => 'Number must be greater than zero.',
-        ];
-    }
-
-    public function resetRequisitionData()
+    protected $listeners = ['loadEditVacantJob', 'resetVacantJob'];
+    public function resetVacantJob()
     {
         $this->requisition = null;
     }
 
-    public function loadEditRequisitionRequest($requisition_id, $status)
+    public function loadEditVacantJob($requisition_id)
     {
-        $this->status = $status;
         $this->requisition = Requisition::find($requisition_id);
         $this->requisition_id = $requisition_id;
         $this->requisition_job_position = $this->requisition->requisition_job_position;
@@ -86,7 +59,7 @@ class EditRequisitionTicket extends Component
         ]);
 
         if($query){      
-            $this->dispatch('refreshTable', $this->status);
+            $this->dispatch('refreshVacancyTable');
 
             $this->dispatch('show-toast', [
                 'title' => 'Success',
@@ -100,12 +73,12 @@ class EditRequisitionTicket extends Component
             ]);
         }
 
-        $this->resetRequisitionData();
+        $this->resetVacantJob();
         $this->dispatch('close-modal');
     }
 
     public function render()
     {
-        return view('livewire.employee.manpower-requisition.edit-requisition-ticket');
+        return view('livewire.employee.vacancy-list.edit-vacant-job');
     }
 }

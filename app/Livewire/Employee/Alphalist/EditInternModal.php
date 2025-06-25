@@ -2,99 +2,109 @@
 
 namespace App\Livewire\Employee\Alphalist;
 
+use App\Models\Intern;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
-use App\Models\Employee;
 
 class EditInternModal extends Component
 {
-    public $employee;
-    public $employee_id;
-    #[Rule('required|alpha')]
-    public $employee_firstname;
+    public $intern;
+    public $intern_firstname;
+    public $intern_middlename;
+    public $intern_lastname;
+    public $intern_type;
+    public $intern_required_hours;
+    public $intern_contact_number;
+    public $intern_email;
+    public $intern_address;
+    public $intern_department;
+    public $intern_position;
+    public $intern_school;
+    public $intern_status;
+    public $intern_id;
+    protected $listeners = ['loadInternInfo', 'resetInternProfile'];
 
-    #[Rule('required|regex:/^[A-Za-z .]+$/')]
-    public $employee_middlename;
-
-    #[Rule('required|alpha')]
-    public $employee_lastname;
-
-    #[Rule('required|email')]
-    public $employee_email;
-
-    #[Rule('required|regex:/^[A-Za-z0-9 ._-]+$/')]
-    public $employee_address;
-
-    #[Rule('required')]
-    public $employee_position;
-
-    #[Rule('required')]
-    public $employee_department;
-
-    #[Rule('required|regex:/^[09][0-9]+/|min:11')]
-    public $employee_contact_number;
-
-    #[Rule('required')]
-    public $employee_status;
-
-    public $required_hours;
-
-    protected $listeners = ["loadEmployeeInfo", "resetEmployeeProfile"];
-
-    public function loadEmployeeInfo($employee_id)
+    public function rules()
     {
-         $this->employee = Employee::find($employee_id);
-         $this->employee_firstname =  $this->employee->employee_firstname;
-         $this->employee_middlename = $this->employee->employee_middlename;
-         $this->employee_lastname =  $this->employee->employee_lastname;
-         $this->employee_email = $this->employee->employee_email;
-         $this->employee_address = $this->employee->employee_address;
-         $this->employee_position = $this->employee->employee_position;
-         $this->employee_department = $this->employee->employee_department;
-         $this->employee_contact_number = $this->employee->employee_contact_number;
-         $this->employee_status = $this->employee->employee_status;
-         $this->required_hours = 400;
+        return [
+            'intern_firstname' => 'required',
+            'intern_lastname' => 'required',
+            'internship_type' => 'required',
+            'intern_required_hours' => 'required|integer',
+            'intern_contact_number' => 'required|min:11',
+            'intern_email' => 'required',
+            'intern_address' => 'required',
+            'intern_department' => 'required',
+            'intern_position' => 'required',
+            'intern_school' => 'required'   
+        ];
     }
 
-    public function resetEmployeeProfile()
+    public function messages()
     {
-        $this->employee = null;
+        return [
+            'intern_firstname.required' => 'First name is required.',
+            'intern_lastname.required' => 'Last name is required.',
+            'internship_type.required' => 'Internship type is required.',
+            'intern_required_hours.required' => 'Required hours is required.',
+            'intern_required_hours.integer' => 'Must be an integer.',
+            'intern_contact_number.required' => 'Contact number is required.',
+            'intern_contact_number.min' => 'Must be at least 11 characters.',
+            'intern_email.required' => 'Email is required.',
+            'intern_address.required' => 'Address is required.',
+            'intern_department.required' => 'Department is required.',
+            'intern_position.required' => 'Intern position is required.',
+            'intern_school.required' => 'School name is required.'
+        ];
     }
 
-    public function mount(Employee $employee)
+
+    public function loadInternInfo($intern_id)
     {
-        $this->employee_id = $employee->employee_id;
-        $this->employee_firstname = $employee->employee_firstname;
-        $this->employee_middlename = $employee->employee_middlename;
-        $this->employee_lastname = $employee->employee_lastname;
-        $this->employee_email = $employee->employee_email;
-        $this->employee_address = $employee->employee_address;
-        $this->employee_position = $employee->employee_position;
-        $this->employee_department = $employee->employee_department;
-        $this->employee_contact_number = $employee->employee_contact_number;
-        $this->employee_status = $employee->employee_status;
+         $this->intern = Intern::find($intern_id);
+         $this->intern_id = $this->intern->intern_id;
+         $this->intern_firstname =  $this->intern->intern_firstname;
+         $this->intern_middlename = $this->intern->intern_middlename;
+         $this->intern_lastname =  $this->intern->intern_lastname;
+         $this->intern_email = $this->intern->intern_email;
+         $this->intern_address = $this->intern->intern_address;
+         $this->intern_position = $this->intern->intern_position;
+         $this->intern_department = $this->intern->intern_department;
+         $this->intern_contact_number = $this->intern->intern_contact_number;
+         $this->intern_status = $this->intern->intern_status;
+         $this->intern_required_hours = $this->intern->intern_required_hours;
+         $this->intern_school = $this->intern->intern_school;
+         $this->intern_type = $this->intern->intern_type;
+    }
+
+    public function resetInternProfile()
+    {
+        $this->intern = null;
     }
 
     public function edit()
     {   
         $this->validate();
 
-        $query = Employee::find($this->employee_id)->update([
-            'employee_firstname' => $this->employee_firstname, 
-            'employee_middlename' => $this->employee_middlename,
-            'employee_lastname' => $this->employee_lastname,
-            'employee_email' => $this->employee_email,
-            'employee_address' => $this->employee_address,
-            'employee_position' => $this->employee_position,
-            'employee_department' => $this->employee_department,
-            'employee_contact_number' => $this->employee_contact_number,
-            'employee_status' => $this->employee_status,
+        $query = Intern::find($this->intern_id)->update([
+            'intern_firstname' => $this->intern_firstname, 
+            'intern_middlename' => $this->intern_middlename,
+            'intern_lastname' => $this->intern_lastname,
+            'intern_email' => $this->intern_email,
+            'intern_address' => $this->intern_address,
+            'intern_position' => $this->intern_position,
+            'intern_department' => $this->intern_department,
+            'intern_contact_number' => $this->intern_contact_number,
+            'intern_status' => $this->intern_status,
+            'intern_required_hours' => $this->intern_required_hours,
         ]);
 
         if($query){
+            $this->dispatch('refreshTable', 'interns');
+
             $this->dispatch('show-toast', [
                 'title' => 'Success',
-                'content' => 'Employee Updated Successfully!',
+                'content' => 'Intern Updated Successfully!',
             ]);
         }
         else{
@@ -103,6 +113,9 @@ class EditInternModal extends Component
                 'content' => 'An Error Occured!',
             ]);
         }
+        
+        $this->resetInternProfile();
+        $this->dispatch('close-modal');
     }
 
     public function render()

@@ -1,133 +1,125 @@
-<div>
-    <div wire:loading>
+<div x-data="{'disp' : true}">
+    <div x-show="disp" wire:loading>
         <x-loading-modal />
     </div>
 
-    @if ($employee)
-        <form wire:loading.remove wire:submit="edit" class="max-w-md mx-auto text-sm">
-            @csrf
-            @method('PUT')
-
-            <div class="text-gray-700 py-6 px-4 space-y-3 bg-white shadow-md mt-1 rounded border border-gray-200">
-
-                <!-- Heading -->
-                <div class="border-b border-gray-200 pb-3">
-                    <h1 class="text-base font-semibold uppercase">Update Intern</h1>
-                    <p class="text-xs text-gray-600">Edit personal and job details.</p>
-                </div>
-
-                <!-- Employee Name -->
-                <div>
-                    <label class="font-medium text-xs">Name</label>
-                    <div class="flex gap-1 mt-1">
-                        <input type="text" wire:model="employee_firstname" placeholder="First"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
-                        <input type="text" wire:model="employee_middlename" placeholder="Middle"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
-                        <input type="text" wire:model="employee_lastname" placeholder="Last"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 focus:outline-blue-500 text-sm">
-                    </div>
-                    @error('employee_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
-
-                <!-- Internship Type & Required Hours -->
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
-                        <label class="text-xs font-medium">Type</label>
-                        <select name="internship_type" wire:model="internship_type"
-                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-xs mt-1 focus:outline-blue-500">
-                            <option value="Voluntary" selected>Voluntary</option>
-                            <option value="School Required">School Required</option>
-                        </select>
-                        @error('internship_type') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    </div>
-                    <div>
-                        <label class="text-xs font-medium">Required Hours</label>
-                        <input type="number" name="required_hours" wire:model="required_hours"
-                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
-                            placeholder="e.g. 300">
-                        @error('required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    </div>
-                </div>
-
-                <!-- Contact Number -->
-                <div>
-                    <label class="font-medium text-xs">Contact Number</label>
-                    <input type="text" wire:model="employee_contact_number" placeholder="e.g. 09123456789"
-                        class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
-                    @error('employee_contact_number') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
-                
-                <!-- School -->
-                <div>
-                    <label class="font-medium text-xs">School</label>
-                    <input type="text" wire:model="employee_school" placeholder="University of Caloocan City"
-                        class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
-                    @error('employee_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
-
-                <!-- Email -->
-                <div>
-                    <label class="font-medium text-xs">Email</label>
-                    <input type="email" wire:model="employee_email" placeholder="sample@email.com"
-                        class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
-                    @error('employee_email') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
-
-                <!-- Address -->
-                <div>
-                    <label class="font-medium text-xs">Address</label>
-                    <input type="text" wire:model="employee_address" placeholder="Enter Address"
-                        class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-sm">
-                    @error('employee_address') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                </div>
-
-                <!-- Department, Position & Status -->
-                <div class="grid grid-cols-3 gap-2">
-                    <div>
-                        <label class="font-medium text-xs">Department</label>
-                        <select wire:model="employee_department"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-xs">
-                            <option value="">Select</option>
-                            <option value="IT">IT</option>
-                            <option value="HR">HR</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Marketing">Marketing</option>
-                            <option value="Sales">Sales</option>
-                        </select>
-                        @error('employee_department') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    </div>
-
-                    <div>
-                        <label class="font-medium text-xs">Position</label>
-                        <select wire:model="employee_position"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-xs">
-                            <option value="">Select</option>
-                            <option value="Manager">Manager</option>
-                            <option value="Supervisor">Supervisor</option>
-                            <option value="Staff">Staff</option>
-                        </select>
-                        @error('employee_position') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    </div>
-
-                    <div>
-                        <label class="font-medium text-xs">Status</label>
-                        <select wire:model="employee_status"
-                            class="w-full h-8 bg-gray-100 rounded border border-gray-300 px-2 mt-1 focus:outline-blue-500 text-xs">
-                            <option value="">Select</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                        @error('employee_status') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
-                    </div>
-                </div>
-
-                <!-- Submit -->
-                <button type="submit"
-                    class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700 transition-all duration-150">
-                    Update
-                </button>
+    @if ($intern)
+        <form wire:loading.remove wire:submit="edit" @close-modal.window="open_edit_intern=false" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
+        @csrf
+        <div class="text-gray-700 py-6 px-4 space-y-3">
+            <!-- Heading -->
+            <div class="border-b border-gray-200 pb-3">
+                <h1 class="text-base font-semibold uppercase">Update Intern</h1>
+                <p class="text-xs text-gray-600">Edit personal information of intern.</p>
             </div>
+
+            <!-- Intern Name -->
+            <div>
+                <label class="font-medium text-xs">Intern Name</label>
+                <div class="grid grid-cols-3 gap-2 mt-1">
+                    <input type="text" name="intern_firstname" placeholder="First" wire:model="intern_firstname"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                    <input type="text" name="intern_middlename" placeholder="Middle" wire:model="intern_middlename"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                    <input type="text" name="intern_lastname" placeholder="Last" wire:model="intern_lastname"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                </div>
+                @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+            </div>
+
+            <!-- Internship Type & Required Hours -->
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="text-xs font-medium">Type</label>
+                    <select name="intern_type" wire:model="intern_type"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-xs mt-1 focus:outline-blue-500">
+                        <option value="">Select</option>
+                        <option value="Voluntary">Voluntary</option>
+                        <option value="School Required">School Required</option>
+                    </select>
+                    @error('intern_type') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+                <div>
+                    <label class="text-xs font-medium">Required Hours</label>
+                    <input type="number" name="intern_required_hours" wire:model="intern_required_hours"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                        placeholder="e.g. 300">
+                    @error('intern_required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <label class="text-xs font-medium">Contact Number</label>
+                <input type="text" name="intern_contact_number" wire:model="intern_contact_number"
+                    class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                    placeholder="e.g. 09123456789">
+                @error('intern_contact_number') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+            </div>
+
+            <!-- School -->
+            <div>
+                <label class="text-xs font-medium">School</label>
+                <input type="text" name="intern_school" wire:model="intern_school"
+                    class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                    placeholder="University of Caloocan City">
+                @error('intern_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+            </div>
+            
+            <!-- Email -->
+            <div>
+                <label class="text-xs font-medium">Email</label>
+                <input type="email" name="intern_email" wire:model="intern_email"
+                    class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                    placeholder="email@example.com">
+                @error('intern_email') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+            </div>
+            
+            <!-- Address -->
+            <div>
+                <label class="text-xs font-medium">Address</label>
+                <input type="text" name="intern_address" wire:model="intern_address"
+                    class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
+                    placeholder="Enter address">
+                @error('intern_address') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+            </div>
+
+            <!-- Department & Position -->
+            <div class="grid grid-cols-2 gap-2">
+                <div>
+                    <label class="text-xs font-medium">Department</label>
+                    <select name="intern_department" wire:model="intern_department"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-xs mt-1 focus:outline-blue-500">
+                        <option value="IST">IST</option>
+                        <option value="Admin">Admin</option>
+                        <option value="HR">HR</option>
+                        <option value="Accounting">Accounting</option>
+                        <option value="Membership">Membership</option>
+                        <option value="MarComm">MarComm</option>
+                        <option value="CEO">CEO</option>
+                        <option value="COO">COO</option>
+                        <option value="EO">EO</option>
+                    </select>
+                    @error('intern_department') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+                <div>
+                    <label class="text-xs font-medium">Position</label>
+                    <select name="intern_position" wire:model="intern_position"
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-xs mt-1 focus:outline-blue-500">
+                        <option value="Manager">Manager</option>
+                        <option value="Supervisor">Supervisor</option>
+                        <option value="Staff">Staff</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" @click="disp=false"
+                class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700">
+                Update
+            </button>
+        </div>
         </form>
+
     @endif
 </div>

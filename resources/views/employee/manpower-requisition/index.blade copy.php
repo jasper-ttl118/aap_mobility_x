@@ -143,7 +143,7 @@
                                                     disabled = true;
                                                     setTimeout(() => disabled = false, 1000); 
                                                 }
-                                            "class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
+                                            " class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                         >
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 fill="currentColor" class="size-4">

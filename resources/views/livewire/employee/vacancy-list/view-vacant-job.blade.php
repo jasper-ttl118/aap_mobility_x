@@ -7,8 +7,8 @@
             <div class="text-gray-700 p-4 space-y-3">
                 <!-- Heading -->
                 <div class="border-b border-gray-200 pb-3">
-                    <h1 class="text-base font-semibold uppercase">View Pending Requisition</h1>
-                    <p class="text-xs text-gray-600">Manpower Requisition Form Details.</p>
+                    <h1 class="text-base font-semibold uppercase">View Vacant Job</h1>
+                    <p class="text-xs text-gray-600">Display vacant job details.</p>
                 </div>
 
                 <!-- Job Position -->
@@ -74,17 +74,6 @@
                     </div>
                 </div>
 
-                <!-- Submit Button -->
-                <div class="flex gap-x-4">
-                    <button type="button" wire:click="approve" @disabled($requisition->requisition_status === 2)
-                        class="mt-4 w-full bg-green-600 text-white px-3 py-1.5 rounded text-sm {{ $requisition->requisition_status !== 2 ? 'hover:bg-[#071d49]' : 'cursor-not-allowed opacity-50' }}">
-                        Approve
-                    </button>
-                    <button type="button" wire:click="reject" @disabled($requisition->requisition_status === 3)
-                        class="mt-4 w-full bg-red-600 text-white px-3 py-1.5 rounded text-sm {{ $requisition->requisition_status !== 3 ? 'hover:bg-[#071d49]' : 'cursor-not-allowed opacity-50' }}">
-                        Reject
-                    </button>
-                </div>
             </div>
         </div>
     @endif

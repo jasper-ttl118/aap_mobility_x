@@ -1,4 +1,4 @@
-<form wire:submit="add" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
+<form wire:submit="add" @close-modal.window="open_add_intern=false" class="w-full max-w-md mx-auto bg-white shadow rounded-xl border border-gray-200 text-sm" @click.stop>
     @csrf
     <div class="text-gray-700 py-6 px-4 space-y-3">
         <!-- Heading -->
@@ -11,14 +11,25 @@
         <div>
             <label class="font-medium text-xs">Intern Name</label>
             <div class="grid grid-cols-3 gap-2 mt-1">
-                <input type="text" name="intern_firstname" placeholder="First" wire:model="intern_firstname"
+                <div class="flex flex-col">
+                    <input type="text" name="intern_firstname" placeholder="First Name" wire:model="intern_firstname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_middlename" placeholder="Middle" wire:model="intern_middlename"
+                     @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+                
+                <div class="flex flex-col">
+                    <input type="text" name="intern_middlename" placeholder="Middle Name" wire:model="intern_middlename"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                <input type="text" name="intern_lastname" placeholder="Last" wire:model="intern_lastname"
+                    @error('intern_middlename') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
+                <div class="flex flex-col">
+                    <input type="text" name="intern_lastname" placeholder="Last Name" wire:model="intern_lastname"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                    @error('intern_lastname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                </div>
+
             </div>
-            @error('intern_firstname') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
 
         <!-- Internship Type & Required Hours -->
@@ -35,10 +46,10 @@
             </div>
             <div>
                 <label class="text-xs font-medium">Required Hours</label>
-                <input type="number" name="required_hours" wire:model="required_hours"
+                <input type="number" name="intern_required_hours" wire:model="intern_required_hours"
                     class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
                     placeholder="e.g. 300">
-                @error('required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
+                @error('intern_required_hours') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
             </div>
         </div>
 
@@ -56,7 +67,7 @@
             <label class="text-xs font-medium">School</label>
             <input type="text" name="intern_school" wire:model="intern_school"
                 class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500"
-                placeholder="University of Caloocan City">
+                placeholder="e.g. University of Caloocan City">
             @error('intern_school') <em class="text-xs text-red-500">{{ $message }}</em> @enderror
         </div>
         
@@ -108,7 +119,7 @@
         </div>
 
         <!-- Submit -->
-        <button type="submit" @click=""
+        <button type="submit"
             class="mt-4 w-full bg-blue-600 text-white px-3 py-1.5 rounded text-sm hover:bg-blue-700">
             Create
         </button>
