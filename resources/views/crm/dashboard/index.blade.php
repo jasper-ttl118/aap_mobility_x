@@ -544,7 +544,7 @@
                 getDateClass(day) {
                     let classes = '';
                     if (this.isToday(day)) {
-                        classes += 'bg-[#1c5b0e] ';
+                        classes += 'bg-[#abcae9]';
                     } else if (this.isHoliday(day)) {
                         classes += 'bg-yellow-100 hover:bg-[#071d49] ';
                     } else {
@@ -556,7 +556,7 @@
                 // Get day number class for styling
                 getDayNumberClass(day) {
                     if (this.isToday(day)) {
-                        return 'text-white';
+                        return 'text-[#071d49] group-hover:text-white';
                     } else if (this.isHoliday(day)) {
                         return 'text-yellow-700 group-hover:text-white';
                     } else {
