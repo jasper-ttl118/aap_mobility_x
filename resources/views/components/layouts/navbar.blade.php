@@ -4,7 +4,7 @@
 
 .back {
   position: relative;
-  background: white;
+  background: #F3F4F6;
 }
 
 .back:before {
@@ -15,7 +15,7 @@
   height: 20px;
   width: 20px;
   border-bottom-right-radius: 0.25rem;
-  background-color: #312e81;
+  background-color: #071d49;
   z-index: 2;
 }
 
@@ -27,7 +27,7 @@
   height: 20px;
   width: 20px;
   border-top-right-radius: 0.25rem;
-  background-color: #312e81;
+  background-color: #071d49;
   z-index: 2;
 }
 
@@ -59,18 +59,18 @@
 $user = auth()->user()->load('organization', 'employee', 'roles');
 
 $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
-// dd($modules_access);
+
 @endphp
 
-<div class="fixed top-0 w-64 h-dvh flex flex-col items-center gap-4 bg-gradient-to-r bg-indigo-900 py-4 text-white z-10">
-  
-  <div class="w-40 flex justify-center">
-    <a href="https://ibb.co/3m6zQj6d">
+<div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">
+  <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
+  <div class="w-28 flex justify-center">
+    <a href="{{ route('dashboard') }}">
       <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" />
     </a>
   </div>
   
-  <div class="space-y-2 w-full">
+  <div class="text-xs w-full">
     @foreach($modules_access as $module)
       @php
         $links = [
@@ -85,9 +85,9 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
       @endphp
       
       @if(isset($links[$module]))
-        <div class="flex items-center px-2 py-3 gap-2 ml-2 {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-l back' : '' }}">
+        <div class="group cursor-pointer flex items-center px-2 py-3 gap-2 ml-2 rounded-l-xl {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : 'hover:text-[#F6D400]' }}">
           <span class="edge"></span>
-          <svg class="w-6 h-6" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             @switch($module)
               @case('Dashboard')
                 <path fill-rule="evenodd" d="M3 6a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm4.5 7.5a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0v-2.25a.75.75 0 0 1 .75-.75Zm3.75-1.5a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0V12Zm2.25-3a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 1-1.5 0V9.75A.75.75 0 0 1 13.5 9Zm3.75-1.5a.75.75 0 0 0-1.5 0v9a.75.75 0 0 0 1.5 0v-9Z" clip-rule="evenodd" />
@@ -114,7 +114,12 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
     @endforeach
   </div>
 
-  <div class="mt-auto w-full px-4 pb-6">
+  <div class="items-end w-full h-full flex">
+            <livewire:clock />
+  </div>
+  
+
+  {{-- <div class="mt-auto w-full px-4 pb-6">
     <div class="flex flex-col gap-4">
       <div>
         <a href="{{ route('profile.edit') }}" class="hover:underline font-medium">
@@ -127,8 +132,22 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
         <button class="bg-red-600 hover:bg-red-700 text-white font-medium uppercase px-3 py-2 rounded text-xs" type="submit">Logout</button>
       </form>
     </div>
-  </div>
+  </div> --}}
+  
 </div>
+
+<script>
+  function menuToggle() {
+    const menu = document.getElementById("menu");
+    if (menu.classList.contains("hidden")) {
+      menu.classList.remove("hidden");
+      menu.classList.add("flex");
+    } else {
+      menu.classList.remove("flex");
+      menu.classList.add("hidden");
+    }
+  }
+</script>
 
 
   {{-- <div class="h-dvh fixed top-0 w-64 flex flex-col items-center gap-5 bg-gradient-to-r from-blue-800 to-indigo-900 p-6 font-sans shadow-md">

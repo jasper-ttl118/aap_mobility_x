@@ -1,42 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Organizations</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
-
-</head>
-
-<body class="flex flex-row min-h-screen" x-data="{ open: false, deleteUrl: '', viewOpen: false, employee: {} }">
+<x-app-layout class='flex flex-row min-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
     @php
         $navbar_selected = 'None';
     @endphp
     @include('layouts.navbar')
-    <div class="@container/main flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-3.5">
+    <div class="@container/main flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
-            <h2 class="text-2xl font-medium">Profile Information</h2>
-            <h4 class="text-lg font-light">View and edit your personal details, username, and password</h4>
+            <h2 class="text-2xl font-medium text-[#151847]">Profile Information</h2>
+            <h4 class="text-lg font-light text-[#151847]">View and edit your personal details, username, and password</h4>
         </header>
         <hr>
         <main class="space-y-6">
             <section class="space-y-1.5">
-                <h5 class="text-lg font-medium">Personal Details</h5>
+                <h5 class="text-lg font-medium text-[#151847]">Personal Details</h5>
                 <div class="p-5 bg-blue-100 rounded-xl space-y-8 @lg/main:space-y-14">
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Profile Image</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Profile Image</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Choose a new image to display as your
                                     profile photo.</em></p>
                         </div>
                         <div class="w-full max-w-4xl @lg/main:w-[65%]">
                             <div
-                                class="group/image relative size-[104px] m-auto cursor-pointer *:transition-colors @lg:m-0">
+                                class="group/image  relative size-[104px] m-auto cursor-pointer *:transition-colors @lg:m-0">
                                 <img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 107 107' fill='none'><path d='M88.75 89.25H89.25V88.75V82.875C89.25 79.7557 87.6871 77.0261 85.2382 74.7091C82.7917 72.3943 79.4274 70.4566 75.7249 68.9015C68.3218 65.7922 59.4436 64.1625 53.5 64.1625C47.5564 64.1625 38.6782 65.7922 31.2751 68.9015C27.5726 70.4566 24.2083 72.3943 21.7618 74.7091C19.3129 77.0261 17.75 79.7557 17.75 82.875V88.75V89.25H18.25H88.75ZM1.125 94.625V12.375C1.125 6.18701 6.13152 1.125 12.375 1.125H94.625C100.811 1.125 105.875 6.18864 105.875 12.375V94.625C105.875 100.811 100.811 105.875 94.625 105.875H12.375C6.13152 105.875 1.125 100.813 1.125 94.625ZM53.5 54C63.5286 54 71.625 45.9036 71.625 35.875C71.625 25.8464 63.5286 17.75 53.5 17.75C43.4714 17.75 35.375 25.8464 35.375 35.875C35.375 45.9036 43.4714 54 53.5 54Z' fill='%23CBD5E1' stroke='%239CA3AF'/></svg>"
                                     alt="profile image" class="size-full outline outline-2 outline-blue-100 rounded-xl">
                                 <div
@@ -54,7 +40,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Full Name</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Full Name</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Update your complete name if needed to
                                     ensure accurate account details.</em></p>
                         </div>
@@ -80,7 +66,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Email</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Email</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Enter an active address for important
                                     communications.</em></p>
                         </div>
@@ -92,7 +78,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Contact Number</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Contact Number</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Enter your current phone number.</em></p>
                         </div>
                         <div class="w-full max-w-4xl @lg/main:w-[65%]">
@@ -103,7 +89,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Address</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Address</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Provide your complete physical location
                                     including building number, street name, and unit/apartment information.</em></p>
                         </div>
@@ -120,7 +106,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Username</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Username</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Create the personal handle that you'll
                                     use to log in and access your account.</em></p>
                         </div>
@@ -132,7 +118,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Password</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Password</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Set up your personal security phrase
                                     with at least 8 characters.</em></p>
                         </div>
@@ -157,7 +143,7 @@
                     <div
                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                         <div class="w-full place-content-center @lg/main:w-[35%]">
-                            <h6 class="text-base font-medium leading-relaxed tracking-wide">Confirm Password</h6>
+                            <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Confirm Password</h6>
                             <p class="text-sm text-gray-600 leading-tight"><em>Re-enter your password exactly as above
                                     to confirm.</em></p>
                         </div>
@@ -183,7 +169,7 @@
             </section>
             <div class="flex justify-end gap-4">
                 <button
-                    class="px-5 py-2 rounded-lg ring-0 ring-gray-300 hover:bg-gray-200 hover:ring-2 active:bg-gray-300">Cancel</button>
+                    class="px-5 py-2 rounded-lg ring-0 ring-gray-300 hover:bg-gray-200 hover:ring-2 active:bg-gray-300 bg-gray-300">Cancel</button>
                 <button type="submit"
                     class="flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
                     <p>Save changes</p>
@@ -196,6 +182,5 @@
             </div>
         </main>
     </div>
-</body>
+</x-app-layout>
 
-</html>

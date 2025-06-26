@@ -19,7 +19,7 @@
                 <span class="sr-only">Check icon</span>
             </div>
             <div class="ms-3 text-sm font-normal">{{ session('status') }}</div>
-            <button type="button" @click="show = false"
+            <button type="button" @click="show=false"
                 class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                 aria-label="Close">
                 <span class="sr-only">Close</span>
@@ -52,7 +52,7 @@
 
     @endphp
 
-    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
 
         <!-- Title and Subtitle -->
         {{-- <div class="">
@@ -62,8 +62,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg hide-scrollbar overflow-x-auto flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
@@ -80,7 +80,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>
@@ -102,7 +103,7 @@
                 {{-- Add Role --}}
                 <div>
                     <a href="role/create"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="truncate flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -114,12 +115,12 @@
             </div>
 
 
-            <div class="mx-7 mb-10 rounded-sm">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
 
                 <!-- Alpine.js Data Setup -->
                 <div x-data="{ viewOpen: false, role: {}, organization: {}, modules: [], permissions: [] }">
 
-                    <table class="w-full table-fixed text-center text-sm text-gray-500">
+                    <table class="w-[700px] md:w-full lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" class="w-1/12 py-3">Role ID</th>
@@ -374,12 +375,13 @@
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">
                     Are you sure you want to delete this role? This action cannot be undone.
                 </p>
-                <div class="mt-4 flex justify-end space-x-3">
+                <div class="mt-4 flex justify-end items-center space-x-3">
                     <button onclick="closeModal()"
                         class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
                         Cancel
                     </button>
-                    <form id="delete-form" method="POST">
+
+                    <form id="delete-form" method="POST" class="inline-block m-0 p-0">
                         @csrf
                         @method('GET')
                         <button type="submit"

@@ -12,10 +12,9 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        // $customers = Customer::paginate(10);
-
+        $customers = Customer::orderByDesc('customer_id')->paginate(perPage: 10);
         // dd($customers);
-        return view("crm.dashboard.index");
+        return view("crm.dashboard.index", ['customers' => $customers]);
     }
 
     /**
@@ -73,7 +72,28 @@ class CustomerController extends Controller
 
     public function emailMarketing()
     {
-        return view('crm.email-marketing.index');
+        $customers = Customer::paginate(perPage: 5);
+        return view('crm.email-marketing.index', ['customers' => $customers]);
+    }
+    
+    public function messageTemplate()
+    {
+        return view('crm.email-marketing.message-template');
+    }
+
+    public function messageList()
+    {
+        return view('crm.email-marketing.message-list');
+    }
+
+    public function composeEmail()
+    {
+        return view('crm.email-marketing.compose-email');
+    }
+
+    public function composeMobile()
+    {
+        return view('crm.email-marketing.compose-mobile');
     }
 
     public function corporate()

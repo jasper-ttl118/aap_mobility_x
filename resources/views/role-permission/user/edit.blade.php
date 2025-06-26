@@ -1,23 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Create User</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row min-h-screen">
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-    @include('layouts.navbar')
-    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
+    
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 pt-20 bg-[#f3f4f6]">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col w-full max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -52,34 +35,8 @@
             </div>
         @endif
 
-
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/user" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/user" class="hover:underline">Users</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Edit User</a>
-        </div>
-
-
-
-        <!-- Title and Subtitle -->
-        <div class="">
-            <h1 class="text-2xl text-blue-900 font-semibold">RBAC Management</h1>
-            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
-                organization.</p>
-        </div>
-
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
+        <div class=" rounded-md border-2 bg-white shadow-lg">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
@@ -98,6 +55,24 @@
                 </div> --}}
             </div>
 
+            {{-- Breadcrumbs --}}
+            
+            <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
+                <a href="/user" class="hover:underline">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/user" class="hover:underline">Users</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold">Edit User</a>
+            </div>
+
             <div class="flex flex-col px-7 pt-7 pb-4">
                 <h1 class="font-semibold text-lg text-blue-900">Update User Information for <span
                         class="text-blue-900">{{ $employee->employee_firstname }}
@@ -105,7 +80,6 @@
 
                 <p class="text-gray-900 text-sm">Change user's information or re-assigned it to different organization
                     or roles.</p>
-
             </div>
 
             <form action="{{ url('user/' . $user->user_id) }}" method="post" class="flex flex-col p-7 gap-7">
@@ -118,7 +92,7 @@
 
 
                 {{-- Employee Name --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Employee Full Name</h1>
                         <p class="text-sm italic text-gray-500">The information indicated here are from the employee
@@ -156,7 +130,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Username --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Update Username</h1>
                         <p class="text-sm italic text-gray-600">Update username with unique alphanumeric
@@ -168,7 +142,7 @@
                                 <label for="user_username" class="text-sm font-medium text-blue-900">Username</label>
                                 <input type="text" value="{{ $user->user_name }}" name="user_name"
                                     placeholder="e.g. username1213"
-                                    class="h-10 rounded border border-gray-300 bg-gray-100 px-3 text-sm focus:outline-blue-500" />
+                                    class="h-10 rounded border w-50 border-gray-300 bg-gray-100 px-3 text-sm focus:outline-blue-500" />
                             </div>
                         </div>
                     </div>
@@ -177,7 +151,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Organization and Role --}}
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Reassign to Another Organization or Role</h1>
                         <p class="text-sm italic text-gray-600">Change the user's assigned organization or role.</p>
@@ -208,7 +182,7 @@
 
                 <hr class="border-gray-200">
 
-                <div class="grid grid-cols-10 items-start gap-10">
+                <div class="grid lg:grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
                         <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by
@@ -224,7 +198,7 @@
 
                 {{-- Password --}}
 
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Change Password</h1>
                         <p class="text-sm italic text-gray-600">Must be 6 to 12 characters long, including letters,
@@ -246,7 +220,7 @@
 
                 {{-- Set Status --}}
 
-                <div class="grid grid-cols-10 items-center gap-10">
+                <div class="grid lg:grid-cols-10 items-center gap-10">
                     <div class="col-span-4">
                         <div class="flex gap-2 items-center">
                             <h1 class="font-medium text-blue-900">Set Status</h1>
@@ -301,7 +275,7 @@
 
 
                 {{-- Button --}}
-                <div class="grid grid-cols-10 items-center pt-8 gap-10">
+                <div class="grid lg:grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
                     </div>
                     <div class="col-span-6">
@@ -1019,6 +993,4 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
-</body>
-
-</html>
+</x-app-layout>

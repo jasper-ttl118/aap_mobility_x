@@ -1,45 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Permissions</title>
-    @include("layouts.icons")
-    @vite('resources/css/app.css')
-</head>
+<x-app-layout class='flex flex-row h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-{{-- <body>
-    @include('layouts.navbar')
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Add Module Name
-                            <a href="/permission" class="btn btn-primary float-end">Back</a>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <form action="/permission" method="post">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="">Permission Name</label>
-                                <input type="text" name="name" class="form-control">
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-primary mt-3">Add Permission</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body> --}}
-
-<body class="flex flex-row h-screen">
-    @include('layouts.navbar')
     <div class="flex flex-col w-full ml-64 overflow-y-auto p-10 h-screen justify-center items-center">
         @if ($errors->any())
             <div id="toast-error" class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200" role="alert">
@@ -111,7 +71,4 @@
         // Auto-hide the error toast after 7 seconds
         setTimeout(closeErrorToast, 7000);
     </script>
-</body>
-
-
-</html>
+</x-app-layout>

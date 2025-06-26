@@ -2,10 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "@fontsource/inter";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@plugin "daisyui";
+@source "../node_modules/flowbite-datepicker";
 
 @layer components {
     .profile_edit_input {
@@ -17,3 +21,64 @@
     }
 }
 
+:root {
+  --pf: #000000; 
+  --p: #000000;  
+  --bc: #ffffff; 
+}
+
+[data-theme="dark"] {
+  --pf: #000000;
+  --p: #000000;
+  --bc: #ffffff;
+}
+
+input, button, select, textarea {
+  color: black;
+}
+
+body{
+  color: #f3f4f6;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(2);
+    opacity: 1;
+  }
+}
+
+@media (orientation: landscape) {
+  .landscape\:w-full {
+    width: 100%;
+  }
+
+   .landscape\:h-full {
+    height: 100%;
+  }
+
+  .landscape\:flex-row {
+    flex-direction: row;
+  }
+
+  .landscape\:flex-col {
+    flex-direction: column;
+  }
+
+  /* Add other utilities as needed */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
+}

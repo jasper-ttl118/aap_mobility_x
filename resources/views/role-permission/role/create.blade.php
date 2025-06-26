@@ -1,26 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+<x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Roles</title>
-    @include('layouts.icons')
-    @vite('resources/css/app.css')
-</head>
-
-<body class="flex flex-row min-h-screen">
-
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-
-    @include('layouts.navbar')
-
-
-    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#F3F4F6] mt-10">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -55,32 +35,9 @@
             </div>
         @endif
 
-        <div class="flex items-center gap-x-1 text-blue-900 text-sm">
-            <a href="/user" class="hover:underline">RBAC Management</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="/organization" class="hover:underline">Organizations</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                <path fill-rule="evenodd"
-                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                    clip-rule="evenodd" />
-            </svg>
-            <a href="#" class="hover:underline font-semibold">Add Role</a>
-        </div>
-
-        <!-- Title and Subtitle -->
-        <div class="">
-            <h1 class="text-2xl text-blue-900 font-semibold">RBAC Management</h1>
-            <p class="text-gray-700 text-sm"> Manage user access and permissions within the
-                organization.</p>
-        </div>
-
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14 ">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
@@ -97,6 +54,24 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+            {{-- Breadcrumbs --}}
+            <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
+                <a href="/user" class="hover:underline truncate">RBAC Management</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="/role" class="hover:underline truncate">Roles</a>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                    <path fill-rule="evenodd"
+                        d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                        clip-rule="evenodd" />
+                </svg>
+                <a href="#" class="hover:underline font-semibold truncate">Add Role</a>
+            </div>
 
             <div class="flex flex-col px-7 pt-7 pb-3">
                 <h1 class="font-semibold text-lg text-blue-900">Add New Role</h1>
@@ -108,7 +83,7 @@
                 @csrf
 
                 {{-- Select Organization --}}
-                <div class="grid grid-cols-10 gap-10 items-start">
+                <div class="grid lg:grid-cols-10 gap-10 items-start">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Organization</h1>
                         <p class="text-sm italic text-gray-600">Select the organization to assign the new role.</p>
@@ -133,7 +108,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Role Details --}}
-                <div class="grid grid-cols-10 gap-10 items-start">
+                <div class="grid lg:grid-cols-10 gap-10 items-start">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Role Details</h1>
                         <p class="text-sm italic text-gray-600">Define the name and description of the role</p>
@@ -162,7 +137,7 @@
                 <hr class="border-gray-200">
 
                 {{-- Username --}}
-                <div class="grid grid-cols-10 items-start gap-10">
+                <div class="grid lg:grid-cols-10 items-start gap-10">
                     <div class="col-span-4">
                         <h1 class="font-medium text-blue-900">Assign Module Access and Permission</h1>
                         <p class="text-sm italic text-gray-600">Grant specific access and permissions to roles by assigning relevant modules and their associated submodules.</p>
@@ -235,7 +210,7 @@
 
 
                 {{-- Button --}}
-                <div class="grid grid-cols-10 items-center pt-8 gap-10">
+                <div class="grid lg:grid-cols-10 items-center pt-8 gap-10">
                     <div class="col-span-4">
                     </div>
                     <div class="col-span-6">
@@ -363,7 +338,4 @@
         });
     </script>
 
-</body>
-
-
-</html>
+</x-app-layout>

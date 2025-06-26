@@ -14,12 +14,12 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::all();     
-        return view('role-permission.employee.index', compact('employees'));
+        return view('employee.alphalist.index', compact('employees'));
     }
 
     public function create()
     {
-        return view('role-permission.employee.create');
+        return view('employee.alphalist.create');
 
     }
 
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
 
     public function edit(Employee $employee)
     {
-        return view('role-permission.employee.edit', compact('employee'));
+        return view('employee.alphalist.edit', compact('employee'));
     }
 
     public function update(Request $request, Employee $employee)
@@ -101,6 +101,16 @@ class EmployeeController extends Controller
             ->get();
 
         return response()->json($employees);
+    }
+
+    public function manpowerRequisition()
+    {
+        return view('employee.manpower-requisition.index');
+    }
+
+    public function vacancyList()
+    {
+        return view('employee.vacancy-list.index');
     }
 
 }

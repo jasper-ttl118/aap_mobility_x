@@ -18,7 +18,7 @@
             ->values();
     @endphp
 
-    <div class="flex flex-1 flex-col ml-64 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -54,8 +54,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-gray-50">
-            <div class="flex h-14 border-b border-gray-200">
+        <div class=" rounded-md border-2 border-gray-10 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+            <div class="flex h-14">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
                 </div>
@@ -72,7 +72,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-10 bg-white shadow-lg -mt-4">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>
@@ -93,7 +94,7 @@
                 {{-- Add User --}}
                 <div>
                     <a href="organization/create"
-                        class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        class="flex items-center flex-row text-center justify-center rounded-md bg-blue-900 px-1 md:px-2 lg:px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -105,8 +106,8 @@
             </div>
 
 
-            <div class="mx-7 mb-10 rounded-sm">
-                <table class="w-full text-center text-sm text-gray-500">
+            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
+                <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
                     <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                         <tr>
                             <th scope="col" class="w-[7.14%] py-3">ID</th>
@@ -192,7 +193,23 @@
                         Are you sure you want to delete this organization? All users in this organization will need to
                         be reassigned.
                     </p>
-                    <div class="mt-4 flex justify-end space-x-3">
+                    
+                    <div class="mt-4 flex justify-end items-center space-x-3">
+                        <button @click="open = false"
+                            class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
+                            Cancel
+                        </button>
+
+                        <form id="delete-form" :action="deleteUrl" method="POST" class="inline-block m-0 p-0">
+                            @csrf
+                            @method('GET')
+                            <button type="submit"
+                                class="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                    {{-- <div class="mt-4 flex justify-end space-x-3">
                         <button @click="open = false"
                             class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">
                             Cancel
@@ -205,7 +222,7 @@
                                 Delete
                             </button>
                         </form>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
