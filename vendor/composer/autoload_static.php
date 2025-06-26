@@ -643,6 +643,8 @@ class ComposerStaticInit626b9e7ddd47fb7eff9aaa53cce0c9ad
         'App\\Livewire\\Crm\\EmailMarketing\\BirthdayMessageList' => __DIR__ . '/../..' . '/app/Livewire/Crm/EmailMarketing/BirthdayMessageList.php',
         'App\\Livewire\\Crm\\EmailMarketing\\BirthdayReminderModal' => __DIR__ . '/../..' . '/app/Livewire/Crm/EmailMarketing/BirthdayReminderModal.php',
         'App\\Livewire\\Crm\\EmailMarketing\\BirthdayTable' => __DIR__ . '/../..' . '/app/Livewire/Crm/EmailMarketing/BirthdayTable.php',
+        'App\\Livewire\\Employee\\EmployeeAdd' => __DIR__ . '/../..' . '/app/Livewire/Employee/EmployeeAdd.php',
+        'App\\Livewire\\Employee\\EmployeeEdit' => __DIR__ . '/../..' . '/app/Livewire/Employee/EmployeeEdit.php',
         'App\\Livewire\\Employee\\EmployeeModals' => __DIR__ . '/../..' . '/app/Livewire/Employee/EmployeeModals.php',
         'App\\Livewire\\Employee\\EmployeeTable' => __DIR__ . '/../..' . '/app/Livewire/Employee/EmployeeTable.php',
         'App\\Models\\Customer' => __DIR__ . '/../..' . '/app/Models/Customer.php',

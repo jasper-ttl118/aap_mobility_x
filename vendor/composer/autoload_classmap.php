@@ -33,6 +33,8 @@ return array(
     'App\\Livewire\\Crm\\EmailMarketing\\BirthdayMessageList' => $baseDir . '/app/Livewire/Crm/EmailMarketing/BirthdayMessageList.php',
     'App\\Livewire\\Crm\\EmailMarketing\\BirthdayReminderModal' => $baseDir . '/app/Livewire/Crm/EmailMarketing/BirthdayReminderModal.php',
     'App\\Livewire\\Crm\\EmailMarketing\\BirthdayTable' => $baseDir . '/app/Livewire/Crm/EmailMarketing/BirthdayTable.php',
+    'App\\Livewire\\Employee\\EmployeeAdd' => $baseDir . '/app/Livewire/Employee/EmployeeAdd.php',
+    'App\\Livewire\\Employee\\EmployeeEdit' => $baseDir . '/app/Livewire/Employee/EmployeeEdit.php',
     'App\\Livewire\\Employee\\EmployeeModals' => $baseDir . '/app/Livewire/Employee/EmployeeModals.php',
     'App\\Livewire\\Employee\\EmployeeTable' => $baseDir . '/app/Livewire/Employee/EmployeeTable.php',
     'App\\Models\\Customer' => $baseDir . '/app/Models/Customer.php',
