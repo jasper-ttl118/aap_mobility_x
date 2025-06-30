@@ -106,19 +106,12 @@ class EmployeeController extends Controller
 
     public function manpowerRequisition()
     {
-        $requisitions = Requisition::whereIn('requisition_status', [1, 2, 3])->get()->groupBy('requisition_status');
-
-        $pendingRequisitions  = $requisitions->get(1, collect());
-        $approvedRequisitions = $requisitions->get(2, collect());
-        $rejectedRequisitions = $requisitions->get(3, collect());
-
-        return view('employee.manpower-requisition.index', compact('pendingRequisitions', 'approvedRequisitions', 'rejectedRequisitions'));
+        return view('employee.manpower-requisition.index');
     }
 
     public function vacancyList()
     {
-        $approvedRequisitions = Requisition::where('requisition_status', '=', 2)->get();
-        return view('employee.vacancy-list.index', compact('approvedRequisitions'));
+        return view('employee.vacancy-list.index');
     }
 
 }

@@ -11,7 +11,7 @@
 
     $links = [
         'Alphalist' => '/employee',
-        'Manpower Requisition' => '/employee/manpower-requisition',
+        'Manpower Requisition' => '/requisition',
         'Vacancy List' => '/employee/vacancy-list'
     ];
 

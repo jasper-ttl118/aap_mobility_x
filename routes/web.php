@@ -6,11 +6,13 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\ModuleController;
+use App\Livewire\Test;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SubmoduleController;
 use App\Http\Controllers\NoteController;
@@ -83,7 +85,10 @@ Route::middleware('auth')->group(function () {
         // routes for corporate (CRM)
         Route::get('/customer/corporate/agent',[CorporateController::class,'Agent'])->name('agent');
         Route::get('/customer/corporate/commission',[CorporateController::class,'Commission'])->name('commission');
-});
+
+        Route::resource('requisition', RequisitionController::class);
+
+    });
 
     //route for login
     Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');

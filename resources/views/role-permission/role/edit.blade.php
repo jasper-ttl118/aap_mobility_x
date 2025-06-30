@@ -309,122 +309,122 @@
 
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkbox = document.querySelector('.toggle-checkbox');
-            const labelElement = document.querySelector('.toggle-label');
-
-            // Set initial state for label text
-            labelElement.textContent = checkbox.checked ? 'Active' : 'Inactive';
-
-            checkbox.addEventListener('change', function() {
-                this.value = this.checked ? '1' : '0'; // ✅ Ensure value updates correctly
-                labelElement.textContent = this.checked ? 'Active' : 'Inactive';
-            });
-        });
-    </script>
-
-    <script>
-        function closeErrorToast() {
-            const toast = document.getElementById('toast-error');
-            toast.classList.add('opacity-0'); // Start fade-out
-            setTimeout(() => {
-                toast.classList.add('hidden'); // Hide after fade-out
-            }, 500); // Matches the transition duration
-        }
-
-        // Auto-hide the error toast after 7 seconds
-        setTimeout(closeErrorToast, 7000);
-    </script>
-
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Handle module checkbox change
-            document.querySelectorAll('.module-checkbox').forEach(moduleCheckbox => {
-                moduleCheckbox.addEventListener('change', function() {
-                    const moduleId = this.dataset.moduleId;
-                    const isChecked = this.checked;
-
-                    // Select all submodules and permissions under this module
-                    document.querySelectorAll(`.submodule-checkbox[data-module-id="${moduleId}"]`)
-                        .forEach(submodule => {
-                            submodule.checked = isChecked;
-                        });
-                    document.querySelectorAll(`.permission-checkbox[data-module-id="${moduleId}"]`)
-                        .forEach(permission => {
-                            permission.checked = isChecked;
-                        });
-                });
-            });
-
-            // Handle submodule checkbox change
-            document.querySelectorAll('.submodule-checkbox').forEach(submoduleCheckbox => {
-                submoduleCheckbox.addEventListener('change', function() {
-                    const moduleId = this.dataset.moduleId;
-                    const submoduleId = this.dataset.submoduleId;
-                    const isChecked = this.checked;
-
-                    // Select or deselect permissions under this submodule
-                    document.querySelectorAll(
-                        `.permission-checkbox[data-submodule-id="${submoduleId}"]`).forEach(
-                        permission => {
-                            permission.checked = isChecked;
-                        });
-
-                    // If a submodule is selected, ensure the parent module is selected
-                    if (isChecked) {
-                        document.getElementById(`module_${moduleId}`).checked = true;
-                    } else {
-                        // If no submodules are selected under this module, uncheck the parent module
-                        const allChecked = [...document.querySelectorAll(
-                                `.submodule-checkbox[data-module-id="${moduleId}"]`)]
-                            .some(submodule => submodule.checked);
-
-                        if (!allChecked) {
-                            document.getElementById(`module_${moduleId}`).checked = false;
-                        }
-                    }
-                });
-            });
-
-            // Handle permission checkbox change
-            document.querySelectorAll('.permission-checkbox').forEach(permissionCheckbox => {
-                permissionCheckbox.addEventListener('change', function() {
-                    const moduleId = this.dataset.moduleId;
-                    const submoduleId = this.dataset.submoduleId;
-                    const isChecked = this.checked;
-
-                    // If a permission is selected, ensure the parent submodule and module are selected
-                    if (isChecked) {
-                        document.getElementById(`submodule_${submoduleId}`).checked = true;
-                        document.getElementById(`module_${moduleId}`).checked = true;
-                    } else {
-                        // If no permissions are selected under this submodule, uncheck the submodule
-                        const allChecked = [...document.querySelectorAll(
-                                `.permission-checkbox[data-submodule-id="${submoduleId}"]`)]
-                            .some(permission => permission.checked);
-
-                        if (!allChecked) {
-                            document.getElementById(`submodule_${submoduleId}`).checked = false;
-                        }
-
-                        // If no submodules or permissions are checked under the module, uncheck the module
-                        const anySubmoduleChecked = [...document.querySelectorAll(
-                                `.submodule-checkbox[data-module-id="${moduleId}"]`)]
-                            .some(submodule => submodule.checked);
-
-                        const anyPermissionChecked = [...document.querySelectorAll(
-                                `.permission-checkbox[data-module-id="${moduleId}"]`)]
-                            .some(permission => permission.checked);
-
-                        if (!anySubmoduleChecked && !anyPermissionChecked) {
-                            document.getElementById(`module_${moduleId}`).checked = false;
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
 </x-app-layout>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkbox = document.querySelector('.toggle-checkbox');
+        const labelElement = document.querySelector('.toggle-label');
+
+        // Set initial state for label text
+        labelElement.textContent = checkbox.checked ? 'Active' : 'Inactive';
+
+        checkbox.addEventListener('change', function() {
+            this.value = this.checked ? '1' : '0'; // ✅ Ensure value updates correctly
+            labelElement.textContent = this.checked ? 'Active' : 'Inactive';
+        });
+    });
+</script>
+
+<script>
+    function closeErrorToast() {
+        const toast = document.getElementById('toast-error');
+        toast.classList.add('opacity-0'); // Start fade-out
+        setTimeout(() => {
+            toast.classList.add('hidden'); // Hide after fade-out
+        }, 500); // Matches the transition duration
+    }
+
+    // Auto-hide the error toast after 7 seconds
+    setTimeout(closeErrorToast, 7000);
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle module checkbox change
+        document.querySelectorAll('.module-checkbox').forEach(moduleCheckbox => {
+            moduleCheckbox.addEventListener('change', function() {
+                const moduleId = this.dataset.moduleId;
+                const isChecked = this.checked;
+
+                // Select all submodules and permissions under this module
+                document.querySelectorAll(`.submodule-checkbox[data-module-id="${moduleId}"]`)
+                    .forEach(submodule => {
+                        submodule.checked = isChecked;
+                    });
+                document.querySelectorAll(`.permission-checkbox[data-module-id="${moduleId}"]`)
+                    .forEach(permission => {
+                        permission.checked = isChecked;
+                    });
+            });
+        });
+
+        // Handle submodule checkbox change
+        document.querySelectorAll('.submodule-checkbox').forEach(submoduleCheckbox => {
+            submoduleCheckbox.addEventListener('change', function() {
+                const moduleId = this.dataset.moduleId;
+                const submoduleId = this.dataset.submoduleId;
+                const isChecked = this.checked;
+
+                // Select or deselect permissions under this submodule
+                document.querySelectorAll(
+                    `.permission-checkbox[data-submodule-id="${submoduleId}"]`).forEach(
+                    permission => {
+                        permission.checked = isChecked;
+                    });
+
+                // If a submodule is selected, ensure the parent module is selected
+                if (isChecked) {
+                    document.getElementById(`module_${moduleId}`).checked = true;
+                } else {
+                    // If no submodules are selected under this module, uncheck the parent module
+                    const allChecked = [...document.querySelectorAll(
+                            `.submodule-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(submodule => submodule.checked);
+
+                    if (!allChecked) {
+                        document.getElementById(`module_${moduleId}`).checked = false;
+                    }
+                }
+            });
+        });
+
+        // Handle permission checkbox change
+        document.querySelectorAll('.permission-checkbox').forEach(permissionCheckbox => {
+            permissionCheckbox.addEventListener('change', function() {
+                const moduleId = this.dataset.moduleId;
+                const submoduleId = this.dataset.submoduleId;
+                const isChecked = this.checked;
+
+                // If a permission is selected, ensure the parent submodule and module are selected
+                if (isChecked) {
+                    document.getElementById(`submodule_${submoduleId}`).checked = true;
+                    document.getElementById(`module_${moduleId}`).checked = true;
+                } else {
+                    // If no permissions are selected under this submodule, uncheck the submodule
+                    const allChecked = [...document.querySelectorAll(
+                            `.permission-checkbox[data-submodule-id="${submoduleId}"]`)]
+                        .some(permission => permission.checked);
+
+                    if (!allChecked) {
+                        document.getElementById(`submodule_${submoduleId}`).checked = false;
+                    }
+
+                    // If no submodules or permissions are checked under the module, uncheck the module
+                    const anySubmoduleChecked = [...document.querySelectorAll(
+                            `.submodule-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(submodule => submodule.checked);
+
+                    const anyPermissionChecked = [...document.querySelectorAll(
+                            `.permission-checkbox[data-module-id="${moduleId}"]`)]
+                        .some(permission => permission.checked);
+
+                    if (!anySubmoduleChecked && !anyPermissionChecked) {
+                        document.getElementById(`module_${moduleId}`).checked = false;
+                    }
+                }
+            });
+        });
+    });
+</script>

@@ -2,8 +2,9 @@
 
 namespace App\Livewire\Employee\ManpowerRequisition;
 
+use App\Models\Department;
+use App\Models\Employee;
 use App\Models\Requisition;
-use Livewire\Attributes\Rule;
 use Livewire\Component;
 
 class AddRequisitionReq extends Component
@@ -16,11 +17,82 @@ class AddRequisitionReq extends Component
     public $requisition_salary_min;
     public $requisition_salary_max;
     public $pendingRequisitions;
+    public $requisition_section;
+    public $requisition_initial_job_position;
+    public $requisition_justification;
+    public $requisition_eventual_job_position;
+    public $requisition_number_required;
+    public $requisition_contract_duration;
+    public $requisition_signature;
+    public $requisition_employment_type;
+    public $requisition_budget;
+    public $requisition_engagement_type;
+    public $requisition_work_experience;
+    public $requisition_special_skills;
+    public $requisition_other_description;
+    public $requisition_applicants_sources;
+    public $requisition_requestor_position;
+    public $requisition_requestor_signature;
+    public $requisition_endorser_name;
+    public $requisition_endorser_position;
+    public $requisition_endorser_signature;
+    public $requisition_approver_name;
+    public $requisition_approver_position;
+    public $requisition_approver_signature;
+    public $requisition_approver_name_1;
+    public $requisition_approver_position_1;
+    public $requisition_approver_signature_1;
+    public $candidates;
+    public array $requisition_candidates = [
+        ['id' => '', 'value' => '']
+    ];
+    public array $requisition_job_descriptions = [];
+    public $departments;
+    public array $requisition_education = [];
+
+    public function updating($name, $value)
+    {
+        if ($name === 'requisition_candidates' ) {
+            // dump($this->requisition_candidates);
+        } 
+        else if ($name === 'requisition_job_descriptions')
+        {
+            // dump($value);
+        }
+        else if ($name === 'requisition_education')
+        {
+            // dump($value);
+        }
+        else if($name === 'requisition_work_experience')
+        {
+            // dump($value);
+        }
+    }
 
     public function mount()
     {
+        $this->departments = Department::all();
+        $this->requisition_department = $this->departments[0]->department_name;
+        $this->requisition_section = 'Development Team';
         $this->requisition_department = 'IST';
-        $this->requisition_type = 'Replacement';
+
+        // Change this to candidates table
+        $this->candidates = Employee::all()
+            ->map(function ($employee) {
+                $fullName = $employee->employee_firstname;
+
+                if (!empty($employee->employee_middlename)) {
+                    $fullName .= ' ' . $employee->employee_middlename;
+                }
+
+                $fullName .= ' ' . $employee->employee_lastname;
+
+                return trim($fullName);
+            })
+            ->values()
+            ->all();
+
+        // $this->requisition_type = 'New Position';
     }
 
     protected function rules()
@@ -57,38 +129,65 @@ class AddRequisitionReq extends Component
 
     public function add()
     {
-       $this->validate();
+        // $this->validate();
+        $this->requisition_eventual_job_position = $this->requisition_initial_job_position;
+        $formattedCandidates = collect($this->requisition_candidates)
+            ->pluck('value')
+            ->filter()
+            ->implode(', ');
 
-       $query = Requisition::create([
-            'requisition_job_position' => $this->requisition_job_position,
+        $query = Requisition::create([
             'requisition_job_description' => $this->requisition_job_description,
             'requisition_type' => $this->requisition_type,
+            'requisition_candidates' => $formattedCandidates, 
             'requisition_department' => $this->requisition_department,
             'requisition_requestor_name' => $this->requisition_requestor_name,
             'requisition_salary_min' => $this->requisition_salary_min,
             'requisition_salary_max' => $this->requisition_salary_max,
-            'requisition_status' => 1
-       ]);
+            'requisition_status' => 1,
+            'requisition_section' => $this->requisition_section,
+            'requisition_initial_job_position' => $this->requisition_initial_job_position,
+            'requisition_justification' => $this->requisition_justification,
+            'requisition_eventual_job_position' => $this->requisition_eventual_job_position,
+            'requisition_number_required' => $this->requisition_number_required,
+            'requisition_contract_duration' => $this->requisition_contract_duration,
+            'requisition_signature' => 'signature',
+            'requisition_employment_type' => $this->requisition_employment_type,
+            'requisition_budget' => $this->requisition_budget,
+            'requisition_engagement_type' => $this->requisition_engagement_type,
+            'requisition_education' => $this->requisition_education,
+            'requisition_work_experience' => $this->requisition_work_experience,
+            'requisition_special_skills' => $this->requisition_special_skills,
+            'requisition_other_description' => $this->requisition_other_description,
+            'requisition_applicants_sources' => $this->requisition_applicants_sources,
+            'requisition_requestor_position' => $this->requisition_requestor_position,
+            'requisition_requestor_signature' => 'signature',
+            'requisition_endorser_name' => $this->requisition_endorser_name,
+            'requisition_endorser_position' => $this->requisition_endorser_position,
+            'requisition_endorser_signature' => 'signature',
+            'requisition_approver_name' => $this->requisition_approver_name,
+            'requisition_approver_position' => $this->requisition_approver_position,
+            'requisition_approver_signature' => 'signature',
+            'requisition_approver_name_1' => $this->requisition_approver_name_1,
+            'requisition_approver_position_1' => $this->requisition_approver_position_1,
+            'requisition_approver_signature_1' => 'signature',
+        ]);
 
-        if($query){      
-
+        if ($query) {
             $this->dispatch('refreshTable', 'pending');
-
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Requisition Submitted Successfully!',
             ]);
-
             $this->dispatch('close-modal');
-        
-        }
-        else{
+        } else {
             $this->dispatch('show-toast', [
                 'title' => 'Error',
                 'content' => 'An Error Occured!',
             ]);
         }
     }
+
     
     public function render()
     {

@@ -1,9 +1,4 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
-    @php
-        $navbar_selected = 'RBAC Management';
-    @endphp
-
-    @include('layouts.navbar')
 
     @if (session('status'))
         <div id="toast-success"
