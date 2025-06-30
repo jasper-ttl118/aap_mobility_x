@@ -38,7 +38,7 @@
                             <div class="flex flex-row justify-center items-center gap-2">
                         {{-- {{$employee->employee_id}} --}}
                                 <a
-                                    x-data="{ disabled: false }"
+                                    {{-- x-data="{ disabled: false }"
                                     x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
                                     @click="
                                         if (!disabled) {
@@ -47,7 +47,9 @@
                                             Livewire.dispatch('toggleModal', { employee_id: {{ $employee->employee_id }} });
                                             setTimeout(() => disabled = false, 1000); 
                                         }
-                                    " class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
+                                    "  --}}
+                                    href="{{ route('employeeProfile') }}"
+                                    class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                         fill="currentColor" class="size-4">

@@ -6,15 +6,17 @@
     $submodules = auth()->user()->roles
         ->flatMap->submodules
         ->filter(fn($submodule) => $submodule->module_id == $moduleId)
+        ->sortBy('submodule_id') 
         ->pluck('submodule_name')
         ->toArray();
+
 
     $links = [
         'Alphalist' => '/employee',
         'Manpower Requisition' => '/requisition',
         'Vacancy List' => '/employee/vacancy-list'
     ];
-
+    // dd($submodules);
 @endphp
 
 @foreach ($submodules as $submodule)

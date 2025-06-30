@@ -73,7 +73,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="8" class="py-3">No Approved Requisition Request Yet...</td>
+                <td colspan="8" class="py-3">No Vacant Jobs Yet...</td>
             </tr>
         @endforelse
     </tbody>
