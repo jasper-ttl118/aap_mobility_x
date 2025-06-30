@@ -3,7 +3,7 @@
         $navbar_selected = 'RBAC Management';
     @endphp
 
-    @include('layouts.navbar')
+    {{-- @include('layouts.navbar') --}}
 
     @if (session('status'))
         <div id="toast-success"
