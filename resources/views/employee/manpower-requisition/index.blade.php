@@ -100,7 +100,7 @@
         </div>
 
         <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-sm w-full" @click.stop>
+            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
                 <livewire:employee.manpower-requisition.view-requisition-ticket />
             </div>
         </div>
@@ -114,7 +114,7 @@
         </template>
         
         <div x-show="open_edit" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-sm w-full" @click.away="open_edit=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.manpower-requisition.edit-requisition-ticket />
             </div>
         </div>
