@@ -113,8 +113,8 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
       @endif
     @endforeach
   </div>
-
 </div>
+
 
 <script>
   function menuToggle() {

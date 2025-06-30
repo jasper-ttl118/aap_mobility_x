@@ -60,14 +60,14 @@
             </form>
             </div>
         </header>
-        <div class="bg-[#dedede] text-black w-screen h-[800px] pt-16 flex flex-row justify-center">
+        <div class="bg-[#dedede] text-black w-screen h-[400px] lg:h-[800px] pt-16 flex flex-row justify-center">
             <div class="w-full h-full flex flex-col items-center justify-center">
                 <img src="{{ asset('landscape2.jfif') }}" class="size-full flex flex-col">
                         
                 </img>
-                <div class="flex flex-col absolute w-[70%] h-[70%] items-end gap-y-4">
+                <div class="flex flex-col absolute w-[80%] lg:w-[70%] h-[30%] lg:h-[70%] items-end gap-y-4">
                     <div class="flex flex-col gap-2 text-white">
-                        <h1 class="text-6xl font-bold">AAP Mobility X</h1>
+                        <h1 class="text-3xl lg:text-6xl font-bold">AAP Mobility X</h1>
                     </div>
 
                     <div class="flex flex-col gap-2">
@@ -76,14 +76,14 @@
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
-                                        class="rounded-xl font-extrabold tracking-wide hover:bg-[#ffffff] hover:text-[#071d49] hover:scale-110 duration-300 bg-[#dfd436] px-3 py-2 text-[#071d49]"
+                                        class="rounded-xl text-base font-extrabold tracking-wide hover:bg-[#ffffff] hover:text-[#071d49] hover:scale-110 duration-300 bg-[#dfd436] px-3 py-2 text-[#071d49]"
                                     >
                                         Go back to Dashboard
                                     </a>
                                 @else
                                     <a
                                         href="{{ route('login') }}"
-                                        class="rounded-xl font-extrabold tracking-wide hover:bg-[#ffffff] hover:text-[#071d49] hover:scale-110 duration-300 bg-[#dfd436] px-3 py-2 text-[#071d49]">
+                                        class="rounded-xl text-xs lg:text-base font-extrabold tracking-wide hover:bg-[#ffffff] hover:text-[#071d49] hover:scale-110 duration-300 bg-[#dfd436] px-3 py-2 text-[#071d49]">
                                         Get started
                                     </a>
                                 @endauth
@@ -93,7 +93,7 @@
                 </div>
             </div>
         </div>
-        <footer class="flex flex-col items-center justify-center w-screen bg-[#071d49] h-[500px] border-t-4 border-t-yellow-500">
+        <footer class="flex flex-col items-center justify-center w-screen bg-[#071d49] h-[1000px] lg:h-[500px] border-t-4 border-t-yellow-500">
             <div class="flex flex-col justify-center items-center  lg:justify-evenly lg:w-full lg:flex-row lg:items-start pt-5 gap-5">
                 <div class="flex flex-col items-center justify-start text-xl text-white bg-[#071d49] min-w-[150px] max-w-[200px] rounded-md">
                     <p class="relative font-bold inline-block after:absolute after:bottom-0 after:left-0 after:w-1/2 after:border-b-2 after:border-yellow-500 after:content-['']">

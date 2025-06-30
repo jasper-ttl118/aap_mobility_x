@@ -225,14 +225,16 @@ class RoleController extends Controller
             'role_status' => $request->role_status,
         ]);
     
+        // ✅ Remove existing permissions for the selected submodules
         // DB::table('role_has_submodule_permissions')
         //     ->where('role_id', $role->role_id)
         //     ->whereIn('submodule_id', $request->submodule_id)
         //     ->delete();
+
         DB::table('role_has_submodule_permissions')
         ->where('role_id', $role->role_id)
         ->delete();
-        
+    
         // ✅ Assign new permissions
         if (is_array($request->permission_id)) {
             foreach ($request->submodule_id as $submoduleId) {

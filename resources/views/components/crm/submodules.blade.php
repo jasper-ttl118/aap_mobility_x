@@ -16,10 +16,10 @@
         'Corporate' => '/customer/corporate',
         'Sales Tracking' => '/customer/sale-tracking'
     ];
-
 @endphp
 
 @foreach ($submodules as $submodule)
+    
     @if ($submodule === $selected)
         <div class="flex-none w-auto border-b-2 border-blue-900 p-4 text-center ">
             <a href="{{ $links[$submodule] }}" class="font-semibold text-blue-900">{{ $submodule }}</a>

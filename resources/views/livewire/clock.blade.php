@@ -3,7 +3,7 @@
     class="flex items-center justify-center h-32 w-full"
 >
     <div class="text-center p-8 flex justify-center items-center flex-col w-full">
-        <div class="mb-1 flex flex-row justify-center items-center w-44 h-20 gap-x-1 bg-white/10 backdrop-blur border border-white rounded-xl">
+        <div class="mb-1 flex flex-row justify-center items-center w-44 h-14 gap-x-1 bg-white/10 backdrop-blur border border-white rounded-xl">
             <h1 id="clock-hour" class="text-4xl font-mono font-bold text-[#F6D400] tracking-wider">
             </h1>
             <h1 class="text-4xl font-mono font-bold text-white tracking-wider">
