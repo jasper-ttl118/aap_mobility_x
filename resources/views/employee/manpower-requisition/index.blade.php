@@ -56,15 +56,14 @@
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex justify-start lg:justify-end px-7 pt-6">
                     <div class="flex items-center gap-4">
-                        <a @click="open_add=true" 
-                        class="{{ request() -> routeIs('manpower-requisition') ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'}} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
+                        <a href="{{ route('requisition.create') }}" 
+                        class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                                 stroke="currentColor" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                             </svg>
                             Create Requisition Request
                         </a>
-
                     </div>
                 </div>
             </div>

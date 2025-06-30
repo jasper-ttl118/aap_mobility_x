@@ -29,7 +29,7 @@
         {{ $slot }}
     </div>
 
-    <x-layouts.chat />
+    {{-- <x-layouts.chat /> --}}
     
     @livewireScripts
 </body>

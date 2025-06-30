@@ -113,7 +113,7 @@
         </template>
 
         <div x-show="open_edit_intern" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="  open_edit_intern=false; window.Livewire.dispatch('resetEmployeeProfile')">
+            <div @click.away="open_edit_intern=false; window.Livewire.dispatch('resetInternProfile')">
                 <livewire:employee.alphalist.edit-intern-modal />
             </div>
         </div>
