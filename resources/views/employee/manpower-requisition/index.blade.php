@@ -52,9 +52,39 @@
                     <a href="#" class="hover:underline font-semibold truncate">Manpower Requisition</a>
                 </div>
                 
-                
+                @php
+                    $role = auth()->user()->roles;
+                    $allowedRoles = ['CEO', 'COO', 'CFO', 'Super Admin'];
+                @endphp
+
                  {{-- Top-right: Toggle + Add Buttons --}}
-                <div class="flex justify-start lg:justify-end px-7 pt-6">
+                <div class="flex justify-start lg:justify-end px-7 pt-6 gap-x-5">
+                    @if ($role[0]->role_name === 'Super Admin')
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('pending-list') }}" 
+                            class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                                    <path fill-rule="evenodd" d="M9 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5Zm6.61 10.936a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 14.47a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                                    <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                                </svg>
+                                Check Requisition Requests
+                            </a>
+                        </div>
+                    @endif                   
+
+                    @if (in_array($role[0]->role_name,$allowedRoles))
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('requisition.create') }}" 
+                            class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                                    <path fill-rule="evenodd" d="M9 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5Zm6.61 10.936a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 14.47a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                                    <path d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                                </svg>
+                                Approve Requisition Requests
+                            </a>
+                        </div>
+                    @endif
+                    
                     <div class="flex items-center gap-4">
                         <a href="{{ route('requisition.create') }}" 
                         class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
