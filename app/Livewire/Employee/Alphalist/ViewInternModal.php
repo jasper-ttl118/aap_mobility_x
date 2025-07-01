@@ -3,17 +3,18 @@
 namespace App\Livewire\Employee\Alphalist;
 
 use App\Models\Employee;
+use App\Models\Intern;
 use Livewire\Component;
 
 class ViewInternModal extends Component
 {
-    public $employee;
+    public $intern;
     public $viewOpen = false;
     protected $listeners = ['toggleInternModal'];
 
     public function toggleInternModal($intern_id)
     {
-        $this->employee = Employee::findOrFail($intern_id);
+        $this->intern = Intern::findOrFail($intern_id);
         $this->viewOpen = true;
     }
 

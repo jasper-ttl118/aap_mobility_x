@@ -120,14 +120,14 @@
                                 <label for="employee_middlename" class="text-sm font-medium text-blue-900">Middle
                                     Name</label>
                                 <input disabled type="text" value="{{ $employee->employee_middlename }}"
-                                    name="employee_firstname" placeholder="First Name"
+                                    name="employee_firstname" placeholder="Middle Name"
                                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
                             </div>
                             <div class="flex flex-col justify-center gap-2">
                                 <label for="employee_lastname" class="text-sm font-medium text-blue-900">Last
                                     Name</label>
                                 <input disabled type="text" value="{{ $employee->employee_lastname }}"
-                                    name="employee_firstname" placeholder="First Name"
+                                    name="employee_firstname" placeholder="Last Name"
                                     class="w-full bg-gray-100 h-10 rounded border border-gray-300 px-3 text-sm focus:outline-blue-500">
                             </div>
                         </div>

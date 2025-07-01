@@ -47,11 +47,11 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="font-medium text-[#151847]">Department</label>
-                                <p class="mt-1 text-xs">{{ $employee->employee_department }}</p>
+                                <p class="mt-1 text-sm">{{ $employee->employee_department }}</p>
                             </div>
                             <div>
                                 <label class="font-medium text-[#151847]">Position</label>
-                                <p class="mt-1 text-xs">{{ $employee->employee_position }}</p>
+                                <p class="mt-1 text-sm">{{ $employee->employee_position }}</p>
                             </div>
                         </div>
 

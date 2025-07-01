@@ -65,6 +65,21 @@ class CustomerController extends Controller
         //
     }
 
+    public function addEmployee()
+    {
+        return view('employee.alphalist.add-employee');
+    }
+
+    public function editEmployee()
+    {
+        return view('employee.alphalist.edit-employee');
+    }
+
+    public function employeeProfile()
+    {
+        return view('employee.alphalist.view-employee-profile');
+    }
+
     public function contacts()
     {
         return view('crm.customer.index');

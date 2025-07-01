@@ -1,20 +1,22 @@
 @props(['selected' => 'Alphalist'])
 
 @php
-    $moduleId = 3;
+    $moduleId = 3; // Module id of Employee
 
     $submodules = auth()->user()->roles
         ->flatMap->submodules
         ->filter(fn($submodule) => $submodule->module_id == $moduleId)
+        ->sortBy('submodule_id') 
         ->pluck('submodule_name')
         ->toArray();
 
+
     $links = [
         'Alphalist' => '/employee',
-        'Manpower Requisition' => '/employee/manpower-requisition',
+        'Manpower Requisition' => '/requisition',
         'Vacancy List' => '/employee/vacancy-list'
     ];
-
+    // dd($submodules);
 @endphp
 
 @foreach ($submodules as $submodule)

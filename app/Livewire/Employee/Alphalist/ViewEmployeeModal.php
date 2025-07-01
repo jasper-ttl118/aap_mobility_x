@@ -11,12 +11,11 @@ class ViewEmployeeModal extends Component
     public $viewOpen = false;
     protected $listeners = ['toggleModal' => 'toggle'];
 
-    public function toggle($employeeId)
+    public function toggle($employee_id)
     {
-        $this->employee = Employee::findOrFail($employeeId);
+        $this->employee = Employee::findOrFail($employee_id);
         $this->viewOpen = true;
     }
-
     public function close()
     {
         $this->viewOpen = false;

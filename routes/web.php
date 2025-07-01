@@ -17,6 +17,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CorporateController;
 
 use App\Http\Controllers\SubmoduleController;
+use App\Http\Controllers\RequisitionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -90,7 +91,10 @@ Route::middleware('auth')->group(function () {
         // routes for corporate (CRM)
         Route::get('/customer/corporate/agent',[CorporateController::class,'Agent'])->name('agent');
         Route::get('/customer/corporate/commission',[CorporateController::class,'Commission'])->name('commission');
-});
+
+        Route::resource('requisition', RequisitionController::class);
+
+    });
 
     //route for login
     Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -102,6 +106,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Notes
+    Route::get('/calendar/departments', [CalendarController::class, 'getDepartments']);
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
     Route::post('/calendar/save-note', [CalendarController::class, 'saveNote'])->name('calendar.save-note');
     Route::delete('/calendar/delete-note', [CalendarController::class, 'deleteNote'])->name('calendar.delete-note');

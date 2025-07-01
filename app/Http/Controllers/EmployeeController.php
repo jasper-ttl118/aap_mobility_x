@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Intern;
+use App\Models\Requisition;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Models\Employee;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+
 
 class EmployeeController extends Controller
 {
     public function index()
     {
-        $employees = Employee::all();     
-        return view('employee.alphalist.index', compact('employees'));
+        $employees = Employee::all();   
+        $interns = Intern::all();  
+        return view('employee.alphalist.index', compact('employees', 'interns'));
     }
 
     public function create()
