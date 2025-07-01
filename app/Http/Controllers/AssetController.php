@@ -63,19 +63,54 @@ class AssetController extends Controller
     }
 
     public function dashboard(){
-        return view('');
+        return view('ams.dashboard.dashboard');
     }
 
+    // CMS
     public function cms(){
-        return view('');
+        return view('ams.cms.branches-department');
+    }
+    public function employees(){
+        return view('ams.cms.employees');
+    }
+    public function categories(){
+        return view('ams.cms.categories');
+    }
+    public function addCategory(){
+        return view('ams.cms.create-category');
+    }
+    public function status(){
+        return view('ams.cms.status');
+    }
+    public function addStatus(){
+        return view('ams.cms.create-status');
+    }
+    public function addBranch(){
+        return view('ams.cms.create-branch');
+    }
+    public function addDepartment(){
+        return view('ams.cms.create-department');
+    }
+    
+
+
+    //Assets
+    public function allAssets(){
+        return view('ams.assets.asset');
+    }
+    public function commonAssets(){
+        return view('ams.assets.common-assets');
+    }
+    public function assetsForSale(){
+        return view('ams.assets.assets-for-sale');
+    }
+    public function addAsset(){
+        return view('ams.assets.create');
     }
 
-    public function assets(){
-        return view('');
-    }
-
+    // QR
     public function scanQr(){
-        return view('');
+        return view('ams.scan_qr.scan-qr');
     }
 
 }

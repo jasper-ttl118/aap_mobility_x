@@ -56,10 +56,25 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
+        Route::get('/employee/alphalist/view-employee-profile', [CustomerController::class,'employeeProfile'])->name('employeeProfile');
+        Route::get('/employee.alphalist.add-employee',[CustomerController::class,'addEmployee' ]) -> name('addEmployee');
+        Route::get('/employee.alphalist.edit-Employee',[CustomerController::class, 'editEmployee'])->name('editEmployee');
 
         //route for ams
-        Route::view('/ams', 'ams.assets.asset');
-        Route::view('/ams/assets/create', 'ams.assets.create');
+        Route::get('/ams', [AssetController::class,'dashboard'])->name('dashboard');
+        Route::get('/ams/all-assets', [AssetController::class,'allAssets'])->name('allAssets');
+        Route::get('/ams/assets/create', [AssetController::class,'addAsset'])->name('addAsset');
+        Route::get('/ams/common-assets', [AssetController::class,'commonAssets'])->name('commonAssets');
+        Route::get('/ams/assets-for-sale', [AssetController::class,'assetsForSale'])->name('assetsForSale');
+        Route::get('/ams/cms/branch-department', [AssetController::class,'cms'])->name('cms');        
+        Route::get('/ams/cms/create-branch', [AssetController::class,'addBranch'])->name('addBranch');
+        Route::get('/ams/cms/create-department', [AssetController::class,'addDepartment'])->name('addDepartment');
+        Route::get('/ams/cms/employees', [AssetController::class,'employees'])->name('employees');
+        Route::get('/ams/cms/asset-categories', [AssetController::class,'categories'])->name('category');
+        Route::get('/ams/cms/asset-status', [AssetController::class,'status'])->name('status');
+        Route::get('/ams/cms/create-category', [AssetController::class,'addCategory'])->name('addCategory');
+        Route::get('/ams/cms/create-status', [AssetController::class,'addStatus'])->name('addStatus');
+        Route::get('/ams/scan-qr', [AssetController::class,'scanQr'])->name('scanQr');
 
 
         //route for organization

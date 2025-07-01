@@ -79,7 +79,7 @@
 
                     <div>
                         <label class="block text-sm font-medium text-gray-700">RAM</label>
-                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600">
+                        <input type="text" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue  -600">
                     </div>
 
                     <div>
