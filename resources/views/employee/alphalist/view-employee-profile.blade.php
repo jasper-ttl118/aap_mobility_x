@@ -33,6 +33,7 @@
                     <a href="#" class="hover:underline font-semibold">Employee Profile</a>
                 </div>
                 {{-- Profile --}}
+            
                 <div class="join join-vertical bg-white-100 p-5">
                     {{-- Basic Information --}}
                     <div class="collapse collapse-arrow join-item border-blue-400 border">
@@ -47,7 +48,7 @@
                                     alt="profile image" class="size-[70%] rounded-xl">
                                 <div class="flex flex-row w-auto justify-center items-center gap-x-1">
                                     <label class="text-sm font-medium leading-relaxed tracking-wide text-blue-400">Employee ID: </label>
-                                    <label class="text-[#071d49] text-sm"name="employeeID">1203293</label>
+                                    <label class="text-[#071d49] text-sm"name="employeeID">{{ $employee->employee_id}}</label>
                                 </div>
                             </div>
                             {{-- Left --}}
@@ -55,22 +56,22 @@
                                 {{-- First Row --}}
                                 <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">John Maverick Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_firstname }}&nbsp;{{ $employee->employee_middlename }}&nbsp;{{ $employee->employee_lastname }}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-end">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">III</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_suffix ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Suffix</label>
                                     </div>
                                 </div>
                                 {{-- Second Row --}}
                                 <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Male</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_gender ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Gender</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">23 years old</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_age ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-end">

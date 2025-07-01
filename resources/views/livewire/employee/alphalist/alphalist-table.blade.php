@@ -18,13 +18,11 @@
                     <tr class="border-b border-gray-200 bg-white">
                         <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
                             {{ $employee->employee_id }}</th>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}
-                            {{ $employee->employee_middlename }}
-                            {{ $employee->employee_lastname }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_email }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_number }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}&nbsp;{{ $employee->employee_middlename }}&nbsp;{{ $employee->employee_lastname }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_personal_email }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_no1 }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_department }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_position }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_job_position }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">
                             @if ($employee->employee_status == '1')
                                 <span
@@ -48,7 +46,7 @@
                                             setTimeout(() => disabled = false, 1000); 
                                         }
                                     "  --}}
-                                    href="{{ route('employeeProfile') }}"
+                                    href="{{ route('employeeProfile', $employee->employee_id) }}"
                                     class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                 >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"

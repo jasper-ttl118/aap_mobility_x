@@ -10,7 +10,6 @@
                     <th scope="col" class=" py-3">Requisition Type</th>
                     <th scope="col" class=" py-3">Department</th>
                     <th scope="col" class=" py-3">Requestor Name</th>
-                    <th scope="col" class=" py-3">Salary Range</th>
                     <th scope="col" class=" py-3">Status</th>
                     <th scope="col" class=" py-3">Actions</th>
                 </tr>
@@ -23,7 +22,6 @@
                         <td>{{ $pendingRequisition->requisition_type }}</td>
                         <td class="p-2">{{ $pendingRequisition->requisition_department }}</td>
                         <td class="p-2">{{ $pendingRequisition->requisition_requestor_name }}</td>
-                        <td class="p-2">₱{{ $pendingRequisition->requisition_salary_min }} - ₱{{ $pendingRequisition->requisition_salary_max }}</td>
                         <td class="p-2">
                             <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-gray-700 dark:text-gray-300">Pending</span>
                         </td>

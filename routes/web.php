@@ -55,9 +55,19 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
-        Route::get('/employee/alphalist/view-employee-profile', [CustomerController::class,'employeeProfile'])->name('employeeProfile');
+        Route::get('/employee/alphalist/view-employee-profile/{employee_id}', [EmployeeController::class,'employeeProfile'])->name('employeeProfile');
         Route::get('/employee.alphalist.add-employee',[CustomerController::class,'addEmployee' ]) -> name('addEmployee');
         Route::get('/employee.alphalist.edit-Employee',[CustomerController::class, 'editEmployee'])->name('editEmployee');
+
+        // CRUD for employee
+        Route::prefix('employee')->group(function () {
+            Route::get('/', [EmployeeController::class, 'index'])->name('employees.alphalist.index');
+            Route::get('/create', [EmployeeController::class, 'create'])->name('employees.alphalist.create');
+            Route::post('/store', [EmployeeController::class, 'store'])->name('employees.alphalist.store');
+            Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.alphalist.show');
+            Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.alphalist.edit');
+            Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.alphalist.update');
+        });
     
         //route for organization
         Route::resource('organization', OrganizationController::class);
