@@ -26,10 +26,7 @@ class Permission extends Model implements PermissionContract
 
     public $timestamps = false;
     protected $primaryKey = 'permission_id';
-
     protected $guard_name = 'web';
-
-
     protected $guarded = [];
     
 
@@ -43,13 +40,7 @@ class Permission extends Model implements PermissionContract
         $this->table = config('permission.table_names.permissions') ?: parent::getTable();
     }
 
-
-
-
-
-
     // Modifications for guard_name conflict
-    
 
     public function getAttribute($key)
     {

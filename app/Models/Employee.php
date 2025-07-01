@@ -24,4 +24,30 @@ class Employee extends Model
         'employee_date_created' => 'datetime',
         'employee_date_updated' => 'datetime',
     ];
+
+    public function assets()
+    {
+        return $this->hasMany(Asset::class, "employee_id");
+    }
+
+
+    public function borrowRequests()
+    {
+        return $this->hasMany(AssetBorrow::class, 'emp_id_borrowing');
+    }
+
+    public function borrowedFrom()
+    {
+        return $this->hasMany(AssetBorrow::class, 'emp_id_borrow_from');
+    }
+
+    public function transferFrom()
+    {
+        return $this->hasMany(AssetTransfer::class, 'emp_id_transfer_from');
+    }
+
+    public function transferTo()
+    {
+        return $this->hasMany(AssetTransfer::class, 'emp_id_transfer_to');
+    }
 }

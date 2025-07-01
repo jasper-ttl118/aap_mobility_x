@@ -20,6 +20,7 @@
             display: none !important;
         }
     </style>
+
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>

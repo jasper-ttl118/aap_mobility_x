@@ -1,23 +1,25 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CorporateController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\ModuleController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SubmoduleController;
-use App\Http\Controllers\NoteController;
-
-use App\Http\Controllers\CalendarController;
+use App\Livewire\Ams\Main;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CorporateController;
+
+use App\Http\Controllers\SubmoduleController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -53,7 +55,12 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
-    
+
+        //route for ams
+        Route::view('/ams', 'ams.assets.asset');
+        Route::view('/ams/assets/create', 'ams.assets.create');
+
+
         //route for organization
         Route::resource('organization', OrganizationController::class);
         Route::get('organization/{orgId}/delete', [OrganizationController::class, 'destroy']);
