@@ -14,7 +14,7 @@ use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class ApproveRequisitionRequest extends Component
+class EditRequisition extends Component
 {
     use WithFileUploads;
     public $requisition_job_position;
@@ -56,9 +56,21 @@ class ApproveRequisitionRequest extends Component
     public $departments;
 
     public $requisition_id;
+    public $role;
+    public $user_role;
+    public $allowedRoles;
+    public $isDisabled;
 
     public function mount(Requisition $requisition)
     {
+        $this->role = auth()->user()->roles;
+        $this->user_role = $this->role[0]->role_name;
+
+        // Change this so it will fetch the permitted roles from db
+        $this->allowedRoles = ['CEO', 'CFO', 'COO', 'HR Manager'];
+
+        $this->isDisabled = !in_array($this->user_role, $this->allowedRoles);
+
         // Job Information fields
         $this->departments = Department::all();
         $this->requisition_id = $requisition->requisition_id;
@@ -83,10 +95,9 @@ class ApproveRequisitionRequest extends Component
         $this->requisition_approver_name = $requisition->requisition_approver_name;
         $this->requisition_approver_position = $requisition->requisition_approver_position;
         $this->requisition_approver_signature = $requisition->requisition_approver_signature;
-        $this->requisition_approver_name_1 = $requisition->requisition_approver_name_1;
+        $this->requisition_approver_1_name = $requisition->requisition_approver_1_name;
         $this->requisition_approver_position_1 = $requisition->requisition_approver_position_1;
         $this->requisition_approver_signature_1 = $requisition->requisition_approver_signature_1;
-        
 
         // Hiring Specification fields
         $this->requisition_job_descriptions = $requisition->requisitionDuties->map(function ($duty) {
@@ -155,28 +166,54 @@ class ApproveRequisitionRequest extends Component
     public function save()
     {
         //  dd($this);       
+        
         $path = '';
         $path1 = '';
+        $path2 = '';
+        $path3 = '';
         $originalName = '';
         $originalName1 = '';
+        $originalName2 = '';
+        $originalName3 = '';
+
+        if ($this->requisition_requestor_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName = $this->requisition_requestor_signature->getClientOriginalName();
+        }
+
+        if ($this->requisition_endorser_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName = $this->requisition_endorser_signature->getClientOriginalName();
+        }
+
         if ($this->requisition_approver_signature instanceof \Illuminate\Http\UploadedFile) {
-            $originalName = $this->requisition_approver_signature->getClientOriginalName();
+            $originalName2 = $this->requisition_approver_signature->getClientOriginalName();
         }
 
         if ($this->requisition_approver_signature_1 instanceof \Illuminate\Http\UploadedFile) {
-            $originalName1 = $this->requisition_approver_signature_1->getClientOriginalName();
+            $originalName3= $this->requisition_approver_signature_1->getClientOriginalName();
+        }
+
+        if ($this->requisition_requestor_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName = $this->requisition_requestor_signature->getClientOriginalName();
+            $path = $this->requisition_requestor_signature->storeAs('approver_signatures', $originalName, 'public');
+            $this->requisition_requestor_signature = $path;
+        }
+        
+       if ($this->requisition_endorser_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName1 = $this->requisition_endorser_signature->getClientOriginalName();
+            $path1 = $this->requisition_endorser_signature->storeAs('approver_signatures', $originalName1, 'public');
+            $this->requisition_endorser_signature = $path1;
         }
 
        if ($this->requisition_approver_signature instanceof \Illuminate\Http\UploadedFile) {
-            $originalName = $this->requisition_approver_signature->getClientOriginalName();
-            $path = $this->requisition_approver_signature->storeAs('approver_signatures', $originalName, 'public');
-            $this->requisition_approver_signature = $path;
+            $originalName2 = $this->requisition_approver_signature->getClientOriginalName();
+            $path2 = $this->requisition_approver_signature->storeAs('approver_signatures', $originalName2, 'public');
+            $this->requisition_approver_signature = $path2;
         }
 
         if ($this->requisition_approver_signature_1 instanceof \Illuminate\Http\UploadedFile) {
-            $originalName1 = $this->requisition_approver_signature_1->getClientOriginalName();
-            $path1 = $this->requisition_approver_signature_1->storeAs('approver_signatures', $originalName1, 'public');
-            $this->requisition_approver_signature_1 = $path1;
+            $originalName3 = $this->requisition_approver_signature_1->getClientOriginalName();
+            $path3 = $this->requisition_approver_signature_1->storeAs('approver_signatures', $originalName3, 'public');
+            $this->requisition_approver_signature_1 = $path3;
         }
 
         $uniqueConditions = [
@@ -184,14 +221,14 @@ class ApproveRequisitionRequest extends Component
         ];
 
         $updateData = [
-            'requisition_status' => 3,
+            'requisition_status' => 2,
             'requisition_section' => $this->requisition_section,
             'requisition_initial_job_position' => $this->requisition_initial_job_position,
             'requisition_justification' => $this->requisition_justification,
             'requisition_eventual_job_position' => $this->requisition_eventual_job_position,
-            'requisition_type' => $this->requisition_type,
             'requisition_number_required' => $this->requisition_number_required,
             'requisition_contract_duration' => $this->requisition_contract_duration,
+            'requisition_type' => $this->requisition_type,
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
@@ -201,13 +238,7 @@ class ApproveRequisitionRequest extends Component
             'requisition_requestor_signature' => $this->requisition_requestor_signature, 
             'requisition_endorser_name' => $this->requisition_endorser_name,
             'requisition_endorser_position' => $this->requisition_endorser_position,
-            'requisition_endorser_signature' => $this->requisition_endorser_signature,
-            'requisition_approver_name' => $this->requisition_approver_name,
-            'requisition_approver_position' => $this->requisition_approver_position,
-            'requisition_approver_signature' => $path,
-            'requisition_approver_name_1' => $this->requisition_approver_name_1,
-            'requisition_approver_position_1' => $this->requisition_approver_position_1,
-            'requisition_approver_signature_1' => $path1,
+            'requisition_endorser_signature' => $path 
         ];
 
         DB::table('requisitions')->updateOrInsert($uniqueConditions, $updateData);
@@ -260,9 +291,7 @@ class ApproveRequisitionRequest extends Component
         $requisition->candidates()->sync($candidateIds);
 
         if ($requisition) {
-            $this->requisition_approver_signature = $originalName;
-            $this->requisition_approver_signature = $originalName1;
-                        
+            $this->requisition_endorser_signature = $originalName;
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Requisition Submitted Successfully!',
@@ -277,28 +306,8 @@ class ApproveRequisitionRequest extends Component
             ]);
         }
     }
-    
-    public function updating($name, $value)
-    {
-        if ($name === 'requisition_candidates' ) {
-            // dump($this->requisition_candidates);
-        } 
-        else if ($name === 'requisition_job_descriptions')
-        {
-            // dump($value);
-        }
-        else if ($name === 'requisition_education')
-        {
-            // dump($value);
-        }
-        else if($name === 'requisition_work_experience')
-        {
-            // dump($value);
-        }
-    }
-
     public function render()
     {
-        return view('livewire.employee.manpower-requisition.approve-requisition-request');
+        return view('livewire.employee.manpower-requisition.edit-requisition');
     }
 }

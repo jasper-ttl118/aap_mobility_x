@@ -11,7 +11,7 @@
             {{-- Form Navigation  --}}
             <div>
                 <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
-                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Endorser Details', 'Approver Details']" :key="index">
+                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details', 'Approval Information']" :key="index">
                         <li 
                             @click="selectedStep = index; selected = selected_tabs[index];"
                             :class="[
@@ -330,7 +330,7 @@
                             <a href="{{ asset('storage/' . $requisition_requestor_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
-                                Download
+                                View
                             </a>
                         </div>
                     @else
@@ -382,7 +382,7 @@
                             <a href="{{ asset('storage/' . $requisition_endorser_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
-                                Download
+                                View
                             </a>
                         </div>
                     @else
@@ -428,7 +428,7 @@
                             <a href="{{ asset('storage/' . $requisition_approver_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
-                                Download
+                                View
                             </a>
                         </div>
                     @else
@@ -468,7 +468,7 @@
                             <a href="{{ asset('storage/' . $requisition_approver_signature_1) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
-                                Download
+                                View
                             </a>
                         </div>
                     @else

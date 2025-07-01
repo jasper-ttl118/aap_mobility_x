@@ -7,15 +7,15 @@
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
             <div class="border-b border-gray-200 pb-3">
-                <h1 class="text-base font-bold uppercase">Approve Manpower Requisition</h1>
-                <p class="text-sm text-gray-600">Approve a manpower requisition form.</p>
+                <h1 class="text-base font-bold uppercase">Edit Manpower Requisition</h1>
+                <p class="text-sm text-gray-600">Edit manpower requisition form details.</p>
             </div>
 
             {{-- Form Navigation  --}}
             <div>
                 <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
-                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details', 'Approval Information']" :key="index"> --}}
-                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details', 'Approval Information']" :key="index">
+                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details',  'Verifier Details', 'Approval Information']" :key="index"> --}}
+                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details',  'Verifier Details', 'Approval Information']" :key="index">
                         <li 
                             @click="selectedStep = index; selected = selected_tabs[index];"
                             :class="[
@@ -607,46 +607,54 @@
 
                     </div>
             </div>
-                
+
             {{-- Requested By Field --}}
             <div x-show="selected === 'requested'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
+                <!-- Name -->
                 <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
                     <div class="mb-1">
                         <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Requested By:</div>
                         <label class="text-sm font-medium">Name</label>
                     </div>
-
                     <input type="text" name="requisition_requestor_name" placeholder="e.g. John Doe"
                         wire:model="requisition_requestor_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_requestor_name') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
                 <!-- Position -->
-                <div class="flex flex-col justify-end">
+                <div class="flex flex-col justify-start mt-[20px]">
                     <label class="font-medium text-sm mb-1">Position</label>
                     <input type="text" name="requisition_requestor_position" placeholder="e.g. IST - Department Head"
                         wire:model="requisition_requestor_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_requestor_position') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
                 <!-- Signature -->
-                <div class="flex flex-col justify-end relative">
+                <div class="flex flex-col justify-start relative mt-[15px]">
                     <label class="font-medium text-sm mb-1">Signature</label>
 
+                    @if (!$isDisabled)
+                        <input type="file" name="requisition_requestor_signature"
+                            wire:model="requisition_requestor_signature"
+                            class="w-full mt-1 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                        @error('requisition_requestor_signature') 
+                            <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
+                        @enderror
+                    @endif
+
                     @if ($requisition_requestor_signature ?? false)
-                        <div class="flex items-center h-8 justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                        <div class="mt-1 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 h-8 rounded-md shadow-sm">
                             <span class="text-sm text-blue-700 truncate">
                                 {{ basename($requisition_requestor_signature) }}
                             </span>
-                            
                             <a href="{{ asset('storage/' . $requisition_requestor_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
@@ -654,9 +662,7 @@
                             </a>
                         </div>
                     @else
-                        <span class="text-sm text-blue-700 truncate">
-                            <p class="text-sm text-gray-400 italic">No signature uploaded.</p>
-                        </span>
+                        <span class="text-sm text-gray-400 italic mt-2">No signature uploaded.</span>
                     @endif
                 </div>
             </div>
@@ -669,7 +675,8 @@
                     <label class="text-sm font-medium mt-1 mb-1">Name</label>
                     <input type="text" name="requisition_endorser_name" placeholder="e.g. John Doe"
                         wire:model="requisition_endorser_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_endorser_name') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
@@ -678,131 +685,153 @@
                 <!-- Position -->
                 <div class="flex flex-col justify-start">
                     <label class="text-sm font-medium mb-1 mt-[22px]">Position</label>
-                    <input type="text" name="requisition_endorser_position" placeholder="e.g. IST - Department Head"
+                    <input type="text" name="requisition_endorser_position" placeholder="e.g. John Doe"
                         wire:model="requisition_endorser_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
+
                     @error('requisition_endorser_position') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
-
+                
                 <!-- Signature -->
-                <div class="flex flex-col justify-end relative">
+                <div class="flex flex-col justify-start relative mt-[15px]">
                     <label class="font-medium text-sm mb-1">Signature</label>
 
-                    @if ($requisition_requestor_signature ?? false)
-                        <div class="flex items-center h-8 justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                    @if (!$isDisabled)
+                        <input type="file" name="requisition_endorser_signature"
+                            wire:model="requisition_endorser_signature"
+                            class="w-full mt-1 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                        @error('requisition_endorser_signature') 
+                            <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
+                        @enderror
+                    @endif
+
+                    @if ($requisition_endorser_signature ?? false)
+                        <div class="mt-1 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 h-8 rounded-md shadow-sm">
                             <span class="text-sm text-blue-700 truncate">
-                                {{ basename($requisition_requestor_signature) }}
+                                {{ basename($requisition_endorser_signature) }}
                             </span>
-                            
-                            <a href="{{ asset('storage/' . $requisition_requestor_signature) }}"
+                            <a href="{{ asset('storage/' . $requisition_endorser_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
                                 target="_blank">
                                 View
                             </a>
                         </div>
                     @else
-                        <span class="text-sm text-blue-700 truncate">
-                            <p class="text-sm text-gray-400 italic">No signature uploaded.</p>
-                        </span>
+                        <span class="text-sm text-gray-400 italic mt-2">No signature uploaded.</span>
                     @endif
                 </div>
             </div>
 
             {{-- Approved By --}}
             <div x-show="selected === 'approved'" class="grid grid-cols-3 gap-5">
-                <!-- Approver 1: Name -->
+                <!-- Approver Name -->
                 <div class="flex flex-col justify-start">
                     <label class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Approved By:</label>
                     <label class="text-sm font-medium mt-1 mb-1">Name</label>
                     <input type="text" name="requisition_approver_name" placeholder="e.g. John Doe"
                         wire:model="requisition_approver_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_approver_name') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
-                <!-- Approver 1: Position -->
+                <!-- Position -->
                 <div class="flex flex-col justify-start mt-[22px]">
-                    <label class="font-medium text-sm mb-1">Position</label>
+                    <label class="text-sm font-medium mb-1">Position</label>
                     <input type="text" name="requisition_approver_position" placeholder="e.g. IST - Department Head"
                         wire:model="requisition_approver_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_approver_position') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
-                <!-- Approver 1: Signature -->
-                <div class="flex flex-col justify-start relative mt-[22px]">
-                    <label class="text-sm font-medium mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature"
-                        wire:model="requisition_approver_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                <!-- Signature -->
+                <div class="flex flex-col justify-start relative mt-[15px]">
+                    <label class="font-medium text-sm mb-1">Signature</label>
 
-                    @if ($requisition_approver_signature !== null)
-                        <div class="mt-2 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                    @if (!$isDisabled)
+                        <input type="file" name="requisition_approver_signature"
+                            wire:model="requisition_approver_signature"
+                            class="w-full mt-1 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                        @error('requisition_approver_signature') 
+                            <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
+                        @enderror
+                    @endif
+
+                    @if ($requisition_approver_signature ?? false)
+                        <div class="mt-1 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 h-8 rounded-md shadow-sm">
                             <span class="text-sm text-blue-700 truncate">
                                 {{ basename($requisition_approver_signature) }}
                             </span>
                             <a href="{{ asset('storage/' . $requisition_approver_signature) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
-                                target="_blank">View</a>
+                                target="_blank">
+                                View
+                            </a>
                         </div>
+                    @else
+                        <span class="text-sm text-gray-400 italic mt-2">No signature uploaded.</span>
                     @endif
-
-                    <div wire:loading wire:target="requisition_approver_signature"
-                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
-                        ⏳ Uploading signature...
-                    </div>
                 </div>
 
-                <!-- Approver 2: Name -->
-                <div class="flex flex-col justify-start mt-[22px]">
-                    <label class="text-sm font-medium mb-1">Name</label>
+                {{-- Name 1 --}}
+                <div class="flex flex-col justify-start">
+                    <label class="text-sm font-medium mt-[22px] mb-1">Name</label>
                     <input type="text" name="requisition_approver_name_1" placeholder="e.g. John Doe"
                         wire:model="requisition_approver_name_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_approver_name_1') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
-                <!-- Approver 2: Position -->
+                <!-- Position 1 -->
                 <div class="flex flex-col justify-start mt-[22px]">
-                    <label class="font-medium text-sm mb-1">Position</label>
+                    <label class="text-sm font-medium mb-1">Position</label>
                     <input type="text" name="requisition_approver_position_1" placeholder="e.g. IST - Department Head"
                         wire:model="requisition_approver_position_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
+                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500"
+                        @if($isDisabled) disabled @endif>
                     @error('requisition_approver_position_1') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
 
-                <!-- Approver 2: Signature -->
-                <div class="flex flex-col justify-start relative mt-[22px]">
-                    <label class="text-sm font-medium mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature_1"
-                        wire:model="requisition_approver_signature_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                <!-- Signature 1 -->
+                <div class="flex flex-col justify-start relative mt-[15px]">
+                    <label class="font-medium text-sm mb-1">Signature</label>
 
-                    @if ($requisition_approver_signature_1 !== null)
-                        <div class="mt-2 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                    @if (!$isDisabled)
+                        <input type="file" name="requisition_approver_signature_1"
+                            wire:model="requisition_approver_signature_1"
+                            class="w-full mt-1 bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
+                        @error('requisition_approver_signature_1') 
+                            <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
+                        @enderror
+                    @endif
+
+                    @if ($requisition_approver_signature_1 ?? false)
+                        <div class="mt-1 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 h-8 rounded-md shadow-sm">
                             <span class="text-sm text-blue-700 truncate">
                                 {{ basename($requisition_approver_signature_1) }}
                             </span>
                             <a href="{{ asset('storage/' . $requisition_approver_signature_1) }}"
                                 class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
-                                target="_blank">View</a>
+                                target="_blank">
+                                View
+                            </a>
                         </div>
+                    @else
+                        <span class="text-sm text-gray-400 italic mt-2">No signature uploaded.</span>
                     @endif
-
-                    <div wire:loading wire:target="requisition_approver_signature_1"
-                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
-                        ⏳ Uploading signature...
-                    </div>
                 </div>
             </div>
 

@@ -147,14 +147,17 @@ class CheckRequisitionRequest extends Component
 
     public function save()
     {
-        //  dd($this);       
-        $originalName = $this->requisition_endorser_signature->getClientOriginalName();
-
-        $path = $this->requisition_endorser_signature->storeAs(
-            'endorser_signatures',          
-            $originalName,                    
-            'public'                          
-        );
+        //  dd($this);      
+        $originalName = '';
+        $path = '';
+        if ($this->requisition_endorser_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName = $this->requisition_endorser_signature->getClientOriginalName();
+        }
+       if ($this->requisition_endorser_signature instanceof \Illuminate\Http\UploadedFile) {
+            $originalName = $this->requisition_endorser_signature->getClientOriginalName();
+            $path = $this->requisition_endorser_signature->storeAs('approver_signatures', $originalName, 'public');
+            $this->requisition_endorser_signature = $path;
+        }
 
         $uniqueConditions = [
             'requisition_id' => $this->requisition_id
@@ -168,6 +171,7 @@ class CheckRequisitionRequest extends Component
             'requisition_eventual_job_position' => $this->requisition_eventual_job_position,
             'requisition_number_required' => $this->requisition_number_required,
             'requisition_contract_duration' => $this->requisition_contract_duration,
+            'requisition_type' => $this->requisition_type,
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
@@ -231,12 +235,14 @@ class CheckRequisitionRequest extends Component
 
         if ($requisition) {
             $this->requisition_endorser_signature = $originalName;
-            $this->dispatch('show-toast', [
+            
+            session()->flash('toast', [
+                'type' => 'success',
                 'title' => 'Success',
-                'content' => 'Requisition Submitted Successfully!',
+                'message' => 'Requisition submitted successfully!',
             ]);
-            dump("success");
-            $this->dispatch('close-modal');
+
+            return to_route('requisition.index');
         } else {
             dump('failed');
             $this->dispatch('show-toast', [

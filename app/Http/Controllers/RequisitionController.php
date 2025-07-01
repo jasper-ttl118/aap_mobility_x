@@ -43,9 +43,10 @@ class RequisitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $requisition_id)
     {
-        //
+        $requisition = Requisition::find($requisition_id);
+        return view('employee.manpower-requisition.edit-requisition-request', compact('requisition'));
     }
 
     /**
@@ -73,5 +74,16 @@ class RequisitionController extends Controller
     {
         $requisition = Requisition::find($requisition_id);
         return view('employee.manpower-requisition.view-pending-request', compact('requisition'));
+    }
+    
+    public function waitApprovalList()
+    {
+        return view('employee.manpower-requisition.waiting-for-approve-list');
+    }
+
+    public function viewWaitingApprovalRequest($requisition_id)
+    {
+        $requisition = Requisition::find($requisition_id);
+        return view('employee.manpower-requisition.view-waiting-approval-request', compact('requisition'));
     }
 }

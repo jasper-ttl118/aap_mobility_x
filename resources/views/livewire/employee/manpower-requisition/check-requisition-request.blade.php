@@ -14,8 +14,8 @@
             {{-- Form Navigation  --}}
             <div>
                 <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
-                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Endorser Details', 'Approver Details']" :key="index"> --}}
-                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Endorser Details']" :key="index">
+                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details',  'Verifier Details', 'Approval Information']" :key="index"> --}}
+                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details']" :key="index">
                         <li 
                             @click="selectedStep = index; selected = selected_tabs[index];"
                             :class="[

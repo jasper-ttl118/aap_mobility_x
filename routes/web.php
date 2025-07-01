@@ -89,6 +89,9 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/requisition/pending-list', [RequisitionController::class, 'pendingList'])->name('pending-list');
         Route::get('/requisition/pending-list/{requisition_id}', [RequisitionController::class, 'viewPendingRequest'])->name('view-pending-request');
+        Route::get('/requisition/waiting-approval-list', [RequisitionController::class, 'waitApprovalList'])->name('wait-approval-list');
+        Route::get('/requisition/waiting-approval-list/{requisition_id}', [RequisitionController::class, 'viewWaitingApprovalRequest'])->name('view-waiting-approval-request');
+
         Route::resource('requisition', RequisitionController::class);
 
     });

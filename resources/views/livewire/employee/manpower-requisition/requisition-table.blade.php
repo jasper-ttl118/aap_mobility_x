@@ -1,5 +1,5 @@
 <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-  
+
     {{-- Pending Table --}}
     <div x-show="selected === 'pending'">
         <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
@@ -45,9 +45,7 @@
                                         </svg>
                                     </a>
 
-                                    <a @click="open_edit = true; 
-                                        window.Livewire.dispatch('loadEditRequisitionRequest', { requisition_id: {{ $pendingRequisition->requisition_id }}, status: 'pending' })
-                                        "
+                                    <a  href="{{ route('requisition.edit', $pendingRequisition->requisition_id) }}"
                                         class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             fill="currentColor" class="size-4">
@@ -117,11 +115,7 @@
                             <div class="flex flex-row justify-center items-center gap-2">
                             {{-- {{$employee->employee_id}} --}}
                                     <a
-                                        x-data="{ disabled: false }"
-                                        x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
-                                        @click="open_view = true;       
-                                            window.Livewire.dispatch('loadRequisitionRequest', { requisition_id: {{ $approvedRequisition->requisition_id }} });
-                                            "
+                                        href="{{ route('requisition.show', $approvedRequisition->requisition_id ) }}"
                                         class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -133,9 +127,7 @@
                                         </svg>
                                     </a>
 
-                                    <a @click="open_edit = true; 
-                                        window.Livewire.dispatch('loadEditRequisitionRequest', { requisition_id: {{ $approvedRequisition->requisition_id }}, status: 'approved'})
-                                        "
+                                    <a  href="{{ route('requisition.edit', $approvedRequisition->requisition_id) }}"
                                         class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             fill="currentColor" class="size-4">
@@ -174,8 +166,8 @@
         {{ $approvedRequisitions->onEachSide(1)->links() }}
     </div>
 
-    {{-- Rejected Table --}}
-    <div x-show="selected === 'rejected'">
+    {{-- Waiting Approval Table --}}
+    <div x-show="selected === 'waiting'">
         <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>    
@@ -191,26 +183,22 @@
             </thead>
             <tbody>
 
-                @forelse ($rejectedRequisitions as $rejectedRequisition)
+                @forelse ($waitingRequisitions as $waitingRequisition)
                     <tr>
-                        <td class="p-2">{{ $rejectedRequisition->requisition_id }}</td>
-                        <td class="p-2">{{ $rejectedRequisition->requisition_initial_job_position }}</td>
-                        <td>{{ $rejectedRequisition->requisition_type }}</td>
-                        <td class="p-2">{{ $rejectedRequisition->requisition_department }}</td>
-                        <td class="p-2">{{ $rejectedRequisition->requisition_requestor_name }}</td>
-                        <td class="p-2">₱{{ $rejectedRequisition->requisition_salary_min }} - ₱{{ $rejectedRequisition->requisition_salary_max }}</td>
+                        <td class="p-2">{{ $waitingRequisition->requisition_id }}</td>
+                        <td class="p-2">{{ $waitingRequisition->requisition_initial_job_position }}</td>
+                        <td>{{ $waitingRequisition->requisition_type }}</td>
+                        <td class="p-2">{{ $waitingRequisition->requisition_department }}</td>
+                        <td class="p-2">{{ $waitingRequisition->requisition_requestor_name }}</td>
+                        <td class="p-2">₱{{ $waitingRequisition->requisition_salary_min }} - ₱{{ $waitingRequisition->requisition_salary_max }}</td>
                         <td class="p-2">
-                            <span class="bg-red-600 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg ">Rejected</span>
+                            <span class="bg-[#F6D400] text-[#071d49] text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg ">Waiting Approval</span>
                         </td>
                         <td class="p-2">
                             <div class="flex flex-row justify-center items-center gap-2">
                             {{-- {{$employee->employee_id}} --}}
                                     <a
-                                        x-data="{ disabled: false }"
-                                        x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
-                                        @click="open_view = true;       
-                                            window.Livewire.dispatch('loadRequisitionRequest', { requisition_id: {{ $rejectedRequisition->requisition_id }}});
-                                            "
+                                        href="{{ route('requisition.show', $waitingRequisition->requisition_id ) }}"
                                         class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -222,9 +210,7 @@
                                         </svg>
                                     </a>
 
-                                    <a @click="open_edit = true; 
-                                        window.Livewire.dispatch('loadEditRequisitionRequest', { requisition_id: {{ $rejectedRequisition->requisition_id }}, status: 'rejected' })
-                                        "
+                                    <a  href="{{ route('requisition.edit', $waitingRequisition->requisition_id) }}"
                                         class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             fill="currentColor" class="size-4">
@@ -238,7 +224,7 @@
                                     </a>
 
                                     <a href="javascript:void(0)"
-                                        @click="open_delete = true; Livewire.dispatch('getRequisitionId', { requisition_id: {{ $rejectedRequisition->requisition_id }}, status: 'rejected' });"
+                                        @click="open_delete = true; Livewire.dispatch('getRequisitionId', { requisition_id: {{ $waitingRequisition->requisition_id }}, status: 'waiting' });"
                                         class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             fill="currentColor" class="size-4">
@@ -252,7 +238,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="8" class="py-3">No Rejected Requisition Request Yet...</td>
+                        <td colspan="8" class="py-3">No Waiting for Approval Request Yet...</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -260,7 +246,7 @@
     </div>
 
     <div x-show="selected === 'rejected'" class="flex w-full justify-start lg:justify-center">
-        {{ $rejectedRequisitions->onEachSide(1)->links() }}
+        {{ $waitingRequisitions->onEachSide(1)->links() }}
     </div>
     
 </div>
