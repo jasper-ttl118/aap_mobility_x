@@ -2,13 +2,13 @@
   
     x-data="{ jobDescriptions: '', educAttainment: '', workExperience: '', specialSkills: '',other: '', selectedStep: 0, employment_type : @entangle('requisition_employment_type').live, selected : 'job information', selected_tabs : ['job information', 'hiring specifications', 'requested', 'endorsed']}"
     class="bg-white shadow-lg rounded-lg text-sm">
-    <form wire:submit="add" >
+    <form wire:submit="save" >
         @csrf
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
             <div class="border-b border-gray-200 pb-3">
-                <h1 class="text-base font-bold uppercase">Create Manpower Requisition</h1>
-                <p class="text-sm text-gray-600">Submit a manpower requisition form.</p>
+                <h1 class="text-base font-bold uppercase">Check and Endorse Manpower Requisition</h1>
+                <p class="text-sm text-gray-600">Check and endorse a manpower requisition form.</p>
             </div>
 
             {{-- Form Navigation  --}}
@@ -556,24 +556,23 @@
                                         x-model="item.value"
                                         class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-0 text-sm h-8 focus:outline-blue-500"
                                     >
-                             <option value="" disabled>Select Candidate</option>
+                                        <option value="" disabled>Select Candidate</option>
+                                            <!-- Selected Candidate (always shown on top) -->
+                                            <template x-if="item.value">
+                                                <option 
+                                                    :value="item.value" 
+                                                    x-text="findCandidate(item.value).name">
+                                                </option>
+                                            </template>
 
-<!-- Selected Candidate (always shown on top) -->
-<template x-if="item.value">
-    <option 
-        :value="item.value" 
-        x-text="findCandidate(item.value).name">
-    </option>
-</template>
-
-<!-- All other options (with duplicate prevention) -->
-<template x-for="option in availableOptions(index)" :key="option.id">
-    <option 
-        :value="option.id" 
-        :disabled="option.disabled"
-        x-text="option.name">
-    </option>
-</template>
+                                            <!-- All other options (with duplicate prevention) -->
+                                            <template x-for="option in availableOptions(index)" :key="option.id">
+                                                <option 
+                                                    :value="option.id" 
+                                                    :disabled="option.disabled"
+                                                    x-text="option.name">
+                                                </option>
+                                            </template>
 
                                     </select>
 
@@ -642,19 +641,23 @@
                 <div class="flex flex-col justify-end relative">
                     <label class="font-medium text-sm mb-1">Signature</label>
 
-                    <input type="file" name="requisition_requestor_signature"
-                        wire:model="requisition_requestor_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-
-                    @error('requisition_requestor_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-
-                    <!-- Uploading Indicator -->
-                    <div wire:loading wire:target="requisition_requestor_signature"
-                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
-                        ⏳ Uploading signature...
-                    </div>
+                    @if ($requisition_requestor_signature ?? false)
+                        <div class="flex items-center h-8 justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                            <span class="text-sm text-blue-700 truncate">
+                                {{ basename($requisition_requestor_signature) }}
+                            </span>
+                            
+                            <a href="{{ asset('storage/' . $requisition_requestor_signature) }}"
+                                class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
+                                target="_blank">
+                                View
+                            </a>
+                        </div>
+                    @else
+                        <span class="text-sm text-blue-700 truncate">
+                            <p class="text-sm text-gray-400 italic">No signature uploaded.</p>
+                        </span>
+                    @endif
                 </div>
 
 
@@ -662,14 +665,10 @@
 
             {{-- Endorsed and Checked --}}
             <div x-show="selected === 'endorsed'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
+                <!-- Endorser Name -->
                 <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
-                    <div class="mb-1">
-                        <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Checked and Endorsed By:</div>
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-
+                    <label class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Checked and Endorsed By:</label>
+                    <label class="text-sm font-medium mt-1 mb-1">Name</label>
                     <input type="text" name="requisition_endorser_name" placeholder="e.g. John Doe"
                         wire:model="requisition_endorser_name"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
@@ -679,8 +678,8 @@
                 </div>
 
                 <!-- Position -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Position</label>
+                <div class="flex flex-col justify-start">
+                    <label class="text-sm font-medium mb-1 mt-[22px]">Position</label>
                     <input type="text" name="requisition_endorser_position" placeholder="e.g. IST - Department Head"
                         wire:model="requisition_endorser_position"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
@@ -690,20 +689,38 @@
                 </div>
 
                 <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
+                <div class="flex flex-col justify-start relative">
+                    <label class="text-sm font-medium mb-1 mt-[22px]">Signature</label>
+
                     <input type="file" name="requisition_endorser_signature"
                         wire:model="requisition_endorser_signature"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_endorser_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
+
+                    @if ($requisition_endorser_signature !== null)
+                        <div class="mt-2 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
+                            <span class="text-sm text-blue-700 truncate">
+                                {{ basename($requisition_endorser_signature) }}
+                            </span>
+
+                            <a href="{{ asset('storage/' . $requisition_endorser_signature) }}"
+                                class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
+                                target="_blank">
+                                View
+                            </a>
+                        </div>
+                    @endif
+
+                    <!-- Uploading Indicator -->
+                    <div wire:loading wire:target="requisition_endorser_signature"
+                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
+                        ⏳ Uploading signature...
+                    </div>
                 </div>
             </div>
 
             {{-- Approved By --}}
             <div x-show="selected === 'approved'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
+                <!-- Approver Name -->
                 <div class="flex flex-col justify-start">
                     <!-- Grouped label block to avoid pushing input down -->
                     <div class="mb-1">
@@ -806,10 +823,10 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === 'requested'">
+            <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === 'endorsed'">
                 <button type="submit"
                     class="cursor-pointer mt-4 w-[50%] bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
-                    Create
+                    Approve
                 </button>
                 <a href="{{ route('requisition.index') }}"
                     class="cursor-pointer mt-4 w-[50%] bg-gray-600 text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49] text-center">

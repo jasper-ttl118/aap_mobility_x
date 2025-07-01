@@ -5,6 +5,12 @@ namespace App\Livewire\Employee\ManpowerRequisition;
 use App\Models\Candidate;
 use App\Models\Department;
 use App\Models\Requisition;
+use App\Models\RequisitionDuty;
+use App\Models\RequisitionEducationLevel;
+use App\Models\RequisitionOther;
+use App\Models\RequisitionSpecialSkill;
+use App\Models\RequisitionWorkExperience;
+use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -46,12 +52,16 @@ class CheckRequisitionRequest extends Component
         
     ];
     public array $requisition_job_descriptions = [];
-    public $departments;
     public array $requisition_education = [];
+    public $departments;
+
+    public $requisition_id;
+
     public function mount(Requisition $requisition)
     {
         // Job Information fields
         $this->departments = Department::all();
+        $this->requisition_id = $requisition->requisition_id;
         $this->requisition_department = $requisition->requisition_department;
         $this->requisition_section = 'Development Team';
         $this->requisition_initial_job_position = $requisition->requisition_initial_job_position;
@@ -64,6 +74,12 @@ class CheckRequisitionRequest extends Component
         $this->requisition_engagement_type = $requisition->requisition_engagement_type;
         $this->requisition_contract_duration = $requisition->requisition_contract_duration;
         $this->requisition_justification = $requisition->requisition_justification;
+        $this->requisition_requestor_name = $requisition->requisition_requestor_name;
+        $this->requisition_requestor_position = $requisition->requisition_requestor_position;
+        $this->requisition_requestor_signature = $requisition->requisition_requestor_signature;
+        $this->requisition_endorser_name = $requisition->requisition_endorser_name;
+        $this->requisition_endorser_position = $requisition->requisition_endorser_position;
+        $this->requisition_endorser_signature = $requisition->requisition_endorser_signature;
 
         // Hiring Specification fields
         $this->requisition_job_descriptions = $requisition->requisitionDuties->map(function ($duty) {
@@ -80,7 +96,6 @@ class CheckRequisitionRequest extends Component
             ];
         })->toArray();
         
-
         $this->requisition_work_experience = $requisition->requisitionWorkExperiences->map(function ($work) {
             return [
                 'id' => $work->requisition_work_experience_id,
@@ -110,8 +125,6 @@ class CheckRequisitionRequest extends Component
                 'value' => $candidate->candidate_id,
             ];
         })->values()->toArray();
-
-        // dd($this->requisition_candidates);
     
         $this->candidates = Candidate::all()
             ->map(function ($candidate) {
@@ -132,11 +145,111 @@ class CheckRequisitionRequest extends Component
             ->all();
     }
 
+    public function save()
+    {
+        //  dd($this);       
+        $originalName = $this->requisition_endorser_signature->getClientOriginalName();
+
+        $path = $this->requisition_endorser_signature->storeAs(
+            'endorser_signatures',          
+            $originalName,                    
+            'public'                          
+        );
+
+        $uniqueConditions = [
+            'requisition_id' => $this->requisition_id
+        ];
+
+        $updateData = [
+            'requisition_status' => 2,
+            'requisition_section' => $this->requisition_section,
+            'requisition_initial_job_position' => $this->requisition_initial_job_position,
+            'requisition_justification' => $this->requisition_justification,
+            'requisition_eventual_job_position' => $this->requisition_eventual_job_position,
+            'requisition_number_required' => $this->requisition_number_required,
+            'requisition_contract_duration' => $this->requisition_contract_duration,
+            'requisition_employment_type' => $this->requisition_employment_type,
+            'requisition_budget' => $this->requisition_budget,
+            'requisition_engagement_type' => $this->requisition_engagement_type,
+            'requisition_applicants_sources' => $this->requisition_applicants_sources,
+            'requisition_requestor_name' => $this->requisition_requestor_name,
+            'requisition_requestor_position' => $this->requisition_requestor_position,
+            'requisition_requestor_signature' => $this->requisition_requestor_signature, 
+            'requisition_endorser_name' => $this->requisition_endorser_name,
+            'requisition_endorser_position' => $this->requisition_endorser_position,
+            'requisition_endorser_signature' => $path 
+        ];
+
+        DB::table('requisitions')->updateOrInsert($uniqueConditions, $updateData);
+
+        $requisition = Requisition::where($uniqueConditions)->latest('requisition_id')->first();
+
+        $relatedData = [
+            'requisition_job_descriptions' => [RequisitionDuty::class, 'requisition_duty_description'],
+            'requisition_education' => [RequisitionEducationLevel::class, 'requisition_education_level_description'],
+            'requisition_other_description' => [RequisitionOther::class, 'requisition_other_description'],
+            'requisition_special_skills' => [RequisitionSpecialSkill::class, 'requisition_special_skill_description'],
+            'requisition_work_experience' => [RequisitionWorkExperience::class, 'requisition_work_experience_description'],
+        ];
+
+        foreach ($relatedData as $property => [$model, $column]) {
+            $submittedValues = collect($this->$property)
+                ->pluck('value')
+                ->filter()
+                ->unique()
+                ->values();
+
+            // Get existing values from the DB for this requisition
+            $existingValues = $model::where('requisition_id', $requisition->requisition_id)
+                ->pluck($column);
+
+            $toDelete = $existingValues->diff($submittedValues);
+
+            if ($toDelete->isNotEmpty()) {
+                $model::where('requisition_id', $requisition->requisition_id)
+                    ->whereIn($column, $toDelete)
+                    ->delete();
+            }
+
+            foreach ($submittedValues as $value) {
+                $model::updateOrInsert(
+                    [
+                        'requisition_id' => $requisition->requisition_id,
+                        $column => $value,
+                    ],
+                    [] 
+                );
+            }
+        }
+
+        $candidateIds = collect($this->requisition_candidates)
+            ->pluck('value')
+            ->filter()
+            ->all();
+
+        $requisition->candidates()->sync($candidateIds);
+
+        if ($requisition) {
+            $this->requisition_endorser_signature = $originalName;
+            $this->dispatch('show-toast', [
+                'title' => 'Success',
+                'content' => 'Requisition Submitted Successfully!',
+            ]);
+            dump("success");
+            $this->dispatch('close-modal');
+        } else {
+            dump('failed');
+            $this->dispatch('show-toast', [
+                'title' => 'Error',
+                'content' => 'An error occurred!',
+            ]);
+        }
+    }
     
     public function updating($name, $value)
     {
         if ($name === 'requisition_candidates' ) {
-            dump($this->requisition_candidates);
+            // dump($this->requisition_candidates);
         } 
         else if ($name === 'requisition_job_descriptions')
         {
