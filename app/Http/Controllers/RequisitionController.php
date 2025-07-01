@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Requisition;
 use Illuminate\Http\Request;
 
 class RequisitionController extends Controller
@@ -33,9 +34,10 @@ class RequisitionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($requisition_id)
     {
-        //
+        $requisition = Requisition::find($requisition_id);
+        return view('employee.manpower-requisition.view-requisition-request', compact('requisition'));
     }
 
     /**
@@ -60,5 +62,16 @@ class RequisitionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function pendingList()
+    {
+        return view('employee.manpower-requisition.pending-list');
+    }
+
+    public function viewPendingRequest($requisition_id)
+    {
+        $requisition = Requisition::find($requisition_id);
+        return view('employee.manpower-requisition.view-pending-request', compact('requisition'));
     }
 }

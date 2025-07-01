@@ -19,7 +19,7 @@
                 @forelse ($pendingRequisitions as $pendingRequisition)
                     <tr>
                         <td class="p-2">{{ $pendingRequisition->requisition_id }}</td>
-                        <td class="p-2">{{ $pendingRequisition->requisition_job_position }}</td>
+                        <td class="p-2">{{ $pendingRequisition->requisition_initial_job_position }}</td>
                         <td>{{ $pendingRequisition->requisition_type }}</td>
                         <td class="p-2">{{ $pendingRequisition->requisition_department }}</td>
                         <td class="p-2">{{ $pendingRequisition->requisition_requestor_name }}</td>
@@ -33,9 +33,7 @@
                                     <a
                                         x-data="{ disabled: false }"
                                         x-bind:class="{ 'opacity-50 pointer-events-none': disabled }"
-                                        @click="open_view = true;       
-                                            window.Livewire.dispatch('loadRequisitionRequest', { requisition_id: {{ $pendingRequisition->requisition_id }} });
-                                            "
+                                        href="{{ route('requisition.show', $pendingRequisition->requisition_id ) }}"
                                         class="flex items-center gap-1 font-medium text-gray-700 cursor-pointer"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -107,7 +105,7 @@
                 @forelse ($approvedRequisitions as $approvedRequisition)
                     <tr>
                         <td class="p-2">{{ $approvedRequisition->requisition_id }}</td>
-                        <td class="p-2">{{ $approvedRequisition->requisition_job_position }}</td>
+                        <td class="p-2">{{ $approvedRequisition->requisition_initial_job_position }}</td>
                         <td>{{ $approvedRequisition->requisition_type }}</td>
                         <td class="p-2">{{ $approvedRequisition->requisition_department }}</td>
                         <td class="p-2">{{ $approvedRequisition->requisition_requestor_name }}</td>
@@ -196,7 +194,7 @@
                 @forelse ($rejectedRequisitions as $rejectedRequisition)
                     <tr>
                         <td class="p-2">{{ $rejectedRequisition->requisition_id }}</td>
-                        <td class="p-2">{{ $rejectedRequisition->requisition_job_position }}</td>
+                        <td class="p-2">{{ $rejectedRequisition->requisition_initial_job_position }}</td>
                         <td>{{ $rejectedRequisition->requisition_type }}</td>
                         <td class="p-2">{{ $rejectedRequisition->requisition_department }}</td>
                         <td class="p-2">{{ $rejectedRequisition->requisition_requestor_name }}</td>

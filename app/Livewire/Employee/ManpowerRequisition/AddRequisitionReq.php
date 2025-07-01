@@ -2,21 +2,24 @@
 
 namespace App\Livewire\Employee\ManpowerRequisition;
 
+use App\Models\Candidate;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Requisition;
+use App\Models\RequisitionDuty;
+use App\Models\RequisitionEducationLevel;
+use App\Models\RequisitionOther;
+use App\Models\RequisitionSpecialSkill;
+use App\Models\RequisitionWorkExperience;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddRequisitionReq extends Component
 {
+    use WithFileUploads;
     public $requisition_job_position;
-    public $requisition_job_description;
     public $requisition_type;
     public $requisition_department;
-    public $requisition_requestor_name;
-    public $requisition_salary_min;
-    public $requisition_salary_max;
-    public $pendingRequisitions;
     public $requisition_section;
     public $requisition_initial_job_position;
     public $requisition_justification;
@@ -31,6 +34,7 @@ class AddRequisitionReq extends Component
     public $requisition_special_skills;
     public $requisition_other_description;
     public $requisition_applicants_sources;
+    public $requisition_requestor_name;
     public $requisition_requestor_position;
     public $requisition_requestor_signature;
     public $requisition_endorser_name;
@@ -42,6 +46,7 @@ class AddRequisitionReq extends Component
     public $requisition_approver_name_1;
     public $requisition_approver_position_1;
     public $requisition_approver_signature_1;
+    public $requisition_date_required = '';
     public $candidates;
     public array $requisition_candidates = [
         ['id' => '', 'value' => '']
@@ -76,23 +81,23 @@ class AddRequisitionReq extends Component
         $this->requisition_section = 'Development Team';
         $this->requisition_department = 'IST';
 
-        // Change this to candidates table
-        $this->candidates = Employee::all()
-            ->map(function ($employee) {
-                $fullName = $employee->employee_firstname;
+        $this->candidates = Candidate::all()
+            ->map(function ($candidate) {
+                $fullName = $candidate->candidate_firstname;
 
-                if (!empty($employee->employee_middlename)) {
-                    $fullName .= ' ' . $employee->employee_middlename;
+                if (!empty($candidate->candidate_middlename)) {
+                    $fullName .= ' ' . $candidate->candidate_middlename;
                 }
 
-                $fullName .= ' ' . $employee->employee_lastname;
+                $fullName .= ' ' . $candidate->candidate_lastname;
 
-                return trim($fullName);
+                return [
+                    'id' => $candidate->candidate_id,   
+                    'name' => trim($fullName),
+                ];
             })
             ->values()
             ->all();
-
-        // $this->requisition_type = 'New Position';
     }
 
     protected function rules()
@@ -129,21 +134,20 @@ class AddRequisitionReq extends Component
 
     public function add()
     {
-        // $this->validate();
-        $this->requisition_eventual_job_position = $this->requisition_initial_job_position;
-        $formattedCandidates = collect($this->requisition_candidates)
-            ->pluck('value')
-            ->filter()
-            ->implode(', ');
+        // dd($this->requisition_date_required);
+        $originalName = $this->requisition_requestor_signature->getClientOriginalName();
 
-        $query = Requisition::create([
-            'requisition_job_description' => $this->requisition_job_description,
+        $path = $this->requisition_requestor_signature->storeAs(
+            'requestor_signatures',           // Folder
+            $originalName,                    // Filename to save as
+            'public'                          // Disk
+        );
+
+        $this->requisition_eventual_job_position = $this->requisition_initial_job_position;
+
+        $requisition = Requisition::create([
             'requisition_type' => $this->requisition_type,
-            'requisition_candidates' => $formattedCandidates, 
             'requisition_department' => $this->requisition_department,
-            'requisition_requestor_name' => $this->requisition_requestor_name,
-            'requisition_salary_min' => $this->requisition_salary_min,
-            'requisition_salary_max' => $this->requisition_salary_max,
             'requisition_status' => 1,
             'requisition_section' => $this->requisition_section,
             'requisition_initial_job_position' => $this->requisition_initial_job_position,
@@ -151,30 +155,41 @@ class AddRequisitionReq extends Component
             'requisition_eventual_job_position' => $this->requisition_eventual_job_position,
             'requisition_number_required' => $this->requisition_number_required,
             'requisition_contract_duration' => $this->requisition_contract_duration,
-            'requisition_signature' => 'signature',
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
-            'requisition_education' => $this->requisition_education,
-            'requisition_work_experience' => $this->requisition_work_experience,
-            'requisition_special_skills' => $this->requisition_special_skills,
-            'requisition_other_description' => $this->requisition_other_description,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
+            'requisition_requestor_name' => $this->requisition_requestor_name,
             'requisition_requestor_position' => $this->requisition_requestor_position,
-            'requisition_requestor_signature' => 'signature',
-            'requisition_endorser_name' => $this->requisition_endorser_name,
-            'requisition_endorser_position' => $this->requisition_endorser_position,
-            'requisition_endorser_signature' => 'signature',
-            'requisition_approver_name' => $this->requisition_approver_name,
-            'requisition_approver_position' => $this->requisition_approver_position,
-            'requisition_approver_signature' => 'signature',
-            'requisition_approver_name_1' => $this->requisition_approver_name_1,
-            'requisition_approver_position_1' => $this->requisition_approver_position_1,
-            'requisition_approver_signature_1' => 'signature',
+            'requisition_requestor_signature' => $path,
+            'requisition_date_required' => $this->requisition_date_required
         ]);
 
-        if ($query) {
-            $this->dispatch('refreshTable', 'pending');
+        $relatedData = [
+            'requisition_job_descriptions' => [RequisitionDuty::class, 'requisition_duty_description'],
+            'requisition_education' => [RequisitionEducationLevel::class, 'requisition_education_level_description'],
+            'requisition_other_description' => [RequisitionOther::class, 'requisition_other_description'],
+            'requisition_special_skills' => [RequisitionSpecialSkill::class, 'requisition_special_skill_description'],
+            'requisition_work_experience' => [RequisitionWorkExperience::class, 'requisition_work_experience_description'],
+        ];
+        
+        foreach ($relatedData as $property => [$model, $column]) {
+            foreach ($this->$property as $item) {
+                $model::create([
+                    'requisition_id' => $requisition->requisition_id,
+                    $column => $item['value'],
+                ]);
+            }
+        }
+
+        $candidateIds = collect($this->requisition_candidates)
+            ->pluck('value')
+            ->filter()
+            ->all();
+
+        $requisition->candidates()->attach($candidateIds);
+
+        if ($requisition) {
             $this->dispatch('show-toast', [
                 'title' => 'Success',
                 'content' => 'Requisition Submitted Successfully!',
@@ -183,10 +198,11 @@ class AddRequisitionReq extends Component
         } else {
             $this->dispatch('show-toast', [
                 'title' => 'Error',
-                'content' => 'An Error Occured!',
+                'content' => 'An error occurred!',
             ]);
         }
     }
+
 
     
     public function render()
