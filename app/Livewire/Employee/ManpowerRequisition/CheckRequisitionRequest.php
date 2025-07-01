@@ -43,7 +43,7 @@ class CheckRequisitionRequest extends Component
     public $requisition_date_required = '';
     public $candidates;
     public array $requisition_candidates = [
-        ['id' => '', 'value' => '']
+        
     ];
     public array $requisition_job_descriptions = [];
     public $departments;
@@ -105,19 +105,11 @@ class CheckRequisitionRequest extends Component
         $this->requisition_applicants_sources = $requisition->requisition_applicants_sources;
         
         $this->requisition_candidates = $requisition->candidates->map(function ($candidate) {
-            $fullName = $candidate->candidate_firstname;
-
-            if (!empty($candidate->candidate_middlename)) {
-                $fullName .= ' ' . $candidate->candidate_middlename;
-            }
-
-            $fullName .= ' ' . $candidate->candidate_lastname;
-
             return [
                 'id' => $candidate->candidate_id,
-                'value' => trim($fullName), 
+                'value' => $candidate->candidate_id,
             ];
-        })->toArray();
+        })->values()->toArray();
 
         // dd($this->requisition_candidates);
     
@@ -144,7 +136,7 @@ class CheckRequisitionRequest extends Component
     public function updating($name, $value)
     {
         if ($name === 'requisition_candidates' ) {
-            // dump($this->requisition_candidates);
+            dump($this->requisition_candidates);
         } 
         else if ($name === 'requisition_job_descriptions')
         {

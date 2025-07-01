@@ -506,80 +506,105 @@
 
                         @php
                             $candidateList = collect($candidates)->values()->all(); 
+                            // dump($requisition_candidates);
                         @endphp
+                                            
+                        <div 
+                           x-data="{
+                                candidate: @entangle('requisition_candidates').live,
+                                allCandidates: @js($candidateList),
 
-                        <div>
-                            <label class="font-medium text-sm text-[#071d49]">Recommended Candidates</label>
+                                addCandidate() {
+                                    this.candidate.push({ id: Date.now() + Math.random(), value: '' });
+                                },
 
-                            <div 
-                                x-data="{
-                                    selected: @entangle('requisition_candidates').live,
-                                    allCandidates: @js($candidateList),
+                                removeCandidate(index) {
+                                    this.candidate.splice(index, 1);
+                                },
 
-                                    addCandidate() {
-                                        this.selected.push({ id: Date.now() + Math.random(), value: '' });
-                                    },
+                                findCandidate(id) {
+                                    return this.allCandidates.find(c => c.id === Number(id)) || { id: id, name: 'Unknown' };
+                                },
+                                  availableOptions(index) {
+                                        const currentId = Number(this.candidate[index].value);
 
-                                    removeCandidate(index) {
-                                        this.selected.splice(index, 1);
-                                    },
+                                        const selectedIds = this.candidate
+                                            .map((c, i) => i !== index ? Number(c.value) : null)
+                                            .filter(id => id !== null && !isNaN(id));
 
-                                availableOptions(index) {
-                                    const selectedIds = this.selected.map(c => Number(c.value));
-                                    const currentId = Number(this.selected[index].value);
+                                        return this.allCandidates.map(option => ({
+                                            ...option,
+                                            disabled: selectedIds.includes(option.id) && option.id !== currentId
+                                        }));
+                                    }
+                            }"
 
-                                    return this.allCandidates.filter(candidate =>
-                                        !selectedIds.includes(candidate.id) || candidate.id === currentId
-                                    );
-                                }
+                            x-init="if (!Array.isArray(candidate) || candidate.length === 0) {
+                                candidate = [{ id: Date.now(), value: '' }];
+                            }"
+                            class="space-y-1 mt-1"
+                        >
 
-                                }"
-                                x-init="if (!Array.isArray(selected) || selected.length === 0) {
-                                    selected = [{ id: Date.now(), value: '' }];
-                                }"
-                                class="space-y-1 mt-1"
-                            >
-                                <template x-for="(candidate, index) in selected" :key="candidate.id">
-                                    <div class="flex gap-2 items-center">
-                                        <select
-                                            :name="`requisition_candidates[${index}]`"
-                                            x-model="candidate.value"
-                                            class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-0 text-sm h-8 focus:outline-blue-500"
-                                        >
-                                            <option value="" disabled>Select Candidate</option>
-                                            <template x-for="option in availableOptions(index)" :key="option.id">
-                                                <option :value="option.id" x-text="option.name"></option>
-                                            </template>
-                                        </select>
+                        <label class="font-medium text-sm text-[#071d49]">Recommended Candidates</label>
 
-                                        <template x-if="selected.length > 1">
-                                            <button type="button" @click="removeCandidate(index)"
-                                                class="text-red-600 text-xs hover:underline">
-                                                Remove
-                                            </button>
-                                        </template>
-                                    </div>
-                                </template>
+                        {{-- <pre x-text="JSON.stringify(candidate, null, 2)"></pre> --}}
 
-                                <!-- Add Button -->
-                                <div class="flex items-center gap-2 justify-end pt-1">
-                                    <button type="button" @click="addCandidate"
-                                        :disabled="selected.length >= allCandidates.length"
-                                        class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                            <template x-for="(item, index) in candidate" :key="item.id">
+                                <div class="flex gap-2 items-center">
+                                   <select
+                                        :name="`requisition_candidates[${index}].value`"
+                                        x-model="item.value"
+                                        class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-0 text-sm h-8 focus:outline-blue-500"
                                     >
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                            stroke="currentColor" class="w-4 h-4">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                        </svg>
-                                        Add More Candidate
-                                    </button>
-                                </div>
+                             <option value="" disabled>Select Candidate</option>
 
-                                @error('requisition_candidates') 
-                                    <em class="text-sm text-red-500">{{ $message }}</em> 
-                                @enderror
+<!-- Selected Candidate (always shown on top) -->
+<template x-if="item.value">
+    <option 
+        :value="item.value" 
+        x-text="findCandidate(item.value).name">
+    </option>
+</template>
+
+<!-- All other options (with duplicate prevention) -->
+<template x-for="option in availableOptions(index)" :key="option.id">
+    <option 
+        :value="option.id" 
+        :disabled="option.disabled"
+        x-text="option.name">
+    </option>
+</template>
+
+                                    </select>
+
+                                    <template x-if="candidate.length > 1">
+                                        <button type="button" @click="removeCandidate(index)"
+                                            class="text-red-600 text-xs hover:underline">
+                                            Remove
+                                        </button>
+                                    </template>
+                                </div>
+                            </template>
+
+                            <!-- Add Button -->
+                            <div class="flex items-center gap-2 justify-end pt-1">
+                                <button type="button" @click="addCandidate"
+                                    :disabled="candidate.length >= allCandidates.length"
+                                    class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                        stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                    </svg>
+                                    Add More Candidate
+                                </button>
                             </div>
+
+                            @error('requisition_candidates') 
+                                <em class="text-sm text-red-500">{{ $message }}</em> 
+                            @enderror
                         </div>
+
 
                     </div>
             </div>
