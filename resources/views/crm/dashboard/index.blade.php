@@ -192,23 +192,25 @@
                         <div class="flex justify-start w-[50%] items-center h-full gap-x-2">
                             <span class="text-[#071d49] text-base tracking-widest font-extrabold">CALENDAR</span>
                             <!-- Categories Info Button -->
-                            <div class="relative">
-                                <button @mouseenter="showCategoriesInfo = true" 
-                                        @mouseleave="showCategoriesInfo = false"
+                            <div x-data="{ showCategoriesInfo: false }" class="relative">
+                                <button @click="showCategoriesInfo = !showCategoriesInfo"
+                                        @click.away="showCategoriesInfo =false"
+                                        @keydown.escape.window="showCategoriesInfo = false"
                                         class="items-center justify-center flex border-2 border-[#071d49] bg-[#071d49] text-white rounded-full hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold transition-colors duration-200">
                                     <i class="fas fa-info-circle text-xs"></i>
                                 </button>
                                 
                                 <!-- Categories Info Modal -->
-                                <div x-show="showCategoriesInfo" 
+                                <div x-show="showCategoriesInfo"
+                                    x-transition
                                     x-cloak
-                                    class="absolute z-50 bg-[#071d49] text-white p-4 rounded-lg shadow-lg text-xs pointer-events-none left-0 top-full mt-2 w-36">
-                                    <div class="font-semibold mb-3 text-yellow-300 text-center">Event Categories</div>
-                                    <div class="space-y-2">
-                                        <template x-for="category in eventCategories" :key="category.id">
-                                            <div class="flex items-center gap-3">
-                                                <div class="w-4 h-4 rounded-full flex-shrink-0" :style="'background-color: ' + category.color"></div>
-                                                <span class="text-white" x-text="category.name"></span>
+                                    class="absolute z-50 bg-[#071d49] text-white p-4 rounded-lg shadow-lg text-xs left-0 top-full mt-2 w-60 max-h-64 overflow-hidden">
+                                    <div class="font-semibold mb-3 text-yellow-300 text-center">Departments</div>
+                                    <div class="space-y-2 max-h-48 overflow-y-auto pr-2 hide-scrollbar">
+                                        <template x-for="department in departments" :key="department.id">
+                                            <div class="flex items-center gap-3 py-1">
+                                                <div class="w-4 h-4 rounded-full flex-shrink-0" :style="'background-color: ' + department.color"></div>
+                                                <span class="text-white" x-text="department.name"></span>
                                             </div>
                                         </template>
                                     </div>
@@ -288,7 +290,7 @@
                     <div x-show="showModal" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
                         <div class="bg-white rounded-lg shadow-lg px-5 py-4 w-96 border-2 h-auto border-[#071d49]">
                             <div class="flex flex-row w-full justify-between items-start gap-5 mb-3">
-                                <h3 class="flex flex-col text-lg font-semibold  uppercase text-[#071d49]">
+                                <h3 class="flex flex-col text-lg font-semibold uppercase text-[#071d49]">
                                     Event for:&nbsp<span x-text="monthName + ' ' + activeDay + ', ' + year" class="underline cursor-pointer hover:text-yellow-400"></span>
                                     <span x-show="isHoliday(activeDay)" class="text-sm font-semibold text-yellow-600 normal-case mt-1">
                                         <i class="fas fa-star mr-1"></i><span x-text="getHolidayName(activeDay)"></span>
@@ -296,7 +298,6 @@
                                 </h3>
                                 <div class="flex flex-col justify-start items-end">
                                     <div class="flex flex-row gap-x-2">
-                                  
                                         <button @click="saveNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-[#071d49] bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
                                         <button @click="deleteCurrentNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-red-600 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 hover:border-red-600 font-bold"><i class="fas fa-trash"></i></button>
                                         <button @click="showModal = false" class="w-4 h-8 items-center justify-center flex px-4 py-1 bg-white border-2 border-[#071d49] rounded hover:bg-[#071d49] hover:text-white"><i class="fas fa-times"></i></button>
@@ -304,12 +305,12 @@
                                 </div>
                             </div>
                             
-                            <!-- Category Selection -->
+                            <!-- Department Selection (Updated from Category) -->
                             <div class="mb-3">
-                                <label class="block text-sm font-medium text-[#071d49] mb-2">Category</label>
-                                <select x-model="currentCategory" class="w-full border-2 border-[#071d49] rounded-md p-2 text-sm ">
-                                    <template x-for="category in eventCategories" :key="category.id">
-                                        <option :value="category.id" x-text="category.name "></option>
+                                <label class="block text-sm font-medium text-[#071d49] mb-2">Department</label>
+                                <select x-model="currentCategory" class="w-full border-2 border-[#071d49] rounded-md p-2 text-sm hide-scrollbar">
+                                    <template x-for="dept in departments" :key="dept.id">
+                                        <option class="hide-scrollbar" :value="dept.id" x-text="dept.name"></option>
                                     </template>
                                 </select>
                             </div>
@@ -381,420 +382,524 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function calendar() {
-            return {
-                year: new Date().getFullYear(),
-                month: new Date().getMonth(),
-                daysInMonth: 0,
-                startDay: 0,
-                showModal: false,
-                activeDay: null,
-                notes: {},
-                categories: {},
-                currentNote: '',
-                currentCategory: 'personal',
-                showPreview: null,
-                showCategoriesInfo: false,
-                eventCategories: [
-                    { id: 'personal', name: 'Personal', color: '#10B981' },
-                    { id: 'work', name: 'Work', color: '#3B82F6' },
-                    { id: 'health', name: 'Health', color: '#EF4444' },
-                    { id: 'family', name: 'Family', color: '#8B5CF6' },
-                    { id: 'education', name: 'Education', color: '#F59E0B' },
-                    { id: 'finance', name: 'Finance', color: '#D9CD91' },
-                    { id: 'hobby', name: 'Hobby', color: '#EC4899' },
-                    { id: 'travel', name: 'Travel', color: '#84CC16' },
-                    { id: 'holiday', name: 'Holiday', color: '#FFD700' }
-                ],
-                today: new Date(),
-                philippineHolidays: {
-                    // Your existing holidays data...
-                    '2025-0-1': 'New Year\'s Day',
-                    '2025-0-29': 'Chinese New Year',
-                    '2025-1-25': 'People Power Revolution',
-                    '2025-3-1': 'Eid\'l Fitr',
-                    '2025-3-9': 'The Day of Valor',
-                    '2025-3-17': 'Maundy Thursday',
-                    '2025-3-18': 'Good Friday',
-                    '2025-3-19': 'Black Saturday',
-                    '2025-4-1': 'Labor Day',
-                    '2025-4-12': 'Eid\'l Fitr (May 12)',
-                    '2025-5-6': 'Eidul Adha',
-                    '2025-5-12': 'Independence Day',
-                    '2025-6-27': 'Founding Anniversary of the INC',
-                    '2025-7-21': 'Ninoy Aquino Day',
-                    '2025-7-25': 'National Heroes\' Day',
-                    '2025-9-31': 'Additional Special Non-Working Day',
-                    '2025-10-1': 'All Saints\' Day',
-                    '2025-10-30': 'Bonifacio Day',
-                    '2025-11-8': 'Immaculate Conception Day',
-                    '2025-11-24': 'Christmas Eve',
-                    '2025-11-25': 'Christmas Day',
-                    '2025-11-30': 'Rizal Day',
-                    '2025-11-31': 'New Year\'s Eve',
-                    // Add 2026 holidays...
-                },
+    return {
+        year: new Date().getFullYear(),
+        month: new Date().getMonth(),
+        daysInMonth: 0,
+        startDay: 0,
+        showModal: false,
+        activeDay: null,
+        notes: {},
+        categories: {},
+        currentNote: '',
+        currentCategory: '', // Will be set to first department ID
+        showPreview: null,
+        showCategoriesInfo: false,
+        // Replace eventCategories with departments
+        departments: [],
+        today: new Date(),
+        philippineHolidays: {
+            // Your existing holidays data...
+            '2025-0-1': 'New Year\'s Day',
+            '2025-0-29': 'Chinese New Year',
+            '2025-1-25': 'People Power Revolution',
+            '2025-3-1': 'Eid\'l Fitr',
+            '2025-3-9': 'The Day of Valor',
+            '2025-3-17': 'Maundy Thursday',
+            '2025-3-18': 'Good Friday',
+            '2025-3-19': 'Black Saturday',
+            '2025-4-1': 'Labor Day',
+            '2025-4-12': 'Eid\'l Fitr (May 12)',
+            '2025-5-6': 'Eidul Adha',
+            '2025-5-12': 'Independence Day',
+            '2025-6-27': 'Founding Anniversary of the INC',
+            '2025-7-21': 'Ninoy Aquino Day',
+            '2025-7-25': 'National Heroes\' Day',
+            '2025-9-31': 'Additional Special Non-Working Day',
+            '2025-10-1': 'All Saints\' Day',
+            '2025-10-30': 'Bonifacio Day',
+            '2025-11-8': 'Immaculate Conception Day',
+            '2025-11-24': 'Christmas Eve',
+            '2025-11-25': 'Christmas Day',
+            '2025-11-30': 'Rizal Day',
+            '2025-11-31': 'New Year\'s Eve',
+            // Add 2026 holidays...
+        },
 
-                get monthName() {
-                    return new Date(this.year, this.month).toLocaleString('default', { month: 'long' });
-                },
+        get monthName() {
+            return new Date(this.year, this.month).toLocaleString('default', { month: 'long' });
+        },
 
-                async init() {
-                    this.updateCalendar();
-                    await this.loadNotesFromDatabase();
-                },
+        async init() {
+            await this.loadDepartments(); // Load departments first
+            this.updateCalendar();
+            await this.loadNotesFromDatabase(); // Load notes after departments are loaded
+        },
 
-                updateCalendar() {
-                    const firstDay = new Date(this.year, this.month, 1);
-                    this.startDay = firstDay.getDay();
-                    this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
-                },
+        // Helper method to ensure category is properly initialized
+        initializeCategory() {
+            if (this.departments.length > 0 && (!this.currentCategory || this.currentCategory === '')) {
+                this.currentCategory = String(this.departments[0].id); // Convert to string for consistency
+                console.log('Initialized category to:', this.currentCategory);
+            }
+        },
 
-                async prevMonth() {
-                    this.month--;
-                    if (this.month < 0) {
-                        this.month = 11;
-                        this.year--;
+        // New function to load departments from database
+        async loadDepartments() {
+            try {
+                const response = await fetch('/calendar/departments');
+                const data = await response.json();
+                
+                if (data.success) {
+                    this.departments = data.departments;
+                    // Set default category to first department if available
+                    this.initializeCategory();
+                    console.log('Departments loaded:', this.departments); // Debug log
+                } else {
+                    throw new Error(data.message);
+                }
+            } catch (error) {
+                console.error('Error loading departments:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to load departments from database',
+                    icon: 'error',
+                    width: '400px'
+                });
+                // Fallback to empty array
+                this.departments = [];
+            }
+        },
+
+        updateCalendar() {
+            const firstDay = new Date(this.year, this.month, 1);
+            this.startDay = firstDay.getDay();
+            this.daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+        },
+
+        async prevMonth() {
+            this.month--;
+            if (this.month < 0) {
+                this.month = 11;
+                this.year--;
+            }
+            this.updateCalendar();
+            await this.loadNotesFromDatabase();
+        },
+
+        async nextMonth() {
+            this.month++;
+            if (this.month > 11) {
+                this.month = 0;
+                this.year++;
+            }
+            this.updateCalendar();
+            await this.loadNotesFromDatabase();
+        },
+
+        // Load notes from database
+        async loadNotesFromDatabase() {
+            try {
+                const response = await fetch(`/calendar/notes?year=${this.year}&month=${this.month + 1}`);
+                const data = await response.json();
+                
+                // Clear existing notes
+                this.notes = {};
+                this.categories = {};
+                
+                // Convert database format to our format
+                Object.keys(data).forEach(date => {
+                    const dateObj = new Date(date);
+                    const dateKey = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
+                    this.notes[dateKey] = data[date].note;
+                    
+                    // Validate category exists before assigning - convert to string for consistency
+                    const categoryId = String(data[date].category);
+                    const departmentExists = this.departments.some(dept => String(dept.id) === categoryId);
+                    
+                    if (departmentExists) {
+                        this.categories[dateKey] = categoryId;
+                    } else {
+                        // Fallback to first department or empty string
+                        this.categories[dateKey] = this.departments.length > 0 ? String(this.departments[0].id) : '';
+                        console.warn(`Category ${categoryId} not found for date ${date}, using fallback`);
                     }
-                    this.updateCalendar();
-                    await this.loadNotesFromDatabase();
-                },
+                });
+                
+                console.log('Notes loaded:', this.notes); // Debug log
+                console.log('Categories loaded:', this.categories); // Debug log
+            } catch (error) {
+                console.error('Error loading notes:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to load notes from database',
+                    icon: 'error',
+                    width: '400px'
+                });
+            }
+        },
 
-                async nextMonth() {
-                    this.month++;
-                    if (this.month > 11) {
-                        this.month = 0;
-                        this.year++;
-                    }
-                    this.updateCalendar();
-                    await this.loadNotesFromDatabase();
-                },
+        // Helper function to create a unique date key
+        getDateKey(day, month = this.month, year = this.year) {
+            return `${year}-${month}-${day}`;
+        },
 
-                // Load notes from database
-                async loadNotesFromDatabase() {
-                    try {
-                        const response = await fetch(`/calendar/notes?year=${this.year}&month=${this.month + 1}`);
-                        const data = await response.json();
+        // Format date for database (YYYY-MM-DD)
+        formatDateForDatabase(day, month = this.month, year = this.year) {
+            const paddedMonth = String(month + 1).padStart(2, '0');
+            const paddedDay = String(day).padStart(2, '0');
+            return `${year}-${paddedMonth}-${paddedDay}`;
+        },
+
+        // Check if a specific day has notes
+        hasNote(day) {
+            const dateKey = this.getDateKey(day);
+            return this.notes[dateKey] && this.notes[dateKey].trim() !== '';
+        },
+
+        // Get note for a specific day
+        getNote(day) {
+            const dateKey = this.getDateKey(day);
+            return this.notes[dateKey] || '';
+        },
+
+        // Check if a day is a Philippine holiday
+        isHoliday(day) {
+            const dateKey = this.getDateKey(day);
+            return this.philippineHolidays.hasOwnProperty(dateKey);
+        },
+
+        // Get holiday name for a specific day
+        getHolidayName(day) {
+            const dateKey = this.getDateKey(day);
+            return this.philippineHolidays[dateKey] || '';
+        },
+
+        // Get display text (holiday or note)
+        getDisplayText(day) {
+            if (this.isHoliday(day)) {
+                return this.getHolidayName(day);
+            }
+            return this.getNote(day);
+        },
+
+        // Get date class for styling
+        getDateClass(day) {
+            let classes = '';
+            if (this.isToday(day)) {
+                classes += 'bg-[#abcae9]';
+            } else if (this.isHoliday(day)) {
+                classes += 'bg-yellow-100 hover:bg-[#071d49] ';
+            } else {
+                classes += 'hover:bg-[#071d49] ';
+            }
+            return classes;
+        },
+
+        // Get day number class for styling
+        getDayNumberClass(day) {
+            if (this.isToday(day)) {
+                return 'text-[#071d49] group-hover:text-white';
+            } else if (this.isHoliday(day)) {
+                return 'text-yellow-700 group-hover:text-white';
+            } else {
+                return 'text-[#071d49] group-hover:text-white';
+            }
+        },
+
+        // Get text class for styling
+        getTextClass(day) {
+            if (this.isToday(day)) {
+                return 'text-white';
+            } else if (this.isHoliday(day)) {
+                return 'text-yellow-700 group-hover:text-white';
+            } else {
+                return 'text-[#071d49] group-hover:text-white';
+            }
+        },
+
+        openNote(day) {
+            this.activeDay = day;
+            this.currentNote = this.getNote(day);
+            
+            // Get category and validate it exists
+            const categoryId = this.getCategory(day);
+            const departmentExists = this.departments.some(dept => String(dept.id) === String(categoryId));
+            
+            if (departmentExists && categoryId) {
+                this.currentCategory = String(categoryId);
+            } else {
+                // Fallback to first department
+                this.initializeCategory();
+            }
+            
+            console.log('Opening note with category:', this.currentCategory); // Debug log
+            this.showModal = true;
+        },
+
+        // Save note to database
+        async saveNote() {
+            if (!this.currentNote.trim()) {
+                Swal.fire({
+                    html: `
+                        <strong style="font-size: 24px;">Nothing to Save</strong>
+                        <p style="font-size: 20px;">Please input a note first.</p>
+                    `,
+                    icon: 'info',
+                    confirmButtonText: 'OK',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    width: '400px',
+                    didOpen: () => {
+                        const icon = document.querySelector('.swal2-icon');
+                        if (icon) {
+                        icon.style.width = '60px';
+                        icon.style.height = '60px';
+                        }
+                    },
+                    height: '100px'
+                });
+                return;
+            }
+
+            // Ensure category is initialized
+            this.initializeCategory();
+
+            // Validate current category exists with improved type checking
+            if (!this.currentCategory || !this.departments.some(dept => String(dept.id) === String(this.currentCategory))) {
+                console.log('Validation failed - Category:', this.currentCategory);
+                console.log('Available departments:', this.departments.map(d => ({ id: d.id, name: d.name })));
+                
+                Swal.fire({
+                    title: 'Invalid Department',
+                    text: 'Please select a valid department.',
+                    icon: 'error',
+                    width: '400px'
+                });
+                return;
+            }
+
+            const result = await Swal.fire({
+                title: 'Save Note?',
+                text: 'Do you want to save this note?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                cancelButtonText: 'Cancel',
+                width: '400px'
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    console.log('Attempting to save with category:', this.currentCategory); // Debug log
+                    
+                    const response = await fetch('/calendar/save-note', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            date: this.formatDateForDatabase(this.activeDay),
+                            note: this.currentNote,
+                            category: this.currentCategory
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // Update local storage
+                        const dateKey = this.getDateKey(this.activeDay);
+                        this.notes[dateKey] = this.currentNote;
+                        this.categories[dateKey] = String(this.currentCategory);
                         
-                        // Clear existing notes
-                        this.notes = {};
-                        this.categories = {};
+                        console.log('Note saved with category:', this.currentCategory); // Debug log
                         
-                        // Convert database format to our format
-                        Object.keys(data).forEach(date => {
-                            const dateObj = new Date(date);
-                            const dateKey = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDate()}`;
-                            this.notes[dateKey] = data[date].note;
-                            this.categories[dateKey] = data[date].category;
-                        });
-                    } catch (error) {
-                        console.error('Error loading notes:', error);
+                        this.showModal = false;
+                        
                         Swal.fire({
-                            title: 'Error',
-                            text: 'Failed to load notes from database',
-                            icon: 'error',
-                            width: '400px'
-                        });
-                    }
-                },
-
-                // Helper function to create a unique date key
-                getDateKey(day, month = this.month, year = this.year) {
-                    return `${year}-${month}-${day}`;
-                },
-
-                // Format date for database (YYYY-MM-DD)
-                formatDateForDatabase(day, month = this.month, year = this.year) {
-                    const paddedMonth = String(month + 1).padStart(2, '0');
-                    const paddedDay = String(day).padStart(2, '0');
-                    return `${year}-${paddedMonth}-${paddedDay}`;
-                },
-
-                // Check if a specific day has notes
-                hasNote(day) {
-                    const dateKey = this.getDateKey(day);
-                    return this.notes[dateKey] && this.notes[dateKey].trim() !== '';
-                },
-
-                // Get note for a specific day
-                getNote(day) {
-                    const dateKey = this.getDateKey(day);
-                    return this.notes[dateKey] || '';
-                },
-
-                // Check if a day is a Philippine holiday
-                isHoliday(day) {
-                    const dateKey = this.getDateKey(day);
-                    return this.philippineHolidays.hasOwnProperty(dateKey);
-                },
-
-                // Get holiday name for a specific day
-                getHolidayName(day) {
-                    const dateKey = this.getDateKey(day);
-                    return this.philippineHolidays[dateKey] || '';
-                },
-
-                // Get display text (holiday or note)
-                getDisplayText(day) {
-                    if (this.isHoliday(day)) {
-                        return this.getHolidayName(day);
-                    }
-                    return this.getNote(day);
-                },
-
-                // Get date class for styling
-                getDateClass(day) {
-                    let classes = '';
-                    if (this.isToday(day)) {
-                        classes += 'bg-[#abcae9]';
-                    } else if (this.isHoliday(day)) {
-                        classes += 'bg-yellow-100 hover:bg-[#071d49] ';
-                    } else {
-                        classes += 'hover:bg-[#071d49] ';
-                    }
-                    return classes;
-                },
-
-                // Get day number class for styling
-                getDayNumberClass(day) {
-                    if (this.isToday(day)) {
-                        return 'text-[#071d49] group-hover:text-white';
-                    } else if (this.isHoliday(day)) {
-                        return 'text-yellow-700 group-hover:text-white';
-                    } else {
-                        return 'text-[#071d49] group-hover:text-white';
-                    }
-                },
-
-                // Get text class for styling
-                getTextClass(day) {
-                    if (this.isToday(day)) {
-                        return 'text-white';
-                    } else if (this.isHoliday(day)) {
-                        return 'text-yellow-700 group-hover:text-white';
-                    } else {
-                        return 'text-[#071d49] group-hover:text-white';
-                    }
-                },
-
-                openNote(day) {
-                    this.activeDay = day;
-                    this.currentNote = this.getNote(day);
-                    this.currentCategory = this.getCategory(day);
-                    this.showModal = true;
-                },
-
-                // Save note to database
-                async saveNote() {
-                    if (!this.currentNote.trim()) {
-                        Swal.fire({
-                            html: `
-                                <strong style="font-size: 24px;">Nothing to Save</strong>
-                                <p style="font-size: 20px;">Please input a note first.</p>
-                            `,
-                            icon: 'info',
-                            confirmButtonText: 'OK',
-                            showConfirmButton: false,
+                            title: 'Saved!',
+                            text: 'Your note has been saved.',
+                            icon: 'success',
                             timer: 2000,
+                            showConfirmButton: false,
                             width: '400px',
-                            didOpen: () => {
-                                const icon = document.querySelector('.swal2-icon');
-                                if (icon) {
-                                icon.style.width = '60px';
-                                icon.style.height = '60px';
-                                }
-                            },
                             height: '100px'
                         });
-                        return;
+                    } else {
+                        throw new Error(data.message);
                     }
-
-                    const result = await Swal.fire({
-                        title: 'Save Note?',
-                        text: 'Do you want to save this note?',
-                        icon: 'question',
-                        showCancelButton: true,
-                        confirmButtonText: 'Save',
-                        cancelButtonText: 'Cancel',
+                } catch (error) {
+                    console.error('Error saving note:', error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Failed to save note. Please try again.',
+                        icon: 'error',
                         width: '400px'
                     });
+                }
+            }
+        },
 
-                    if (result.isConfirmed) {
-                        try {
-                            const response = await fetch('/calendar/save-note', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                },
-                                body: JSON.stringify({
-                                    date: this.formatDateForDatabase(this.activeDay),
-                                    note: this.currentNote,
-                                    category: this.currentCategory
-                                })
-                            });
-
-                            const data = await response.json();
-
-                            if (data.success) {
-                                // Update local storage
-                                const dateKey = this.getDateKey(this.activeDay);
-                                this.notes[dateKey] = this.currentNote;
-                                this.categories[dateKey] = this.currentCategory;
-                                
-                                this.showModal = false;
-                                
-                                Swal.fire({
-                                    title: 'Saved!',
-                                    text: 'Your note has been saved.',
-                                    icon: 'success',
-                                    timer: 2000,
-                                    showConfirmButton: false,
-                                    width: '400px',
-                                    height: '100px'
-                                });
-                            } else {
-                                throw new Error(data.message);
-                            }
-                        } catch (error) {
-                            console.error('Error saving note:', error);
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Failed to save note. Please try again.',
-                                icon: 'error',
-                                width: '400px'
-                            });
+        // Delete note from database
+        async deleteCurrentNote() {
+            if (!this.currentNote.trim()) {
+                Swal.fire({
+                    html: `
+                        <strong style="font-size: 24px;">There's no Note to Delete</strong>
+                        <p style="font-size: 20px;">Click a date with a note.</p>
+                    `,
+                    icon: 'info',
+                    confirmButtonText: 'OK',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    width: '400px',
+                    didOpen: () => {
+                        const icon = document.querySelector('.swal2-icon');
+                        if (icon) {
+                        icon.style.width = '60px';
+                        icon.style.height = '60px';
                         }
-                    }
-                },
+                    },
+                    height: '100px'
+                });
+                return;
+            }
 
-                // Delete note from database
-                async deleteCurrentNote() {
-                    if (!this.currentNote.trim()) {
+            const result = await Swal.fire({
+                title: 'Delete Note?',
+                text: 'This action cannot be undone.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel',
+                width: '400px'
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch('/calendar/delete-note', {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            date: this.formatDateForDatabase(this.activeDay)
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        // Update local storage
+                        const dateKey = this.getDateKey(this.activeDay);
+                        delete this.notes[dateKey];
+                        delete this.categories[dateKey];
+                        
+                        this.currentNote = '';
+                        // Reset category to first department
+                        this.initializeCategory();
+                        this.showModal = false;
+                        
                         Swal.fire({
-                            title: 'No Note to Delete',
-                            text: 'There is no note to delete for this date.',
-                            icon: 'info',
-                            confirmButtonText: 'OK',
+                            title: 'Deleted!',
+                            text: 'Your note has been deleted.',
+                            icon: 'success',
+                            timer: 2000,
+                            showConfirmButton: false,
                             width: '400px'
                         });
-                        return;
+                    } else {
+                        throw new Error(data.message);
                     }
-
-                    const result = await Swal.fire({
-                        title: 'Delete Note?',
-                        text: 'This action cannot be undone.',
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Yes, delete it!',
-                        cancelButtonText: 'Cancel',
+                } catch (error) {
+                    console.error('Error deleting note:', error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Failed to delete note. Please try again.',
+                        icon: 'error',
                         width: '400px'
                     });
-
-                    if (result.isConfirmed) {
-                        try {
-                            const response = await fetch('/calendar/delete-note', {
-                                method: 'DELETE',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                                },
-                                body: JSON.stringify({
-                                    date: this.formatDateForDatabase(this.activeDay)
-                                })
-                            });
-
-                            const data = await response.json();
-
-                            if (data.success) {
-                                // Update local storage
-                                const dateKey = this.getDateKey(this.activeDay);
-                                delete this.notes[dateKey];
-                                delete this.categories[dateKey];
-                                
-                                this.currentNote = '';
-                                this.currentCategory = 'personal';
-                                this.showModal = false;
-                                
-                                Swal.fire({
-                                    title: 'Deleted!',
-                                    text: 'Your note has been deleted.',
-                                    icon: 'success',
-                                    timer: 2000,
-                                    showConfirmButton: false,
-                                    width: '400px'
-                                });
-                            } else {
-                                throw new Error(data.message);
-                            }
-                        } catch (error) {
-                            console.error('Error deleting note:', error);
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'Failed to delete note. Please try again.',
-                                icon: 'error',
-                                width: '400px'
-                            });
-                        }
-                    }
-                },
-
-                // Get category for a specific day
-                getCategory(day) {
-                    const dateKey = this.getDateKey(day);
-                    return this.categories[dateKey] || 'personal';
-                },
-
-                // Get category color for a specific day
-                getCategoryColor(day) {
-                    if (!this.hasNote(day)) {
-                        return 'transparent'; 
-                    }
-                    const categoryId = this.getCategory(day);
-                    const category = this.eventCategories.find(cat => cat.id === categoryId);
-                    return category ? category.color : '#10B981';
-                },
-
-                // Get category name for a specific day
-                getCategoryName(day) {
-                    const categoryId = this.getCategory(day);
-                    const category = this.eventCategories.find(cat => cat.id === categoryId);
-                    return category ? category.name : 'Personal';
-                },
-
-                // Get responsive tooltip position based on day position
-                getTooltipPosition(day) {
-                    const dayOfWeek = (day + this.startDay - 1) % 7;
-                    const weekNumber = Math.floor((day + this.startDay - 1) / 7);
-                    const totalWeeks = Math.ceil((this.daysInMonth + this.startDay) / 7);
-                    
-                    let classes = 'w-64 sm:w-72 md:w-80';
-                    
-                    if (weekNumber >= totalWeeks - 2) {
-                        classes += ' bottom-full mb-2';
-                    } else {
-                        classes += ' top-full mt-2';
-                    }
-                    
-                    if (dayOfWeek <= 1) {
-                        classes += ' left-0';
-                    } else if (dayOfWeek >= 5) {
-                        classes += ' right-0';
-                    } else {
-                        classes += ' left-1/2 transform -translate-x-1/2';
-                    }
-                    
-                    return classes;
-                },
-
-                isToday(day) {
-                    return this.today.getDate() === day && 
-                        this.today.getMonth() === this.month && 
-                        this.today.getFullYear() === this.year;
                 }
-            };
+            }
+        },
+
+        // Get category for a specific day
+        getCategory(day) {
+            const dateKey = this.getDateKey(day);
+            const categoryId = this.categories[dateKey];
+            
+            // Validate category exists - convert to string for consistency
+            if (categoryId && this.departments.some(dept => String(dept.id) === String(categoryId))) {
+                return String(categoryId);
+            }
+            
+            // Return first department as fallback
+            return this.departments.length > 0 ? String(this.departments[0].id) : '';
+        },
+
+        // Get department color for a specific day
+        getCategoryColor(day) {
+            if (!this.hasNote(day)) {
+                return 'transparent'; 
+            }
+            const categoryId = this.getCategory(day);
+            const department = this.departments.find(dept => String(dept.id) === String(categoryId));
+            return department ? department.color : '#10B981';
+        },
+
+        // Get department name for a specific day
+        getCategoryName(day) {
+            const categoryId = this.getCategory(day);
+            const department = this.departments.find(dept => String(dept.id) === String(categoryId));
+            
+            if (department) {
+                return department.name;
+            }
+            
+            // Debug logging
+            console.warn(`Department not found for category ID: ${categoryId}`);
+            console.log('Available departments:', this.departments);
+            
+            return 'Unknown Department';
+        },
+
+        // Get responsive tooltip position based on day position
+        getTooltipPosition(day) {
+            const dayOfWeek = (day + this.startDay - 1) % 7;
+            const weekNumber = Math.floor((day + this.startDay - 1) / 7);
+            const totalWeeks = Math.ceil((this.daysInMonth + this.startDay) / 7);
+            
+            let classes = 'w-64 sm:w-72 md:w-80';
+            
+            if (weekNumber >= totalWeeks - 2) { 
+                classes += ' bottom-full mb-2';
+            } else {
+                classes += ' top-full mt-2';
+            }
+            
+            if (dayOfWeek <= 1) {
+                classes += ' left-0';
+            } else if (dayOfWeek >= 5) {
+                classes += ' right-0';
+            } else {
+                classes += ' left-1/2 transform -translate-x-1/2';
+            }
+            
+            return classes;
+        },
+
+        isToday(day) {
+            return this.today.getDate() === day && 
+                this.today.getMonth() === this.month && 
+                this.today.getFullYear() === this.year;
         }
+    };
+}
     </script>
 
 </x-app-layout>

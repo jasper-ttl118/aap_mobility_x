@@ -1,3 +1,4 @@
+
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
   
     <div x-data="{ selected : 'employees', open_add_employee : false, open_delete_employee : false, 
@@ -14,7 +15,7 @@
         </div>
 
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
-            <div class="flex flex-col justify-between">
+            <div class="flex flex-col justify-between mt-3">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-[#071d49] text-sm px-7 pt-5">
                     <a href="/employee" class="hover:underline">Employee Management</a>
@@ -293,11 +294,11 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-5 justify-between w-[50%]">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Lolito M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Alyssa Mae M. Clemente</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Father</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Sister</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Relationship</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
@@ -318,11 +319,11 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-1 justify-between w-[50%] gap-y-5 ">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Alma M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Jonathan M. Clemente</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Mother</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Brother</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Relationship</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">

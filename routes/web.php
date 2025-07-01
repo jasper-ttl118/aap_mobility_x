@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
         Route::get('/employee/alphalist/view-employee-profile', [CustomerController::class,'employeeProfile'])->name('employeeProfile');
+        Route::get('/employee.alphalist.add-employee',[CustomerController::class,'addEmployee' ]) -> name('addEmployee');
+        Route::get('/employee.alphalist.edit-Employee',[CustomerController::class, 'editEmployee'])->name('editEmployee');
     
         //route for organization
         Route::resource('organization', OrganizationController::class);
@@ -101,6 +103,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Notes
+    Route::get('/calendar/departments', [CalendarController::class, 'getDepartments']);
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
     Route::post('/calendar/save-note', [CalendarController::class, 'saveNote'])->name('calendar.save-note');
     Route::delete('/calendar/delete-note', [CalendarController::class, 'deleteNote'])->name('calendar.delete-note');

@@ -60,9 +60,10 @@
                                     </svg>
                                 </a>
 
-                                <a @click="open_edit_employee = true; 
+                                <a href="{{ route('editEmployee') }}"
+                                    {{-- @click="open_edit_employee = true; 
                                         window.Livewire.dispatch('loadEmployeeInfo', { employee_id: {{ $employee->employee_id }} });
-                                    "
+                                    " --}}
                                     class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                         fill="currentColor" class="size-4">
