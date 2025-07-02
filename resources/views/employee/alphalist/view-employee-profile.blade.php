@@ -75,22 +75,22 @@
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-end">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_maiden_name ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Maiden Name</label>
                                     </div>
                                 </div>
                                 {{-- Third Row --}}
                                 <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">June 5, 2002</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_birthdate ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthdate</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Caloocan City</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_birthplace ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthplace</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-end">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Catholic</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_religion ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Religion</label>
                                     </div>
                                 </div>
@@ -101,14 +101,14 @@
                             <div class="flex flex-col w-[40%] h-full gap-y-3">
                                 <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-start w-full">
                                     <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-400">Email: </label>
-                                    <label class="text-[#071d49] text-sm font-inter" name="fullName">maestromavs@gmail.com</label>
+                                    <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->employee_personal_email ?? 'n/a'}}</label>
                                 </div>
                                 <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
-                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">111 Marcela Street Brgy. 27, Maypajo Caloocan City, Metro Manila</label>
+                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_address ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Complete Home Address (Present) </label>
                                 </div>
                                 <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
-                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">111 Marcela Street Brgy. 27, Maypajo Caloocan City, Metro Manila</label>
+                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_address ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Complete Home Address (Permanent) </label>
                                 </div>
                             </div>
@@ -127,15 +127,15 @@
                                 {{-- First Column --}}
                                 <div class="text-[#071d49] flex flex-col items-center gap-x-1 justify-between w-full gap-y-5 ">
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">+63 912 345 6789</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_contact_no1 ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Phone No. 1</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">+63 912 345 6789</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_contact_no2 ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Phone No. 2</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">+63 912 345 6789</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_viber_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Viber Number</label>
                                     </div>
                                 </div>
@@ -146,15 +146,15 @@
                                 {{-- Second Column --}}
                                 <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-between w-full gap-y-5">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">University of Caloocan City</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_school_attended ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">School Attended</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">College Graduate</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_educational_attainment ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Educational Attainment</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_college_vocational_status ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">For College/Vocational</label>
                                     </div>
                                 </div>
@@ -166,25 +166,25 @@
                                 <div class="text-[#071d49] flex flex-row items-start gap-x-1 justify-between w-full gap-y-5">
                                     <div class="flex flex-col w-full h-full justify-between items-start gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Single</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_civil_status ?? 'n/a'}}</label>
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Status</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">IT Developer</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_job_position ?? 'n/a'}}</label>
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Job Position Title</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-[#071d49] text-sm font-inter" name="fullName">aap.mavsclemente@gmail.com</label>
+                                            <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->employee_company_email ?? 'n/a'}}</label>
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Company Email</label>
                                         </div>
                                     </div>
                                     <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Full Time Job</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_employment_type ?? 'n/a'}}</label>
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Type of Employment</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">IST</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_department ?? 'n/a'}}</label>
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Department</label>
                                         </div>
                                     </div>
@@ -205,29 +205,29 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-5 justify-between w-[30%]">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">34-1234567-9</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_sss_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">SSS Number</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">123-456-789-000</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->employee_tin_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">TIN Number</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">12-345678901-2</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_philhealth_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">PhilHealth Number</label>
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">1234-5678-9123</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_pagibig_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Pag-Ibig Number</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_count ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Number of Children</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">AB+</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_blood_type ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Blood Type</label>
                                     </div>
                                 </div>
@@ -237,15 +237,15 @@
                             {{-- Second Column --}}
                             <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-between w-[19%] gap-y-5 ">
                                 <div class="flex flex-col justify-center items-start">
-                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_details ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Child's Full Name</label>
                                 </div>
                                 <div class="flex flex-col justify-center items-start">
-                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_age ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Child's Age</label>
                                 </div>
                                 <div class="flex flex-col justify-center items-start">
-                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">n/a</label>
+                                    <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_birthdate ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Child's Birthdate</label>
                                 </div>
                             </div>
@@ -255,29 +255,29 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-5 justify-between w-[36%]">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Lolito M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_1_details ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Father's Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">52</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_1_age ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Father's Age</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">03/08/1973</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_1_birthdate ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Father's Birthdate</label>
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Alma M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_2_details ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Mother's Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">50</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_2_age ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Mother's Age</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">24/02/1975</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_parents_2_birthdate ?? 'n/a'}}</label>
                                     <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Mother's Birthdate</label>
                                     </div>
                                 </div>
@@ -295,21 +295,21 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-5 justify-between w-[50%]">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Alyssa Mae M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_name ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Sister</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->emergency_contact_1_relationship ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Relationship</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">+63 912 345 6789</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Contact Number</label>
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
                                     <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">111 Marcela Street Brgy. 27, Maypajo Caloocan City, Metro Manila</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_address ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Address</label>
                                     </div>
                                 </div>
@@ -320,21 +320,21 @@
                             <div class="text-[#071d49] flex flex-row items-start gap-x-1 justify-between w-[50%] gap-y-5 ">
                                 <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">Jonathan M. Clemente</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_2_name ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">Brother</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->emergency_contact_2_relationship ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Relationship</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">+63 912 345 6789</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_2_number ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Contact Number</label>
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
                                     <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">111 Marcela Street Brgy. 27, Maypajo Caloocan City, Metro Manila</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_2_address ?? 'n/a'}}</label>
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Address</label>
                                     </div>
                                 </div>
