@@ -52,6 +52,7 @@
                     <a href="#" class="hover:underline font-semibold truncate">Manpower Requisition</a>
                 </div>
                 
+                {{-- Temporary restriction of access. Change this so it will fetch the allowed roles from database --}}
                 @php
                     $role = auth()->user()->roles;
                     $allowedRoles = ['CEO', 'COO', 'CFO', 'Super Admin'];
@@ -74,7 +75,7 @@
 
                     @if (in_array($role[0]->role_name,$allowedRoles))
                         <div class="flex items-center gap-4">
-                            <a href="{{ route('requisition.create') }}" 
+                            <a href="{{ route('wait-approval-list') }}" 
                             class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
                                     <path fill-rule="evenodd" d="M9 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5Zm6.61 10.936a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 14.47a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
@@ -105,23 +106,29 @@
                 </div>
                     <div class="flex items-center gap-4">
                          {{-- Toggle  --}}
-                        <div class="flex border border-[#151847] rounded-md overflow-hidden w-[220px] h-[30px]">
+                        <div class="flex border border-[#151847] rounded-md overflow-hidden h-[30px]">
+                            <!-- Pending -->
                             <a @click="selected='pending'"
-                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
                             :class="selected === 'pending' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
-                                Pending
+                                To Be Reviewed
                             </a>
+
+                            <!-- Waiting Approval -->
+                            <a @click="selected='waiting'"
+                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            :class="selected === 'waiting' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
+                                Waiting Approval
+                            </a>
+
+                            <!-- Approved -->
                             <a @click="selected='approved'"
-                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
                             :class="selected === 'approved' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
                                 Approved
                             </a>
-                            <a @click="selected='rejected'"
-                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
-                            :class="selected === 'rejected' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
-                                Rejected
-                            </a>
                         </div>
+
                     </div>
             </div>
 
@@ -129,11 +136,11 @@
             <livewire:employee.manpower-requisition.requisition-table />
         </div>
 
-        <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        {{-- <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
             <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
                 <livewire:employee.manpower-requisition.view-requisition-ticket />
             </div>
-        </div>
+        </div> --}}
 
         <template x-if="open_add">
             <div @click="open_add=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">

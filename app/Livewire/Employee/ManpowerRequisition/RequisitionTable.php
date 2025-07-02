@@ -17,8 +17,8 @@ class RequisitionTable extends Component
             $this->resetPage('pendingPage');        
         }else if($status ==='approved'){
             $this->resetPage('approvedPage');
-        }else if($status === 'rejected'){
-            $this->resetPage('rejectedPage');
+        }else if($status === 'waiting'){
+            $this->resetPage('waitingApproval');
         }
     }
 
@@ -28,18 +28,18 @@ class RequisitionTable extends Component
             ->latest()
             ->paginate(5, ['*'], 'pendingPage');
 
-        $approvedRequisitions = Requisition::where('requisition_status', 2)
+        $approvedRequisitions = Requisition::where('requisition_status', 3)
             ->latest()
             ->paginate(5, ['*'], 'approvedPage');
 
-        $rejectedRequisitions = Requisition::where('requisition_status', 3)
+        $waitingRequisitions = Requisition::where('requisition_status', 2)
             ->latest()
-            ->paginate(5, ['*'], 'rejectedPage');
+            ->paginate(5, ['*'], 'waitingApproval');
 
         return view('livewire.employee.manpower-requisition.requisition-table', [
             'pendingRequisitions' => $pendingRequisitions,
             'approvedRequisitions' => $approvedRequisitions,
-            'rejectedRequisitions' => $rejectedRequisitions,
+            'waitingRequisitions' => $waitingRequisitions,
         ]);
     }
 }
