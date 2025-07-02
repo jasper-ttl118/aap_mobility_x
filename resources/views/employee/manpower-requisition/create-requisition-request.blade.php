@@ -69,7 +69,7 @@
 
                             // 3. Redirect after success alert delay
                             setTimeout(() => {
-                                window.location.href = data[0].redirectUrl || '/requisition';
+                                window.location.href = '/requisition';
                             }, 1600); // slightly longer than Swal timer
                         }, 200); // slight delay between delete and showing success
                     }
