@@ -60,6 +60,7 @@ class EditRequisition extends Component
     public $user_role;
     public $allowedRoles;
     public $isDisabled;
+    public $requisition_status;
 
     public function mount(Requisition $requisition)
     {
@@ -70,6 +71,8 @@ class EditRequisition extends Component
         $this->allowedRoles = ['CEO', 'CFO', 'COO', 'HR Manager'];
 
         $this->isDisabled = !in_array($this->user_role, $this->allowedRoles);
+
+        $this->requisition_status = $requisition->requisition_status;
 
         // Job Information fields
         $this->departments = Department::all();
@@ -221,7 +224,7 @@ class EditRequisition extends Component
         ];
 
         $updateData = [
-            'requisition_status' => 2,
+            'requisition_status' => $this->requisition_status,
             'requisition_section' => $this->requisition_section,
             'requisition_initial_job_position' => $this->requisition_initial_job_position,
             'requisition_justification' => $this->requisition_justification,
@@ -232,6 +235,7 @@ class EditRequisition extends Component
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
+            'requisition_date_required' => $this->requisition_date_required,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
             'requisition_requestor_name' => $this->requisition_requestor_name,
             'requisition_requestor_position' => $this->requisition_requestor_position,
@@ -292,12 +296,14 @@ class EditRequisition extends Component
 
         if ($requisition) {
             $this->requisition_endorser_signature = $originalName;
-            $this->dispatch('show-toast', [
-                'title' => 'Success',
-                'content' => 'Requisition Submitted Successfully!',
-            ]);
-            dump("success");
-            $this->dispatch('close-modal');
+
+            $this->dispatch('swal:confirm', [
+                    'title' => 'Confirm Update',
+                    'text' => 'Are you sure you want to update this requisition?',
+                    'icon' => 'question',
+                    'confirmButtonText' => 'Confirm'
+                ]);
+
         } else {
             dump('failed');
             $this->dispatch('show-toast', [

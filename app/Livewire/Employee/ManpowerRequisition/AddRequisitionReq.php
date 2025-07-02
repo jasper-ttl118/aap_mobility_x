@@ -190,11 +190,12 @@ class AddRequisitionReq extends Component
         $requisition->candidates()->attach($candidateIds);
 
         if ($requisition) {
-            $this->dispatch('show-toast', [
-                'title' => 'Success',
-                'content' => 'Requisition Submitted Successfully!',
+            $this->dispatch('swal:confirm', [
+                'title' => 'Confirm Request',
+                'text' => 'Are you sure you want to create this requisition?',
+                'icon' => 'question',
+                'confirmButtonText' => 'Confirm'
             ]);
-            $this->dispatch('close-modal');
         } else {
             $this->dispatch('show-toast', [
                 'title' => 'Error',

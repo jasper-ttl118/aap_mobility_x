@@ -825,13 +825,13 @@
             <!-- Submit Button -->
             <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === 'endorsed'">
                 <button type="submit"
-                    class="cursor-pointer mt-4 w-[50%] bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
+                    class="cursor-pointer mt-4 w-full bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
                     Approve
                 </button>
-                <a href="{{ route('requisition.index') }}"
+                {{-- <a href="{{ route('requisition.index') }}"
                     class="cursor-pointer mt-4 w-[50%] bg-gray-600 text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49] text-center">
                     Back
-                </a>
+                </a> --}}
             </div>
         </div>
     </form>

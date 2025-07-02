@@ -92,7 +92,6 @@ class ViewRequisition extends Component
         $this->requisition_education_levels     = $requisition->requisitionEducationLevels;
     }
 
-
     public function render()
     {
         return view('livewire.employee.manpower-requisition.view-requisition');

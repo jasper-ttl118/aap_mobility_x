@@ -16,7 +16,7 @@ class VacantTable extends Component
     }
     public function render()
     {
-        $approvedRequisitions = Requisition::where('requisition_status', '=', 2)->paginate(5, ['*'], 'vacantPage');
+        $approvedRequisitions = Requisition::where('requisition_status', '=', 3)->paginate(5, ['*'], 'vacantPage');
         return view('livewire.employee.vacancy-list.vacant-table', compact('approvedRequisitions') );
     }
 }

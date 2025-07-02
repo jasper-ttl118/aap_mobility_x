@@ -4,8 +4,8 @@
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
             <div class="border-b border-gray-200 pb-3">
-                <h1 class="text-base font-bold uppercase">Create Manpower Requisition</h1>
-                <p class="text-sm text-gray-600">Submit a manpower requisition form.</p>
+                <h1 class="text-base font-bold uppercase">View Manpower Requisition</h1>
+                <p class="text-sm text-gray-600">Display manpower requisition form information.</p>
             </div>
 
             {{-- Form Navigation  --}}

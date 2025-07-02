@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ open_delete:false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14 ">
@@ -41,6 +41,11 @@
             </div>
 
             <livewire:employee.manpower-requisition.pending-list-table />
+        </div>
+
+        <div x-show="open_delete" x-cloak id="delete-modal" 
+            class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50">
+                <livewire:employee.manpower-requisition.delete-requisition-ticket />
         </div>
 
     </div>

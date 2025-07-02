@@ -195,6 +195,7 @@ class ApproveRequisitionRequest extends Component
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
+            'requisition_date_required' => $this->requisition_date_required,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
             'requisition_requestor_name' => $this->requisition_requestor_name,
             'requisition_requestor_position' => $this->requisition_requestor_position,
@@ -263,12 +264,13 @@ class ApproveRequisitionRequest extends Component
             $this->requisition_approver_signature = $originalName;
             $this->requisition_approver_signature = $originalName1;
                         
-            $this->dispatch('show-toast', [
-                'title' => 'Success',
-                'content' => 'Requisition Submitted Successfully!',
+            $this->dispatch('swal:confirm', [
+                'title' => 'Confirm Approval',
+                'text' => 'Are you sure you want to approve this requisition?',
+                'icon' => 'question',
+                'confirmButtonText' => 'Confirm'
             ]);
-            dump("success");
-            $this->dispatch('close-modal');
+
         } else {
             dump('failed');
             $this->dispatch('show-toast', [

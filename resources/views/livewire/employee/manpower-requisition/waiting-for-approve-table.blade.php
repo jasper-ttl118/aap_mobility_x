@@ -10,7 +10,6 @@
                     <th scope="col" class=" py-3">Requisition Type</th>
                     <th scope="col" class=" py-3">Department</th>
                     <th scope="col" class=" py-3">Requestor Name</th>
-                    <th scope="col" class=" py-3">Salary Range</th>
                     <th scope="col" class=" py-3">Status</th>
                     <th scope="col" class=" py-3">Actions</th>
                 </tr>
@@ -23,9 +22,8 @@
                         <td>{{ $waitingApprovalRequisition->requisition_type }}</td>
                         <td class="p-2">{{ $waitingApprovalRequisition->requisition_department }}</td>
                         <td class="p-2">{{ $waitingApprovalRequisition->requisition_requestor_name }}</td>
-                        <td class="p-2">₱{{ $waitingApprovalRequisition->requisition_salary_min }} - ₱{{ $waitingApprovalRequisition->requisition_salary_max }}</td>
                         <td class="p-2">
-                            <span class="bg-[#F6D400] text-[#071d49] text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-gray-700 dark:text-gray-300">Waiting Approval</span>
+                            <span class="bg-[#F6D400] text-[#071d49] text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:[#F6D400]">Waiting Approval</span>
                         </td>
                         <td class="p-2">
                             <div class="flex flex-row justify-center items-center gap-2">
@@ -44,22 +42,7 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </a>
-
-                                    <a @click="open_edit = true; 
-                                        window.Livewire.dispatch('loadEditRequisitionRequest', { requisition_id: {{ $waitingApprovalRequisition->requisition_id }}, status: 'pending' })
-                                        "
-                                        class="cursor-pointer flex items-center gap-1 font-medium text-blue-800">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            fill="currentColor" class="size-4">
-                                            <path
-                                                d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
-                                            <path
-                                                d="M19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-                                            <path
-                                                d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-                                        </svg>
-                                    </a>
-
+                                    
                                     <a href="javascript:void(0)"
                                         @click="open_delete = true; Livewire.dispatch('getRequisitionId', { requisition_id: {{ $waitingApprovalRequisition->requisition_id }}, status: 'pending' });"
                                         class="cursor-pointer flex items-center gap-1 font-medium text-red-700">
