@@ -15,12 +15,18 @@
     @livewireStyles
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+    <!-- Tom Select CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+
+
     <style>
         [x-cloak] {
             display: none !important;
         }
+
         body {
-            touch-action: manipulation; /* Prevents double-tap zoom */
+            touch-action: manipulation;
+            /* Prevents double-tap zoom */
         }
 
         /* For older browsers */
@@ -29,6 +35,7 @@
             touch-action: manipulation;
         }
     </style>
+
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
@@ -39,8 +46,11 @@
     </div>
 
     {{-- <x-layouts.chat /> --}}
-    
+
     @livewireScripts
+    <!-- Tom Select JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
 </body>
 
 </html>
