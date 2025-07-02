@@ -202,9 +202,19 @@ class EmployeeController extends Controller
                 // Family Information 
                 'employee_children_count' => $validated['employee_children_count'],
                 'children_birth_certificates_path' => $filePaths['children_birth_certificates_path'] ?? null,
-                'employee_children_details' => !empty($childrenDetails) ? json_encode($childrenDetails) : null,
+                'employee_children_1_details' => $validated['employee_children_1_details'],
+                'employee_children_1_age' => $validated['employee_children_1_age'],
+                'employee_children_1_birthdate' => $validated['employee_children_1_birthdate'],
+                'employee_children_2_details' => $validated['employee_children_2_details'],
+                'employee_children_2_age' => $validated['employee_children_2_age'],
+                'employee_children_2_birthdate' => $validated['employee_children_2_birthdate'],
                 'parents_birth_certificate_dependents_path' => $filePaths['parents_birth_certificate_dependents_path'] ?? null,
-                'employee_parents_details' => !empty($parentsDetails) ? json_encode($parentsDetails) : null,
+                'employee_parents_1_details' => $validated['employee_parents_1_details'],
+                'employee_parents_1_age' => $validated['employee_parents_1_age'],
+                'employee_parents_1_birthdate' => $validated['employee_parents_1_birthdate'],
+                'employee_parents_2_details' => $validated['employee_parents_2_details'],
+                'employee_parents_2_age' => $validated['employee_parents_2_age'],
+                'employee_parents_2_birthdate' => $validated['employee_parents_2_birthdate'],
                 
                 // Medical Information
                 'employee_blood_type' => $validated['employee_blood_type'],

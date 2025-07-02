@@ -16,7 +16,12 @@
                 <!-- CMS with Dropdown -->
                 <div
                     class="relative group w-full lg:w-32 p-4 text-center border-b-2 lg:border-b-2 border-blue-900 cursor-pointer">
-                    <a href="/ams/cms/branch-department" class="block font-semibold text-blue-900">CMS</a>
+                    <a href="/ams/cms/branch-department" class="flex flex-row items-center justify-center gap-x-2 font-semibold text-blue-900">
+                        CMS
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
 
                     <div
                         class="absolute top-full left-0 mt-1 w-32 rounded-md border border-gray-200 bg-white shadow-lg z-10 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200">
@@ -36,7 +41,12 @@
 
                 <!-- Assets with Dropdown -->
                 <div class="relative group w-full lg:w-32 p-4 text-center border-b lg:border-b-0 cursor-pointer">
-                    <a href="/ams/all-assets" class="block text-gray-600 hover:text-blue-800 font-inter">Assets</a>
+                    <a href="/ams/all-assets" class="flex flex-row justify-center items-center gap-x-2 text-gray-600 hover:text-blue-800 font-inter">
+                        Assets
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
+                            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
 
                     <div
                         class="absolute top-full left-0 mt-1 w-32 rounded-md border border-gray-200 bg-white shadow-lg z-10 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200">

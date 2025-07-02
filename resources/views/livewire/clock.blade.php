@@ -18,7 +18,7 @@
                 </h6>
             </div>
         </div>
-        <div class="flex flex-row text-sm gap-x-1 text-white font-light w-[80%] justify-center">
+        <div class="flex flex-row text-sm gap-x-1 text-white font-light w-full justify-center">
             <div id="clock-date" class="flex justify-center items-center">
             </div>
             <div class="text-white">|</div>
