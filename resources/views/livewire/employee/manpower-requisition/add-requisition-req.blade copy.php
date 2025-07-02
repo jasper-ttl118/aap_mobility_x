@@ -198,21 +198,69 @@
                     {{-- Justification --}}
                     <div>
                         <label class="font-medium text-sm text-[#071d49]">Justification For This Requisition</label>
-                        <textarea wire:model="requisition_justification" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                        <input type="text" name="requisition_justification" placeholder="e.g. IAMS Accounting Developer"
+                            wire:model="requisition_justification"
+                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500">
                         @error('requisition_justification') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
 
                     <!-- Job Descriptions -->
-                    <div class="space-y-2 mt-1">
-                        <label class="font-medium text-sm text-[#071d49] block">Basic Function / Duties And Responsibilities</label> 
-                        
-                        <textarea wire:model="requisition_job_description" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                    <div 
+                        x-data="{
+                            selected: @entangle('requisition_job_descriptions').live,
+                            
+                            addDescription() {
+                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') {
+                                    return;
+                                }
 
-                        @error('requisition_job_description') 
+                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
+                            },
+
+                            removeDescription(index) {
+                                this.selected.splice(index, 1);
+                            }
+                        }"
+                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
+                            selected = [{ id: Date.now(), value: '' }];
+                        }"
+                        class="space-y-2 mt-1"
+                    >
+                        <label class="font-medium text-sm text-[#071d49] block">Basic Function / Duties And Responsibilities</label>
+
+                        <template x-for="(desc, index) in selected" :key="desc.id">
+                            <div class="flex gap-2 items-center">
+                                <input 
+                                    type="text" 
+                                    :name="`requisition_job_descriptions[${index}][value]`"
+                                    x-model="desc.value"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
+                                    placeholder="e.g. Design, develop, test, and maintain applications"
+                                />
+
+                                <template x-if="selected.length > 1">
+                                    <button type="button" @click="removeDescription(index)" 
+                                        class="text-red-600 text-xs hover:underline">
+                                        Remove
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Add Button -->
+                        <div class="flex items-center gap-2 justify-end pt-1">
+                            <button type="button" @click="addDescription"
+                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Add More Description
+                            </button>
+                        </div>
+
+                        @error('requisition_job_descriptions') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
                         @enderror
                     </div>
@@ -221,25 +269,119 @@
             {{-- Hiring Specifications --}}
             <div x-show="selected === 'hiring specifications'" class="flex flex-col ">
                     <!-- Education Attainment -->
-                    <div class="space-y-2 mt-1">
+                    <div 
+                        x-data="{
+                            req_educ: @entangle('requisition_education').live,
+
+                            addEducation() {
+                                if (this.req_educ.length && this.req_educ[this.req_educ.length - 1].value.trim() === '') {
+                                    return;
+                                }
+                                this.req_educ.push({ id: Date.now() + Math.random(), value: '' });
+                            },
+
+                            removeEducation(index) {
+                                this.req_educ.splice(index, 1);
+                            }
+                        }"
+                        x-init="if (!Array.isArray(req_educ) || req_educ.length === 0) {
+                            req_educ = [{ id: Date.now(), value: '' }];
+                        }"
+                        class="space-y-2 mt-1"
+                    >
                         <label class="font-medium text-sm text-[#071d49] block">Educational Attainment</label>
 
-                        <textarea wire:model="requisition_education_level" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                        <!-- Loop through each entry -->
+                        <template x-for="(edu, index) in req_educ" :key="edu.id">
+                            <div class="flex gap-2 items-center">
+                                <input 
+                                    type="text" 
+                                    :name="`requisition_education[${index}][value]`"
+                                    x-model="edu.value"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
+                                    placeholder="e.g. BS Computer Science, TESDA NC II Programming"
+                                />
 
-                        @error('requisition_education_level') 
+                                <!-- Remove button -->
+                                <template x-if="req_educ.length > 1">
+                                    <button type="button" @click="removeEducation(index)" 
+                                        class="text-red-600 text-xs hover:underline">
+                                        Remove
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Add Button -->
+                        <div class="flex items-center gap-2 justify-end pt-1">
+                            <button type="button" @click="addEducation"
+                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Add More
+                            </button>
+                        </div>
+
+                        @error('requisition_education') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
                         @enderror
                     </div>
 
                     <!-- Work Experience -->
-                    <div class="space-y-2 mt-6">
+                    <div 
+                        x-data="{
+                            selected: @entangle('requisition_work_experience').live,
+
+                            addExperience() {
+                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') return;
+                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
+                            },
+
+                            removeExperience(index) {
+                                this.selected.splice(index, 1);
+                            }
+                        }"
+                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
+                            selected = [{ id: Date.now(), value: '' }];
+                        }"
+                        class="space-y-2 mt-1"
+                    >
                         <label class="font-medium text-sm text-[#071d49] block">Work Experience</label>
                         
-                        <textarea wire:model="requisition_work_experience" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                        <template x-for="(experience, index) in selected" :key="experience.id">
+                            <div class="flex gap-2 items-center">
+                                <input 
+                                    type="text" 
+                                    :name="`requisition_work_experience[${index}][value]`"
+                                    x-model="experience.value"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
+                                    placeholder="e.g. 2–5+ years experience in .NET development"
+                                />
+
+                                <template x-if="selected.length > 1">
+                                    <button type="button" @click="removeExperience(index)" 
+                                        class="text-red-600 text-xs hover:underline">
+                                        Remove
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Add Button -->
+                        <div class="flex items-center gap-2 justify-end pt-1">
+                            <button type="button" @click="addExperience"
+                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Add Work Experience
+                            </button>
+                        </div>
 
                         @error('requisition_work_experience') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
@@ -247,25 +389,109 @@
                     </div>
 
                     <!-- Special Skills -->
-                    <div class="space-y-2 mt-6">
+                    <div 
+                        x-data="{
+                            selected: @entangle('requisition_special_skills').live,
+
+                            addSkill() {
+                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') return;
+                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
+                            },
+
+                            removeSkill(index) {
+                                this.selected.splice(index, 1);
+                            }
+                        }"
+                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
+                            selected = [{ id: Date.now(), value: '' }];
+                        }"
+                        class="space-y-2 mt-1"
+                    >
                         <label class="font-medium text-sm text-[#071d49] block">Special Skills</label>
 
-                        <textarea wire:model="requisition_special_skill" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                        <template x-for="(skill, index) in selected" :key="skill.id">
+                            <div class="flex gap-2 items-center">
+                                <input 
+                                    type="text" 
+                                    :name="`requisition_special_skills[${index}][value]`"
+                                    x-model="skill.value"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
+                                    placeholder="e.g. REST APIs, Git, Docker"
+                                />
 
-                        @error('requisition_special_skill') 
+                                <template x-if="selected.length > 1">
+                                    <button type="button" @click="removeSkill(index)" class="text-red-600 text-xs hover:underline">
+                                        Remove
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <div class="flex items-center gap-2 justify-end pt-1">
+                            <button type="button" @click="addSkill"
+                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Add Skill
+                            </button>
+                        </div>
+
+                        @error('requisition_special_skills') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
                         @enderror
                     </div>
 
                     <!-- Other (Specify) -->
-                    <div class="space-y-2 mt-6">
+                    <div 
+                        x-data="{
+                            selected: @entangle('requisition_other_description').live,
+
+                            addOther() {
+                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') return;
+                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
+                            },
+
+                            removeOther(index) {
+                                this.selected.splice(index, 1);
+                            }
+                        }"
+                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
+                            selected = [{ id: Date.now(), value: '' }];
+                        }"
+                        class="space-y-2 mt-1"
+                    >
                         <label class="font-medium text-sm text-[#071d49] block">Other (Specify)</label>
 
-                        <textarea wire:model="requisition_other_description" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
-                        
-                        </textarea>
+                        <template x-for="(other, index) in selected" :key="other.id">
+                            <div class="flex gap-2 items-center">
+                                <input 
+                                    type="text" 
+                                    :name="`requisition_other_description[${index}][value]`"
+                                    x-model="other.value"
+                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
+                                    placeholder="e.g. Experience with Azure or AWS"
+                                />
+
+                                <template x-if="selected.length > 1">
+                                    <button type="button" @click="removeOther(index)" class="text-red-600 text-xs hover:underline">
+                                        Remove
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <div class="flex items-center gap-2 justify-end pt-1">
+                            <button type="button" @click="addOther"
+                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" class="w-4 h-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                                </svg>
+                                Add Other
+                            </button>
+                        </div>
 
                         @error('requisition_other_description') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
@@ -273,7 +499,7 @@
                     </div>
 
                     {{-- Possible Sources and Recommended Candidates --}}
-                    <div class="grid grid-cols-2 gap-5 mt-6">
+                    <div class="grid grid-cols-2 gap-5">
                         <!-- Left: Text Input -->
                         <div>
                             <label class="font-medium text-sm text-[#071d49]">Possible Sources of Applicants</label>
@@ -565,13 +791,13 @@
             <!-- Submit Button -->
             <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === 'hiring specifications'">
                 <button type="submit"
-                    class="cursor-pointer mt-4 w-full bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
+                    class="cursor-pointer mt-4 w-[50%] bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
                     Create
                 </button>
-                {{-- <a href="{{ route('requisition.index') }}"
+                <a href="{{ route('requisition.index') }}"
                     class="cursor-pointer mt-4 w-[50%] bg-gray-600 text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49] text-center">
                     Back
-                </a> --}}
+                </a>
             </div>
         </div>
     </form>

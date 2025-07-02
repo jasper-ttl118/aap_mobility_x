@@ -26,36 +26,41 @@ class AddRequisitionReq extends Component
     public $requisition_eventual_job_position;
     public $requisition_number_required;
     public $requisition_contract_duration;
+    public $requisition_signature;
     public $requisition_employment_type;
     public $requisition_budget;
     public $requisition_engagement_type;
     public $requisition_work_experience;
-    public $requisition_special_skill;
+    public $requisition_special_skills;
     public $requisition_other_description;
     public $requisition_applicants_sources;
     public $requisition_requestor_name;
     public $requisition_requestor_position;
+    public $requisition_requestor_signature;
     public $requisition_endorser_name;
     public $requisition_endorser_position;
+    public $requisition_endorser_signature;
     public $requisition_approver_name;
     public $requisition_approver_position;
+    public $requisition_approver_signature;
     public $requisition_approver_name_1;
     public $requisition_approver_position_1;
+    public $requisition_approver_signature_1;
     public $requisition_date_required = '';
     public $candidates;
     public array $requisition_candidates = [
         ['id' => '', 'value' => '']
     ];
-    public $requisition_job_description;
+    public $requisition_job_descriptions;
     public $departments;
-    public $requisition_education_level = '';
+    public array $requisition_education = [];
 
     public function updating($name, $value)
     {
         if ($name === 'requisition_candidates' ) {
             // dump($this->requisition_candidates);
         } 
-        else if ($name === 'requisition_job_description')
+        else if ($name === 'requisition_job_descriptions')
         {
             // dump($value);
         }
@@ -73,6 +78,8 @@ class AddRequisitionReq extends Component
     {
         $this->departments = Department::all();
         $this->requisition_department = $this->departments[0]->department_name;
+        $this->requisition_department = 'IST';
+        $this->requisition_job_descriptions = '';
 
         $this->candidates = Candidate::all()
             ->map(function ($candidate) {
@@ -127,17 +134,21 @@ class AddRequisitionReq extends Component
 
     public function add()
     {
+        // dd($this->requisition_date_required);
+        $originalName = $this->requisition_requestor_signature->getClientOriginalName();
+
+        $path = $this->requisition_requestor_signature->storeAs(
+            'requestor_signatures',           // Folder
+            $originalName,                    // Filename to save as
+            'public'                          // Disk
+        );
+
         $this->requisition_eventual_job_position = $this->requisition_initial_job_position;
 
         $requisition = Requisition::create([
             'requisition_type' => $this->requisition_type,
-            'requisition_job_description' => $this->requisition_job_description,
-            'requisition_education_level' => $this->requisition_education_level,
-            'requisition_work_experience' => $this->requisition_work_experience,
-            'requisition_special_skill' => $this->requisition_special_skill,
-            'requisition_other' => $this->requisition_other_description,
             'requisition_department' => $this->requisition_department,
-            'requisition_status' => 1, 
+            'requisition_status' => 1,
             'requisition_section' => $this->requisition_section,
             'requisition_initial_job_position' => $this->requisition_initial_job_position,
             'requisition_justification' => $this->requisition_justification,
@@ -148,8 +159,28 @@ class AddRequisitionReq extends Component
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
+            'requisition_requestor_name' => $this->requisition_requestor_name,
+            'requisition_requestor_position' => $this->requisition_requestor_position,
+            'requisition_requestor_signature' => $path,
             'requisition_date_required' => $this->requisition_date_required
         ]);
+
+        $relatedData = [
+            'requisition_job_descriptions' => [RequisitionDuty::class, 'requisition_duty_description'],
+            'requisition_education' => [RequisitionEducationLevel::class, 'requisition_education_level_description'],
+            'requisition_other_description' => [RequisitionOther::class, 'requisition_other_description'],
+            'requisition_special_skills' => [RequisitionSpecialSkill::class, 'requisition_special_skill_description'],
+            'requisition_work_experience' => [RequisitionWorkExperience::class, 'requisition_work_experience_description'],
+        ];
+        
+        foreach ($relatedData as $property => [$model, $column]) {
+            foreach ($this->$property as $item) {
+                $model::create([
+                    'requisition_id' => $requisition->requisition_id,
+                    $column => $item['value'],
+                ]);
+            }
+        }
 
         $candidateIds = collect($this->requisition_candidates)
             ->pluck('value')
@@ -173,6 +204,8 @@ class AddRequisitionReq extends Component
         }
     }
 
+
+    
     public function render()
     {
         return view('livewire.employee.manpower-requisition.add-requisition-req');
