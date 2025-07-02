@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
@@ -371,6 +372,7 @@ class EmployeeController extends Controller
     public function employeeProfile($employee_id)
     {
         $employee = Employee::find($employee_id);
+
         // dd($employee);
         return view('employee.alphalist.view-employee-profile', compact('employee'));
     }

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asset_statuses', function (Blueprint $table) {
-            $table->id('status_id');
-            $table->string('status_name');
-            $table->text('status_description');
-            $table->timestamps();
-        });
+        if(!Schema::hasTable('asset_statuses')){
+            Schema::create('asset_statuses', function (Blueprint $table) {
+                $table->id('status_id');
+                $table->string('status_name');
+                $table->text('status_description');
+                $table->timestamps();
+            });
+        }
     }
 
     /**

@@ -34,7 +34,7 @@
 
         <!-- Breadcrumbs-->
         <div class="flex h-10 items-center gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-2 lg:pb-4 md:ml-20 lg:ml-0">
-            <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
+            <a href="{{ route('customer.index') }}" class="hover:underline truncate">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                 <path fill-rule="evenodd"
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
@@ -46,97 +46,97 @@
         <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full md:w-full h-[1210px] lg:h-[400px] gap-5 lg:-mt-10 md:items-center">
             <div class="flex flex-col lg:flex-row justify-evenly h-[1200px] lg:h-full w-[440px] md:w-[80%] md:ml-0 lg:w-full gap-5 lg:ml-0 ml-5">
                 <div class="flex flex-col justify-evenly lg:justify-between w-full lg:w-[70%] h-[1000px] lg:h-full gap-3">
-                        {{-- Sales Div --}}
-                        <div class="flex flex-col lg:flex-row lg:w-full h-[50%] lg:h-[25%] gap-2">
-                            {{-- Daily Sales --}}
-                            <div class="flex flex-col gap-y-2 items-start justify-center bg-gradient-to-r from-[#071d49] via-[#191d56] to-[#0c0c21] shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                                <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-white">
-                                        <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
-                                        <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
-                                        <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
-                                    </svg>
-                                    <span class="text-white font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Daily Sales</span>
-                                </div>
-                                <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
-                                    <span class="text-white font-bold text-xl lg:text-lg">₱153.04</span>
-                                    <span class="text-white font-bold text-xs lg:text-xs bg-white bg-opacity-20 rounded-md">+25%</span>
-                                </div>
+                    {{-- Sales Div --}}
+                    <div class="flex flex-col lg:flex-row lg:w-full h-[50%] lg:h-[25%] gap-2 justify-center items-start">
+                        {{-- Daily Sales --}}
+                        <div class="flex flex-col gap-y-2 items-start justify-center bg-gradient-to-r from-[#071d49] via-[#191d56] to-[#0c0c21] shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
+                            <div class="flex flex-row justify-start items-center gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-white">
+                                    <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
+                                    <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
+                                    <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
+                                </svg>
+                                <span class="text-white font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Daily Sales</span>
                             </div>
-                            {{-- Weekly Sales --}}
-                            <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                                <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
-                                        <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
-                                        <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
-                                        <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
-                                    </svg>
-                                    <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Weekly Sales</span>
-                                </div>
-                                <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
-                                    <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱1,240.40</span>
-                                    <span class="text-green-400 font-bold text-xs lg:text-xs bg-green-400 bg-opacity-20 rounded-md">+17%</span>
-                                </div>
-                            </div>
-                            {{-- Monthly Sales --}}
-                            <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                                <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
-                                        <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
-                                        <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
-                                        <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
-                                    </svg>
-                                    <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Monthly Sales</span>
-                                </div>
-                                <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
-                                    <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱5,192.75</span>
-                                    <span class="text-red-600 font-bold text-xs lg:text-xs bg-red-600 bg-opacity-20 rounded-md">-10%</span>
-                                </div>
-                            </div>
-                        
-                        </div>
-                        {{-- Members & Email Div --}}
-                        <div class="flex flex-col lg:flex-row bg-white shadow-lg w-full lg:h-[75%] h-[70%] rounded-lg shadow-xs justify-evenly items-center">
-                            {{-- Members --}}
-                            <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center">
-                                <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
-                                    <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
-                                    </svg>
-                                    <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Members Tally</span>
-                                </div>
-                                <div class="flex flex-row w-[90%] h-[75%] justify-center items-center">
-                                    <x-analytics-display
-                                        title="Number of Members"
-                                        :labels="['January', 'February', 'March', 'April', 'May']"
-                                        :data="[120, 150, 180, 90, 150]"
-                                        chartType="line"
-                                        :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                    />
-                                </div>
-                            </div>
-                            {{-- Line --}}
-                            <div class="flex border-2 border-[#c6c7c8] h-[90%] rounded-lg hidden lg:block"></div>
-                            {{-- Email --}}
-                            <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center">
-                                <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
-                                        <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
-                                        <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
-                                    </svg>
-                                    <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Email</span>
-                                </div>
-                                <div class="flex flex-row w-[90%] h-[75%] justify-center items-center">
-                                    <x-analytics-display
-                                        title="Emails"
-                                        :labels="['January', 'February', 'March', 'April', 'May']"
-                                        :data="[120, 150, 180, 90, 140]"
-                                        chartType="doughnut"
-                                        :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                    />
-                                </div>
+                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
+                                <span class="text-white font-bold text-xl lg:text-lg">₱153.04</span>
+                                <span class="text-white font-bold text-xs lg:text-xs bg-white bg-opacity-20 rounded-md">+25%</span>
                             </div>
                         </div>
+                        {{-- Weekly Sales --}}
+                        <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
+                            <div class="flex flex-row justify-start items-center gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
+                                    <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
+                                    <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
+                                    <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
+                                </svg>
+                                <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Weekly Sales</span>
+                            </div>
+                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
+                                <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱1,240.40</span>
+                                <span class="text-green-400 font-bold text-xs lg:text-xs bg-green-400 bg-opacity-20 rounded-md">+17%</span>
+                            </div>
+                        </div>
+                        {{-- Monthly Sales --}}
+                        <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
+                            <div class="flex flex-row justify-start items-center gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
+                                    <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
+                                    <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
+                                    <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
+                                </svg>
+                                <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Monthly Sales</span>
+                            </div>
+                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
+                                <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱5,192.75</span>
+                                <span class="text-red-600 font-bold text-xs lg:text-xs bg-red-600 bg-opacity-20 rounded-md">-10%</span>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    {{-- Members & Email Div --}}
+                    <div class="flex flex-col lg:flex-row bg-white shadow-lg w-full lg:h-[75%] h-[70%] rounded-lg shadow-xs justify-evenly items-center">
+                        {{-- Members --}}
+                        <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center">
+                            <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
+                                <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
+                                </svg>
+                                <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Members Tally</span>
+                            </div>
+                            <div class="flex flex-row w-[90%] h-[75%] justify-center items-center">
+                                <x-analytics-display
+                                    title="Number of Members"
+                                    :labels="['January', 'February', 'March', 'April', 'May']"
+                                    :data="[120, 150, 180, 90, 150]"
+                                    chartType="line"
+                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                />
+                            </div>
+                        </div>
+                        {{-- Line --}}
+                        <div class="flex border-2 border-[#c6c7c8] h-[90%] rounded-lg hidden lg:block"></div>
+                        {{-- Email --}}
+                        <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center">
+                            <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
+                                    <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+                                    <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+                                </svg>
+                                <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Email</span>
+                            </div>
+                            <div class="flex flex-row w-[90%] h-[75%] justify-center items-center">
+                                <x-analytics-display
+                                    title="Emails"
+                                    :labels="['January', 'February', 'March', 'April', 'May']"
+                                    :data="[120, 150, 180, 90, 140]"
+                                    chartType="doughnut"
+                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>        
                  {{-- New Members Div --}}
                 <div class="flex justify-between h-[30%] lg:h-full w-full lg:w-[30%] gap-5">
