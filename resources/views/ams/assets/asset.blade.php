@@ -35,7 +35,7 @@
                 <!-- Assets with Dropdown -->
                 <div
                     class="relative group w-full lg:w-32 p-4 text-center border-b-2 lg:border-b-2 border-blue-900 cursor-pointer">
-                    <a href="#" class="block font-semibold text-blue-900">Assets</a>
+                    <a href="#" class="block font-semibold text-blue-900">Assets </a>
 
                     <div
                         class="absolute top-full left-0 mt-1 w-32 rounded-md border border-gray-200 bg-white shadow-lg z-10 opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-opacity duration-200">
@@ -83,7 +83,7 @@
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between px-7 py-6 gap-y-4">
                     <div>
                         <h2 class="font-semibold text-lg text-[#071d49]">Manage AAP Assets</h2>
-                        <p class="text-gray-900 text-sm">Add, Edit, Transfer, See History and Delete Assets</p>
+                        <p class="text-gray-900 text-sm">Add, Edit, View Details, See History and Pull Out Assets</p>
                     </div>
 
                     <div class="flex items-center gap-4">
