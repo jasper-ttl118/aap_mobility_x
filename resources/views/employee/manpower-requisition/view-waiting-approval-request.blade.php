@@ -34,4 +34,49 @@
             <livewire:employee.manpower-requisition.approve-requisition-request :requisition="$requisition"/>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        window.addEventListener('swal:confirm', (event) => {
+            const data = event.detail;
+            console.log(data);
+
+            Swal.fire({
+                title: data[0].title,
+                text: data[0].text,
+                icon: data[0].icon,
+                showCancelButton: true,
+                confirmButtonText: data[0].confirmButtonText || 'Yes',
+                cancelButtonText: 'Cancel',
+                customClass: {
+                    confirmButton: 'bg-[#071d49] text-white px-4 mr-4 py-2 rounded hover:bg-blue-700',
+                    cancelButton: 'bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700'
+                },
+                buttonsStyling: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // 1. Call Livewire backend delete method
+                    Livewire.dispatch('delete');
+
+                    // 2. Show success alert after a slight delay (optional)
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: data[0].successTitle || 'Approved!',
+                            text: data[0].successText || 'The requisition was successfully approved.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        // 3. Redirect after success alert delay
+                        setTimeout(() => {
+                            window.location.href = data[0].redirectUrl || '/requisition';
+                        }, 1600); // slightly longer than Swal timer
+                    }, 200); // slight delay between delete and showing success
+                }
+            });
+        });
+
+    </script>
 </x-app-layout>

@@ -80,7 +80,7 @@ class CheckRequisitionRequest extends Component
         $this->requisition_endorser_name = $requisition->requisition_endorser_name;
         $this->requisition_endorser_position = $requisition->requisition_endorser_position;
         $this->requisition_endorser_signature = $requisition->requisition_endorser_signature;
-
+        // dump($this->requisition_endorser_signature);
         // Hiring Specification fields
         $this->requisition_job_descriptions = $requisition->requisitionDuties->map(function ($duty) {
             return [
@@ -175,6 +175,7 @@ class CheckRequisitionRequest extends Component
             'requisition_employment_type' => $this->requisition_employment_type,
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
+            'requisition_date_required' => $this->requisition_date_required,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
             'requisition_requestor_name' => $this->requisition_requestor_name,
             'requisition_requestor_position' => $this->requisition_requestor_position,
@@ -235,20 +236,32 @@ class CheckRequisitionRequest extends Component
 
         if ($requisition) {
             $this->requisition_endorser_signature = $originalName;
-            
-            session()->flash('toast', [
-                'type' => 'success',
-                'title' => 'Success',
-                'message' => 'Requisition submitted successfully!',
-            ]);
 
-            return to_route('requisition.index');
+            $this->dispatch('swal:confirm', [
+                'title' => 'Confirm Approval',
+                'text' => 'Are you sure you want to approve this requisition?',
+                'icon' => 'question',
+                'confirmButtonText' => 'Confirm'
+            ]);
+            
+            // return to_route('requisition.index');
         } else {
             dump('failed');
             $this->dispatch('show-toast', [
                 'title' => 'Error',
                 'content' => 'An error occurred!',
             ]);
+        }
+    }
+
+    public function refreshTable($status)
+    {
+        if($status === 'pending'){                  
+            $this->resetPage('pendingPage');        
+        }else if($status ==='approved'){
+            $this->resetPage('approvedPage');
+        }else if($status === 'waiting'){
+            $this->resetPage('waitingApproval');
         }
     }
     

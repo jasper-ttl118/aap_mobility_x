@@ -44,6 +44,7 @@ class ViewRequisition extends Component
     public $requisition_job_descriptions;
     public $requisition_education_levels;
     public $requisition_date_required;
+    public $requisition_id;
 
     protected $listeners = ['loadRequisitionRequest'];
 
