@@ -93,7 +93,7 @@
                 <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between px-7 py-6 gap-y-4">
                     <div>
                         <h2 class="font-semibold text-lg text-[#071d49]">Manage AAP Assets</h2>
-                        <p class="text-gray-900 text-sm">Add, Edit, Transfer, See History and Delete Assets</p>
+                        <p class="text-gray-900 text-sm">Add, Edit, View Details, See History and Pull Out Assets</p>
                     </div>
 
                     <div class="flex items-center gap-4">
