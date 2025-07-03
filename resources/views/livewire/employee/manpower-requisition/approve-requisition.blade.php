@@ -1,21 +1,40 @@
 <div @close-modal.window="open_add=false" 
   
-    x-data="{ jobDescriptions: '', educAttainment: '', workExperience: '', specialSkills: '',other: '', selectedStep: 0, employment_type : @entangle('requisition_employment_type').live, selected : 'job information', selected_tabs : ['job information', 'hiring specifications', 'requested', 'endorsed']}"
+    x-data="{ selectedStep: 0, employment_type : @entangle('requisition_employment_type').live, 
+              status: @entangle('requisition_status').live, 
+              selected : 'Job Information',
+              get selected_tabs() {
+                    if (this.status === 1) {
+                        return ['Job Information', 'Hiring Specifications', 'Requestor Details'];
+                    } 
+                    else if (this.status === 2) {
+                        return ['Job Information', 'Hiring Specifications', 'Requestor Details', 'HR Details'];
+                    }
+                    else if (this.status === 3){
+                        return ['Job Information', 'Hiring Specifications', 'Requestor Details', 'HR Details', 'CFO Information'];
+                    }
+                    else if (this.status === 4){
+                        return ['Job Information', 'Hiring Specifications', 'Requestor Details', 'HR Details', 'CFO Information', 'CEO Information'];
+                    }
+                    
+                }
+            }"
     class="bg-white shadow-lg rounded-lg text-sm">
-    <form wire:submit="save" >
+    
+    <form wire:submit="confirmApprove" >
         @csrf
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
             <div class="border-b border-gray-200 pb-3">
-                <h1 class="text-base font-bold uppercase">Check and Endorse Manpower Requisition</h1>
-                <p class="text-sm text-gray-600">Check and endorse a manpower requisition form.</p>
+                <h1 class="text-base font-bold uppercase">Approve Manpower Requisition</h1>
+                <p class="text-sm text-gray-600">Approve a manpower requisition form.</p>
             </div>
 
             {{-- Form Navigation  --}}
             <div>
                 <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
-                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details',  'Verifier Details', 'Approval Information']" :key="index"> --}}
-                    <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details']" :key="index">
+                    {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Verifier Details', 'Approval Information']" :key="index"> --}}
+                    <template x-for="(step, index) in selected_tabs" :key="index">
                         <li 
                             @click="selectedStep = index; selected = selected_tabs[index];"
                             :class="[
@@ -31,26 +50,25 @@
             </div>
             
             {{-- Job Information Section --}}
-            <div x-show="selected === 'job information'" class="flex flex-col gap-y-5">
+            <div x-show="selected === 'Job Information'" class="flex flex-col gap-y-5">
                     <!-- Department And Requisition Type -->
                     <div class="grid grid-cols-2 gap-5">
                         <div> <!-- enough margin-bottom -->
                             <label class="font-medium text-sm text-[#071d49]">Department</label>
-                            <select name="requisition_department" wire:model="requisition_department"
+                            <select name="department_id" wire:model="department_id"
                                 class="w-full bg-gray-100 h-fit rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500">
                                 @foreach ($departments as $department)
-                                    <option value="{{ $department->department_name }}">{{ $department->department_name }}</option>
+                                    <option value="{{ $department->department_id }}">{{ $department->department_name }}</option>
                                 @endforeach
                             </select>
-                            @error('requisition_department') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            @error('department_id') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
 
                         <div>
                             <label class="font-medium text-sm text-[#071d49]">Section</label>
-                            <select name="requisition_section" wire:model="requisition_section"
+                            <input type="text" name="requisition_section" wire:model="requisition_section" placeholder="e.g Development Team"
                                 class="w-full bg-gray-100 h-fit rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500">
-                                <option value="">Development Team</option>
-                            </select>
+        
                             @error('requisition_section') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
@@ -199,181 +217,50 @@
                     {{-- Justification --}}
                     <div>
                         <label class="font-medium text-sm text-[#071d49]">Justification For This Requisition</label>
-                        <input type="text" name="requisition_justification" placeholder="e.g. IAMS Accounting Developer"
-                            wire:model="requisition_justification"
-                            class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500">
+                        <textarea wire:model="requisition_justification" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
                         @error('requisition_justification') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
 
-                    @php
-                        $jobDescriptions = json_encode($requisition_job_descriptions ?? [['id' => uniqid(), 'value' => '']]);
-                        // dd($jobDescriptions);
-                    @endphp
+                    {{-- Job Description --}}
+                    <div class="space-y-2 mt-1">
+                        <label class="font-medium text-sm text-[#071d49] block">Basic Function / Duties And Responsibilities</label> 
+                        
+                        <textarea wire:model="requisition_job_description" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
 
-                    <div 
-                        x-data="{
-                            jobDescriptions: @entangle('requisition_job_descriptions').live,
-
-                            addDescription() {
-                                this.jobDescriptions.push({ id: Date.now(), value: '' });
-                            },
-
-                            removeDescription(index) {
-                                this.jobDescriptions.splice(index, 1);
-                            }
-                        }"
-                        class="space-y-2 mt-1"
-                    >
-                        <label class="font-medium text-sm text-[#071d49] block">Basic Function / Duties And Responsibilities</label>
-
-                        <template x-for="(desc, index) in jobDescriptions" :key="desc.id">
-                            <div class="flex gap-2 items-center">
-                                <input 
-                                    type="text" 
-                                    :name="`requisition_job_descriptions[${index}][value]`"
-                                    x-model="desc.value"
-                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
-                                    placeholder="e.g. Design, develop, test, and maintain applications"
-                                >
-
-                                <template x-if="jobDescriptions.length > 1">
-                                    <button type="button" @click="removeDescription(index)" class="text-red-600 text-xs hover:underline">
-                                        Remove
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        <div class="flex items-center gap-2 justify-end pt-1">
-                            <button type="button" @click="addDescription"
-                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                                Add More Description
-                            </button>
-                        </div>
+                        @error('requisition_job_description') 
+                            <em class="text-sm text-red-500">{{ $message }}</em> 
+                        @enderror
                     </div>
 
             </div>
             
             {{-- Hiring Specifications --}}
-            <div x-show="selected === 'hiring specifications'" class="flex flex-col ">
+            <div x-show="selected === 'Hiring Specifications'" class="flex flex-col ">
                     <!-- Education Attainment -->
-                    <div 
-                        x-data="{
-                            req_educ: @entangle('requisition_education').live,
-
-                            addEducation() {
-                                if (this.req_educ.length && this.req_educ[this.req_educ.length - 1].value.trim() === '') {
-                                    return;
-                                }
-                                this.req_educ.push({ id: Date.now() + Math.random(), value: '' });
-                            },
-
-                            removeEducation(index) {
-                                this.req_educ.splice(index, 1);
-                            }
-                        }"
-                        x-init="if (!Array.isArray(req_educ) || req_educ.length === 0) {
-                            req_educ = [{ id: Date.now(), value: '' }];
-                        }"
-                        class="space-y-2 mt-1"
-                    >
+                    <div class="space-y-2 mt-1">
                         <label class="font-medium text-sm text-[#071d49] block">Educational Attainment</label>
 
-                        <!-- Loop through each entry -->
-                        <template x-for="(edu, index) in req_educ" :key="edu.id">
-                            <div class="flex gap-2 items-center">
-                                <input 
-                                    type="text" 
-                                    :name="`requisition_education[${index}][value]`"
-                                    x-model="edu.value"
-                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
-                                    placeholder="e.g. BS Computer Science, TESDA NC II Programming"
-                                />
+                        <textarea wire:model="requisition_education_level" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
 
-                                <!-- Remove button -->
-                                <template x-if="req_educ.length > 1">
-                                    <button type="button" @click="removeEducation(index)" 
-                                        class="text-red-600 text-xs hover:underline">
-                                        Remove
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Add Button -->
-                        <div class="flex items-center gap-2 justify-end pt-1">
-                            <button type="button" @click="addEducation"
-                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                                Add More
-                            </button>
-                        </div>
-
-                        @error('requisition_education') 
+                        @error('requisition_education_level') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
                         @enderror
                     </div>
 
+
                     <!-- Work Experience -->
-                    <div 
-                        x-data="{
-                            selected: @entangle('requisition_work_experience').live,
-
-                            addExperience() {
-                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') return;
-                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
-                            },
-
-                            removeExperience(index) {
-                                this.selected.splice(index, 1);
-                            }
-                        }"
-                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
-                            selected = [{ id: Date.now(), value: '' }];
-                        }"
-                        class="space-y-2 mt-1"
-                    >
+                    <div class="space-y-2 mt-6">
                         <label class="font-medium text-sm text-[#071d49] block">Work Experience</label>
                         
-                        <template x-for="(experience, index) in selected" :key="experience.id">
-                            <div class="flex gap-2 items-center">
-                                <input 
-                                    type="text" 
-                                    :name="`requisition_work_experience[${index}][value]`"
-                                    x-model="experience.value"
-                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
-                                    placeholder="e.g. 2–5+ years experience in .NET development"
-                                />
-
-                                <template x-if="selected.length > 1">
-                                    <button type="button" @click="removeExperience(index)" 
-                                        class="text-red-600 text-xs hover:underline">
-                                        Remove
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        <!-- Add Button -->
-                        <div class="flex items-center gap-2 justify-end pt-1">
-                            <button type="button" @click="addExperience"
-                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                                Add Work Experience
-                            </button>
-                        </div>
+                        <textarea wire:model="requisition_work_experience" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
 
                         @error('requisition_work_experience') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
@@ -381,109 +268,25 @@
                     </div>
 
                     <!-- Special Skills -->
-                    <div 
-                        x-data="{
-                            specialSkills: @entangle('requisition_special_skills').live,
-
-                            addSkill() {
-                                if (this.specialSkills.length && this.specialSkills[this.specialSkills.length - 1].value.trim() === '') return;
-                                this.specialSkills.push({ id: Date.now() + Math.random(), value: '' });
-                            },
-
-                            removeSkill(index) {
-                                this.specialSkills.splice(index, 1);
-                            }
-                        }"
-                        x-init="if (!Array.isArray(specialSkills) || specialSkills.length === 0) {
-                            specialSkills = [{ id: Date.now(), value: '' }];
-                        }"
-                        class="space-y-2 mt-1"
-                    >
+                    <div class="space-y-2 mt-6">
                         <label class="font-medium text-sm text-[#071d49] block">Special Skills</label>
 
-                        <template x-for="(skill, index) in specialSkills" :key="skill.id">
-                            <div class="flex gap-2 items-center">
-                                <input 
-                                    type="text" 
-                                    :name="`requisition_special_skills[${index}][value]`"
-                                    x-model="skill.value"
-                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
-                                    placeholder="e.g. REST APIs, Git, Docker"
-                                />
+                        <textarea wire:model="requisition_special_skill" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
 
-                                <template x-if="specialSkills.length > 1">
-                                    <button type="button" @click="removeSkill(index)" class="text-red-600 text-xs hover:underline">
-                                        Remove
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        <div class="flex items-center gap-2 justify-end pt-1">
-                            <button type="button" @click="addSkill"
-                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                                Add Skill
-                            </button>
-                        </div>
-
-                        @error('requisition_special_skills') 
+                        @error('requisition_special_skill') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
                         @enderror
                     </div>
 
                     <!-- Other (Specify) -->
-                    <div 
-                        x-data="{
-                            selected: @entangle('requisition_other_description').live,
-
-                            addOther() {
-                                if (this.selected.length && this.selected[this.selected.length - 1].value.trim() === '') return;
-                                this.selected.push({ id: Date.now() + Math.random(), value: '' });
-                            },
-
-                            removeOther(index) {
-                                this.selected.splice(index, 1);
-                            }
-                        }"
-                        x-init="if (!Array.isArray(selected) || selected.length === 0) {
-                            selected = [{ id: Date.now(), value: '' }];
-                        }"
-                        class="space-y-2 mt-1"
-                    >
+                    <div class="space-y-2 mt-6">
                         <label class="font-medium text-sm text-[#071d49] block">Other (Specify)</label>
 
-                        <template x-for="(other, index) in selected" :key="other.id">
-                            <div class="flex gap-2 items-center">
-                                <input 
-                                    type="text" 
-                                    :name="`requisition_other_description[${index}][value]`"
-                                    x-model="other.value"
-                                    class="w-full bg-gray-100 rounded border border-gray-300 px-2 py-1 text-sm focus:outline-blue-500"
-                                    placeholder="e.g. Experience with Azure or AWS"
-                                />
-
-                                <template x-if="selected.length > 1">
-                                    <button type="button" @click="removeOther(index)" class="text-red-600 text-xs hover:underline">
-                                        Remove
-                                    </button>
-                                </template>
-                            </div>
-                        </template>
-
-                        <div class="flex items-center gap-2 justify-end pt-1">
-                            <button type="button" @click="addOther"
-                                class="text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                    stroke="currentColor" class="w-4 h-4">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                                </svg>
-                                Add Other
-                            </button>
-                        </div>
+                        <textarea wire:model="requisition_other_description" class="w-full bg-gray-100 h-28 rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500 resize-none">
+                        
+                        </textarea>
 
                         @error('requisition_other_description') 
                             <em class="text-sm text-red-500">{{ $message }}</em> 
@@ -609,7 +412,7 @@
             </div>
                 
             {{-- Requested By Field --}}
-            <div x-show="selected === 'requested'" class="grid grid-cols-3 gap-5">
+            <div x-show="selected === 'Requestor Details'" class="grid grid-cols-2 gap-5">
                 <!-- Requestor Name -->
                 <div class="flex flex-col justify-start">
                     <!-- Grouped label block to avoid pushing input down -->
@@ -637,34 +440,10 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end relative">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-
-                    @if ($requisition_requestor_signature ?? false)
-                        <div class="flex items-center h-8 justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
-                            <span class="text-sm text-blue-700 truncate">
-                                {{ basename($requisition_requestor_signature) }}
-                            </span>
-                            
-                            <a href="{{ asset('storage/' . $requisition_requestor_signature) }}"
-                                class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
-                                target="_blank">
-                                View
-                            </a>
-                        </div>
-                    @else
-                        <span class="text-sm text-blue-700 truncate">
-                            <p class="text-sm text-gray-400 italic">No signature uploaded.</p>
-                        </span>
-                    @endif
-                </div>
-
-
             </div>
 
             {{-- Endorsed and Checked --}}
-            <div x-show="selected === 'endorsed'" class="grid grid-cols-3 gap-5">
+            <div x-show="selected === 'HR Details'" class="grid grid-cols-2 gap-5">
                 <!-- Endorser Name -->
                 <div class="flex flex-col justify-start">
                     <label class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Checked and Endorsed By:</label>
@@ -688,46 +467,15 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-start relative">
-                    <label class="text-sm font-medium mb-1 mt-[22px]">Signature</label>
 
-                    <input type="file" name="requisition_endorser_signature"
-                        wire:model="requisition_endorser_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-
-                    @if ($requisition_endorser_signature !== null)
-                        <div class="mt-2 flex items-center justify-between bg-blue-50 border border-blue-200 px-3 py-2 rounded-md shadow-sm">
-                            <span class="text-sm text-blue-700 truncate">
-                                {{ basename($requisition_endorser_signature) }}
-                            </span>
-
-                            <a href="{{ asset('storage/' . $requisition_endorser_signature) }}"
-                                class="text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-md transition"
-                                target="_blank">
-                                View
-                            </a>
-                        </div>
-                    @endif
-
-                    <!-- Uploading Indicator -->
-                    <div wire:loading wire:target="requisition_endorser_signature"
-                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
-                        ⏳ Uploading signature...
-                    </div>
-                </div>
             </div>
 
             {{-- Approved By --}}
-            <div x-show="selected === 'approved'" class="grid grid-cols-3 gap-5">
-                <!-- Approver Name -->
+            <div x-show="selected === 'CFO Information'" class="grid grid-cols-2 gap-5">
+                <!-- CFO Name -->
                 <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
-                    <div class="mb-1">
-                        <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Approved By:</div>
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-
+                    <label class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Approved By:</label>
+                    <label class="text-sm font-medium mt-1 mb-1">Name</label>
                     <input type="text" name="requisition_approver_name" placeholder="e.g. John Doe"
                         wire:model="requisition_approver_name"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
@@ -736,7 +484,7 @@
                     @enderror
                 </div>
 
-                <!-- Position -->
+                <!-- CFO Position -->
                 <div class="flex flex-col justify-end">
                     <label class="font-medium text-sm mb-1">Position</label>
                     <input type="text" name="requisition_approver_position" placeholder="e.g. IST - Department Head"
@@ -747,22 +495,13 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature"
-                        wire:model="requisition_approver_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_approver_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
+            </div>
 
-                {{-- Name --}}
+            <div x-show="selected === 'CEO Information'" class="grid grid-cols-2 gap-5">
+                <!-- CEO Name -->
                 <div class="flex flex-col justify-start">
-                    <div class="mb-1">
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
+                    <label class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Approved By:</label>
+                    <label class="text-sm font-medium mb-1 mt-1">Name</label>
                     <input type="text" name="requisition_approver_name_1" placeholder="e.g. John Doe"
                         wire:model="requisition_approver_name_1"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
@@ -771,24 +510,13 @@
                     @enderror
                 </div>
 
-                <!-- Position -->
-                <div class="flex flex-col justify-end">
+                <!-- CEO Position -->
+                <div class="flex flex-col justify-end mt-[22px]">
                     <label class="font-medium text-sm mb-1">Position</label>
                     <input type="text" name="requisition_approver_position_1" placeholder="e.g. IST - Department Head"
                         wire:model="requisition_approver_position_1"
                         class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
                     @error('requisition_approver_position_1') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature_1"
-                        wire:model="requisition_approver_signature_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_approver_signature_1') 
                         <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
                     @enderror
                 </div>
@@ -823,7 +551,7 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === 'endorsed'">
+            <div class="flex gap-x-5" x-show="selected_tabs[selectedStep] === selected_tabs[selected_tabs.length - 1]">
                 <button type="submit"
                     class="cursor-pointer mt-4 w-full bg-[#071d49] text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49]">
                     Approve

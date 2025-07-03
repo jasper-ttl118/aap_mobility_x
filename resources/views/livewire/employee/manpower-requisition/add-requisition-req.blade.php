@@ -2,7 +2,7 @@
   
     x-data="{ selectedStep: 0, employment_type : '', selected : 'job information', selected_tabs : ['job information', 'hiring specifications']}"
     class="bg-white shadow-lg rounded-lg text-sm">
-    <form wire:submit="add" >
+    <form wire:submit="confirmAdd" >
         @csrf
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
@@ -36,13 +36,13 @@
                     <div class="grid grid-cols-2 gap-5">
                         <div> <!-- enough margin-bottom -->
                             <label class="font-medium text-sm text-[#071d49]">Department</label>
-                            <select name="requisition_department" wire:model="requisition_department"
+                            <select name="department_id" wire:model="department_id"
                                 class="w-full bg-gray-100 h-fit rounded border border-gray-300 px-2 text-sm mt-1 focus:outline-blue-500">
                                 @foreach ($departments as $department)
-                                    <option value="{{ $department->department_name }}">{{ $department->department_name }}</option>
+                                    <option value="{{ $department->department_id }}">{{ $department->department_name }}</option>
                                 @endforeach
                             </select>
-                            @error('requisition_department') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            @error('department_id') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
 
                         <div>
@@ -395,26 +395,6 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end relative">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-
-                    <input type="file" name="requisition_requestor_signature"
-                        wire:model="requisition_requestor_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-
-                    @error('requisition_requestor_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-
-                    <!-- Uploading Indicator -->
-                    <div wire:loading wire:target="requisition_requestor_signature"
-                        class="absolute top-full mt-1 text-blue-600 text-xs animate-pulse">
-                        ⏳ Uploading signature...
-                    </div>
-                </div>
-
-
             </div>
 
             {{-- Endorsed and Checked --}}
@@ -446,16 +426,6 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-                    <input type="file" name="requisition_endorser_signature"
-                        wire:model="requisition_endorser_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_endorser_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
             </div>
 
             {{-- Approved By --}}
@@ -487,17 +457,6 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature"
-                        wire:model="requisition_approver_signature"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_approver_signature') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
                 {{-- Name --}}
                 <div class="flex flex-col justify-start">
                     <div class="mb-1">
@@ -522,16 +481,6 @@
                     @enderror
                 </div>
 
-                <!-- Signature -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Signature</label>
-                    <input type="file" name="requisition_approver_signature_1"
-                        wire:model="requisition_approver_signature_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm p-0.5 focus:outline-blue-500">
-                    @error('requisition_approver_signature_1') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
             </div>
 
             <div class="flex gap-x-5">

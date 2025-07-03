@@ -23,7 +23,7 @@ return new class extends Migration
             $table->text('requisition_job_description'); // Basic Function / Duties and Responsibilities
             $table->string('requisition_eventual_job_position');
             $table->integer('requisition_number_required');
-            $table->string('requisition_contract_duration');
+            $table->string('requisition_contract_duration')->nullable();
             $table->string('requisition_employment_type');
             $table->string('requisition_budget');
             $table->string('requisition_engagement_type');

@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Requisition extends Model
 {
@@ -12,7 +14,7 @@ class Requisition extends Model
     protected $primaryKey = "requisition_id";
     protected $fillable = [
         'requisition_type',
-        'requisition_department',
+        'department_id',
         'requisition_status',
         'requisition_section',
         'requisition_education_level',
@@ -74,4 +76,9 @@ class Requisition extends Model
             'candidate_id'
         );
     }
+
+   public function department(): BelongsTo  
+   {
+       return $this->belongsTo(Department::class, 'department_id', 'department_id');
+   }
 }

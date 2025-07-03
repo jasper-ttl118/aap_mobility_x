@@ -19,7 +19,7 @@ class AddRequisitionReq extends Component
     use WithFileUploads;
     public $requisition_job_position;
     public $requisition_type;
-    public $requisition_department;
+    public $department_id;
     public $requisition_section;
     public $requisition_initial_job_position;
     public $requisition_justification;
@@ -33,14 +33,6 @@ class AddRequisitionReq extends Component
     public $requisition_special_skill;
     public $requisition_other_description;
     public $requisition_applicants_sources;
-    public $requisition_requestor_name;
-    public $requisition_requestor_position;
-    public $requisition_endorser_name;
-    public $requisition_endorser_position;
-    public $requisition_approver_name;
-    public $requisition_approver_position;
-    public $requisition_approver_name_1;
-    public $requisition_approver_position_1;
     public $requisition_date_required = '';
     public $candidates;
     public array $requisition_candidates = [
@@ -72,7 +64,9 @@ class AddRequisitionReq extends Component
     public function mount()
     {
         $this->departments = Department::all();
-        $this->requisition_department = $this->departments[0]->department_name;
+        $employee_id = auth()->user()->employee_id;
+        $employee = Employee::find($employee_id);
+        $this->department_id = $employee->department->department_id;
 
         $this->candidates = Candidate::all()
             ->map(function ($candidate) {
@@ -99,7 +93,7 @@ class AddRequisitionReq extends Component
             'requisition_job_position' => 'required|string',
             'requisition_job_description' => 'required|string',
             'requisition_type' => 'required',
-            'requisition_department' => 'required',
+            'department_id' => 'required',
             'requisition_requestor_name' => 'required|string',
             'requisition_salary_min' => ['required', 'integer', 'min:1'],
             'requisition_salary_max' => ['required', 'integer', 'min:1', function ($attribute, $value, $fail) {
@@ -116,7 +110,7 @@ class AddRequisitionReq extends Component
             'requisition_job_position.required' => 'Job position is required.',
             'requisition_job_description.required' => 'Job description is required.',
             'requisition_type.required' => 'Requisition type is required.',
-            'requisition_department.required' => 'Department is required.',
+            'department_id.required' => 'Department is required.',
             'requisition_requestor_name.required' => 'Requestor name is required.',
             'requisition_salary_min.required' => 'Minimum salary is required.',
             'requisition_salary_max.required' => 'Maximum salary is required.',
@@ -125,10 +119,20 @@ class AddRequisitionReq extends Component
         ];
     }
 
+    public function confirmAdd()
+    {
+        $this->dispatch('swal:confirm', [
+            'title' => 'Confirm Request',
+            'text' => 'Are you sure you want to create this requisition?',
+            'icon' => 'question',
+            'confirmButtonText' => 'Confirm'
+        ]);
+    }
     public function add()
     {
+        // dd("test");
         $this->requisition_eventual_job_position = $this->requisition_initial_job_position;
-
+        // dd($this->department_id);
         $requisition = Requisition::create([
             'requisition_type' => $this->requisition_type,
             'requisition_job_description' => $this->requisition_job_description,
@@ -136,7 +140,7 @@ class AddRequisitionReq extends Component
             'requisition_work_experience' => $this->requisition_work_experience,
             'requisition_special_skill' => $this->requisition_special_skill,
             'requisition_other' => $this->requisition_other_description,
-            'requisition_department' => $this->requisition_department,
+            'department_id' => $this->department_id,
             'requisition_status' => 1, 
             'requisition_section' => $this->requisition_section,
             'requisition_initial_job_position' => $this->requisition_initial_job_position,
@@ -157,18 +161,18 @@ class AddRequisitionReq extends Component
             ->all();
 
         $requisition->candidates()->attach($candidateIds);
-
+        
         if ($requisition) {
-            $this->dispatch('swal:confirm', [
-                'title' => 'Confirm Request',
-                'text' => 'Are you sure you want to create this requisition?',
-                'icon' => 'question',
-                'confirmButtonText' => 'Confirm'
+            $this->dispatch('swal:result', [
+                'title' => 'Success',
+                'text' => 'Requisition created successfully',
+                'icon' => 'success',
             ]);
         } else {
-            $this->dispatch('show-toast', [
+            $this->dispatch('swal:result', [
                 'title' => 'Error',
-                'content' => 'An error occurred!',
+                'text' => 'Error',
+                'icon' => 'Warning',
             ]);
         }
     }

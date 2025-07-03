@@ -10,6 +10,9 @@ class RequisitionTable extends Component
 {
     use WithPagination;
     protected $listeners = ['refreshTable'];
+    public $requisition_filter;
+    public $status_class;
+    public $status_text;
     
     public function refreshTable($status)
     {
@@ -22,24 +25,47 @@ class RequisitionTable extends Component
         }
     }
 
-  public function render()
+    public function mount()
     {
-        $pendingRequisitions = Requisition::where('requisition_status', 1)
-            ->latest()
-            ->paginate(5, ['*'], 'pendingPage');
+        $this->requisition_filter = 1;
+        $this->status_class = "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-gray-700 dark:text-gray-300";
+        $this->status_text = "Pending";
+    }
+    public function changeRequisitionFilter()
+    {
+        $this->resetPage('pendingPage');
+        switch ($this->requisition_filter){
+            case 1:
+                $this->status_class = "bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-gray-700 dark:text-gray-300";
+                $this->status_text = "Pending";
+                break;
+            case 2:
+                $this->status_class ='text-indigo-800 bg-indigo-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_text = 'Dept. Head Approved';
+                break;
+            case 3:
+                $this->status_class ='bg-[#9333EA] text-[#F3E8FF] text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_text = 'HR Approved';
+                break;
+            case 4:
+                $this->status_class ='text-yellow-700 bg-yellow-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_text = 'CFO Approved';
+                break;
+            case 5:
+                $this->status_class = 'bg-green-600 text-white text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_text = 'CEO Approved';
+                break;
+        }
+    }
 
-        $approvedRequisitions = Requisition::where('requisition_status', 3)
-            ->latest()
-            ->paginate(5, ['*'], 'approvedPage');
+    public function render()
+    {
+            $requisitions = Requisition::where('requisition_status', $this->requisition_filter)
+                ->latest()
+                ->paginate(5, ['*'], 'pendingPage');
 
-        $waitingRequisitions = Requisition::where('requisition_status', 2)
-            ->latest()
-            ->paginate(5, ['*'], 'waitingApproval');
-
-        return view('livewire.employee.manpower-requisition.requisition-table', [
-            'pendingRequisitions' => $pendingRequisitions,
-            'approvedRequisitions' => $approvedRequisitions,
-            'waitingRequisitions' => $waitingRequisitions,
-        ]);
+            return view('livewire.employee.manpower-requisition.requisition-table', [
+                'requisitions' => $requisitions
+            ]);
     }
 }

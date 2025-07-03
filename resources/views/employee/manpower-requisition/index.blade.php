@@ -1,7 +1,7 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
     {{-- @include('layouts.navbar') --}}
 
-    <div x-data="{ selected : 'pending', open_add : false, open_delete : false, open_view : false, open_edit : false,
+    <div x-data="{ open_add : false, open_delete : false, open_view : false, open_edit : false,
                   open_view : false
         }" 
         class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
@@ -55,12 +55,12 @@
                 {{-- Temporary restriction of access. Change this so it will fetch the allowed roles from database --}}
                 @php
                     $role = auth()->user()->roles;
-                    $allowedRoles = ['CEO', 'COO', 'CFO', 'Super Admin'];
+                    $allowedRoles = ['Department Head', 'HR Manager', 'CEO', 'COO', 'CFO', 'Super Admin'];
                 @endphp
 
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex justify-start lg:justify-end px-7 pt-6 gap-x-5">
-                    @if ($role[0]->role_name === 'Super Admin' || $role[0]->role_name === 'HR Manager')
+                    {{-- @if ($role[0]->role_name === 'Super Admin' || $role[0]->role_name === 'HR Manager')
                         <div class="flex items-center gap-4">
                             <a href="{{ route('pending-list') }}" 
                             class="{{ request() -> routeIs('requisition') ? 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white' :'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium'  }} flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
@@ -71,7 +71,7 @@
                                 Check Requisition Requests
                             </a>
                         </div>
-                    @endif                   
+                    @endif                    --}}
 
                     @if (in_array($role[0]->role_name,$allowedRoles))
                         <div class="flex items-center gap-4">
@@ -97,39 +97,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
-
-            <div class="flex items-center justify-between px-7 py-6">
-                <div>
-                    <h2 class="font-semibold text-lg text-blue-900">Manage Requisition Requests</h2>
-                    <p class="text-gray-900 text-sm">Create, update, and delete requisition request details.</p>
-                </div>
-                    <div class="flex items-center gap-4">
-                         {{-- Toggle  --}}
-                        <div class="flex border border-[#151847] rounded-md overflow-hidden h-[30px]">
-                            <!-- Pending -->
-                            <a @click="selected='pending'"
-                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
-                            :class="selected === 'pending' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
-                                To Be Reviewed
-                            </a>
-
-                            <!-- Waiting Approval -->
-                            <a @click="selected='waiting'"
-                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
-                            :class="selected === 'waiting' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
-                                Waiting Approval
-                            </a>
-
-                            <!-- Approved -->
-                            <a @click="selected='approved'"
-                            class="w-[150px] text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
-                            :class="selected === 'approved' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
-                                Approved
-                            </a>
-                        </div>
-
-                    </div>
             </div>
 
             {{-- List of Requisition Tickets --}}
