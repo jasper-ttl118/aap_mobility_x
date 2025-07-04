@@ -203,7 +203,7 @@
                                         <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->employee_personal_email ?? 'n/a'}}</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
-                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal No. 1</label>
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal Number</label>
                                         <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_contact_no1 ?? 'n/a'}}</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">

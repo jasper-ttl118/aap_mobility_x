@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Livewire\User\UserEdit;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,11 +16,16 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function edit(Request $request)
     {
-        return view('profile.edit_profile', [
-            'user' => $request->user(),
-        ]);
+        $user = $request->user();
+        return view('profile.edit_profile', compact('user'));
+    }
+
+    public function view($user_id)
+    {
+        $employee = User::find($user_id);
+        return view('profile.view_profile', compact('employee'));
     }
 
     

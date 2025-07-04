@@ -9,8 +9,8 @@
         </div> --}}
         
         <!-- Options Container -->
-        <div class="flex md:justify-center w-full">
-            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 bg-white border-gray-100 shadow-md w-[440px] md:w-[80%] lg:w-full">
+        <div class="flex justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 bg-white border-gray-100 shadow-md w-[90%] lg:w-full">
                 <div class="flex min-w-[680px] lg:min-w-0">
                     <x-crm.submodules selected='Dashboard'/>
                     {{-- <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
@@ -43,8 +43,8 @@
             <a href="{{ route('customer.index') }}" class="hover:underline font-semibold">Dashboard</a>
         </div>
         {{-- body --}}
-        <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full md:w-full h-[1210px] lg:h-[400px] gap-5 lg:-mt-10 md:items-center">
-            <div class="flex flex-col lg:flex-row justify-evenly h-[1200px] lg:h-full w-[440px] md:w-[80%] md:ml-0 lg:w-full gap-5 lg:ml-0 ml-5">
+        <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full md:w-full h-[1210px] lg:h-[400px] justify-center items-center gap-5 lg:-mt-10 md:items-center">
+            <div class="flex flex-col lg:flex-row justify-evenly items-center h-[1200px] lg:h-full w-[90%] md:w-[80%] md:ml-0 lg:w-full gap-5 lg:ml-0">
                 <div class="flex flex-col justify-evenly lg:justify-between w-full lg:w-[70%] h-[1000px] lg:h-full gap-3">
                     {{-- Sales Div --}}
                     <div class="flex flex-col lg:flex-row lg:w-full h-[50%] lg:h-[25%] gap-2 justify-center items-start">
@@ -184,9 +184,9 @@
                 </div>
             </div>
         </div>
-        <div class="flex flex-col ml-5 lg:ml-0 lg:flex-row w-[440px] lg:w-full h-[600px] lg:h-[300px] gap-5 mt-3 lg:-mt-2 md:w-full md:items-center md:ml-0">
+        <div class="flex flex-col lg:flex-row w-full h-[600px] lg:h-[300px] items-center gap-5 mt-3 lg:-mt-2 md:items-center md:ml-0">
             {{-- CALENDAR --}}
-            <div class="flex pt-2 bg-white shadow-lg h-full md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar mx-auto">
+            <div class="flex pt-2 bg-white shadow-lg h-full w-[90%] md:w-[80%] lg:w-[50%] rounded-lg shadow-xs justify-center overflow-y-auto hide-scrollbar mx-auto">
                 <div x-data="calendar()" x-init="init()" class="w-[90%] flex flex-col items-center justify-between">
                     <div class="flex flex-row items-center w-full">
                         <div class="flex justify-start w-[50%] items-center h-full gap-x-2">
@@ -327,7 +327,7 @@
 
 
             {{-- REVENUE --}}
-            <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-full lg:w-[50%] md:w-[80%] rounded-lg shadow-xs justify-center items-center gap-3">
+            <div x-data="{activeChart: 'chart1'}" class="flex flex-col bg-white shadow-lg h-full w-[90%] lg:w-[50%] md:w-[80%] rounded-lg shadow-xs justify-center items-center gap-3">
                 <div class="flex flex-row h-[10%] w-[90%] items-center gap-2">
                     <div class="flex flex-row w-[50%] h-full justify-start items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">

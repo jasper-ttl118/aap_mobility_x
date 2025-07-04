@@ -28,9 +28,10 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
         // route for profile
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile/{user_id}', [ProfileController::class, 'view'])->name('profile.view');
     
         //route for permission
         Route::resource('permission', PermissionController::class);

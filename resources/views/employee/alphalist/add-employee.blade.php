@@ -37,18 +37,20 @@
                 <h2 class="text-2xl font-medium text-[#151847]">ADD NEW EMPLOYEE</h2>
                 <h5 class="text-lg font-medium text-[#151847]">Personal Details</h5>
             </header>
-            <main class="space-y-6 w-full">
+            <main class="space-y-6 w-full h-full">
                 <section class="space-y-1.5">
                     <form action="{{ route('employees.alphalist.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div x-data="{step: 1}" class="p-10 bg-white rounded-xl space-y-8 @lg/main:space-y-14 shadow-lg">
+                        <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
                             <!-- Step Indicator -->
                             <ul class="steps steps-vertical lg:steps-horizontal w-full">
                                 <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 1 }">Basic Info's</li>
-                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 2 }">Education and Job Info's</li>
-                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 3 }">Other Info's</li>
-                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 4 }">Emergency Contacts</li>
-                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 5 }">Username & Password</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 2 }">Contact Info's</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 3 }">Education and Job Info's</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 4 }">Government ID's</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 5 }">Dependents</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 6 }">Emergency Contacts</li>
+                                <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 7 }">Username & Password</li>
                             </ul>
 
                             <!-- Step Forms -->
@@ -68,15 +70,6 @@
                                             class="group/image  relative size-[200px] m-auto cursor-pointer *:transition-colors">
                                             <img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 107 107' fill='none'><path d='M88.75 89.25H89.25V88.75V82.875C89.25 79.7557 87.6871 77.0261 85.2382 74.7091C82.7917 72.3943 79.4274 70.4566 75.7249 68.9015C68.3218 65.7922 59.4436 64.1625 53.5 64.1625C47.5564 64.1625 38.6782 65.7922 31.2751 68.9015C27.5726 70.4566 24.2083 72.3943 21.7618 74.7091C19.3129 77.0261 17.75 79.7557 17.75 82.875V88.75V89.25H18.25H88.75ZM1.125 94.625V12.375C1.125 6.18701 6.13152 1.125 12.375 1.125H94.625C100.811 1.125 105.875 6.18864 105.875 12.375V94.625C105.875 100.811 100.811 105.875 94.625 105.875H12.375C6.13152 105.875 1.125 100.813 1.125 94.625ZM53.5 54C63.5286 54 71.625 45.9036 71.625 35.875C71.625 25.8464 63.5286 17.75 53.5 17.75C43.4714 17.75 35.375 25.8464 35.375 35.875C35.375 45.9036 43.4714 54 53.5 54Z' fill='%23CBD5E1' stroke='%239CA3AF'/></svg>"
                                                 alt="profile image" name="profile_image" class="size-full outline outline-2 outline-blue-100 rounded-xl">
-                                            {{-- <button type="file" accept=".jpg,.jpeg,.png"
-                                                class="absolute -right-1.5 -bottom-1.5 size-[24px] grid place-items-center rounded-full outline outline-2 outline-blue-100 bg-blue-600 group-hover/image:bg-blue-700 group-active/image:bg-blue-900">
-                                                <svg class="size-[45%]" viewBox="0 0 13 13" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path
-                                                        d="M0.236328 9.90787V12.4842H2.81266L10.4111 4.88573L7.8348 2.30939L0.236328 9.90787ZM12.4035 2.89336C12.6714 2.62542 12.6714 2.1926 12.4035 1.92466L10.7959 0.317028C10.5279 0.0490889 10.0951 0.0490889 9.82717 0.317028L8.56992 1.57428L11.1463 4.15062L12.4035 2.89336V2.89336Z"
-                                                        fill="white" />
-                                                </svg>
-                                            </button> --}}
                                             <div class="relative right-1">
                                                 <input type="file" id="file1" accept=".jpg,.jpeg,.png" class="hidden">
                                                 <label for="file1" class="cursor-pointer absolute -right-1.5 -bottom-1.5 size-[24px] grid place-items-center rounded-full outline outline-2 outline-blue-100 bg-blue-600 group-hover/image:bg-blue-700 group-active/image:bg-blue-900">
@@ -88,28 +81,34 @@
                                         </div>
                                     </div>
                                     {{-- Basic Information --}}
-                                    <div
-                                        class="w-[80%] flex flex-col justify-between gap-6">
+                                    <div class="w-[80%] flex flex-col justify-between">
+                                        {{-- First Row --}}
                                         <div class="flex flex-row w-full gap-x-5">
-                                            <div class="space-y-1 flex flex-col w-[50%]">
+                                            <div class="space-y-1 flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue @lg/main:block" for="lastName">Last Name</label>
                                                 <input class="profile_edit_input" type="text" name="employee_surname"
-                                                    placeholder="Enter your last name" required>
+                                                placeholder="Enter your last name" required>
                                             </div>
-                                            <div class="space-y-1 flex flex-col w-[50%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="last">Employee ID</label>
-                                                <input class="profile_edit_input" type="number" name="employee_id"
-                                                    placeholder="123123" required>
-                                            </div>
-                                        </div>
-                                        <div class="flex flex-row w-full gap-x-5">
-                                            <div class="space-y-1 flex flex-col w-[50%]">
+                                            <div class="space-y-1 flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue @lg/main:block" for="firstName">First Name</label>
                                                 <input class="profile_edit_input" type="text" name="employee_firstname"
                                                     placeholder="Enter your first name" required>
                                             </div>
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
+                                                <input class="profile_edit_input" type="text" name="employee_middlename"
+                                                    placeholder="Enter your middle name" required>
+                                            </div>
+                                        </div>
+                                        {{-- Second Row --}}
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block" for="last">Employee ID</label>
+                                                <input class="profile_edit_input" type="number" name="employee_id"
+                                                    placeholder="123123" required>
+                                            </div>
                                             
-                                            <div class="space-y-1 flex flex-col w-[50%]">
+                                            <div class="space-y-1 flex flex-col w-[33%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block " for="suffix">Suffix </label>
                                                     <label for="suffix" class="@lg/main:block hidden text-gray-400"> (n/a if not applicable) </label>
@@ -125,107 +124,130 @@
                                                     <option value="option6">N/A</option>
                                                 </select>
                                             </div>
-                                            
-                                        </div>
-                                        <div class="flex flex-row w-full gap-x-5">
-                                            <div class="space-y-1 flex flex-col w-[50%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
-                                                <input class="profile_edit_input" type="text" name="employee_middlename"
-                                                    placeholder="Enter your middle name" required>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[50%]">
-                                                <div class="flex flex-row w-full gap-x-2">
-                                                    <label class="hidden text-aapblue @lg/main:block " for="maidenName">Maiden Name </label>
-                                                    <label for="maidenName" class="@lg/main:block hidden text-gray-400"> (n/a if youre a man) </label>
-                                                </div>
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block " for="maidenName">Mother's Maiden Name </label>
                                                 <input class="profile_edit_input" type="text" name="employee_maiden_name"
                                                     placeholder="Enter your maiden name" required>
                                             </div>
-                                            
+                                        </div>
+                                        {{-- Third Row --}}
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block" for="gender">Gender</label>
+                                                <select class="profile_edit_input" type="text" name="employee_gender" required>
+                                                    <option value="" disabled selected class="text-gray-400 italic">Select your Gender</option>
+                                                    <option value="option1">Male</option>
+                                                    <option value="option2">Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
+                                                <input class="profile_edit_input" type="date" name="employee_birthdate"
+                                                    placeholder="Enter your birthdate" required>
+                                            </div>
+                                            <div class="space-y-1 flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
+                                                <input class="profile_edit_input" type="text" name="employee_birthplace"
+                                                    placeholder="Enter your birthplace" required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="w-full flex flex-row gap-x-8">
-                                    <div class="flex flex-col w-[40%] gap-y-5">
-                                        <div class="space-y-1 flex flex-col w-full">
-                                            <label class="hidden text-aapblue @lg/main:block" for="gender">Gender</label>
-                                            <select class="profile_edit_input" type="text" name="employee_gender" required>
-                                                <option value="" disabled selected class="text-gray-400 italic">Select your Gender</option>
-                                                <option value="option1">Male</option>
-                                                <option value="option2">Female</option>
-                                            </select>
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-full">
-                                            <label class="hidden text-aapblue @lg/main:block" for="age">Age</label>
-                                            <input class="profile_edit_input" type="number" name="employee_age"
-                                                placeholder="Enter your Age" required>
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-full">
-                                            <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
-                                            <input class="profile_edit_input" type="date" name="employee_birthdate"
-                                                placeholder="Enter your birthdate" required>
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-full">
-                                            <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
-                                            <select class="profile_edit_input hide-scrollbar" type="text" name="employee_birthplace" required>
-                                                <option value="" disabled selected class="text-gray-400 italic">Select your Birthplace</option>
-                                                <option value="option1">Alaminos (Pangasinan)</option>
-                                                <option value="option2">Angeles City (Pampanga)</option>
-                                                <option value="option3">Antipolo (Rizal)</option>
-                                                <option value="option4">Bacolod (Negros Occidental)</option>
-                                                <option value="option5">Bacoor (Cavite)</option>
-                                                <option value="option6">Bago (Negros Occidental)</option>
-                                                <option value="option7">Baguio (Benguet)</option>
-                                                <option value="option8">Bais (Negros Oriental)</option>
-                                                <option value="option9">Balanga (Bataan)</option>
-                                                <option value="option10">Baliwag (Bulacan)</option>
-                                                <option value="option11">Batac City (Ilocos Norte)</option>
-                                                <option value="option12">Batangas City (Batangas)</option>
-                                                <option value="option13">Bayawan (Negros Oriental)</option>
-                                                <option value="option14">Baybay (Leyte)</option>
-                                                <option value="option16">Bayugan (Agusan Del Sur)</option>
-                                                <option value="option17">Biñan (Laguna)</option>
-                                                <option value="option18">Bislig (Surigao Del Sur)</option>
-                                                <option value="option19">Bogo (Cebu)</option>
-                                            </select>
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-full">
+                                <div class="w-full flex flex-col gap-y-6">
+                                    <div class="flex flex-row w-full gap-x-5">
+                                        <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="religion">Religion</label>
                                             <select class="profile_edit_input hide-scrollbar" type="text" name="employee_religion" required>
                                                 <option value="" disabled selected class="text-gray-400 italic">Select your Religion</option>
                                                 <option value="option1">Catholic</option>
-                                                <option value="option2">Christianity</option>
+                                                <option value="option2">Christian</option>
                                                 <option value="option2">Iglesia ni Cristo</option>
                                                 <option value="option2">Seventh Day Adventist Church</option>
                                                 <option value="option2">Islam</option>
                                             </select>
                                         </div>
-                                    </div>
-                                    <div class="flex flex-col w-[60%] gap-y-3">
-                                        {{-- Address and Email --}}
-                                        <div class="space-y-1 flex flex-col w-full">
-                                            <div class="flex flex-row w-full gap-x-2">
-                                                <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Employee's Email</label>
-                                                <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400">(Active Address)</label>
+                                        
+                                        <div class="flex flex-row w-[33%] gap-x-5">
+                                            <div class="flex flex-col space-y-1 w-full">
+                                                <label class="hidden text-aapblue @lg/main:block " for="civilStatus">Civil Status</label>
+                                                <select class="profile_edit_input" type="text" name="employee_civil_status" required>
+                                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
+                                                    <option value="option1">Single</option>
+                                                    <option value="option2">Married</option>
+                                                    <option value="option2">Widowed</option>
+                                                    <option value="option2">Annuled</option>
+                                                </select>
                                             </div>
-                                            <input class="profile_edit_input w-full" type="email" name="employee_personal_email"
-                                                placeholder="e.g., john.doe@example.com" required>
                                         </div>
-                                        <div class="space-y-1 flex flex-col w-full">
+                                        <div class="space-y-1 flex flex-col w-[33%]">
+                                            <div class="flex flex-row w-full gap-x-2">
+                                                <label class="hidden text-aapblue @lg/main:block " for="middle">Blood Type </label>
+                                            </div>
+                                            <select class="profile_edit_input" type="text" name="employee_blood_type" id="bloodType" required>
+                                                <option value="" disabled selected class="text-gray-400 italic">Select options</option>
+                                                <option value="a-positive">A+</option>
+                                                <option value="a-negative">A-</option>
+                                                <option value="b-positive">B+</option>
+                                                <option value="b-negative">B-</option>
+                                                <option value="ab-positive">AB+</option>
+                                                <option value="ab-negative">AB-</option>
+                                                <option value="o-positive">O+</option>
+                                                <option value="o-negative">O-</option>
+                                                <option value="rare">Rare Blood Types</option>
+                                                <option value="rare">Unknown</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-row w-full gap-x-5">
+                                        {{-- Address --}}
+                                        
+                                        <div class="space-y-1 flex flex-col w-[50%]">
                                             <div class="flex flex-row w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Complete Home Address </label>
                                                 <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400"> (Present) </label>
                                             </div>
-                                            <textarea class="profile_edit_input w-full resize-none" name="employee_present_address" cols="20" rows="5"
-                                                placeholder="Type your full address" required></textarea>
+                                            <div class="flex flex-col w-full gap-y-8">
+                                                <div class="flex flex-row w-full gap-x-5">
+                                                    <input class="profile_edit_input w-[24%]" type="text" name="present_house_no"
+                                                        placeholder="House No." required>
+                                                    <input class="profile_edit_input w-[38%]" type="text" name="present_street"
+                                                        placeholder="Street" required>
+                                                    <input class="profile_edit_input w-[38%]" type="text" name="present_brgy"
+                                                        placeholder="Barangay" required>
+                                                </div>
+                                                <div class="flex flex-row w-full gap-x-5">
+                                                    <input class="profile_edit_input" type="text" name="present_city"
+                                                        placeholder="City/Municipality" required>
+                                                    <input class="profile_edit_input" type="text" name="present_province"
+                                                        placeholder="Province" required>
+                                                    <input class="profile_edit_input" type="text" name="present_zip_code"
+                                                        placeholder="Zip Code" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="space-y-1 flex flex-col w-full">
+                                        <div class="space-y-1 flex flex-col w-[50%]">
                                             <div class="flex flex-row w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block " for="homeAddressPermanent">Complete Home Address </label>
                                                 <label for="homeAddressPermanent" class="@lg/main:block hidden text-gray-400"> (Permanent) </label>
                                             </div>
-                                            <textarea class="profile_edit_input w-full resize-none" name="employee_permanent_address" cols="20" rows="5"
-                                                placeholder="Type your full address" required></textarea>
+                                            <div class="flex flex-col w-full gap-y-8">
+                                                <div class="flex flex-row w-full gap-x-5">
+                                                    <input class="profile_edit_input w-[24%]" type="text" name="permanent_house_no"
+                                                        placeholder="House No." required>
+                                                    <input class="profile_edit_input w-[38%]" type="text" name="permanent_street"
+                                                        placeholder="Street" required>
+                                                    <input class="profile_edit_input w-[38%]" type="text" name="permanent_brgy"
+                                                        placeholder="Barangay" required>
+                                                </div>
+                                                <div class="flex flex-row w-full gap-x-5">
+                                                    <input class="profile_edit_input" type="text" name="permanent_city"
+                                                        placeholder="City/Municipality" required>
+                                                    <input class="profile_edit_input" type="text" name="permanent_province"
+                                                        placeholder="Province" required>
+                                                    <input class="profile_edit_input" type="text" name="permanent_zip_code"
+                                                        placeholder="Zip Code" required>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -236,25 +258,30 @@
                                 </div>
                             </div>
 
+                            {{-- Educ and Job Info's --}}
                             <div x-show="step === 2">
                                 <div class="w-full flex flex-col gap-y-7 ">
                                     <div class="w-full flex flex-col justify-start items-start">
-                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 2: Employee's Education and Job Information</h2>
-                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
+                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 2: Employee's Contact Information</h2>
+                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your Personal Email, Contact Number, etc.</em></p>
                                     </div>
                                     <div class="flex flex-row w-full justify-center items-center">
                                         <div class="flex flex-col w-full gap-y-2">
-                                            <div class="w-full flex flex-col justify-start items-start">
-                                                <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Employee's Contact Number</h6>
-                                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your current phone and viber number.</em></p>
-                                            </div>
                                             <div class="flex flex-row gap-x-5">
-                                                <div class="flex flex-col space-y-1 w-[33%]">
-                                                    <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Phone Number #1 </label>
+                                                <div class="space-y-1 flex flex-col w-[25%]">
+                                                    <div class="flex flex-row w-full gap-x-2">
+                                                        <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Personal Email</label>
+                                                        <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400">(Active)</label>
+                                                    </div>
+                                                    <input class="profile_edit_input w-full" type="email" name="employee_personal_email"
+                                                        placeholder="e.g., john.doe@example.com" required>
+                                                </div>
+                                                <div class="flex flex-col space-y-1 w-[25%]">
+                                                    <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Personal Number </label>
                                                     <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no1"
                                                          placeholder="e.g., +63 912 345 6789" required>
                                                 </div>
-                                                <div class="flex flex-col space-y-1 w-[33%]">
+                                                <div class="flex flex-col space-y-1 w-[25%]">
                                                     <div class="flex flex-row w-full gap-x-2">
                                                         <label class="hidden text-aapblue @lg/main:block " for="phoneNumber2">Phone Number #2 </label>
                                                         <label for="phoneNumber2" class="@lg/main:block hidden text-gray-400"> (Optional) </label>
@@ -262,13 +289,27 @@
                                                     <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no2"
                                                         placeholder="e.g., +63 912 345 6789">
                                                 </div>
-                                                <div class="flex flex-col space-y-1 w-[33%]">
+                                                <div class="flex flex-col space-y-1 w-[25%]">
                                                     <label class="hidden text-aapblue @lg/main:block " for="viberName">Viber Number</label>
                                                     <input class="profile_edit_input w-full flex" type="number" name="employee_viber_number"
                                                         placeholder="e.g., +63 912 345 6789" required>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="flex justify-end gap-x-2 items-end">
+                                        <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
+                                        <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Educ and Job Info's --}}
+                            <div x-show="step === 3">
+                                <div class="w-full flex flex-col gap-y-7 ">
+                                    <div class="w-full flex flex-col justify-start items-start">
+                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 3: Employee's Education and Job Information</h2>
+                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
                                     </div>
                                     <div class="flex flex-row w-full gap-x-5">
                                         <div class="flex flex-col w-[50%] gap-y-3">
@@ -373,26 +414,51 @@
                                 </div>
                             </div>
 
-                            <div x-show="step === 3">
+                            {{-- Government ID's --}}
+                            <div x-show="step === 4">
+                                <div class="w-full flex flex-col gap-y-7 ">
+                                    <div class="w-full flex flex-col justify-start items-start">
+                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 4: Employee's Government ID's</h2>
+                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter active government IDs (e.g., SSS, PhilHealth, Pag-IBIG, TIN) with correct and complete details.</em></p>
+                                    </div>
+                                    <div class="w-full flex flex-row justify-between gap-x-5">
+                                        <div class="space-y-1 flex flex-col w-[25%]">
+                                            <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
+                                            <input class="profile_edit_input" type="number" name="employee_sss_number" 
+                                                placeholder="SSS Number" required>
+                                        </div>
+                                        <div class="space-y-1 flex flex-col w-[25%]">
+                                            <label class="hidden text-aapblue @lg/main:block" for="philHealthNumber">PhilHealth Number</label>
+                                            <input class="profile_edit_input" type="number" name="employee_philhealth_number" 
+                                                placeholder="PhilHealth Number" required>
+                                        </div>
+                                        <div class="space-y-1 flex flex-col w-[25%]">
+                                            <label class="hidden text-aapblue @lg/main:block" for="pagibigNumber">Pag-Ibig Number</label>
+                                            <input class="profile_edit_input" type="number" name="employee_pagibig_number"
+                                                placeholder="Pag-Ibig Number" required>
+                                        </div>
+                                        <div class="space-y-1 flex flex-col w-[25%]">
+                                            <label class="hidden text-aapblue @lg/main:block" for="tinNumber">Tax Identification Number</label>
+                                            <input class="profile_edit_input" type="number" name="employee_tin_number"
+                                                placeholder="TIN Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-end gap-x-2 items-end">
+                                        <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
+                                        <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Dependents --}}
+                            <div x-show="step === 5">
                                 <div class="w-full flex flex-col gap-y-7">
                                     <div class="w-full flex flex-col justify-start items-start">
-                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 3: Employee's Other Information</h2>
+                                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 5: Employee's Other Information</h2>
                                         <p class="text-sm text-gray-600 leading-tight"><em>Enter your Civil Status, SSS, PhilHealth, Pag-Ibig, TIN, upload Cerfiticates etc.</em></p>
                                     </div>
                                     <div class="flex flex-row w-full gap-x-5 justify-center items-center">
                                         <div class="flex flex-col w-[50%] gap-y-3">
-                                            <div class="flex flex-row w-full gap-x-5">
-                                                <div class="flex flex-col space-y-1 w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block " for="civilStatus">Civil Status</label>
-                                                    <select class="profile_edit_input" type="text" name="employee_civil_status" required>
-                                                        <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                        <option value="option1">Single</option>
-                                                        <option value="option2">Married</option>
-                                                        <option value="option2">Widowed</option>
-                                                        <option value="option2">Annuled</option>
-                                                    </select>
-                                                </div>
-                                            </div>
                                             <div class="flex flex-col space-y-1 w-full">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
@@ -407,6 +473,13 @@
                                                 </div>
                                                 <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="parents_birth_certificate_path[]" multiple required>
                                             </div>
+                                            <div class="flex flex-col space-y-1 w-full">
+                                                <div class="flex flex-col w-full gap-x-2">
+                                                    <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
+                                                    <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
+                                                </div>
+                                                <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" multiple required>
+                                            </div>
                                         </div>
                                         <div class="flex flex-col w-[50%]">
                                             <div class="flex flex-col space-y-1 w-full">
@@ -414,7 +487,7 @@
                                                     <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
                                                     <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(Have you updated your government details in regard to your name and/or marital status?)</label>
                                                 </div>
-                                                <table class="w-[80%] mx-auto text-aapblue">
+                                                <table class="w-[80%] h-[200px] mx-auto text-aapblue">
                                                     <thead>
                                                         <tr>
                                                             <th class="text-left p-2"></th>
@@ -444,40 +517,6 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-col w-full gap-y-3">
-                                        <div class="flex flex-col space-y-1 w-[49%]">
-                                            <div class="flex flex-col w-full gap-x-2">
-                                                <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
-                                                <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
-                                            </div>
-                                            <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" multiple required>
-                                        </div>
-                                        <div
-                                            class="w-full flex flex-col justify-between gap-y-3">
-                                            <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
-                                                    <input class="profile_edit_input" type="number" name="employee_sss_number" 
-                                                        placeholder="SSS Number" required>
-                                                </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="philHealthNumber">PhilHealth Number</label>
-                                                    <input class="profile_edit_input" type="number" name="employee_philhealth_number" 
-                                                        placeholder="PhilHealth Number" required>
-                                                </div>
-                                            </div>
-                                            <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="pagibigNumber">Pag-Ibig Number</label>
-                                                    <input class="profile_edit_input" type="number" name="employee_pagibig_number"
-                                                        placeholder="Pag-Ibig Number" required>
-                                                </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="tinNumber">Tax Identification Number (TIN)</label>
-                                                    <input class="profile_edit_input" type="number" name="employee_tin_number"
-                                                        placeholder="TIN Number" required>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="flex flex-row w-full justify-center items-center gap-x-5">
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <div class="flex flex-col w-full gap-x-2">
@@ -500,39 +539,21 @@
                                                 <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                             </div>
                                             <div class="flex flex-row w-full justify-center items-center gap-x-5">
-                                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                                <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Child #1 </label>
                                                     <div class="flex flex-row w-full gap-x-5">
                                                         <div class="space-y-1 flex flex-col w-[50%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
                                                             <input type="text" name="employee_children_1_details[0][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
                                                         </div>
-                                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                                        {{-- <div class="space-y-1 flex flex-col w-[33%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
                                                             <input type="text" name="employee_children_1_age[0][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                        <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                                                        <input class="profile_edit_input" type="date" id="childBirthdate" name="employee_children_1_birthdate[0][birthdate] id="middle" placeholder="e.g., 01/05/2002" required>
-                                                    </div>
-                                                </div>
-
-                                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="middle">Child #2 (Optional)</label>
-                                                    <div class="flex flex-row w-full gap-x-5">
+                                                        </div> --}}
                                                         <div class="space-y-1 flex flex-col w-[50%]">
-                                                            <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
-                                                            <input type="text" name="employee_children_2_details[1][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex">
+                                                            <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
+                                                            <input class="profile_edit_input" type="date" id="childBirthdate" name="employee_children_1_birthdate[0][birthdate] id="middle" placeholder="e.g., 01/05/2002" required>
                                                         </div>
-                                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                                            <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                                                            <input type="text" name="employee_children_2_age[1][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex">
-                                                        </div>
-                                                    </div>
-                                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                        <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                                                        <input class="profile_edit_input" type="date" id="childBirthdate" name="employee_children_2_birthdate[1][birthdate] id="middle" placeholder="e.g., 01/05/2002">
                                                     </div>
                                                 </div>
                                             </div>
@@ -546,72 +567,54 @@
                                                 + Add Another Child
                                             </button>
                                         </div>
-                                        <div class="flex flex-row w-full justify-center items-center gap-x-5">
-                                            <div class="flex flex-col space-y-1 w-[50%]">
+                                        <div class="flex flex-row w-full justify-start items-center gap-x-5">
+                                            <div class="flex flex-col space-y-1 w-[49%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block " for="employeeDependents">Employee Dependents</label>
                                                     <label for="middle" class="@lg/main:block hidden text-gray-400">(Attached parent's Birth certificate)</label>
                                                 </div>
                                                 <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" accept=".pdf,.jpg,.jpeg,.png" name="parents_birth_certificate_dependents_path[]" multiple required>
                                             </div>
-                                            <div class="space-y-1 flex flex-col w-[50%]">
-                                                <div class="flex flex-row w-full gap-x-2">
-                                                    <label class="hidden text-aapblue @lg/main:block " for="middle">Blood Type </label>
-                                                </div>
-                                                <select class="profile_edit_input" type="text" name="employee_blood_type" id="bloodType" required>
-                                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                    <option value="a-positive">A+</option>
-                                                    <option value="a-negative">A-</option>
-                                                    <option value="b-positive">B+</option>
-                                                    <option value="b-negative">B-</option>
-                                                    <option value="ab-positive">AB+</option>
-                                                    <option value="ab-negative">AB-</option>
-                                                    <option value="o-positive">O+</option>
-                                                    <option value="o-negative">O-</option>
-                                                    <option value="rare">Rare Blood Types</option>
-                                                    <option value="rare">Unknown</option>
-                                                </select>
-                                            </div>
                                         </div>
-                                        <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
+                                        <div class="w-full flex flex-col justify-between space-y-1">
                                             <div class="flex flex-col w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block " for="middle">For employees Parents</label>
                                                 <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                             </div>
-                                            <div class="flex flex-row justify-center items-center gap-x-5">
-                                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                            <div class="flex flex-col justify-center items-center gap-x-5 gap-y-5">
+                                                <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Father's Info </label>
                                                     <div class="flex flex-row w-full gap-x-5">
                                                         <div class="space-y-1 flex flex-col w-[50%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="father">Full Name </label>
                                                             <input type="text" name="employee_parents_1_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
                                                         </div>
-                                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                                        {{-- <div class="space-y-1 flex flex-col w-[50%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="fatherAge">Age</label>
                                                             <input type="text" name="employee_parents_1_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" required>
+                                                        </div> --}}
+                                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                                            <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
+                                                            <input class="profile_edit_input" type="date" name="employee_parents_1_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
                                                         </div>
-                                                    </div>
-                                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                        <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
-                                                        <input class="profile_edit_input" type="date" name="employee_parents_1_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
                                                     </div>
                                                 </div>
             
-                                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                                <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Mother's Info </label>
                                                     <div class="flex flex-row w-full gap-x-5">
                                                         <div class="space-y-1 flex flex-col w-[50%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="motherName">Full Name </label>
                                                             <input type="text" name="employee_parents_2_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
                                                         </div>
-                                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                                        {{-- <div class="space-y-1 flex flex-col w-[50%]">
                                                             <label class="hidden text-aapblue @lg/main:block" for="motherAge">Age</label>
                                                             <input type="text" name="employee_parents_2_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" required>
+                                                        </div> --}}
+                                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                                            <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
+                                                            <input class="profile_edit_input" type="date" name="employee_parents_2_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
                                                         </div>
-                                                    </div>
-                                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                        <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
-                                                        <input class="profile_edit_input" type="date" name="employee_parents_2_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -624,59 +627,46 @@
                                 </div>
                             </div>
 
-                            <div x-show="step === 4" class="flex flex-col gap-y-5">
+                            {{-- Emergency Contacts --}}
+                            <div x-show="step === 6" class="flex flex-col gap-y-5">
                                 <div class="w-full flex flex-col justify-start items-start h-auto">
-                                    <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 4: Employee's Emergency Contacts</h2>
+                                    <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 6: Employee's Emergency Contacts</h2>
                                     <p class="text-sm text-gray-600 leading-tight"><em>Emergency Contact that we can call imediately when you have an emergency.</em></p>
                                 </div>
-                                <div class="flex flex-col @lg/main:w-full justify-center">
-                                    <div id="children-container" class="w-full flex flex-row justify-between gap-6">
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                <div id="contact-container" class="flex flex-col @lg/main:w-full justify-center">
+                                    <div class="w-full flex flex-row justify-between gap-6">
+                                        <div class="contact-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #1</label>
                                             <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
-                                                    <input type="text" name="emergency_contact_1_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                                    <input type="text" name="emergency_contact_1_name[0][name]" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
                                                 </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
-                                                    <input type="text" name="emergency_contact_1_relationship" placeholder="e.g., Mother" class="profile_edit_input w-full flex" required>
+                                                    <input type="text" name="emergency_contact_1_relationship[0][relationship]" placeholder="e.g., Brother" class="profile_edit_input w-full flex" required>
                                                 </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
-                                                <input class="profile_edit_input" type="number" name="emergency_contact_1_number" id="contactNumber" placeholder="e.g., 09123456789" required>
+                                                <div class="space-y-1 flex flex-col w-[33%]">
+                                                    <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
+                                                    <input class="profile_edit_input" type="number" name="emergency_contact_1_number[0][number]" id="contactNumber" placeholder="e.g., 09123456789" required>
+                                                </div>
                                             </div>
                                             <div class="space-y-1 flex flex-col w-full">
                                                 <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
-                                                <textarea class="profile_edit_input w-full resize-none" name="emergency_contact_1_address" id="contactAddress" cols="20" rows="3" 
-                                                            placeholder="Contact's full address"></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
-                                            <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #2</label>
-                                            <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
-                                                    <input type="text" name="emergency_contact_2_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex">
-                                                </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
-                                                    <input type="text" name="emergency_contact_2_relationship" placeholder="e.g., Mother" class="profile_edit_input w-full flex">
-                                                </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
-                                                <input class="profile_edit_input" type="number" name="emergency_contact_2_number" id="contactNumber" placeholder="e.g., 09123456789">
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-full">
-                                                <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
-                                                <textarea class="profile_edit_input w-full resize-none" name="emergency_contact_2_address" id="contactAddress" cols="20" rows="3" 
+                                                <textarea class="profile_edit_input w-full resize-none" name="emergency_contact_1_address[0][address]" id="contactAddress" cols="20" rows="3" 
                                                             placeholder="Contact's full address"></textarea>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="flex w-full justify-end items-center -mt-5">
+                                    <button
+                                        onclick="addContactFields()"
+                                        type="button"
+                                        class="mt-4 bg-blue-600 text-white px-4 flex w-[25%] items-center justify-center py-2 rounded hover:bg-blue-700"
+                                        >
+                                        + Add Contact Person
+                                    </button>
                                 </div>
                                 <div class="flex justify-end gap-x-2 items-end">
                                     <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
@@ -684,8 +674,9 @@
                                 </div>
                             </div>
 
-                            <div x-show="step === 5" class="gap-y-2 flex flex-col">
-                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 5: Username & Password</h2>
+                            {{-- Username and Password --}}
+                            <div x-show="step === 7" class="gap-y-2 flex flex-col">
+                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 7: Username & Password</h2>
                                 <div class="p-5 border rounded-xl space-y-8 @lg/main:space-y-14 border-blue-400 ">
                                     <div
                                         class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
@@ -750,15 +741,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col justify-end items-end gap-y-2">
-                                    <div class="flex flex-row gap-x-2">
-                                        <button class="btn text-[#071d49] border-gray-300  px-5 py-2 rounded-lg ring-0 ring-gray-300 hover:bg-gray-200 hover:ring-2 active:bg-gray-300 bg-gray-300">Cancel</button>
-                                        <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                                    </div>
-                                    
+                                <div class="flex flex-row justify-end items-end gap-x-2">
+                                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
                                     <button type="submit"
                                         class="btn text-[#071d49] border-yellow-300 flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
-                                        <p>Save</p>
+                                        <p>Submit</p>
                                         <svg class="size-4" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 256 512">
                                             <path
@@ -776,8 +763,56 @@
     
 
     <script>
-        let childIndex = 2; // Start from 2 since we already have 0 and 1
+        let childIndex = 1; // Start from 2 since we already have 0 and 1
+        let contactIndex = 1;
 
+        function addContactFields() {
+            const container = document.getElementById('contact-container');
+            // Check if we need to create a new row
+            let currentRow = container.querySelector('.child-row:last-child'); // Fixed: use .child-row
+
+            // If no row exists or current row already has 1 child, create a new row
+            if (!currentRow || currentRow.children.length >= 1) {
+                currentRow = document.createElement('div');
+                currentRow.className = 'child-row flex flex-row w-full justify-between items-start'; // Fixed: use child-row
+                container.appendChild(currentRow);
+            }
+
+            const div = document.createElement('div');
+            div.className = 'contact-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6 mt-4';
+            div.innerHTML = `
+                <div class="flex justify-between items-center">
+                    <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #${contactIndex + 1}</label>
+                    <button type="button" onclick="deleteContactField(this)" class="text-red-500 hover:text-red-700 font-bold text-sm">Delete</button>
+                </div>
+                
+                <div class="flex flex-col w-full gap-x-5 gap-y-6">
+                    <div class="flex flex-row w-full gap-x-5">
+                        <div class="space-y-1 flex flex-col w-[33%]">
+                            <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
+                            <input type="text" name="emergency_contact_1_name[${contactIndex}][name]" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                        </div>
+                        <div class="space-y-1 flex flex-col w-[33%]">
+                            <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
+                            <input type="text" name="emergency_contact_1_relationship[${contactIndex}][relationship]" placeholder="e.g., Brother" class="profile_edit_input w-full flex" required>
+                        </div>
+                        <div class="space-y-1 flex flex-col w-[33%]">
+                            <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
+                            <input class="profile_edit_input" type="number" name="emergency_contact_1_number[${contactIndex}][number]" id="contactNumber" placeholder="e.g., 09123456789" required>
+                        </div>
+                    </div>
+                    <div class="space-y-1 flex flex-col w-full">
+                        <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
+                        <textarea class="profile_edit_input w-full resize-none" name="emergency_contact_1_address[${contactIndex}][address]" id="contactAddress" cols="20" rows="3" 
+                                    placeholder="Contact's full address"></textarea>
+                    </div>
+                </div>
+            `;
+
+            currentRow.appendChild(div);
+            contactIndex++;
+        }
+        
         function addChildFields() {
             const container = document.getElementById('children-container');
             
@@ -785,14 +820,14 @@
             let currentRow = container.querySelector('.child-row:last-child');
             
             // If no row exists or current row already has 2 children, create a new row
-            if (!currentRow || currentRow.children.length >= 2) {
+            if (!currentRow || currentRow.children.length >= 1) {
                 currentRow = document.createElement('div');
                 currentRow.className = 'child-row flex flex-row w-full justify-between items-start gap-x-5 mb-5';
                 container.appendChild(currentRow);
             }
 
             const div = document.createElement('div');
-            div.className = 'child-input flex flex-col w-[49%] gap-4 border border-blue-400 rounded-lg p-6';
+            div.className = 'child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6 mt-4';
             div.innerHTML = `
                 <div class="flex justify-between items-center">
                     <label class="hidden text-aapblue @lg/main:block" for="middle">Child #${childIndex + 1}</label>
@@ -805,13 +840,9 @@
                         <input type="text" name="children[${childIndex}][name]" id="childFullName_${childIndex}" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex">
                     </div>
                     <div class="space-y-1 flex flex-col w-[50%]">
-                        <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                        <input type="text" name="children[${childIndex}][age]" id="childAge_${childIndex}" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex">
+                        <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
+                        <input class="profile_edit_input" type="date" name="children[${childIndex}][birthdate]" id="childBirthdate_${childIndex}" placeholder="e.g., 01/05/2002">
                     </div>
-                </div>
-                <div class="space-y-1 flex flex-col w-[48.5%]">
-                    <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                    <input class="profile_edit_input" type="date" name="children[${childIndex}][birthdate]" id="childBirthdate_${childIndex}" placeholder="e.g., 01/05/2002">
                 </div>
             `;
 
@@ -835,10 +866,26 @@
             renumberChildren();
         }
 
+        function deleteContactField(button) {
+            const contactInput = button.closest('.contact-input');
+            const row = contactInput.closest('.child-row'); // Fixed: use .child-row not .contact-row
+            
+            // Remove the contact input
+            contactInput.remove();
+            
+            // If the row is now empty, remove it
+            if (row && row.children.length === 0) {
+                row.remove();
+            }
+            
+            // Renumber all contacts to maintain proper sequence
+            renumberContact();
+        }
+
         function renumberChildren() {
             // Only renumber the dynamically added children (not the original 0 and 1)
             const dynamicChildInputs = document.querySelectorAll('.child-row .child-input');
-            let currentIndex = 2; // Start from 2 since you already have 0 and 1
+            let currentIndex = 1; // Start from 2 since you already have 0 and 1
             
             dynamicChildInputs.forEach((input) => {
                 // Update the label
@@ -846,7 +893,7 @@
                 if (label) {
                     label.textContent = `Child #${currentIndex + 1}`;
                 }
-                
+
                 // Update input names and IDs
                 const nameInput = input.querySelector('input[name*="[name]"]');
                 const ageInput = input.querySelector('input[name*="[age]"]');
@@ -871,5 +918,48 @@
             // Update the global childIndex to the next available index
             childIndex = currentIndex;
         }
+
+        function renumberContact() {
+            // Get all dynamically added contact inputs
+            const dynamicContactInputs = document.querySelectorAll('.contact-input');
+            let currentIndex = 0; // Start from 0 to maintain sequence
+            
+            dynamicContactInputs.forEach((input) => {
+                // Update the label
+                const label = input.querySelector('.flex.justify-between label');
+                if (label) {
+                    label.textContent = `Contact Person #${currentIndex + 1}`;
+                }
+
+                // Update input names - fix the naming pattern to match your HTML
+                const nameInput = input.querySelector('input[name*="[name]"]');
+                const relationshipInput = input.querySelector('input[name*="[relationship]"]');
+                const numberInput = input.querySelector('input[name*="[number]"]');
+                const addressInput = input.querySelector('textarea[name*="[address]"]'); // Note: textarea, not input
+                
+                if (nameInput) {
+                    nameInput.name = `emergency_contact_1_name[${currentIndex}][name]`;
+                    nameInput.id = `contactFullName_${currentIndex}`;
+                }
+                if (relationshipInput) {
+                    relationshipInput.name = `emergency_contact_1_relationship[${currentIndex}][relationship]`;
+                    relationshipInput.id = `contactRelationship_${currentIndex}`;
+                }
+                if (numberInput) {
+                    numberInput.name = `emergency_contact_1_number[${currentIndex}][number]`;
+                    numberInput.id = `contactNumber_${currentIndex}`;
+                }
+                if (addressInput) {
+                    addressInput.name = `emergency_contact_1_address[${currentIndex}][address]`;
+                    addressInput.id = `contactAddress_${currentIndex}`;
+                }
+                
+                currentIndex++;
+            });
+            
+            // Update the global contactIndex to the next available index
+            contactIndex = currentIndex;
+        }
+
     </script> 
 </x-app-layout>

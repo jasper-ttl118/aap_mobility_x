@@ -1,28 +1,31 @@
 <x-app-layout class='flex flex-row min-h-screen' navbar_selected='CRM' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]">
     @php
         $navbar_selected = 'None';
+    //    dd($employee->employee->employee_lastname);
     @endphp
     @include('layouts.navbar')
     <div class="@container/main flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
-            <h2 class="text-2xl font-medium text-[#151847]">Profile Information</h2>
+            <h2 class="text-2xl font-medium text-[#151847]">User Profile Information</h2>
             <h4 class="text-lg font-light text-[#151847]">View and edit your personal details, username, and password</h4>
         </header>
         <hr>
         <main class="space-y-6">
             <section class="space-y-1.5">
                 <div class="flex flex-row justify-between items-center w-full">
-                    <h5 class="text-lg font-medium text-[#071d49]">Personal Details</h5>
-                    <a href="#" class="text-[#071d49] text-lg font-medium hover:text-blue-900 hover:underline pr-1">Edit Profile</a>
+                    <h5 class="text-lg font-medium text-[#071d49]">View User Details</h5>
+                    <a href="{{ route('profile.edit') }}" class="text-[#071d49] text-lg font-medium hover:text-blue-900 hover:underline pr-1">Edit Profile</a>
                 </div>
-                <div x-data="{step: 1}" class="p-10 bg-white rounded-xl space-y-8 @lg/main:space-y-14 shadow-lg">
+                <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
                     <!-- Step Indicator -->
                     <ul class="steps steps-vertical lg:steps-horizontal w-full">
                         <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 1 }">Basic Info's</li>
-                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 2 }">Education and Job Info's</li>
-                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 3 }">Other Info's</li>
-                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 4 }">Emergency Contacts</li>
-                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 5 }">Username & Password</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 2 }">Contact Info's</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 3 }">Education and Job Info's</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 4 }">Government ID's</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 5 }">Dependents</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 6 }">Emergency Contacts</li>
+                        <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 7 }">Username & Password</li>
                     </ul>
 
                     <!-- Step Forms -->
@@ -41,157 +44,188 @@
                                 <div
                                     class="group/image  relative size-[200px] m-auto cursor-pointer *:transition-colors">
                                     <img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 107 107' fill='none'><path d='M88.75 89.25H89.25V88.75V82.875C89.25 79.7557 87.6871 77.0261 85.2382 74.7091C82.7917 72.3943 79.4274 70.4566 75.7249 68.9015C68.3218 65.7922 59.4436 64.1625 53.5 64.1625C47.5564 64.1625 38.6782 65.7922 31.2751 68.9015C27.5726 70.4566 24.2083 72.3943 21.7618 74.7091C19.3129 77.0261 17.75 79.7557 17.75 82.875V88.75V89.25H18.25H88.75ZM1.125 94.625V12.375C1.125 6.18701 6.13152 1.125 12.375 1.125H94.625C100.811 1.125 105.875 6.18864 105.875 12.375V94.625C105.875 100.811 100.811 105.875 94.625 105.875H12.375C6.13152 105.875 1.125 100.813 1.125 94.625ZM53.5 54C63.5286 54 71.625 45.9036 71.625 35.875C71.625 25.8464 63.5286 17.75 53.5 17.75C43.4714 17.75 35.375 25.8464 35.375 35.875C35.375 45.9036 43.4714 54 53.5 54Z' fill='%23CBD5E1' stroke='%239CA3AF'/></svg>"
-                                        alt="profile image" class="size-full outline outline-2 outline-blue-100 rounded-xl">
-                                    <div
-                                        class="absolute -right-1.5 -bottom-1.5 size-[24px] grid place-items-center rounded-full outline outline-2 outline-blue-100 bg-blue-600 group-hover/image:bg-blue-700 group-active/image:bg-blue-900">
-                                        <svg class="size-[45%]" viewBox="0 0 13 13" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M0.236328 9.90787V12.4842H2.81266L10.4111 4.88573L7.8348 2.30939L0.236328 9.90787ZM12.4035 2.89336C12.6714 2.62542 12.6714 2.1926 12.4035 1.92466L10.7959 0.317028C10.5279 0.0490889 10.0951 0.0490889 9.82717 0.317028L8.56992 1.57428L11.1463 4.15062L12.4035 2.89336V2.89336Z"
-                                                fill="white" />
-                                        </svg>
+                                        alt="profile image" name="profile_image" class="size-full outline outline-2 outline-blue-100 rounded-xl">
+                                    <div class="relative right-1">
+                                        <input type="file" id="file1" accept=".jpg,.jpeg,.png" class="hidden">
+                                        <label for="file1" class="cursor-pointer absolute -right-1.5 -bottom-1.5 size-[24px] grid place-items-center rounded-full outline outline-2 outline-blue-100 bg-blue-600 group-hover/image:bg-blue-700 group-active/image:bg-blue-900">
+                                            <svg class="size-[45%]" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M0.236328 9.90787V12.4842H2.81266L10.4111 4.88573L7.8348 2.30939L0.236328 9.90787ZM12.4035 2.89336C12.6714 2.62542 12.6714 2.1926 12.4035 1.92466L10.7959 0.317028C10.5279 0.0490889 10.0951 0.0490889 9.82717 0.317028L8.56992 1.57428L11.1463 4.15062L12.4035 2.89336V2.89336Z" fill="white" />
+                                            </svg>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
                             {{-- Basic Information --}}
-                            <div
-                                class="w-[80%] flex flex-col justify-between gap-6">
+                            <div class="w-[80%] flex flex-col justify-between">
+                                {{-- First Row --}}
                                 <div class="flex flex-row w-full gap-x-5">
-                                    <div class="space-y-1 flex flex-col w-[50%]">
+                                    <div class="space-y-1 flex flex-col w-[33%]">
                                         <label class="hidden text-aapblue @lg/main:block" for="lastName">Last Name</label>
-                                        <input class="profile_edit_input" type="text" name="lastName" id="lastName" value="{{ $user->employee->employee_lastname ?? 'n/a'}}"
-                                            placeholder="Enter your last name" required>
+                                        <input class="profile_edit_input" type="text" name="employee_lastname" value="{{ $employee->employee->employee_lastname ?? 'N/A'}}"
+                                        placeholder="Enter your last name" disabled>
                                     </div>
-                                    <div class="space-y-1 flex flex-col w-[50%]">
-                                        <label class="hidden text-aapblue @lg/main:block" for="last">Employee ID</label>
-                                        <input class="profile_edit_input" type="number" name="employeeID" value="{{ $user->employee->employee_id ?? 'n/a'}}"
-                                            placeholder="123123" required>
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="firstName">First Name</label>
+                                        <input class="profile_edit_input" type="text" name="employee_firstname" value="{{ $employee->employee->employee_firstname ?? 'N/A'}}"
+                                            placeholder="Enter your first name" disabled>
+                                    </div>
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
+                                        <input class="profile_edit_input" type="text" name="employee_middlename" value="{{ $employee->employee->employee_middlename ?? 'N/A'}}"
+                                            placeholder="Enter your middle name" disabled>
                                     </div>
                                 </div>
+                                {{-- Second Row --}}
                                 <div class="flex flex-row w-full gap-x-5">
-                                    <div class="space-y-1 flex flex-col w-[50%]">
-                                        <label class="hidden text-aapblue @lg/main:block" for="firstName">First Name</label>
-                                        <input class="profile_edit_input" type="text" name="firstName" id="firstName" value="{{ $user->employee->employee_firstname ?? 'n/a'}}"
-                                            placeholder="Enter your first name" required>
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="last">Employee ID</label>
+                                        <input class="profile_edit_input" type="text" name="employee_id" value="{{ $employee->employee->employee_id ?? 'N/A'}}"
+                                            placeholder="123123" disabled>
                                     </div>
                                     
-                                    <div class="space-y-1 flex flex-col w-[50%]">
+                                    <div class="space-y-1 flex flex-col w-[33%]">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="suffix">Suffix </label>
                                             <label for="suffix" class="@lg/main:block hidden text-gray-400"> (n/a if not applicable) </label>
                                         </div>
-                                        <select class="profile_edit_input" type="text" name="suffix" id="suffix" value="{{ $user->employee->employee_suffix ?? 'n/a'}}" required>
-                                            <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                            <option value="option1">Jr. (Junior)</option>
-                                            <option value="option2">Sr. (Senior)</option>
-                                            <option value="option3">II. (The Second)</option>
-                                            <option value="option4">III. (The Third)</option>
-                                            <option value="option5">IV. (The Fourth)</option>
-                                            <option value="option6">V. (The Fifth)</option>
-                                            <option value="option6">N/A</option>
-                                        </select>
+                                        <input class="profile_edit_input" type="text" name="employee_suffix" value="{{ $employee->employee->employee_suffix ?? 'N/A'}}"
+                                            placeholder="e.g Jr." disabled>
                                     </div>
-                                    
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block " for="maidenName">Mother's Maiden Name </label>
+                                        <input class="profile_edit_input" type="text" name="employee_maiden_name" value="{{ $employee->employee->employee_maiden_name ?? 'N/A'}}"
+                                            placeholder="Enter your maiden name" disabled>
+                                    </div>
                                 </div>
+                                {{-- Third Row --}}
                                 <div class="flex flex-row w-full gap-x-5">
-                                    <div class="space-y-1 flex flex-col w-[50%]">
-                                        <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
-                                        <input class="profile_edit_input" type="text" name="middleName" id="middleName" value="{{ $user->employee->employee_middlename ?? 'n/a'}}"
-                                            placeholder="Enter your middle name" required>
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="gender">Gender</label>
+                                        <input class="profile_edit_input" type="text" name="employee_suffix" value="{{ $employee->employee->employee_gender ?? 'N/A'}}"
+                                            placeholder="e.g Male" disabled>
                                     </div>
-                                    <div class="space-y-1 flex flex-col w-[50%]">
-                                        <div class="flex flex-row w-full gap-x-2">
-                                            <label class="hidden text-aapblue @lg/main:block " for="maidenName">Maiden Name </label>
-                                            <label for="maidenName" class="@lg/main:block hidden text-gray-400"> (n/a if youre a man) </label>
-                                        </div>
-                                        <input class="profile_edit_input" type="text" name="maidenName" id="maidenName" value="{{ $user->employee->employee_maiden_name ?? 'n/a'}}"
-                                            placeholder="Enter your maiden name" required>
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
+                                        <input class="profile_edit_input" type="text" name="employee_birthdate" value="{{ \Carbon\Carbon::parse($employee->employee->employee_birthdate)->format('m-d-Y') ?? 'n/a'}}"
+                                            placeholder="Enter your birthdate" disabled>
                                     </div>
-                                    
+                                    <div class="space-y-1 flex flex-col w-[33%]">
+                                        <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
+                                        <input class="profile_edit_input" type="text" name="employee_birthplace" value="{{ $employee->employee->employee_birthplace ?? 'N/A'}}"
+                                            placeholder="Enter your birthplace" disabled>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-row gap-x-8">
-                            <div class="flex flex-col w-[40%] gap-y-5">
-                                <div class="space-y-1 flex flex-col w-full">
-                                    <label class="hidden text-aapblue @lg/main:block" for="gender">Gender</label>
-                                    <select class="profile_edit_input" type="text" name="gender" id="gender" value="{{ $user->employee->employee_gender ?? 'n/a'}}" required>
-                                        <option value="" disabled selected class="text-gray-400 italic">Select your Gender</option>
-                                        <option value="option1">Male</option>
-                                        <option value="option2">Female</option>
-                                    </select>
-                                </div>
-                                <div class="space-y-1 flex flex-col w-full">
-                                    <label class="hidden text-aapblue @lg/main:block" for="age">Age</label>
-                                    <input class="profile_edit_input" type="number" name="age" id="age" value="{{ $user->employee->employee_age ?? 'n/a'}}"
-                                        placeholder="Enter your Age" required>
-                                </div>
-                                <div class="space-y-1 flex flex-col w-full">
-                                    <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
-                                    <input class="profile_edit_input" type="date" name="birthdate" id="birthdate" value="{{ $user->employee->employee_birthdate ?? 'n/a'}}"
-                                        placeholder="Enter your birthdate" required>
-                                </div>
-                                <div class="space-y-1 flex flex-col w-full">
-                                    <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
-                                    <select class="profile_edit_input hide-scrollbar" type="text" name="birthplace" id="birthplace" value="{{ $user->employee->employee_birthplace ?? 'n/a'}}" required>
-                                        <option value="" disabled selected class="text-gray-400 italic">Select your Birthplace</option>
-                                        <option value="option1">Alaminos (Pangasinan)</option>
-                                        <option value="option2">Angeles City (Pampanga)</option>
-                                        <option value="option3">Antipolo (Rizal)</option>
-                                        <option value="option4">Bacolod (Negros Occidental)</option>
-                                        <option value="option5">Bacoor (Cavite)</option>
-                                        <option value="option6">Bago (Negros Occidental)</option>
-                                        <option value="option7">Baguio (Benguet)</option>
-                                        <option value="option8">Bais (Negros Oriental)</option>
-                                        <option value="option9">Balanga (Bataan)</option>
-                                        <option value="option10">Baliwag (Bulacan)</option>
-                                        <option value="option11">Batac City (Ilocos Norte)</option>
-                                        <option value="option12">Batangas City (Batangas)</option>
-                                        <option value="option13">Bayawan (Negros Oriental)</option>
-                                        <option value="option14">Baybay (Leyte)</option>
-                                        <option value="option16">Bayugan (Agusan Del Sur)</option>
-                                        <option value="option17">Biñan (Laguna)</option>
-                                        <option value="option18">Bislig (Surigao Del Sur)</option>
-                                        <option value="option19">Bogo (Cebu)</option>
-                                    </select>
-                                </div>
-                                <div class="space-y-1 flex flex-col w-full">
+                        <div class="w-full flex flex-col gap-y-6">
+                            <div class="flex flex-row w-full gap-x-5">
+                                <div class="space-y-1 flex flex-col w-[33%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="religion">Religion</label>
-                                    <select class="profile_edit_input hide-scrollbar" type="text" name="religion" id="religion" value="{{ $user->employee->employee_religion ?? 'n/a'}}" required>
-                                        <option value="" disabled selected class="text-gray-400 italic">Select your Religion</option>
-                                        <option value="option1">Catholic</option>
-                                        <option value="option2">Christianity</option>
-                                        <option value="option2">Iglesia ni Cristo</option>
-                                        <option value="option2">Seventh Day Adventist Church</option>
-                                        <option value="option2">Islam</option>
-                                    </select>
+                                    <input class="profile_edit_input" type="text" name="employee_religion" value="{{ $employee->employee->employee_religion ?? 'N/A'}}"
+                                            placeholder="Enter your birthplace" disabled>
+                                </div>
+                                
+                                <div class="flex flex-row w-[33%] gap-x-5">
+                                    <div class="flex flex-col space-y-1 w-full">
+                                        <label class="hidden text-aapblue @lg/main:block " for="civilStatus">Civil Status</label>
+                                        <input class="profile_edit_input" type="text" name="employee_civil_status" value="{{ $employee->employee->employee_civil_status ?? 'N/A'}}"
+                                            placeholder="Enter your birthplace" disabled>
+                                    </div>
+                                </div>
+                                <div class="space-y-1 flex flex-col w-[33%]">
+                                    <div class="flex flex-row w-full gap-x-2">
+                                        <label class="hidden text-aapblue @lg/main:block " for="middle">Blood Type </label>
+                                    </div>
+                                    <input class="profile_edit_input" type="text" name="employee_blood_type" value="{{ $employee->employee->employee_blood_type ?? 'N/A'}}"
+                                            placeholder="Enter your birthplace" disabled>
                                 </div>
                             </div>
-                            <div class="flex flex-col w-[60%] gap-y-3">
-                                {{-- Address and Email --}}
-                                <div class="space-y-1 flex flex-col w-full">
-                                    <div class="flex flex-row w-full gap-x-2">
-                                        <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Employee's Email</label>
-                                        <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400">(Active Address)</label>
-                                    </div>
-                                    <input class="profile_edit_input w-full" type="email" name="email" value="{{ $user->employee->employee_personal_email ?? 'n/a'}}"
-                                        id="email" placeholder="e.g., john.doe@example.com" required>
-                                </div>
-                                <div class="space-y-1 flex flex-col w-full">
+                            <div class="flex flex-row w-full gap-x-5">
+                                {{-- Address --}}
+                                
+                                <div class="space-y-1 flex flex-col w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Complete Home Address </label>
                                         <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400"> (Present) </label>
                                     </div>
-                                    <textarea class="profile_edit_input w-full resize-none" name="homeAddressPresent" id="homeAddressPresent" cols="20" rows="5" value="{{ $user->employee->employee_present_address ?? 'n/a'}}"
-                                        placeholder="Type your full address" required></textarea>
+                                    <div class="flex flex-col w-full gap-y-6">
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="flex flex-col w-[24%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">House No.</label>
+                                                <input class="profile_edit_input " type="text" name="present_house_no" value="{{ $employee->employee->present_house_no ?? 'N/A'}}"
+                                                    placeholder="House No." disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[38%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Street</label>
+                                                <input class="profile_edit_input" type="text" name="present_street" value="{{ $employee->employee->present_street ?? 'N/A'}}"
+                                                    placeholder="Street" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[38%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Barangay</label>
+                                                <input class="profile_edit_input" type="text" name="present_brgy" value="{{ $employee->employee->present_brgy ?? 'N/A'}}"
+                                                    placeholder="Barangay" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">City/Municipality</label>
+                                                <input class="profile_edit_input" type="text" name="present_city" value="{{ $employee->employee->present_city ?? 'N/A'}}"
+                                                    placeholder="City/Municipality" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Province</label>
+                                                <input class="profile_edit_input" type="text" name="present_province" value="{{ $employee->employee->present_province ?? 'N/A'}}"
+                                                    placeholder="Province" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Zip Code</label>
+                                                <input class="profile_edit_input" type="text" name="present_zip_code" value="{{ $employee->employee->present_zip_code ?? 'N/A'}}"
+                                                    placeholder="Zip Code" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="space-y-1 flex flex-col w-full">
+                                <div class="space-y-1 flex flex-col w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="homeAddressPermanent">Complete Home Address </label>
                                         <label for="homeAddressPermanent" class="@lg/main:block hidden text-gray-400"> (Permanent) </label>
                                     </div>
-                                    <textarea class="profile_edit_input w-full resize-none" name="homeAddressPermanent" id="homeAddressPermanent" cols="20" rows="5" value="{{ $user->employee->employee_permanent_address ?? 'n/a'}}"
-                                        placeholder="Type your full address" required></textarea>
+                                    <div class="flex flex-col w-full gap-y-6">
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="flex flex-col w-[24%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">House No.</label>
+                                                <input class="profile_edit_input " type="text" name="permanent_house_no" value="{{ $employee->employee->permanent_house_no ?? 'N/A'}}"
+                                                    placeholder="House No." disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[38%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Street</label>
+                                                <input class="profile_edit_input" type="text" name="permanent_street" value="{{ $employee->employee->permanent_street ?? 'N/A'}}"
+                                                    placeholder="Street" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[38%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Barangay</label>
+                                                <input class="profile_edit_input" type="text" name="permanent_brgy" value="{{ $employee->employee->permanent_brgy ?? 'N/A'}}"
+                                                    placeholder="Barangay" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row w-full gap-x-5">
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">City/Municipality</label>
+                                                <input class="profile_edit_input" type="text" name="permanent_city" value="{{ $employee->employee->permanent_city ?? 'N/A'}}"
+                                                    placeholder="City/Municipality" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Province</label>
+                                                <input class="profile_edit_input" type="text" name="permanent_province" value="{{ $employee->employee->permanent_province ?? 'N/A'}}"
+                                                    placeholder="Province" disabled>
+                                            </div>
+                                            <div class="flex flex-col w-[33%]">
+                                                <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Zip Code</label>
+                                                <input class="profile_edit_input" type="text" name="permanent_zip_code" value="{{ $employee->employee->permanent_zip_code ?? 'N/A'}}"
+                                                    placeholder="Zip Code" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -202,39 +236,58 @@
                         </div>
                     </div>
 
+                    {{-- Educ and Job Info's --}}
                     <div x-show="step === 2">
                         <div class="w-full flex flex-col gap-y-7 ">
                             <div class="w-full flex flex-col justify-start items-start">
-                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 2: Employee's Education and Job Information</h2>
-                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
+                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 2: Employee's Contact Information</h2>
+                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Personal Email, Contact Number, etc.</em></p>
                             </div>
                             <div class="flex flex-row w-full justify-center items-center">
                                 <div class="flex flex-col w-full gap-y-2">
-                                    <div class="w-full flex flex-col justify-start items-start">
-                                        <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Employee's Contact Number</h6>
-                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your current phone and viber number.</em></p>
-                                    </div>
                                     <div class="flex flex-row gap-x-5">
-                                        <div class="flex flex-col space-y-1 w-[33%]">
-                                            <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Phone Number #1 </label>
-                                            <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no1" value="{{ $user->employee->employee_contact_no1 ?? 'n/a'}}"
-                                                id="phoneNumber1" placeholder="e.g., +63 912 345 6789" required>
+                                        <div class="space-y-1 flex flex-col w-[25%]">
+                                            <div class="flex flex-row w-full gap-x-2">
+                                                <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Personal Email</label>
+                                                <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400">(Active)</label>
+                                            </div>
+                                            <input class="profile_edit_input w-full" type="email" name="employee_personal_email" value="{{ $employee->employee->employee_personal_email ?? 'N/A'}}"
+                                                placeholder="e.g., john.doe@example.com" disabled>
                                         </div>
-                                        <div class="flex flex-col space-y-1 w-[33%]">
+                                        <div class="flex flex-col space-y-1 w-[25%]">
+                                            <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Personal Number </label>
+                                            <input class="profile_edit_input w-full flex" type="text" name="employee_contact_no1" value="{{ $employee->employee->employee_contact_no1 ?? 'N/A'}}"
+                                                    placeholder="e.g., +63 912 345 6789" disabled>
+                                        </div>
+                                        <div class="flex flex-col space-y-1 w-[25%]">
                                             <div class="flex flex-row w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block " for="phoneNumber2">Phone Number #2 </label>
                                                 <label for="phoneNumber2" class="@lg/main:block hidden text-gray-400"> (Optional) </label>
                                             </div>
-                                            <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no2" value="{{ $user->employee->employee_contact_no2 ?? 'n/a'}}"
-                                                id="phoneNumber2" placeholder="e.g., +63 912 345 6789">
+                                            <input class="profile_edit_input w-full flex" type="text" name="employee_contact_no2" value="{{ $employee->employee->employee_contact_no2 ?? 'N/A'}}"
+                                                placeholder="e.g., +63 912 345 6789">
                                         </div>
-                                        <div class="flex flex-col space-y-1 w-[33%]">
+                                        <div class="flex flex-col space-y-1 w-[25%]">
                                             <label class="hidden text-aapblue @lg/main:block " for="viberName">Viber Number</label>
-                                            <input class="profile_edit_input w-full flex" type="number" name="employee_viber_number" value="{{ $user->employee->employee_viber_number ?? 'n/a'}}"
-                                                id="viberName" placeholder="e.g., +63 912 345 6789" required>
+                                            <input class="profile_edit_input w-full flex" type="text" name="employee_viber_number" value="{{ $employee->employee->employee_viber_number ?? 'N/A'}}"
+                                                placeholder="e.g., +63 912 345 6789" disabled>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="flex justify-end gap-x-2 items-end">
+                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
+                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Educ and Job Info's --}}
+                    <div x-show="step === 3">
+                        <div class="w-full flex flex-col gap-y-7 ">
+                            <div class="w-full flex flex-col justify-start items-start">
+                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 3: Employee's Education and Job Information</h2>
+                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
                             </div>
                             <div class="flex flex-row w-full gap-x-5">
                                 <div class="flex flex-col w-[50%] gap-y-3">
@@ -245,34 +298,15 @@
                                     <div class="flex flex-row w-full gap-x-5">
                                         <div class="flex flex-col space-y-1 w-[50%]">
                                             <label class="hidden text-aapblue @lg/main:block " for="educationalAttainment">Educational Attainment </label>
-                                            <select class="profile_edit_input" type="text" name="educationalAttainment" id="employee_educational_attainment" value="{{ $user->employee->employee_educational_attainment ?? 'n/a'}}" required>
-                                                <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                <option value="option1">No Grade Completed</option>
-                                                <option value="option2">Early Childhood Education</option>
-                                                <option value="option2">Elementary</option>
-                                                <option value="option2">Junior High School</option>
-                                                <option value="option2">Junior High School Undergraduate</option>
-                                                <option value="option2">Senior High School</option>
-                                                <option value="option2">College</option>
-                                                <option value="option2">College Graduate</option>
-                                                <option value="option2">College Undergraduate</option>
-                                            </select>
+                                            <input class="profile_edit_input w-full flex" type="text" name="employee_educational_attainment" value="{{ $employee->employee->employee_educational_attainment ?? 'N/A'}}"
+                                                placeholder="e.g., College Graduate" disabled>
                                         </div>
                                         <div class="flex flex-col space-y-1 w-[50%]">
                                             <div class="flex flex-row w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block truncate" for="forCollege">For College/Vocational </label>
                                             </div>
-                                            <select class="profile_edit_input" type="text" name="forCollege" id="employee_college_vocational_status" value="{{ $user->employee->employee_college_vocational_status ?? 'n/a'}}" required>
-                                                <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                <option value="option1">No Grade Completed</option>
-                                                <option value="option2">Early Childhood Education</option>
-                                                <option value="option2">Elementary</option>
-                                                <option value="option2">Junior High School</option>
-                                                <option value="option2">Junior High School Undergraduate</option>
-                                                <option value="option2">Senior High School</option>
-                                                <option value="option2">College</option>
-                                                <option value="option2">College Undergraduate</option>
-                                            </select>
+                                            <input class="profile_edit_input w-full flex" type="text" name="employee_college_vacational_status" value="{{ $employee->employee->employee_college_vacational_status ?? 'N/A'}}"
+                                                placeholder="e.g., College Graduate" disabled>
                                         </div>
                                     </div>
                                     <div class="flex flex-col space-y-1">
@@ -280,8 +314,8 @@
                                             <label class="hidden text-aapblue @lg/main:block " for="schoolAttended">School Attended </label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400"> (Base on Educational Attainment) </label>
                                         </div>
-                                        <input class="profile_edit_input w-full flex" type="text" name="schoolattended" value="{{ $user->employee->employee_school_attended ?? 'n/a'}}"
-                                            id="schoolattended" placeholder="e.g., University of Caloocan City" required>
+                                        <input class="profile_edit_input w-full flex" type="text" name="employee_school_attended" value="{{ $employee->employee->employee_school_attended ?? 'N/A'}}"
+                                            placeholder="e.g., University of Caloocan City" disabled>
                                     </div>
                                 </div>
                                 {{-- Company Information --}}
@@ -294,19 +328,15 @@
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <label class="hidden text-aapblue @lg/main:block " for="jobPosition">Job Position Title</label>
-                                                <input class="profile_edit_input w-full flex" type="text" name="jobPosition" value="{{ $user->employee->employee_job_position ?? 'n/a'}}"
-                                                    id="jobPosition" placeholder="e.g., Accountant" required>
+                                                <input class="profile_edit_input w-full flex" type="text" name="employee_job_position" value="{{ $employee->employee->employee_job_position ?? 'N/A'}}"
+                                                    placeholder="e.g., Accountant" disabled>
                                             </div>
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="department">Department</label>
                                                 </div>
-                                                <select class="profile_edit_input" type="text" name="department" id="department" value="{{ $user->employee->employee_department ?? 'n/a'}}" required>
-                                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                    <option value="option1">Regular</option>
-                                                    <option value="option2">Probitionary</option>
-                                                    <option value="option2">Consultant</option>
-                                                </select>
+                                                <input class="profile_edit_input w-full flex" type="text" name="employee_department" value="{{ $employee->employee->employee_department ?? 'N/A'}}"
+                                                placeholder="e.g., College Graduate" disabled>
                                             </div>
                                         </div>
                                         <div class="flex flex-row w-full gap-x-5">
@@ -314,19 +344,15 @@
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block " for="companyEmail">Company Email </label>
                                                 </div>
-                                                <input class="profile_edit_input w-full flex" type="text" name="companyEmail" value="{{ $user->employee->employee_company_email ?? 'n/a'}}"
-                                                    id="companyEmail" placeholder="e.g., aapjohn@gmail.com" required>
+                                                <input class="profile_edit_input w-full flex" type="text" name="employee_company_email" value="{{ $employee->employee->employee_company_email ?? 'N/A'}}"
+                                                    placeholder="e.g., University of Caloocan City" disabled>
                                             </div>
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="typeOfEmployment">Type of Employment</label>
                                                 </div>
-                                                <select class="profile_edit_input" type="text" name="typeOfEmployment" id="typeOfEmployment" value="{{ $user->employee->employee_employment_type ?? 'n/a'}}" required>
-                                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                    <option value="option1">Regular</option>
-                                                    <option value="option2">Probitionary</option>
-                                                    <option value="option2">Consultant</option>
-                                                </select>
+                                                <input class="profile_edit_input w-full flex" type="text" name="employee_employment_type" value="{{ $employee->employee->employee_employment_type ?? 'N/A'}}"
+                                                    placeholder="e.g., University of Caloocan City" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -339,39 +365,71 @@
                         </div>
                     </div>
 
-                    <div x-show="step === 3">
+                    {{-- Government ID's --}}
+                    <div x-show="step === 4">
+                        <div class="w-full flex flex-col gap-y-7 ">
+                            <div class="w-full flex flex-col justify-start items-start">
+                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 4: Employee's Government ID's</h2>
+                                <p class="text-sm text-gray-600 leading-tight"><em>Enter active government IDs (e.g., SSS, PhilHealth, Pag-IBIG, TIN) with correct and complete details.</em></p>
+                            </div>
+                            <div class="w-full flex flex-row justify-between gap-x-5">
+                                <div class="space-y-1 flex flex-col w-[25%]">
+                                    <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
+                                    <input class="profile_edit_input" type="text" name="employee_sss_number" value="{{ $employee->employee->employee_sss_number ?? 'N/A'}}"
+                                        placeholder="SSS Number" disabled>
+                                </div>
+                                <div class="space-y-1 flex flex-col w-[25%]">
+                                    <label class="hidden text-aapblue @lg/main:block" for="philHealthNumber">PhilHealth Number</label>
+                                    <input class="profile_edit_input" type="text" name="employee_philhealth_number" value="{{ $employee->employee->employee_philhealth_number ?? 'N/A'}}"
+                                        placeholder="PhilHealth Number" disabled>
+                                </div>
+                                <div class="space-y-1 flex flex-col w-[25%]">
+                                    <label class="hidden text-aapblue @lg/main:block" for="pagibigNumber">Pag-Ibig Number</label>
+                                    <input class="profile_edit_input" type="text" name="employee_pagibig_number" value="{{ $employee->employee->employee_pagibig_number ?? 'N/A'}}"
+                                        placeholder="Pag-Ibig Number" disabled> 
+                                </div>
+                                <div class="space-y-1 flex flex-col w-[25%]">
+                                    <label class="hidden text-aapblue @lg/main:block" for="tinNumber">Tax Identification Number</label>
+                                    <input class="profile_edit_input" type="text" name="employee_tin_number" value="{{ $employee->employee->employee_tin_number ?? 'N/A'}}"
+                                        placeholder="TIN Number" disabled>
+                                </div>
+                            </div>
+                            <div class="flex justify-end gap-x-2 items-end">
+                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
+                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- Dependents --}}
+                    <div x-show="step === 5">
                         <div class="w-full flex flex-col gap-y-7">
                             <div class="w-full flex flex-col justify-start items-start">
-                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 3: Employee's Other Information</h2>
+                                <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 5: Employee's Other Information</h2>
                                 <p class="text-sm text-gray-600 leading-tight"><em>Enter your Civil Status, SSS, PhilHealth, Pag-Ibig, TIN, upload Cerfiticates etc.</em></p>
                             </div>
                             <div class="flex flex-row w-full gap-x-5 justify-center items-center">
                                 <div class="flex flex-col w-[50%] gap-y-3">
-                                    <div class="flex flex-row w-full gap-x-5">
-                                        <div class="flex flex-col space-y-1 w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block " for="civilStatus">Civil Status</label>
-                                            <select class="profile_edit_input" type="text" name="civilStatus" id="civilStatus" value="{{ $user->employee->employee_civil_status ?? 'n/a'}}" required>
-                                                <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                                <option value="option1">Single</option>
-                                                <option value="option2">Married</option>
-                                                <option value="option2">Widowed</option>
-                                                <option value="option2">Annuled</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     <div class="flex flex-col space-y-1 w-full">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-500"> (Please attach your marriage certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" name="ifMarriedCertificate" value="{{ $user->employee->marriage_certificate_path ?? 'n/a'}}" required>
+                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="marriage_certificate_path" disabled value="{{ $employee->employee->marriage_certificate_path ?? 'N/A'}}">
                                     </div>
                                     <div class="flex flex-col space-y-1 w-full">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block truncate" for="ifSingleCertificate">If single </label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Please attach your parents birth certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" name="ifSingleCertificate[]" value="{{ $user->employee->parents_birth_certificate_path ?? 'n/a'}}" multiple required>
+                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="parents_birth_certificate_path[]" multiple disabled value="{{ $employee->employee->parents_birth_certificate_path ?? 'N/A'}}">
+                                    </div>
+                                    <div class="flex flex-col space-y-1 w-full">
+                                        <div class="flex flex-col w-full gap-x-2">
+                                            <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
+                                            <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
+                                        </div>
+                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" multiple disabled value="{{ $employee->employee->pagibig_mdf_path ?? 'N/A'}}">
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-[50%]">
@@ -380,7 +438,7 @@
                                             <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
                                             <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(Have you updated your government details in regard to your name and/or marital status?)</label>
                                         </div>
-                                        <table class="w-[80%] mx-auto text-aapblue">
+                                        <table class="w-[80%] h-[200px] mx-auto text-aapblue">
                                             <thead>
                                                 <tr>
                                                     <th class="text-left p-2"></th>
@@ -391,18 +449,18 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="p-2">SSS</td>
-                                                    <td class="text-center"><input type="radio" name="sss" value="yes" value="{{ $user->employee->sss_updated ?? 'n/a'}}" required></td>
-                                                    <td class="text-center"><input type="radio" name="sss" value="no" value="{{ $user->employee->sss_updated ?? 'n/a'}}" required></td>
+                                                    <td class="text-center"><input type="radio" name="sss_updated" value="{{ $employee->employee->sss_updated ?? 'N/A'}}" disabled></td>
+                                                    <td class="text-center"><input type="radio" name="sss_updated" value="{{ $employee->employee->sss_updated ?? 'N/A'}}" disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="p-2">PhilHealth</td>
-                                                    <td class="text-center"><input type="radio" name="philhealth" value="yes" value="{{ $user->employee->philhealth_updated ?? 'n/a'}}" required></td>
-                                                    <td class="text-center"><input type="radio" name="philhealth" value="no" value="{{ $user->employee->philhealth_updated ?? 'n/a'}}" required></td>
+                                                    <td class="text-center"><input type="radio" name="philhealth_updated" value="{{ $employee->employee->philhealth_updated ?? 'N/A'}}" disabled></td>
+                                                    <td class="text-center"><input type="radio" name="philhealth_updated" value="{{ $employee->employee->philhealth_updated ?? 'N/A'}}" disabled></td>
                                                 </tr>
                                                 <tr>
                                                     <td class="p-2">Pag-Ibig</td>
-                                                    <td class="text-center"><input type="radio" name="pagibig" value="yes" value="{{ $user->employee->pagibig_updated ?? 'n/a'}}" required></td>
-                                                    <td class="text-center"><input type="radio" name="pagibig" value="no" value="{{ $user->employee->pagibig_updated ?? 'n/a'}}" required></td>
+                                                    <td class="text-center"><input type="radio" name="pagibig_updated" value="{{ $employee->employee->pagibig_updated ?? 'N/A'}}" disabled></td>
+                                                    <td class="text-center"><input type="radio" name="pagibig_updated" value="{{ $employee->employee->pagibig_updated ?? 'N/A'}}" disabled></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -410,54 +468,20 @@
                                 </div>
                             </div>
                             <div class="flex flex-col w-full gap-y-3">
-                                <div class="flex flex-col space-y-1 w-[49%]">
-                                    <div class="flex flex-col w-full gap-x-2">
-                                        <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
-                                        <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
-                                    </div>
-                                    <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" name="forMarriedEmployeesUpdated[]" value="{{ $user->employee->pagibig_mdf_path ?? 'n/a'}}" required>
-                                </div>
-                                <div
-                                    class="w-full flex flex-col justify-between gap-y-3">
-                                    <div class="flex flex-row w-full gap-x-5">
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
-                                            <input class="profile_edit_input" type="number" name="sssNumber" id="sssNumber" value="{{ $user->employee->employee_sss_number ?? 'n/a'}}"
-                                                placeholder="SSS Number" required> 
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="philHealthNumber">PhilHealth Number</label>
-                                            <input class="profile_edit_input" type="number" name="philHealthNumber" id="philHealthNumber" value="{{ $user->employee->employee_philhealth_number ?? 'n/a'}}"
-                                                placeholder="PhilHealth Number" required>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-row w-full gap-x-5">
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="pagibigNumber">Pag-Ibig Number</label>
-                                            <input class="profile_edit_input" type="number" name="pagibigNumber" id="pagibigNumber" value="{{ $user->employee->employee_pagibig_number ?? 'n/a'}}"
-                                                placeholder="Pag-Ibig Number" required>
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="tinNumber">Tax Identification Number (TIN)</label>
-                                            <input class="profile_edit_input" type="number" name="tinNumber" id="tinNumber" value="{{ $user->employee->employee_tin_number ?? 'n/a'}}"
-                                                placeholder="TIN Number" required> 
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="flex flex-row w-full justify-center items-center gap-x-5">
                                     <div class="flex flex-col space-y-1 w-[50%]">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="childrenNum">Please state how many children do you have?</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Type n/a if not applicable)</label>
                                         </div>
-                                        <input type="number" name="childrenNum" placeholder="e.g., 2" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_children_count ?? 'n/a'}}" required>
+                                        <input type="text" name="employee_children_count" placeholder="e.g., 2" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_count ?? 'N/A'}}" disabled>
                                     </div>
                                     <div class="flex flex-col space-y-1 w-[50%]">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="middle">For employees who have children</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Please attach their birth certificate/s)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" name="chiledBirthCertificates[]" value="{{ $user->employee->children_birth_certificates_path ?? 'n/a'}}" mulitple required>
+                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" value="{{ $employee->employee->children_birth_certificates_path ?? 'N/A'}}" multiple disabled>
                                     </div>
                                 </div>
                                 <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
@@ -466,44 +490,26 @@
                                         <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                     </div>
                                     <div class="flex flex-row w-full justify-center items-center gap-x-5">
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Child #1 </label>
                                             <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
-                                                    <input type="text" name="children[0][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_children_1_details ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_children_1_details[0][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_1_details ?? 'N/A'}}" disabled>
                                                 </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                                                    <input type="text" name="children[0][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_children_1_age ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_children_1_age[0][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_1_age ?? 'N/A'}}" disabled>
                                                 </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                                                <input class="profile_edit_input" type="date" id="childBirthdate" name="children[0][birthdate] id="middle" placeholder="e.g., 01/05/2002" value="{{ $user->employee->employee_children_1_birthdate ?? 'n/a'}}" required>
-                                            </div>
-                                        </div>
-
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
-                                            <label class="hidden text-aapblue @lg/main:block" for="middle">Child #2 (Optional)</label>
-                                            <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
-                                                    <input type="text" name="children[1][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_children_2_details ?? 'n/a'}}">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
+                                                    <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
+                                                    <input class="profile_edit_input" type="text" id="childBirthdate" name="employee_children_1_birthdate[0][birthdate] id="middle" placeholder="e.g., 01/05/2002" value="{{ $employee->employee->employee_children_1_birthdate ?? 'N/A'}}" disabled>
                                                 </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
-                                                    <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                                                    <input type="text" name="children[1][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_children_2_age ?? 'n/a'}}">
-                                                </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                                                <input class="profile_edit_input" type="date" id="childBirthdate" name="children[1][birthdate] id="middle" placeholder="e.g., 01/05/2002" value="{{ $user->employee->employee_children_2_birthdate ?? 'n/a'}}">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex w-full justify-end items-center -mt-5">
+                                <div class="hidden flex w-full justify-end items-center -mt-5">
                                     <button
                                         onclick="addChildFields()"
                                         type="button"
@@ -512,72 +518,54 @@
                                         + Add Another Child
                                     </button>
                                 </div>
-                                <div class="flex flex-row w-full justify-center items-center gap-x-5">
-                                    <div class="flex flex-col space-y-1 w-[50%]">
+                                <div class="flex flex-row w-full justify-start items-center gap-x-5">
+                                    <div class="flex flex-col space-y-1 w-[49%]">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="employeeDependents">Employee Dependents</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Attached parent's Birth certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" name="employeeDependents[]" value="{{ $user->employee->parents_birth_certificate_dependents_path ?? 'n/a'}}" mulitple required>
-                                    </div>
-                                    <div class="space-y-1 flex flex-col w-[50%]">
-                                        <div class="flex flex-row w-full gap-x-2">
-                                            <label class="hidden text-aapblue @lg/main:block " for="middle">Blood Type </label>
-                                        </div>
-                                        <select class="profile_edit_input" type="text" name="bloodType" id="bloodType" value="{{ $user->employee->employee_blood_type ?? 'n/a'}}" required>
-                                            <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                            <option value="a-positive">A+</option>
-                                            <option value="a-negative">A-</option>
-                                            <option value="b-positive">B+</option>
-                                            <option value="b-negative">B-</option>
-                                            <option value="ab-positive">AB+</option>
-                                            <option value="ab-negative">AB-</option>
-                                            <option value="o-positive">O+</option>
-                                            <option value="o-negative">O-</option>
-                                            <option value="rare">Rare Blood Types</option>
-                                            <option value="rare">Unknown</option>
-                                        </select>
+                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" accept=".pdf,.jpg,.jpeg,.png" name="parents_birth_certificate_dependents_path[]" value="{{ $employee->employee->parents_birth_certificate_dependents_path ?? 'N/A'}}" multiple disabled>
                                     </div>
                                 </div>
-                                <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
+                                <div class="w-full flex flex-col justify-between space-y-1">
                                     <div class="flex flex-col w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">For employees Parents</label>
                                         <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                     </div>
-                                    <div class="flex flex-row justify-center items-center gap-x-5">
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                    <div class="flex flex-col justify-center items-center gap-x-5 gap-y-5">
+                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Father's Info </label>
                                             <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="father">Full Name </label>
-                                                    <input type="text" name="fatherName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_parents_1_details ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_parents_1_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_1_details ?? 'N/A'}}" disabled>
                                                 </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="fatherAge">Age</label>
-                                                    <input type="text" name="fatherAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_parents_1_age ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_parents_1_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_1_age ?? 'N/A'}}" disabled>
                                                 </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
-                                                <input class="profile_edit_input" type="date" name="fatherBirthdate" id="middle" placeholder="e.g., 01/05/2002" value="{{ $user->employee->employee_parents_1_birthdate ?? 'n/a'}}" required>
+                                                <div class="space-y-1 flex flex-col w-[33%]">
+                                                    <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
+                                                    <input class="profile_edit_input" type="text" name="employee_parents_1_birthdate" id="middle" placeholder="e.g., 01/05/2002" value="{{ $employee->employee->employee_parents_1_birthdate ?? 'N/A'}}" disabled>
+                                                </div>
                                             </div>
                                         </div>
     
-                                        <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Mother's Info </label>
                                             <div class="flex flex-row w-full gap-x-5">
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="motherName">Full Name </label>
-                                                    <input type="text" name="fatherName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_parents_2_details ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_parents_2_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_2_details ?? 'N/A'}}" disabled>
                                                 </div>
-                                                <div class="space-y-1 flex flex-col w-[50%]">
+                                                <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="motherAge">Age</label>
-                                                    <input type="text" name="motherAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_parents_2_age ?? 'n/a'}}" required>
+                                                    <input type="text" name="employee_parents_2_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_2_age ?? 'N/A'}}" disabled>
                                                 </div>
-                                            </div>
-                                            <div class="space-y-1 flex flex-col w-[48.5%]">
-                                                <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
-                                                <input class="profile_edit_input" type="date" name="motherBirthdate" id="middle" placeholder="e.g., 01/05/2002" value="{{ $user->employee->employee_parents_2_birthdate ?? 'n/a'}}" required>
+                                                <div class="space-y-1 flex flex-col w-[33%]">
+                                                    <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
+                                                    <input class="profile_edit_input" type="text" name="employee_parents_2_birthdate" id="middle" placeholder="e.g., 01/05/2002" value="{{ $employee->employee->employee_parents_2_birthdate ?? 'N/A'}}" disabled>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -590,59 +578,46 @@
                         </div>
                     </div>
 
-                    <div x-show="step === 4" class="flex flex-col gap-y-5">
+                    {{-- Emergency Contacts --}}
+                    <div x-show="step === 6" class="flex flex-col gap-y-5">
                         <div class="w-full flex flex-col justify-start items-start h-auto">
-                            <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 4: Employee's Emergency Contacts</h2>
+                            <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 6: Employee's Emergency Contacts</h2>
                             <p class="text-sm text-gray-600 leading-tight"><em>Emergency Contact that we can call imediately when you have an emergency.</em></p>
                         </div>
-                        <div class="flex flex-col @lg/main:w-full justify-center">
-                            <div id="children-container" class="w-full flex flex-row justify-between gap-6">
-                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
+                        <div id="contact-container" class="flex flex-col @lg/main:w-full justify-center">
+                            <div class="w-full flex flex-row justify-between gap-6">
+                                <div class="contact-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #1</label>
                                     <div class="flex flex-row w-full gap-x-5">
-                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                        <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
-                                            <input type="text" name="contactFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->employee_emergency_contact_1_name ?? 'n/a'}}" required>
+                                            <input type="text" name="emergency_contact_1_name[0][name]" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->emergency_contact_1_name ?? 'N/A'}}" disabled>
                                         </div>
-                                        <div class="space-y-1 flex flex-col w-[50%]">
+                                        <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
-                                            <input type="text" name="contactRelationship" placeholder="e.g., Mother" class="profile_edit_input w-full flex" value="{{ $user->employee->emergency_contact_1_relationship ?? 'n/a'}}" required>
+                                            <input type="text" name="emergency_contact_1_relationship[0][relationship]" placeholder="e.g., Brother" class="profile_edit_input w-full flex" value="{{ $employee->employee->emergency_contact_1_relationship ?? 'N/A'}}" disabled>
                                         </div>
-                                    </div>
-                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                        <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
-                                        <input class="profile_edit_input" type="number" name="contactNumber" id="contactNumber" placeholder="e.g., 09123456789" value="{{ $user->employee->emergency_contact_1_number?? 'n/a'}}" required>
+                                        <div class="space-y-1 flex flex-col w-[33%]">
+                                            <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
+                                            <input class="profile_edit_input" type="text" name="emergency_contact_1_number[0][number]" id="contactNumber" placeholder="e.g., 09123456789" value="{{ $employee->employee->emergency_contact_1_number ?? 'N/A'}}" disabled>
+                                        </div>
                                     </div>
                                     <div class="space-y-1 flex flex-col w-full">
                                         <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
-                                        <textarea class="profile_edit_input w-full resize-none" name="contactAddress" id="contactAddress" cols="20" rows="3" value="{{ $user->employee->emergency_contact_1_address ?? 'n/a'}}"
-                                                    placeholder="Contact's full address"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="child-input flex flex-col w-[50%] gap-4 border border-blue-400 rounded-lg p-6">
-                                    <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #2</label>
-                                    <div class="flex flex-row w-full gap-x-5">
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
-                                            <input type="text" name="contactFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $user->employee->emergency_contact_2_name ?? 'n/a'}}">
-                                        </div>
-                                        <div class="space-y-1 flex flex-col w-[50%]">
-                                            <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
-                                            <input type="text" name="contactRelationship" placeholder="e.g., Mother" class="profile_edit_input w-full flex" value="{{ $user->employee->emergency_contact_2_relationship ?? 'n/a'}}">
-                                        </div>
-                                    </div>
-                                    <div class="space-y-1 flex flex-col w-[48.5%]">
-                                        <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
-                                        <input class="profile_edit_input" type="number" name="contactNumber" id="contactNumber" placeholder="e.g., 09123456789" value="{{ $user->employee->emergency_contact_2_number ?? 'n/a'}}">
-                                    </div>
-                                    <div class="space-y-1 flex flex-col w-full">
-                                        <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
-                                        <textarea class="profile_edit_input w-full resize-none" name="contactAddress" id="contactAddress" cols="20" rows="3" value="{{ $user->employee->emergency_contact_2_relationship ?? 'n/a'}}"
-                                                    placeholder="Contact's full address"></textarea>
+                                        <input type="text" class="profile_edit_input w-full resize-none" name="emergency_contact_1_address[0][address]"  value="{{ $employee->employee->emergency_contact_1_address ?? 'N/A'}}"
+                                                    placeholder="Contact's full address"></input>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="hidden flex w-full justify-end items-center -mt-5">
+                            <button
+                                onclick="addContactFields()"
+                                type="button"
+                                class="mt-4 bg-blue-600 text-white px-4 flex w-[25%] items-center justify-center py-2 rounded hover:bg-blue-700"
+                                >
+                                + Add Contact Person
+                            </button>
                         </div>
                         <div class="flex justify-end gap-x-2 items-end">
                             <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
@@ -650,8 +625,9 @@
                         </div>
                     </div>
 
-                    <div x-show="step === 5" class="gap-y-2 flex flex-col">
-                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 5: Username & Password</h2>
+                    {{-- Username and Password --}}
+                    <div x-show="step === 7" class="gap-y-2 flex flex-col">
+                        <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 7: Username & Password</h2>
                         <div class="p-5 border rounded-xl space-y-8 @lg/main:space-y-14 border-blue-400 ">
                             <div
                                 class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
@@ -716,16 +692,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col justify-end items-end gap-y-2">
-                            <div class="flex flex-row gap-x-2">
-                                <button class="btn text-[#071d49] border-gray-300  px-5 py-2 rounded-lg ring-0 ring-gray-300 hover:bg-gray-200 hover:ring-2 active:bg-gray-300 bg-gray-300">Cancel</button>
-                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                            </div>
+                        <div class="flex flex-row justify-end items-end gap-x-2">
+                            <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
                             <button type="submit"
                                 class="btn text-[#071d49] border-yellow-300 flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
-                                <p>Save</p>
+                                <p>Submit</p>
                                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 256 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                                    viewBox="0 0 256 512">
                                     <path
                                         d="M246.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8 16.6-19.8 29.6l0 256c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l128-128z" />
                                 </svg>
@@ -773,7 +746,7 @@
                 </div>
                 <div class="space-y-1 flex flex-col w-[48.5%]">
                     <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                    <input class="profile_edit_input" type="date" name="children[${childIndex}][birthdate]" id="childBirthdate_${childIndex}" placeholder="e.g., 01/05/2002">
+                    <input class="profile_edit_input" type="text" name="children[${childIndex}][birthdate]" id="childBirthdate_${childIndex}" placeholder="e.g., 01/05/2002">
                 </div>
             `;
 

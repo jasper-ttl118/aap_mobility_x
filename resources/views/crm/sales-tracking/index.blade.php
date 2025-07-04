@@ -7,32 +7,32 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class="flex md:justify-center w-full">
-            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+        <div class="flex justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
                      <x-crm.submodules selected='Sales Tracking'/>
                 </div>
             </div>
         </div>
         <!-- Breadcrumbs-->
-        <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-3 lg:pb-5 md:ml-20 lg:ml-0">
-            <a href="{{ route('customer.index') }}" class="hover:underline">Customer Relationship Management</a>
+        <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-3 md:ml-20 lg:ml-0">
+            <a href="{{ route('customer.index') }}" class="hover:underline truncate">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('sales-tracking') }}" class="hover:underline font-semibold">Sales Tracking</a>
+            <a href="{{ route('sales-tracking') }}" class="hover:underline font-semibold truncate">Sales Tracking</a>
         </div>
 
         {{-- First Row --}}
-        <div x-data="{ open : ''}" class="flex md:w-full md:justify-center">
-            <div class="flex flex-col lg:flex-row h-[600px] lg:h-[300px] md:ml-0 md:w-[80%] ml-5 lg:ml-0 w-[440px] lg:w-full border border-white lg:-mt-10 bg-[#f3f3f3] shadow-md rounded-md py-4 lg:py-0 px-4 gap-3 items-center justify-center ">
+        <div x-data="{ open : ''}" class="flex flex-col lg:flex-row w-full justify-center items-center gap-y-3 gap-x-3 -mt-7">
+            <div class="flex flex-col lg:flex-row h-[700px] lg:h-[300px] w-[90%] lg:w-[50%] border border-white bg-[#f3f3f3] shadow-md rounded-md py-4 lg:py-0 px-4 gap-3 items-center justify-center ">
                 {{-- Four Boxes --}}
-                <div class="h-[50%] lg:h-[90%] lg:w-[50%] w-full flex flex-row justify-center items-center gap-x-3 ">
+                <div class="h-auto lg:h-[90%] w-full flex flex-col lg:flex-row justify-center items-center gap-x-3 gap-y-5">
                     <div class="flex flex-col w-full lg:w-[50%] h-full lg:h-[90%] items-center justify-evenly gap-y-5">
                         {{-- First Box --}}
-                        <div @click="open='open1'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open1'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
                             <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg fill="#000000" width="30px" height="30px" viewBox="0 0 24 24" id="phillippine-peso" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M11,15H8V3h3a6,6,0,0,1,6,6h0A6,6,0,0,1,11,15ZM8,3V21" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
                                 </path><path id="primary-2" data-name="primary" d="M4,7H20M4,11H20" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         {{-- Second Box --}}
-                        <div @click="open='open2'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open2'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg fill="#000000" width="30px" height="30px" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><path d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 13.8554 45.8008 C 11.5117 45.8008 10.1992 44.5586 10.1992 42.1211 L 10.1992 13.8789 C 10.1992 11.4414 11.5117 10.1992 13.8554 10.1992 L 42.1679 10.1992 C 44.4882 10.1992 45.8007 11.4414 45.8007 13.8789 L 45.8007 42.1211 C 45.8007 44.5586 44.4882 45.8008 42.1679 45.8008 Z M 27.9648 22.1289 C 29.6523 22.1289 30.8476 21.0039 30.8476 19.5508 C 30.8476 17.8867 29.6757 16.7383 27.9648 16.7383 C 26.3944 16.7383 25.1757 17.9102 25.1757 19.5508 C 25.1757 21.0039 26.3944 22.1289 27.9648 22.1289 Z M 18.8944 29.9571 L 37.1523 29.9571 C 38.4648 29.9571 39.3554 29.2539 39.3554 28.0118 C 39.3554 26.7461 38.5117 26.0430 37.1523 26.0430 L 18.8944 26.0430 C 17.5351 26.0430 16.6679 26.7461 16.6679 28.0118 C 16.6679 29.2539 17.5820 29.9571 18.8944 29.9571 Z M 27.9648 39.2383 C 29.6523 39.2383 30.8476 38.0898 30.8476 36.6367 C 30.8476 34.9961 29.6757 33.8477 27.9648 33.8477 C 26.3944 33.8477 25.1757 34.9961 25.1757 36.6367 C 25.1757 38.0898 26.3944 39.2383 27.9648 39.2383 Z"/></svg>
                             </div>
@@ -248,7 +248,7 @@
                                             <span class="text-[#071d49] font-extra text-md truncate whitespace-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, unde? Nesciunt voluptatem laborum facere aliquam necessitatibus earum cupiditate. Laborum sit minus dolor nobis pariatur ipsa molestias in molestiae repellendus ratione?</span>
                                         </div>
                                     </div>
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[800px] lg:h-full justify-center items-center border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar bg-green-200">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[700px] lg:h-full justify-center items-center border-2 border-[#071d49] p-4 rounded-lg overflow-x-auto hide-scrollbar bg-green-200">
                                         <div class="text-base font-bold text-[#071d49] w-full h-full lg:h-[15%] uppercase flex items-center gap-x-2">
                                             <img src="{{ asset('distribution.png') }}" class="size-4" alt="sales">
                                             Disitribution Analysis</div>
@@ -274,7 +274,7 @@
                     </div>
                     <div class="flex flex-col w-full lg:w-[50%] h-full lg:h-[90%] items-center justify-evenly gap-y-5">
                         {{-- Third Box --}}
-                        <div @click="open='open3'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open3'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg height="30px" width="30px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                     viewBox="0 0 512 512"  xml:space="preserve">
@@ -327,7 +327,7 @@
                             <div @click.outside="open=''" 
                                     class="relative flex flex-row w-[90%] lg:w-[70%] h-[90%] lg:h-[60%] bg-white rounded-b-lg rounded-t-xl shadow-lg overflow-x-auto hide-scrollbar">
                                 <div class="flex flex-col lg:flex-row w-full h-[730px] lg:h-full justify-start items-start py-8 lg:py-6 px-6 lg:px-4 rounded-xl gap-y-2 lg:gap-y-0 gap-x-2">
-                                    <div class="flex flex-col w-full lg:w-[50%] h-[800px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4 overflow-x-auto hide-scrollbar bg-green-200">
+                                    <div class="flex flex-col w-full lg:w-[50%] h-[700px] lg:h-full gap-y-2 lg:gap-y-0 border-2 border-[#071d49] rounded-lg p-4 overflow-x-auto hide-scrollbar bg-green-200">
                                         <div class="flex flex-row w-full h-full lg:h-[60%] gap-y-10">
                                             <div class="flex flex-col justify-center w-[50%] h-full gap-y-2">
                                                 {{-- Overall --}}
@@ -466,7 +466,7 @@
                             </div>
                         </div>
                         {{-- Fourth Box --}}
-                        <div @click="open='open4'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-full lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open4'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.25 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5zm-1.543 9.207a1 1 0 0 1-1.414-1.414l14-14a1 1 0 1 1 1.414 1.414l-14 14zM13 17.25a3.75 3.75 0 1 0 7.5 0 3.75 3.75 0 0 0-7.5 0zM7.25 8.5a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zm11.25 8.75a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0z" fill="#000000"/></svg>
                             </div>
@@ -614,217 +614,217 @@
                         </div>
                     </div>
                 </div>
-                {{-- Filter Sales --}}
-                <div x-data="{activeFilter: 'Today'}" class="flex flex-col h-[60%] lg:h-[90%] w-full lg:w-[50%]">
-                    <div class="group hover:scale-105 duration-300 transform flex flex-col h-full w-full items-center justify-center shadow-md rounded-md bg-white p-2">
-                        <div class="flex w-full h-[15%] items-center">
-                            <div class="w-full h-full justify-center flex items-center flex-row px-4 gap-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
-                                        <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
-                                </svg>
-                                <span class="w-[65%] h-full justify-between flex items-center text-[#071d49] font-extrabold text-base tracking-widest" >SALES</span>         
-                            
-                                <div x-data="{ open: false }" class="h-7 w-[50%] relative inline-block ">
-                                    <button x-text="activeFilter" @click="open = !open"  id="filter" class="flex flex-row justify-between items-center w-full h-full rounded-md border border-[#071d49] shadow-sm px-2 py-2 uppercase bg-white text-xs font-bold text-[#071d49] hover:text-white  hover:bg-[#071d49]">
-                                        Today
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 inline-flex">
-                                            <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
-                                        </svg>
-
-                                    </button>
-                                        
-                                    <div x-show="open" @click.away="open = false" x-transition 
-                                        id="filterContent"  class=" absolute z-10 h-50 w-full  rounded-md bg-white ">
-                                        <div x-data="{ isFirst: true }" class="border-x shadow-xs rounded-b-md border-[#071d49] bg-white w-full h-full border-b">
-                                            <button @click="activeFilter = 'Today', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Today</button>
-                                            <button @click="activeFilter = 'Yesterday', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Yesterday</button>
-                                            <button @click="activeFilter = 'This Week', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">This Week</button>
-                                            <button @click="activeFilter = 'Last 7 Days', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Last 7 Days</button>
-                                            <button @click="activeFilter = 'This Month', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">This Month</button>
-                                            <button @click="activeFilter = 'Last Month', open = false" 
-                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Last Month</button>
-                                            <template x-if="isFirst">
-                                                <button @click="isFirst=false" 
-                                                    class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase truncate">Custom Range</button>
-                                            </template>
-                                            <template x-if="!isFirst">
-                                                <input @click="isFirst=true" 
-                                                    x-data x-init="flatpickr($el, { mode: 'range' })" type="text" 
-                                                    placeholder="Select date range"
-                                                    class=" rounded-md p-2 w-full h-7 text-xs text-[#071d49]" />
-                                            </template>
-                                        </div>
+            </div>
+            {{-- Filter Sales --}}
+            <div x-data="{activeFilter: 'Today'}" class="flex flex-col h-[60%] lg:h-[300px] w-[90%] lg:w-[50%]">
+                <div class="group hover:scale-105 duration-300 transform flex flex-col h-full w-full items-center justify-center shadow-md rounded-md bg-white p-2">
+                    <div class="flex w-full h-[15%] items-center">
+                        <div class="w-full h-full justify-center flex items-center flex-row px-4 gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
+                                    <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
+                            </svg>
+                            <span class="w-[65%] h-full justify-between flex items-center text-[#071d49] font-extrabold text-base tracking-widest" >SALES</span>         
+                        
+                            <div x-data="{ open: false }" class="h-7 w-[50%] relative inline-block ">
+                                <button x-text="activeFilter" @click="open = !open"  id="filter" class="flex flex-row justify-between items-center w-full h-full rounded-md border border-[#071d49] shadow-sm px-2 py-2 uppercase bg-white text-xs font-bold text-[#071d49] hover:text-white  hover:bg-[#071d49]">
+                                    Today
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 inline-flex">
+                                        <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
+                                    </svg>
+    
+                                </button>
+                                    
+                                <div x-show="open" @click.away="open = false" x-transition 
+                                    id="filterContent"  class=" absolute z-10 h-50 w-full  rounded-md bg-white ">
+                                    <div x-data="{ isFirst: true }" class="border-x shadow-xs rounded-b-md border-[#071d49] bg-white w-full h-full border-b">
+                                        <button @click="activeFilter = 'Today', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Today</button>
+                                        <button @click="activeFilter = 'Yesterday', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Yesterday</button>
+                                        <button @click="activeFilter = 'This Week', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">This Week</button>
+                                        <button @click="activeFilter = 'Last 7 Days', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Last 7 Days</button>
+                                        <button @click="activeFilter = 'This Month', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">This Month</button>
+                                        <button @click="activeFilter = 'Last Month', open = false" 
+                                            class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase">Last Month</button>
+                                        <template x-if="isFirst">
+                                            <button @click="isFirst=false" 
+                                                class="block w-full h-8 px-4 py-2 text-[#071d49] hover:bg-[#071d49] text-xs hover:text-white rounded-md text-start uppercase truncate">Custom Range</button>
+                                        </template>
+                                        <template x-if="!isFirst">
+                                            <input @click="isFirst=true" 
+                                                x-data x-init="flatpickr($el, { mode: 'range' })" type="text" 
+                                                placeholder="Select date range"
+                                                class=" rounded-md p-2 w-full h-7 text-xs text-[#071d49]" />
+                                        </template>
                                     </div>
-                                </div> 
-                                <img src="{{ asset('full.png') }}" @click="open='openFilter'" alt="full" class="size-5 items-center hidden cursor-pointer group-hover:block flex-justify-end duration-399 transform">
-                            </div>
-                        </div>
-                        <div class="relative justify-center w-full h-[80%] mt-2">
-                            <div x-show="activeFilter === 'Today'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="Today"
-                                    :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
-                                    :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'Yesterday'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="Yesterday"
-                                    :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
-                                    :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'This Week'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="This Week"
-                                    :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
-                                    :data="[120, 150, 180, 90, 140, 150, 180]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="Last 7 Days"
-                                    :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
-                                    :data="[120, 150, 180, 90, 140, 150, 180]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'This Month'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="This Month"
-                                    :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
-                                    :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'Last Month'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="Last Month"
-                                    :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
-                                    :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
-                            <div x-show="activeFilter === 'Custom Range'" x-cloak class="h-full w-full absolute">
-                                <x-analytics-display
-                                    title="Custom Range"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 140]"
-                                    chartType="line"
-                                    :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                />
-                            </div>
+                                </div>
+                            </div> 
+                            <img src="{{ asset('full.png') }}" @click="open='openFilter'" alt="full" class="size-5 items-center hidden cursor-pointer group-hover:block flex-justify-end duration-399 transform">
                         </div>
                     </div>
-                    <!-- Modal overlay -->
-                    <div x-cloak x-show="open == 'openFilter'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
-                        <!-- Modal content -->
-                        <div @click.outside="open=''" 
-                                class="relative flex items-center justify-center flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
-                            <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
-                                <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
-                                    <div class="w-full h-full flex flex-row justify-start items-center gap-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
-                                            <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span class="text-sm lg:text-2xl text-[#0f1019] font-extrabold uppercase">Sales</span>
-                                    </div>
-                                    
-                                </div>
-                                <div class="flex flex-col lg:flex-row w-full h-[80%] justify-center items-center text-sm lg:rounded-md">
-                                    <div class="bg-yellow w-full lg:w-[70%] h-[50%] lg:h-full">
-                                        <div x-show="activeFilter === 'Today'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="Today"
-                                                :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'Yesterday'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="Yesterday"
-                                                :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'This Week'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="This Week"
-                                                :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
-                                                :data="[120, 150, 180, 90, 140, 150, 180]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="Last 7 Days"
-                                                :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
-                                                :data="[120, 150, 180, 90, 140, 150, 180]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'This Month'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="This Month"
-                                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
-                                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'Last Month'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="Last Month"
-                                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
-                                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                        <div x-show="activeFilter === 'Custom Range'" x-cloak class="w-full h-full p-2">
-                                            <x-analytics-display
-                                                title="Custom Range"
-                                                :labels="['January', 'February', 'March', 'April', 'May']"
-                                                :data="[120, 150, 180, 90, 140]"
-                                                chartType="line"
-                                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col w-[80%] lg:w-[30%] h-[50%] lg:h-[90%] justify-start items-start py-3 pr-3">
-                                        <span class="text-base lg:text-xl text-[#071d49] font-bold">Title</span>
-                                        <span class="text-sm lg:text-base text-[#071d49]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sequi deserunt distinctio! Molestiae voluptatem est veniam, obcaecati quaerat recusandae dolorem! Recusandae eveniet dolor laboriosam voluptatibus impedit quo voluptate nisi minus!</span>
-                                    </div>
-                                </div>
-                            </div>   
+                    <div class="relative justify-center w-full h-[80%] mt-2">
+                        <div x-show="activeFilter === 'Today'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="Today"
+                                :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
+                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
                         </div>
+                        <div x-show="activeFilter === 'Yesterday'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="Yesterday"
+                                :labels="['8AM', '9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM', '6PM', '7PM', '8PM']"
+                                :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                        <div x-show="activeFilter === 'This Week'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="This Week"
+                                :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
+                                :data="[120, 150, 180, 90, 140, 150, 180]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                        <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="Last 7 Days"
+                                :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
+                                :data="[120, 150, 180, 90, 140, 150, 180]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                        <div x-show="activeFilter === 'This Month'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="This Month"
+                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                        <div x-show="activeFilter === 'Last Month'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="Last Month"
+                                :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                        <div x-show="activeFilter === 'Custom Range'" x-cloak class="h-full w-full absolute">
+                            <x-analytics-display
+                                title="Custom Range"
+                                :labels="['January', 'February', 'March', 'April', 'May']"
+                                :data="[120, 150, 180, 90, 140]"
+                                chartType="line"
+                                :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal overlay -->
+                <div x-cloak x-show="open == 'openFilter'" x-transition class="fixed bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center w-full h-full">
+                    <!-- Modal content -->
+                    <div @click.outside="open=''" 
+                            class="relative flex items-center justify-center flex-row shadow-lg w-[90%] lg:w-[70%] h-[80%] lg:h-[70%]">
+                        <div class="flex flex-col lg:h-full bg-white shadow-md rounded-3xl items-center justify-center overflow-x-auto hide-scrollbar w-full h-full">
+                            <div class="flex flex-row w-[90%] h-[10%] justify-start items-center">
+                                <div class="w-full h-full flex flex-row justify-start items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
+                                        <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="text-sm lg:text-2xl text-[#0f1019] font-extrabold uppercase">Sales</span>
+                                </div>
+                                
+                            </div>
+                            <div class="flex flex-col lg:flex-row w-full h-[80%] justify-center items-center text-sm lg:rounded-md">
+                                <div class="bg-yellow w-full lg:w-[70%] h-[50%] lg:h-full">
+                                    <div x-show="activeFilter === 'Today'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="Today"
+                                            :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                            :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'Yesterday'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="Yesterday"
+                                            :labels="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                            :data="[120, 150, 180, 90, 140, 120, 150, 180, 90, 140, 180, 90, 140]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'This Week'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="This Week"
+                                            :labels="['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
+                                            :data="[120, 150, 180, 90, 140, 150, 180]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'Last 7 Days'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="Last 7 Days"
+                                            :labels="['DATE 1', 'DATE 2', 'DATE 3', 'DATE 4', 'DATE 5', 'DATE 6', 'DATE 7']"
+                                            :data="[120, 150, 180, 90, 140, 150, 180]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'This Month'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="This Month"
+                                            :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                            :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'Last Month'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="Last Month"
+                                            :labels="['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']"
+                                            :data="[120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140,120, 150, 180, 90, 140]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                    <div x-show="activeFilter === 'Custom Range'" x-cloak class="w-full h-full p-2">
+                                        <x-analytics-display
+                                            title="Custom Range"
+                                            :labels="['January', 'February', 'March', 'April', 'May']"
+                                            :data="[120, 150, 180, 90, 140]"
+                                            chartType="line"
+                                            :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="flex flex-col w-[80%] lg:w-[30%] h-[50%] lg:h-[90%] justify-start items-start py-3 pr-3">
+                                    <span class="text-base lg:text-xl text-[#071d49] font-bold">Title</span>
+                                    <span class="text-sm lg:text-base text-[#071d49]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta sequi deserunt distinctio! Molestiae voluptatem est veniam, obcaecati quaerat recusandae dolorem! Recusandae eveniet dolor laboriosam voluptatibus impedit quo voluptate nisi minus!</span>
+                                </div>
+                            </div>
+                        </div>   
                     </div>
                 </div>
             </div>
         </div>
         {{-- Second Row --}}
-        <div class="flex md:w-full md:justify-center">
-            <div class="flex flex-col lg:flex-row h-[600px] lg:h-[300px] md:ml-0 md:w-[80%] ml-5 lg:ml-0 w-[440px] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col lg:flex-row h-[700px] lg:h-[300px] w-[90%] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
                 {{-- Top Performer Sale Reps --}}
                 <div @click="open='openPerformer'" class="group cursor-pointer hover:scale-105  duration-300 transform flex flex-col w-full lg:w-[50%] h-[50%] lg:h-full bg-white shadow-md rounded-md">
                     <div class="flex flex-col w-full h-full bg-white shadow-md rounded-md items-center justify-center">
@@ -833,7 +833,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 text-[#071d49]">
                                     <path fill-rule="evenodd" d="M15.22 6.268a.75.75 0 0 1 .968-.431l5.942 2.28a.75.75 0 0 1 .431.97l-2.28 5.94a.75.75 0 1 1-1.4-.537l1.63-4.251-1.086.484a11.2 11.2 0 0 0-5.45 5.173.75.75 0 0 1-1.199.19L9 12.312l-6.22 6.22a.75.75 0 0 1-1.06-1.061l6.75-6.75a.75.75 0 0 1 1.06 0l3.606 3.606a12.695 12.695 0 0 1 5.68-4.974l1.086-.483-4.251-1.632a.75.75 0 0 1-.432-.97Z" clip-rule="evenodd" />
                                 </svg>
-                                <span class="text-sm lg:text-base text-[#071d49] font-extrabold uppercase group-hover:text-sm lg:group-hover:text-base ">Top Performing Sales Representatives</span>
+                                <span class="text-sm lg:text-base text-[#071d49] font-extrabold uppercase group-hover:text-sm lg:group-hover:text-base">Top Performing Sales Representatives</span>
                             </div>
                         </div>
                         <div class="flex flex-row w-[90%] h-[75%] justify-center items-center text-sm lg:rounded-md">
@@ -1005,8 +1005,8 @@
             </div>
         </div>
         {{-- Third Row --}}
-        <div class="flex md:w-full md:justify-center">
-            <div class="flex flex-col lg:flex-row h-[900px] lg:h-[300px] md:ml-0 md:w-[80%] ml-5 lg:ml-0 w-[440px] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col lg:flex-row h-[900px] lg:h-[300px] w-[90%] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
                 {{-- Sales by Region --}}
                 <div @click="open='openRegion'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-col w-full lg:w-[33.3%] h-[33.3%] lg:h-full bg-white shadow-md rounded-md">
                     <div class="flex flex-col w-full h-full bg-white shadow-md rounded-md items-center justify-center">
@@ -1174,8 +1174,8 @@
             </div>
         </div>
         {{-- Fourth Row --}}
-        <div class="flex md:w-full md:justify-center">
-            <div class="flex flex-col lg:flex-row h-[600px] lg:h-[300px] md:ml-0 md:w-[80%] ml-5 lg:ml-0 w-[440px] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col lg:flex-row h-[700px] lg:h-[300px]  w-[90%] lg:w-full mt-3 lg:-mt-3 gap-3 items-center justify-center">
                 {{-- Deals Status Breakdown --}}
                 <div @click="open='openDeals'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-col w-full lg:w-[40%] h-[50%] lg:h-full bg-white shadow-md rounded-md">
                     <div class="flex flex-col w-full h-full bg-white shadow-md rounded-md items-center justify-center">

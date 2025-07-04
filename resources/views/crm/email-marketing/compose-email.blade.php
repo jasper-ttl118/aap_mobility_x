@@ -3,30 +3,16 @@
 
         <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar bg-[#f3f4f6]"> 
             <!-- Options Container -->
-            <div class="flex md:justify-center w-full">
-                <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+            <div class="flex justify-center w-full">
+                <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
                     <div class="flex min-w-[600px] lg:min-w-0">
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800 font-inter">Dashboard</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800 font-inter">Members</a>
-                        </div>
-                        <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#071d49]">
-                            <a href="{{ route('email-marketing') }}" class="text-[#071d49] hover:text-blue-800 font-inter">Email Marketing</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-gray-800 font-inter">Corporate</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                            <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800 font-inter">Sales Tracking</a>
-                        </div>
+                        <x-crm.submodules selected='Email Marketing'/>
                     </div>
                 </div>
             </div>
 
             <!-- Breadcrumbs-->
-            <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-5 lg:pt-0 pb-3 lg:-mb-8 md:ml-20 lg:ml-0">
+            <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-5 lg:pt-0 pb-3 w-full lg:-mb-8 md:ml-20 lg:ml-0">
                 <a href="{{ route('customer.index') }}" class="hover:underline text-[#071d49] font-inter truncate">Customer Relationship Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
@@ -45,9 +31,9 @@
             {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
             <x-email-marketing.tab-buttons />
 
-            <div class="flex md:w-full md:justify-center md:-ml-2.5 lg:ml-0">
-                <div class="flex flex-col w-[440px] md:w-full md:ml-5 md:items-center ml-5 lg:-mt-8 pt-4 lg:w-full lg:ml-0 lg:px-0 px-5 items-center gap-y-4">
-                    <div class="flex items-start justify-between px-1 w-[440px] md:w-[80%] lg:w-full">
+            <div class="flex w-full justify-center items-center">
+                <div class="flex flex-col w-full md:w-[95%] lg:-mt-8 pt-4 lg:w-full lg:ml-4 lg:px-0 px-5 justify-center gap-y-4 items-center">
+                    <div class="flex items-start justify-between px-1 w-full">
                         <div class="flex items-start ml-1">
                             <h2 class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter">Choose A Message Template</h2>
                         </div>
@@ -58,9 +44,9 @@
                         </button>
                     </div>
 
-                    <div class="gap-y-10 w-[440px] lg:w-full flex flex-col md:w-[83%] justify-center items-center lg:ml-0">
+                    <div class="gap-y-10 w-full flex flex-col justify-center items-center">
                         {{-- Carousel template --}}
-                        <div class="carousel carousel-center bg-[#abcae9] w-[440px] rounded-box space-x-4 p-4 md:w-full lg:w-full border-2 border-[#071d49]">
+                        <div class="carousel carousel-center bg-[#abcae9] w-full rounded-box space-x-4 p-4 border-2 border-[#071d49]">
                             <div class="carousel-item">
                                 <div class="flex flex-col border-2 rounded-lg bg-[#071d49] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
                                     <h1 class="text-white font-semibold">Message Template 1</h1>
