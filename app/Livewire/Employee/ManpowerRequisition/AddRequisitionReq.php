@@ -6,11 +6,6 @@ use App\Models\Candidate;
 use App\Models\Department;
 use App\Models\Employee;
 use App\Models\Requisition;
-use App\Models\RequisitionDuty;
-use App\Models\RequisitionEducationLevel;
-use App\Models\RequisitionOther;
-use App\Models\RequisitionSpecialSkill;
-use App\Models\RequisitionWorkExperience;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -41,6 +36,7 @@ class AddRequisitionReq extends Component
     public $requisition_job_description;
     public $departments;
     public $requisition_education_level = '';
+    public $change_color;
 
     public function updating($name, $value)
     {
@@ -67,6 +63,7 @@ class AddRequisitionReq extends Component
         $employee_id = auth()->user()->employee_id;
         $employee = Employee::find($employee_id);
         $this->department_id = $employee->department->department_id;
+        $this->change_color = false;
 
         $this->candidates = Candidate::all()
             ->map(function ($candidate) {
@@ -90,43 +87,74 @@ class AddRequisitionReq extends Component
     protected function rules()
     {
         return [
-            'requisition_job_position' => 'required|string',
+            'requisition_type' => 'required|string',
             'requisition_job_description' => 'required|string',
-            'requisition_type' => 'required',
-            'department_id' => 'required',
-            'requisition_requestor_name' => 'required|string',
-            'requisition_salary_min' => ['required', 'integer', 'min:1'],
-            'requisition_salary_max' => ['required', 'integer', 'min:1', function ($attribute, $value, $fail) {
-                if ($this->requisition_salary_min && $value < $this->requisition_salary_min) {
-                    $fail('Maximum salary must be greater than the minimum salary.');
-                }
-            }],
+            'requisition_education_level' => 'required|string',
+            'requisition_work_experience' => 'required|string',
+            'requisition_eventual_job_position' => 'required|string',
+            'requisition_special_skill' => 'required|string',
+            'requisition_other_description' => 'nullable|string',
+            'department_id' => 'required|exists:departments,department_id',
+            'requisition_section' => 'required|string',
+            'requisition_initial_job_position' => 'required|string',
+            'requisition_justification' => 'required|string',
+            'requisition_number_required' => 'required|integer|min:1',
+            'requisition_contract_duration' => 'nullable|string',
+            'requisition_employment_type' => 'required|string',
+            'requisition_budget' => 'required|min:1',
+            'requisition_engagement_type' => 'required|string',
+            'requisition_applicants_sources' => 'nullable|string',
+            'requisition_date_required' => 'required|date|after_or_equal:today',
+            'requisition_candidates' => 'nullable|array',
         ];
     }
 
     protected function messages()
     {
         return [
-            'requisition_job_position.required' => 'Job position is required.',
-            'requisition_job_description.required' => 'Job description is required.',
-            'requisition_type.required' => 'Requisition type is required.',
-            'department_id.required' => 'Department is required.',
-            'requisition_requestor_name.required' => 'Requestor name is required.',
-            'requisition_salary_min.required' => 'Minimum salary is required.',
-            'requisition_salary_max.required' => 'Maximum salary is required.',
-            'requisition_salary_min.min' => 'Number must be greater than zero.',
-            'requisition_salary_max.min' => 'Number must be greater than zero.',
+            'requisition_type.required' => 'The requisition type is required.',
+            'requisition_job_description.required' => 'Please provide a job description.',
+            'requisition_education_level.required' => 'Education level is required.',
+            'requisition_work_experience.required' => 'Work experience is required.',
+            'department_id.required' => 'Please select a department.',
+            'department_id.exists' => 'The selected department is invalid.',
+            'requisition_section.required' => 'Section field is required.',
+            'requisition_initial_job_position.required' => 'Initial job position is required.',
+            'requisition_eventual_job_position.required' => 'Eventual job position is required.',
+            'requisition_justification.required' => 'Please provide a justification.',
+            'requisition_number_required.required' => 'Specify the number of job slot.',
+            'requisition_number_required.integer' => 'The number of job slot must be a number.',
+            'requisition_number_required.min' => 'At least one person must be required.',
+            'requisition_budget.min' => 'The budget must be at least 0.',
+            'requisition_budget.required' => 'Budget is required.',
+            'requisition_employment_type.required' => 'Employment type is required.',
+            'requisition_date_required.required' => 'Date required is required.',
+            'requisition_date_required.date' => 'Please provide a valid date.',
+            'requisition_date_required.after_or_equal' => 'The date must be today or in the future.',
+            'requisition_engagement_type.required' => 'Engagement type is required.',
+            'requisition_special_skill' => 'Special skill is required.',
         ];
     }
 
     public function confirmAdd()
     {
-        $this->dispatch('swal:confirm', [
-            'title' => 'Confirm Request',
-            'text' => 'Are you sure you want to create this requisition?',
-            'icon' => 'question',
-            'confirmButtonText' => 'Confirm'
-        ]);
+        // dump($this->change_color);
+        try {
+            $this->validate();
+            $this->change_color = false;
+            $this->dispatch('swal:confirm', [
+                'title' => 'Confirm Request',
+                'text' => 'Are you sure you want to create this requisition?',
+                'icon' => 'question',
+                'confirmButtonText' => 'Confirm'
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $this->setErrorBag($e->validator->getMessageBag());
+            // dd($e->errors());
+            $this->change_color = true;
+            // dump('error');
+        }
+
     }
     public function add()
     {
@@ -152,7 +180,8 @@ class AddRequisitionReq extends Component
             'requisition_budget' => $this->requisition_budget,
             'requisition_engagement_type' => $this->requisition_engagement_type,
             'requisition_applicants_sources' => $this->requisition_applicants_sources,
-            'requisition_date_required' => $this->requisition_date_required
+            'requisition_date_required' => $this->requisition_date_required,
+            'requisition_is_deleted' => 0 // Zero = requisition is open
         ]);
 
         $candidateIds = collect($this->requisition_candidates)
@@ -176,7 +205,6 @@ class AddRequisitionReq extends Component
             ]);
         }
     }
-
     public function render()
     {
         return view('livewire.employee.manpower-requisition.add-requisition-req');

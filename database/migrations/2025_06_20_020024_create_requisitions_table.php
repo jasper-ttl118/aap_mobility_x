@@ -47,6 +47,7 @@ return new class extends Migration
             $table->string('requisition_approver_name_1')->nullable();
             $table->string('requisition_approver_position_1')->nullable();
             // $table->string('requisition_approver_signature_1')->nullable();
+            $table->tinyInteger('requisition_is_deleted')->nullable();
             $table->timestamps();
         });
     }

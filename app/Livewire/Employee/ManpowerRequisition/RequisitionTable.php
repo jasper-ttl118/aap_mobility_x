@@ -40,11 +40,11 @@ class RequisitionTable extends Component
                 $this->status_text = "Pending";
                 break;
             case 2:
-                $this->status_class ='text-indigo-800 bg-indigo-200 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_class ='text-white bg-indigo-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
                 $this->status_text = 'Dept. Head Approved';
                 break;
             case 3:
-                $this->status_class ='bg-[#9333EA] text-[#F3E8FF] text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg';
+                $this->status_class = "bg-purple-800 text-purple-100 text-xs font-medium me-2 px-2.5 py-0.5 rounded-lg";
                 $this->status_text = 'HR Approved';
                 break;
             case 4:
@@ -61,6 +61,7 @@ class RequisitionTable extends Component
     public function render()
     {
             $requisitions = Requisition::where('requisition_status', $this->requisition_filter)
+                ->where('requisition_is_deleted', 0)
                 ->latest()
                 ->paginate(5, ['*'], 'pendingPage');
 

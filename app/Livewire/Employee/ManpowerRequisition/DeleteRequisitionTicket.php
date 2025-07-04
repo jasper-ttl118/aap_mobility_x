@@ -19,7 +19,9 @@ class DeleteRequisitionTicket extends Component
     public function delete()
     {
         $requisition = Requisition::find($this->requisition_id);
-        $query = $requisition->delete();
+        $query = $requisition->update([
+            'requisition_is_deleted' => 1 // 1 = Closed
+        ]);
 
         if($query){
             $this->dispatch('refreshTable', $this->status);

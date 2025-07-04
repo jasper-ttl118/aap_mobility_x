@@ -115,6 +115,10 @@
                                 </label>
                             </div>
 
+                            @error('requisition_employment_type')
+                                <em class="text-sm text-red-500 mt-1">{{ $message }}</em>
+                            @enderror
+
                             <div class="mt-3" x-show="employment_type === 'Contractual'">
                                 <label for="contract-duration" class="text-sm font-medium mb-1 block text-[#071d49]">Duration of Contract</label>
                                 <input
@@ -149,7 +153,7 @@
                                     <span>Not On Budget</span>
                                 </label>
                             </div>
-
+                 
                             @error('requisition_budget')
                                 <em class="text-sm text-red-500 mt-1">{{ $message }}</em>
                             @enderror
@@ -365,124 +369,7 @@
 
                     </div>
             </div>
-                
-            {{-- Requested By Field --}}
-            <div x-show="selected === 'requested'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
-                <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
-                    <div class="mb-1">
-                        <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Requested By:</div>
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-
-                    <input type="text" name="requisition_requestor_name" placeholder="e.g. John Doe"
-                        wire:model="requisition_requestor_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_requestor_name') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                <!-- Position -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Position</label>
-                    <input type="text" name="requisition_requestor_position" placeholder="e.g. IST - Department Head"
-                        wire:model="requisition_requestor_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_requestor_position') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-            </div>
-
-            {{-- Endorsed and Checked --}}
-            <div x-show="selected === 'endorsed'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
-                <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
-                    <div class="mb-1">
-                        <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Checked and Endorsed By:</div>
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-
-                    <input type="text" name="requisition_endorser_name" placeholder="e.g. John Doe"
-                        wire:model="requisition_endorser_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_endorser_name') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                <!-- Position -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Position</label>
-                    <input type="text" name="requisition_endorser_position" placeholder="e.g. IST - Department Head"
-                        wire:model="requisition_endorser_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_endorser_position') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-            </div>
-
-            {{-- Approved By --}}
-            <div x-show="selected === 'approved'" class="grid grid-cols-3 gap-5">
-                <!-- Requestor Name -->
-                <div class="flex flex-col justify-start">
-                    <!-- Grouped label block to avoid pushing input down -->
-                    <div class="mb-1">
-                        <div class="text-sm font-bold text-[#071d49] uppercase tracking-wide">Approved By:</div>
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-
-                    <input type="text" name="requisition_approver_name" placeholder="e.g. John Doe"
-                        wire:model="requisition_approver_name"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_approver_name') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                <!-- Position -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Position</label>
-                    <input type="text" name="requisition_approver_position" placeholder="e.g. IST - Department Head"
-                        wire:model="requisition_approver_position"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_approver_position') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                {{-- Name --}}
-                <div class="flex flex-col justify-start">
-                    <div class="mb-1">
-                        <label class="text-sm font-medium">Name</label>
-                    </div>
-                    <input type="text" name="requisition_approver_name_1" placeholder="e.g. John Doe"
-                        wire:model="requisition_approver_name_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_approver_name_1') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-                <!-- Position -->
-                <div class="flex flex-col justify-end">
-                    <label class="font-medium text-sm mb-1">Position</label>
-                    <input type="text" name="requisition_approver_position_1" placeholder="e.g. IST - Department Head"
-                        wire:model="requisition_approver_position_1"
-                        class="w-full bg-gray-100 h-8 rounded border border-gray-300 px-2 text-sm focus:outline-blue-500">
-                    @error('requisition_approver_position_1') 
-                        <em class="text-sm text-red-500 mt-1">{{ $message }}</em> 
-                    @enderror
-                </div>
-
-            </div>
-
+            
             <div class="flex gap-x-5">
                 <!-- Previous Button -->
                 <a 

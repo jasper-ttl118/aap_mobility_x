@@ -40,7 +40,7 @@ class Requisition extends Model
         'requisition_approver_position',
         'requisition_approver_name_1',
         'requisition_approver_position_1',
- 
+        'requisition_is_deleted'
     ];
 
     public function requisitionDuties(): HasMany
