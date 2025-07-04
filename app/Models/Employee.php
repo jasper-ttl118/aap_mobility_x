@@ -19,8 +19,7 @@ class Employee extends Model
 
     protected $fillable = [
         // Basic Personal Information
-        'employee_id',
-        'employee_surname',
+        'employee_lastname',
         'employee_firstname',
         'employee_middlename',
         'employee_suffix',

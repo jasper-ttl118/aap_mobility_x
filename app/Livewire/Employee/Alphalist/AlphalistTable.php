@@ -24,6 +24,7 @@ class AlphalistTable extends Component
     {
         $employees = Employee::paginate(5, ['*'], 'employeePage');
         $interns = Intern::paginate(5, ['*'], 'internPage');
+        
         return view('livewire.employee.alphalist.alphalist-table', compact('employees', 'interns'));
     }
 }

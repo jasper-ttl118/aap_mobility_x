@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
@@ -139,6 +137,7 @@ class EmployeeController extends Controller
                     'birthdate' => $validated['employee_parents_1_birthdate'] ?? null,
                 ];
             }
+
             if (!empty($validated['employee_parents_2_details'])) {
                 $parentsDetails[] = [
                     'details' => $validated['employee_parents_2_details'],

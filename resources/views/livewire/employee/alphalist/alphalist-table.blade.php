@@ -21,7 +21,7 @@
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}&nbsp;{{ $employee->employee_middlename }}&nbsp;{{ $employee->employee_lastname }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_personal_email }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_no1 }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_department }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->department->department_name }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_job_position }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">
                             @if ($employee->employee_status == '1')
