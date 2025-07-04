@@ -1,25 +1,26 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\CorporateController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RequisitionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\ModuleController;
-use App\Livewire\Test;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SubmoduleController;
-use App\Http\Controllers\NoteController;
-
-use App\Http\Controllers\CalendarController;
+use App\Livewire\Ams\Main;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CorporateController;
+
+use App\Http\Controllers\SubmoduleController;
+use App\Http\Controllers\RequisitionController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\OrganizationController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,9 +28,10 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
         // route for profile
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile/{user_id}', [ProfileController::class, 'view'])->name('profile.view');
     
         //route for permission
         Route::resource('permission', PermissionController::class);
@@ -55,8 +57,37 @@ Route::middleware('auth')->group(function () {
         Route::resource('employee', EmployeeController::class);
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
-        Route::get('/employee/alphalist/view-employee-profile', [CustomerController::class,'employeeProfile'])->name('employeeProfile');
-    
+        Route::get('/employee/alphalist/view-employee-profile/{employee_id}', [EmployeeController::class,'employeeProfile'])->name('employeeProfile');
+        Route::get('/employee.alphalist.add-employee',[EmployeeController::class,'addEmployee' ]) -> name('addEmployee');
+        Route::get('/employee.alphalist.edit-employee',[EmployeeController::class, 'editEmployee'])->name('editEmployee');
+
+        // CRUD for employee
+        Route::prefix('employee')->group(function () {
+            Route::get('/', [EmployeeController::class, 'index'])->name('employees.alphalist.index');
+            Route::get('/create', [EmployeeController::class, 'create'])->name('employees.alphalist.create');
+            Route::post('/store', [EmployeeController::class, 'store'])->name('employees.alphalist.store');
+            Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.alphalist.show');
+            Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.alphalist.edit');
+            Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.alphalist.update');
+        });
+
+        //route for ams
+        Route::get('/ams', [AssetController::class,'dashboard'])->name('dashboard');
+        Route::get('/ams/all-assets', [AssetController::class,'allAssets'])->name('allAssets');
+        Route::get('/ams/assets/create', [AssetController::class,'addAsset'])->name('addAsset');
+        Route::get('/ams/common-assets', [AssetController::class,'commonAssets'])->name('commonAssets');
+        Route::get('/ams/assets-for-sale', [AssetController::class,'assetsForSale'])->name('assetsForSale');
+        Route::get('/ams/cms/branch-department', [AssetController::class,'cms'])->name('cms');        
+        Route::get('/ams/cms/create-branch', [AssetController::class,'addBranch'])->name('addBranch');
+        Route::get('/ams/cms/create-department', [AssetController::class,'addDepartment'])->name('addDepartment');
+        Route::get('/ams/cms/employees', [AssetController::class,'employees'])->name('employees');
+        Route::get('/ams/cms/asset-categories', [AssetController::class,'categories'])->name('category');
+        Route::get('/ams/cms/asset-status', [AssetController::class,'status'])->name('status');
+        Route::get('/ams/cms/create-category', [AssetController::class,'addCategory'])->name('addCategory');
+        Route::get('/ams/cms/create-status', [AssetController::class,'addStatus'])->name('addStatus');
+        Route::get('/ams/scan-qr', [AssetController::class,'scanQr'])->name('scanQr');
+
+
         //route for organization
         Route::resource('organization', OrganizationController::class);
         Route::get('organization/{orgId}/delete', [OrganizationController::class, 'destroy']);
@@ -106,6 +137,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // Notes
+    Route::get('/calendar/departments', [CalendarController::class, 'getDepartments']);
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar');
     Route::post('/calendar/save-note', [CalendarController::class, 'saveNote'])->name('calendar.save-note');
     Route::delete('/calendar/delete-note', [CalendarController::class, 'deleteNote'])->name('calendar.delete-note');

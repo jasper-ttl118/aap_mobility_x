@@ -7,24 +7,10 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class="flex md:justify-center w-full">
-            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-[62px] border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+        <div class="flex justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 h-[62px] border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800">Dashboard</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                        <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800">Members</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                        <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-gray-800">Email Marketing</a>
-                    </div>
-                    <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
-                        <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-blue-800">Corporate</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800">Sales Tracking</a>
-                    </div>
+                    <x-crm.submodules selected='Corporate'/>
                 </div>
             </div>
         </div>
@@ -47,15 +33,15 @@
 
         </div>
 
-        <div class="flex md:w-full md:justify-center ">
-            <div class="flex flex-row w-[440px] lg:w-full h-[70px] md:ml-0 md:w-[80%]  bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 px-5 justify-start items-center gap-2">
-                <img src="{{ asset('comms.png') }}" alt="commission" class="size-6">
-                <span class="text-xl uppercase font-extrabold text-[#071d49] tracking-widest">COMMISSION TRACKING</span>
+        <div class="flex w-full justify-center ">
+            <div class="flex flex-row w-[90%] lg:w-full h-[70px] bg-white shadow-md border-gray-100 border-2 rounded-lg px-5 lg:justify-start justify-center items-center gap-2">
+                <img src="{{ asset('comms.png') }}" alt="commission" class="size-5 lg:size-6">
+                <span class="text-lg lg:text-xl uppercase font-extrabold text-[#071d49] tracking-widest">COMMISSION TRACKING</span>
             </div>
         </div>
 
-        <div class="flex md:w-full md:justify-center">
-            <div class="flex flex-col w-[440px] lg:w-full h-[450px] lg:h-[400px] md:ml-0 md:w-[80%]  bg-white shadow-md rounded-xl ml-5 mt-2 lg:-mt-3 lg:ml-0 justify-start items-center gap-2">
+        <div class="flex w-full justify-center">
+            <div class="flex flex-col w-[90%] lg:w-full h-[450px] lg:h-[400px] bg-white shadow-md rounded-xl mt-2 lg:-mt-3 justify-center items-center gap-2">
                 <div class="bg-[#bec1d8] w-full h-[15%] rounded-t-xl flex justify-start items-center px-5 text-white gap-2">
                     <img src="{{ asset('recent.png') }}" alt="recent" class="size-5">
                     <span class="text-center text-[#071d49] uppercase text-base font-extrabold font-inter tracking-widest">
@@ -200,8 +186,8 @@
             </div>
         </div>
 
-        <div x-data="{card:''}" class="flex md:w-full md:justify-center">
-            <div class="w-[440px] lg:w-full h-[400px] lg:h-[200px] md:ml-0 md:w-[80%] md:h-[250px]  flex flex-col md:flex-row lg:flex-row mt-3 lg:-mt-3 gap-4 ml-5 lg:ml-0">
+        <div x-data="{card:''}" class="flex w-full justify-center">
+            <div class="w-[90%] lg:w-full h-[400px] lg:h-[200px] flex flex-col md:flex-row lg:flex-row mt-3 lg:-mt-3 gap-4 ">
                 {{-- Unpaid Commission --}}
                 <div class="flex flex-col items-center justify-start w-full lg:w-[70%] h-full bg-white rounded-xl shadow-md">
                     <div class="bg-[#bec1d8] w-full h-[25%] rounded-t-xl flex justify-start items-center text-[#3584e3] px-5 gap-2">

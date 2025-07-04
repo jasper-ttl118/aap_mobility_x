@@ -26,7 +26,7 @@
                         data: @json($data),
                         backgroundColor: @json($color),
                         borderColor: @json($color),
-                        borderWidth: 1
+                        borderWidth: 0
                     }]
                 },
                 options: {

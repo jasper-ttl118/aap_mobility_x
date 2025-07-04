@@ -7,8 +7,8 @@
         </div> --}}
 
         <!-- Options Container -->
-        <div class="flex md:justify-center w-full">
-            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2  border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+        <div class="flex justify-center w-full">
+            <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2  border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
                 <div class="flex min-w-[600px] lg:min-w-0">
                     <x-crm.submodules selected='Corporate'/>
                 </div>
@@ -32,15 +32,15 @@
             <a href="{{ route('corporate') }}" class="hover:underline font-semibold truncate">Reseller</a>
         </div>
 
-        <div class="flex md:w-full md:justify-center">
-            <div x-data="{ corporate:'reseller' }" class="flex flex-col w-[440px] md:ml-0 md:w-[80%] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-                <div class="flex flex-row w-full h-[20%] items-center ">
-                    <div class="flex items-center w-[50%] justify-center lg:justify-start p-7 pt-3 px-7">
-                        <div>
-                            <h2 class="font-extrabold text-xl uppercase tracking-widest font-inter pt-5 text-[#071d49]" x-text="selected === 'reseller' ? 'List of Resellers' : 'List of Agents'"></h2>
+        <div class="flex w-full justify-center">
+            <div x-data="{ corporate:'reseller' }" class="flex flex-col w-[90%] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg gap-y-5 lg:px-0 px-5 justify-center">
+                <div class="flex flex-col lg:flex-row w-full h-auto justify-center items-center gap-y-3">
+                    <div class="flex items-center w-[50%] justify-center lg:justify-start mt-5 lg:p-7">
+                        <div class="flex justify-start items-center w-full h-full">
+                            <h2 class="flex font-extrabold text-xl uppercase tracking-widest font-inter text-center text-[#071d49]" x-text="selected === 'reseller' ? 'List of Resellers' : 'List of Agents'"></h2>
                         </div>
                     </div>
-                    <div class="flex justify-end w-[50%] h-[40%] items-center px-7">
+                    <div class="flex justify-end lg:w-[50%] w-full h-10 items-center lg:h-24 lg:p-7">
                         {{-- Buttons --}}
                         {{-- <x-corporate.buttons/> --}}
                         <div class="flex flex-row w-full lg:w-[50%] h-full lg:h-[80%] border border-[#071d49] rounded-md justify-between items-center">

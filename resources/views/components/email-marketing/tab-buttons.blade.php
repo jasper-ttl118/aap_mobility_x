@@ -1,5 +1,5 @@
-<div class="flex md:w-full md:justify-center">
-    <div class="flex flex-col lg:flex-row w-[440px] md:w-[80%] md:ml-0 lg:w-full lg:justify-between lg:h-10 gap-y-2 lg:gap-y-0 gap-x-5 ml-5 lg:ml-0 mt-2 lg:mt-0">
+<div class="flex w-full justify-center">
+    <div class="flex flex-col lg:flex-row w-[90%] md:w-[80%] md:ml-0 lg:w-full lg:justify-between lg:h-10 gap-y-2 lg:gap-y-0 gap-x-5 mt-2 lg:mt-0">
         <div class="flex flex-row w-full lg:w-[60%] gap-2">
             <a href=" {{route('email-marketing')}} " 
                 class="{{ request()->routeIs('email-marketing') 
