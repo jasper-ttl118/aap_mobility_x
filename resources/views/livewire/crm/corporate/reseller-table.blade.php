@@ -1,5 +1,5 @@
 <div>
-<table class="w-[1000px] wlg:w-full text-sm md:justify-center text-gray-500">   
+<table class="w-[1000px] lg:w-full text-sm md:justify-center text-gray-500">   
     <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
         <tr>    
             <th scope="col" class="w-[10.25%] py-3">Resellers ID</th>

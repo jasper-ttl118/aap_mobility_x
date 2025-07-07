@@ -32,7 +32,7 @@
                 <div class="h-auto lg:h-[90%] w-full flex flex-col lg:flex-row justify-center items-center gap-x-3 gap-y-5">
                     <div class="flex flex-col w-full lg:w-[50%] h-full lg:h-[90%] items-center justify-evenly gap-y-5">
                         {{-- First Box --}}
-                        <div @click="open='open1'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open1'" class="cursor-pointer hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-1">
                             <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg fill="#000000" width="30px" height="30px" viewBox="0 0 24 24" id="phillippine-peso" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line"><path id="primary" d="M11,15H8V3h3a6,6,0,0,1,6,6h0A6,6,0,0,1,11,15ZM8,3V21" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
                                 </path><path id="primary-2" data-name="primary" d="M4,7H20M4,11H20" style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path></svg>
@@ -45,7 +45,6 @@
                                 <span class="text-[#071d49] font-bold text-lg lg:text-xl truncate">₱22,533,970.40</span>
                             </div>
                         </div>
-                        
                         <!-- Modal overlay -->
                         <div x-cloak x-show="open == 'open1'" x-transition class="fixed  bg-black bg-opacity-50 inset-0 z-50 flex items-center justify-center">
                             <!-- Modal content -->
@@ -188,7 +187,7 @@
                             </div>
                         </div>
                         {{-- Second Box --}}
-                        <div @click="open='open2'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open2'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-1">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg fill="#000000" width="30px" height="30px" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg"><path d="M 13.7851 49.5742 L 42.2382 49.5742 C 47.1366 49.5742 49.5743 47.1367 49.5743 42.3086 L 49.5743 13.6914 C 49.5743 8.8633 47.1366 6.4258 42.2382 6.4258 L 13.7851 6.4258 C 8.9101 6.4258 6.4257 8.8398 6.4257 13.6914 L 6.4257 42.3086 C 6.4257 47.1602 8.9101 49.5742 13.7851 49.5742 Z M 13.8554 45.8008 C 11.5117 45.8008 10.1992 44.5586 10.1992 42.1211 L 10.1992 13.8789 C 10.1992 11.4414 11.5117 10.1992 13.8554 10.1992 L 42.1679 10.1992 C 44.4882 10.1992 45.8007 11.4414 45.8007 13.8789 L 45.8007 42.1211 C 45.8007 44.5586 44.4882 45.8008 42.1679 45.8008 Z M 27.9648 22.1289 C 29.6523 22.1289 30.8476 21.0039 30.8476 19.5508 C 30.8476 17.8867 29.6757 16.7383 27.9648 16.7383 C 26.3944 16.7383 25.1757 17.9102 25.1757 19.5508 C 25.1757 21.0039 26.3944 22.1289 27.9648 22.1289 Z M 18.8944 29.9571 L 37.1523 29.9571 C 38.4648 29.9571 39.3554 29.2539 39.3554 28.0118 C 39.3554 26.7461 38.5117 26.0430 37.1523 26.0430 L 18.8944 26.0430 C 17.5351 26.0430 16.6679 26.7461 16.6679 28.0118 C 16.6679 29.2539 17.5820 29.9571 18.8944 29.9571 Z M 27.9648 39.2383 C 29.6523 39.2383 30.8476 38.0898 30.8476 36.6367 C 30.8476 34.9961 29.6757 33.8477 27.9648 33.8477 C 26.3944 33.8477 25.1757 34.9961 25.1757 36.6367 C 25.1757 38.0898 26.3944 39.2383 27.9648 39.2383 Z"/></svg>
                             </div>
@@ -274,7 +273,7 @@
                     </div>
                     <div class="flex flex-col w-full lg:w-[50%] h-full lg:h-[90%] items-center justify-evenly gap-y-5">
                         {{-- Third Box --}}
-                        <div @click="open='open3'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open3'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-1">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg height="30px" width="30px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
                                     viewBox="0 0 512 512"  xml:space="preserve">
@@ -466,7 +465,7 @@
                             </div>
                         </div>
                         {{-- Fourth Box --}}
-                        <div @click="open='open4'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-3">
+                        <div @click="open='open4'" class="cursor-pointer hover:-translate-y-2 hover:scale-105 duration-300 transform flex flex-row w-full h-[100px] lg:h-[48%] bg-white shadow-md rounded-md items-center px-2 gap-1">
                            <div class="bg-[#dedede] rounded-2xl h-20 items-center justify-center flex p-1">
                                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.25 10.5a3.75 3.75 0 1 1 0-7.5 3.75 3.75 0 0 1 0 7.5zm-1.543 9.207a1 1 0 0 1-1.414-1.414l14-14a1 1 0 1 1 1.414 1.414l-14 14zM13 17.25a3.75 3.75 0 1 0 7.5 0 3.75 3.75 0 0 0-7.5 0zM7.25 8.5a1.75 1.75 0 1 0 0-3.5 1.75 1.75 0 0 0 0 3.5zm11.25 8.75a1.75 1.75 0 1 1-3.5 0 1.75 1.75 0 0 1 3.5 0z" fill="#000000"/></svg>
                             </div>

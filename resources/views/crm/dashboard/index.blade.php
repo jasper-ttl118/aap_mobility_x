@@ -158,7 +158,7 @@
                                         <td class="flex items-center w-[20%]">
                                             <img src="aaplogo1.png" alt="UserImage" class="w-full flex">
                                         </td>         
-                                        <td class="flex items-center w-[60%] mx-1">
+                                        <td class="flex items-center w-[60%]">
                                             <span class="text-sm font-semibold text-[#071d49]    ">
                                                 {{ $customer -> customer_firstname }} 
                                                 {{ $customer -> customer_middlename }} 
