@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="flex flex-col justify-center items-start">
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Mother's Maiden Name</label>
-                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_maiden_name ?? 'n/a'}}</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_mother_maiden_name ?? 'n/a'}}</label>
                                     </div>
                                 </div>
            

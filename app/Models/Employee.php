@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
@@ -19,26 +20,41 @@ class Employee extends Model
 
     protected $fillable = [
         // Basic Personal Information
+        'employee_profile_picture',
         'employee_lastname',
         'employee_firstname',
         'employee_middlename',
         'employee_suffix',
-        'employee_maiden_name',
+        'employee_mother_maiden_name',
         'employee_gender',
         'employee_age',
         'employee_birthdate',
         'employee_birthplace',
         'employee_religion',
+        'department_id',
         
         // Address Information
-        'employee_present_address',
-        'employee_permanent_address',
+        'employee_present_house_no',
+        'employee_present_street',
+        'employee_present_brgy',
+        'employee_present_city',
+        'employee_present_province',
+        'employee_present_zip_code',
+
+        'employee_permanent_house_no',
+        'employee_permanent_street',
+        'employee_permanent_brgy',
+        'employee_permanent_city',
+        'employee_permanent_province',
+        'employee_permanent_zip_code',
         
         // Contact Information
-        'employee_personal_email',
         'employee_contact_no1',
-        'employee_contact_no2',
+        'employee_contact_no2', // Optional number
+        'employee_personal_email',
         'employee_viber_number',
+        'employee_company_number',
+        'employee_company_email',
         
         // Educational Information
         'employee_educational_attainment',
@@ -48,19 +64,17 @@ class Employee extends Model
         // Employment Information
         'employee_job_position',
         'employee_department',
-        'employee_company_email',
         'employee_employment_type',
         
         // Civil Status Information
         'employee_civil_status',
-        'marriage_certificate_path',
-        'parents_birth_certificate_path',
+        'employee_marriage_certificate_path',
         
         // Government Details Update Status
-        'sss_updated',
-        'philhealth_updated',
-        'pagibig_updated',
-        'pagibig_mdf_path',
+        'employee_sss_updated',
+        'employee_philhealth_updated',
+        'employee_pagibig_updated',
+        'employee_pagibig_mdf_path',
         
         // Government IDs
         'employee_sss_number',
@@ -70,25 +84,29 @@ class Employee extends Model
         
         // Family Information
         'employee_children_count',
-        'children_birth_certificates_path',
-        'employee_children_details',
-        'parents_birth_certificate_dependents_path',
         'employee_parents_details',
+        'employee_children_count', 
+        'employee_father_name',     
+        'employee_father_birthdate',
+        'employee_father_birth_certificate',
+        'employee_mother_name',
+        'employee_mother_birthdate',
+        'employee_mother_birth_certificate',
         
         // Medical Information
         'employee_blood_type',
         
         // Emergency Contact 1
-        'emergency_contact_1_name',
-        'emergency_contact_1_relationship',
-        'emergency_contact_1_number',
-        'emergency_contact_1_address',
+        'employee_emergency_contact_1_name',
+        'employee_emergency_contact_1_relationship',
+        'employee_emergency_contact_1_number',
+        'employee_emergency_contact_1_address',
         
         // Emergency Contact 2
-        'emergency_contact_2_name',
-        'emergency_contact_2_relationship',
-        'emergency_contact_2_number',
-        'emergency_contact_2_address',
+        'employee_emergency_contact_2_name',
+        'employee_emergency_contact_2_relationship',
+        'employee_emergency_contact_2_number',
+        'employee_emergency_contact_2_address',
         
         // System fields
         'employee_status',
@@ -98,9 +116,9 @@ class Employee extends Model
         'employee_birthdate' => 'date',
         'employee_age' => 'integer',
         'employee_status' => 'boolean',
-        'sss_updated' => 'boolean',
-        'philhealth_updated' => 'boolean',
-        'pagibig_updated' => 'boolean',
+        'employee_sss_updated' => 'boolean',
+        'employee_philhealth_updated' => 'boolean',
+        'employee_pagibig_updated' => 'boolean',
         'employee_date_created' => 'datetime',
         'employee_date_updated' => 'datetime',
     ];
@@ -203,5 +221,15 @@ class Employee extends Model
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class, 'department_id');
+    }
+
+    public function employeeChildren(): HasMany
+    {
+        return $this->hasMany(EmployeeChild::class, 'employee_id', 'employee_id');
+    }
+
+    public function employeeEmergencyContacts(): HasMany
+    {
+        return $this->hasMany(EmployeeEmergencyContact::class, 'employee_id', 'employee_id');
     }
 }

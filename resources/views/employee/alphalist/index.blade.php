@@ -27,7 +27,7 @@
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex flex-start lg:justify-end px-7 pt-6">
-                    <a x-show="selected == 'employees'" href="{{ route('addEmployee') }}"
+                    <a x-show="selected == 'employees'" href="{{ route('employees.alphalist.create') }}"
                         :class="selected == 'employees' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
                         class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"

@@ -17,7 +17,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees.alphalist.create');
+        return view('employee.alphalist.add-employee');
     }
 
     public function store(Request $request)
@@ -287,9 +287,12 @@ class EmployeeController extends Controller
         return view('employees.alphalist.show', compact('employee'));
     }
 
-    public function editEmployee(Employee $employee_id)
+    public function editEmployee($employee_id)
     {
+        // $employee = $empl
         $employee = Employee::find($employee_id);
+        // dump($employee->employee_id);
+        // dump($employee);
         return view('employee.alphalist.edit-employee', compact('employee'));
     }
 
@@ -378,6 +381,7 @@ class EmployeeController extends Controller
 
     public function addEmployee()
     {
+        // dump('test');
         return view('employee.alphalist.add-employee');
     }
     

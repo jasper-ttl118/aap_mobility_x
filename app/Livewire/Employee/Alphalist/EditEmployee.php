@@ -4,11 +4,12 @@ namespace App\Livewire\Employee\Alphalist;
 
 use App\Models\Department;
 use App\Models\Employee;
+use Carbon\Carbon;
 use DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class AddEmployee extends Component
+class EditEmployee extends Component
 {
     use WithFileUploads;
     // Basic Personal Information
@@ -92,71 +93,160 @@ class AddEmployee extends Component
 
     // Medical Information
     public $employee_blood_type;
+    public $employee_id;
 
     // Emergency Contacts
     public $emergency_contact_details = [
         ['name' => '', 'relationship' => '', 'number' => '', 'address' => '']
     ];
     public $departments;
-
-
-    public function mount()
+    public function mount(Employee $employee)
     {
-        $this->employee_gender = 'Male';
-        $this->employee_religion = 'Catholic';
-        $this->employee_suffix = 'Jr.';
+        $this->employee_id = $employee->employee_id;
+        // Basic Info
+        $this->employee_profile_picture         = $employee['employee_profile_picture'] ?? null;
+        $this->employee_lastname                = $employee['employee_lastname'] ?? null;
+        $this->employee_firstname               = $employee['employee_firstname'] ?? null;
+        $this->employee_middlename              = $employee['employee_middlename'] ?? null;
+        $this->employee_suffix                  = $employee['employee_suffix'] ?? null;
+        $this->employee_mother_maiden_name      = $employee['employee_mother_maiden_name'] ?? null;
+        $this->employee_gender                  = $employee['employee_gender'] ?? null;
+        $this->employee_birthdate = isset($employee['employee_birthdate'])
+            ? Carbon::parse($employee['employee_birthdate'])->toDateString() // outputs '2024-02-02'
+            : null;        
+        $this->employee_birthplace              = $employee['employee_birthplace'] ?? null;
+        $this->employee_religion                = $employee['employee_religion'] ?? null;
+
+        // Address Info
+        $this->present_house_no                 = $employee['employee_present_house_no'] ?? null;
+        $this->present_street                   = $employee['employee_present_street'] ?? null;
+        $this->present_brgy                     = $employee['employee_present_brgy'] ?? null;
+        $this->present_city                     = $employee['employee_present_city'] ?? null;
+        $this->present_province                 = $employee['employee_present_province'] ?? null;
+        $this->present_zip_code                 = $employee['employee_present_zip_code'] ?? null;
+
+        $this->permanent_house_no               = $employee['employee_permanent_house_no'] ?? null;
+        $this->permanent_street                 = $employee['employee_permanent_street'] ?? null;
+        $this->permanent_brgy                   = $employee['employee_permanent_brgy'] ?? null;
+        $this->permanent_city                   = $employee['employee_permanent_city'] ?? null;
+        $this->permanent_province               = $employee['employee_permanent_province'] ?? null;
+        $this->permanent_zip_code               = $employee['employee_permanent_zip_code'] ?? null;
+
+        // Contact Info
+        $this->employee_personal_email          = $employee['employee_personal_email'] ?? null;
+        $this->employee_contact_no1             = $employee['employee_contact_no1'] ?? null;
+        $this->employee_contact_no2             = $employee['employee_contact_no2'] ?? null;
+        $this->employee_company_email           = $employee['employee_company_email'] ?? null;
+        $this->employee_company_number          = $employee['employee_company_number'] ?? null;
+        $this->employee_viber_number            = $employee['employee_viber_number'] ?? null;
+
+        // Educational Info
+        $this->employee_educational_attainment  = $employee['employee_educational_attainment'] ?? null;
+        $this->employee_school_attended         = $employee['employee_school_attended'] ?? null;
+        $this->employee_college_vocational_status = $employee['employee_college_vocational_status'] ?? null;
+
+        // Employment Info
+        $this->employee_job_position            = $employee['employee_job_position'] ?? null;
+        $this->department_id                    = $employee['department_id'] ?? null;
+        $this->employee_employment_type         = $employee['employee_employment_type'] ?? null;
+        $this->employee_section                 = $employee['employee_section'] ?? null; // not in employee, but included
+
+        // Civil Status
+        $this->employee_civil_status            = $employee['employee_civil_status'] ?? null;
+        $this->marriage_certificate_path        = $employee['employee_marriage_certificate_path'] ?? null;
+
+        // Government Status
+        $this->sss_updated                      = $employee['employee_sss_updated'] ?? null;
+        $this->philhealth_updated               = $employee['employee_philhealth_updated'] ?? null;
+        $this->pagibig_updated                  = $employee['employee_pagibig_updated'] ?? null;
+        $this->pagibig_mdf_path                 = $employee['employee_pagibig_mdf_path'] ?? null;
+
+        // Government IDs
+        $this->employee_sss_number              = $employee['employee_sss_number'] ?? null;
+        $this->employee_philhealth_number       = $employee['employee_philhealth_number'] ?? null;
+        $this->employee_pagibig_number          = $employee['employee_pagibig_number'] ?? null;
+        $this->employee_tin_number              = $employee['employee_tin_number'] ?? null;
+
+        // Family Info
+        $this->employee_children_count          = $employee['employee_children_count'] ?? null;
+        $this->employee_father_name             = $employee['employee_father_name'] ?? null;
+        $this->employee_father_birthdate        = $employee['employee_father_birthdate'] ?? null;
+        $this->employee_father_birth_certificate = $employee['employee_father_birth_certificate'] ?? null;
+        $this->employee_mother_name             = $employee['employee_mother_name'] ?? null;
+        $this->employee_mother_birthdate        = $employee['employee_mother_birthdate'] ?? null;
+        $this->employee_mother_birth_certificate = $employee['employee_mother_birth_certificate'] ?? null;
+
+        // Medical Info
+        $this->employee_blood_type              = $employee['employee_blood_type'] ?? null;
+
+        $this->employee_children_details = $employee->employeeChildren->map(function ($child) {
+            return [
+                'name' => $child->employee_child_name,
+                'birthdate' => $child->employee_child_birthdate,
+                'birth_certificate'=> $child->employee_child_birth_certificate, 
+            ];
+        })->toArray();
+
+        $this->emergency_contact_details = $employee->employeeEmergencyContacts->map(function ($contact) {
+            return [
+                'name' => $contact->employee_emergency_contact_name,
+                'relationship' => $contact->employee_emergency_contact_relationship,
+                'number' => $contact->employee_emergency_contact_number, 
+                'address' => $contact->employee_emergency_contact_address
+            ];
+        })->toArray();
+
+        // dump($employee);
         $this->departments = Department::all();
-        $this->employee_blood_type = 'A+';
-        $this->employee_civil_status = 'Single';
-        $this->employee_employment_type = 'Regular';
-        $this->department_id = 1; 
     }
 
-    public function add()
+    public function save()
     {
-        // dd($this->employee_children_details);
+        // dump($this);
         DB::beginTransaction();
 
         try {
-            // dd('end');
-            $employee_profile_path = null;
-            $marriage_certificate_path = null;
-            $father_birth_cert_path = null;
-            $mother_birth_cert_path = null;
-            $pagibig_mdf_path = null;
+            $employee = Employee::findOrFail($this->employee_id);
+
+            // FILE UPLOADS
+            $employee_profile_path = $employee->employee_profile_picture;
+            $marriage_certificate_path = $employee->employee_marriage_certificate_path;
+            $father_birth_cert_path = $employee->employee_father_birth_certificate;
+            $mother_birth_cert_path = $employee->employee_mother_birth_certificate;
+            $pagibig_mdf_path = $employee->employee_pagibig_mdf_path;
 
             if (isset($this->employee_profile_picture)) {
                 $originalName = $this->employee_profile_picture->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $employee_profile_path = $this->employee_profile_picture->storeAs('employee-profile', $filename, 'public');
             }
 
             if (isset($this->marriage_certificate_path)) {
                 $originalName = $this->marriage_certificate_path->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $marriage_certificate_path = $this->marriage_certificate_path->storeAs('employee-profile', $filename, 'public');
             }
 
             if (isset($this->employee_father_birth_certificate)) {
                 $originalName = $this->employee_father_birth_certificate->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $father_birth_cert_path = $this->employee_father_birth_certificate->storeAs('employee-profile', $filename, 'public');
             }
 
             if (isset($this->employee_mother_birth_certificate)) {
                 $originalName = $this->employee_mother_birth_certificate->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $mother_birth_cert_path = $this->employee_mother_birth_certificate->storeAs('employee-profile', $filename, 'public');
             }
 
             if (isset($this->pagibig_mdf_path)) {
                 $originalName = $this->pagibig_mdf_path->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $pagibig_mdf_path = $this->pagibig_mdf_path->storeAs('employee-profile', $filename, 'public');
             }
 
-            // 1. Create Employee
-            $employee = Employee::create([
+            // UPDATE EMPLOYEE
+            $employee->update([
                 'employee_profile_picture'     => $employee_profile_path,
                 'employee_lastname'            => $this->employee_lastname,
                 'employee_firstname'           => $this->employee_firstname,
@@ -205,13 +295,13 @@ class AddEmployee extends Component
 
                 // Civil Status
                 'employee_civil_status'        => $this->employee_civil_status,
-                'employee_marriage_certificate_path'    => $marriage_certificate_path,
+                'employee_marriage_certificate_path' => $marriage_certificate_path,
 
                 // Government Update
-                'employee_sss_updated'                  => $this->sss_updated,
-                'employee_philhealth_updated'           => $this->philhealth_updated,
-                'employee_pagibig_updated'              => $this->pagibig_updated,
-                'employee_pagibig_mdf_path'             => $pagibig_mdf_path,
+                'employee_sss_updated'         => $this->sss_updated,
+                'employee_philhealth_updated'  => $this->philhealth_updated,
+                'employee_pagibig_updated'     => $this->pagibig_updated,
+                'employee_pagibig_mdf_path'    => $pagibig_mdf_path,
 
                 // Government IDs
                 'employee_sss_number'          => $this->employee_sss_number,
@@ -232,67 +322,50 @@ class AddEmployee extends Component
                 'employee_blood_type'          => $this->employee_blood_type,
             ]);
 
-            // 2. Add Children
+            // UPDATE CHILDREN
+            $employee->employeeChildren()->delete(); // Or update logic if needed
             foreach ($this->employee_children_details as $child) {
                 $certificatePath = null;
 
-                if (
-                    isset($child['birth_certificate'])
-                ) {
+                if (isset($child['birth_certificate'])) {
                     $originalName = $child['birth_certificate']->getClientOriginalName();
                     $uniqueName = time() . '_' . $originalName;
-                    
-                    // Store the file
                     $child['birth_certificate']->storeAs('birth-certificates/children', $uniqueName, 'public');
-
-                    // Save full relative path to DB
                     $certificatePath = 'birth-certificates/children/' . $uniqueName;
-                    // dump($certificatePath);
                 }
 
                 $employee->employeeChildren()->create([
-                    'employee_child_name'              => $child['name'],
-                    'employee_child_birthdate'         => $child['birthdate'],
+                    'employee_child_name' => $child['name'],
+                    'employee_child_birthdate' => $child['birthdate'],
                     'employee_child_birth_certificate' => $certificatePath,
                 ]);
             }
 
-            // 3. Add Emergency Contacts
+            // UPDATE EMERGENCY CONTACTS
+            $employee->employeeEmergencyContacts()->delete(); // Or update logic if needed
             foreach ($this->emergency_contact_details as $contact) {
                 $employee->employeeEmergencyContacts()->create([
-                    'employee_emergency_contact_name'        => $contact['name'],
-                    'employee_emergency_contact_relationship'=> $contact['relationship'],
-                    'employee_emergency_contact_number'      => $contact['number'],
-                    'employee_emergency_contact_address'     => $contact['address'],
+                    'employee_emergency_contact_name' => $contact['name'],
+                    'employee_emergency_contact_relationship' => $contact['relationship'],
+                    'employee_emergency_contact_number' => $contact['number'],
+                    'employee_emergency_contact_address' => $contact['address'],
                 ]);
             }
 
             DB::commit();
 
-            // session()->flash('toast', 'Employee added successfully.');
-            // dump('success');
-
-            if ($employee) {
-                dump('test');
-                $this->dispatch('swal:result', [
-                    'title' => 'Success',
-                    'text' => 'Employee added successfully!',
-                    'icon' => 'success',
-                ]);
-            } else {
-                dump('else');
-                $this->dispatch('swal:result', [
-                    'title' => 'Error',
-                    'text' => 'Error',
-                    'icon' => 'Warning',
-                ]);
-            }
+            $this->dispatch('swal:result', [
+                'title' => 'Updated',
+                'text' => 'Employee information updated successfully!',
+                'icon' => 'success',
+            ]);
+            dump('inside');
         } catch (\Exception $e) {
             DB::rollBack();
-            // dump($e->getMessage());
-            session()->flash('toast', 'Failed to add employee: ' . $e->getMessage());
+            dump($e->getMessage());
+            session()->flash('toast', 'Update failed: ' . $e->getMessage());
         }
-    }   
+    }
 
     public function addChild()
     {
@@ -320,6 +393,6 @@ class AddEmployee extends Component
 
     public function render()
     {
-        return view('livewire.employee.alphalist.add-employee');
+        return view('livewire.employee.alphalist.edit-employee');
     }
 }

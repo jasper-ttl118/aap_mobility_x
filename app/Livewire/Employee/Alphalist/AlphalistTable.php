@@ -22,9 +22,9 @@ class AlphalistTable extends Component
     }
     public function render()
     {
-        $employees = Employee::paginate(5, ['*'], 'employeePage');
+        $employees = Employee::with('department')->paginate(5, ['*'], 'employeePage');
         $interns = Intern::paginate(5, ['*'], 'internPage');
-        
+
         return view('livewire.employee.alphalist.alphalist-table', compact('employees', 'interns'));
     }
 }

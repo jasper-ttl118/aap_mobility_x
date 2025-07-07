@@ -1,4 +1,4 @@
-<form wire:submit.prevent="add" enctype="multipart/form-data">
+<form wire:submit.prevent="save" enctype="multipart/form-data">
     @csrf
     <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
         <!-- Step Indicator -->
@@ -482,7 +482,22 @@
                                     <div class="flex flex-col w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">Birth Certificate</label>
                                     </div>
-                                    <input wire:model="employee_father_birth_certificate" name="employee_father_birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" required>
+                                    <input wire:model="employee_father_birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" required>
+                                    
+                                    @if ($employee_father_birth_certificate && is_string($employee_father_birth_certificate))
+                                        <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                            </svg>
+
+                                            <a href="{{ Storage::url($employee_father_birth_certificate) }}"
+                                            target="_blank"
+                                            class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                            title="View uploaded file">
+                                                {{ basename($employee_father_birth_certificate) }}
+                                            </a>
+                                        </div>
+                                    @endif
 
                                     <div
                                         wire:loading
@@ -500,6 +515,7 @@
                                             <span class="text-sm text-gray-600">Uploading...</span>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -525,6 +541,21 @@
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">Birth Certificate</label>
                                     </div>
                                     <input wire:model="employee_mother_birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" required>
+                                
+                                    @if ($employee_mother_birth_certificate && is_string($employee_mother_birth_certificate))
+                                        <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                            </svg>
+
+                                            <a href="{{ Storage::url($employee_mother_birth_certificate) }}"
+                                            target="_blank"
+                                            class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                            title="View uploaded file">
+                                                {{ basename($employee_mother_birth_certificate) }}
+                                            </a>
+                                        </div>
+                                    @endif
 
                                     <div
                                         wire:loading
@@ -550,17 +581,16 @@
                 </div>
 
                 <div class="flex flex-row w-full gap-x-5 justify-center items-center">
-                    <div class="flex flex-col w-[50%] gap-y-3">
-                        <div class="flex flex-col space-y-1 w-full relative min-h-[60px]">
+                    <div class="flex flex-col w-[50%] gap-y-3 relative">
+                        <div class="flex flex-col space-y-1 w-full">
                             <div class="flex flex-row w-full gap-x-2">
                                 <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
-                                <label for="middle" class="@lg/main:block hidden text-gray-500">(Please attach your marriage certificate)</label>
+                                <label for="middle" class="@lg/main:block hidden text-gray-500"> (Please attach your marriage certificate)</label>
                             </div>
 
-                            {{-- File Input --}}
                             <input
                                 wire:model="marriage_certificate_path"
-                                class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32 w-full"
+                                class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32"
                                 type="file"
                                 accept=".pdf,.jpg,.jpeg,.png"
                                 id="file-upload"
@@ -568,7 +598,21 @@
                                 required
                             >
 
-                            {{-- Loading Overlay (fully centered) --}}
+                            @if ($marriage_certificate_path && is_string($marriage_certificate_path))
+                                <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                    </svg>
+
+                                    <a href="{{ Storage::url($marriage_certificate_path) }}"
+                                    target="_blank"
+                                    class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                    title="View uploaded file">
+                                        {{ basename($marriage_certificate_path) }}
+                                    </a>
+                                </div>
+                            @endif
+
                             <div
                                 wire:loading
                                 wire:target="marriage_certificate_path"
@@ -603,6 +647,38 @@
                                 <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
                             </div>
                             <input wire:model="pagibig_mdf_path" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" required>
+                            
+                            @if ($pagibig_mdf_path && is_string($pagibig_mdf_path))
+                                <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                    </svg>
+
+                                    <a href="{{ Storage::url($pagibig_mdf_path) }}"
+                                    target="_blank"
+                                    class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                    title="View uploaded file">
+                                        {{ basename($pagibig_mdf_path) }}
+                                    </a>
+                                </div>
+                            @endif
+
+                            <div
+                                wire:loading
+                                wire:target="pagibig_mdf_path"
+                                class="absolute inset-0 flex items-center justify-center bg-white/80 z-20 rounded-lg"
+                            >
+                                <div class="flex flex-col items-center justify-center">
+                                    <svg class="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8v8H4z"></path>
+                                    </svg>
+                                    <span class="text-sm text-gray-600">Uploading...</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="flex flex-col w-[50%]">
@@ -623,13 +699,13 @@
                                     <tr>
                                         {{-- keep in mind --}}
                                         <td class="p-2">SSS</td>
-                                        <td class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="1" required></td>
-                                        <td class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="0" required></td>
+                                        <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="1" required></td>
+                                        <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="0" required></td>
                                     </tr>
                                     <tr>
                                         <td class="p-2">PhilHealth</td>
-                                        <td wire:model="philhealth_updated" class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="1" required></td>
-                                        <td wire:model="philhealth_updated" class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="0" required></td>
+                                        <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="1" required></td>
+                                        <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="0" required></td>
                                     </tr>
                                     <tr>
                                         <td class="p-2">Pag-Ibig</td>
@@ -640,7 +716,7 @@
                             </table>
                         </div>
                     </div>
-                 </div>
+                </div>
                 <div class="flex flex-col w-full gap-y-3">
                     <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
                         <div class="flex flex-col w-full gap-x-2">
@@ -660,6 +736,7 @@
                                                     wire:model="employee_children_details.{{ $index }}.name"
                                                     placeholder="e.g., Juan Dela Cruz"
                                                     class="profile_edit_input w-full flex"
+
                                                     required>
                                             </div>
 
@@ -676,7 +753,23 @@
                                                 <div class="flex flex-col w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block " for="middle">Birth Certificate</label>
                                                 </div>
+
                                                 <input wire:model="employee_children_details.{{ $index }}.birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" required>
+                            
+                                                @if ($child['birth_certificate'] && is_string($child['birth_certificate']))
+                                                    <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                                        </svg>
+
+                                                        <a href="{{ Storage::url($child['birth_certificate']) }}"
+                                                        target="_blank"
+                                                        class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                                        title="View uploaded file">
+                                                            {{ basename($child['birth_certificate']) }}
+                                                        </a>
+                                                    </div>
+                                                @endif
 
                                                 <div
                                                     wire:loading
@@ -786,7 +879,7 @@
         <div x-show="step === 7" class="gap-y-2 flex flex-col">
             <div class="flex flex-row justify-end items-end gap-x-2">
                 <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                <button type="submit" wire:click="add"
+                <button type="submit" wire:click="save"
                     class="btn text-[#071d49] border-yellow-300 flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
                     <p>Submit</p>
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg"
