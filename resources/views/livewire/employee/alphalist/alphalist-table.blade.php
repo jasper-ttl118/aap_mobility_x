@@ -1,5 +1,5 @@
 <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-    <template x-if="selected === 'employees'">
+    <div x-show="selected === 'employees'">
         <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>
@@ -14,14 +14,14 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($employees as $employee)
+                @forelse ($employees as $employee)
                     <tr class="border-b border-gray-200 bg-white">
                         <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
                             {{ $employee->employee_id }}</th>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}&nbsp;{{ $employee->employee_middlename }}&nbsp;{{ $employee->employee_lastname }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_personal_email }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_contact_no1 }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_department }}</td>
+                        <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->department->department_name  }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_job_position }}</td>
                         <td class="w-[12.5%] py-4  text-gray-900">
                             @if ($employee->employee_status == '1')
@@ -61,7 +61,7 @@
                                     </div>
                                 </a>
 
-                                <a href="{{ route('editEmployee') }}"
+                                <a href="{{ route('editEmployee', $employee->employee_id) }}"
                                     {{-- @click="open_edit_employee = true; 
                                         window.Livewire.dispatch('loadEmployeeInfo', { employee_id: {{ $employee->employee_id }} });
                                     " --}}
@@ -96,37 +96,46 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+
+                    @empty
+                        <tr>
+                            <td colspan="8" class="mt-4">No Employee Data Yet.</td>
+                        </tr>
+                @endforelse
             </tbody>
         </table>
-    </template>
 
-    <template x-if="selected === 'ojt'">
+        <div class="flex w-full justify-start lg:justify-center">
+            {{ $employees->onEachSide(1)->links() }}
+        </div>
+    </div>
+
+    <div x-show="selected === 'ojt'">
         <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>    
-                    <th scope="col" class="w-[6.25%] py-3">Intern ID</th>
-                    <th scope="col" class="w-[19.0%] py-3">Name</th>
-                    <th scope="col" class="w-[12.5%] py-3">Email</th>
-                    <th scope="col" class="w-[12.5%] py-3">Contact Number</th>
-                    <th scope="col" class="w-[12.5%] py-3">Department</th>
-                    <th scope="col" class="w-[12.5%]o py-3">Position</th>
-                    <th scope="col" class="w-[12.5%] py-3">Status</th>
-                    <th scope="col" class="w-[12.5%] py-3">Actions</th>
+                    <th scope="col" class=" py-3">Intern ID</th>
+                    <th scope="col" class=" py-3">Name</th>
+                    <th scope="col" class=" py-3">Email</th>
+                    <th scope="col" class=" py-3">Contact Number</th>
+                    <th scope="col" class=" py-3">Department</th>
+                    <th scope="col" class=" py-3">Position</th>
+                    <th scope="col" class=" py-3">Status</th>
+                    <th scope="col" class=" py-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($interns as $intern)
+                @forelse ($interns as $intern)
                     <tr class="border-b border-gray-200 bg-white">
-                        <td scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
+                        <td scope="row" class=" py-4 font-medium whitespace-nowrap text-gray-900">
                             {{ $intern->intern_id }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_firstname }}
+                        <td class=" py-4  text-gray-900">{{ $intern->intern_firstname }}
                             {{ $intern->intern_lastname }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_email }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_contact_number }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_department }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">{{ $intern->intern_position }}</td>
-                        <td class="w-[12.5%] py-4  text-gray-900">
+                        <td class=" py-4  text-gray-900">{{ $intern->intern_email }}</td>
+                        <td class=" py-4  text-gray-900">{{ $intern->intern_contact_number }}</td>
+                        <td class=" py-4  text-gray-900">{{ $intern->intern_department }}</td>
+                        <td class=" py-4  text-gray-900">{{ $intern->intern_position }}</td>
+                        <td class=" py-4  text-gray-900">
                             @if ($intern->intern_status == '1')
                                 <span
                                     class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
@@ -189,8 +198,16 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="8" class="mt-4">No Intern Data Yet</td>
+                        </tr>
+                @endforelse
             </tbody>
         </table>
-    </template>
+
+        <div class="flex w-full justify-start lg:justify-center">
+            {{ $interns->onEachSide(1)->links() }}
+        </div>
+    </div>
 </div>

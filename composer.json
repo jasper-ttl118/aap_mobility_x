@@ -12,6 +12,7 @@
         "laravel/reverb": "^1.0",
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.6",
+        "nesbot/carbon": "^3.10",
         "spatie/laravel-permission": "^6.15"
     },
     "require-dev": {

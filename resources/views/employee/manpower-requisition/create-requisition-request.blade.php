@@ -30,7 +30,9 @@
                 </div>
             </div>
 
-            <livewire:employee.manpower-requisition.add-requisition-req />
+            <div id="add-requisition-component">
+                <livewire:employee.manpower-requisition.add-requisition-req />
+            </div>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -38,7 +40,6 @@
         <script>
             window.addEventListener('swal:confirm', (event) => {
                 const data = event.detail;
-                console.log(data);
 
                 Swal.fire({
                     title: data[0].title,
@@ -54,27 +55,56 @@
                     buttonsStyling: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        // 1. Call Livewire backend delete method
-                        Livewire.dispatch('delete');
 
-                        // 2. Show success alert after a slight delay (optional)
-                        setTimeout(() => {
-                            Swal.fire({
-                                title: data[0].successTitle || 'Requisition Created!',
-                                text: data[0].successText || 'The requisition was successfully created.',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
+                        const rootEl = document.querySelector('#add-requisition-component [wire\\:id]');
+                        if (!rootEl) {
+                            console.error("Livewire component not found");
+                            return;
+                        }
 
-                            // 3. Redirect after success alert delay
-                            setTimeout(() => {
-                                window.location.href = '/requisition';
-                            }, 1600); // slightly longer than Swal timer
-                        }, 200); // slight delay between delete and showing success
+                        const componentId = rootEl.getAttribute('wire:id');
+                        Livewire.find(componentId).call('add');
                     }
                 });
             });
+
+            window.addEventListener('swal:result', (event) => {
+                const data = event.detail;
+
+                if (data[0].icon === 'success') {
+                    setTimeout(() => {
+                        Swal.fire({
+                            title: data.successTitle || data.title || 'Success',
+                            text: data.successText || data.text || 'Requisition created successfully!',
+                            icon: data.icon || 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(() => {
+                            window.location.href = '/requisition';
+                        }, 1600);
+
+                    }, 300);
+                } else if (data[0].icon === 'error') {
+                    // Show a blocking alert for errors, user must acknowledge
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    // Default fallback alert
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: data[0].icon || 'info',
+                        confirmButtonText: 'OK',
+                    });
+                }
+            });
+
 
         </script>
 </x-app-layout>

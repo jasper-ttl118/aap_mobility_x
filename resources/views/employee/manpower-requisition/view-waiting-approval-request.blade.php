@@ -30,53 +30,85 @@
                     <a href="{{ route('requisition.create') }}" class="hover:underline font-semibold truncate">Approve Requisition Form</a>
                 </div>
             </div>
+            
+            <div id="approve-requisition">
+                <livewire:employee.manpower-requisition.approve-requisition :requisition="$requisition"/>
+            </div>
 
-            <livewire:employee.manpower-requisition.approve-requisition-request :requisition="$requisition"/>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        window.addEventListener('swal:confirm', (event) => {
-            const data = event.detail;
-            console.log(data);
+            window.addEventListener('swal:confirm', (event) => {
+                const data = event.detail;
 
-            Swal.fire({
-                title: data[0].title,
-                text: data[0].text,
-                icon: data[0].icon,
-                showCancelButton: true,
-                confirmButtonText: data[0].confirmButtonText || 'Yes',
-                cancelButtonText: 'Cancel',
-                customClass: {
-                    confirmButton: 'bg-[#071d49] text-white px-4 mr-4 py-2 rounded hover:bg-blue-700',
-                    cancelButton: 'bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700'
-                },
-                buttonsStyling: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // 1. Call Livewire backend delete method
-                    Livewire.dispatch('delete');
+                Swal.fire({
+                    title: data[0].title,
+                    text: data[0].text,
+                    icon: data[0].icon,
+                    showCancelButton: true,
+                    confirmButtonText: data[0].confirmButtonText || 'Yes',
+                    cancelButtonText: 'Cancel',
+                    customClass: {
+                        confirmButton: 'bg-[#071d49] text-white px-4 mr-4 py-2 rounded hover:bg-blue-700',
+                        cancelButton: 'bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700'
+                    },
+                    buttonsStyling: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
 
-                    // 2. Show success alert after a slight delay (optional)
+                        const rootEl = document.querySelector('#approve-requisition [wire\\:id]');
+                        if (!rootEl) {
+                            console.error("Livewire component not found");
+                            return;
+                        }
+
+                        const componentId = rootEl.getAttribute('wire:id');
+                        Livewire.find(componentId).call('approve');
+                    }
+                });
+            });
+
+            window.addEventListener('swal:result', (event) => {
+                const data = event.detail;
+
+                if (data[0].icon === 'success') {
                     setTimeout(() => {
                         Swal.fire({
-                            title: data[0].successTitle || 'Approved!',
-                            text: data[0].successText || 'The requisition was successfully approved.',
-                            icon: 'success',
+                            title: data.successTitle || data.title || 'Success',
+                            text: data.successText || data.text || 'Requisition approved successfully!',
+                            icon: data.icon || 'success',
                             showConfirmButton: false,
                             timer: 1500
                         });
 
-                        // 3. Redirect after success alert delay
                         setTimeout(() => {
-                            window.location.href = data[0].redirectUrl || '/requisition';
-                        }, 1600); // slightly longer than Swal timer
-                    }, 200); // slight delay between delete and showing success
+                            window.location.href = '/requisition';
+                        }, 1600);
+
+                    }, 300);
+                } else if (data[0].icon === 'error') {
+                    // Show a blocking alert for errors, user must acknowledge
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    // Default fallback alert
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: data[0].icon || 'info',
+                        confirmButtonText: 'OK',
+                    });
                 }
             });
-        });
+
 
     </script>
+
 </x-app-layout>

@@ -27,56 +27,88 @@
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="{{ route('requisition.create') }}" class="hover:underline font-semibold truncate">Check/Endorse Requisition Form</a>
+                    <a href="{{ route('requisition.edit', $requisition->requisition_id) }}" class="hover:underline font-semibold truncate">Edit Requisition Form</a>
                 </div>
             </div>
 
-            <livewire:employee.manpower-requisition.edit-requisition :requisition="$requisition"/>
+            <div id="edit-requisition">
+                <livewire:employee.manpower-requisition.edit-requisition :requisition="$requisition"/>
+            </div>
+
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        window.addEventListener('swal:confirm', (event) => {
-            const data = event.detail;
-            console.log(data);
+            window.addEventListener('swal:confirm', (event) => {
+                const data = event.detail;
 
-            Swal.fire({
-                title: data[0].title,
-                text: data[0].text,
-                icon: data[0].icon,
-                showCancelButton: true,
-                confirmButtonText: data[0].confirmButtonText || 'Yes',
-                cancelButtonText: 'Cancel',
-                customClass: {
-                    confirmButton: 'bg-[#071d49] text-white px-4 mr-4 py-2 rounded hover:bg-blue-700',
-                    cancelButton: 'bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700'
-                },
-                buttonsStyling: false
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    // 1. Call Livewire backend delete method
-                    Livewire.dispatch('delete');
+                Swal.fire({
+                    title: data[0].title,
+                    text: data[0].text,
+                    icon: data[0].icon,
+                    showCancelButton: true,
+                    confirmButtonText: data[0].confirmButtonText || 'Yes',
+                    cancelButtonText: 'Cancel',
+                    customClass: {
+                        confirmButton: 'bg-[#071d49] text-white px-4 mr-4 py-2 rounded hover:bg-blue-700',
+                        cancelButton: 'bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700'
+                    },
+                    buttonsStyling: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
 
-                    // 2. Show success alert after a slight delay (optional)
+                        const rootEl = document.querySelector('#edit-requisition [wire\\:id]');
+                        if (!rootEl) {
+                            console.error("Livewire component not found");
+                            return;
+                        }
+
+                        const componentId = rootEl.getAttribute('wire:id');
+                        Livewire.find(componentId).call('save');
+                    }
+                });
+            });
+
+            window.addEventListener('swal:result', (event) => {
+                const data = event.detail;
+
+                if (data[0].icon === 'success') {
                     setTimeout(() => {
                         Swal.fire({
-                            title: data[0].successTitle || 'Updated!',
-                            text: data[0].successText || 'The requisition was successfully updated!',
-                            icon: 'success',
+                            title: data.successTitle || data.title || 'Success',
+                            text: data.successText || data.text || 'Requisition updated successfully!',
+                            icon: data.icon || 'success',
                             showConfirmButton: false,
                             timer: 1500
                         });
 
-                        // 3. Redirect after success alert delay
                         setTimeout(() => {
-                            window.location.href = data[0].redirectUrl || '/requisition';
-                        }, 1600); // slightly longer than Swal timer
-                    }, 200); // slight delay between delete and showing success
+                            window.location.href = '/requisition';
+                        }, 1600);
+
+                    }, 300);
+                } else if (data[0].icon === 'error') {
+                    // Show a blocking alert for errors, user must acknowledge
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                    });
+                } else {
+                    // Default fallback alert
+                    Swal.fire({
+                        title: data[0].title,
+                        text: data[0].text,
+                        icon: data[0].icon || 'info',
+                        confirmButtonText: 'OK',
+                    });
                 }
             });
-        });
+
 
     </script>
+
 </x-app-layout>

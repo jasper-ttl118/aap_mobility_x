@@ -58,8 +58,8 @@ Route::middleware('auth')->group(function () {
         Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
         Route::get('/employee/search', [EmployeeController::class, 'search']);
         Route::get('/employee/alphalist/view-employee-profile/{employee_id}', [EmployeeController::class,'employeeProfile'])->name('employeeProfile');
-        Route::get('/employee.alphalist.add-employee',[EmployeeController::class,'addEmployee' ]) -> name('addEmployee');
-        Route::get('/employee.alphalist.edit-employee',[EmployeeController::class, 'editEmployee'])->name('editEmployee');
+        // Route::get('/employee.alphalist.add-employee',[EmployeeController::class,'addEmployee' ])->name('addEmployee');
+        Route::get('/employee.alphalist.edit-employee/{employee_id}',[EmployeeController::class, 'editEmployee'])->name('editEmployee');
 
         // CRUD for employee
         Route::prefix('employee')->group(function () {

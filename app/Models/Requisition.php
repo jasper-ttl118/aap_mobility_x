@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Requisition extends Model
 {
@@ -12,33 +14,33 @@ class Requisition extends Model
     protected $primaryKey = "requisition_id";
     protected $fillable = [
         'requisition_type',
-        'requisition_department',
+        'department_id',
         'requisition_status',
         'requisition_section',
+        'requisition_education_level',
         'requisition_initial_job_position',
         'requisition_justification',
         'requisition_eventual_job_position',
         'requisition_number_required',
         'requisition_date_required',
         'requisition_contract_duration',
-        'requisition_signature',
         'requisition_employment_type',
         'requisition_budget',
         'requisition_engagement_type',
+        'requisition_job_description',
+        'requisition_work_experience',
+        'requisition_special_skill',
+        'requisition_other',
         'requisition_applicants_sources',
         'requisition_requestor_name',
         'requisition_requestor_position',
-        'requisition_requestor_signature',
         'requisition_endorser_name',
         'requisition_endorser_position',
-        'requisition_endorser_signature',
         'requisition_approver_name',
         'requisition_approver_position',
-        'requisition_approver_signature',
         'requisition_approver_name_1',
         'requisition_approver_position_1',
-        'requisition_approver_signature_1'
- 
+        'requisition_is_deleted'
     ];
 
     public function requisitionDuties(): HasMany
@@ -74,4 +76,9 @@ class Requisition extends Model
             'candidate_id'
         );
     }
+
+   public function department(): BelongsTo  
+   {
+       return $this->belongsTo(Department::class, 'department_id', 'department_id');
+   }
 }

@@ -1,6 +1,5 @@
 
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-  
     <div x-data="{ selected : 'employees', open_add_employee : false, open_delete_employee : false, 
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
@@ -35,7 +34,22 @@
                 {{-- Profile --}}
             
                 <div x-data="{openSection:'basicInfo'}" class="p-5 ">
+                <div x-data="{openSection:'basicInfo'}" class="p-5 ">
                     {{-- Basic Information --}}
+                    <div @click="openSection = (openSection === 'basicInfo' ? null : 'basicInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">
+                                <img src="{{ asset('basicInfo.png') }}" alt="basicInfo" class="size-4">
+                                Employee's Basic Information
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'basicInfo' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                     <div @click="openSection = (openSection === 'basicInfo' ? null : 'basicInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
                             <div class="flex flex-row justify-center items-center gap-x-2">
@@ -208,7 +222,23 @@
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
+                    {{-- Contacts Information --}}
+                    <div @click="openSection = (openSection === 'contactInfo' ? null : 'contactInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">    
+                                <img src="{{ asset('contacts-book.png') }}" alt="academic" class="size-4">
+                                Employee's Contact Informations
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'contactInfo' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                         </div>
+                        <div x-show="openSection === 'contactInfo'" x-transition x-cloak class="flex flex-row w-full h-full items-center justify-between gap-y-2 gap-x-5 pt-3">
                         <div x-show="openSection === 'contactInfo'" x-transition x-cloak class="flex flex-row w-full h-full items-center justify-between gap-y-2 gap-x-5 pt-3">
                             {{-- Left --}}
                             <div class="flex flex-col w-full h-full items-center gap-y-5">
@@ -239,6 +269,20 @@
                         </div>
                     </div>
                     {{-- Education and Job Information --}}
+                    <div @click="openSection = (openSection === 'educjobInfo' ? null : 'educjobInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">
+                                <img src="{{ asset('academic.png') }}" alt="academic" class="size-4">
+                                Employee's Education and Job Information
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'educjobInfo' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                     <div @click="openSection = (openSection === 'educjobInfo' ? null : 'educjobInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
                             <div class="flex flex-row justify-center items-center gap-x-2">
@@ -322,6 +366,20 @@
                             >
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
+                    <div @click="openSection = (openSection === 'govID' ? null : 'govID')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">    
+                                <img src="{{ asset('id-card.png') }}" alt="otherInfo" class="size-4">
+                                Employee's Government IDs
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'govID' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                         </div>
                         {{-- Left --}}
                         <div x-show="openSection === 'govID'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-auto items-center justify-center pt-3">
@@ -351,6 +409,20 @@
                         </div>
                     </div>
                     {{-- Employee's Dependants --}}
+                    <div @click="openSection = (openSection === 'dependantInfo' ? null : 'dependantInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">    
+                                <img src="{{ asset('social-networks.png') }}" alt="otherInfo" class="size-4">
+                                Employee's Dependents
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'dependantInfo' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                     <div @click="openSection = (openSection === 'dependantInfo' ? null : 'dependantInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
                             <div class="flex flex-row justify-center items-center gap-x-2">    
@@ -438,6 +510,20 @@
                         </div>
                     </div>
                     {{-- Employee's Emergency Contact --}}
+                    <div @click="openSection = (openSection === 'emergencyContact' ? null : 'emergencyContact')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
+                        <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
+                            <div class="flex flex-row justify-center items-center gap-x-2">   
+                                <img src="{{ asset('emergency.png') }}" alt="emergency" class="size-4">
+                                Employee's Emergency Contacts
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'emergencyContact' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
                     <div @click="openSection = (openSection === 'emergencyContact' ? null : 'emergencyContact')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
                             <div class="flex flex-row justify-center items-center gap-x-2">   

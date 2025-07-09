@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
@@ -19,7 +18,7 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employees.alphalist.create');
+        return view('employee.alphalist.add-employee');
     }
 
     public function store(Request $request)
@@ -139,6 +138,7 @@ class EmployeeController extends Controller
                     'birthdate' => $validated['employee_parents_1_birthdate'] ?? null,
                 ];
             }
+
             if (!empty($validated['employee_parents_2_details'])) {
                 $parentsDetails[] = [
                     'details' => $validated['employee_parents_2_details'],
@@ -288,9 +288,12 @@ class EmployeeController extends Controller
         return view('employees.alphalist.show', compact('employee'));
     }
 
-    public function editEmployee(Employee $employee_id)
+    public function editEmployee($employee_id)
     {
+        // $employee = $empl
         $employee = Employee::find($employee_id);
+        // dump($employee->employee_id);
+        // dump($employee);
         return view('employee.alphalist.edit-employee', compact('employee'));
     }
 
@@ -372,13 +375,15 @@ class EmployeeController extends Controller
     public function employeeProfile($employee_id)
     {
         $employee = Employee::find($employee_id);
+        $father_age = Carbon::parse($employee->employee_father_birthdate)->age;
+        $mother_age = Carbon::parse($employee->employee_mother_birthdate)->age;
 
-        // dd($employee);
-        return view('employee.alphalist.view-employee-profile', compact('employee'));
+        return view('employee.alphalist.view-employee-profile', compact('employee', 'father_age', 'mother_age'));
     }
 
     public function addEmployee()
     {
+        // dump('test');
         return view('employee.alphalist.add-employee');
     }
     

@@ -48,4 +48,5 @@
                 <livewire:employee.manpower-requisition.delete-requisition-ticket />
         </div>
     </div>
+    
 </x-app-layout>

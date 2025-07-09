@@ -21,28 +21,23 @@ class ViewRequisition extends Component
     public $requisition_eventual_job_position;
     public $requisition_number_required;
     public $requisition_contract_duration;
-    public $requisition_signature;
     public $requisition_employment_type;
     public $requisition_budget;
     public $requisition_engagement_type;
     public $requisition_applicants_sources;
     public $requisition_requestor_name;
     public $requisition_requestor_position;
-    public $requisition_requestor_signature;
     public $requisition_endorser_name;
     public $requisition_endorser_position;
-    public $requisition_endorser_signature;
     public $requisition_approver_name;
     public $requisition_approver_position;
-    public $requisition_approver_signature;
     public $requisition_approver_name_1;
     public $requisition_approver_position_1;
-    public $requisition_approver_signature_1;
-    public $requisition_work_experiences;
-    public $requisition_special_skills;
-    public $requisition_other_descriptions;
-    public $requisition_job_descriptions;
-    public $requisition_education_levels;
+    public $requisition_work_experience;
+    public $requisition_special_skill;
+    public $requisition_other_description;
+    public $requisition_job_description;
+    public $requisition_education_level;
     public $requisition_date_required;
 
     protected $listeners = ['loadRequisitionRequest'];
@@ -56,7 +51,7 @@ class ViewRequisition extends Component
 
         $this->requisition_job_position          = $requisition->requisition_job_position;
         $this->requisition_type                  = $requisition->requisition_type;
-        $this->requisition_department            = $requisition->requisition_department;
+        $this->requisition_department            = $requisition->department->department_name;
         $this->requisition_section               = $requisition->requisition_section;
         $this->requisition_initial_job_position  = $requisition->requisition_initial_job_position;
         $this->requisition_justification         = $requisition->requisition_justification;
@@ -71,25 +66,21 @@ class ViewRequisition extends Component
 
         $this->requisition_requestor_name        = $requisition->requisition_requestor_name;
         $this->requisition_requestor_position    = $requisition->requisition_requestor_position;
-        $this->requisition_requestor_signature   = $requisition->requisition_requestor_signature;
 
         $this->requisition_endorser_name         = $requisition->requisition_endorser_name;
         $this->requisition_endorser_position     = $requisition->requisition_endorser_position;
-        $this->requisition_endorser_signature    = $requisition->requisition_endorser_signature;
 
         $this->requisition_approver_name         = $requisition->requisition_approver_name;
         $this->requisition_approver_position     = $requisition->requisition_approver_position;
-        $this->requisition_approver_signature    = $requisition->requisition_approver_signature;
 
         $this->requisition_approver_name_1       = $requisition->requisition_approver_name_1;
         $this->requisition_approver_position_1   = $requisition->requisition_approver_position_1;
-        $this->requisition_approver_signature_1  = $requisition->requisition_approver_signature_1;
 
-        $this->requisition_work_experiences       = $requisition->requisitionWorkExperiences;
-        $this->requisition_special_skills        = $requisition->requisitionSpecialSkills;
-        $this->requisition_other_descriptions     = $requisition->requisitionOthers;
-        $this->requisition_job_descriptions     = $requisition->requisitionDuties;    
-        $this->requisition_education_levels     = $requisition->requisitionEducationLevels;
+        $this->requisition_work_experience       = $requisition->requisition_work_experience;
+        $this->requisition_special_skill       = $requisition->requisition_special_skill;
+        $this->requisition_other_description     = $requisition->requisition_other;
+        $this->requisition_job_description     = $requisition->requisition_job_description;    
+        $this->requisition_education_level    = $requisition->requisition_education_level;
     }
 
     public function render()
