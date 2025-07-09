@@ -64,6 +64,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/ams', [AssetController::class,'dashboard'])->name('dashboard');
         Route::get('/ams/all-assets', [AssetController::class,'allAssets'])->name('allAssets');
         Route::get('/ams/assets/create', [AssetController::class,'addAsset'])->name('addAsset');
+        Route::get('ams/assets/view/{id}', [AssetController::class, 'show'])->name('ams.asset.view');
+
+        Route::get('/ams/assets/edit', [AssetController::class,'editAsset'])->name('editAsset');
+        Route::get('/ams/assets/pullout', [AssetController::class,'pulloutAsset'])->name('pulloutAsset');
+        Route::get('/ams/assets/repair-request', [AssetController::class,'repairRequestAsset'])->name('repairRequestAsset');
+        Route::get('/ams/assets/transfer', [AssetController::class,'transferAsset'])->name('transferAsset');
+        Route::get('/ams/assets/borrow', [AssetController::class,'borrowAsset'])->name('borrowAsset');
+
+        Route::get('/ams/assets/history', [AssetController::class,'assetHistory'])->name('assetHistory');
         Route::get('/ams/common-assets', [AssetController::class,'commonAssets'])->name('commonAssets');
         Route::get('/ams/assets-for-sale', [AssetController::class,'assetsForSale'])->name('assetsForSale');
         Route::get('/ams/cms/branch-department', [AssetController::class,'cms'])->name('cms');        
