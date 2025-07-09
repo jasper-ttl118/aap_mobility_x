@@ -504,53 +504,30 @@
                                 </table>
                             </div>
                             <div class="block lg:hidden flex flex-col w-[95%] justify-between items-center gap-y-5">
-                                <div class="bg-white overflow-hidden">
-                                    <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
-                                        Emergency Contact #1
-                                    </div>
-                                    <div class="px-4 space-y-1">
-                                        <div >
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_name ?? 'N/A'}}</div>
+                                <div class="bg-white overflow-hidden w-full">
+                                    @foreach ($employee->employeeEmergencyContacts as $contact)
+                                        <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
+                                            Emergency Contact #1
                                         </div>
-                                        <div >
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_relationship ?? 'N/A'}}</div>
+                                        <div class="px-4 space-y-1">
+                                            <div >
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
+                                                <div class="text-[#071d49] text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_name ?? 'N/A'}}</div>
+                                            </div>
+                                            <div >
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
+                                                <div class="text-[#071d49] text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_relationship ?? 'N/A'}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
+                                                <div class="text-[#071d49] text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_number ?? 'N/A'}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
+                                                <div class="text-[#071d49] text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_address ?? 'N/A'}}</div>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_number ?? 'N/A'}}</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_address ?? 'N/A'}}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Emergency Contact #2 -->
-                                <div class="bg-white overflow-hidden">
-                                    <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
-                                        Emergency Contact #2
-                                    </div>
-                                    <div class="px-4 space-y-1">
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_name ?? 'N/A'}}</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_relationship ?? 'N/A'}}</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_number ?? 'N/A'}}</div>
-                                        </div>
-                                        <div>
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_address ?? 'N/A'}}</div>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
