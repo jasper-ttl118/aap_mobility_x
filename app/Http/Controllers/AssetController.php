@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use Illuminate\Http\Request;
 
 class AssetController extends Controller
@@ -33,10 +34,7 @@ class AssetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -62,54 +60,99 @@ class AssetController extends Controller
         //
     }
 
-    public function dashboard(){
+    public function dashboard()
+    {
         return view('ams.dashboard.dashboard');
     }
 
+    public function show($id)
+    {
+        $asset = Asset::with(['category', 'employee', 'department', 'status', 'condition'])->findOrFail($id);
+        return view('ams.assets.view', compact('asset'));
+    }
+
+
     // CMS
-    public function cms(){
+    public function cms()
+    {
         return view('ams.cms.branches-department');
     }
-    public function employees(){
+    public function employees()
+    {
         return view('ams.cms.employees');
     }
-    public function categories(){
+    public function categories()
+    {
         return view('ams.cms.categories');
     }
-    public function addCategory(){
+    public function addCategory()
+    {
         return view('ams.cms.create-category');
     }
-    public function status(){
+    public function status()
+    {
         return view('ams.cms.status');
     }
-    public function addStatus(){
+    public function addStatus()
+    {
         return view('ams.cms.create-status');
     }
-    public function addBranch(){
+    public function addBranch()
+    {
         return view('ams.cms.create-branch');
     }
-    public function addDepartment(){
+    public function addDepartment()
+    {
         return view('ams.cms.create-department');
     }
-    
+
 
 
     //Assets
-    public function allAssets(){
+    public function allAssets()
+    {
         return view('ams.assets.asset');
     }
-    public function commonAssets(){
+    public function commonAssets()
+    {
         return view('ams.assets.common-assets');
     }
-    public function assetsForSale(){
+    public function assetsForSale()
+    {
         return view('ams.assets.assets-for-sale');
     }
-    public function addAsset(){
-        return view('ams.assets.create');
+    public function addAsset()
+    {
+        return view('ams.assets.create2');
+    }
+    public function editAsset()
+    {
+        return view('ams.assets.edit');
+    }
+    public function assetHistory()
+    {
+        return view('ams.assets.history');
+    }
+    public function pulloutAsset()
+    {
+        return view('ams.assets.pullout');
+    }
+    public function repairRequestAsset()
+    {
+        return view('ams.assets.repair-request');
+    }
+    public function transferAsset()
+    {
+        return view('ams.assets.transfer');
+    }
+    public function borrowAsset()
+    {
+        return view('ams.assets.borrow');
     }
 
     // QR
-    public function scanQr(){
+    public function scanQr()
+    {
         return view('ams.scan_qr.scan-qr');
     }
 

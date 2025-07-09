@@ -11,31 +11,40 @@ return new class extends Migration
      */
     public function up(): void
     {
-        if(!Schema::hasTable('assets')){
-            Schema::create('assets', function (Blueprint $table) {
-                $table->id('asset_id');
-                $table->string('property_code');
-                $table->string('asset_name');
-                $table->foreignId('category_id');
-                $table->foreignId('status_id');
-                $table->date('purchase_date')->nullable();
-                $table->date('warranty_exp_date')->nullable();
-                $table->date('maint_sched')->nullable();
-                $table->date('last_maint_sched')->nullable();
-                $table->string('service_provider')->nullable();
-                $table->string('check_out_status')->nullable(); //Hardcode with details
-                $table->date('check_out_date')->nullable();    
-                $table->date('check_in_date')->nullable();
-                $table->text('description')->nullable();
-                $table->foreignId('employee_id');
-                $table->date('date_accountable')->nullable();
-                $table->string('qr_code_path');
-                $table->string('qr_code_data');
-                $table->enum('ams_active',['1','2']); // 1 = Active | 2 = Soft Deleted
-                $table->unsignedInteger('created_by_id')->nullable();  // User
-                $table->timestamps();
-            });
-        }
+        Schema::create('assets', function (Blueprint $table) {
+            $table->id('asset_id');
+            $table->string('property_code');
+            $table->string('asset_name');
+            $table->string('brand_name');
+            $table->string('model_name');
+            $table->foreignId('category_id');
+            $table->foreignId('status_id');
+            $table->foreignId('condition_id')->nullable()->nullable();
+            $table->string('device_serial_number')->nullable();
+            $table->string('charger_serial_number')->nullable();
+
+            $table->enum('asset_type',['1','2'])->nullable(); // 1 for common asset, 2 for non-commons
+            $table->foreignId('employee_id')->nullable();
+            $table->foreignId('department_id')->nullable();
+            $table->date('date_accountable')->nullable();
+
+            $table->date('purchase_date')->nullable();
+            $table->date('warranty_exp_date')->nullable();
+            $table->date('free_replacement_period')->nullable();
+            $table->date('maint_sched')->nullable();
+            $table->date('last_maint_sched')->nullable();
+            $table->string('service_provider')->nullable();
+            $table->string('check_out_status')->nullable(); //Hardcode with details
+            $table->date('check_out_date')->nullable();    
+            $table->date('check_in_date')->nullable();
+            $table->text('description')->nullable();
+            
+            $table->string('qr_code_path')->nullable();;
+            $table->string('qr_code_data')->nullable();;
+            $table->enum('ams_active',['1','2']); // 1 = Active | 2 = Soft Deleted
+            $table->unsignedInteger('created_by_id')->nullable();  // User
+            $table->timestamps();
+        });
     }
 
     /**
