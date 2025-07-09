@@ -504,7 +504,7 @@
                                 </table>
                             </div>
                             <div class="block lg:hidden flex flex-col w-[95%] justify-between items-center gap-y-5">
-                                <div class="bg-white overflow-hidden w-full">
+                                <div class="bg-white overflow-hidden">
                                     <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                         Emergency Contact #1
                                     </div>
@@ -529,7 +529,7 @@
                                 </div>
 
                                 <!-- Emergency Contact #2 -->
-                                <div class="bg-white overflow-hidden w-full">
+                                <div class="bg-white overflow-hidden">
                                     <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                         Emergency Contact #2
                                     </div>

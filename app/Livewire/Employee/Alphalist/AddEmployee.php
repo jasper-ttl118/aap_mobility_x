@@ -226,7 +226,6 @@ class AddEmployee extends Component
                 'employee_tin_number'          => $this->employee_tin_number,
 
                 // Family
-                'employee_children_count'      => $this->employee_children_count,
                 'employee_father_name'         => $this->employee_father_name,
                 'employee_father_birthdate'    => $this->employee_father_birthdate,
                 'employee_father_birth_certificate' => $father_birth_cert_path,
@@ -330,7 +329,6 @@ class AddEmployee extends Component
             'employee_lastname' => 'required',
             'employee_firstname' => 'required',
             'employee_middlename' => 'required',
-            'employee_suffix' => 'required',
             'employee_mother_maiden_name' => 'required',
             'employee_gender' => 'required',
             'employee_birthdate' => 'required|date',
@@ -411,7 +409,6 @@ class AddEmployee extends Component
                     'employee_lastname' => 'required',
                     'employee_firstname' => 'required',
                     'employee_middlename' => 'required',
-                    'employee_suffix' => 'required',
                     'employee_mother_maiden_name' => 'required',
                     'employee_gender' => 'required',
                     'employee_birthdate' => 'required|date',

@@ -378,8 +378,9 @@ class EmployeeController extends Controller
         $employee = Employee::find($employee_id);
         $father_age = Carbon::parse($employee->employee_father_birthdate)->age;
         $mother_age = Carbon::parse($employee->employee_mother_birthdate)->age;
+        $employee_age = Carbon::parse($employee->employee_birthdate)->age;
 
-        return view('employee.alphalist.view-employee-profile', compact('employee', 'father_age', 'mother_age'));
+        return view('employee.alphalist.view-employee-profile', compact('employee', 'father_age', 'mother_age', 'employee_age'));
     }
 
     public function addEmployee()

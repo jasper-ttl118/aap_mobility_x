@@ -50,8 +50,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                         <div x-show="openSection === 'basicInfo'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-full items-center justify-evenly gap-y-2 gap-x-3 pt-3">
                             <div class="flex flex-row lg:flex-col w-full lg:w-[15%] justify-center items-center gap-y-5 gap-x-3">
+=======
+                        <div x-show="openSection === 'basicInfo'" x-transition x-cloak class="flex flex-row w-full h-full items-center justify-evenly gap-y-2 gap-x-3 pt-3">
+                            <div class="flex flex-col w-[20%] justify-center items-center gap-y-5">
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                 <img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 107 107' fill='none'><path d='M88.75 89.25H89.25V88.75V82.875C89.25 79.7557 87.6871 77.0261 85.2382 74.7091C82.7917 72.3943 79.4274 70.4566 75.7249 68.9015C68.3218 65.7922 59.4436 64.1625 53.5 64.1625C47.5564 64.1625 38.6782 65.7922 31.2751 68.9015C27.5726 70.4566 24.2083 72.3943 21.7618 74.7091C19.3129 77.0261 17.75 79.7557 17.75 82.875V88.75V89.25H18.25H88.75ZM1.125 94.625V12.375C1.125 6.18701 6.13152 1.125 12.375 1.125H94.625C100.811 1.125 105.875 6.18864 105.875 12.375V94.625C105.875 100.811 100.811 105.875 94.625 105.875H12.375C6.13152 105.875 1.125 100.813 1.125 94.625ZM53.5 54C63.5286 54 71.625 45.9036 71.625 35.875C71.625 25.8464 63.5286 17.75 53.5 17.75C43.4714 17.75 35.375 25.8464 35.375 35.875C35.375 45.9036 43.4714 54 53.5 54Z' fill='%23CBD5E1' stroke='%239CA3AF'/></svg>"
                                     alt="profile image" class="size-[30%] lg:size-[70%] rounded-xl">
                                 <div class="flex flex-col w-auto justify-center items-center gap-x-2">
@@ -61,6 +66,7 @@
                             </div>
                             {{-- Left --}}
                     
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                             <div class="flex flex-col w-[45%] h-full justify-center items-center gap-y-4">
                                 <table class="w-full border-collapse px-0">
                                     <tr class="">
@@ -120,6 +126,70 @@
                                         </td>
                                     </tr>
                                 </table>
+=======
+                            <div class="flex flex-col w-[40%] h-full justify-center items-center gap-y-4">
+                                {{-- First Row --}}
+                                <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Last Name</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_lastname }}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">First Name</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_firstname }}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">MIddle Name</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_middlename }}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Suffix</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_suffix ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+                                {{-- Second Row --}}
+                                <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Gender</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_gender ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Religion</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_religion ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Mother's Maiden Name</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_mother_maiden_name ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+           
+                                {{-- Third Row --}}
+                                <div class="text-[#071d49] flex flex-row items-center gap-x-1 justify-between w-full">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_age ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthdate</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_birt }}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthplace</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_birthplace ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+                                {{-- Fourth Row --}}
+                                <div class="text-[#071d49] flex flex-row items-center gap-x-10 justify-start w-full">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Civil Status</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_civil_status ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Blood Type</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_blood_type ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                             </div>
                             {{-- Line --}}
                             <div class="flex border border-blue-400 w-[220px] rounded-xl lg:hidden"></div>
@@ -132,6 +202,7 @@
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">House No.</label>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_house_no ?? 'n/a'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
@@ -141,11 +212,23 @@
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_brgy ?? 'n/a'}}</label>
+=======
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_house_no ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Street</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_street ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_brgy ?? 'n/a'}}</label>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                         </div>
                                     </div>
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">City</label>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_city ?? 'n/a'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
@@ -155,6 +238,17 @@
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_zip_code ?? 'n/a'}}</label>
+=======
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_city ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Province</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_province ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_zip_code ?? 'n/a'}}</label>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                         </div>
                                     </div>
                                 </div>
@@ -163,6 +257,7 @@
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">House No.</label>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_house_no ?? 'n/a'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
@@ -172,11 +267,23 @@
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_brgy ?? 'n/a'}}</label>
+=======
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_house_no ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Street</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_street ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_brgy ?? 'n/a'}}</label>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                         </div>
                                     </div>
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">City</label>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_city ?? 'n/a'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
@@ -186,6 +293,17 @@
                                         <div class="flex flex-col items-center justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_zip_code ?? 'n/a'}}</label>
+=======
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_city ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-start justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Province</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_province ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col items-center justify-center">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_zip_code ?? 'n/a'}}</label>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +371,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                         <div x-show="openSection === 'educjobInfo'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-full items-center justify-evenly gap-x-5 gap-y-2 pt-3">
+=======
+                        <div x-show="openSection === 'educjobInfo'" x-transition x-cloak class="flex flex-row w-full h-full items-center justify-evenly gap-x-5 gap-y-2 pt-3">
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                             
                             <div class="flex flex-col w-full lg:w-[45%] h-full items-center gap-y-5 ">
                                 {{-- first Column --}}
@@ -299,7 +421,11 @@
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Department</label>
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                                             <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_department ?? 'n/a'}}</label>
+=======
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->department->department_name ?? 'n/a'}}</label>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                                         </div>
                                     </div>
                                 </div>
@@ -323,7 +449,11 @@
                             </svg>
                         </div>
                         {{-- Left --}}
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                         <div x-show="openSection === 'govID'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-auto items-center justify-center pt-3">
+=======
+                        <div x-show="openSection === 'govID'" x-transition x-cloak class="flex flex-row w-full h-auto items-center justify-center pt-3">
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                             {{-- First Column --}}
                             <div class="text-[#071d49] flex flex-row items-center lg:gap-x-28 justify-center w-full lg:w-[80%]">
                                 <div class="flex flex-col lg:flex-row w-[50%] lg:w-[35%] justify-between gap-y-2">
@@ -367,6 +497,7 @@
                         </div>
                         {{-- Left --}}
                         <div x-show="openSection === 'dependantInfo'" x-transition x-cloak class="flex flex-col w-full h-auto items-center justify-center pt-3">
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
                             <div class="flex flex-col w-[95%] justify-between items-center gap-y-5">
                                 <table class="w-full border-collapse">
                                     <!-- Father's Information -->
@@ -433,6 +564,73 @@
                                         </td>
                                     </tr>
                                 </table>
+=======
+                            <div class="flex flex-row w-[95%] justify-between items-center gap-x-5">
+                                {{-- Left Side --}}
+                                <div class="flex flex-col w-[50%] justify-center items-start gap-y-5">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-800 text-center">
+                                            Father's Information
+                                        </label>
+                                        <div class="flex flex-row gap-x-10 items-start justify-center">
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_father_name ?? 'n/a'}}</label>
+                                            </div>
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $father_age }}</label>
+                                            </div>
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthdate</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_father_birthdate	 ?? 'n/a'}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-800 text-center">
+                                            Mother's Information
+                                        </label>
+                                        <div class="flex flex-row gap-x-10 items-start justify-center">
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_mother_name ?? 'n/a'}}</label>
+                                            </div>
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $mother_age ?? 'n/a'}}</label>
+                                            </div>
+                                            <div class="flex flex-col justify-center items-start">
+                                                <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthdate</label>
+                                                <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_mother_birthdate ?? 'n/a'}}</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- Line --}}
+                                <div class="flex border border-blue-400 h-[110px] rounded-xl"></div>
+                                {{-- Right Side --}}
+                                <div class="flex flex-col w-[50%] h-full justify-start items-start bg-blue">
+                                    <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-800 text-center">
+                                        Number of Children:
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_count ?? 'n/a'}}</label>
+                                    </label>
+                                    <div class="flex flex-row gap-x-10 items-start justify-center">
+                                        <div class="flex flex-col justify-center items-start">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_details ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col justify-center items-start">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Age</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_age ?? 'n/a'}}</label>
+                                        </div>
+                                        <div class="flex flex-col justify-center items-start">
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Birthdate</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_children_1_birthdate ?? 'n/a'}}</label>
+                                        </div>
+                                    </div>
+                                </div>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                             </div>
                         </div>
                     </div>
@@ -442,6 +640,42 @@
                             <div class="flex flex-row justify-center items-center gap-x-2">   
                                 <img src="{{ asset('emergency.png') }}" alt="emergency" class="size-4">
                                 Employee's Emergency Contacts
+<<<<<<< HEAD:resources/views/employee/alphalist/view-employee-profile.blade copy.php
+=======
+                            </div>
+                            <svg 
+                                xmlns="http://www.w3.org/2000/svg" 
+                                fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5 transition-transform duration-300 text-blue-400"
+                                :class="openSection === 'emergencyContact' ? 'rotate-180' : ''"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
+                            </svg>
+                        </div>
+                        <div x-show="openSection === 'emergencyContact'" x-transition x-cloak class="flex flex-row w-full h-auto items-center gap-y-5 gap-x-7 px-8 pt-3">
+                            {{-- First Column --}}
+                            <div class="text-[#071d49] flex flex-row items-start gap-y-5 gap-x-1 justify-between w-[50%]">
+                                <div class="flex flex-col w-full h-full justify-between items-start gap-y-5 ">
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Full Name</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_name ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Relationship</label>
+                                        <label class="text-[#071d49] text-sm font-inter" name="fullName">{{ $employee->emergency_contact_1_relationship ?? 'n/a'}}</label>
+                                    </div>
+                                    <div class="flex flex-col justify-center items-start">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Contact Number</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_number ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col w-full h-full justify-start items-start gap-y-5">
+                                    <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
+                                        <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Address</label>
+                                        <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->emergency_contact_1_address ?? 'n/a'}}</label>
+                                    </div>
+                                </div>
+>>>>>>> origin/victor-rbac:resources/views/employee/alphalist/view-employee-profile.blad123e.php
                             </div>
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
