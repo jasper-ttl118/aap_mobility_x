@@ -133,7 +133,7 @@
                             <!-- Asset Basic Information Grid (3 Columns) -->
                             <!-- Card Wrapper -->
                             <div
-                                class="w-full rounded-xl p-4 border-l-[15px] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
+                                class="w-full rounded-xl p-4 border-l-[15px]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
                                 <!-- Heading with Icon -->
                                 <div class="flex items-center gap-2 text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -256,7 +256,7 @@
 
                             <!-- Type + Date + Assigned Dropdown (3 Columns) -->
                             <div x-data="{ type: '', assignedTo: '' }"
-                                class="w-full rounded-xl p-4 border-l-[15px] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
+                                class="w-full rounded-xl p-4 border-l-[15px]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
                                 <div class="flex items-center gap-2 text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                         class="size-5">
@@ -321,7 +321,7 @@
 
                             {{-- Maintenance --}}
                             <div
-                                class="w-full rounded-xl p-4 border-l-[15px] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
+                                class="w-full rounded-xl p-4 border-l-[15px]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
                                 <div class="flex items-center gap-2 text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                         class="size-5">
@@ -395,7 +395,7 @@
                                 </div>
                             </div>
                             <div
-                                class="w-full rounded-xl p-4 border-l-[15px] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
+                                class="w-full rounded-xl p-4 border-l-[15px]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] border-[#ffdd00] space-y-6">
                                 <div class="flex items-center gap-2 text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                         class="size-5">

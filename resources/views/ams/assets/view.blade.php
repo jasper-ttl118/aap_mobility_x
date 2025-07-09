@@ -208,7 +208,7 @@
 
                         <!-- Classification -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[ffdd00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex  items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -237,7 +237,7 @@
 
                         <!-- Assignment -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[ffdd00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -271,7 +271,7 @@
 
                         <!-- Warranty -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[FFDD00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -296,7 +296,7 @@
 
                         <!-- Serial Numbers -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[FFDD00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -321,7 +321,7 @@
 
                         <!-- Maintenance -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[FFDD00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -349,7 +349,7 @@
 
                         <!-- Check-In / Out -->
                         <div
-                            class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                            class="border-l-8 border-[FFDD00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                             <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4">
@@ -378,7 +378,7 @@
                         <!-- Description -->
                         @if ($asset->description)
                             <div
-                                class="border-l-8 border-[#FFDD00] shadow-xl shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 border-gray-300">
+                                class="border-l-8 border-[ffdd00]  shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] rounded-lg p-4 transform transition duration-200 ease-in-out hover:scale-110 bg-[#FAFBFF] hover:z-10 ">
                                 <div class="flex items-center gap-x-2 mb-3 text-blue-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                         class="size-4">
