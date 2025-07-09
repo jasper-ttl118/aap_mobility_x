@@ -696,145 +696,139 @@
                     </div>
                 </div>
 
-                <div class="flex flex-row w-full gap-x-5 justify-center items-center">
-                    <div class="flex flex-col w-[50%] gap-y-3 relative">
-                        <div class="flex flex-col space-y-1 w-full">
-                            <div class="flex flex-row w-full gap-x-2">
-                                <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
-                                <label for="middle" class="@lg/main:block hidden text-gray-500"> (Please attach your marriage certificate)</label>
+                @if ($marriage_certificate_path && is_string($marriage_certificate_path))
+                    <div class="flex flex-row w-full gap-x-5 justify-center items-center">
+                        <div class="flex flex-col w-[50%] gap-y-3 relative">
+                            <div class="flex flex-col space-y-1 w-full">
+                                <div class="flex flex-row w-full gap-x-2">
+                                    <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
+                                    <label for="middle" class="@lg/main:block hidden text-gray-500"> (Please attach your marriage certificate)</label>
+                                </div>
+
+                                <input
+                                    wire:model="marriage_certificate_path"
+                                    class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32"
+                                    type="file"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    id="file-upload"
+                                    name="marriage_certificate_path"
+                                    required
+                                >
+
+                                @if ($marriage_certificate_path && is_string($marriage_certificate_path))
+                                    <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                        </svg>
+
+                                        <a href="{{ Storage::url($marriage_certificate_path) }}"
+                                        target="_blank"
+                                        class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                        title="View uploaded file">
+                                            {{ basename($marriage_certificate_path) }}
+                                        </a>
+                                    </div>
+                                @endif
+
+                                <div
+                                    wire:loading
+                                    wire:target="marriage_certificate_path"
+                                    class="absolute inset-0 flex items-center justify-center bg-white/80 z-20 rounded-lg"
+                                >
+                                    <div class="flex flex-col items-center justify-center">
+                                        <svg class="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                    stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8v8H4z"></path>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">Uploading...</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <input
-                                wire:model="marriage_certificate_path"
-                                class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32"
-                                type="file"
-                                accept=".pdf,.jpg,.jpeg,.png"
-                                id="file-upload"
-                                name="marriage_certificate_path"
-                                required
-                            >
-
-                            @if ($marriage_certificate_path && is_string($marriage_certificate_path))
-                                <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
-                                    </svg>
-
-                                    <a href="{{ Storage::url($marriage_certificate_path) }}"
-                                    target="_blank"
-                                    class="text-[#071d49] hover:underline text-sm truncate w-full"
-                                    title="View uploaded file">
-                                        {{ basename($marriage_certificate_path) }}
-                                    </a>
-                                </div>
-                            @endif
-
-                            <div
-                                wire:loading
-                                wire:target="marriage_certificate_path"
-                                class="absolute inset-0 flex items-center justify-center bg-white/80 z-20 rounded-lg"
-                            >
-                                <div class="flex flex-col items-center justify-center">
-                                    <svg class="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8v8H4z"></path>
-                                    </svg>
-                                    <span class="text-sm text-gray-600">Uploading...</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex flex-row w-full justify-start items-center gap-x-5">
                             <div class="flex flex-col space-y-1 w-full">
                                 <div class="flex flex-col w-full gap-x-2">
-                                    <label class="hidden text-aapblue @lg/main:block " for="childrenNum">Please state how many children do you have?</label>
-                                    {{-- <label for="middle" class="@lg/main:block hidden text-gray-400">(Type n/a if not applicable)</label> --}}
+                                    <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married employees</label>
+                                    <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
                                 </div>
-                                <input type="number" wire:model="employee_children_count" name="employee_children_count" placeholder="e.g., 2" class="profile_edit_input w-full flex" required>
-                            </div>
-                        </div>
+                                <input wire:model="pagibig_mdf_path" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" required>
+                                
+                                @if ($pagibig_mdf_path && is_string($pagibig_mdf_path))
+                                    <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
+                                        </svg>
 
-                        <div class="flex flex-col space-y-1 w-full">
-                            <div class="flex flex-col w-full gap-x-2">
-                                <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married employees</label>
-                                <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
-                            </div>
-                            <input wire:model="pagibig_mdf_path" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" required>
-                            
-                            @if ($pagibig_mdf_path && is_string($pagibig_mdf_path))
-                                <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-4.828-4.828A2 2 0 0012.172 1H4zm8 0v4a1 1 0 001 1h4v1H7v2h7v2H7v2h7v2H7v1h9a1 1 0 001-1V8.828a1 1 0 00-.293-.707l-4.828-4.828A1 1 0 0013.172 2H12z" />
-                                    </svg>
+                                        <a href="{{ Storage::url($pagibig_mdf_path) }}"
+                                        target="_blank"
+                                        class="text-[#071d49] hover:underline text-sm truncate w-full"
+                                        title="View uploaded file">
+                                            {{ basename($pagibig_mdf_path) }}
+                                        </a>
+                                    </div>
+                                @endif
 
-                                    <a href="{{ Storage::url($pagibig_mdf_path) }}"
-                                    target="_blank"
-                                    class="text-[#071d49] hover:underline text-sm truncate w-full"
-                                    title="View uploaded file">
-                                        {{ basename($pagibig_mdf_path) }}
-                                    </a>
-                                </div>
-                            @endif
-
-                            <div
-                                wire:loading
-                                wire:target="pagibig_mdf_path"
-                                class="absolute inset-0 flex items-center justify-center bg-white/80 z-20 rounded-lg"
-                            >
-                                <div class="flex flex-col items-center justify-center">
-                                    <svg class="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                stroke="currentColor" stroke-width="4"></circle>
-                                        <path class="opacity-75" fill="currentColor"
-                                            d="M4 12a8 8 0 018-8v8H4z"></path>
-                                    </svg>
-                                    <span class="text-sm text-gray-600">Uploading...</span>
+                                <div
+                                    wire:loading
+                                    wire:target="pagibig_mdf_path"
+                                    class="absolute inset-0 flex items-center justify-center bg-white/80 z-20 rounded-lg"
+                                >
+                                    <div class="flex flex-col items-center justify-center">
+                                        <svg class="animate-spin h-5 w-5 text-blue-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                    stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor"
+                                                d="M4 12a8 8 0 018-8v8H4z"></path>
+                                        </svg>
+                                        <span class="text-sm text-gray-600">Uploading...</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-col w-[50%]">
-                        <div class="flex flex-col space-y-1 w-full">
-                            <div class="flex flex-col w-full gap-x-2">
-                                <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
-                                <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(Have you updated your government details in regard to your name and/or marital status?)</label>
+                        <div class="flex flex-col w-[50%]">
+                            <div class="flex flex-col space-y-1 w-full">
+                                <div class="flex flex-col w-full gap-x-2">
+                                    <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
+                                    <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(Have you updated your government details in regard to your name and/or marital status?)</label>
+                                </div>
+                                <table class="w-[80%] h-[200px] mx-auto text-aapblue">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-left p-2"></th>
+                                            <th class="text-center p-2">YES</th>
+                                            <th class="text-center p-2">NO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            {{-- keep in mind --}}
+                                            <td class="p-2">SSS</td>
+                                            <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="1" required></td>
+                                            <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2">PhilHealth</td>
+                                            <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="1" required></td>
+                                            <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="0" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="p-2">Pag-Ibig</td>
+                                            <td class="text-center"><input wire:model="pagibig_updated" type="radio" name="pagibig_updated" value="1" required></td>
+                                            <td class="text-center"><input wire:model="pagibig_updated" type="radio" name="pagibig_updated" value="0" required></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <table class="w-[80%] h-[200px] mx-auto text-aapblue">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left p-2"></th>
-                                        <th class="text-center p-2">YES</th>
-                                        <th class="text-center p-2">NO</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        {{-- keep in mind --}}
-                                        <td class="p-2">SSS</td>
-                                        <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="1" required></td>
-                                        <td  class="text-center"><input wire:model = "sss_updated" type="radio" name="sss_updated" value="0" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2">PhilHealth</td>
-                                        <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="1" required></td>
-                                        <td class="text-center"><input wire:model="philhealth_updated" type="radio" name="philhealth_updated" value="0" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="p-2">Pag-Ibig</td>
-                                        <td class="text-center"><input wire:model="pagibig_updated" type="radio" name="pagibig_updated" value="1" required></td>
-                                        <td class="text-center"><input wire:model="pagibig_updated" type="radio" name="pagibig_updated" value="0" required></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
                     </div>
-                </div>
+                @endif
+                
                 <div class="flex flex-col w-full gap-y-3">
                     <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
+                     @if ($employee_children_details)
                         <div class="flex flex-col w-full gap-x-2">
                             <label class="hidden text-aapblue @lg/main:block " for="middle">For employees who have children</label>
                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state the name, birthdate and upload the birth certificate.)</label>
@@ -918,13 +912,16 @@
                                     </div>
                                 </div>
                             @endforeach
-                    </div>
-                    <div class="flex w-full justify-end items-center mt-4">
-                        <button type="button"
-                                wire:click="addChild"
-                                class="bg-blue-600 text-white px-4 flex w-[20%] items-center justify-center py-2 rounded hover:bg-blue-700">
-                            + Add Another Child
-                        </button>
+
+                            <div class="flex w-full justify-end items-center mt-4">
+                                <button type="button"
+                                        wire:click="addChild"
+                                        class="bg-blue-600 text-white px-4 flex w-[20%] items-center justify-center py-2 rounded hover:bg-blue-700">
+                                    + Add Another Child
+                                </button>
+                            </div>
+                        @endif
+
                     </div>
 
                 </div>
