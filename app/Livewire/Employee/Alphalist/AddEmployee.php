@@ -51,7 +51,7 @@ class AddEmployee extends Component
     // Educational Information
     public $employee_educational_attainment;
     public $employee_school_attended;
-    public $employee_college_vocational_status;
+    public $employee_college_course;
 
     // Employment Information
     public $employee_job_position;
@@ -110,11 +110,14 @@ class AddEmployee extends Component
         $this->employee_civil_status = 'Single';
         $this->employee_employment_type = 'Regular';
         $this->department_id = 1; 
+        $this->employee_educational_attainment = 'No Grade Completed';
     }
 
     public function add()
     {
+        // dump($this);
         // dd($this->employee_children_details);
+        // $this->validate();
         DB::beginTransaction();
 
         try {
@@ -125,35 +128,38 @@ class AddEmployee extends Component
             $mother_birth_cert_path = null;
             $pagibig_mdf_path = null;
 
-            if (isset($this->employee_profile_picture)) {
+            if ($this->employee_profile_picture) {
                 $originalName = $this->employee_profile_picture->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $employee_profile_path = $this->employee_profile_picture->storeAs('employee-profile', $filename, 'public');
             }
 
-            if (isset($this->marriage_certificate_path)) {
+            if ($this->marriage_certificate_path) {
                 $originalName = $this->marriage_certificate_path->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $marriage_certificate_path = $this->marriage_certificate_path->storeAs('employee-profile', $filename, 'public');
             }
 
-            if (isset($this->employee_father_birth_certificate)) {
+            if ($this->employee_father_birth_certificate) {
                 $originalName = $this->employee_father_birth_certificate->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $father_birth_cert_path = $this->employee_father_birth_certificate->storeAs('employee-profile', $filename, 'public');
             }
 
-            if (isset($this->employee_mother_birth_certificate)) {
+            if ($this->employee_mother_birth_certificate) {
                 $originalName = $this->employee_mother_birth_certificate->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $mother_birth_cert_path = $this->employee_mother_birth_certificate->storeAs('employee-profile', $filename, 'public');
             }
 
-            if (isset($this->pagibig_mdf_path)) {
+            if ($this->pagibig_mdf_path) {
                 $originalName = $this->pagibig_mdf_path->getClientOriginalName();
-                $filename = time() . '_' . $originalName; // optional: make filename unique
+                $filename = time() . '_' . $originalName;
                 $pagibig_mdf_path = $this->pagibig_mdf_path->storeAs('employee-profile', $filename, 'public');
             }
+
+            // dump($father_birth_cert_path, $mother_birth_cert_path);
+
 
             // 1. Create Employee
             $employee = Employee::create([
@@ -195,7 +201,7 @@ class AddEmployee extends Component
                 // Education
                 'employee_educational_attainment' => $this->employee_educational_attainment,
                 'employee_school_attended'        => $this->employee_school_attended,
-                'employee_college_vocational_status' => $this->employee_college_vocational_status,
+                'employee_college_course' => $this->employee_college_course,
 
                 // Employment
                 'employee_job_position'        => $this->employee_job_position,
@@ -234,11 +240,13 @@ class AddEmployee extends Component
 
             // 2. Add Children
             foreach ($this->employee_children_details as $child) {
+                if (empty($child['name']) && empty($child['birthdate'])) {
+                    continue;
+                }
+
                 $certificatePath = null;
 
-                if (
-                    isset($child['birth_certificate'])
-                ) {
+                if (isset($child['birth_certificate']) && $child['birth_certificate'] instanceof TemporaryUploadedFile ) {
                     $originalName = $child['birth_certificate']->getClientOriginalName();
                     $uniqueName = time() . '_' . $originalName;
                     
@@ -256,6 +264,7 @@ class AddEmployee extends Component
                     'employee_child_birth_certificate' => $certificatePath,
                 ]);
             }
+            
 
             // 3. Add Emergency Contacts
             foreach ($this->emergency_contact_details as $contact) {
@@ -269,18 +278,15 @@ class AddEmployee extends Component
 
             DB::commit();
 
-            // session()->flash('toast', 'Employee added successfully.');
-            // dump('success');
-
             if ($employee) {
-                dump('test');
+                // dump('test');
                 $this->dispatch('swal:result', [
                     'title' => 'Success',
                     'text' => 'Employee added successfully!',
                     'icon' => 'success',
                 ]);
             } else {
-                dump('else');
+                // dump('else');
                 $this->dispatch('swal:result', [
                     'title' => 'Error',
                     'text' => 'Error',
@@ -289,7 +295,7 @@ class AddEmployee extends Component
             }
         } catch (\Exception $e) {
             DB::rollBack();
-            // dump($e->getMessage());
+            dump($e->getMessage());
             session()->flash('toast', 'Failed to add employee: ' . $e->getMessage());
         }
     }   
@@ -316,6 +322,152 @@ class AddEmployee extends Component
     {
         unset($this->emergency_contact_details[$index]);
         $this->emergency_contact_details = array_values($this->emergency_contact_details);
+    }
+
+    public function rules()
+    {
+        return [
+            'employee_lastname' => 'required',
+            'employee_firstname' => 'required',
+            'employee_middlename' => 'required',
+            'employee_suffix' => 'required',
+            'employee_mother_maiden_name' => 'required',
+            'employee_gender' => 'required',
+            'employee_birthdate' => 'required|date',
+            'employee_birthplace' => 'required',
+            'employee_religion' => 'required',
+
+            // Present Address
+            'present_house_no' => 'required',
+            'present_street' => 'required',
+            'present_brgy' => 'required',
+            'present_city' => 'required',
+            'present_province' => 'required',
+            'present_zip_code' => 'required',
+
+            // Permanent Address
+            'permanent_house_no' => 'required',
+            'permanent_street' => 'required',
+            'permanent_brgy' => 'required',
+            'permanent_city' => 'required',
+            'permanent_province' => 'required',
+            'permanent_zip_code' => 'required',
+
+            // Contact
+            'employee_personal_email' => 'required|email',
+            'employee_contact_no1' => 'required',
+            'employee_viber_number' => 'required',
+
+            // Education
+            'employee_educational_attainment' => 'required',
+            'employee_school_attended' => 'required',
+            'employee_college_course' => 'required',
+
+            // Employment
+            'employee_job_position' => 'required',
+            'department_id' => 'required',
+            'employee_employment_type' => 'required',
+            'employee_section' => 'required',
+
+            // Civil Status
+            'employee_civil_status' => 'required',
+
+            // Parental Info
+            'employee_father_name' => 'required',
+            'employee_father_birthdate' => 'required|date',
+            'employee_father_birth_certificate' => 'required|file',
+
+            'employee_mother_name' => 'required',
+            'employee_mother_birthdate' => 'required|date',
+            'employee_mother_birth_certificate' => 'required|file',
+
+            'employee_tin_number' => 'required',
+            'employee_pagibig_number' => 'required',
+            'employee_philhealth_number' => 'required',
+            'employee_sss_number' => 'required',
+
+            'emergency_contact_details' => 'required',
+            // Medical
+            'employee_blood_type' => 'required',
+        ];
+    }
+
+    public function messages() 
+    {
+        return [
+            'required' => 'This field is required.',
+            'employee_personal_email.email' => 'Please enter a valid email address.',
+            'employee_birthdate.date' => 'Please enter a valid birthdate.',
+            'employee_father_birthdate.date' => 'Please enter a valid birthdate.',
+            'employee_mother_birthdate.date' => 'Please enter a valid birthdate.'
+        ];
+    }
+
+    public function validateStep($step)
+    {
+        for ($i = 1; $i <= $step; $i++) {
+            match ($i) {
+                1 => $this->validate([
+                    'employee_lastname' => 'required',
+                    'employee_firstname' => 'required',
+                    'employee_middlename' => 'required',
+                    'employee_suffix' => 'required',
+                    'employee_mother_maiden_name' => 'required',
+                    'employee_gender' => 'required',
+                    'employee_birthdate' => 'required|date',
+                    'employee_birthplace' => 'required',
+                    'employee_religion' => 'required',
+                    'employee_civil_status' => 'required',
+                    'employee_blood_type' => 'required',
+                    'present_house_no' => 'required',
+                    'present_street' => 'required',
+                    'present_brgy' => 'required',
+                    'present_city' => 'required',
+                    'present_province' => 'required',
+                    'present_zip_code' => 'required',
+                    'permanent_house_no' => 'required',
+                    'permanent_street' => 'required',
+                    'permanent_brgy' => 'required',
+                    'permanent_city' => 'required',
+                    'permanent_province' => 'required',
+                    'permanent_zip_code' => 'required',
+                ]),
+                2 => $this->validate([
+                    'employee_personal_email' => 'required|email',
+                    'employee_contact_no1' => 'required',
+                    'employee_viber_number' => 'required'
+                ]),
+                3 => $this->validate([
+                    'employee_educational_attainment' => 'required',
+                    'employee_school_attended' => 'required',
+                    'employee_college_course' => 'required'
+                ]),
+                4 => $this->validate([
+                    'employee_job_position' => 'required',
+                    'department_id' => 'required',
+                    'employee_employment_type' => 'required',
+                    'employee_section' => 'required'
+                ]),
+                5 => $this->validate([
+                    'employee_tin_number' => 'required',
+                    'employee_pagibig_number' => 'required',
+                    'employee_philhealth_number' => 'required',
+                    'employee_sss_number' => 'required'
+                ]),
+                6 => $this->validate([
+                    'employee_father_name' => 'required',
+                    'employee_father_birthdate' => 'required|date',
+                    'employee_father_birth_certificate' => 'required',
+                    'employee_mother_name' => 'required',
+                    'employee_mother_birthdate' => 'required|date',
+                    'employee_mother_birth_certificate' => 'required'
+                ]),
+                7 => $this->validate([]), // Add validation here if needed
+                default => null,
+            };
+        }
+
+        return true;
     }
 
     public function render()

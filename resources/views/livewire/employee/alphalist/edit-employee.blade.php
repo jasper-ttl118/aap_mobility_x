@@ -1,6 +1,61 @@
 <form wire:submit.prevent="save" enctype="multipart/form-data">
     @csrf
-    <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
+    <div 
+        x-data="{
+            step: 1,
+            labels: [
+                'Basic Info',
+                'Contact Info',
+                'Education Details',
+                'Job Details',
+                'Government ID',
+                'Dependents',
+                'Emergency Contacts'
+            ],
+
+            async validateAndSwitchTab(index) {
+                const targetStep = index + 1;
+
+                if (targetStep > this.step) {
+                    try {
+                        let res = await $wire.validateStep(targetStep - 1); // validate up to the clicked step minus 1
+                        if (res) {
+                            this.step = targetStep;
+                        }
+                    } catch (error) {
+                        console.error('Validation failed', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Please complete all required fields',
+                            text: 'You must complete all previous steps before proceeding.'
+                        });
+                    }
+                } else {
+                    this.step = targetStep;
+                }
+            },
+
+            async validateAndSwitch(direction) {
+                if (direction === 'next' && this.step < this.labels.length) {
+                    try {
+                        let res = await $wire.validateStep(this.step);
+                        if (res) {
+                            this.step++;
+                        }
+                    } catch (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Please complete all required fields',
+                            text: 'You must fill out all fields in this step before proceeding.'
+                        });
+                    }
+                } else if (direction === 'previous' && this.step > 1) {
+                    this.step--;
+                }
+            }
+        }" 
+        class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg"
+    >
         <!-- Step Indicator -->
         <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
             <template x-for="(label, index) in [
@@ -13,12 +68,12 @@
                 'Emergency Contacts'
             ]" :key="index">
                 <li
-                    @click="step = index + 1"
-                    :class="[
-                        'step text-[#071d49]',
-                        index + 1 <= step ? 'step-primary' : '',
-                        index === 0 ? 'before:hidden' : ''
-                    ]"
+                    @click="validateAndSwitchTab(index);"
+                            :class="[
+                                'step text-[#071d49]',
+                                index + 1 <= step ? 'step-primary' : '',
+                                index === 0 ? 'before:hidden' : ''
+                            ]"
                     class="cursor-pointer"
                     x-text="label"
                 ></li>
@@ -61,18 +116,21 @@
                             <input class="profile_edit_input" type="text" name="employee_lastname"
                             wire:model="employee_lastname"
                             placeholder="Enter your last name" required>
+                            @error('employee_lastname') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="firstName">First Name</label>
                             <input class="profile_edit_input" type="text" name="employee_firstname"
                                 wire:model="employee_firstname"
                                 placeholder="Enter your first name" required>
+                                @error('employee_firstname') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
                             <input class="profile_edit_input" type="text" name="employee_middlename"
                                 wire:model="employee_middlename"
                                 placeholder="Enter your middle name" required>
+                                @error('employee_middlename') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                     {{-- Second Row --}}
@@ -98,11 +156,13 @@
                                 <option value="V.">V. (The Fifth)</option>
                                 <option value="">N/A</option>
                             </select>
+                            @error('employee_suffix') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block " for="maidenName">Mother's Maiden Name </label>
                             <input class="profile_edit_input" type="text" name="employee_mother_maiden_name"
                                 wire:model="employee_mother_maiden_name" placeholder="Enter mother's maiden name" required>
+                            @error('employee_mother_maiden_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                     {{-- Third Row --}}
@@ -114,16 +174,19 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                            @error('employee_gender') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
                             <input class="profile_edit_input" type="date" name="employee_birthdate"
                                wire:model="employee_birthdate" placeholder="Enter your birthdate" required>
+                            @error('employee_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
                             <input class="profile_edit_input" type="text" name="employee_birthplace"
                                wire:model="employee_birthplace" placeholder="Enter your birthplace" required>
+                            @error('employee_birthplace') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                 </div>
@@ -140,6 +203,7 @@
                             <option value="Seventh Day Adventist Church">Seventh Day Adventist Church</option>
                             <option value="Islam">Islam</option>
                         </select>
+                        @error('employee_religion') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                     
                     <div class="flex flex-row w-[33%] gap-x-5">
@@ -152,6 +216,7 @@
                                 <option value="Widowed">Widowed</option>
                                 <option value="Annuled">Annuled</option>
                             </select>
+                            @error('employee_civil_status') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                     <div class="space-y-1 flex flex-col w-[33%]">
@@ -170,6 +235,7 @@
                             <option value="O-">O-</option>
                             <option value="Unknown">Unknown</option>
                         </select>
+                        @error('employee_blood_type') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                 </div>
                 <div class="flex flex-row w-full gap-x-5">
@@ -228,7 +294,13 @@
 
             {{-- Button --}}
             <div class="flex justify-end items-end">
-                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                <button 
+                    type="button" 
+                    @click="validateAndSwitch('next')" 
+                    class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                >
+                    Next
+                </button>
             </div>
         </div>
 
@@ -287,8 +359,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -325,11 +409,7 @@
                                 <div class="flex flex-row w-full gap-x-2">
                                     <label class="hidden text-aapblue @lg/main:block truncate" for="forCollege">College Course </label>
                                 </div>
-                                <select wire:model="employee_college_vocational_status" class="profile_edit_input" type="text" name="employee_college_vocational_status" required>
-                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                    <option value="test">test</option>
-                                     <option value="test1">test1</option>
-                                </select>
+                                <input type="text" wire:model="employee_college_course" class="profile_edit_input" value="{{ $employee_college_course }}" name="employee_college_course" required>
                             </div>
                         </div>
                         <div class="flex flex-col space-y-1">
@@ -343,8 +423,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -406,8 +498,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -442,8 +546,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -482,8 +598,8 @@
                                     <div class="flex flex-col w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">Birth Certificate</label>
                                     </div>
-                                    <input wire:model="employee_father_birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" required>
-                                    
+                                    <input wire:model="employee_father_birth_certificate" class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="employee_father_birth_certificate">
+
                                     @if ($employee_father_birth_certificate && is_string($employee_father_birth_certificate))
                                         <div class="mt-2 flex items-center gap-x-2 bg-gray-50 border border-gray-300 rounded-md p-2">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-8 text-[#071d49]" viewBox="0 0 20 20" fill="currentColor">
@@ -813,8 +929,20 @@
 
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -878,8 +1006,13 @@
         {{-- Emergency Contacts --}}
         <div x-show="step === 7" class="gap-y-2 flex flex-col">
             <div class="flex flex-row justify-end items-end gap-x-2">
-                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                <button type="submit" wire:click="save"
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+                    <button type="submit" wire:click="save"
                     class="btn text-[#071d49] border-yellow-300 flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
                     <p>Submit</p>
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg"

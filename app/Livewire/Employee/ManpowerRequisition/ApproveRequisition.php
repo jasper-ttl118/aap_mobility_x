@@ -69,7 +69,7 @@ class ApproveRequisition extends Component
         switch ($this->requisition_status) {
             case 1:
                 $this->requisition_requestor_name = $fullName($employee);
-                $this->requisition_requestor_position = $employee->employee_position;
+                $this->requisition_requestor_position = $employee->employee_job_position;
                 break;
 
             case 2:
@@ -77,7 +77,7 @@ class ApproveRequisition extends Component
                 $this->requisition_requestor_position = $requisition->requisition_requestor_position;
 
                 $this->requisition_endorser_name = $fullName($employee);
-                $this->requisition_endorser_position = $employee->employee_position;
+                $this->requisition_endorser_position = $employee->employee_job_position;
                 break;
 
             case 3:
@@ -88,7 +88,7 @@ class ApproveRequisition extends Component
                 $this->requisition_endorser_position = $requisition->requisition_endorser_position;
 
                 $this->requisition_approver_name = $fullName($employee);
-                $this->requisition_approver_position = $employee->employee_position;
+                $this->requisition_approver_position = $employee->employee_job_position;
                 break;
 
             case 4:
@@ -102,7 +102,7 @@ class ApproveRequisition extends Component
                 $this->requisition_approver_position = $requisition->requisition_approver_position;
 
                 $this->requisition_approver_name_1 = $fullName($employee);
-                $this->requisition_approver_position_1 = $employee->employee_position;
+                $this->requisition_approver_position_1 = $employee->employee_job_position;
                 break;
         }
 
@@ -270,9 +270,10 @@ class ApproveRequisition extends Component
             'requisition_applicants_sources' => 'nullable|string',
             'requisition_date_required' => 'required|date|after_or_equal:today',
             'requisition_candidates' => 'nullable|array',
+            'requisition_requestor_name' => 'required|string',
+            'requisition_requestor_position' => 'required|string'
         ];
     }
-
     protected function messages()
     {
         return [
@@ -297,8 +298,49 @@ class ApproveRequisition extends Component
             'requisition_date_required.after_or_equal' => 'The date must be today or in the future.',
             'requisition_engagement_type.required' => 'Engagement type is required.',
             'requisition_special_skill' => 'Special skill is required.',
+            'requisition_requestor_name' => 'Requestor Name is required.',
+            'requisition_requestor_position' => 'Requestor Position is required.'
         ];
     }
+
+    public function validateStep($step)
+    {
+        if ($step == 0) {
+            // dump('step zero');
+            $this->validate([
+                'department_id' => 'required',
+                'requisition_section' => 'required|string|max:255',
+                'requisition_initial_job_position' => 'required|string|max:255',
+                'requisition_eventual_job_position' => 'required|string|max:255',
+                'requisition_type' => 'required|in:New Position,Replacement',
+                'requisition_employment_type' => 'required|in:Regular,Probationary,Contractual',
+                'requisition_budget' => 'required|in:On Budget,Not On Budget',
+                'requisition_engagement_type' => 'required|in:Direct Hire,Thru Agency',
+                'requisition_number_required' => 'required|integer|min:1',
+                'requisition_date_required' => 'required|date',
+                'requisition_justification' => 'required|string',
+                'requisition_job_description' => 'required|string',
+            ]);
+        }
+
+        if ($step == 1) {
+            $this->validate([
+                'requisition_job_description' => 'required|string',
+                'requisition_education_level' => 'required|string',
+                'requisition_work_experience' => 'required|string',
+            ]);
+        }
+
+        if ($step == 2) {
+            $this->validate([
+                'requisition_requestor_name' => 'required|string',
+                'requisition_requestor_position' => 'required|string'
+            ]);
+        }
+
+        return true;
+    }
+
     public function render()
     {
         return view('livewire.employee.manpower-requisition.approve-requisition');

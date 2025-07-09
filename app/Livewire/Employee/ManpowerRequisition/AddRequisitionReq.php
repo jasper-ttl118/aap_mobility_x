@@ -205,6 +205,38 @@ class AddRequisitionReq extends Component
             ]);
         }
     }
+
+    public function validateStep($step)
+    {
+        if ($step == 0) {
+            // dump('step zero');
+            $this->validate([
+                'department_id' => 'required',
+                'requisition_section' => 'required|string|max:255',
+                'requisition_initial_job_position' => 'required|string|max:255',
+                'requisition_eventual_job_position' => 'required|string|max:255',
+                'requisition_type' => 'required|in:New Position,Replacement',
+                'requisition_employment_type' => 'required|in:Regular,Probationary,Contractual',
+                'requisition_budget' => 'required|in:On Budget,Not On Budget',
+                'requisition_engagement_type' => 'required|in:Direct Hire,Thru Agency',
+                'requisition_number_required' => 'required|integer|min:1',
+                'requisition_date_required' => 'required|date',
+                'requisition_justification' => 'required|string',
+                'requisition_job_description' => 'required|string',
+            ]);
+        }
+
+        if ($step == 1) {
+            // dump('step one');
+            // $this->validate([
+            //     'hiring_manager' => 'required',
+            //     'salary_range' => 'required',
+            //     // Add all fields required for Step 1
+            // ]);
+        }
+        return true;
+    }
+
     public function render()
     {
         return view('livewire.employee.manpower-requisition.add-requisition-req');

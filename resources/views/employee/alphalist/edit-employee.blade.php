@@ -33,10 +33,11 @@
                 </div>
             </div>
 
-            <header class="mt-5 flex justify-center flex-col items-start w-full px-10">
-                <h2 class="text-2xl font-medium text-[#151847]">UPDATE EMPLOYEE</h2>
-                <h5 class="text-lg font-medium text-[#151847]">Personal Details</h5>
-            </header>
+            <div class="mt-6 flex justify-center flex-col items-start w-[93%] border-b border-gray-200 pb-3">
+                <h1 class="text-base text-[#071d49] font-bold uppercase">Edit Employee Information</h1>
+                <p class="text-sm text-gray-600">Update employee with their relevant information.</p>
+            </div>
+
             <main class="space-y-6 w-full h-full">
                 <section class="space-y-1.5">
                     <livewire:employee.alphalist.edit-employee :$employee />
@@ -45,6 +46,7 @@
         </div>
     </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
           window.addEventListener('swal:result', (event) => {
@@ -55,7 +57,7 @@
                     setTimeout(() => {
                         Swal.fire({
                             title: data[0].successTitle || data[0].title || 'Success',
-                            text: data[0].successText || data[0].text || 'Employee added successfully!',
+                            text: data[0].successText || data[0].text || 'Employee updated successfully!',
                             icon: data[0].icon || 'success',
                             showConfirmButton: false,
                             timer: 1500

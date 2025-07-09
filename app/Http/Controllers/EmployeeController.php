@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -374,9 +375,10 @@ class EmployeeController extends Controller
     public function employeeProfile($employee_id)
     {
         $employee = Employee::find($employee_id);
+        $father_age = Carbon::parse($employee->employee_father_birthdate)->age;
+        $mother_age = Carbon::parse($employee->employee_mother_birthdate)->age;
 
-        // dd($employee);
-        return view('employee.alphalist.view-employee-profile', compact('employee'));
+        return view('employee.alphalist.view-employee-profile', compact('employee', 'father_age', 'mother_age'));
     }
 
     public function addEmployee()

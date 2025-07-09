@@ -7,6 +7,7 @@ use App\Models\Employee;
 use Carbon\Carbon;
 use DB;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class EditEmployee extends Component
@@ -52,7 +53,7 @@ class EditEmployee extends Component
     // Educational Information
     public $employee_educational_attainment;
     public $employee_school_attended;
-    public $employee_college_vocational_status;
+    public $employee_college_course;
 
     // Employment Information
     public $employee_job_position;
@@ -143,7 +144,7 @@ class EditEmployee extends Component
         // Educational Info
         $this->employee_educational_attainment  = $employee['employee_educational_attainment'] ?? null;
         $this->employee_school_attended         = $employee['employee_school_attended'] ?? null;
-        $this->employee_college_vocational_status = $employee['employee_college_vocational_status'] ?? null;
+        $this->employee_college_course = $employee['employee_college_course'] ?? null;
 
         // Employment Info
         $this->employee_job_position            = $employee['employee_job_position'] ?? null;
@@ -209,40 +210,55 @@ class EditEmployee extends Component
             $employee = Employee::findOrFail($this->employee_id);
 
             // FILE UPLOADS
-            $employee_profile_path = $employee->employee_profile_picture;
-            $marriage_certificate_path = $employee->employee_marriage_certificate_path;
-            $father_birth_cert_path = $employee->employee_father_birth_certificate;
-            $mother_birth_cert_path = $employee->employee_mother_birth_certificate;
-            $pagibig_mdf_path = $employee->employee_pagibig_mdf_path;
+            $employee_profile_path = null;
+            $marriage_certificate_path = null;
+            $father_birth_cert_path = null;
+            $mother_birth_cert_path = null;
+            $pagibig_mdf_path = null;
 
-            if (isset($this->employee_profile_picture)) {
+            if ($this->employee_profile_picture instanceof UploadedFile) {
                 $originalName = $this->employee_profile_picture->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
                 $employee_profile_path = $this->employee_profile_picture->storeAs('employee-profile', $filename, 'public');
+            } else {
+                $employee_profile_path = $this->employee_profile_picture;
             }
 
-            if (isset($this->marriage_certificate_path)) {
+            // dump($this->marriage_certificate_path);
+
+            if ($this->marriage_certificate_path instanceof TemporaryUploadedFile) {
                 $originalName = $this->marriage_certificate_path->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
                 $marriage_certificate_path = $this->marriage_certificate_path->storeAs('employee-profile', $filename, 'public');
+            } else {
+                // This means it's already a string (existing file path), so just keep it
+                $marriage_certificate_path = $this->marriage_certificate_path;
             }
 
-            if (isset($this->employee_father_birth_certificate)) {
+            if ($this->employee_father_birth_certificate instanceof TemporaryUploadedFile) {
                 $originalName = $this->employee_father_birth_certificate->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
                 $father_birth_cert_path = $this->employee_father_birth_certificate->storeAs('employee-profile', $filename, 'public');
+            } else {
+                $father_birth_cert_path = $this->employee_father_birth_certificate;
             }
 
-            if (isset($this->employee_mother_birth_certificate)) {
+            // dump($father_birth_cert_path);
+
+            if ($this->employee_mother_birth_certificate instanceof TemporaryUploadedFile) {
                 $originalName = $this->employee_mother_birth_certificate->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
                 $mother_birth_cert_path = $this->employee_mother_birth_certificate->storeAs('employee-profile', $filename, 'public');
+            } else {
+                $mother_birth_cert_path = $this->employee_mother_birth_certificate;
             }
 
-            if (isset($this->pagibig_mdf_path)) {
+            if ($this->pagibig_mdf_path instanceof TemporaryUploadedFile) {
                 $originalName = $this->pagibig_mdf_path->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
                 $pagibig_mdf_path = $this->pagibig_mdf_path->storeAs('employee-profile', $filename, 'public');
+            } else {
+                $pagibig_mdf_path = $this->pagibig_mdf_path;
             }
 
             // UPDATE EMPLOYEE
@@ -285,7 +301,7 @@ class EditEmployee extends Component
                 // Education
                 'employee_educational_attainment' => $this->employee_educational_attainment,
                 'employee_school_attended'        => $this->employee_school_attended,
-                'employee_college_vocational_status' => $this->employee_college_vocational_status,
+                'employee_college_course' => $this->employee_college_course,
 
                 // Employment
                 'employee_job_position'        => $this->employee_job_position,
@@ -328,10 +344,14 @@ class EditEmployee extends Component
                 $certificatePath = null;
 
                 if (isset($child['birth_certificate'])) {
-                    $originalName = $child['birth_certificate']->getClientOriginalName();
-                    $uniqueName = time() . '_' . $originalName;
-                    $child['birth_certificate']->storeAs('birth-certificates/children', $uniqueName, 'public');
-                    $certificatePath = 'birth-certificates/children/' . $uniqueName;
+                    if ($child['birth_certificate'] instanceof TemporaryUploadedFile) {
+                        $originalName = $child['birth_certificate']->getClientOriginalName();
+                        $uniqueName = time() . '_' . $originalName;
+                        $child['birth_certificate']->storeAs('birth-certificates/children', $uniqueName, 'public');
+                        $certificatePath = 'birth-certificates/children/' . $uniqueName;
+                    } else {
+                        $certificatePath = $child['birth_certificate'];
+                    }
                 }
 
                 $employee->employeeChildren()->create([
@@ -354,12 +374,22 @@ class EditEmployee extends Component
 
             DB::commit();
 
-            $this->dispatch('swal:result', [
-                'title' => 'Updated',
-                'text' => 'Employee information updated successfully!',
-                'icon' => 'success',
-            ]);
-            dump('inside');
+            if ($employee) {
+                $this->dispatch('swal:result', [
+                    'title' => 'Success',
+                    'text' => 'Employee updated successfully!',
+                    'icon' => 'success',
+                    
+                ]);
+            } else {
+                dump('else');
+                $this->dispatch('swal:result', [
+                    'title' => 'Error',
+                    'text' => 'Error',
+                    'icon' => 'Warning',
+                ]);
+            }
+
         } catch (\Exception $e) {
             DB::rollBack();
             dump($e->getMessage());
@@ -389,6 +419,154 @@ class EditEmployee extends Component
     {
         unset($this->emergency_contact_details[$index]);
         $this->emergency_contact_details = array_values($this->emergency_contact_details);
+    }
+
+    public function rules()
+    {
+        return [
+            'employee_lastname' => 'required',
+            'employee_firstname' => 'required',
+            'employee_middlename' => 'required',
+            'employee_suffix' => 'required',
+            'employee_mother_maiden_name' => 'required',
+            'employee_gender' => 'required',
+            'employee_birthdate' => 'required|date',
+            'employee_birthplace' => 'required',
+            'employee_religion' => 'required',
+
+            // Present Address
+            'present_house_no' => 'required',
+            'present_street' => 'required',
+            'present_brgy' => 'required',
+            'present_city' => 'required',
+            'present_province' => 'required',
+            'present_zip_code' => 'required',
+
+            // Permanent Address
+            'permanent_house_no' => 'required',
+            'permanent_street' => 'required',
+            'permanent_brgy' => 'required',
+            'permanent_city' => 'required',
+            'permanent_province' => 'required',
+            'permanent_zip_code' => 'required',
+
+            // Contact
+            'employee_personal_email' => 'required|email',
+            'employee_contact_no1' => 'required',
+            'employee_viber_number' => 'required',
+
+            // Education
+            'employee_educational_attainment' => 'required',
+            'employee_school_attended' => 'required',
+            'employee_college_course' => 'required',
+
+            // Employment
+            'employee_job_position' => 'required',
+            'department_id' => 'required',
+            'employee_employment_type' => 'required',
+            'employee_section' => 'required',
+
+            // Civil Status
+            'employee_civil_status' => 'required',
+
+            // Parental Info
+            'employee_father_name' => 'required',
+            'employee_father_birthdate' => 'required|date',
+            'employee_father_birth_certificate' => 'required|file',
+
+            'employee_mother_name' => 'required',
+            'employee_mother_birthdate' => 'required|date',
+            'employee_mother_birth_certificate' => 'required|file',
+
+            'employee_tin_number' => 'required',
+            'employee_pagibig_number' => 'required',
+            'employee_philhealth_number' => 'required',
+            'employee_sss_number' => 'required',
+
+            'emergency_contact_details' => 'required',
+            // Medical
+            'employee_blood_type' => 'required',
+        ];
+    }
+
+    public function messages() 
+    {
+        return [
+            'required' => 'This field is required.',
+            'employee_personal_email.email' => 'Please enter a valid email address.',
+            'employee_birthdate.date' => 'Please enter a valid birthdate.',
+            'employee_father_birthdate.date' => 'Please enter a valid birthdate.',
+            'employee_mother_birthdate.date' => 'Please enter a valid birthdate.',
+            'employee_father_birth_certificate.file' => 'Please upload a valid file.',
+            'employee_mother_birth_certificate.file' => 'Please upload a valid file.',
+        ];
+    }
+
+    public function validateStep($step)
+    {
+        // for ($i = 1; $i <= $step; $i++) {
+        //     match ($i) {
+        //         1 => $this->validate([
+        //             'employee_lastname' => 'required',
+        //             'employee_firstname' => 'required',
+        //             'employee_middlename' => 'required',
+        //             'employee_suffix' => 'required',
+        //             'employee_mother_maiden_name' => 'required',
+        //             'employee_gender' => 'required',
+        //             'employee_birthdate' => 'required|date',
+        //             'employee_birthplace' => 'required',
+        //             'employee_religion' => 'required',
+        //             'employee_civil_status' => 'required',
+        //             'employee_blood_type' => 'required',
+        //             'present_house_no' => 'required',
+        //             'present_street' => 'required',
+        //             'present_brgy' => 'required',
+        //             'present_city' => 'required',
+        //             'present_province' => 'required',
+        //             'present_zip_code' => 'required',
+        //             'permanent_house_no' => 'required',
+        //             'permanent_street' => 'required',
+        //             'permanent_brgy' => 'required',
+        //             'permanent_city' => 'required',
+        //             'permanent_province' => 'required',
+        //             'permanent_zip_code' => 'required',
+        //         ]),
+        //         2 => $this->validate([
+        //             'employee_personal_email' => 'required|email',
+        //             'employee_contact_no1' => 'required',
+        //             'employee_viber_number' => 'required'
+        //         ]),
+        //         3 => $this->validate([
+        //             'employee_educational_attainment' => 'required',
+        //             'employee_school_attended' => 'required',
+        //             'employee_college_course' => 'required'
+        //         ]),
+        //         4 => $this->validate([
+        //             'employee_job_position' => 'required',
+        //             'department_id' => 'required',
+        //             'employee_employment_type' => 'required',
+        //             'employee_section' => 'required'
+        //         ]),
+        //         5 => $this->validate([
+        //             'employee_tin_number' => 'required',
+        //             'employee_pagibig_number' => 'required',
+        //             'employee_philhealth_number' => 'required',
+        //             'employee_sss_number' => 'required'
+        //         ]),
+        //         6 => $this->validate([
+        //             'employee_father_name' => 'required',
+        //             'employee_father_birthdate' => 'required|date',
+        //             'employee_father_birth_certificate' => 'required|file',
+        //             'employee_mother_name' => 'required',
+        //             'employee_mother_birthdate' => 'required|date',
+        //             'employee_mother_birth_certificate' => 'required|file'
+        //         ]),
+        //         7 => $this->validate([]), // Add validation here if needed
+        //         default => null,
+        //     };
+        // }
+
+        return true;
     }
 
     public function render()

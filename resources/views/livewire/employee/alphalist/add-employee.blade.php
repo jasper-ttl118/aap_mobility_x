@@ -1,6 +1,58 @@
 <form wire:submit.prevent="add" enctype="multipart/form-data">
     @csrf
-    <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
+    <div 
+        x-data="{
+            step: 1,
+            labels: [
+                'Basic Info',
+                'Contact Info',
+                'Education Details',
+                'Job Details',
+                'Government ID',
+                'Dependents',
+                'Emergency Contacts'
+            ],
+
+            async validateAndSwitchTab(index) {
+                console.log(index, this.step);
+                if (index + 1 > this.step) {
+                    try {
+                        let res = await $wire.validateStep(this.step);
+                        if (res) {
+                            this.step = index + 1;
+                        }
+                    } catch (error) {
+                        console.error('Validation failed', error);
+                        // Optionally show SweetAlert here
+                    }
+                } else {
+                    this.step = index + 1;
+                }
+            },
+
+            async validateAndSwitch(direction) {
+                if (direction === 'next' && this.step < this.labels.length) {
+                    try {
+                        let res = await $wire.validateStep(this.step);
+                        if (res) {
+                            this.step++;
+                            $nextTick(() => this.$refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
+                        }
+                    } catch (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Please complete all required fields',
+                            text: 'You must fill out all fields in this step before proceeding.'
+                        });
+                    }
+                } else if (direction === 'previous' && this.step > 1) {
+                    this.step--;
+                    $nextTick(() => this.$refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
+                }
+            }
+        }" 
+        class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg"
+    >
         <!-- Step Indicator -->
         <ul class="steps w-full justify-center bg-[#f1f5fb] p-4 rounded-lg shadow-sm border border-[#d0d7e2]">
             <template x-for="(label, index) in [
@@ -13,12 +65,12 @@
                 'Emergency Contacts'
             ]" :key="index">
                 <li
-                    @click="step = index + 1"
-                    :class="[
-                        'step text-[#071d49]',
-                        index + 1 <= step ? 'step-primary' : '',
-                        index === 0 ? 'before:hidden' : ''
-                    ]"
+                    @click="validateAndSwitchTab(index);"
+                            :class="[
+                                'step text-[#071d49]',
+                                index + 1 <= step ? 'step-primary' : '',
+                                index === 0 ? 'before:hidden' : ''
+                            ]"
                     class="cursor-pointer"
                     x-text="label"
                 ></li>
@@ -61,28 +113,26 @@
                             <input class="profile_edit_input" type="text" name="employee_lastname"
                             wire:model="employee_lastname"
                             placeholder="Enter your last name" required>
+                            @error('employee_lastname') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="firstName">First Name</label>
                             <input class="profile_edit_input" type="text" name="employee_firstname"
                                 wire:model="employee_firstname"
                                 placeholder="Enter your first name" required>
+                                @error('employee_firstname') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="middleName">Middle Name</label>
                             <input class="profile_edit_input" type="text" name="employee_middlename"
                                 wire:model="employee_middlename"
                                 placeholder="Enter your middle name" required>
+                            @error('employee_middlename') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
+
                     {{-- Second Row --}}
                     <div class="flex flex-row w-full gap-x-5">
-                        {{-- <div class="space-y-1 flex flex-col w-[33%]">
-                            <label class="hidden text-aapblue @lg/main:block" for="last">Employee ID</label>
-                            <input class="profile_edit_input" type="number" name="employee_id"
-                                placeholder="123123" required>
-                        </div> --}}
-                        
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <div class="flex flex-row w-full gap-x-2">
                                 <label class="hidden text-aapblue @lg/main:block " for="suffix">Suffix </label>
@@ -98,13 +148,16 @@
                                 <option value="V.">V. (The Fifth)</option>
                                 <option value="">N/A</option>
                             </select>
+                            @error('employee_suffix') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block " for="maidenName">Mother's Maiden Name </label>
                             <input class="profile_edit_input" type="text" name="employee_mother_maiden_name"
                                 wire:model="employee_mother_maiden_name" placeholder="Enter mother's maiden name" required>
+                                @error('employee_mother_maiden_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
+
                     {{-- Third Row --}}
                     <div class="flex flex-row w-full gap-x-5">
                         <div class="space-y-1 flex flex-col w-[33%]">
@@ -114,20 +167,24 @@
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
+                            @error('employee_gender') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="birthdate">Birthdate</label>
                             <input class="profile_edit_input" type="date" name="employee_birthdate"
                                wire:model="employee_birthdate" placeholder="Enter your birthdate" required>
+                            @error('employee_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                         <div class="space-y-1 flex flex-col w-[33%]">
                             <label class="hidden text-aapblue @lg/main:block" for="birthplace">Birthplace</label>
                             <input class="profile_edit_input" type="text" name="employee_birthplace"
                                wire:model="employee_birthplace" placeholder="Enter your birthplace" required>
+                               @error('employee_birthplace') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="w-full flex flex-col gap-y-6">
                 <div class="flex flex-row w-full gap-x-5">
                     <div class="space-y-1 flex flex-col w-[33%]">
@@ -140,6 +197,7 @@
                             <option value="Seventh Day Adventist Church">Seventh Day Adventist Church</option>
                             <option value="Islam">Islam</option>
                         </select>
+                        @error('employee_religion') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                     
                     <div class="flex flex-row w-[33%] gap-x-5">
@@ -152,8 +210,10 @@
                                 <option value="Widowed">Widowed</option>
                                 <option value="Annuled">Annuled</option>
                             </select>
+                            @error('employee_civil_status') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[33%]">
                         <div class="flex flex-row w-full gap-x-2">
                             <label class="hidden text-aapblue @lg/main:block " for="middle">Blood Type </label>
@@ -170,35 +230,61 @@
                             <option value="O-">O-</option>
                             <option value="Unknown">Unknown</option>
                         </select>
+                        @error('employee_blood_type') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                 </div>
+
                 <div class="flex flex-row w-full gap-x-5">
                     {{-- Address --}}
-                    
                     <div class="space-y-1 flex flex-col w-[50%]">
                         <div class="flex flex-row w-full gap-x-2">
                             <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Complete Home Address </label>
                             <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400"> (Present) </label>
                         </div>
+
                         <div class="flex flex-col w-full gap-y-8">
                             <div class="flex flex-row w-full gap-x-5">
-                                <input class="profile_edit_input w-[24%]" type="text" name="present_house_no"
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="present_house_no"
                                     wire:model="present_house_no" placeholder="House No." required>
-                                <input class="profile_edit_input w-[38%]" type="text" name="present_street"
-                                    wire:model="present_street" placeholder="Street" required>
-                                <input class="profile_edit_input w-[38%]" type="text" name="present_brgy"
-                                    wire:model="present_brgy" placeholder="Barangay" required>
+                                    @error('present_house_no') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="present_street"
+                                        wire:model="present_street" placeholder="Street" required>
+                                        @error('present_street') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="present_brgy"
+                                        wire:model="present_brgy" placeholder="Barangay" required>
+                                        @error('present_brgy') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
                             </div>
+
                             <div class="flex flex-row w-full gap-x-5">
-                                <input class="profile_edit_input" type="text" name="present_city"
-                                    wire:model="present_city" placeholder="City/Municipality" required>
-                                <input class="profile_edit_input" type="text" name="present_province"
-                                    wire:model="present_province" placeholder="Province" required>
-                                <input wire:model="present_zip_code" class="profile_edit_input" type="text" name="present_zip_code"
-                                    placeholder="Zip Code" required>
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input" type="text" name="present_city"
+                                        wire:model="present_city" placeholder="City/Municipality" required>
+                                        @error('present_city') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input" type="text" name="present_province"
+                                        wire:model="present_province" placeholder="Province" required>
+                                        @error('present_province') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+                                
+                                <div class="flex flex-col w-full">
+                                    <input wire:model="present_zip_code" class="profile_edit_input" type="text" name="present_zip_code"
+                                        placeholder="Zip Code" required>
+                                        @error('present_zip_code') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[50%]">
                         <div class="flex flex-row w-full gap-x-2">
                             <label class="hidden text-aapblue @lg/main:block " for="homeAddressPermanent">Complete Home Address </label>
@@ -206,20 +292,42 @@
                         </div>
                         <div class="flex flex-col w-full gap-y-8">
                             <div class="flex flex-row w-full gap-x-5">
-                                <input class="profile_edit_input w-[24%]" type="text" name="permanent_house_no"
-                                    wire:model="permanent_house_no" placeholder="House No." required>
-                                <input class="profile_edit_input w-[38%]" type="text" name="permanent_street"
-                                    wire:model="permanent_street" placeholder="Street" required>
-                                <input class="profile_edit_input w-[38%]" type="text" name="permanent_brgy"
-                                    wire:model="permanent_brgy" placeholder="Barangay" required>
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="permanent_house_no"
+                                        wire:model="permanent_house_no" placeholder="House No." required>
+                                        @error('permanent_house_no') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="permanent_street"
+                                        wire:model="permanent_street" placeholder="Street" required>
+                                        @error('permanent_street') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input w-full" type="text" name="permanent_brgy"
+                                        wire:model="permanent_brgy" placeholder="Barangay" required>
+                                        @error('permanent_brgy') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
                             </div>
                             <div class="flex flex-row w-full gap-x-5">
-                                <input class="profile_edit_input" type="text" name="permanent_city"
-                                    wire:model="permanent_city" placeholder="City/Municipality" required>
-                                <input class="profile_edit_input" type="text" name="permanent_province"
-                                    wire:model="permanent_province" placeholder="Province" required>
-                                <input class="profile_edit_input" type="text" name="permanent_zip_code"
-                                     wire:model="permanent_zip_code" placeholder="Zip Code" required>
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input" type="text" name="permanent_city"
+                                        wire:model="permanent_city" placeholder="City/Municipality" required>
+                                        @error('permanent_city') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input" type="text" name="permanent_province"
+                                        wire:model="permanent_province" placeholder="Province" required>
+                                        @error('permanent_province') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
+
+                                <div class="flex flex-col w-full">
+                                    <input class="profile_edit_input" type="text" name="permanent_zip_code"
+                                        wire:model="permanent_zip_code" placeholder="Zip Code" required>
+                                        @error('permanent_zip_code') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -228,7 +336,13 @@
 
             {{-- Button --}}
             <div class="flex justify-end items-end">
-                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+            <button 
+                type="button" 
+                @click="validateAndSwitch('next')" 
+                class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+            >
+                Next
+            </button>
             </div>
         </div>
 
@@ -242,6 +356,7 @@
                 <div class="flex flex-row w-full justify-center items-center">
                     <div class="flex flex-col w-full gap-y-2">
                         <div class="flex flex-row gap-x-5">
+
                             <div class="space-y-1 flex flex-col w-[33.3%]">
                                 <div class="flex flex-row w-full gap-x-2">
                                     <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Personal Email</label>
@@ -249,12 +364,16 @@
                                 </div>
                                 <input class="profile_edit_input w-full" type="email" name="employee_personal_email"
                                     wire:model="employee_personal_email" placeholder="e.g., john.doe@example.com" required>
+                                    @error('employee_personal_email') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
+
                             <div class="flex flex-col space-y-1 w-[33.3%]">
                                 <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Personal Number </label>
                                 <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no1"
                                        wire:model="employee_contact_no1" placeholder="e.g., +63 912 345 6789" required>
+                                @error('employee_contact_no1') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
+
                             <div class="flex flex-col space-y-1 w-[33.3%]">
                                 <div class="flex flex-row w-full gap-x-2">
                                     <label class="hidden text-aapblue @lg/main:block " for="phoneNumber2">Phone Number #2 </label>
@@ -282,13 +401,26 @@
                                 <label class="hidden text-aapblue @lg/main:block " for="viberName">Viber Number</label>
                                 <input class="profile_edit_input w-full flex" type="number" name="employee_viber_number"
                                    wire:model="employee_viber_number" placeholder="e.g., +63 912 345 6789" required>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -320,16 +452,15 @@
                                     <option value="College Graduate">College Graduate</option>
                                     <option value="College Undergraduate">College Undergraduate</option>
                                 </select>
+                                @error('employee_educational_attainment') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                             <div class="flex flex-col space-y-1 w-[50%]">
                                 <div class="flex flex-row w-full gap-x-2">
                                     <label class="hidden text-aapblue @lg/main:block truncate" for="forCollege">College Course </label>
                                 </div>
-                                <select wire:model="employee_college_vocational_status" class="profile_edit_input" type="text" name="employee_college_vocational_status" required>
-                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                    <option value="test">test</option>
-                                     <option value="test1">test1</option>
-                                </select>
+                                <input type="text" wire:model="employee_college_course" class="profile_edit_input" type="text" name="employee_college_vocational_status" required>
+                                @error('employee_college_course') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
                             </div>
                         </div>
                         <div class="flex flex-col space-y-1">
@@ -339,6 +470,8 @@
                             </div>
                             <input class="profile_edit_input w-full flex" type="text" name="employee_school_attended"
                                 wire:model="employee_school_attended" placeholder="e.g., University of Caloocan City" required>
+                                @error('employee_school_attended') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
                         </div>
                     </div>
                 </div>
@@ -365,21 +498,26 @@
                         </div>
                         <div class="flex flex-col gap-y-4">
                             <div class="flex flex-row w-full gap-x-5">
+
                                 <div class="flex flex-col space-y-1 w-[50%]">
                                     <label class="hidden text-aapblue @lg/main:block " for="jobPosition">Job Position Title</label>
                                     <input class="profile_edit_input w-full flex" type="text" name="employee_job_position"
                                         wire:model="employee_job_position" placeholder="e.g., Accountant" required>
+                                        @error('employee_job_position') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
+
                                 <div class="flex flex-col space-y-1 w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block truncate" for="typeOfEmployment">Type of Employment</label>
                                     </div>
+
                                     <select wire:model="employee_employment_type" class="profile_edit_input" type="text" name="employee_employment_type" required>
                                         <option value="" disabled selected class="text-gray-400 italic">Select options</option>
                                         <option value="Regular">Regular</option>
                                         <option value="Probitionary">Probitionary</option>
                                         <option value="Consultant">Consultant</option>
                                     </select>
+                                    @error('employee_employment_type') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                             <div class="flex flex-row w-full gap-x-5">
@@ -393,6 +531,7 @@
                                             <option value="{{ $department->department_id }}">{{ $department->department_name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('department_id') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col space-y-1 w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
@@ -400,14 +539,27 @@
                                     </div>
                                     <input class="profile_edit_input w-full flex" type="text" name="employee_section"
                                         wire:model="employee_section" placeholder="e.g., Development Team" required>
+                                    @error('employee_section') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -424,21 +576,29 @@
                         <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
                         <input wire:model="employee_sss_number" class="profile_edit_input" type="number" name="employee_sss_number" 
                             placeholder="SSS Number" required>
+                        @error('employee_sss_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[25%]">
                         <label class="hidden text-aapblue @lg/main:block" for="philHealthNumber">PhilHealth Number</label>
                         <input wire:model="employee_philhealth_number" class="profile_edit_input" type="number" name="employee_philhealth_number" 
                             placeholder="PhilHealth Number" required>
+                        @error('employee_philhealth_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[25%]">
                         <label class="hidden text-aapblue @lg/main:block" for="pagibigNumber">Pag-Ibig Number</label>
                         <input wire:model="employee_pagibig_number" class="profile_edit_input" type="number" name="employee_pagibig_number"
                             placeholder="Pag-Ibig Number" required>
+                        @error('employee_pagibig_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[25%]">
                         <label class="hidden text-aapblue @lg/main:block" for="tinNumber">Tax Identification Number</label>
                         <input wire:model="employee_tin_number" class="profile_edit_input" type="number" name="employee_tin_number"
                             placeholder="TIN Number" required>
+                        @error('employee_tin_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
@@ -468,14 +628,13 @@
                                 <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="father">Full Name </label>
                                     <input wire:model="employee_father_name" type="text" name="employee_father_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                    @error('employee_father_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
-                                {{-- <div class="space-y-1 flex flex-col w-[50%]">
-                                    <label class="hidden text-aapblue @lg/main:block" for="fatherAge">Age</label>
-                                    <input type="text" name="employee_parents_1_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" required>
-                                </div> --}}
+
                                 <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
                                     <input wire:model="employee_father_birthdate" class="profile_edit_input" type="date" name="employee_father_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
+                                    @error('employee_father_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 
                                 <div class="flex flex-col space-y-1 w-[50%] relative">
@@ -510,14 +669,14 @@
                                 <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="motherName">Full Name </label>
                                     <input wire:model="employee_mother_name" type="text" name="employee_mother_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                    @error('employee_mother_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
                                 </div>
-                                {{-- <div class="space-y-1 flex flex-col w-[50%]">
-                                    <label class="hidden text-aapblue @lg/main:block" for="motherAge">Age</label>
-                                    <input type="text" name="employee_parents_2_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" required>
-                                </div> --}}
+
                                 <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
                                     <input wire:model="employee_mother_birthdate" class="profile_edit_input" type="date" name="employee_mother_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
+                                    @error('employee_mother_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
 
                                 <div class="flex flex-col space-y-1 w-[50%] relative">
@@ -741,20 +900,25 @@
                                 <div class="space-y-1 flex flex-col w-[33%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
                                     <input wire:model="emergency_contact_details.{{ $index }}.name" type="text" name="emergency_contact_1_name[0][name]" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                @error('emergency_contact_details.{{ $index }}.name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
                                 </div>
                                 <div class="space-y-1 flex flex-col w-[33%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
                                     <input wire:model="emergency_contact_details.{{ $index }}.relationship" type="text" name="emergency_contact_1_relationship[0][relationship]" placeholder="e.g., Brother" class="profile_edit_input w-full flex" required>
+                                    @error('emergency_contact_details.{{ $index }}.relationship') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="space-y-1 flex flex-col w-[33%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
                                     <input wire:model="emergency_contact_details.{{ $index }}.number" class="profile_edit_input" type="number" name="emergency_contact_1_number[0][number]" id="contactNumber" placeholder="e.g., 09123456789" required>
+                                    @error('emergency_contact_details.{{ $index }}.number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                             <div class="space-y-1 flex flex-col w-full">
                                 <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
                                 <textarea wire:model="emergency_contact_details.{{ $index }}.address" class="profile_edit_input w-full resize-none" name="emergency_contact_1_address[0][address]" id="contactAddress" cols="20" rows="3" 
                                             placeholder="Contact's full address"></textarea>
+                                @error('emergency_contact_details.{{ $index }}.address') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
 
                             @if (count($emergency_contact_details) > 1)

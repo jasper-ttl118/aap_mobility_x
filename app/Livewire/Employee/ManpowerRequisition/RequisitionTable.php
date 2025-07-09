@@ -61,7 +61,8 @@ class RequisitionTable extends Component
     public function render()
     {
             $requisitions = Requisition::where('requisition_status', $this->requisition_filter)
-                ->where('requisition_is_deleted', 0)
+                ->where('requisition_is_deleted', 0)->
+                with('department')
                 ->latest()
                 ->paginate(5, ['*'], 'pendingPage');
 

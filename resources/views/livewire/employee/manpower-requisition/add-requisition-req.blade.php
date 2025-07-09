@@ -1,6 +1,49 @@
 <div @close-modal.window="open_add=false" 
   
-    x-data="{ selectedStep: 0, employment_type : '', selected : 'job information', selected_tabs : ['job information', 'hiring specifications']}"
+    x-data="{ selectedStep: 0, employment_type : '', selected : 'job information', selected_tabs : ['job information', 'hiring specifications'],
+            async validateAndSwitchTab(index) {
+                if (index > this.selectedStep) {
+                    try {
+                        let res = await $wire.validateStep(this.selectedStep); // validate current step before going forward
+                        if(res){
+                            this.selectedStep = index;
+                            this.selected = this.selected_tabs[index];
+                        }
+                    } catch (error) {
+                        console.error('Validation failed', error);
+                        // Optionally show SweetAlert or toast here
+                    }
+                } else {
+                    this.selectedStep = index;
+                    this.selected = this.selected_tabs[index];
+                }
+            },
+
+            async validateAndSwitch(direction) {
+                if (direction === 'next' && this.selectedStep < this.selected_tabs.length - 1) {
+                    try {
+                        let res = await $wire.validateStep(this.selectedStep);
+                        if(res){
+                            this.selectedStep++;
+                            this.selected = this.selected_tabs[this.selectedStep];
+                        }
+
+                        $nextTick(() => this.$refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
+                    } catch (error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Please complete all required fields',
+                            text: 'You must fill out all fields in this step before proceeding.',
+                        });
+                    }
+                } else if (direction === 'previous' && this.selectedStep > 0) {
+                    this.selectedStep--;
+                    this.selected = this.selected_tabs[this.selectedStep];
+                    $nextTick(() => this.$refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
+                }
+            }
+
+        }"
     class="bg-white shadow-lg rounded-lg text-sm">
     <form wire:submit="confirmAdd" >
         @csrf
@@ -17,7 +60,7 @@
                     {{-- <template x-for="(step, index) in ['Job Information', 'Hiring Specification', 'Requestor Details', 'Endorser Details', 'Approver Details']" :key="index"> --}}
                     <template x-for="(step, index) in ['Job Information', 'Hiring Specification']" :key="index">
                         <li 
-                            @click="selectedStep = index; selected = selected_tabs[index];"
+                             @click="validateAndSwitchTab(index)"
                             :class="[
                                 'step',
                                 index <= selectedStep ? 'step-primary' : '',
@@ -373,26 +416,14 @@
             <div class="flex gap-x-5">
                 <!-- Previous Button -->
                 <a 
-                    @click="
-                        if (selectedStep > 0) {
-                            selectedStep--; 
-                            selected = selected_tabs[selectedStep]; 
-                            $nextTick(() => $refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
-                        }
-                    "
+                    @click="validateAndSwitch('previous')"
                     class="cursor-pointer mt-4 w-[50%] bg-gray-600 text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49] text-center">
                     Previous
                 </a>
 
                 <!-- Next Button -->
                 <a 
-                    @click="
-                        if (selectedStep < selected_tabs.length - 1) {
-                            selectedStep++; 
-                            selected = selected_tabs[selectedStep]; 
-                            $nextTick(() => $refs.scrollContainer.scrollTo({ top: 0, behavior: 'smooth' }));
-                        }
-                    "
+                    @click="validateAndSwitch('next')"
                     class="cursor-pointer mt-4 w-[50%] bg-gray-600 text-white px-3 py-1.5 rounded text-sm hover:bg-[#071d49] text-center">
                     Next
                 </a>

@@ -11,7 +11,7 @@ class EmployeeChild extends Model
     protected $fillable = [
         'employee_id',
         'employee_child_name',
-        'employee_chlid_birthdate',
+        'employee_child_birthdate',
         'employee_child_birth_certificate'
     ];
 

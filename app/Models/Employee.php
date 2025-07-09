@@ -59,7 +59,8 @@ class Employee extends Model
         // Educational Information
         'employee_educational_attainment',
         'employee_school_attended',
-        'employee_college_vocational_status',
+        'employee_college_course',
+        'employee_section',
         
         // Employment Information
         'employee_job_position',
