@@ -138,16 +138,23 @@
                             </div>
 
                             <!-- Brand and Model -->
-                            <div class="flex gap-x-2 ">
-                                <div class="relative group ">
+                            <div class="flex gap-x-2">
+                                <!-- Brand -->
+                                <div class="relative group">
                                     <div class="text-2xl font-bold text-blue-900 uppercase">
-                                        {{ $asset->brand_name ?? 'NO DATA' }}
+                                        @if (in_array($asset->category_id, [1, 6]))
+                                            {{ $asset->brand->brand_name ?? 'NO DATA' }}
+                                        @else
+                                            {{ $asset->brand_name_custom ?? 'NO DATA' }}
+                                        @endif
                                     </div>
                                     <div
                                         class="absolute -top-6 left-0 z-10 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap">
                                         Brand
                                     </div>
                                 </div>
+
+                                <!-- Model -->
                                 <div class="relative group">
                                     <div class="text-2xl font-bold text-blue-900 uppercase">
                                         {{ $asset->model_name ?? 'NO DATA' }}
@@ -158,6 +165,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <!-- Asset Name -->
                             <div class="relative group ">

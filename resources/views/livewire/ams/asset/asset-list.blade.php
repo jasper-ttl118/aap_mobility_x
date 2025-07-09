@@ -1,5 +1,11 @@
 <div class="mx-7 mb-10 rounded-sm  overflow-visible hide-scrollbar">
     <div class="min-w-[1000px] w-full">
+        <script>
+            window.addEventListener('filter-changed', event => {
+                console.log(`[Livewire] ${event.detail.property} = ${event.detail.value}`);
+            });
+        </script>
+    
         <table class="w-full text-center text-sm text-gray-500 ">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>
@@ -16,7 +22,13 @@
 
                     <tr class="border-b border-gray-200 bg-white">
                         <td class="py-4 text-gray-900">{{ $asset->asset_name }}</td>
-                        <td class="py-4 text-gray-900">{{ $asset->brand_name }}</td>
+                        <td class="py-4 text-gray-900">
+                            @if (in_array($asset->category_id, [1, 6]))
+                                {{ $asset->brand->brand_name ?? 'NO DATA' }}
+                            @else
+                                {{ $asset->brand_name_custom ?? 'NO DATA' }}
+                            @endif
+                        </td>
                         <td class="py-4 text-gray-900">{{ $asset->model_name }}</td>
                         <td class="py-4 text-gray-900">
                             @if ($asset->asset_type === '2' && $asset->employee)
@@ -54,7 +66,7 @@
                                     <a href="{{ route('ams.asset.view', ['id' => $asset->asset_id]) }}"
                                         class="text-gray-700 hover:text-black transition">
                                         <!-- <button wire:click="viewAsset({{ $asset->asset_id }})"
-                                                class="text-gray-700 hover:text-black transition"></button> -->
+                                                        class="text-gray-700 hover:text-black transition"></button> -->
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
@@ -73,7 +85,8 @@
 
                                 <!-- Edit Details -->
                                 <div class="relative group">
-                                    <a href="assets/edit" class="text-blue-700 hover:text-blue-900 transition inline-flex">
+                                    <a href="{{ route('ams.asset.edit', ['id' => $asset->asset_id]) }}"
+                                        class="text-blue-700 hover:text-blue-900 transition inline-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
                                             <path

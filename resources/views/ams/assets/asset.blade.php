@@ -111,7 +111,8 @@
                 </div>
 
                 <!-- Header Title and Controls -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between -mt-6 px-5 py-6 gap-4">
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center justify-between -mt-6 px-5 py-6 gap-4">
 
                     <!-- Left: Page Title -->
                     <div>
@@ -125,7 +126,7 @@
                         <!-- Search + Filter Combo -->
                         <div x-data="{ open: false }" class="relative flex flex-1 min-w-0 sm:w-72">
                             <div
-                                class="flex items-center flex-grow bg-white border border-gray-300 rounded-md shadow-sm w-full">
+                                class="flex items-center flex-grow bg-white border border-gray-300 rounded-lg shadow-sm w-full">
 
                                 <!-- Search Icon -->
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -151,38 +152,116 @@
                             </div>
 
                             <!-- Filter Dropdown -->
+                            <!-- Filter Dropdown -->
                             <div x-show="open" @click.away="open = false"
-                                class="absolute right-0 mt-2 w-60 bg-white border border-gray-200 rounded-md shadow-lg z-50 text-sm">
+                                class="absolute right-0 mt-10 w-full sm:w-72 bg-white border border-gray-200 rounded-md shadow-lg z-50 text-sm">
+
                                 <div class="p-3 space-y-2 text-gray-700">
+
+                                    <!-- CATEGORY -->
                                     <div>
-                                        <label class="block text-xs font-medium text-gray-500 mb-1">CATEGORY</label>
-                                        <select
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4 text-gray-500">
+                                                <path
+                                                    d="M12.378 1.602a.75.75 0 0 0-.756 0L3 6.632l9 5.25 9-5.25-8.622-5.03ZM21.75 7.93l-9 5.25v9l8.628-5.032a.75.75 0 0 0 .372-.648V7.93ZM11.25 22.18v-9l-9-5.25v8.57a.75.75 0 0 0 .372.648l8.628 5.033Z" />
+                                            </svg>
+                                            <label class="block text-xs font-medium text-gray-500">CATEGORY</label>
+                                        </div>
+                                        <select id="category"
                                             class="uppercase w-full rounded-md border-gray-300 shadow-sm text-xs focus:ring-blue-600 focus:border-blue-600">
-                                            <option class="text-xs" value="">ALL</option>
-                                            <option class="text-xs" value="1">IT EQUIPMENT</option>
-                                            <option class="text-xs" value="2">OFFICE FURNITURE AND FIXTURES</option>
-                                            <option class="text-xs" value="3">MACHINERY AND EQUIPMENT</option>
-                                            <option class="text-xs" value="4">VEHICLES</option>
-                                            <option class="text-xs" value="5">FACILITIES AND INFRASTRUCTURE</option>
-                                            <option class="text-xs" value="6">MOBILE DEVICES</option>
-                                            <option class="text-xs" value="7">HIGH VALUE ASSETS</option>
-                                            <option class="text-xs" value="8">LABORATORY EQUIPMENTS</option>
-                                            <option class="text-xs" value="9">COMPANY OWNED TOOLS</option>
-                                            <option class="text-xs" value="10">PREVENTIVE AND SAFETY EQUIPMENT</option>
+                                            <option value="">ALL CATEGORIES</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {{ strtoupper($category->category_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
+
+
+                                    <!-- STATUS -->
                                     <div>
-                                        <label class="block text-xs font-medium text-gray-500 mb-1">STATUS</label>
-                                        <select
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4 text-gray-500">
+                                                <path fill-rule="evenodd"
+                                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+
+
+                                            <label class="block text-xs font-medium text-gray-500">STATUS</label>
+                                        </div>
+                                        <select id="status"
                                             class="uppercase w-full rounded-md border-gray-300 shadow-sm text-xs focus:ring-blue-600 focus:border-blue-600">
-                                            <option class="text-xs" value="">ALL</option>
-                                            <option class="text-xs" value="available">AVAILABLE</option>
-                                            <option class="text-xs" value="in-use">IN USE</option>
-                                            <option class="text-xs" value="in-use">UNDER MAINTENANCE</option>
-                                            <option class="text-xs" value="in-use">DECOMISSIONED/RETIRED</option>
-                                            <option class="text-xs" value="in-use">ON HOLD</option>
-                                            <option class="text-xs" value="in-use">LOST/STOLEN</option>
+                                            <option value="">ALL STATUS</option>
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status->id }}">{{ strtoupper($status->status_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
+                                    </div>
+
+
+                                    <!-- CONDITION -->
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4 text-gray-500">
+                                                <path fill-rule="evenodd"
+                                                    d="M12 6.75a5.25 5.25 0 0 1 6.775-5.025.75.75 0 0 1 .313 1.248l-3.32 3.319c.063.475.276.934.641 1.299.365.365.824.578 1.3.64l3.318-3.319a.75.75 0 0 1 1.248.313 5.25 5.25 0 0 1-5.472 6.756c-1.018-.086-1.87.1-2.309.634L7.344 21.3A3.298 3.298 0 1 1 2.7 16.657l8.684-7.151c.533-.44.72-1.291.634-2.309A5.342 5.342 0 0 1 12 6.75ZM4.117 19.125a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <label class="block text-xs font-medium text-gray-500">CONDITION</label>
+                                        </div>
+                                        <select id="condition"
+                                            class="uppercase w-full rounded-md border-gray-300 shadow-sm text-xs focus:ring-blue-600 focus:border-blue-600">
+                                            <option value="">ALL CONDITIONS</option>
+                                            @foreach ($conditions as $condition)
+                                                <option value="{{ $condition->id }}">
+                                                    {{ strtoupper($condition->condition_name) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                    </div>
+
+
+                                    <!-- DEPARTMENT -->
+                                    <div>
+                                        <div class="flex items-center gap-1 mb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-4 text-gray-500">
+                                                <path fill-rule="evenodd"
+                                                    d="M4.5 2.25a.75.75 0 0 0 0 1.5v16.5h-.75a.75.75 0 0 0 0 1.5h16.5a.75.75 0 0 0 0-1.5h-.75V3.75a.75.75 0 0 0 0-1.5h-15ZM9 6a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5H9Zm-.75 3.75A.75.75 0 0 1 9 9h1.5a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM9 12a.75.75 0 0 0 0 1.5h1.5a.75.75 0 0 0 0-1.5H9Zm3.75-5.25A.75.75 0 0 1 13.5 6H15a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1-.75-.75ZM13.5 9a.75.75 0 0 0 0 1.5H15A.75.75 0 0 0 15 9h-1.5Zm-.75 3.75a.75.75 0 0 1 .75-.75H15a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1-.75-.75ZM9 19.5v-2.25a.75.75 0 0 1 .75-.75h4.5a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-.75.75h-4.5A.75.75 0 0 1 9 19.5Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            <label class="block text-xs font-medium text-gray-500">DEPARTMENT</label>
+                                        </div>
+                                        <select id="department"
+                                            class="uppercase w-full rounded-md border-gray-300 shadow-sm text-xs focus:ring-blue-600 focus:border-blue-600">
+                                            <option value="">ALL DEPARTMENTS</option>
+                                            @foreach ($departments as $department)
+                                                <option value="{{ $department->id }}">
+                                                    {{ strtoupper($department->department_name) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <!-- APPLY FILTERS BUTTON -->
+                                    <div class="pt-2">
+                                        <button onclick="applyLivewireFilters()" type="button"
+                                            class="w-full flex items-center justify-center gap-2 bg-blue-900 text-white text-xs font-semibold px-3 py-2 rounded-md shadow hover:bg-blue-800 transition">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M4.5 12.75l6 6 9-13.5" />
+                                            </svg>
+                                            APPLY FILTERS
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -199,13 +278,25 @@
                         </a>
                     </div>
                 </div>
-
-
             </div>
-
             <!-- Livewire Component -->
             <livewire:ams.asset.asset-list />
         </div>
-
     </div>
+    <script>
+        function applyLivewireFilters() {
+            const category = document.getElementById('category')?.value;
+            const status = document.getElementById('status')?.value;
+            const condition = document.getElementById('condition')?.value;
+            const department = document.getElementById('department')?.value;
+
+            if (window.livewire && typeof window.livewire.emit === 'function') {
+                window.livewire.emit('applyFilters', category, status, condition, department);
+            } else {
+                console.error('Livewire is not available or emit is not a function.');
+            }
+        }
+    </script>
+
+
 </x-app-layout>
