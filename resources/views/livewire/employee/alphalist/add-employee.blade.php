@@ -946,7 +946,7 @@
             </div>
         </div>
 
-        {{-- Emergency Contacts --}}
+        {{-- Buttons --}}
         <div x-show="step === 7" class="gap-y-2 flex flex-col">
             <div class="flex flex-row justify-end items-end gap-x-2">
                 <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>

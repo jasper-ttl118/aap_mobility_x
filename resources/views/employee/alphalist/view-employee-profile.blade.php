@@ -1,5 +1,6 @@
 
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
+  
     <div x-data="{ selected : 'employees', open_add_employee : false, open_delete_employee : false, 
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
@@ -66,57 +67,57 @@
                                     <tr class="">
                                         <td class="pb-2 px-2 align-top w-[30%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Last Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_lastname ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_lastname ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[30%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">First Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_firstname ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_firstname ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[35%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Middle Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_middlename ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_middlename ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[5%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Suffix</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_suffix ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_suffix ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                     <tr class="">
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Gender</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_gender ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_gender ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Religion</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_religion ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_religion ?? 'N/A'}}</div>
                                         </td>
                                         <td colspan="2" class="pb-2 px-2 align-top w-full">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Mother's Maiden Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_maiden_name ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_mother_maiden_name ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                     <tr class="">
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Age</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_age ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee_age ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthdate</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{\Carbon\Carbon::parse($employee->employee_birthdate)->format('m-d-Y') ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{\Carbon\Carbon::parse($employee->employee_birthdate)->format('m-d-Y') ?? 'N/A'}}</div>
                                         </td>
                                         <td colspan="2" class="pb-2 px-2 align-top w-full">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthplace</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_birthplace ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_birthplace ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                     <tr class="">
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Civil Status</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_civil_status ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_civil_status ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-2 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Blood Type</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{($employee->employee_blood_type) ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{($employee->employee_blood_type) ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                 </table>
@@ -132,29 +133,29 @@
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">House No.</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_house_no ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_house_no ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Street</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_street ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_street ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_brgy ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_brgy ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">City</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_city ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_city ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Province</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_province ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_province ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->present_zip_code ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_present_zip_code ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -163,35 +164,36 @@
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">House No.</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_house_no ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_house_no ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Street</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_street ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_street ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Brgy.</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_brgy ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_brgy ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                     <div class="flex flex-row w-full justify-start gap-x-4">
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">City</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_city ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_city ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-start justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Province</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_province ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_province ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col items-center justify-center">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Zip Code</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->permanent_zip_code ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_permanent_zip_code ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     {{-- Contacts Information --}}
                     <div @click="openSection = (openSection === 'contactInfo' ? null : 'contactInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
@@ -208,35 +210,48 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
-                        <div x-show="openSection === 'contactInfo'" x-transition x-cloak class="flex flex-row w-full h-full items-center justify-between gap-y-2 gap-x-5 pt-3">
-                            {{-- Left --}}
-                            <div class="flex flex-col w-full h-full items-center gap-y-5">
-                                {{-- First Column --}}
-                                <div class="text-[#071d49] flex flex-row items-center justify-center w-full lg:w-[80%] lg:gap-x-20">
-                                    <div class="flex flex-col lg:flex-row w-[50%] lg:w-[40%] justify-between gap-y-3">
-                                        <div class="text-[#071d49] flex flex-col items-center gap-x-1 justify-start">
-                                            <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal Email: </label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter" name="fullName">{{ $employee->employee_personal_email ?? 'n/a'}}</label>
-                                        </div>
-                                        <div class="flex flex-col justify-center items-center">
-                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal Number</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_contact_no1 ?? 'n/a'}}</label>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col lg:flex-row w-[50%] lg:w-[40%] justify-between gap-y-3">
-                                        <div class="flex flex-col justify-center items-center">
-                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Phone No. 2</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_contact_no2 ?? 'n/a'}}</label>
-                                        </div>
-                                        <div class="flex flex-col justify-center items-center">
-                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Viber Number</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_viber_number ?? 'n/a'}}</label>
-                                        </div>
-                                    </div>
+
+                        <div x-show="openSection === 'contactInfo'" x-transition x-cloak class="flex flex-col w-full h-full items-center gap-y-5 pt-3">
+                            
+                            {{-- First Row --}}
+                            <div class="flex flex-col lg:flex-row w-full lg:w-[80%] justify-between gap-y-5 lg:gap-x-10">
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal Email:</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter">{{ $employee->employee_personal_email ?? 'N/A' }}</label>
+                                </div>
+
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Personal Number</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_contact_no1 ?? 'N/A' }}</label>
+                                </div>
+
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Phone No. 2</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_contact_no2 ?? 'N/A' }}</label>
                                 </div>
                             </div>
+
+                            {{-- Second Row --}}
+                            <div class="flex flex-col lg:flex-row w-full lg:w-[80%] justify-between gap-y-5 lg:gap-x-10">
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Viber Number</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_viber_number ?? 'N/A' }}</label>
+                                </div>
+
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Company Number</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_company_number ?? 'N/A' }}</label>
+                                </div>
+
+                                <div class="flex flex-col w-full lg:w-1/3 gap-y-1 items-start">
+                                    <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Company Email</label>
+                                    <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_company_email ?? 'N/A' }}</label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
+
                     {{-- Education and Job Information --}}
                     <div @click="openSection = (openSection === 'educjobInfo' ? null : 'educjobInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
@@ -261,17 +276,17 @@
                                     <div class="flex flex-col w-full lg:w-[60%] h-full justify-between items-start gap-y-2 lg:gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">School Attended</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_school_attended ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_school_attended ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Educational Attainment</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_educational_attainment ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_educational_attainment ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                     <div class="flex flex-col w-full lg:w-[40%] h-full justify-between items-start gap-y-2 lg:gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
-                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">For College/Vocational</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_college_vocational_status ?? 'n/a'}}</label>
+                                            <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">College Course</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_college_course ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -285,21 +300,21 @@
                                     <div class="flex flex-col w-full lg:w-[50%] h-full justify-between items-start gap-y-2 lg:gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Job Position Title</label>
-                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_job_position ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-sm font-inter uppercase" name="fullName">{{ $employee->employee_job_position ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Company Email</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter" name="fullName">{{ $employee->employee_company_email ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter" name="fullName">{{ $employee->employee_company_email ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                     <div class="flex flex-col w-full lg:w-[50%] h-full justify-start items-start gap-y-2 lg:gap-y-5">
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Type of Employment</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_employment_type ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_employment_type ?? 'N/A'}}</label>
                                         </div>
                                         <div class="flex flex-col justify-center items-start">
                                             <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Department</label>
-                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_department ?? 'n/a'}}</label>
+                                            <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->department->department_name ?? 'N/A'}}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -329,21 +344,21 @@
                                 <div class="flex flex-col lg:flex-row w-[50%] lg:w-[35%] justify-between gap-y-2">
                                     <div class="flex flex-col justify-center items-center">
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">SSS Number</label>
-                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_sss_number ?? 'n/a'}}</label>
+                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_sss_number ?? 'N/A'}}</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">TIN Number</label>
-                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter" name="fullName">{{ $employee->employee_tin_number ?? 'n/a'}}</label>
+                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter" name="fullName">{{ $employee->employee_tin_number ?? 'N/A'}}</label>
                                     </div>
                                 </div>
                                 <div class="flex flex-col lg:flex-row w-[50%] lg:w-[35%] justify-between gap-y-2">
                                     <div class="flex flex-col justify-center items-center">
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">PhilHealth No.</label>
-                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_philhealth_number ?? 'n/a'}}</label>
+                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_philhealth_number ?? 'N/A'}}</label>
                                     </div>
                                     <div class="flex flex-col justify-center items-center">
                                         <label class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400">Pag-Ibig Number</label>
-                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_pagibig_number ?? 'n/a'}}</label>
+                                        <label class="text-[#071d49] text-xs lg:text-sm font-inter uppercase" name="fullName">{{ $employee->employee_pagibig_number ?? 'N/A'}}</label>
                                     </div>
                                 </div>
                             </div>
@@ -378,15 +393,15 @@
                                     <tr class="">
                                         <td class="pb-3 px-2 align-top w-[50%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_1_details ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_father_name ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[20%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Age</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_1_age ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $father_age ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[30%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthdate</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_1_birthdate ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_father_birthdate ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                     
@@ -399,15 +414,15 @@
                                     <tr class="">
                                         <td class="pb-3 px-2 align-top w-[50%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_2_details ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_mother_name ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[20%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Age</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_2_age ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $mother_age ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[30%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthdate</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_parents_2_birthdate ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_mother_birthdate ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
                                     
@@ -415,23 +430,27 @@
                                     <tr>
                                         <td colspan="3" class="text-sm text-left px-2 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                             Number of Children: 
-                                            <span class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->employee_children_count ?? 'n/a'}}</span>
+                                            <span class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->employeeChildren()->count() ?? 'N/A'}}</span>
                                         </td>
                                     </tr>
-                                    <tr class="">
-                                        <td class="pb-3 px-2 align-top w-[50%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_children_1_details ?? 'n/a'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[20%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Age</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_children_1_age ?? 'n/a'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[30%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthdate</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->employee_children_1_birthdate ?? 'n/a'}}</div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($employee->employeeChildren as $children)
+                                        <tr class="">
+                                            <td class="pb-3 px-2 align-top w-[50%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{  $children->employee_child_name ?? 'N/A'}}</div>
+                                            </td>
+                                            <td class="pb-3 px-2 align-top w-[20%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Age</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">
+                                                    {{ $children->employee_child_birthdate ? \Carbon\Carbon::parse($children->employee_child_birthdate)->age : 'N/A' }}
+                                                </div>                                        
+                                            </td>
+                                            <td class="pb-3 px-2 align-top w-[30%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Birthdate</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $children->employee_child_birthdate ?? 'N/A'}}</div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </table>
                             </div>
                         </div>
@@ -455,6 +474,7 @@
                         <div x-show="openSection === 'emergencyContact'" x-transition x-cloak class="flex flex-row w-full h-auto justify-center items-center pt-3">
                             <div class="hidden lg:block flex flex-col w-[95%] justify-between items-center gap-y-5">
                                 <table class="w-[90%] lg:w-full border-collapse">
+                                @foreach ($employee->employeeEmergencyContacts as $contact)
                                     <tr>
                                         <td colspan="4" class="text-sm text-left px-2 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                             Emergency Contact #1
@@ -463,92 +483,72 @@
                                     <tr class="">
                                         <td class="pb-3 px-2 align-top w-[25%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_1_name ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_name ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[15%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_1_relationship ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_relationship ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[20%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_1_number ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_number ?? 'N/A'}}</div>
                                         </td>
                                         <td class="pb-3 px-2 align-top w-[40%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_1_address ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_address ?? 'N/A'}}</div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4" class="text-sm text-left px-2 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
-                                            Emergency Contact #2
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="pb-3 px-2 align-top w-[25%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_2_name ?? 'n/a'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[15%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_2_relationship ?? 'n/a'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[20%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_2_number ?? 'n/a'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[40%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $employee->emergency_contact_2_address ?? 'n/a'}}</div>
-                                        </td>
-                                    </tr>
+                                @endforeach
+
+                               
                                 </table>
                             </div>
                             <div class="block lg:hidden flex flex-col w-[95%] justify-between items-center gap-y-5">
-                                <div class="bg-white overflow-hidden">
+                                <div class="bg-white overflow-hidden w-full">
                                     <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                         Emergency Contact #1
                                     </div>
                                     <div class="px-4 space-y-1">
                                         <div >
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_name ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_name ?? 'N/A'}}</div>
                                         </div>
                                         <div >
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_relationship ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_relationship ?? 'N/A'}}</div>
                                         </div>
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_number ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_number ?? 'N/A'}}</div>
                                         </div>
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_address ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_1_address ?? 'N/A'}}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Emergency Contact #2 -->
-                                <div class="bg-white overflow-hidden">
+                                <div class="bg-white overflow-hidden w-full">
                                     <div class="text-sm text-left px-4 py-1 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
                                         Emergency Contact #2
                                     </div>
                                     <div class="px-4 space-y-1">
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_name ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_name ?? 'N/A'}}</div>
                                         </div>
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_relationship ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_relationship ?? 'N/A'}}</div>
                                         </div>
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_number ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_number ?? 'N/A'}}</div>
                                         </div>
                                         <div>
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_address ?? 'n/a'}}</div>
+                                            <div class="text-[#071d49] text-sm font-inter uppercase">{{ $employee->emergency_contact_2_address ?? 'N/A'}}</div>
                                         </div>
                                     </div>
                                 </div>
