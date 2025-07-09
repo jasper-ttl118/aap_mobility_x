@@ -4,7 +4,7 @@
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
                 }" 
-        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto px-5 lg:px-10 py-3 gap-7 mt-12 bg-[#f3f4f6]">
       
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
@@ -26,7 +26,7 @@
                     <a href="#" class="hover:underline font-semibold">Alphalist</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
-                <div class="flex flex-start lg:justify-end px-7 pt-6">
+                <div class="flex flex-start justify-center lg:justify-end px-7 pt-6">
                     <a x-show="selected == 'employees'" href="{{ route('addEmployee') }}"
                         :class="selected == 'employees' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
                         class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
@@ -49,8 +49,8 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between px-7 py-6">
-                <div>
+            <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-between px-7 py-6 gap-y-2">
+                <div class="text-center lg:text-start">
                     <h2 class="font-semibold text-lg text-[#071d49]" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
                     <p class="text-gray-900 text-sm" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
                 </div>

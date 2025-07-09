@@ -154,17 +154,17 @@
                     {{-- Forms for Approval --}}
                     <div class="flex flex-col w-full lg:w-[50%] h-[450px] bg-white shadow-md items-center justify-center rounded-xl px-5 lg:px-0">
                         {{-- Header --}}
-                        <div class="flex flex-col lg:flex-row h-[10%] w-full justify-center items-center px-5 gap-y-0">
-                            <div class="flex flex-row w-[80%] items-center gap-x-2">
-                                <img src="request.png" alt="assetlogo" class="size-4">
-                                <span class="text-lg font-extrabold text-[#0035dd] uppercase tracking-widest">Request Form</span>
+                        <div class="flex flex-col lg:flex-row h-[10%] w-[90%] justify-center lg:justify-start items-center px-5 gap-y-0 gap-x-2">
+                            <div class="flex flex-row w-auto items-center justify-center gap-x-2">
+                                <img src="request.png" alt="assetlogo" class="size-3">
+                                <span class="text-md font-extrabold text-[#0035dd] uppercase tracking-widest">Request Form</span>
                             </div>
-                            <div class="flex text-xs justify-center items-center lg:justify-start font-light text-gray-400 italic w-full">(Borrow, Transfer, Pull-Out)</div>
+                            <div class="flex text-xs justify-center items-center lg:justify-start font-light text-gray-400 italic w-auto">(Borrow, Transfer, Pull-Out)</div>
                         </div>
                         {{-- Border Line --}}
                         <span class="border-b-2 border-[#071d49] w-full lg:w-[85%] flex h-[5px]"></span>
                         <div class="flex flex-row h-[10%] w-full lg:w-[90%] justify-between items-center px-5 gap-2">
-                            <span class="text-lg font-extrabold text-[#0035dd] uppercase tracking-widest">List</span>
+                            <span class="text-md font-extrabold text-[#0035dd] uppercase tracking-widest">List</span>
                             <div class="flex flex-row items-center justify-end gap-x-1">
                                 <label for="searchBar" class="text-gray-400 text-sm">Search:</label>
                                 <input type="text" name="searchBar" placeholder="Requestor or item..." class="text-xs rounded-md h-7 w-[60%] border-[#0035dd]">
@@ -176,11 +176,12 @@
                                 {{-- 1 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-yellow-500 w-12 h-[80%] rounded-md">
-                                            <span class="uppercase  text-white text-2xl font-extrabold">B</span>
+                                        <div class="flex flex-col justify-center items-center bg-yellow-500 w-12 h-[80%] rounded-md">
+                                            <span class="uppercase text-white text-2xl font-extrabold">B</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">BORROW</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Laptop (HP 840 G5)</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Juan Dela Cruz</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 3, 2025</span>
@@ -201,11 +202,12 @@
                                 {{-- 2 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-black w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-black w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">T</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">TRANSFER</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Printer to Branch B</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Maria Santos</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 2, 2025</span>
@@ -226,11 +228,12 @@
                                 {{-- 3 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">P</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">PULL-OUT</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Projector - Room 301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Admin Office</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 1, 2025</span>
@@ -251,11 +254,12 @@
                                 {{-- 4 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-black w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-black w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">T</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">TRANSFER</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Printer to Branch B</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Maria Santos</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 2, 2025</span>
@@ -276,11 +280,12 @@
                                 {{-- 5 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-yellow-500 w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-yellow-500 w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">B</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">BORROW</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Laptop (HP 840 G5)</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Juan Dela Cruz</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 3, 2025</span>
@@ -301,11 +306,12 @@
                                 {{-- 6 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">P</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">PULL-OUT</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Projector - Room 301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Admin Office</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 1, 2025</span>
@@ -326,11 +332,12 @@
                                 {{-- 7 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">P</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">PULL-OUT</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Projector - Room 301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Admin Office</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 1, 2025</span>
@@ -351,11 +358,12 @@
                                 {{-- 8 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16">  
                                     <td class="flex items-center ">
-                                        <div class="flex justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
+                                        <div class="flex flex-col justify-center items-center bg-lime-500 w-12 h-[80%] rounded-md">
                                             <span class="uppercase  text-white text-2xl font-extrabold">P</span>
+                                            <span class="uppercase text-white text-[8px] -mt-1">PULL-OUT</span>
                                         </div>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full px-1">
+                                    <td class="flex flex-col justify-center items-center w-full px-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full uppercase">Projector - Room 301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Requested By: Admin Office</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">Date Requested: July 1, 2025</span>
@@ -379,9 +387,9 @@
                     {{-- Assets --}}
                     <div class="flex flex-col w-full lg:w-[50%] h-[450px] bg-white shadow-md items-center justify-center rounded-xl px-5 lg:px-0">
                        {{-- Header --}}
-                        <div class="flex flex-row h-[10%] w-full justify-start items-center px-5 gap-2">
-                            <img src="asset-management.png" alt="assetlogo" class="size-6">
-                            <span class="text-lg font-extrabold text-[#0035dd] uppercase tracking-widest">Recent Assets</span>
+                        <div class="flex flex-row h-[10%] w-[90%] justify-center lg:justify-start items-center px-5 gap-2">
+                            <img src="asset-management.png" alt="assetlogo" class="size-4">
+                            <span class="text-md font-extrabold text-[#0035dd] uppercase tracking-widest">Recent Assets</span>
                         </div>
                         {{-- Border Line --}}
                         <span class="border-b-2 border-[#071d49] w-full lg:w-[85%] flex h-[5px]"></span>
@@ -391,9 +399,9 @@
                                 {{-- 1 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">  
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#b100dd] w-12 h-[80%] rounded-md">PC</span>
+                                        <span class="flex justify-center items-center text-[#b100dd] text-2xl font-extrabold border-2 border-[#b100dd] w-12 h-[80%] rounded-md">PC</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Dell OptiPlex 7090</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex">ID: AST-2024-001 • Department: Office Floor 3</span>
                                     </td>
@@ -404,9 +412,9 @@
                                 {{-- 2 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#0072dd] w-12 h-[80%] rounded-md">PR</span>
+                                        <span class="flex justify-center items-center text-[#0072dd] text-2xl font-extrabold border-2 border-[#0072dd] w-12 h-[80%] rounded-md">PR</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">HP LaserJet Pro 4301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-002 • Department: Admin Office</span>
                                     </td>
@@ -417,9 +425,9 @@
                                 {{-- 3 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#21dd00] w-12 h-[80%] rounded-md">SR</span>
+                                        <span class="flex justify-center items-center text-[#21dd00] text-2xl font-extrabold border-2 border-[#21dd00] w-12 h-[80%] rounded-md">SR</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Cisco Catalyst 9300</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-003 • Department: Server Room</span>
                                     </td>
@@ -430,9 +438,9 @@
                                 {{-- 4 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#dd6300] w-12 h-[80%] rounded-md">VH</span>
+                                        <span class="flex justify-center items-center text-[#dd6300] text-2xl font-extrabold border-2 border-[#dd6300] w-12 h-[80%] rounded-md">VH</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Ford Transit Van</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-004 • Department: Garage A</span>
                                     </td>
@@ -443,9 +451,9 @@
                                 {{-- 5 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#b100dd] w-12 h-[80%] rounded-md">PC</span>
+                                        <span class="flex justify-center items-center text-[#b100dd] text-2xl font-extrabold border-2 border-[#b100dd] w-12 h-[80%] rounded-md">PC</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Dell OptiPlex 7090</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-001 • Department: Office Floor 3</span>
                                     </td>
@@ -456,9 +464,9 @@
                                 {{-- 6 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#0072dd] w-12 h-[80%] rounded-md p-2">PR</span>
+                                        <span class="flex justify-center items-center text-[#0072dd] text-2xl font-extrabold border-2 border-[#0072dd] w-12 h-[80%] rounded-md p-2">PR</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">HP LaserJet Pro 4301</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-002 • Department: Admin Office</span>
                                     </td>
@@ -469,9 +477,9 @@
                                 {{-- 7 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#21dd00] w-12 h-[80%] rounded-md">SR</span>
+                                        <span class="flex justify-center items-center text-[#21dd00] text-2xl font-extrabold border-2 border-[#21dd00] w-12 h-[80%] rounded-md">SR</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Cisco Catalyst 9300</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-003 • Department: Server Room</span>
                                     </td>
@@ -482,9 +490,9 @@
                                 {{-- 8 --}}
                                 <tr class="flex flex-row border-b border-[#071d49] w-full h-16 cursor-pointer hover:bg-blue-100 duration-150">
                                     <td class="flex items-center">
-                                        <span class="flex justify-center items-center text-white text-2xl font-extrabold bg-[#dd6300] w-12 h-[80%] rounded-md">VH</span>
+                                        <span class="flex justify-center items-center text-[#dd6300] text-2xl font-extrabold border-2 border-[#dd6300] w-12 h-[80%] rounded-md">VH</span>
                                     </td>         
-                                    <td class="flex flex-col justify-center items-center w-full mx-1">
+                                    <td class="flex flex-col justify-center items-center w-full mx-2">
                                         <span class="text-xs font-semibold text-[#071d49] w-full">Ford Transit Van</span>
                                         <span class="text-[10px] font-semibold text-[#071d49] w-full hidden lg:flex ">ID: AST-2024-004 • Department: Garage A</span>
                                     </td>
@@ -502,7 +510,7 @@
                     <div x-data="{openAsset:''}" class="w-full lg:w-[33%]">
                         <div @click="openAsset = (openAsset === 'borrow' ? null : 'borrow')" class="group cursor-pointer relative overflow-visible bg-white border-2 border-[#071d49] rounded-xl shadow-md w-full p-4">
                             <div class="text-[#071d49]  w-full uppercase tracking-widest text-lg font-extrabold whitespace-normal text-center px-5">
-                                How to Borrow Asset
+                                How to Borrow <br>Asset
                             </div>
                             <div x-show="openAsset === 'borrow'" x-transition class="overflow-hidden text-[#071d49] px-1">
                                 <div class="flex flex-col gap-y-3 pt-3">
@@ -513,7 +521,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">First Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Employee will fill out a Borrow Request Form.</span>
+                                        <span class="text-gray-500 text-sm">Employee will fill out a Borrow Request Form.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -522,7 +530,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Second Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Asset will approve the request or not, depending on the availability of assets.</span>
+                                        <span class="text-gray-500 text-sm">Asset will approve the request or not, depending on the availability of assets.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -531,7 +539,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Third Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Status of Asset is set to status "<span class="italic text-[#0035dd]">BORROWED</span>".</span>
+                                        <span class="text-gray-500 text-sm">Status of Asset is set to status "<span class="italic text-[#0035dd] text-sm">BORROWED</span>".</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -540,7 +548,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Fourth Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Once returned, Asset saff will be set to status "<span class="italic text-[#0035dd]">AVAILABLE</span>".</span>
+                                        <span class="text-gray-500 text-sm">Once returned, Asset saff will be set to status "<span class="italic text-[#0035dd] text-sm">AVAILABLE</span>".</span>
                                     </div>
                                     <div class="flex w-full h-10 mb-3 justify-center items-center">
                                         <button @click.stop="window.location='{{ route('allAssets') }}'" class="flex flex-row gap-x-2 justify-center items-center border-2 border-[#071d49] bg-[#ffdd00] hover:bg-yellow-200 hover:underline text-black font-bold uppercase rounded-md px-2 w-[80%] h-full">
@@ -578,7 +586,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">First Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Employee will fill out a Transfer Request Form.</span>
+                                        <span class="text-gray-500 text-sm">Employee will fill out a Transfer Request Form.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -587,7 +595,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Second Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Asset will transfer the asset to designated employee/brance/department and set to status "<span class="italic text-[#0035dd]">TRANSFERED</span>" and set the condition.</span>
+                                        <span class="text-gray-500 text-sm">Asset will transfer the asset to designated employee/branch/department and set to status "<span class="italic text-[#0035dd] text-sm">TRANSFERED</span>" and set the condition.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -596,7 +604,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Third Step:</span>
                                         </div>
-                                        <span class="text-gray-500">Apply the Deployment Process.</span>
+                                        <span class="text-gray-500 text-sm">Apply the Deployment Process.</span>
                                     </div>
                                     <div class="flex w-full h-10 mb-3 justify-center items-center">
                                         <button @click.stop="window.location='{{ route('allAssets') }}'" class="flex flex-row gap-x-2 justify-center items-center border-2 border-[#071d49] bg-[#ffdd00] hover:bg-yellow-200 hover:underline text-black font-bold uppercase rounded-md px-2 w-[80%] h-full">
@@ -634,7 +642,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">First Step:</span>
                                         </div>
-                                        <span class="text-[#071d49]">Employee will fill out a Pull-out /Disposal Form.</span>
+                                        <span class="text-gray-500 text-sm">Employee will fill out a Pull-out /Disposal Form.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -643,7 +651,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Second Step:</span>
                                         </div>
-                                        <span class="text-[#071d49]">The Asset Department will transfer the asset to the designated employee/branch/department and set it to status "<span class="italic text-[#0035dd]">PULL-OUT</span>" and set the condition (repair, dispose, resigned employee, old laptop).</span>
+                                        <span class="text-gray-500 text-sm">The Asset Department will transfer the asset to the designated employee/branch/department and set it to status "<span class="italic text-[#0035dd] text-sm">PULL-OUT</span>" and set the condition (repair, dispose, resigned employee, old laptop).</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -652,7 +660,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Third Step:</span>
                                         </div>
-                                        <span class="text-[#071d49]">Coordinate with IST Dept to check the condition of Laptop/Desktop.</span>
+                                        <span class="text-gray-500 text-sm">Coordinate with IST Dept to check the condition of Laptop/Desktop.</span>
                                     </div>
                                     <div class="flex flex-col w-full justify-center items-start gap-y-1">
                                         <div class="flex flex-row w-full gap-x-2 items-center">
@@ -661,7 +669,7 @@
                                             </svg>
                                             <span class="text-[#071d49] font-bold">Fourth Step:</span>
                                         </div>
-                                        <span class="text-[#071d49]">The asset will transfer to branch/department "<span class="italic text-[#0035dd]">ASSET DEPARTMENT</span>".</span>
+                                        <span class="text-gray-500 text-sm">The asset will transfer to branch/department "<span class="italic text-[#0035dd] text-sm">ASSET DEPARTMENT</span>".</span>
                                     </div>
                                     <div class="flex w-full h-10 mb-3 justify-center items-center">
                                         <button @click.stop="window.location='{{ route('allAssets') }}'" class="flex flex-row gap-x-2 justify-center items-center border-2 border-[#071d49] bg-[#ffdd00] hover:bg-yellow-200 hover:underline text-black font-bold uppercase rounded-md px-2 w-[80%] h-full">
