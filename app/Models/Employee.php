@@ -84,9 +84,7 @@ class Employee extends Model
         'employee_tin_number',
         
         // Family Information
-        'employee_children_count',
         'employee_parents_details',
-        'employee_children_count', 
         'employee_father_name',     
         'employee_father_birthdate',
         'employee_father_birth_certificate',

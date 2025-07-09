@@ -476,8 +476,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -602,8 +614,20 @@
                     </div>
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>
@@ -746,15 +770,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-row w-full justify-start items-center gap-x-5">
-                            <div class="flex flex-col space-y-1 w-full">
-                                <div class="flex flex-col w-full gap-x-2">
-                                    <label class="hidden text-aapblue @lg/main:block " for="childrenNum">Please state how many children do you have?</label>
-                                    {{-- <label for="middle" class="@lg/main:block hidden text-gray-400">(Type n/a if not applicable)</label> --}}
-                                </div>
-                                <input type="number" wire:model="employee_children_count" name="employee_children_count" placeholder="e.g., 2" class="profile_edit_input w-full flex" required>
-                            </div>
-                        </div>
+                  
 
                         <div class="flex flex-col space-y-1 w-full">
                             <div class="flex flex-col w-full gap-x-2">
@@ -879,8 +895,20 @@
 
                 </div>
                 <div class="flex justify-end gap-x-2 items-end">
-                    <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                    <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                    <button type="button" 
+                        @click="validateAndSwitch('previous')" 
+                        class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500"
+                    >
+                        Back
+                    </button>
+
+                    <button 
+                        type="button" 
+                        @click="validateAndSwitch('next')" 
+                        class="btn text-white border-blue-300 px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500"
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </div>

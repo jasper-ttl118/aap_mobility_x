@@ -109,7 +109,7 @@ class EditEmployee extends Component
         $this->employee_lastname                = $employee['employee_lastname'] ?? null;
         $this->employee_firstname               = $employee['employee_firstname'] ?? null;
         $this->employee_middlename              = $employee['employee_middlename'] ?? null;
-        $this->employee_suffix                  = $employee['employee_suffix'] ?? null;
+        $this->employee_suffix                  = $employee['employee_suffix'] ?? '';
         $this->employee_mother_maiden_name      = $employee['employee_mother_maiden_name'] ?? null;
         $this->employee_gender                  = $employee['employee_gender'] ?? null;
         $this->employee_birthdate = isset($employee['employee_birthdate'])
@@ -169,7 +169,6 @@ class EditEmployee extends Component
         $this->employee_tin_number              = $employee['employee_tin_number'] ?? null;
 
         // Family Info
-        $this->employee_children_count          = $employee['employee_children_count'] ?? null;
         $this->employee_father_name             = $employee['employee_father_name'] ?? null;
         $this->employee_father_birthdate        = $employee['employee_father_birthdate'] ?? null;
         $this->employee_father_birth_certificate = $employee['employee_father_birth_certificate'] ?? null;
@@ -326,7 +325,6 @@ class EditEmployee extends Component
                 'employee_tin_number'          => $this->employee_tin_number,
 
                 // Family
-                'employee_children_count'      => $this->employee_children_count,
                 'employee_father_name'         => $this->employee_father_name,
                 'employee_father_birthdate'    => $this->employee_father_birthdate,
                 'employee_father_birth_certificate' => $father_birth_cert_path,
@@ -427,7 +425,6 @@ class EditEmployee extends Component
             'employee_lastname' => 'required',
             'employee_firstname' => 'required',
             'employee_middlename' => 'required',
-            'employee_suffix' => 'required',
             'employee_mother_maiden_name' => 'required',
             'employee_gender' => 'required',
             'employee_birthdate' => 'required|date',
