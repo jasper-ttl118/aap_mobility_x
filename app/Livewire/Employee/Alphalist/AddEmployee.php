@@ -246,7 +246,7 @@ class AddEmployee extends Component
 
                 $certificatePath = null;
 
-                if (isset($child['birth_certificate']) && $child['birth_certificate'] instanceof TemporaryUploadedFile ) {
+                if ($child['birth_certificate']) {
                     $originalName = $child['birth_certificate']->getClientOriginalName();
                     $uniqueName = time() . '_' . $originalName;
                     
