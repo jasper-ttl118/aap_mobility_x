@@ -4,7 +4,7 @@
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
                 }" 
-        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto px-5 lg:px-10 py-3 gap-7 mt-12 bg-[#f3f4f6]">
+        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 py-3 gap-7 mt-14 bg-[#f3f4f6]">
       
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">

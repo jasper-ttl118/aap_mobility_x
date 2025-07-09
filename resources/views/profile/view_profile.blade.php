@@ -4,10 +4,10 @@
     //    dd($employee->employee->employee_lastname);
     @endphp
     @include('layouts.navbar')
-    <div class="@container/main flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-3.5 bg-[#f3f4f6] mt-10">
+    <div class="@container/main flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
-            <h2 class="text-2xl font-medium text-[#151847]">User Profile Information</h2>
-            <h4 class="text-lg font-light text-[#151847]">View and edit your personal details, username, and password</h4>
+            <h2 class="text-2xl text-center lg:text-start font-medium text-[#151847]">User Profile Information</h2>
+            <h4 class="text-lg text-center lg:text-start font-light text-[#151847]">View and edit your personal details, username, and password</h4>
         </header>
         <hr>
         <main class="space-y-6">
@@ -152,34 +152,34 @@
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col w-[24%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">House No.</label>
-                                                <input class="profile_edit_input " type="text" name="present_house_no" value="{{ $employee->employee->present_house_no ?? 'N/A'}}"
+                                                <input class="profile_edit_input " type="text" name="present_house_no" value="{{ $employee->employee->employee_present_house_no ?? 'N/A'}}"
                                                     placeholder="House No." disabled>
                                             </div>
                                             <div class="flex flex-col w-[38%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Street</label>
-                                                <input class="profile_edit_input" type="text" name="present_street" value="{{ $employee->employee->present_street ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="present_street" value="{{ $employee->employee->employee_present_street ?? 'N/A'}}"
                                                     placeholder="Street" disabled>
                                             </div>
                                             <div class="flex flex-col w-[38%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Barangay</label>
-                                                <input class="profile_edit_input" type="text" name="present_brgy" value="{{ $employee->employee->present_brgy ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="present_brgy" value="{{ $employee->employee->employee_present_brgy ?? 'N/A'}}"
                                                     placeholder="Barangay" disabled>
                                             </div>
                                         </div>
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">City/Municipality</label>
-                                                <input class="profile_edit_input" type="text" name="present_city" value="{{ $employee->employee->present_city ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="present_city" value="{{ $employee->employee->employee_present_city ?? 'N/A'}}"
                                                     placeholder="City/Municipality" disabled>
                                             </div>
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Province</label>
-                                                <input class="profile_edit_input" type="text" name="present_province" value="{{ $employee->employee->present_province ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="present_province" value="{{ $employee->employee->employee_present_province ?? 'N/A'}}"
                                                     placeholder="Province" disabled>
                                             </div>
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Zip Code</label>
-                                                <input class="profile_edit_input" type="text" name="present_zip_code" value="{{ $employee->employee->present_zip_code ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="present_zip_code" value="{{ $employee->employee->employee_present_zip_code ?? 'N/A'}}"
                                                     placeholder="Zip Code" disabled>
                                             </div>
                                         </div>
@@ -194,34 +194,34 @@
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col w-[24%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">House No.</label>
-                                                <input class="profile_edit_input " type="text" name="permanent_house_no" value="{{ $employee->employee->permanent_house_no ?? 'N/A'}}"
+                                                <input class="profile_edit_input " type="text" name="permanent_house_no" value="{{ $employee->employee->employee_permanent_house_no ?? 'N/A'}}"
                                                     placeholder="House No." disabled>
                                             </div>
                                             <div class="flex flex-col w-[38%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Street</label>
-                                                <input class="profile_edit_input" type="text" name="permanent_street" value="{{ $employee->employee->permanent_street ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="permanent_street" value="{{ $employee->employee->employee_permanent_street ?? 'N/A'}}"
                                                     placeholder="Street" disabled>
                                             </div>
                                             <div class="flex flex-col w-[38%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Barangay</label>
-                                                <input class="profile_edit_input" type="text" name="permanent_brgy" value="{{ $employee->employee->permanent_brgy ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="permanent_brgy" value="{{ $employee->employee->employee_permanent_brgy ?? 'N/A'}}"
                                                     placeholder="Barangay" disabled>
                                             </div>
                                         </div>
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">City/Municipality</label>
-                                                <input class="profile_edit_input" type="text" name="permanent_city" value="{{ $employee->employee->permanent_city ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="permanent_city" value="{{ $employee->employee->employee_permanent_city ?? 'N/A'}}"
                                                     placeholder="City/Municipality" disabled>
                                             </div>
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Province</label>
-                                                <input class="profile_edit_input" type="text" name="permanent_province" value="{{ $employee->employee->permanent_province ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="permanent_province" value="{{ $employee->employee->employee_permanent_province ?? 'N/A'}}"
                                                     placeholder="Province" disabled>
                                             </div>
                                             <div class="flex flex-col w-[33%]">
                                                 <label class="hidden text-aapblue text-sm @lg/main:block " for="homeAddressPresent">Zip Code</label>
-                                                <input class="profile_edit_input" type="text" name="permanent_zip_code" value="{{ $employee->employee->permanent_zip_code ?? 'N/A'}}"
+                                                <input class="profile_edit_input" type="text" name="permanent_zip_code" value="{{ $employee->employee->employee_permanent_zip_code ?? 'N/A'}}"
                                                     placeholder="Zip Code" disabled>
                                             </div>
                                         </div>
@@ -335,7 +335,7 @@
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="department">Department</label>
                                                 </div>
-                                                <input class="profile_edit_input w-full flex" type="text" name="employee_department" value="{{ $employee->employee->employee_department ?? 'N/A'}}"
+                                                <input class="profile_edit_input w-full flex" type="text" name="employee_department" value="{{ $employee->employee->department->department_name ?? 'N/A'}}"
                                                 placeholder="e.g., College Graduate" disabled>
                                             </div>
                                         </div>
@@ -710,102 +710,6 @@
         </main>
     </div>
 
-    <script>
-        let childIndex = 2; // Start from 2 since we already have 0 and 1
-
-        function addChildFields() {
-            const container = document.getElementById('children-container');
-            
-            // Check if we need to create a new row
-            let currentRow = container.querySelector('.child-row:last-child');
-            
-            // If no row exists or current row already has 2 children, create a new row
-            if (!currentRow || currentRow.children.length >= 2) {
-                currentRow = document.createElement('div');
-                currentRow.className = 'child-row flex flex-row w-full justify-between items-start gap-x-5 mb-5';
-                container.appendChild(currentRow);
-            }
-
-            const div = document.createElement('div');
-            div.className = 'child-input flex flex-col w-[49%] gap-4 border border-blue-400 rounded-lg p-6';
-            div.innerHTML = `
-                <div class="flex justify-between items-center">
-                    <label class="hidden text-aapblue @lg/main:block" for="middle">Child #${childIndex + 1}</label>
-                    <button type="button" onclick="deleteChildField(this)" class="text-red-500 hover:text-red-700 font-bold text-sm">Delete</button>
-                </div>
-                
-                <div class="flex flex-row w-full gap-x-5">
-                    <div class="space-y-1 flex flex-col w-[50%]">
-                        <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
-                        <input type="text" name="children[${childIndex}][name]" id="childFullName_${childIndex}" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex">
-                    </div>
-                    <div class="space-y-1 flex flex-col w-[50%]">
-                        <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                        <input type="text" name="children[${childIndex}][age]" id="childAge_${childIndex}" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex">
-                    </div>
-                </div>
-                <div class="space-y-1 flex flex-col w-[48.5%]">
-                    <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
-                    <input class="profile_edit_input" type="text" name="children[${childIndex}][birthdate]" id="childBirthdate_${childIndex}" placeholder="e.g., 01/05/2002">
-                </div>
-            `;
-
-            currentRow.appendChild(div);
-            childIndex++;
-        }
-
-        function deleteChildField(button) {
-            const childInput = button.closest('.child-input');
-            const row = childInput.closest('.child-row');
-            
-            // Remove the child input
-            childInput.remove();
-            
-            // If the row is now empty, remove it
-            if (row && row.children.length === 0) {
-                row.remove();
-            }
-            
-            // Renumber all children to maintain proper sequence
-            renumberChildren();
-        }
-
-        function renumberChildren() {
-            // Only renumber the dynamically added children (not the original 0 and 1)
-            const dynamicChildInputs = document.querySelectorAll('.child-row .child-input');
-            let currentIndex = 2; // Start from 2 since you already have 0 and 1
-            
-            dynamicChildInputs.forEach((input) => {
-                // Update the label
-                const label = input.querySelector('label');
-                if (label) {
-                    label.textContent = `Child #${currentIndex + 1}`;
-                }
-                
-                // Update input names and IDs
-                const nameInput = input.querySelector('input[name*="[name]"]');
-                const ageInput = input.querySelector('input[name*="[age]"]');
-                const birthdateInput = input.querySelector('input[name*="[birthdate]"]');
-                
-                if (nameInput) {
-                    nameInput.name = `children[${currentIndex}][name]`;
-                    nameInput.id = `childFullName_${currentIndex}`;
-                }
-                if (ageInput) {
-                    ageInput.name = `children[${currentIndex}][age]`;
-                    ageInput.id = `childAge_${currentIndex}`;
-                }
-                if (birthdateInput) {
-                    birthdateInput.name = `children[${currentIndex}][birthdate]`;
-                    birthdateInput.id = `childBirthdate_${currentIndex}`;
-                }
-                
-                currentIndex++;
-            });
-            
-            // Update the global childIndex to the next available index
-            childIndex = currentIndex;
-        }
-    </script> 
+    
 </x-app-layout>
 

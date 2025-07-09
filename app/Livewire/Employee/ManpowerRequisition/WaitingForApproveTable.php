@@ -20,7 +20,7 @@ class WaitingForApproveTable extends Component
         $department_id = $employee->department->department_id;
         $waitingApprovalRequisitions = '';
         
-        if ($employee_position === 'Department Head' || $role_name === 'Super Admin'){
+        if ($role_name === 'Department Head' || $role_name === 'Super Admin'){
             // Get all newly created requisition
             // Only get the request from their own department
             $waitingApprovalRequisitions = Requisition::where('requisition_status', 1)

@@ -1,5 +1,4 @@
 <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-  
     {{-- Pending Table --}}
     <div>
         <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">

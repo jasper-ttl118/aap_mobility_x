@@ -50,8 +50,8 @@
         <div class="text-gray-700 p-7 space-y-5 ">
             <!-- Heading -->
             <div class="border-b border-gray-200 pb-3">
-                <h1 class="text-base font-bold uppercase">Create Manpower Requisition</h1>
-                <p class="text-sm text-gray-600">Submit a manpower requisition form.</p>
+                <h1 class="text-center lg:text-start text-base font-bold uppercase">Create Manpower Requisition</h1>
+                <p class="text-center lg:text-start text-sm text-gray-600">Submit a manpower requisition form.</p>
             </div>
 
             {{-- Form Navigation  --}}
@@ -76,7 +76,7 @@
             {{-- Job Information Section --}}
             <div x-show="selected === 'job information'" class="flex flex-col gap-y-5">
                     <!-- Department And Requisition Type -->
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div> <!-- enough margin-bottom -->
                             <label class="font-medium text-sm text-[#071d49]">Department</label>
                             <select name="department_id" wire:model="department_id"
@@ -98,7 +98,7 @@
                     </div>
 
                     <!-- Job Position -->
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div>
                             <label class="font-medium text-sm text-[#071d49]">Initial Job Title/Class:</label>
                             <input type="text" name="requisition_initial_job_position" placeholder="e.g. Junior Mobile Developer"
@@ -116,7 +116,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <!-- Requisition Type -->
                         <div class="flex flex-col">
                             <label class="font-medium text-sm mb-1 text-[#071d49]">Requisition Type</label>
@@ -141,21 +141,24 @@
                         <div class="flex flex-col">
                             <label class="font-medium text-sm mb-1 text-[#071d49]">Employment Type</label>
 
-                            <div class="flex items-center space-x-9">
-                                <label class="flex items-center space-x-1 text-sm">
-                                    <input type="radio" wire:model="requisition_employment_type" value="Regular" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
-                                    <span class="text-start">Regular</span>
-                                </label>
+                            <div class="flex flex-col lg:flex-row items-start lg:space-x-9 gap-y-2">
+                                <div class="flex flex-row space-x-9 w-auto ">
+                                    <label class="flex items-center space-x-1 text-sm">
+                                        <input type="radio" wire:model="requisition_employment_type" value="Regular" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
+                                        <span class="text-start">Regular</span>
+                                    </label>
 
-                                <label class="flex items-center space-x-1 text-sm">
-                                    <input type="radio" wire:model="requisition_employment_type" value="Probationary" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
-                                    <span>Probationary</span>
-                                </label>
-
-                                <label class="flex items-center space-x-1 text-sm">
-                                    <input type="radio" wire:model="requisition_employment_type" value="Contractual" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
-                                    <span>Contractual</span>
-                                </label>
+                                    <label class="flex items-center space-x-1 text-sm">
+                                        <input type="radio" wire:model="requisition_employment_type" value="Probationary" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
+                                        <span>Probationary</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-start w-full ">
+                                    <label class="flex items-center space-x-1 text-sm">
+                                        <input type="radio" wire:model="requisition_employment_type" value="Contractual" x-model="employment_type" name="requisition_employment_type" class="accent-blue-500">
+                                        <span>Contractual</span>
+                                    </label>
+                                </div>
                             </div>
 
                             @error('requisition_employment_type')
@@ -181,7 +184,7 @@
                     </div>
 
                     {{-- Budget and Engagement Type --}}
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div class="flex flex-col">
                             <label class="font-medium text-sm mb-1 text-[#071d49]">Budget</label>
 
@@ -224,7 +227,7 @@
                     </div>
 
                     {{-- Number Required and Date Required --}}
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5">
                         <div>
                             <label class="font-medium text-sm text-[#071d49]">Number Required</label>
                             <input type="number" name="requisition_number_required" placeholder="e.g. 1"
@@ -320,7 +323,7 @@
                     </div>
 
                     {{-- Possible Sources and Recommended Candidates --}}
-                    <div class="grid grid-cols-2 gap-5 mt-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
                         <!-- Left: Text Input -->
                         <div>
                             <label class="font-medium text-sm text-[#071d49]">Possible Sources of Applicants</label>

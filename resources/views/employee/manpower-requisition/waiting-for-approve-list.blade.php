@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    <div x-data="{ open_delete : false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ open_delete : false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:p-10 gap-7 mt-12 bg-[#f3f4f6]">
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14 ">
@@ -35,8 +35,8 @@
 
             <div class="flex items-center justify-between px-7 py-6">
                 <div>
-                    <h2 class="font-semibold text-lg text-blue-900">Approve Requisition Requests</h2>
-                    <p class="text-gray-900 text-sm">Approve and view pending requisition request details.</p>
+                    <h2 class="text-center lg:text-start font-semibold text-lg text-blue-900">Approve Requisition Requests</h2>
+                    <p class="text-center lg:text-start text-gray-900 text-sm">Approve and view pending requisition request details.</p>
                 </div>
             </div>
 
