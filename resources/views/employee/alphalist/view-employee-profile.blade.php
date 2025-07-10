@@ -6,7 +6,7 @@
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
                 }" 
         class="flex flex-1 flex-col lg:ml-52 overflow-y-auto px-5 py-3 lg:px-10 gap-7 mt-12 bg-[#f3f4f6]">
-      
+
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14">
@@ -28,12 +28,12 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
-                            clip-rule="evenodd" />
+                            clip-rule="evenodd" />                              
                     </svg>
                     <a href="#" class="hover:underline font-semibold truncate">Employee Profile</a>
                 </div>
+
                 {{-- Profile --}}
-            
                 <div x-data="{openSection:'basicInfo'}" class="p-5 ">
                     {{-- Basic Information --}}
                     <div @click="openSection = (openSection === 'basicInfo' ? null : 'basicInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
@@ -60,8 +60,8 @@
                                     <label class="text-[#071d49] text-sm"name="employeeID">{{ $employee->employee_id}}</label>
                                 </div>
                             </div>
+
                             {{-- Left --}}
-                    
                             <div class="flex flex-col w-[45%] h-full justify-center items-center gap-y-4">
                                 <table class="w-full border-collapse px-0">
                                     <tr class="">
@@ -127,7 +127,6 @@
                             <div class="flex border border-blue-400 h-[170px] rounded-xl hidden lg:flex"></div>
                             {{-- Right --}}
                             <div class="flex flex-col w-full lg:w-[40%] h-full gap-y-1">
-                                
                                 <div class="text-[#071d49] flex flex-col items-start gap-x-1 justify-start w-full">
                                     <label class="text-sm font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50 w-full px-2">Complete Home Address (Present) </label>
                                     <div class="flex flex-row w-full justify-start gap-x-4">
@@ -269,7 +268,6 @@
                             </svg>
                         </div>
                         <div x-show="openSection === 'educjobInfo'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-full items-center justify-evenly gap-x-5 gap-y-2 pt-3">
-                            
                             <div class="flex flex-col w-full lg:w-[45%] h-full items-center gap-y-5 ">
                                 {{-- first Column --}}
                                 <div class="text-[#071d49] flex flex-col lg:flex-row items-start gap-x-1 justify-between w-full gap-y-2">
@@ -321,6 +319,7 @@
                             </div>
                         </div>
                     </div>
+
                     {{-- Government IDs --}}
                     <div @click="openSection = (openSection === 'govID' ? null : 'govID')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
@@ -337,6 +336,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
+
                         {{-- Left --}}
                         <div x-show="openSection === 'govID'" x-transition x-cloak class="flex flex-col lg:flex-row w-full h-auto items-center justify-center pt-3">
                             {{-- First Column --}}
@@ -364,6 +364,7 @@
                             </div>
                         </div>
                     </div>
+
                     {{-- Employee's Dependants --}}
                     <div @click="openSection = (openSection === 'dependantInfo' ? null : 'dependantInfo')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
@@ -380,6 +381,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
+
                         {{-- Left --}}
                         <div x-show="openSection === 'dependantInfo'" x-transition x-cloak class="flex flex-col w-full h-auto items-center justify-center pt-3">
                             <div class="flex flex-col w-[95%] justify-between items-center gap-y-5">
@@ -390,6 +392,7 @@
                                             Father's Information
                                         </td>
                                     </tr>
+
                                     <tr class="">
                                         <td class="pb-3 px-2 align-top w-[50%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
@@ -411,6 +414,7 @@
                                             Mother's Information
                                         </td>
                                     </tr>
+
                                     <tr class="">
                                         <td class="pb-3 px-2 align-top w-[50%]">
                                             <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
@@ -455,6 +459,7 @@
                             </div>
                         </div>
                     </div>
+
                     {{-- Employee's Emergency Contact --}}
                     <div @click="openSection = (openSection === 'emergencyContact' ? null : 'emergencyContact')" class="cursor-pointer border-blue-400 border rounded-lg p-5">
                         <div class="text-[#071d49] font-semibold flex flex-row justify-between items-center">
@@ -471,36 +476,35 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25L12 15.75 4.5 8.25" />
                             </svg>
                         </div>
+
                         <div x-show="openSection === 'emergencyContact'" x-transition x-cloak class="flex flex-row w-full h-auto justify-center items-center pt-3">
                             <div class="hidden lg:block flex flex-col w-[95%] justify-between items-center gap-y-5">
                                 <table class="w-[90%] lg:w-full border-collapse">
-                                @foreach ($employee->employeeEmergencyContacts as $contact)
-                                    <tr>
-                                        <td colspan="4" class="text-sm text-left px-2 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
-                                            Emergency Contact #1
-                                        </td>
-                                    </tr>
-                                    <tr class="">
-                                        <td class="pb-3 px-2 align-top w-[25%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_name ?? 'N/A'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[15%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_relationship ?? 'N/A'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[20%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_number ?? 'N/A'}}</div>
-                                        </td>
-                                        <td class="pb-3 px-2 align-top w-[40%]">
-                                            <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
-                                            <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_address ?? 'N/A'}}</div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                               
+                                    @foreach ($employee->employeeEmergencyContacts as $contact)
+                                        <tr>
+                                            <td colspan="4" class="text-sm text-left px-2 font-inter font-medium leading-relaxed tracking-wide text-blue-800 bg-blue-50">
+                                                Emergency Contact #{{ $loop->iteration }}
+                                            </td>
+                                        </tr>
+                                        <tr class="">
+                                            <td class="pb-3 px-2 align-top w-[25%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Full Name</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_name ?? 'N/A'}}</div>
+                                            </td>
+                                            <td class="pb-3 px-2 align-top w-[15%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Relationship</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_relationship ?? 'N/A'}}</div>
+                                            </td>
+                                            <td class="pb-3 px-2 align-top w-[20%]">       
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Contact Number</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_number ?? 'N/A'}}</div>
+                                            </td>
+                                            <td class="pb-3 px-2 align-top w-[40%]">
+                                                <div class="text-xs font-inter font-medium leading-relaxed tracking-wide text-blue-400 mb-1">Address</div>
+                                                <div class="text-[#071d49] text-xs lg:text-sm font-inter uppercase">{{ $contact->employee_emergency_contact_address ?? 'N/A'}}</div>
+                                            </td>
+                                        </tr>
+                                    @endforeach  
                                 </table>
                             </div>
                             <div class="block lg:hidden flex flex-col w-[95%] justify-between items-center gap-y-5">

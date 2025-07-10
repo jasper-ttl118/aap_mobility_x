@@ -50,8 +50,6 @@ class ApproveRequisition extends Component
 
     public function mount(Requisition $requisition)
     {
-        // Job Information fields
-        // dump($requisition->requisition_status);   
         $user = auth()->user();
         $employee_id = $user->employee_id;
         $employee = Employee::find($employee_id);
@@ -67,12 +65,12 @@ class ApproveRequisition extends Component
         };
 
         switch ($this->requisition_status) {
-            case 1:
+            case 1: // Requisition is pending to be approved by the department head
                 $this->requisition_requestor_name = $fullName($employee);
                 $this->requisition_requestor_position = $employee->employee_job_position;
                 break;
 
-            case 2:
+            case 2: // Requisition approved by the department head, waiting for approval of HR 
                 $this->requisition_requestor_name = $requisition->requisition_requestor_name;
                 $this->requisition_requestor_position = $requisition->requisition_requestor_position;
 
@@ -80,7 +78,7 @@ class ApproveRequisition extends Component
                 $this->requisition_endorser_position = $employee->employee_job_position;
                 break;
 
-            case 3:
+            case 3: // Requisition approved by the HR Manager, waiting for CFO approval
                 $this->requisition_requestor_name = $requisition->requisition_requestor_name;
                 $this->requisition_requestor_position = $requisition->requisition_requestor_position;
 
@@ -91,7 +89,7 @@ class ApproveRequisition extends Component
                 $this->requisition_approver_position = $employee->employee_job_position;
                 break;
 
-            case 4:
+            case 4: // Requisition approved by CFO, waiting for CEO approval
                 $this->requisition_requestor_name = $requisition->requisition_requestor_name;
                 $this->requisition_requestor_position = $requisition->requisition_requestor_position;
 
@@ -123,17 +121,12 @@ class ApproveRequisition extends Component
         
         // Hiring Specification fields
         $this->requisition_job_description = $requisition->requisition_job_description;
-        
         $this->requisition_education_level = $requisition->requisition_education_level;
-        
         $this->requisition_work_experience = $requisition->requisition_work_experience;
-
         $this->requisition_special_skill = $requisition->requisition_special_skill;
-
         $this->requisition_other_description = $requisition->requisition_other;
-
         $this->requisition_applicants_sources = $requisition->requisition_applicants_sources;
-        
+    
         $this->requisition_candidates = $requisition->candidates->map(function ($candidate) {
             return [
                 'id' => $candidate->candidate_id,

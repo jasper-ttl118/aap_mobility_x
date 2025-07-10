@@ -355,6 +355,7 @@ class AddEmployee extends Component
             'employee_personal_email' => 'required|email',
             'employee_contact_no1' => 'required',
             'employee_viber_number' => 'required',
+            'employee_company_email' => 'email',
 
             // Education
             'employee_educational_attainment' => 'required',
@@ -395,6 +396,7 @@ class AddEmployee extends Component
         return [
             'required' => 'This field is required.',
             'employee_personal_email.email' => 'Please enter a valid email address.',
+            'employee_company_email.email' => 'Please enter a valid email address.',
             'employee_birthdate.date' => 'Please enter a valid birthdate.',
             'employee_father_birthdate.date' => 'Please enter a valid birthdate.',
             'employee_mother_birthdate.date' => 'Please enter a valid birthdate.'
@@ -432,7 +434,8 @@ class AddEmployee extends Component
                 2 => $this->validate([
                     'employee_personal_email' => 'required|email',
                     'employee_contact_no1' => 'required',
-                    'employee_viber_number' => 'required'
+                    'employee_viber_number' => 'required',
+                    'employee_company_email' => 'email'
                 ]),
                 3 => $this->validate([
                     'employee_educational_attainment' => 'required',
