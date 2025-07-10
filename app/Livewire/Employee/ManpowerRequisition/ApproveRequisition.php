@@ -267,6 +267,7 @@ class ApproveRequisition extends Component
             'requisition_requestor_position' => 'required|string'
         ];
     }
+    
     protected function messages()
     {
         return [

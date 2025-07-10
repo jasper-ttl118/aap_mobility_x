@@ -20,6 +20,7 @@ class Employee extends Model
 
     protected $fillable = [
         // Basic Personal Information
+        'employee_id',
         'employee_profile_picture',
         'employee_lastname',
         'employee_firstname',

@@ -83,24 +83,31 @@
                 <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 1: Employee's Basic Information</h2>
                 <p class="text-sm text-gray-600 leading-tight"><em>Enter employee details such as name, gender, birthdate, address, etc</em></p>
             </div>
-            <div class="w-full flex flex-row gap-x-14">
-                <div class="w-[20%] flex flex-col gap-y-5 justify-center items-start">
+            <div class="w-full flex flex-row gap-x-14 gap-y-5">
+                <div class="w-[20%] flex flex-col gap-y-5 justify-center items-center">
                     <div class="flex flex-col w-full items-start justify-start">
                         <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Profile Image</h6>
                         <p class="text-xs text-gray-600 leading-tight"><em>Choose a new photo to display 
                             as your profile photo.</em></p>
                     </div>
                     <div
-                        class="group/image  relative size-[200px] m-auto cursor-pointer *:transition-colors">
+                        class="group/image flex flex-col justify-center relative size-[200px] m-auto cursor-pointer *:transition-colors">
                         <img src="data:image/svg+xml;utf-8,<svg xmlns='http://www.w3.org/2000/svg' width='107' height='107' viewBox='0 0 107 107' fill='none'><path d='M88.75 89.25H89.25V88.75V82.875C89.25 79.7557 87.6871 77.0261 85.2382 74.7091C82.7917 72.3943 79.4274 70.4566 75.7249 68.9015C68.3218 65.7922 59.4436 64.1625 53.5 64.1625C47.5564 64.1625 38.6782 65.7922 31.2751 68.9015C27.5726 70.4566 24.2083 72.3943 21.7618 74.7091C19.3129 77.0261 17.75 79.7557 17.75 82.875V88.75V89.25H18.25H88.75ZM1.125 94.625V12.375C1.125 6.18701 6.13152 1.125 12.375 1.125H94.625C100.811 1.125 105.875 6.18864 105.875 12.375V94.625C105.875 100.811 100.811 105.875 94.625 105.875H12.375C6.13152 105.875 1.125 100.813 1.125 94.625ZM53.5 54C63.5286 54 71.625 45.9036 71.625 35.875C71.625 25.8464 63.5286 17.75 53.5 17.75C43.4714 17.75 35.375 25.8464 35.375 35.875C35.375 45.9036 43.4714 54 53.5 54Z' fill='%23CBD5E1' stroke='%239CA3AF'/></svg>"
-                            alt="profile image" name="profile_image" class="size-full outline outline-2 outline-blue-100 rounded-xl">
-                        <div class="relative right-1">
+                            alt="profile image" name="profile_image" class="size-[65%] outline outline-2 outline-blue-100 rounded-xl">
+                        <div class="relative right-16">
                             <input wire:model="employee_profile_picture" type="file" id="file1" accept=".jpg,.jpeg,.png" class="hidden">
                             <label for="file1" class="cursor-pointer absolute -right-1.5 -bottom-1.5 size-[24px] grid place-items-center rounded-full outline outline-2 outline-blue-100 bg-blue-600 group-hover/image:bg-blue-700 group-active/image:bg-blue-900">
                                 <svg class="size-[45%]" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M0.236328 9.90787V12.4842H2.81266L10.4111 4.88573L7.8348 2.30939L0.236328 9.90787ZM12.4035 2.89336C12.6714 2.62542 12.6714 2.1926 12.4035 1.92466L10.7959 0.317028C10.5279 0.0490889 10.0951 0.0490889 9.82717 0.317028L8.56992 1.57428L11.1463 4.15062L12.4035 2.89336V2.89336Z" fill="white" />
                                 </svg>
                             </label>
+                        </div>
+                        <div class="space-y-1 flex flex-col w-full my-3">
+                            <label class="hidden text-aapblue @lg/main:block" for="middleName">Employee ID</label>
+                            <input class="profile_edit_input" type="text" name="employee_id"
+                                wire:model="employee_id"
+                                placeholder="Enter Employee ID" required>
+                            @error('employee_id') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                 </div>
@@ -155,6 +162,9 @@
                             <input class="profile_edit_input" type="text" name="employee_mother_maiden_name"
                                 wire:model="employee_mother_maiden_name" placeholder="Enter mother's maiden name" required>
                                 @error('employee_mother_maiden_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                        </div>
+                        <div class="space-y-1 flex flex-col w-[33%]">
+                          
                         </div>
                     </div>
 
@@ -437,44 +447,100 @@
                         <div class="w-full flex flex-col justify-start items-start">
                             <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Employee's School Information</h6>
                         </div>
-                        <div class="flex flex-row w-full gap-x-5">
-                            <div class="flex flex-col space-y-1 w-[50%]">
-                                <label class="hidden text-aapblue @lg/main:block " for="educationalAttainment">Educational Attainment </label>
-                                <select wire:model="employee_educational_attainment" class="profile_edit_input" type="text" name="employee_educational_attainment" required>
-                                    <option value="" disabled selected class="text-gray-400 italic">Select options</option>
-                                    <option value="No Grade Completed">No Grade Completed</option>
-                                    <option value="Early Childhood Education">Early Childhood Education</option>
-                                    <option value="Elementary">Elementary</option>
-                                    {{-- <option value="Junior High School">Junior High School</option> --}}
-                                    <option value="Junior High School Undergraduate">Junior High School Undergraduate</option>
-                                    <option value="Senior High School">Senior High School</option>
-                                    {{-- <option value="College">College</option> --}}
-                                    <option value="College Graduate">College Graduate</option>
-                                    <option value="College Undergraduate">College Undergraduate</option>
+
+                        {{-- Elementary --}}
+                        <div class="flex space-y-1 justify-between w-full">    
+                            <!-- Elementary School Name -->
+                            <div class="flex flex-col w-full space-y-1">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_elementary_school">Elementary School</label>
+                                <input class="profile_edit_input w-full mr-4" type="text" name="employee_elementary_school"
+                                    wire:model="employee_elementary_school" placeholder="Elementary School">
+                                @error('employee_elementary_school') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            </div>
+
+                            <!-- Honors Status -->
+                            <div class="flex flex-col w-full ml-4">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_elementary_honors">Graduated with Honors?</label>
+                                <select wire:model="employee_elementary_honors" name="employee_elementary_honors" class="profile_edit_input ">
+                                    <option value="" disabled selected class="text-gray-400 italic">Select an option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
                                 </select>
-                                @error('employee_educational_attainment') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                @error('employee_elementary_honors') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
-                            <div class="flex flex-col space-y-1 w-[50%]">
-                                <div class="flex flex-row w-full gap-x-2">
-                                    <label class="hidden text-aapblue @lg/main:block truncate" for="forCollege">College Course </label>
+                        </div>
+
+                        {{-- High School --}}
+                        <div class="flex space-y-1 justify-between w-full">    
+                            <!-- High School Name -->
+                            <div class="flex flex-col w-full space-y-1">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_high_school">High School</label>
+                                <input class="profile_edit_input w-full mr-4" type="text" name="employee_high_school"
+                                    wire:model="employee_high_school" placeholder="High School">
+                                @error('employee_high_school') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            </div>
+
+                            <!-- Honors Status -->
+                            <div class="flex flex-col w-full ml-4">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_high_school_honors">Graduated with Honors?</label>
+                                <select wire:model="employee_high_school_honors" name="employee_high_school_honors" class="profile_edit_input ">
+                                    <option value="" disabled selected class="text-gray-400 italic">Select an option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                @error('employee_high_school_honors') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            </div>
+                        </div>
+
+                        {{-- Senior High School --}}
+                        <div class="flex space-y-1 justify-between w-full">    
+                            <!-- High School Name -->
+                            <div class="flex flex-col w-full space-y-1">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_senior_high_school">Senior High School</label>
+                                <input class="profile_edit_input w-full mr-4" type="text" name="employee_senior_high_school"
+                                    wire:model="employee_senior_high_school" placeholder="Senior High School">
+                                @error('employee_senior_high_school') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            </div>
+
+                            <!-- Honors Status -->
+                            <div class="flex flex-col w-full ml-4">
+                                <label class="hidden text-aapblue @lg/main:block" for="employee_senior_high_honors">Graduated with Honors?</label>
+                                <select wire:model="employee_senior_high_honors" name="employee_senior_high_honors" class="profile_edit_input ">
+                                    <option value="" disabled selected class="text-gray-400 italic">Select an option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                @error('employee_senior_high_honors') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                            </div>
+                        </div>
+
+                        {{-- College --}}
+                        <div class="flex flex-col w-full space-y-1">
+                            <div class="flex space-x-4 w-full">
+                                <!-- College School Attended -->
+                                <div class="flex flex-col w-full space-y-1">
+                                    <div class="flex flex-row w-full gap-x-2">
+                                        <label class="hidden text-aapblue @lg/main:block" for="employee_college_name">College School Attended</label>
+                                    </div>
+                                    <input class="profile_edit_input w-full" type="text" name="employee_college_name"
+                                        wire:model="employee_college_name" placeholder="e.g., University of Caloocan City" required>
+                                    @error('employee_college_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
-                                <input type="text" wire:model="employee_college_course" class="profile_edit_input" type="text" name="employee_college_vocational_status" required>
-                                @error('employee_college_course') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+
+                                <!-- College Course -->
+                                <div class="flex flex-col w-full space-y-1">
+                                    <label class="hidden text-aapblue @lg/main:block" for="employee_college_course">College Course</label>
+                                    <input class="profile_edit_input w-full" type="text" name="employee_college_course"
+                                        wire:model="employee_college_course" placeholder="e.g., BS Computer Science">
+                                    @error('employee_college_course') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
+                                </div>
 
                             </div>
                         </div>
-                        <div class="flex flex-col space-y-1">
-                            <div class="flex flex-row w-full gap-x-2">
-                                <label class="hidden text-aapblue @lg/main:block " for="schoolAttended">School Attended </label>
-                                <label for="middle" class="@lg/main:block hidden text-gray-400"> (Based on Educational Attainment) </label>
-                            </div>
-                            <input class="profile_edit_input w-full flex" type="text" name="employee_school_attended"
-                                wire:model="employee_school_attended" placeholder="e.g., University of Caloocan City" required>
-                                @error('employee_school_attended') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
 
-                        </div>
                     </div>
                 </div>
+
                 <div class="flex justify-end gap-x-2 items-end">
                     <button type="button" 
                         @click="validateAndSwitch('previous')" 
