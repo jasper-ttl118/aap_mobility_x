@@ -78,32 +78,12 @@
             <livewire:employee.alphalist.alphalist-table />
         </div>
         
-        {{-- Add Employee Modal --}}
-        <template x-if="open_add_employee">
-            <div @click="open_add_employee=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div @click.stop>
-                    <livewire:employee.alphalist.add-employe-modal />
-                </div>
-            </div>
-        </template>
-        
-        {{-- Edit Employee Modal --}}
-        <div x-show="open_edit_employee" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
-                <livewire:employee.alphalist.edit-employee-modal />
-            </div>
-        </div>
-        
+
         {{-- Delete Employee Alert --}}
         <div x-cloak id="delete-modal" 
             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
             x-show="open_delete_employee">
                 <livewire:employee.alphalist.delete-employee-alert />
-        </div>
-
-        {{-- Currently toggling with livewire, will transfer the modal visibility with alpinejs next time :> --}}
-        <div x-cloak x-show="open_view_employee" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
-            <livewire:employee.alphalist.view-employee-modal />
         </div>
 
         <template x-if="open_add_intern">

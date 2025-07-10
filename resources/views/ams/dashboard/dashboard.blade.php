@@ -4,8 +4,8 @@
 
     <div class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto py-10 px-5 lg:p-10 gap-7 bg-[#f3f4f6]">
         <!-- Options Container -->
-        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 ">
-            <div class="flex h-14 border-b border-gray-200 relative" x-data="{ openCMS: false, openAssets: false }">
+        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 overflow-x-auto overflow-y-visible hide-scrollbar w-full flex-shrink-0">
+            <div class="flex h-14 min-w-[350px] lg:min-w-0 border-b border-gray-200 relative" x-data="{ openCMS: false, openAssets: false }">
 
                 <!-- Dashboard -->
                 <div class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center  lg:border-b-2 border-blue-900 cursor-pointer">
@@ -13,7 +13,7 @@
                 </div>
 
                 <!-- CMS -->
-                <div class="relative w-auto  lg:mx-0 py-4 px-2 lg:p-4 text-center border-b">
+                <div class="relative lg:mx-0 py-4 px-2 lg:p-4 text-center border-b">
                     <button @click="openCMS = !openCMS; openAssets = false"
                         class="flex justify-center items-center gap-x-1 w-full font-inter transition-colors duration-150"
                         :class="openCMS ? 'text-blue-800 font-semibold' : 'text-gray-600 hover:text-blue-800'">
@@ -33,7 +33,7 @@
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute left-1/2 -translate-x-1/2 mt-5 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-10 min-w-fit text-left">
+                        class="absolute left-1/2 -translate-x-1/2 mt-5 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-50 min-w-fit text-left">
                         <a href="/ams/cms/branch-department"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800">Branches
                             /
