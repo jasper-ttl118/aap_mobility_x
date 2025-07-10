@@ -1,5 +1,5 @@
-<div x-data="{ selected : 'Pending'}" class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
-    <div class="flex items-center justify-between px-1 py-6">
+<div x-data="{ selected : 'Pending'}" class="mx-7 mb-10 rounded-sm">
+    <div class="flex flex-col lg:flex-row items-center justify-between px-1 py-6">
         <div>
             <h2 class="font-semibold text-lg text-blue-900">Manage Requisition Requests</h2>
             <p class="text-gray-900 text-sm">Create, update, and delete requisition request details.</p>
@@ -25,7 +25,7 @@
     </div>
 
     
-    <div>
+    <div class="overflow-x-auto hide-scrollbar">
         <table class="w-[1000px] lg:w-full text-center text-sm text-gray-500">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>    

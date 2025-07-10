@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
-    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#f3f4f6] mt-10">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 gap-y-3 bg-[#f3f4f6] mt-10">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col w-full max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -55,7 +55,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
                 <a href="/user" class="hover:underline truncate">RBAC Management</a>
@@ -98,7 +98,7 @@
                                 </svg>
                             </div>
                             <input type="search" id="employee-search"
-                                class="block w-full p-4 ps-10 text-base text-white border bg-[#071d49] rounded-lg focus:ring-0"
+                                class="block w-full p-4 ps-10 text-base text-[#071d49] border-2 bg-white border-[#071d49] rounded-lg focus:ring-0"
                                 placeholder="Search Employee Name" />
                             <button type="button" id="search-button"
                                 class="text-[#071d49] absolute end-2.5 bottom-2.5 bg-[#F6D400] hover:bg-white border-2 border-[#071d49] hover:border-[#F6D400] font-medium rounded-lg text-sm px-4 py-2">Search</button>
@@ -125,9 +125,9 @@
                 // Show loading indicator if needed
                 $('#employee-results').html(
                     `<div class="animate-pulse bg-white py-4 px-5 shadow rounded">
-                        <div class="h-3 bg-gray-300 rounded-full w-72 mb-2"></div>
-                        <div class="h-3 bg-gray-300 rounded-full w-64 mb-2"></div>
-                        <div class="h-3 bg-gray-300 rounded-full w-52"></div>
+                        <div class="h-3 bg-gray-300 rounded-full w-40 lg:w-72 mb-2"></div>
+                        <div class="h-3 bg-gray-300 rounded-full w-32 lg:w-64 mb-2"></div>
+                        <div class="h-3 bg-gray-300 rounded-full w-24 lg:w-52"></div>
                     </div>`
                 );
 
@@ -176,8 +176,8 @@
                         <div class="text-sm bg-white py-4 px-5 shadow cursor-pointer hover:bg-blue-50 transition-colors" 
                             onclick="window.location.href='/user/${employee.employee_id}/create'">
                             <h3 class="font-semibold text-blue-900 mb-1">${employee.employee_firstname} ${employee.employee_middlename} ${employee.employee_lastname}</h3>
-                            <p class="text-sm text-gray-600"><span class="font-medium">Company Position:</span> ${employee.employee_position}</p>
-                            <p class="text-sm text-gray-600"><span class="font-medium">Department:</span> ${employee.employee_department}</p>
+                            <p class="text-sm text-gray-600"><span class="font-medium">Company Position:</span> ${employee.employee_job_position}</p>
+                            <p class="text-sm text-gray-600"><span class="font-medium">Department:</span> ${employee.department.department_name}</p>
                         </div>
                     `;
                 });

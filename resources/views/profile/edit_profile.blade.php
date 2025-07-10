@@ -3,10 +3,10 @@
         $navbar_selected = 'None';
     @endphp
     @include('layouts.navbar')
-    <div class="@container/main flex flex-1 flex-col ml-52 overflow-y-auto p-10 gap-3.5 bg-[#f3f4f6] mt-10">
+    <div class="@container/main flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
-            <h2 class="text-2xl font-medium text-[#151847]">User Profile Information</h2>
-            <h4 class="text-lg font-light text-[#151847]">View and edit your personal details, username, and password</h4>
+            <h2 class="text-2xl text-center lg:text-start font-medium text-[#151847]">User Profile Information</h2>
+            <h4 class="text-lg text-center lg:text-start font-light text-[#151847]">View and edit your personal details, username, and password</h4>
         </header>
         <hr>
         <main class="space-y-6">

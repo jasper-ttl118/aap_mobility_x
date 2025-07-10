@@ -65,7 +65,7 @@ class RequisitionTable extends Component
                 with('department')
                 ->latest()
                 ->paginate(5, ['*'], 'pendingPage');
-
+            // dd($requisitions);
             return view('livewire.employee.manpower-requisition.requisition-table', [
                 'requisitions' => $requisitions
             ]);

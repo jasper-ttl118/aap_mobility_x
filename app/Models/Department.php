@@ -11,4 +11,7 @@ class Department extends Model
         'department_name'
     ];
 
+    public function asset(){
+        return $this->hasMany(Asset::class, "department_id");
+    }
 }

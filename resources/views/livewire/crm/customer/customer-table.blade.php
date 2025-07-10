@@ -1,7 +1,7 @@
 <div class="w-full justify-center flex">
     <div class="flex flex-col w-[90%] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg lg:px-0 px-5 justify-center">
-        <div class="flex flex-col lg:flex-row  w-full items-center justify-between p-7 ">
-            <h2 class="font-extrabold text-xl font-inter uppercase tracking-widest text-[#071d49]">List of all Members</h2>
+        <div class="flex flex-col lg:flex-row  w-full items-center justify-between p-7 gap-y-2">
+            <h2 class="font-extrabold text-xl font-inter uppercase text-center tracking-widest text-[#071d49]">List of all Members</h2>
 
             <div class="flex justify-center items-center space-x-2">
                 <label for="member_filter" class="text-[#071d49] text-sm">Filter:</label>

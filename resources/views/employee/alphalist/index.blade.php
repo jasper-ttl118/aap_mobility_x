@@ -4,7 +4,7 @@
                    open_view_employee : false, open_edit_employee : false, open_add_intern : false, 
                    open_delete_intern : false, open_view_intern : false, open_edit_intern : false
                 }" 
-        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+        class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 py-3 gap-7 mt-14 bg-[#f3f4f6]">
       
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
@@ -26,7 +26,7 @@
                     <a href="#" class="hover:underline font-semibold">Alphalist</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
-                <div class="flex flex-start lg:justify-end px-7 pt-6">
+                <div class="flex flex-start justify-center lg:justify-end px-7 pt-6">
                     <a x-show="selected == 'employees'" href="{{ route('employees.alphalist.create') }}"
                         :class="selected == 'employees' ? 'text-white bg-[#071d49] hover:bg-[#abcae9] hover:text-[#071d49] hover:font-medium' : 'text-[#071d49] bg-[#abcae9] hover:bg-[#071d49] hover:text-white'"
                         class="flex cursor-pointer items-center gap-2 rounded-md  px-4 py-2 text-sm font-medium focus:outline-none">
@@ -49,8 +49,8 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between px-7 py-6">
-                <div>
+            <div class="flex flex-col lg:flex-row items-center justify-center lg:justify-between px-7 py-6 gap-y-2">
+                <div class="text-center lg:text-start">
                     <h2 class="font-semibold text-lg text-[#071d49]" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
                     <p class="text-gray-900 text-sm" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
                 </div>
@@ -78,32 +78,12 @@
             <livewire:employee.alphalist.alphalist-table />
         </div>
         
-        {{-- Add Employee Modal --}}
-        <template x-if="open_add_employee">
-            <div @click="open_add_employee=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div @click.stop>
-                    <livewire:employee.alphalist.add-employe-modal />
-                </div>
-            </div>
-        </template>
-        
-        {{-- Edit Employee Modal --}}
-        <div x-show="open_edit_employee" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div @click.away="open_edit_employee=false; window.Livewire.dispatch('resetEmployeeProfile')">
-                <livewire:employee.alphalist.edit-employee-modal />
-            </div>
-        </div>
-        
+
         {{-- Delete Employee Alert --}}
         <div x-cloak id="delete-modal" 
             class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50"
             x-show="open_delete_employee">
                 <livewire:employee.alphalist.delete-employee-alert />
-        </div>
-
-        {{-- Currently toggling with livewire, will transfer the modal visibility with alpinejs next time :> --}}
-        <div x-cloak x-show="open_view_employee" id="viewEmployeeModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-50" >
-            <livewire:employee.alphalist.view-employee-modal />
         </div>
 
         <template x-if="open_add_intern">

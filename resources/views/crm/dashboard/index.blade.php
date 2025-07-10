@@ -13,21 +13,6 @@
             <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-x-auto hide-scrollbar rounded-md border-2 bg-white border-gray-100 shadow-md w-[90%] lg:w-full">
                 <div class="flex min-w-[680px] lg:min-w-0">
                     <x-crm.submodules selected='Dashboard'/>
-                    {{-- <div class="flex-none w-32 font-semibold border-b-2 border-blue-900 p-4 text-center">
-                        <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-blue-800">Dashboard</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                        <a href="{{ route('contacts') }}" class= " text-gray-600 hover:text-gray-800">Members</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                        <a href="{{ route('email-marketing') }}" class="text-gray-600 hover:text-gray-800">Email Marketing</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                        <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-gray-800">Corporate</a>
-                    </div>
-                    <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                        <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800">Sales Tracking</a>
-                    </div> --}}
                 </div>
             </div>
         </div>
@@ -93,23 +78,22 @@
                                 <span class="text-red-600 font-bold text-xs lg:text-xs bg-red-600 bg-opacity-20 rounded-md">-10%</span>
                             </div>
                         </div>
-                    
                     </div>
                     {{-- Members & Email Div --}}
                     <div class="flex flex-col lg:flex-row bg-white shadow-lg w-full lg:h-[75%] h-[70%] rounded-lg shadow-xs justify-evenly items-center">
-                        {{-- Members --}}
+                        {{-- Active Members --}}
                         <div class="flex flex-col w-full lg:w-[50%] h-full justify-center items-center">
                             <div class="flex flex-row w-[90%] h-[10%] justify-center items-center gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
                                 <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
                                 </svg>
-                                <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Members Tally</span>
+                                <span class="text-base text-[#071d49] font-extrabold uppercase tracking-widest">Active Members</span>
                             </div>
                             <div class="flex flex-row w-[90%] h-[75%] justify-center items-center">
                                 <x-analytics-display
                                     title="Number of Members"
-                                    :labels="['January', 'February', 'March', 'April', 'May']"
-                                    :data="[120, 150, 180, 90, 150]"
+                                    :labels="['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December',]"
+                                    :data="[120, 150, 180, 90, 150, 120, 0, 0, 0, 0, 0 ,0]"
                                     chartType="line"
                                     :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                                 />
@@ -158,7 +142,7 @@
                                         <td class="flex items-center w-[20%]">
                                             <img src="aaplogo1.png" alt="UserImage" class="w-full flex">
                                         </td>         
-                                        <td class="flex items-center w-[60%] mx-1">
+                                        <td class="flex items-center w-[60%]">
                                             <span class="text-sm font-semibold text-[#071d49]    ">
                                                 {{ $customer -> customer_firstname }} 
                                                 {{ $customer -> customer_middlename }} 

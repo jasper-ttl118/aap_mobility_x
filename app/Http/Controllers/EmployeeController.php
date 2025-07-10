@@ -13,6 +13,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $employees = Employee::where('employee_status', 1)->get();
+        // dd($employees);
         return view('employee.alphalist.index', compact('employees'));
     }
 

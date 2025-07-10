@@ -31,10 +31,10 @@
             {{-- Tab Buttons (Celebrant List, Message Template, etc) --}}
             <x-email-marketing.tab-buttons />
 
-            <div class="flex w-full justify-center items-center">
-                <div class="flex flex-col w-full md:w-[95%] lg:-mt-8 pt-4 lg:w-full lg:ml-4 lg:px-0 px-5 justify-center gap-y-4 items-center">
-                    <div class="flex items-start justify-between px-1 w-full">
-                        <div class="flex items-start ml-1">
+            <div class="flex w-full justify-center items-center mt-4 lg:mt-0">
+                <div class="flex flex-col w-full justify-center gap-y-4 items-center">
+                    <div class="flex items-start justify-between w-[90%] px-1 lg:w-full">
+                        <div class="flex items-start">
                             <h2 class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter">Choose A Message Template</h2>
                         </div>
 
@@ -44,9 +44,9 @@
                         </button>
                     </div>
 
-                    <div class="gap-y-10 w-full flex flex-col justify-center items-center">
+                    <div class="gap-y-10 w-[90%] lg:w-full flex justify-center items-center">
                         {{-- Carousel template --}}
-                        <div class="carousel carousel-center bg-[#abcae9] w-full rounded-box space-x-4 p-4 border-2 border-[#071d49]">
+                        <div class="carousel carousel-center bg-[#abcae9] w-full rounded-box space-x-4 p-2 border-2 border-[#071d49]">
                             <div class="carousel-item">
                                 <div class="flex flex-col border-2 rounded-lg bg-[#071d49] h-[320px] lg:h-[270px] w-[210px] lg:w-[235px] flex-none p-5 gap-y-4">
                                     <h1 class="text-white font-semibold">Message Template 1</h1>

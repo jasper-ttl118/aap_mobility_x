@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
-    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] overflow-y-auto p-5 lg:px-10 gap-y-3">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100"
@@ -54,7 +54,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>
@@ -66,14 +66,14 @@
                 <a href="#" class="hover:underline font-semibold">Modules</a>
             </div>
 
-            <div class="flex items-center justify-between p-7">
+            <div class="flex flex-col lg:flex-row items-center justify-between p-7 gap-y-3">
                 <div>
                     <h2 class="font-semibold text-lg text-blue-900">Manage system modules</h2>
                     <p class="text-gray-900 text-sm">Administer, assign, and oversee system modules and their
                         configurations.</p>
                 </div>
 
-                <div class="flex flex-col lg:flex-row gap-2">
+                <div class="flex flex-row  gap-2">
 
                     {{-- Add Module Button --}}
                     <div>
