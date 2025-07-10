@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('requisitions', function (Blueprint $table) {
             $table->id('requisition_id');
             $table->string('requisition_type');
-            $table->string('requisition_department');
+            $table->foreignId('department_id')->constrained('departments', 'department_id')->onDelete('cascade');
             $table->tinyInteger('requisition_status')->unsigned();
 
             $table->string('requisition_section');
