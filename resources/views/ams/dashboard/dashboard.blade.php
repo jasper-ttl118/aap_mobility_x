@@ -4,11 +4,11 @@
 
     <div class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto py-10 px-5 lg:p-10 gap-7 bg-[#f3f4f6]">
         <!-- Options Container -->
-        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 overflow-x-auto overflow-y-visible hide-scrollbar w-full flex-shrink-0">
-            <div class="flex h-14 min-w-[350px] lg:min-w-0 border-b border-gray-200 relative" x-data="{ openCMS: false, openAssets: false }">
+        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 overflow-visible hide-scrollbar w-full flex-shrink-0">
+            <div class="flex min-w-[350px] lg:min-w-0" x-data="{ openCMS: false, openAssets: false }">
 
                 <!-- Dashboard -->
-                <div class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center  lg:border-b-2 border-blue-900 cursor-pointer">
+                <div class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center border-b-2 border-blue-900 cursor-pointer">
                     <a href="/ams" class="block text-blue-800 font-semibold hover:text-blue-800 font-inter">Dashboard</a>
                 </div>
 

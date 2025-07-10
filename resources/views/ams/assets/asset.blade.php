@@ -49,7 +49,7 @@
 
                 <!-- Assets -->
                 <div
-                    class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center  lg:border-b-2 border-blue-900 cursor-pointer">
+                    class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center border-b-2 border-blue-900 cursor-pointer">
                     <button @click="openAssets = !openAssets; openCMS = false"
                         class="flex justify-center items-center gap-x-1 w-full font-inter transition-colors duration-150"
                         :class="openAssets ? 'text-blue-800 font-semibold' : 'text-blue-800 font-semibold hover:text-blue-800'">
@@ -71,7 +71,8 @@
                         class="absolute text-start left-1/2 -translate-x-1/2 mt-5 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-10">
                         <a href="/ams/all-assets"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800">All
-                            Assets</a>
+                            Assets
+                        </a>
                         <a href="/ams/common-assets"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800">Available
                             Assets</a>

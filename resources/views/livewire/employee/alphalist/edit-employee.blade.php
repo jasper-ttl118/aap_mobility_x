@@ -255,16 +255,19 @@
                                     <label class="text-aapblue" for="middle">House No. </label>
                                     <input class="profile_edit_input " type="text" name="present_house_no"
                                     wire:model="present_house_no" placeholder="House No." required>
+                                    @error('present_house_no') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[38%]">
                                     <label class="text-aapblue" for="middle">Street </label>
                                     <input class="profile_edit_input " type="text" name="present_street"
                                     wire:model="present_street" placeholder="Street" required>
+                                    @error('present_street') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[38%]">
                                     <label class="text-aapblue" for="middle">Brgy. </label>
                                     <input class="profile_edit_input " type="text" name="present_brgy"
                                     wire:model="present_brgy" placeholder="Barangay" required>
+                                    @error('present_brgy') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                             <div class="flex flex-col lg:flex-row w-full gap-x-5 gap-y-2">
@@ -272,16 +275,19 @@
                                     <label class="text-aapblue" for="middle">City/Municipality </label>
                                     <input class="profile_edit_input " type="text" name="present_city"
                                     wire:model="present_city" placeholder="City/Municipality" required>
+                                    @error('present_city') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[33%]">  
                                     <label class="text-aapblue" for="middle">Province </label>
                                     <input class="profile_edit_input " type="text" name="present_province"
                                     wire:model="present_province" placeholder="Province" required>
+                                    @error('present_province') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[33%]">
                                     <label class="text-aapblue" for="middle">Zip Code </label>
                                     <input class="profile_edit_input " type="text" name="present_zip_code"
                                     wire:model="present_zip_code" placeholder="Zip Code" required>
+                                    @error('present_zip_code') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                         </div>
@@ -297,16 +303,19 @@
                                     <label class="text-aapblue" for="middle">House No. </label>
                                     <input class="profile_edit_input" type="text" name="permanent_house_no"
                                     wire:model="permanent_house_no" placeholder="House No." required>
+                                    @error('permanent_house_no') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[38%]">
                                     <label class="text-aapblue" for="middle">Street </label>
                                     <input class="profile_edit_input" type="text" name="permanent_street"
                                     wire:model="permanent_street" placeholder="Street" required>
+                                    @error('permanent_street') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[38%]">
                                     <label class="text-aapblue" for="middle">Brgy. </label>
                                     <input class="profile_edit_input" type="text" name="permanent_brgy"
                                     wire:model="permanent_brgy" placeholder="Barangay" required>
+                                    @error('permanent_brgy') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                             <div class="flex flex-col lg:flex-row w-full gap-x-5 gap-y-2">
@@ -314,16 +323,19 @@
                                     <label class="text-aapblue" for="middle">City/Municipality </label>
                                     <input class="profile_edit_input" type="text" name="permanent_city"
                                     wire:model="permanent_city" placeholder="City/Municipality" required>
+                                    @error('permanent_city') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[33%]">  
                                     <label class="text-aapblue" for="middle">Province </label>
                                     <input class="profile_edit_input" type="text" name="permanent_province"
                                     wire:model="permanent_province" placeholder="Province" required>
+                                    @error('permanent_province') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col w-full lg:w-[33%]">
                                     <label class="text-aapblue" for="middle">Zip Code </label>
                                     <input class="profile_edit_input" type="text" name="permanent_zip_code"
                                     wire:model="permanent_zip_code" placeholder="Zip Code" required>
+                                    @error('permanent_zip_code') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                         </div>
@@ -366,6 +378,7 @@
                                 <label class="text-aapblue" for="phoneNumber1">Personal Number </label>
                                 <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no1"
                                        wire:model="employee_contact_no1" placeholder="e.g., +63 912 345 6789" required>
+                                       @error('employee_contact_no1') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                             <div class="flex flex-col space-y-1 w-full lg:w-[33.3%]">
                                 <div class="flex flex-row w-full gap-x-2">
@@ -445,12 +458,14 @@
                                     <option value="College Graduate">College Graduate</option>
                                     <option value="College Undergraduate">College Undergraduate</option>
                                 </select>
+                                @error('employee_educational_attainment') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                             <div class="flex flex-col space-y-1 w-full lg:w-[50%]">
                                 <div class="flex flex-row w-full gap-x-2">
                                     <label class=" text-aapblue" for="forCollege">College Course </label>
                                 </div>
                                 <input type="text" wire:model="employee_college_course" class="profile_edit_input" value="{{ $employee_college_course }}" name="employee_college_course" required>
+                                @error('employee_college_course') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                         </div>
                         <div class="flex flex-col space-y-1">
@@ -460,6 +475,7 @@
                             </div>
                             <input class="profile_edit_input w-full flex" type="text" name="employee_school_attended"
                                 wire:model="employee_school_attended" placeholder="e.g., University of Caloocan City" required>
+                                @error('employee_school_attended') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                         </div>
                     </div>
                 </div>
@@ -502,6 +518,7 @@
                                     <label class=" text-aapblue" for="jobPosition">Job Position Title</label>
                                     <input class="profile_edit_input w-full flex" type="text" name="employee_job_position"
                                         wire:model="employee_job_position" placeholder="e.g., Accountant" required>
+                                        @error('employee_job_position') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col space-y-1 w-full lg:w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
@@ -513,6 +530,7 @@
                                         <option value="Probitionary">Probitionary</option>
                                         <option value="Consultant">Consultant</option>
                                     </select>
+                                    @error('employee_employment_type') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                             <div class="flex flex-col lg:flex-row w-full gap-x-5 gap-y-2">
@@ -526,6 +544,7 @@
                                             <option value="{{ $department->department_id }}">{{ $department->department_name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('department_id') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 <div class="flex flex-col space-y-1 w-full lg:w-[50%]">
                                     <div class="flex flex-row w-full gap-x-2">
@@ -533,6 +552,7 @@
                                     </div>
                                     <input class="profile_edit_input w-full flex" type="text" name="employee_section"
                                         wire:model="employee_section" placeholder="e.g., Development Team" required>
+                                        @error('employee_section') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                             </div>
                         </div>
@@ -569,21 +589,25 @@
                         <label class=" text-aapblue" for="sssNumber">SSS Number</label>
                         <input wire:model="employee_sss_number" class="profile_edit_input" type="number" name="employee_sss_number" 
                             placeholder="SSS Number" required>
+                            @error('employee_sss_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                     <div class="space-y-1 flex flex-col w-full lg:w-[25%]">
                         <label class=" text-aapblue" for="philHealthNumber">PhilHealth Number</label>
                         <input wire:model="employee_philhealth_number" class="profile_edit_input" type="number" name="employee_philhealth_number" 
                             placeholder="PhilHealth Number" required>
+                            @error('employee_philhealth_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                     <div class="space-y-1 flex flex-col w-full lg:w-[25%]">
                         <label class=" text-aapblue" for="pagibigNumber">Pag-Ibig Number</label>
                         <input wire:model="employee_pagibig_number" class="profile_edit_input" type="number" name="employee_pagibig_number"
                             placeholder="Pag-Ibig Number" required>
+                            @error('employee_pagibig_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                     <div class="space-y-1 flex flex-col w-full lg:w-[25%]">
                         <label class=" text-aapblue" for="tinNumber">Tax Identification Number</label>
                         <input wire:model="employee_tin_number" class="profile_edit_input" type="number" name="employee_tin_number"
                             placeholder="TIN Number" required>
+                            @error('employee_tin_number') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                     </div>
                 </div>
                 <div class="flex justify-between lg:justify-end gap-x-2 items-end">
@@ -625,6 +649,7 @@
                                 <div class="space-y-1 flex flex-col w-full lg:w-[50%]">
                                     <label class=" text-aapblue " for="father">Full Name </label>
                                     <input wire:model="employee_father_name" type="text" name="employee_father_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                    @error('employee_father_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 {{-- <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class=" text-aapblue " for="fatherAge">Age</label>
@@ -633,6 +658,7 @@
                                 <div class="space-y-1 flex flex-col w-full lg:w-[50%]">
                                     <label class=" text-aapblue " for="fatherBirthdate">Birthdate</label>
                                     <input wire:model="employee_father_birthdate" class="profile_edit_input" type="date" name="employee_father_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
+                                    @error('employee_father_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 
                                 <div class="flex flex-col space-y-1 w-full lg:w-[50%] relative">
@@ -683,6 +709,7 @@
                                 <div class="space-y-1 flex flex-col w-full lg:w-[50%]">
                                     <label class=" text-aapblue " for="motherName">Full Name </label>
                                     <input wire:model="employee_mother_name" type="text" name="employee_mother_name" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" required>
+                                    @error('employee_mother_name') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
                                 {{-- <div class="space-y-1 flex flex-col w-[50%]">
                                     <label class=" text-aapblue " for="motherAge">Age</label>
@@ -691,6 +718,7 @@
                                 <div class="space-y-1 flex flex-col w-full lg:w-[50%]">
                                     <label class=" text-aapblue " for="motherBirthdate">Birthdate</label>
                                     <input wire:model="employee_mother_birthdate" class="profile_edit_input" type="date" name="employee_mother_birthdate" id="middle" placeholder="e.g., 01/05/2002" required>
+                                    @error('employee_mother_birthdate') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                                 </div>
 
                                 <div class="flex flex-col space-y-1 w-full lg:w-[50%] relative">
@@ -753,8 +781,9 @@
                                     accept=".pdf,.jpg,.jpeg,.png"
                                     id="file-upload"
                                     name="marriage_certificate_path"
-                                    required
                                 >
+
+                                 @error('marriage_certificate_path') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
 
                                 @if ($marriage_certificate_path && is_string($marriage_certificate_path))
                                     <div class="mt-2 flex items-center gap-x-2 h-10 bg-gray-50 border border-gray-300 rounded-md p-2">

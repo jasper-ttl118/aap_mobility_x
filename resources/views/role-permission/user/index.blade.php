@@ -1,4 +1,4 @@
-<x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
+<x-app-layout class='flex flex-row w-full min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
     @php
         $user = auth()->user()->load('roles.submodules');
@@ -20,7 +20,7 @@
     @endphp
 
     {{-- @include('layouts.navbar') --}}
-    <div class="flex flex-1 flex-col lg:ml-52 p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col lg:ml-52 p-5 lg:px-10 gap-y-3 pt-16 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
                 class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
@@ -165,16 +165,16 @@
         <!-- Options Container -->
         <div class=" rounded-md border-2 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14 ">
-                <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
+                <div class="w-auto border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                <div class="w-auto p-4 text-center">
                     <a href="/organization" class="text-gray-600 hover:text-blue-800">Organizations</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                <div class="w-auto p-4 text-center">
                     <a href="/role" class="text-gray-600 hover:text-blue-800">Roles</a>
                 </div>
-                <div class="w-32 p-4 text-center">
+                <div class="w-auto p-4 text-center">
                     <a href="/module" class="text-gray-600 hover:text-blue-800">Modules</a>
                 </div>
                 {{-- <div class="w-32 p-4 text-center">
@@ -182,8 +182,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class=" rounded-md border-2 bg-white shadow-lg -mt-4">
-
+        <div class="flex flex-col w-full rounded-md border-2 bg-white shadow-lg"> 
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>

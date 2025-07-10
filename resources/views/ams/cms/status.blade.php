@@ -16,7 +16,7 @@
 
                 <!-- CMS -->
                 <div
-                    class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center  lg:border-b-2 border-blue-900 cursor-pointer">
+                    class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center border-b-2 border-blue-900 cursor-pointer">
                     <button @click="openCMS = !openCMS; openAssets = false"
                         class="flex justify-center items-center gap-x-1 w-full font-inter font-semibold text-blue-800 transition-colors duration-150"
                         :class="openCMS ? 'text-blue-800 font-semibold' : 'text-blue-800 hover:text-blue-800'">

@@ -505,7 +505,6 @@ class EditEmployee extends Component
                     'employee_lastname' => 'required',
                     'employee_firstname' => 'required',
                     'employee_middlename' => 'required',
-                    'employee_suffix' => 'required',
                     'employee_mother_maiden_name' => 'required',
                     'employee_gender' => 'required',
                     'employee_birthdate' => 'required|date',
