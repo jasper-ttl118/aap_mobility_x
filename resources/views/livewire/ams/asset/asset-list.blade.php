@@ -1,5 +1,11 @@
 <div class="mx-7 mb-10 rounded-sm  overflow-visible hide-scrollbar">
     <div class="min-w-[1000px] w-full">
+        <script>
+            window.addEventListener('filter-changed', event => {
+                console.log(`[Livewire] ${event.detail.property} = ${event.detail.value}`);
+            });
+        </script>
+    
         <table class="w-full text-center text-sm text-gray-500 ">
             <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
                 <tr>
@@ -16,7 +22,13 @@
 
                     <tr class="border-b border-gray-200 bg-white">
                         <td class="py-4 text-gray-900">{{ $asset->asset_name }}</td>
-                        <td class="py-4 text-gray-900">{{ $asset->brand_name }}</td>
+                        <td class="py-4 text-gray-900">
+                            @if (in_array($asset->category_id, [1, 6]))
+                                {{ $asset->brand->brand_name ?? 'NO DATA' }}
+                            @else
+                                {{ $asset->brand_name_custom ?? 'NO DATA' }}
+                            @endif
+                        </td>
                         <td class="py-4 text-gray-900">{{ $asset->model_name }}</td>
                         <td class="py-4 text-gray-900">
                             @if ($asset->asset_type === '2' && $asset->employee)
@@ -52,12 +64,10 @@
                                 <!-- View Details -->
                                 <div class="relative group">
                                     <a href="{{ route('ams.asset.view', ['id' => $asset->asset_id]) }}"
-                                        class="text-gray-700 hover:text-black transition">
-                                        <!-- <button wire:click="viewAsset({{ $asset->asset_id }})"
-                                                class="text-gray-700 hover:text-black transition"></button> -->
+                                        class="text-gray-700  hover:text-black transition">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
+                                            class="size-4 hover:scale-110">
                                             <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
                                             <path fill-rule="evenodd"
                                                 d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
@@ -73,9 +83,10 @@
 
                                 <!-- Edit Details -->
                                 <div class="relative group">
-                                    <a href="assets/edit" class="text-blue-700 hover:text-blue-900 transition inline-flex">
+                                    <a href="{{ route('ams.asset.edit', ['id' => $asset->asset_id]) }}"
+                                        class="text-blue-700 hover:text-blue-900 transition inline-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
+                                            class="size-4 hover:scale-110">
                                             <path
                                                 d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712Z" />
                                             <path
@@ -95,7 +106,7 @@
                                     <a href="assets/history"
                                         class="text-amber-600 hover:text-amber-800 transition inline-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
+                                            class="size-4 hover:scale-110">
                                             <path fill-rule="evenodd"
                                                 d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
                                                 clip-rule="evenodd" />
@@ -111,7 +122,7 @@
                                 <div class="relative group">
                                     <a href="assets/pullout" class="text-red-700 hover:text-red-900 transition">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
+                                            class="size-4 hover:scale-110">
                                             <path
                                                 d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
                                             <path fill-rule="evenodd"
@@ -130,7 +141,7 @@
                                     <a href="assets/repair-request"
                                         class="text-teal-700 hover:text-teal-900 transition inline-flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                            class="size-4">
+                                            class="size-4 hover:scale-110">
                                             <path fill-rule="evenodd"
                                                 d="M12 6.75a5.25 5.25 0 0 1 6.775-5.025.75.75 0 0 1 .313 1.248l-3.32 3.319c.063.475.276.934.641 1.299.365.365.824.578 1.3.64l3.318-3.319a.75.75 0 0 1 1.248.313 5.25 5.25 0 0 1-5.472 6.756c-1.018-.086-1.87.1-2.309.634L7.344 21.3A3.298 3.298 0 1 1 2.7 16.657l8.684-7.151c.533-.44.72-1.291.634-2.309A5.342 5.342 0 0 1 12 6.75ZM4.117 19.125a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75h-.008a.75.75 0 0 1-.75-.75v-.008Z"
                                                 clip-rule="evenodd" />

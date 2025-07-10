@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,7 +14,12 @@ return new class extends Migration
             $table->id('asset_id');
             $table->string('property_code');
             $table->string('asset_name');
-            $table->string('brand_name');
+            
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->string('brand_name_custom')->nullable();
+
+            $table->foreign('brand_id')->references('brand_id')->on('brands')->nullOnDelete();
+
             $table->string('model_name');
             $table->foreignId('category_id');
             $table->foreignId('status_id');
@@ -23,7 +27,7 @@ return new class extends Migration
             $table->string('device_serial_number')->nullable();
             $table->string('charger_serial_number')->nullable();
 
-            $table->enum('asset_type',['1','2'])->nullable(); // 1 for common asset, 2 for non-commons
+            $table->enum('asset_type', ['1', '2'])->nullable(); // 1 for common asset, 2 for non-commons
             $table->foreignId('employee_id')->nullable();
             $table->foreignId('department_id')->nullable();
             $table->date('date_accountable')->nullable();
@@ -35,13 +39,15 @@ return new class extends Migration
             $table->date('last_maint_sched')->nullable();
             $table->string('service_provider')->nullable();
             $table->string('check_out_status')->nullable(); //Hardcode with details
-            $table->date('check_out_date')->nullable();    
+            $table->date('check_out_date')->nullable();
             $table->date('check_in_date')->nullable();
             $table->text('description')->nullable();
-            
-            $table->string('qr_code_path')->nullable();;
-            $table->string('qr_code_data')->nullable();;
-            $table->enum('ams_active',['1','2']); // 1 = Active | 2 = Soft Deleted
+
+            $table->string('qr_code_path')->nullable();
+            ;
+            $table->string('qr_code_data')->nullable();
+            ;
+            $table->enum('ams_active', ['1', '2']); // 1 = Active | 2 = Soft Deleted
             $table->unsignedInteger('created_by_id')->nullable();  // User
             $table->timestamps();
         });

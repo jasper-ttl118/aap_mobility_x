@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Brand;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,7 +15,8 @@ class Asset extends Model
     protected $fillable = [
         'property_code',
         'asset_name',
-        'brand_name',
+        'brand_id',
+        'brand_name_custom',
         'model_name',
         'category_id',
         'status_id',
@@ -42,15 +44,15 @@ class Asset extends Model
     ];
 
     protected $casts = [
-    'purchase_date' => 'date',
-    'warranty_exp_date' => 'date',
-    'free_replacement_period' => 'date',
-    'maint_sched' => 'date',
-    'last_maint_sched' => 'date',
-    'check_out_date' => 'date',
-    'check_in_date' => 'date',
-    'date_accountable' => 'date',
-];
+        'purchase_date' => 'date',
+        'warranty_exp_date' => 'date',
+        'free_replacement_period' => 'date',
+        'maint_sched' => 'date',
+        'last_maint_sched' => 'date',
+        'check_out_date' => 'date',
+        'check_in_date' => 'date',
+        'date_accountable' => 'date',
+    ];
 
 
 
@@ -98,7 +100,12 @@ class Asset extends Model
     }
     public function condition()
     {
-        return $this->belongsTo(AssetCondition::class,'condition_id');
+        return $this->belongsTo(AssetCondition::class, 'condition_id');
     }
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id');
+}
+
 
 }
