@@ -107,6 +107,7 @@
                         </div>
                     </div>
                 </div>
+                
                 {{-- Basic Information --}}
                 <div class="w-[80%] flex flex-col justify-between">
                     {{-- First Row --}}
@@ -265,6 +266,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="space-y-1 flex flex-col w-[50%]">
                         <div class="flex flex-row w-full gap-x-2">
                             <label class="hidden text-aapblue @lg/main:block " for="homeAddressPermanent">Complete Home Address </label>
@@ -321,6 +323,7 @@
                                 </div>
                                 <input class="profile_edit_input w-full" type="email" name="employee_personal_email"
                                     wire:model="employee_personal_email" placeholder="e.g., john.doe@example.com" required>
+                                    @error('employee_personal_email') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                             <div class="flex flex-col space-y-1 w-[33.3%]">
                                 <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Personal Number </label>
@@ -343,12 +346,13 @@
                                     <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Company Email</label>
                                 </div>
                                 <input class="profile_edit_input w-full" type="email" name="employee_personal_email"
-                                    wire:model="employee_company_email" placeholder="e.g., john.doe@example.com" required>
+                                    wire:model="employee_company_email" placeholder="e.g., john.doe@example.com" >
+                                    @error('employee_company_email') <em class="text-sm text-red-500">{{ $message }}</em> @enderror
                             </div>
                             <div class="flex flex-col space-y-1 w-[33.3%]">
                                 <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Company Number </label>
                                 <input class="profile_edit_input w-full flex" type="number" name="employee_contact_no1"
-                                       wire:model="employee_company_number" placeholder="e.g., +63 912 345 6789" required>
+                                       wire:model="employee_company_number" placeholder="e.g., +63 912 345 6789" >
                             </div>
                             <div class="flex flex-col space-y-1 w-[33.3%]">
                                 <label class="hidden text-aapblue @lg/main:block " for="viberName">Viber Number</label>
