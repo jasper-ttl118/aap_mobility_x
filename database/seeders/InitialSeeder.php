@@ -30,16 +30,20 @@ class InitialSeeder extends Seeder
             'employee_firstname' => 'John',
             'employee_middlename' => 'A.',
             'employee_lastname' => 'Doe',
-            'employee_email' => 'john.doe@example.com',
-            'employee_address' => '123 Main St',
-            'employee_position' => 'Manager',
-            'employee_department' => 'HR',
-            'employee_contact_number' => '1234567890',
+            'employee_personal_email' => 'john.doe@example.com',
+            'employee_job_position' => 'Manager',
+            'department_id' => 10,
+            'employee_section' => 'Development Team',
             'employee_status' => 1,
             'employee_date_created' => now(),
             'employee_date_updated' => now(),
+            'employee_mother_maiden_name' => 'Smith',
+            'employee_gender' => 'Male',
+            'employee_father_name' => 'Robert Doe',
+            'employee_father_birthdate' => '1970-01-01',
+            'employee_mother_name' => 'Jane Doe',
+            'employee_mother_birthdate' => '1972-02-02',
         ]);
-
         // Insert permission
         $permissionId = DB::table('permissions')->insertGetId([
             'permission_name' => 'view_dashboard',

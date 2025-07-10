@@ -111,6 +111,7 @@ class AddEmployee extends Component
         $this->employee_employment_type = 'Regular';
         $this->department_id = 1; 
         $this->employee_educational_attainment = 'No Grade Completed';
+        $this->employee_middlename = '';
     }
 
     public function add()
@@ -328,7 +329,6 @@ class AddEmployee extends Component
         return [
             'employee_lastname' => 'required',
             'employee_firstname' => 'required',
-            'employee_middlename' => 'required',
             'employee_mother_maiden_name' => 'required',
             'employee_gender' => 'required',
             'employee_birthdate' => 'required|date',
@@ -410,7 +410,6 @@ class AddEmployee extends Component
                 1 => $this->validate([
                     'employee_lastname' => 'required',
                     'employee_firstname' => 'required',
-                    'employee_middlename' => 'required',
                     'employee_mother_maiden_name' => 'required',
                     'employee_gender' => 'required',
                     'employee_birthdate' => 'required|date',

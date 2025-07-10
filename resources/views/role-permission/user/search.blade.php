@@ -176,8 +176,8 @@
                         <div class="text-sm bg-white py-4 px-5 shadow cursor-pointer hover:bg-blue-50 transition-colors" 
                             onclick="window.location.href='/user/${employee.employee_id}/create'">
                             <h3 class="font-semibold text-blue-900 mb-1">${employee.employee_firstname} ${employee.employee_middlename} ${employee.employee_lastname}</h3>
-                            <p class="text-sm text-gray-600"><span class="font-medium">Company Position:</span> ${employee.employee_position}</p>
-                            <p class="text-sm text-gray-600"><span class="font-medium">Department:</span> ${employee.employee_department}</p>
+                            <p class="text-sm text-gray-600"><span class="font-medium">Company Position:</span> ${employee.employee_job_position}</p>
+                            <p class="text-sm text-gray-600"><span class="font-medium">Department:</span> ${employee.department.department_name}</p>
                         </div>
                     `;
                 });

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('employee_child_id');
             $table->foreignId('employee_id')->constrained('employees', 'employee_id')->onDelete('cascade');
             $table->string('employee_child_name');
-            $table->date('employee_chlid_birthdate');
+            $table->date('employee_child_birthdate');
             $table->string('employee_child_birth_certificate');
             $table->timestamps();
         });

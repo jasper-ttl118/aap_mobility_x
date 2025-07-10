@@ -427,7 +427,6 @@ class EditEmployee extends Component
             'employee_gender' => 'required',
             'employee_birthdate' => 'required|date',
             'employee_birthplace' => 'required',
-            'employee_religion' => 'required',
 
             // Present Address
             'present_house_no' => 'required',
@@ -459,7 +458,6 @@ class EditEmployee extends Component
             // Employment
             'employee_job_position' => 'required',
             'department_id' => 'required',
-            'employee_employment_type' => 'required',
             'employee_section' => 'required',
 
             // Civil Status
@@ -509,9 +507,6 @@ class EditEmployee extends Component
                     'employee_gender' => 'required',
                     'employee_birthdate' => 'required|date',
                     'employee_birthplace' => 'required',
-                    'employee_religion' => 'required',
-                    'employee_civil_status' => 'required',
-                    'employee_blood_type' => 'required',
                     'present_house_no' => 'required',
                     'present_street' => 'required',
                     'present_brgy' => 'required',
@@ -539,7 +534,6 @@ class EditEmployee extends Component
                 4 => $this->validate([
                     'employee_job_position' => 'required',
                     'department_id' => 'required',
-                    'employee_employment_type' => 'required',
                     'employee_section' => 'required'
                 ]),
                 5 => $this->validate([
