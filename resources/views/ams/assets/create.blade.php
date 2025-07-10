@@ -35,7 +35,7 @@
 
                 <!-- Assets with Dropdown -->
                 <div
-                    class="relative group w-full lg:w-32 p-4 text-center border-b-2 lg:border-b-2 border-blue-900 cursor-pointer">
+                    class="relative group w-full lg:w-32 p-4 text-center border-b-2 border-b-2 border-blue-900 cursor-pointer">
                     <a href="#" class="block font-semibold text-blue-900">Assets </a>
 
                     <div

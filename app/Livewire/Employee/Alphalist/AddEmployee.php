@@ -98,6 +98,7 @@ class AddEmployee extends Component
         ['name' => '', 'relationship' => '', 'number' => '', 'address' => '']
     ];
     public $departments;
+    public $employee_id;
 
 
     public function mount()
@@ -111,17 +112,16 @@ class AddEmployee extends Component
         $this->employee_employment_type = 'Regular';
         $this->department_id = 1; 
         $this->employee_educational_attainment = 'No Grade Completed';
+        $this->employee_middlename = '';
     }
 
     public function add()
     {
         // dump($this);
-        // dd($this->employee_children_details);
         // $this->validate();
         DB::beginTransaction();
 
         try {
-            // dd('end');
             $employee_profile_path = null;
             $marriage_certificate_path = null;
             $father_birth_cert_path = null;
@@ -137,32 +137,30 @@ class AddEmployee extends Component
             if ($this->marriage_certificate_path) {
                 $originalName = $this->marriage_certificate_path->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
-                $marriage_certificate_path = $this->marriage_certificate_path->storeAs('employee-profile', $filename, 'public');
+                $marriage_certificate_path = $this->marriage_certificate_path->storeAs('employee-marriage-cert', $filename, 'public');
             }
 
             if ($this->employee_father_birth_certificate) {
                 $originalName = $this->employee_father_birth_certificate->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
-                $father_birth_cert_path = $this->employee_father_birth_certificate->storeAs('employee-profile', $filename, 'public');
+                $father_birth_cert_path = $this->employee_father_birth_certificate->storeAs('employee-father-cert', $filename, 'public');
             }
 
             if ($this->employee_mother_birth_certificate) {
                 $originalName = $this->employee_mother_birth_certificate->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
-                $mother_birth_cert_path = $this->employee_mother_birth_certificate->storeAs('employee-profile', $filename, 'public');
+                $mother_birth_cert_path = $this->employee_mother_birth_certificate->storeAs('employee-mother-cert', $filename, 'public');
             }
 
             if ($this->pagibig_mdf_path) {
                 $originalName = $this->pagibig_mdf_path->getClientOriginalName();
                 $filename = time() . '_' . $originalName;
-                $pagibig_mdf_path = $this->pagibig_mdf_path->storeAs('employee-profile', $filename, 'public');
+                $pagibig_mdf_path = $this->pagibig_mdf_path->storeAs('employee-pag-ibig-mdf', $filename, 'public');
             }
-
-            // dump($father_birth_cert_path, $mother_birth_cert_path);
-
 
             // 1. Create Employee
             $employee = Employee::create([
+                'employee_id'                  => $this->employee_id,
                 'employee_profile_picture'     => $employee_profile_path,
                 'employee_lastname'            => $this->employee_lastname,
                 'employee_firstname'           => $this->employee_firstname,
@@ -328,7 +326,6 @@ class AddEmployee extends Component
         return [
             'employee_lastname' => 'required',
             'employee_firstname' => 'required',
-            'employee_middlename' => 'required',
             'employee_mother_maiden_name' => 'required',
             'employee_gender' => 'required',
             'employee_birthdate' => 'required|date',
@@ -355,6 +352,7 @@ class AddEmployee extends Component
             'employee_personal_email' => 'required|email',
             'employee_contact_no1' => 'required',
             'employee_viber_number' => 'required',
+            'employee_company_email' => 'email',
 
             // Education
             'employee_educational_attainment' => 'required',
@@ -395,6 +393,7 @@ class AddEmployee extends Component
         return [
             'required' => 'This field is required.',
             'employee_personal_email.email' => 'Please enter a valid email address.',
+            'employee_company_email.email' => 'Please enter a valid email address.',
             'employee_birthdate.date' => 'Please enter a valid birthdate.',
             'employee_father_birthdate.date' => 'Please enter a valid birthdate.',
             'employee_mother_birthdate.date' => 'Please enter a valid birthdate.'
@@ -408,7 +407,6 @@ class AddEmployee extends Component
                 1 => $this->validate([
                     'employee_lastname' => 'required',
                     'employee_firstname' => 'required',
-                    'employee_middlename' => 'required',
                     'employee_mother_maiden_name' => 'required',
                     'employee_gender' => 'required',
                     'employee_birthdate' => 'required|date',
@@ -432,7 +430,8 @@ class AddEmployee extends Component
                 2 => $this->validate([
                     'employee_personal_email' => 'required|email',
                     'employee_contact_no1' => 'required',
-                    'employee_viber_number' => 'required'
+                    'employee_viber_number' => 'required',
+                    'employee_company_email' => 'email'
                 ]),
                 3 => $this->validate([
                     'employee_educational_attainment' => 'required',

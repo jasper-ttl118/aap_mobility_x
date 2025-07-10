@@ -35,12 +35,16 @@ class UserController extends Controller
 
         $search = $request->input('search');
 
-        $employees = Employee::where('employee_firstname', 'LIKE', "%{$search}%")
-            ->orWhere('employee_middlename', 'LIKE', "%{$search}%")
-            ->orWhere('employee_lastname', 'LIKE', "%{$search}%")
-            ->orWhere('employee_id', 'LIKE', "%{$search}%")
-            // Add any other searchable fields
+        $employees = Employee::where(function ($query) use ($search) {
+                $query->where('employee_firstname', 'LIKE', "%{$search}%")
+                    ->orWhere('employee_middlename', 'LIKE', "%{$search}%")
+                    ->orWhere('employee_lastname', 'LIKE', "%{$search}%")
+                    ->orWhere('employee_id', 'LIKE', "%{$search}%");
+            })
+            ->with('department') // Eager-load department relation
+            ->limit(10)
             ->get();
+
 
         return response()->json([
             'employees' => $employees

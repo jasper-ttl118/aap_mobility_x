@@ -4,16 +4,16 @@
 
     <div class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto py-10 px-5 lg:p-10 gap-7 bg-[#f3f4f6]">
         <!-- Options Container -->
-        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 ">
-            <div class="flex h-14 border-b border-gray-200 relative" x-data="{ openCMS: false, openAssets: false }">
+        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7 overflow-visible hide-scrollbar w-full flex-shrink-0">
+            <div class="flex min-w-[350px] lg:min-w-0" x-data="{ openCMS: false, openAssets: false }">
 
                 <!-- Dashboard -->
-                <div class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center  lg:border-b-2 border-blue-900 cursor-pointer">
+                <div class="relative group  lg:mx-0 w-auto py-4 px-2 lg:p-4 text-center border-b-2 border-blue-900 cursor-pointer">
                     <a href="/ams" class="block text-blue-800 font-semibold hover:text-blue-800 font-inter">Dashboard</a>
                 </div>
 
                 <!-- CMS -->
-                <div class="relative w-auto  lg:mx-0 py-4 px-2 lg:p-4 text-center border-b">
+                <div class="relative lg:mx-0 py-4 px-2 lg:p-4 text-center border-b">
                     <button @click="openCMS = !openCMS; openAssets = false"
                         class="flex justify-center items-center gap-x-1 w-full font-inter transition-colors duration-150"
                         :class="openCMS ? 'text-blue-800 font-semibold' : 'text-gray-600 hover:text-blue-800'">
@@ -33,7 +33,7 @@
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         x-transition:leave="transition ease-in duration-150"
                         x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                        class="absolute left-1/2 -translate-x-1/2 mt-5 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-10 min-w-fit text-left">
+                        class="absolute left-1/2 -translate-x-1/2 mt-5 w-40 rounded-md border border-gray-200 bg-white shadow-lg z-50 min-w-fit text-left">
                         <a href="/ams/cms/branch-department"
                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-800">Branches
                             /
@@ -93,7 +93,13 @@
 
         <!-- Breadcrumbs -->
         <div class="flex flex-wrap items-center gap-x-1 text-blue-900 text-sm px-7 -mt-3">
-            <a href="/ams" class="hover:underline">Dashboard</a>
+            <a href="/ams" class="hover:underline">Asset Management</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd"
+                    d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
+                    clip-rule="evenodd" />
+            </svg>
+            <a href="/ams" class="hover:underline font-semibold">Dashboard</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                 <path fill-rule="evenodd"
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
@@ -104,25 +110,7 @@
         <!-- Header Section -->
         <div class="flex rounded-md border-2 border-gray-100 bg-gray-50 shadow-lg -mt-4 h-auto w-full px-2 py-2">
             <div class="flex flex-col justify-between w-full gap-y-3">
-                {{-- Header --}}
-                <div class="bg-white flex flex-col h-[150px] w-full items-center justify-center rounded-xl gap-y-2 shadow-md">
-                    <div class="flex flex-row w-full items-end justify-start px-5">
-                        <label for="Title" class="text-xl lg:text-4xl uppercase tracking-wide font-bold text-[#0035dd]">Asset Management System</label>
-                    </div>
-                    <div class="flex flex-row w-full justify-between px-5">
-                        <div class="h-full flex flex-col justify-center">
-                            <label for="text" class="text-[#071d49] text-xs lg:text-sm">Welcome back to Asset Dashboard</label>
-                            <label for="text" class="text-[#071d49] text-xs lg:text-sm">Last updated: July 03, 2025 10:43 AM</label>
-                        </div>
-                        <div class="h-full flex flex-row items-center justify-center gap-x-2">
-                            <img src="aaplogo1.png" alt="profilePhoto" class="size-6 lg:size-12 rounded-full border-gray-200 border">
-                            <div class="flex flex-col items-start justify-center gap-x-1">
-                                <label for="name" class="text-[#071d49] text-sm lg:text-base font-bold">John Doe</label>
-                                <label for="name" class="text-[#071d49] text-xs lg:text-sm font-light">Admin</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 {{-- First Row --}}
                 <div class="flex flex-col w-full justify-center items-center gap-x-4 gap-y-4">
                     {{-- Tally 1st row --}}

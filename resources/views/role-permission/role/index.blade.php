@@ -47,7 +47,7 @@
 
     @endphp
 
-    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-10 gap-7">
+    <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-5 lg:px-10 gap-y-3">
 
         <!-- Title and Subtitle -->
         {{-- <div class="">
@@ -76,7 +76,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg ">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>

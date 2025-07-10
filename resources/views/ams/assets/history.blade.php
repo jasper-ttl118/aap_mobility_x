@@ -49,7 +49,7 @@
                 </div>
 
                 <!-- Assets -->
-                <div class="relative w-auto py-4 px-2 lg:p-4 lg:mx-0 text-center lg:border-b-2 border-blue-900">
+                <div class="relative w-auto py-4 px-2 lg:p-4 lg:mx-0 text-center border-b-2 border-blue-900">
                     <button @click="openAssets = !openAssets; openCMS = false"
                         class="flex justify-center items-center gap-x-1 w-full font-inter text-blue-800 font-semibold transition-colors duration-150"
                         :class="openAssets ? 'text-blue-800 font-semibold' : 'text-blue-800 hover:text-blue-800'">
