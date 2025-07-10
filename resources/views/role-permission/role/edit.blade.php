@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
-    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 bg-[#F3F4F6] mt-10">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 gap-y-3 bg-[#F3F4F6] mt-10">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -35,7 +35,7 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 p-4 text-center">
                     <a href="/user" class="text-gray-600 hover:text-blue-800">Users</a>
@@ -53,7 +53,8 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
-
+        </div>
+        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
                 <a href="/user" class="hover:underline truncate">RBAC Management</a>
