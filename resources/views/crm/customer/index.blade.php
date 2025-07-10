@@ -8,8 +8,8 @@
         </div> --}}
 
     <!-- Options Container -->
-    <div class="flex md:justify-center w-full">
-        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+    <div class="flex justify-center w-full">
+        <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
             <div class="flex min-w-[600px] lg:min-w-0">
                 <x-crm.submodules selected='Members'/>
             </div>
@@ -17,7 +17,7 @@
     </div>
     <!-- Breadcrumbs-->
    <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-1 lg:pb-2 lg:-mb-8 md:ml-20 lg:ml-0">
-       <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848]">Customer Relationship Management</a>
+       <a href="{{ route('customer.index') }}" class="hover:underline text-[#151848] truncate">Customer Relationship Management</a>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
            <path fill-rule="evenodd"
                d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"

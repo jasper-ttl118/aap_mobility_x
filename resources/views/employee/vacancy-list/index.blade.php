@@ -1,5 +1,5 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 mt-12 bg-[#f3f4f6]">
+    <div x-data="{ selected : 'employees', open_add : false, open_delete : false, open_view : false, open_edit : false}" class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 gap-7 mt-12 bg-[#f3f4f6]">
        
         @if (session('status'))
             <div id="toast-success"
@@ -39,13 +39,13 @@
             <div class="flex justify-between">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
-                    <a href="/employee" class="hover:underline">Employee Management</a>
+                    <a href="/employee" class="hover:underline truncate">Employee Management</a>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="#" class="hover:underline font-semibold">Vacancy List</a>
+                    <a href="#" class="hover:underline font-semibold truncate">Vacancy List</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
                 <div class="flex justify-end px-7 pt-6">

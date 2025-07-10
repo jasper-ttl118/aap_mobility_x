@@ -2,7 +2,7 @@
     id="clock-container"
     class="flex items-center justify-center h-32 w-full"
 >
-    <div class="text-center p-8 flex justify-center items-center flex-col w-full">
+    <div class="text-center flex justify-center items-center flex-col w-full">
         <div class="mb-1 flex flex-row justify-center items-center w-44 h-14 gap-x-1 bg-white/10 backdrop-blur border border-white rounded-xl">
             <h1 id="clock-hour" class="text-4xl font-mono font-bold text-[#F6D400] tracking-wider">
             </h1>
@@ -18,9 +18,10 @@
                 </h6>
             </div>
         </div>
-        <div class="flex flex-col text-sm text-white font-light">
+        <div class="flex flex-row text-sm gap-x-1 text-white font-light w-full justify-center">
             <div id="clock-date" class="flex justify-center items-center">
             </div>
+            <div class="text-white">|</div>
             <div id="clock-day" class="flex justify-center items-center">
             </div>
         </div>

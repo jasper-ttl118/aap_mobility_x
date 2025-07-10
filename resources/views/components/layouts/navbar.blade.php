@@ -8,6 +8,7 @@
 }
 
 .back:before {
+  
   content: '';
   position: absolute;
   top: -20px;
@@ -20,6 +21,7 @@
 }
 
 .back::after {
+  
   content: '';
   position: absolute;
   bottom: -20px;
@@ -88,7 +90,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
       @endphp
       
       @if(isset($links[$module]))
-        <div class="group cursor-pointer flex items-center px-2 py-3 gap-2 ml-2 rounded-l-xl {{ $module === $navbar_selected ? 'bg-white text-blue-900 font-medium rounded-1 back' : 'hover:text-[#F6D400]' }}">
+        <div class="group cursor-pointer flex items-center px-2 py-3 gap-2 ml-2 rounded-l-xl {{ $module === $navbar_selected ? 'bg-[#F3F4F6] text-blue-900 font-medium rounded-1 back' : 'hover:text-[#F6D400]' }}">
           <span class="edge"></span>
           <svg class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             @switch($module)

@@ -1,8 +1,8 @@
-<div class="flex md:w-full md:justify-center">
-    <div class="flex flex-col w-[440px] mt-2 lg:-mt-2 lg:w-full md:w-[80%] md:ml-0 bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
-        <div class="flex flex-col lg:flex-row lg:items-start items-center p-7 pt-7 lg:justify-between">
-            <div class="flex items-start">
-                <h2 class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter">Birthday Celebrant List</h2>
+<div class="flex w-full justify-center">
+    <div class="flex flex-col w-[90%] mt-2 lg:-mt-2 lg:w-full md:w-[80%] md:ml-0 bg-white shadow-md border-gray-100 border-2 rounded-lg lg:px-0 px-5 justify-center">
+        <div class="flex flex-col lg:flex-row lg:items-start items-center p-7 pt-7 lg:justify-between w-full">
+            <div class="flex">
+                <h2 class="font-extrabold text-center text-xl uppercase tracking-widest text-[#071d49] font-inter whitespace-normal">Birthday Celebrant List</h2>
             </div>
 
             {{-- Birthday Month Dropdown --}}
@@ -30,7 +30,7 @@
 
         {{-- List of Customers --}}  
         <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-            <table class="w-full text-sm md:justify-center text-gray-500">   
+            <table class="w-[800px] lg:w-full text-sm md:justify-center text-gray-500">   
                 <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
                     <tr>    
                         <th scope="col" class="w-[12.25%] py-3 font-inter">Member ID</th>

@@ -27,38 +27,49 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    // route for profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        // route for profile
+        Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+        // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+        Route::get('/profile/{user_id}', [ProfileController::class, 'view'])->name('profile.view');
+    
+        //route for permission
+        Route::resource('permission', PermissionController::class);
+        Route::get('permission/{permissionId}/delete', [PermissionController::class, 'destroy']);
+    
+        //route for role
+        Route::resource('role', RoleController::class);
+        Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
+    
+        //route for user
+        Route::post('/user/get-role', [UserController::class, 'displayRoleAccess']);
+        Route::post('/user/{id}/update-status', [UserController::class, 'updateStatus']);
 
-    //route for permission
-    Route::resource('permission', PermissionController::class);
-    Route::get('permission/{permissionId}/delete', [PermissionController::class, 'destroy']);
+        Route::get('user/search/find', [UserController::class, 'find']);
+        Route::get('user/search', [UserController::class, 'search']);
+        Route::get('user/{userId}/create', [UserController::class, 'create']);
+        Route::get('user/{userId}/delete', [UserController::class, 'destroy']);
+        Route::resource('user', UserController::class);
+    
+        //route for employee
+        Route::get('/employee/manpower-requisition', [EmployeeController::class, 'manpowerRequisition'])->name('manpower-requisition');
+        Route::get('/employee/vacancy-list', [EmployeeController::class, 'vacancyList'])->name('vacancy-list');
+        Route::resource('employee', EmployeeController::class);
+        Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
+        Route::get('/employee/search', [EmployeeController::class, 'search']);
+        Route::get('/employee/alphalist/view-employee-profile/{employee_id}', [EmployeeController::class,'employeeProfile'])->name('employeeProfile');
+        // Route::get('/employee.alphalist.add-employee',[EmployeeController::class,'addEmployee' ])->name('addEmployee');
+        Route::get('/employee.alphalist.edit-employee/{employee_id}',[EmployeeController::class, 'editEmployee'])->name('editEmployee');
 
-    //route for role
-    Route::resource('role', RoleController::class);
-    Route::get('role/{roleId}/delete', [RoleController::class, 'destroy']);
-
-    //route for user
-    Route::post('/user/get-role', [UserController::class, 'displayRoleAccess']);
-    Route::post('/user/{id}/update-status', [UserController::class, 'updateStatus']);
-
-    Route::get('user/search/find', [UserController::class, 'find']);
-    Route::get('user/search', [UserController::class, 'search']);
-    Route::get('user/{userId}/create', [UserController::class, 'create']);
-    Route::get('user/{userId}/delete', [UserController::class, 'destroy']);
-    Route::resource('user', UserController::class);
-
-    //route for employee
-    Route::get('/employee/manpower-requisition', [EmployeeController::class, 'manpowerRequisition'])->name('manpower-requisition');
-    Route::get('/employee/vacancy-list', [EmployeeController::class, 'vacancyList'])->name('vacancy-list');
-    Route::resource('employee', EmployeeController::class);
-    Route::get('employee/{employeeId}/delete', [EmployeeController::class, 'destroy'])->name("employee.delete");
-    Route::get('/employee/search', [EmployeeController::class, 'search']);
-    Route::get('/employee/alphalist/view-employee-profile', [CustomerController::class, 'employeeProfile'])->name('employeeProfile');
-    Route::get('/employee.alphalist.add-employee', [CustomerController::class, 'addEmployee'])->name('addEmployee');
-    Route::get('/employee.alphalist.edit-Employee', [CustomerController::class, 'editEmployee'])->name('editEmployee');
+        // CRUD for employee
+        Route::prefix('employee')->group(function () {
+            Route::get('/', [EmployeeController::class, 'index'])->name('employees.alphalist.index');
+            Route::get('/create', [EmployeeController::class, 'create'])->name('employees.alphalist.create');
+            Route::post('/store', [EmployeeController::class, 'store'])->name('employees.alphalist.store');
+            Route::get('/{employee}', [EmployeeController::class, 'show'])->name('employees.alphalist.show');
+            Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.alphalist.edit');
+            Route::put('/{employee}', [EmployeeController::class, 'update'])->name('employees.alphalist.update');
+        });
 
     //route for ams
     Route::get('/ams', [AssetController::class, 'dashboard'])->name('dashboard');
@@ -115,9 +126,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/customer/sale-tracking', [CustomerController::class, 'salesTracking'])->name('sales-tracking');
     Route::resource('customer', CustomerController::class);
 
-    // routes for corporate (CRM)
-    Route::get('/customer/corporate/agent', [CorporateController::class, 'Agent'])->name('agent');
-    Route::get('/customer/corporate/commission', [CorporateController::class, 'Commission'])->name('commission');
+        // routes for corporate (CRM)
+        Route::get('/customer/corporate/agent',[CorporateController::class,'Agent'])->name('agent');
+        Route::get('/customer/corporate/commission',[CorporateController::class,'Commission'])->name('commission');
+
+        Route::get('/requisition/pending-list', [RequisitionController::class, 'pendingList'])->name('pending-list');
+        Route::get('/requisition/pending-list/{requisition_id}', [RequisitionController::class, 'viewPendingRequest'])->name('view-pending-request');
+        Route::get('/requisition/waiting-approval-list', [RequisitionController::class, 'waitApprovalList'])->name('wait-approval-list');
+        Route::get('/requisition/waiting-approval-list/{requisition_id}', [RequisitionController::class, 'viewWaitingApprovalRequest'])->name('view-waiting-approval-request');
 
     Route::resource('requisition', RequisitionController::class);
 

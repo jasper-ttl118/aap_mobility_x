@@ -4,30 +4,16 @@
 
         <div class="flex flex-1 flex-col lg:ml-52 lg:p-10 lg:gap-7 hide-scrollbar h-full lg:h-screen bg-[#f3f4f6]" x-data="{ selected : 'sent'}"> 
             <!-- Options Container -->
-            <div class="flex md:justify-center w-full">
-                <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[440px] md:w-[80%] lg:w-full">
+            <div class="flex justify-center w-full">
+                <div class="mx-5 lg:mx-0 mt-16 lg:mt-5 lg:-mb-5 overflow-y-auto hide-scrollbar rounded-md border-2 border-gray-100 bg-white shadow-md w-[90%] lg:w-full">
                     <div class="flex min-w-[600px] lg:min-w-0">
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('customer.index') }}" class=" text-gray-600 hover:text-gray-800 font-inter">Dashboard</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('contacts') }}" class="text-gray-600 hover:text-gray-800 font-inter">Members</a>
-                        </div>
-                        <div class="flex-none w-auto p-4 text-center font-semibold border-b-2 border-[#071d49]">
-                            <a href="{{ route('email-marketing') }}" class="text-[#071d49] hover:text-blue-800 font-inter">Email Marketing</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-32 p-4 text-center">
-                            <a href="{{ route('corporate') }}" class="text-gray-600 hover:text-gray-800 font-inter">Corporate</a>
-                        </div>
-                        <div class="group flex-none hover:border-b-2 border-gray-300 w-auto p-4 text-center">
-                            <a href="{{ route('sales-tracking') }}" class="text-gray-600 hover:text-gray-800 font-inter">Sales Tracking</a>
-                        </div>
+                        <x-crm.submodules selected='Email Marketing'/>
                     </div>
                 </div>
             </div>
 
             <!-- Breadcrumbs-->
-            <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-5 lg:pt-1 pb-3 lg:-mb-6 md:ml-20 lg:ml-0">
+            <div class="flex h-10 items-center gap-x-1 text-blue-900 text-sm px-12 lg:px-7 pt-5 lg:pt-1 pb-3 w-full lg:-mb-6 md:ml-20 lg:ml-0">
                 <a href="{{ route('customer.index') }}" class="hover:underline text-[#071d49] font-inter truncate">Customer Relationship Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
@@ -46,11 +32,11 @@
             <x-email-marketing.tab-buttons />
             
             <div class="flex md:w-full md:justify-center">
-                <div class="flex flex-col w-[440px] mt-2 lg:-mt-4 md:w-[80%] md:ml-0 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
+                <div class="flex flex-col w-[90%] mt-2 lg:-mt-4 lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-center">
                     <div class="flex flex-col md:flex-row lg:flex-row px-8 gap-y-3 py-5 justify-between">
                         <div class="flex items-center justify-center lg:justify-start lg:items-start">
                             <h2 
-                                class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter"
+                                class="font-extrabold text-xl uppercase tracking-widest text-[#071d49] font-inter whitespace-normal text-center"
                                 x-text="selected === 'sent' 
                                         ? 'Sent Messages List' 
                                         : selected === 'scheduled' 
@@ -78,7 +64,7 @@
                     <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
                         {{-- List of Sent Messages --}}
                         <template x-if="selected === 'sent'">
-                            <table class="w-full text-sm md:justify-center text-gray-500">   
+                            <table class="w-[800px] lg:w-full text-sm md:justify-center text-gray-500">   
                                 <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase">
                                     <tr>    
                                         <th scope="col" class="w-[12.25%] py-3 font-inter">Message ID</th>

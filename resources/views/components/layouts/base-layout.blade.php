@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>AAP X</title>
+    <title>AAP Mobility X</title>
     @include('layouts.icons')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
@@ -36,11 +36,13 @@
         }
     </style>
 
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+
 </head>
 
 <body class="{{ $class }}" x-data='@json($x_data)'>
     <x-navbar :$navbar_selected />
-    <div class="flex flex-col w-full gap-5 bg-[#f3f4f6]">
+    <div class="flex flex-col w-full gap-5 bg-[#f3f4f6] xs:w-full sm:w-full">
         <x-layouts.header />
         {{ $slot }}
     </div>

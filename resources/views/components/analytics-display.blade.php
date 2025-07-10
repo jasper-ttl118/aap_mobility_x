@@ -26,7 +26,6 @@
                         data: @json($data),
                         backgroundColor: @json($color),
                         borderColor: @json($color),
-                        borderWidth: 1
                     }]
                 },
                 options: {
@@ -34,9 +33,27 @@
                     animation: false,
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true
+                            }
+                        }
+                    },
                     scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true
+                            }
+                        },
                         y: {
-                            beginAtZero: true
+                            
+                            grid: {
+                                display: true
+                            }
                         }
                     }
                 }

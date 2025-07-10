@@ -1,7 +1,6 @@
 @php
 
 $user = auth()->user()->load('organization', 'employee', 'roles');
-
 $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
 // dd($modules_access);
 @endphp
@@ -43,7 +42,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
             </a>
             <div id="dropdownContent" class="hidden absolute w-full right-0 rounded-md z-50">
                 <div class="border-x shadow-xs rounded-b-md border-[#151847] bg-white">
-                    <a href="{{ route('profile.edit') }}" class="flex flex-row block items-center justify-start gap-2 px-4 py-2 text-[#151847] hover:bg-[#151847] hover:text-white text-center font-bold text-md">
+                    <a href="{{ route('profile.view', $user->user_id) }}" class="flex flex-row block items-center justify-start gap-2 px-4 py-2 text-[#151847] hover:bg-[#151847] hover:text-white text-center font-bold text-md">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-4 w-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                         </svg>
