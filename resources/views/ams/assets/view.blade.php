@@ -409,7 +409,7 @@
 
                     <div class="flex justify-end gap-x-3 mt-6">
                         <!-- Edit Button -->
-                        <a href="/ams/assets/edit"
+                        <a href="{{ route('ams.asset.edit', ['id' => $asset->asset_id]) }}"
                             class="inline-flex items-center gap-2 px-4 py-2 bg-[#ffdd00] text-blue-900 rounded-md text-sm hover:bg-[#ffdd00]/80 transition">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-6">
