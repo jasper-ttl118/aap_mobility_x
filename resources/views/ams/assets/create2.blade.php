@@ -122,9 +122,6 @@
                     </div>
                 </div>
 
-                <!-- <header class="mt-5 flex justify-center flex-col items-start w-full px-10">
-                <h2 class="text-2xl font-medium text-[#151847]">ADD NEW ASSET</h2>
-            </header> -->
                 <main x-data="{
     selectedCategory: '',
     asset_name: '',
@@ -169,7 +166,20 @@
                                             the asset.</em></p>
                                 </div>
 
-                                <h3 class="text-sm font-semibold text-blue-800 mt-2">Asset Information</h3>
+                                <div class="flex items-center gap-2 mt-2">
+                                    <!-- Icon -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                        class="size-5 text-blue-800">
+                                        <path fill-rule="evenodd"
+                                            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+
+                                    <!-- Heading -->
+                                    <h3 class="text-md font-semibold text-blue-800">Asset Information</h3>
+                                </div>
+
 
                                 <!-- Asset Basic Info -->
                                 <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
@@ -287,7 +297,20 @@
                                 <!-- Assignment -->
                                 <div x-data="{ type: '', assignedTo: '' }"
                                     class="w-full border-t border-gray-400 mt-3 pt-3">
-                                    <h3 class="text-sm font-semibold text-blue-800 mb-2">Asset Assignment</h3>
+                                    <div class="flex items-center gap-2 mt-2 pb-4">
+                                        <!-- Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-5 text-blue-800">
+                                            <path fill-rule="evenodd"
+                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+
+
+                                        <!-- Heading -->
+                                        <h3 class="text-md font-semibold text-blue-800">Asset Assignment</h3>
+                                    </div>
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700">Type</label>
@@ -332,7 +355,18 @@
 
                                 <!-- Warranty Section -->
                                 <div class="w-full border-t border-gray-400 mt-6 pt-3">
-                                    <h3 class="text-sm font-semibold text-blue-800 mb-4">Warranty Information</h3>
+                                    <div class="flex items-center gap-2 mt-2 pb-4">
+                                        <!-- Icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-5 text-blue-800">
+                                            <path fill-rule="evenodd"
+                                                d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                        <!-- Heading -->
+                                        <h3 class="text-md font-semibold text-blue-800">Warranty Information</h3>
+                                    </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-5 gap-6" x-data="{
             purchaseDate: '',
@@ -426,16 +460,7 @@
                                     Add
                                 </button>
                             </div>
-
-                            <!-- Submit -->
-                            <!-- <div class="flex justify-end items-end mt-3">
-                                <button
-                                    class="btn text-white px-5 py-2 rounded-lg ring-0 ring-blue-900 hover:bg-blue-900/80 hover:ring-2 active:bg-blue-900 bg-blue-900 text-sm">
-                                    Submit
-                                </button>
-                            </div> -->
                         </div>
-
                     </section>
                 </main>
             </div>

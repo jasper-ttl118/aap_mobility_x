@@ -208,11 +208,12 @@
                                         <!-- Brand Name -->
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700">Brand Name</label>
+
                                             <!-- Brand Select (for categories 1 or 6) -->
                                             <select name="brand_id"
                                                 x-show="Number(selectedCategory) === 1 || Number(selectedCategory) === 6"
                                                 x-cloak
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm bg-[ffffff]">
+                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm bg-white">
                                                 <option value="">SELECT BRAND</option>
                                                 @foreach ($brands as $brand)
                                                     <option value="{{ $brand->brand_id }}" {{ $asset->brand_id == $brand->brand_id ? 'selected' : '' }}>
@@ -221,13 +222,14 @@
                                                 @endforeach
                                             </select>
 
-                                            <!-- Manual Brand Input (other categories) -->
+                                            <!-- Manual Brand Input (for other categories) -->
                                             <input type="text" name="brand_name"
                                                 x-show="Number(selectedCategory) !== 1 && Number(selectedCategory) !== 6"
                                                 x-cloak value="{{ old('brand_name', $asset->brand_name_custom) }}"
                                                 placeholder="BRAND NAME"
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm bg-[ffffff]">
+                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm bg-white">
                                         </div>
+
 
                                         <!-- Model -->
                                         <div>
@@ -442,7 +444,7 @@
 
                                     <div class="w-full flex flex-col md:flex-row gap-6">
                                         <!-- LEFT -->
-                                        <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6"  x-data="{
+                                        <div class="w-full md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6" x-data="{
         purchaseDate: '{{ old('purchase_date', optional($asset->purchase_date)->format('Y-m-d')) }}',
         expirationDate: '{{ old('warranty_exp_date', optional($asset->warranty_exp_date)->format('Y-m-d')) }}',
         warrantyYears: 0,

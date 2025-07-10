@@ -78,6 +78,7 @@ class AssetController extends Controller
             'device_serial_number' => 'nullable|string|max:255',
             'charger_serial_number' => 'nullable|string|max:255',
             'operating_system' => 'nullable|string|max:255',
+            'service_provider' => 'nullable|string|max:255',
             'asset_type' => 'required|string',
             'employee_id' => 'nullable|integer',
             'department_id' => 'nullable|integer',
@@ -92,14 +93,50 @@ class AssetController extends Controller
             'check_in_date' => 'nullable|date',
             'description' => 'nullable|string|max:1000',
         ]);
+        // Determine brand saving logic based on category
+        if (in_array((int) $request->category_id, [1, 6])) {
+            $validated['brand_id'] = $request->brand_id;
+            $validated['brand_name_custom'] = null;
+        } else {
+            $validated['brand_id'] = null;
+            $validated['brand_name_custom'] = strtoupper($request->brand_name);
+        }
 
 
+        // Normalize text input to uppercase
+        $request->merge([
+            'asset_name' => strtoupper($request->asset_name),
+            'model_name' => strtoupper($request->model_name),
+            'brand_name' => strtoupper($request->brand_name),
+            'device_serial_number' => strtoupper($request->device_serial_number),
+            'charger_serial_number' => strtoupper($request->charger_serial_number),
+            'operating_system' => strtoupper($request->operating_system),
+            'service_provider' => strtoupper($request->service_provider),
+            'description' => strtoupper($request->description),
+        ]);
+
+        // Apply logic for asset_type
         $validated['asset_type'] = $request->asset_type === 'common' ? 1 : 2;
+
+        // Get the validated + merged (uppercase) values
+        $validated = array_merge($validated, $request->only([
+            'asset_name',
+            'model_name',
+            'brand_name',
+            'device_serial_number',
+            'charger_serial_number',
+            'operating_system',
+            'service_provider',
+            'description',
+        ]));
+
+        // Perform update
         $asset = Asset::findOrFail($id);
         $asset->update($validated);
 
         return redirect()->route('allAssets')->with('success', 'Asset updated successfully.');
     }
+
 
 
     /**

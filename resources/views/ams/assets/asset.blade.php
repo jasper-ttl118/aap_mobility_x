@@ -140,7 +140,11 @@
 
                                 <!-- Search Input -->
                                 <input type="text" placeholder="SEARCH ASSETS"
-                                    class="uppercase text-sm px-2 py-2 w-full bg-transparent border-white outline-none focus:outline-none focus:ring-0 focus:border-white">
+                                    class="uppercase text-sm px-2 py-2 w-full bg-transparent border-white outline-none focus:outline-none focus:ring-0 focus:border-white"
+                                    x-data
+                                    @input.debounce.500ms.window="Livewire.dispatch('search-assets', { value: $event.target.value }).to('ams.asset.asset-list')">
+
+
 
                                 <!-- Filter Button + Tooltip -->
                                 <div class="relative group">
