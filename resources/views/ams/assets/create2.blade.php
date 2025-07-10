@@ -122,37 +122,8 @@
                     </div>
                 </div>
 
-                <main x-data="{
-    selectedCategory: '',
-    asset_name: '',
-    brand_text: '',
-    brand_select: '',
-    model: '',
-    assetQueue: [],
-    addAsset() {
-        const brandValue = (this.selectedCategory === '1' || this.selectedCategory === '6')
-            ? this.brand_select
-            : this.brand_text;
+                <main x-data="{ selectedCategory: '' }">
 
-        this.assetQueue.push({
-            id: Date.now(),
-            asset_name: this.asset_name,
-            brand: brandValue,
-            model: this.model,
-            category: this.selectedCategory,
-        });
-
-        // Reset fields
-        this.asset_name = '';
-        this.brand_text = '';
-        this.brand_select = '';
-        this.model = '';
-        this.selectedCategory = '';
-    },
-    removeAsset(id) {
-        this.assetQueue = this.assetQueue.filter(item => item.id !== id);
-    }
-}">
 
                     <section class="space-y-1.5">
                         <div x-data="{step: 1}"
@@ -187,49 +158,46 @@
                                     <!-- Category -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Category</label>
-                                        <select x-model="selectedCategory" x-ref="category"
+                                        <select x-model="selectedCategory" name="category_id"
                                             class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option class="text-xs" value="">SELECT CATEGORY</option>
-                                            <option class="text-xs" value="1">IT EQUIPMENT</option>
-                                            <option class="text-xs" value="2">OFFICE FURNITURE AND FIXTURES</option>
-                                            <option class="text-xs" value="3">MACHINERY AND EQUIPMENT</option>
-                                            <option class="text-xs" value="4">VEHICLES</option>
-                                            <option class="text-xs" value="5">FACILITIES AND INFRASTRUCTURE</option>
-                                            <option class="text-xs" value="6">MOBILE DEVICES</option>
-                                            <option class="text-xs" value="7">HIGH VALUE ASSETS</option>
-                                            <option class="text-xs" value="8">LABORATORY EQUIPMENTS</option>
-                                            <option class="text-xs" value="9">COMPANY OWNED TOOLS</option>
-                                            <option class="text-xs" value="10">PREVENTIVE AND SAFETY EQUIPMENT</option>
+                                            <option value="">SELECT CATEGORY</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->category_id }}">
+                                                    {{ strtoupper($category->category_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
                                     </div>
 
                                     <!-- Condition -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Condition</label>
-                                        <select
+                                        <select name="condition_id"
                                             class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option class="text-xs" value="">SELECT CONDITION</option>
-                                            <option class="text-xs" value="brand_new">BRAND NEW</option>
-                                            <option class="text-xs" value="used_good">USED - GOOD</option>
-                                            <option class="text-xs" value="used_fair">USED - FAIR</option>
-                                            <option class="text-xs" value="damaged">DAMAGED</option>
-                                            <option class="text-xs" value="for_disposal">FOR DISPOSAL</option>
+                                            <option value="">SELECT CONDITION</option>
+                                            @foreach ($conditions as $condition)
+                                                <option value="{{ $condition->condition_id }}">
+                                                    {{ strtoupper($condition->condition_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
                                     </div>
 
                                     <!-- Status -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Status</label>
-                                        <select
+                                        <select name="status_id"
                                             class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option class="text-xs" value="">SELECT STATUS</option>
-                                            <option class="text-xs" value="brand_new">IN USE</option>
-                                            <option class="text-xs" value="used_good">AVAILABLE</option>
-                                            <option class="text-xs" value="used_fair">UNDER MAINTENANCE</option>
-                                            <option class="text-xs" value="damaged">DECOMISSIONED/RETIRED</option>
-                                            <option class="text-xs" value="for_disposal">ON HOLD</option>
-                                            <option class="text-xs" value="for_disposal">STOLEN</option>
+                                            <option value="">SELECT STATUS</option>
+                                            @foreach ($statuses as $status)
+                                                <option value="{{ $status->status_id }}">
+                                                    {{ strtoupper($status->status_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
+
                                     </div>
 
 
@@ -241,25 +209,28 @@
                                             class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
                                     </div>
 
-                                    <!-- Brand -->
+                                    <!-- BRAND -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700">Brand Name</label>
-                                        <select x-show="selectedCategory === '1' || selectedCategory === '6'" x-cloak
-                                            x-ref="brandDropdown"
+
+                                        <!-- Dropdown for IT Equipment or Mobile Devices -->
+                                        <select name="brand_id"
+                                            x-show="selectedCategory === '1' || selectedCategory === '6'" x-cloak
                                             class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option class="text-xs" value="">SELECT BRAND</option>
-                                            <option class="text-xs" value="HP">HP</option>
-                                            <option class="text-xs" value="Dell">DELL</option>
-                                            <option class="text-xs" value="Lenovo">LENOVO</option>
-                                            <option class="text-xs" value="Apple">APPLE</option>
-                                            <option class="text-xs" value="Samsung">SAMSUNG</option>
-                                            <option class="text-xs" value="Acer">ACER</option>
-                                            <option class="text-xs" value="Asus">ASUS</option>
+                                            <option value="">SELECT BRAND</option>
+                                            @foreach ($brands as $brand)
+                                                <option value="{{ $brand->brand_id }}">{{ strtoupper($brand->brand_name) }}
+                                                </option>
+                                            @endforeach
                                         </select>
-                                        <input x-show="selectedCategory !== '1' && selectedCategory !== '6'" x-cloak
-                                            x-ref="brandInput" type="text" placeholder="BRAND NAME"
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+
+                                        <!-- Text Input for other categories -->
+                                        <input type="text" name="brand_name_custom"
+                                            x-show="selectedCategory !== '1' && selectedCategory !== '6'" x-cloak
+                                            placeholder="BRAND NAME"
+                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm" />
                                     </div>
+
 
                                     <!-- Model -->
                                     <div>
@@ -325,24 +296,30 @@
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700"
                                                 x-text="type === 'common' ? 'Department Assigned' : 'Employee Assigned'"></label>
-                                            <select x-show="type === 'common'" x-transition
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                                <option class="text-xs" value="">SELECT DEPARTMENT</option>
-                                                <option class="text-xs" value="hr">HUMAN RESOURCES</option>
-                                                <option class="text-xs" value="it">IT SERVICES</option>
-                                                <option class="text-xs" value="acct">ACCOUNTING</option>
-                                                <option class="text-xs" value="ops">OPERATIONS</option>
-                                                <option class="text-xs" value="sales">SALES</option>
+                                            <select name="department_id"
+                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
+                                                x-show="type === 'common'" x-transition>
+                                                <option value="">SELECT DEPARTMENT</option>
+                                                @foreach ($departments as $department)
+                                                    <option value="{{ $department->department_id }}">
+                                                        {{ strtoupper($department->department_name) }}
+                                                    </option>
+                                                @endforeach
                                             </select>
 
-                                            <select x-show="type !== 'common'" x-transition
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                                <option class="text-xs" value="">SELECT EMPLOYEE</option>
-                                                <option class="text-xs" value="1">DOE, JOHN</option>
-                                                <option class="text-xs" value="3">KANG, HAERIN</option>
-                                                <option class="text-xs" value="3">TANAKA, AOI</option>
-                                                <option class="text-xs" value="4">FERNANDEZ, MIGUEL</option>
+
+                                            <select name="employee_id"
+                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
+                                                x-show="type !== 'common'" x-transition>
+                                                <option value="">SELECT EMPLOYEE</option>
+                                                @foreach ($employees as $employee)
+                                                    <option value="{{ $employee->employee_id }}">
+                                                        {{ strtoupper($employee->employee_lastname) }},
+                                                        {{ strtoupper($employee->employee_firstname) }}
+                                                    </option>
+                                                @endforeach
                                             </select>
+
                                         </div>
 
                                         <div>

@@ -201,10 +201,10 @@ class AssetController extends Controller
     public function allAssets()
     {
         return view('ams.assets.asset', [
-            'categories' => AssetCategory::orderBy('category_name')->get(),
-            'statuses' => AssetStatus::orderBy('status_name')->get(),
-            'conditions' => AssetCondition::orderBy('condition_name')->get(),
-            'departments' => Department::orderBy('department_name')->get(),
+            'categories' => AssetCategory::orderBy('category_id')->get(),
+            'statuses' => AssetStatus::orderBy('status_id')->get(),
+            'conditions' => AssetCondition::orderBy('condition_id')->get(),
+            'departments' => Department::orderBy('department_id')->get(),
         ]);
     }
     public function commonAssets()
@@ -217,7 +217,14 @@ class AssetController extends Controller
     }
     public function addAsset()
     {
-        return view('ams.assets.create2');
+        return view('ams.assets.create2',[
+            'categories' => AssetCategory::orderBy('category_id')->get(),
+            'statuses' => AssetStatus::orderBy('status_id')->get(),
+            'conditions' => AssetCondition::orderBy('condition_id')->get(),
+            'departments' => Department::orderBy('department_id')->get(),
+            'brands' => Brand::orderBy('brand_id')->get(),
+            'employees' => Employee::orderBy('employee_id')->get(),
+        ]);
     }
     public function editAsset()
     {

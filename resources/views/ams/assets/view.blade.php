@@ -123,79 +123,19 @@
 
 
                     <!-- Header Info -->
-                    <div class="flex justify-between items-center  border-b border-gray-400 pb-2  w-full">
-                        <!-- Left Section -->
-                        <div class="flex flex-col relative space-y-1">
-                            <!-- Property Code -->
-                            <div class="relative group ">
-                                <div class="text-sm text-black uppercase">
-                                    {{ $asset->property_code ?? 'NO DATA' }}
-                                </div>
-                                <div
-                                    class="absolute -top-6 left-0 z-10 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap">
-                                    Property Code
-                                </div>
-                            </div>
+                    <div class="flex items-start border-b border-gray-400 pb-2 w-full gap-3">
+                        <!-- Left: QR Button (Spans 3 rows) -->
+                        <div x-data="{ showQR: false }" class="flex-shrink-0 pt-1">
+                            <button @click="showQR = true"
+                                class="animate-pulseScale w-16 h-16 inline-flex items-center justify-center rounded-md bg-blue-900 text-white hover:bg-yellow-400 hover:scale-110 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="size-17">
+                                    <path fill-rule="evenodd"
+                                        d="M3 4.875C3 3.839 3.84 3 4.875 3h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 9.375v-4.5ZM4.875 4.5a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875.375c0-1.036.84-1.875 1.875-1.875h4.5C20.16 3 21 3.84 21 4.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5a1.875 1.875 0 0 1-1.875-1.875v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5ZM6 6.75A.75.75 0 0 1 6.75 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75A.75.75 0 0 1 6 7.5v-.75Zm9.75 0A.75.75 0 0 1 16.5 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM3 14.625c0-1.036.84-1.875 1.875-1.875h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.035-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 19.125v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875-.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM6 16.5a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm9.75 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm-3 3a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Z"
+                                        clip-rule="evenodd" />
+                                </svg>
 
-                            <!-- Brand and Model -->
-                            <div class="flex gap-x-2">
-                                <!-- Brand -->
-                                <div class="relative group">
-                                    <div class="text-2xl font-bold text-blue-900 uppercase">
-                                        @if (in_array($asset->category_id, [1, 6]))
-                                            {{ $asset->brand->brand_name ?? 'NO DATA' }}
-                                        @else
-                                            {{ $asset->brand_name_custom ?? 'NO DATA' }}
-                                        @endif
-                                    </div>
-                                    <div
-                                        class="absolute -top-6 left-0 z-10 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap">
-                                        Brand
-                                    </div>
-                                </div>
-
-                                <!-- Model -->
-                                <div class="relative group">
-                                    <div class="text-2xl font-bold text-blue-900 uppercase">
-                                        {{ $asset->model_name ?? 'NO DATA' }}
-                                    </div>
-                                    <div
-                                        class="absolute -top-6 left-0 z-10 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap">
-                                        Model
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <!-- Asset Name -->
-                            <div class="relative group ">
-                                <div class="text-lg font-semibold text-black uppercase">
-                                    {{ $asset->asset_name ?? 'NO DATA' }}
-                                </div>
-                                <div
-                                    class="absolute -top-6 left-0 z-10 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-xs whitespace-nowrap">
-                                    Asset Name
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div x-data="{ showQR: false }">
-                            <!-- Right Section (QR Code Button) -->
-                            <div class="flex flex-col items-center justify-center text-center">
-                                <div class="text-xs text-gray-500 font-semibold uppercase">View QR Code</div>
-                                <button @click="showQR = true"
-                                    class="w-12 h-12 inline-flex items-center justify-center rounded-md bg-blue-900 text-white hover:bg-blue-800 hover:scale-110 transition mt-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                                        className="size-6">
-                                        <path fillRule="evenodd"
-                                            d="M3 4.875C3 3.839 3.84 3 4.875 3h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 9.375v-4.5ZM4.875 4.5a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875.375c0-1.036.84-1.875 1.875-1.875h4.5C20.16 3 21 3.84 21 4.875v4.5c0 1.036-.84 1.875-1.875 1.875h-4.5a1.875 1.875 0 0 1-1.875-1.875v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5ZM6 6.75A.75.75 0 0 1 6.75 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75A.75.75 0 0 1 6 7.5v-.75Zm9.75 0A.75.75 0 0 1 16.5 6h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM3 14.625c0-1.036.84-1.875 1.875-1.875h4.5c1.036 0 1.875.84 1.875 1.875v4.5c0 1.035-.84 1.875-1.875 1.875h-4.5A1.875 1.875 0 0 1 3 19.125v-4.5Zm1.875-.375a.375.375 0 0 0-.375.375v4.5c0 .207.168.375.375.375h4.5a.375.375 0 0 0 .375-.375v-4.5a.375.375 0 0 0-.375-.375h-4.5Zm7.875-.75a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75ZM6 16.5a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm9.75 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm-3 3a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Zm6 0a.75.75 0 0 1 .75-.75h.75a.75.75 0 0 1 .75.75v.75a.75.75 0 0 1-.75.75h-.75a.75.75 0 0 1-.75-.75v-.75Z"
-                                            clipRule="evenodd" />
-                                    </svg>
-
-                                </button>
-                            </div>
+                            </button>
 
                             <!-- QR Modal -->
                             <div x-show="showQR" x-transition
@@ -204,12 +144,76 @@
                                     class="bg-white p-6 rounded-xl shadow-xl w-[350px] h-[350px] flex flex-col items-center justify-center relative">
                                     <img src="{{ asset('qr-code.png') }}" alt="QR Code"
                                         class="w-80 h-80 object-contain">
-                                    <!-- src="{{ asset('storage/qrcodes/' . $asset->property_code . '.png') }}" -->
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Middle: Asset Info -->
+                        <div class="flex flex-col justify-start gap-0.5 flex-grow">
+                            <!-- Property Code -->
+                            <div class="text-sm text-black uppercase">
+                                {{ $asset->property_code ?? 'NO DATA' }}
+                            </div>
+
+                            <!-- Brand and Model -->
+                            <div class="flex gap-2 text-blue-900 text-xl font-bold uppercase leading-tight">
+                                <span>
+                                    @if (in_array($asset->category_id, [1, 6]))
+                                        {{ $asset->brand->brand_name ?? 'NO DATA' }}
+                                    @else
+                                        {{ $asset->brand_name_custom ?? 'NO DATA' }}
+                                    @endif
+                                </span>
+                                <span>{{ $asset->model_name ?? 'NO DATA' }}</span>
+                            </div>
+
+                            <!-- Asset Name -->
+                            <div class="text-base font-semibold text-black uppercase">
+                                {{ $asset->asset_name ?? 'NO DATA' }}
+                            </div>
+                        </div>
+
+                        <!-- Right: Toggle -->
+                        <div x-data="{ editMode: false }" class="pt-3 flex items-center">
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-medium text-gray-800 select-none"
+                                    x-text="editMode ? 'Edit Mode' : 'View Mode'">
+                                </span>
+
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" x-model="editMode" class="sr-only peer">
+                                    <div class="w-14 h-8 bg-blue-500 peer-checked:bg-yellow-400 rounded-full transition-all duration-300 
+                            border-2 border-blue-700 peer-checked:border-yellow-600"></div>
+                                    <div class="absolute top-[2px] left-[2px] peer-checked:left-[34px] w-7 h-7 rounded-full bg-white 
+                            flex items-center justify-center transition-all duration-300 shadow">
+                                        <!-- Icons -->
+                                        <template x-if="!editMode">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-5 text-blue-600">
+                                                <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 0 1 0-1.113ZM17.25 12a5.25 5.25 0 1 1-10.5 0 5.25 5.25 0 0 1 10.5 0Z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+
+                                        </template>
+                                        <template x-if="editMode">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                fill="currentColor" class="size-5 text-yellow-700">
+                                                <path
+                                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                                <path
+                                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                                            </svg>
+
+                                        </template>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
                     </div>
+
+
 
                     <!-- Group Cards: 2 Columns -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 overflow-visible">
