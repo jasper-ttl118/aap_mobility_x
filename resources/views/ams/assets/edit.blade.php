@@ -121,7 +121,7 @@
                 @method('PUT')
                 <main class="space-y-6 w-full">
                     <section class="space-y-1.5">
-                        <div class="p-10 bg-white rounded-xl space-y-8 @lg/main:space-y-14 shadow-lg">
+                        <div class="px-10 pt-10 pb-5  rounded-xl space-y-8 @lg/main:space-y-14 ">
 
                             <!-- Forms -->
                             <div class="gap-y-5 flex flex-col">

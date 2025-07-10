@@ -50,8 +50,8 @@
     {{-- <x-layouts.chat /> --}}
 
     @livewireScripts
-    <!-- Tom Select JS -->
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    
+
 
 </body>
 
