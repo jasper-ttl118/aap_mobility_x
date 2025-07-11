@@ -34,12 +34,29 @@ export default {
                     '0%, 100%': { transform: 'scale(1)' },
                     '50%': { transform: 'scale(1.1)' },
                 },
+                shake: {
+                    '0%': { transform: 'rotate(0deg)' },
+                    '5%': { transform: 'rotate(-1.5deg)' },
+                    '10%': { transform: 'rotate(1.5deg)' },
+                    '15%': { transform: 'rotate(-1.25deg)' },
+                    '20%': { transform: 'rotate(1.25deg)' },
+                    '25%': { transform: 'rotate(-1deg)' },
+                    '30%': { transform: 'rotate(1deg)' },
+                    '35%': { transform: 'rotate(-0.75deg)' },
+                    '40%': { transform: 'rotate(0.75deg)' },
+                    '45%': { transform: 'rotate(-0.5deg)' },
+                    '50%': { transform: 'rotate(0.5deg)' },
+                    '55%': { transform: 'rotate(-0.25deg)' },
+                    '60%': { transform: 'rotate(0deg)' },
+                    '100%': { transform: 'rotate(0deg)' }
+                },
             },
 
             animation: {
                 wiggle: 'wiggle 0.5s ease-in-out infinite',
                 fadeInUp: 'fadeInUp 0.5s ease-out',
                 pulseScale: 'pulseScale 2s ease-in-out infinite',
+                shake: 'shake 4s ease-in-out infinite',
             },
 
             fontFamily: {

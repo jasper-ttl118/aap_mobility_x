@@ -155,7 +155,24 @@ class AssetController extends Controller
     public function show($id)
     {
         $asset = Asset::with(['category', 'employee', 'department', 'status', 'condition'])->findOrFail($id);
-        return view('ams.assets.view', compact('asset'));
+        $brands = Brand::orderBy('brand_name')->get();
+        $categories = AssetCategory::orderBy('category_name')->get();
+        $status = AssetStatus::orderBy('status_name')->get();
+        $conditions = AssetCondition::orderBy('condition_name')->get();
+        $departments = Department::orderBy('department_name')->get();
+        $employees = Employee::orderBy('employee_id')->get();
+
+
+        return view('ams.assets.view', compact(
+            'asset',
+            'brands',
+            'categories',
+            'status',
+            'conditions',
+            'departments',
+            'employees'
+        ));
+
     }
 
 
@@ -217,7 +234,7 @@ class AssetController extends Controller
     }
     public function addAsset()
     {
-        return view('ams.assets.create2',[
+        return view('ams.assets.create2', [
             'categories' => AssetCategory::orderBy('category_id')->get(),
             'statuses' => AssetStatus::orderBy('status_id')->get(),
             'conditions' => AssetCondition::orderBy('condition_id')->get(),

@@ -22,10 +22,7 @@ class AssetList extends Component
 
     protected $listeners = ['apply-filters' => 'applyFilters','search-assets'=> 'updateSearch'];
 
-    public function viewAsset($asset_id)
-    {
-        $this->dispatch('view-asset', id: $asset_id)->to('ams.asset.view-asset-modal');
-    }
+    
 
     #[On('apply-filters')]
     public function applyFilters($filters)

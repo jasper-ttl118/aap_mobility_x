@@ -168,6 +168,6 @@
             </tbody>
         </table>
         {{ $assets->links() }}
-        <livewire:ams.asset.view-asset-modal />
+        
     </div>
 </div>
