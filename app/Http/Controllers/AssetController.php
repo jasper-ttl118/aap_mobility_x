@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use App\Models\AssetCategory;
 use App\Models\AssetCondition;
 use Illuminate\Validation\Rule;
+use App\Http\Requests\StoreAssetRequest;
+use Illuminate\Support\Facades\Validator;
 
 class AssetController extends Controller
 {
@@ -33,10 +35,7 @@ class AssetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -243,6 +242,78 @@ class AssetController extends Controller
             'employees' => Employee::orderBy('employee_id')->get(),
         ]);
     }
+
+
+    public function validateAndEmit(Request $request)
+    {
+        // dd($request);
+        $validator = Validator::make($request->all(),[
+            'asset_name' => 'required|string|max:255',
+            'model_name' => 'required|string|max:255',
+            'category_id' => 'required|exists:asset_categories,category_id',
+            'status_id' => 'required|exists:asset_statuses,status_id',
+            'condition_id' => 'required|exists:asset_conditions,condition_id',
+            'asset_type' => 'required|in:1,2',
+            'purchase_date' => 'required|date',
+            'warranty_exp_date' => 'nullable|date|after_or_equal:purchase_date',
+            'free_replacement_value' => 'nullable|numeric',
+            'free_replacement_unit' => 'nullable|string|in:days,weeks',
+            'device_serial_number' => 'nullable|string|max:255',
+            'charger_serial_number' => 'nullable|string|max:255',
+            'maint_sched' => 'nullable|date',
+            'last_maint_sched' => 'nullable|date',
+            'service_provider' => 'nullable|string|max:255',
+            'check_out_status' => 'nullable|string|max:255',
+            'check_out_date' => 'nullable|date',
+            'check_in_date' => 'nullable|date',
+            'description' => 'nullable|string',
+            'date_accountable' => 'nullable|date',
+            'department_id' => 'nullable|required_if:asset_type,1|exists:departments,department_id',
+            'employee_id' => 'nullable|required_if:asset_type,2|exists:employees,employee_id',
+        ], [
+            'asset_name.required' => 'Asset name is required.',
+            'model_name.required' => 'Model name is required.',
+            'category_id.required' => 'Please select a category.',
+            'category_id.exists' => 'Selected category is invalid.',
+            'status_id.required' => 'Status is required.',
+            'status_id.exists' => 'Selected status is invalid.',
+            'condition_id.required' => 'Condition is required.',
+            'condition_id.exists' => 'Selected condition is invalid.',
+            'asset_type.required' => 'Asset type is required.',
+            'asset_type.in' => 'Asset type must be Common or Non-Common.',
+            'purchase_date.required' => 'Purchase date is required.',
+            'purchase_date.date' => 'Purchase date must be a valid date.',
+            'warranty_exp_date.after_or_equal' => 'Warranty expiration must be on or after purchase date.',
+            'free_replacement_value.numeric' => 'Free replacement value must be a number.',
+            'free_replacement_unit.in' => 'Replacement unit must be days or weeks.',
+            'department_id.required_if' => 'Please select a department for common assets.',
+            'department_id.exists' => 'Selected department does not exist.',
+            'employee_id.required_if' => 'Please select an employee for non-common assets.',
+            'employee_id.exists' => 'Selected employee does not exist.',
+        ]);
+
+        // $validated['id'] = now()->timestamp;
+
+        // // Flash to session for JS to read
+        // session()->flash('validatedAsset', $validated);
+
+        // // Redirect back to the same form
+        // return redirect()->back();
+
+        // session()->flash('validatedAsset', $validated);
+if ($validator->fails()) {
+        dd($validator->errors()->all()); // 🔍 See the errors
+    }
+
+    $validated = $validator->validated();
+    dd($validated); // Just to confirm
+
+        return redirect()->back()->with('validatedAsset', $validator);
+    }
+
+
+
+
     public function editAsset()
     {
         return view('ams.assets.edit');

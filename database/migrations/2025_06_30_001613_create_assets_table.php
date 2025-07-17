@@ -23,16 +23,16 @@ return new class extends Migration {
             $table->string('model_name');
             $table->foreignId('category_id');
             $table->foreignId('status_id');
-            $table->foreignId('condition_id')->nullable()->nullable();
+            $table->foreignId('condition_id');
             $table->string('device_serial_number')->nullable();
             $table->string('charger_serial_number')->nullable();
 
-            $table->enum('asset_type', ['1', '2'])->nullable(); // 1 for common asset, 2 for non-commons
+            $table->enum('asset_type', ['1', '2']); // 1 for common asset, 2 for non-commons
             $table->foreignId('employee_id')->nullable();
             $table->foreignId('department_id')->nullable();
-            $table->date('date_accountable')->nullable();
+            $table->date('date_accountable');
 
-            $table->date('purchase_date')->nullable();
+            $table->date('purchase_date');
             $table->date('warranty_exp_date')->nullable();
             $table->date('free_replacement_period')->nullable();
             $table->date('maint_sched')->nullable();

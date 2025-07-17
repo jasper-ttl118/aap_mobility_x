@@ -50,6 +50,10 @@ export default {
                     '60%': { transform: 'rotate(0deg)' },
                     '100%': { transform: 'rotate(0deg)' }
                 },
+                drawCheck: {
+                    '0%': { 'stroke-dashoffset': '24' },
+                    '100%': { 'stroke-dashoffset': '0' },
+                },
             },
 
             animation: {
@@ -57,6 +61,7 @@ export default {
                 fadeInUp: 'fadeInUp 0.5s ease-out',
                 pulseScale: 'pulseScale 2s ease-in-out infinite',
                 shake: 'shake 4s ease-in-out infinite',
+                drawCheck: 'drawCheck 2s ease-in-out forwards',
             },
 
             fontFamily: {

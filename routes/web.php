@@ -75,6 +75,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams', [AssetController::class, 'dashboard'])->name('dashboard');
     Route::get('/ams/all-assets', [AssetController::class, 'allAssets'])->name('allAssets');
     Route::get('/ams/assets/create', [AssetController::class, 'addAsset'])->name('addAsset');
+    Route::post('/ams/assets/validate', [AssetController::class, 'validateAndEmit'])->name('asset.queue.validate');
+
+
     Route::get('ams/assets/view/{id}', [AssetController::class, 'show'])->name('ams.asset.view');
     Route::get('/ams/assets/edit/{id}', [AssetController::class, 'edit'])->name('ams.asset.edit');
     Route::put('/ams/assets/{id}', [AssetController::class, 'update'])->name('ams.asset.update');

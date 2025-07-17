@@ -20,9 +20,9 @@ class AssetList extends Component
     public $search = '';
 
 
-    protected $listeners = ['apply-filters' => 'applyFilters','search-assets'=> 'updateSearch'];
+    protected $listeners = ['apply-filters' => 'applyFilters', 'search-assets' => 'updateSearch'];
 
-    
+
 
     #[On('apply-filters')]
     public function applyFilters($filters)
@@ -48,15 +48,21 @@ class AssetList extends Component
         ->when($this->condition, fn($q) => $q->where('condition_id', $this->condition))
         ->when($this->department, fn($q) => $q->where('department_id', $this->department))
         ->when($this->search, function ($query) {
-            $query->where(function ($q) {
-                $q->where('asset_name', 'like', '%' . $this->search . '%')
-                  ->orWhere('model_name', 'like', '%' . $this->search . '%')
-                  // brand_name_custom for non-IT
-                  ->orWhere('brand_name_custom', 'like', '%' . $this->search . '%')
-                  // brand_id relationship for IT
-                  ->orWhereHas('brand', function ($brandQuery) {
-                      $brandQuery->where('brand_name', 'like', '%' . $this->search . '%');
-                  });
+            $searchTerm = '%' . $this->search . '%';
+            $query->where(function ($q) use ($searchTerm) {
+                $q->where('asset_name', 'like', $searchTerm)
+                  ->orWhere('model_name', 'like', $searchTerm)
+                  ->orWhere('brand_name_custom', 'like', $searchTerm)
+                  ->orWhereHas('brand', fn($b) => $b->where('brand_name', 'like', $searchTerm))
+                  ->orWhereHas('category', fn($c) => $c->where('category_name', 'like', $searchTerm))
+                  ->orWhereHas('status', fn($s) => $s->where('status_name', 'like', $searchTerm))
+                  ->orWhereHas('condition', fn($cond) => $cond->where('condition_name', 'like', $searchTerm))
+                  ->orWhereHas('employee', function ($emp) use ($searchTerm) {
+                      $emp->where('employee_firstname', 'like', $searchTerm)
+                          ->orWhere('employee_lastname', 'like', $searchTerm)
+                          ->orWhereRaw("CONCAT(employee_lastname, ', ', employee_firstname) LIKE ?", [$searchTerm]);
+                  })
+                  ->orWhereHas('department', fn($d) => $d->where('department_name', 'like', $searchTerm));
             });
         })
         ->orderBy('property_code')
@@ -64,5 +70,6 @@ class AssetList extends Component
 
     return view('livewire.ams.asset.asset-list', compact('assets'));
 }
+
 
 }

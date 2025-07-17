@@ -1,6 +1,8 @@
 <x-app-layout class='flex flex-row w-h-screen'
     :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'asset' => new stdClass()]"
     navbar_selected='Asset Management'>
+
+
     {{-- bg --}}
     <div
         class="flex flex-1 flex-col lg:ml-52 overflow-y-auto py-10 px-5 lg:py-10 lg:pl-5 lg:pr-2 gap-7 mt-12 bg-[#f3f4f6]">
@@ -94,7 +96,7 @@
         {{-- Content --}}
         <div class="flex flex-col lg:flex-row">
             <div x-ref="scrollTarget"
-                class="@container/main rounded-md border-2 border-gray-100 bg-white justify-center items-center flex w-full lg:w-8/12 flex-col shadow-lg -mt-4">
+                class="@container/main rounded-xl border-2 border-gray-100 bg-white justify-center items-center flex w-full lg:w-8/12 flex-col shadow-xl -mt-4">
                 <div class="flex flex-col justify-between w-full mt-3" x-init="setTimeout(() => {
           $refs.scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 800)">
@@ -122,19 +124,26 @@
                     </div>
                 </div>
 
-                <main x-data="{ selectedCategory: '' }">
+                <form>
+                    {{-- <form method="POST" action="{{ route('asset.queue.validate') }}" id="assetForm"> --}}
+                        @csrf
+                        <div class="p-10 space-y-8 space-y-1.5 @lg/main:space-y-14">
+                            <div class="gap-y-3 flex flex-col">
+                                <div class="w-full flex flex-col gap-y-1 -mt-5">
+                                    <div class="flex justify-between items-start w-full">
+                                        <!-- Left Side: Title and Subtitle -->
+                                        <div class="flex flex-col items-start">
+                                            <h2 class="text-xl font-bold text-[#071d49]">Add New Asset</h2>
+                                            <p class="text-sm text-gray-600 leading-tight">
+                                                <em>Enter all relevant information for the asset.</em>
+                                            </p>
+                                        </div>
 
-
-                    <section class="space-y-1.5">
-                        <div x-data="{step: 1}"
-                            class="p-10 bg-white rounded-xl space-y-8 @lg/main:space-y-14 shadow-lg">
-
-                            <div x-show="step === 1" class="gap-y-3 flex flex-col">
-                                <div class="w-full flex flex-col items-start justify-start gap-y-1 -mt-5">
-                                    <h2 class="text-xl font-bold text-[#071d49]">Add New Asset</h2>
-                                    <p class="text-sm text-gray-600 leading-tight"><em>Enter all relevant information
-                                            for
-                                            the asset.</em></p>
+                                        <!-- Right Side: Required Fields Note -->
+                                        <div class="text-xs italic text-red-600 font-medium pt-8">
+                                            * - required fields
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="flex items-center gap-2 mt-2">
@@ -142,7 +151,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                         class="size-5 text-blue-800">
                                         <path fill-rule="evenodd"
-                                            d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 0 1 .67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 1 1-.671-1.34l.041-.022ZM12 9a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
+                                            d="M5.25 2.25a3 3 0 0 0-3 3v4.318a3 3 0 0 0 .879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 0 0 5.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 0 0-2.122-.879H5.25ZM6.375 7.5a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z"
                                             clip-rule="evenodd" />
                                     </svg>
 
@@ -151,182 +160,581 @@
                                     <h3 class="text-md font-semibold text-blue-800">Asset Information</h3>
                                 </div>
 
-
                                 <!-- Asset Basic Info -->
-                                <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
+                                <div x-data="{
+                                        openCategory: false,
+                                        selectedCategoryName: '',
+                                        selectedCategoryId: '',
+                                        selectedBrandName: '',
+                                        openCondition: false,
+                                        openStatus: false,
+                                        openBrand: false,
+                                        showBrandDropdown() {
+                                            return this.selectedCategoryId === '1' || this.selectedCategoryId === '6';
+                                        }
+                                    }" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
 
-                                    <!-- Category -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Category</label>
-                                        <select x-model="selectedCategory" name="category_id"
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option value="">SELECT CATEGORY</option>
+                                    <!-- CATEGORY DROPDOWN -->
+                                    <div class="relative w-full">
+                                        <div class="flex items-center justify-between">
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Category
+                                                <span class="text-red-600" x-show="!selectedCategoryId">*</span>
+                                            </label>
+
+                                            <!-- Tooltip Icon -->
+                                            <div class="relative group flex items-center justify-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                    stroke-width="1.5" stroke="currentColor"
+                                                    class="size-5 hover:bg-orange-400 hover:text-white rounded-full text-orange-500 cursor-pointer transition">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                                </svg>
+
+                                                <!-- Tooltip Content -->
+                                                <div
+                                                    class="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-64 z-10 p-3 border-l-4 border-orange-400 bg-orange-50 rounded-md shadow text-xs text-justify text-orange-800 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
+                                                    <p>
+                                                        Select the <strong>Category</strong> first. For <strong>IT
+                                                            Equipments</strong> or <strong>Mobile Devices</strong>,
+                                                        choose a brand from the dropdown list. For other asset types,
+                                                        manually enter the brand name.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="button" @click="openCategory = !openCategory" :class="[
+                                                        'mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none',
+                                                        selectedCategoryId 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                            <span x-text="selectedCategoryName || 'SELECT CATEGORY'"
+                                                class="block truncate uppercase"></span>
+
+                                            <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+                                        @error('category_name')
+                                        <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
+                                        @enderror
+
+                                        <ul x-show="openCategory" @click.outside="openCategory = false" x-transition
+                                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                                            <li @click="selectedCategoryName = ''; selectedCategoryId = ''; openCategory = false"
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                SELECT CATEGORY
+                                            </li>
+
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->category_id }}">
-                                                    {{ strtoupper($category->category_name) }}
-                                                </option>
+                                            <li @click="selectedCategoryName = '{{ strtoupper($category->category_name) }}'; selectedCategoryId = '{{ $category->category_id }}'; openCategory = false"
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                {{ strtoupper($category->category_name) }}
+                                            </li>
                                             @endforeach
-                                        </select>
+                                        </ul>
 
+                                        <input type="hidden" name="category_name" :value="selectedCategoryName">
                                     </div>
 
-                                    <!-- Condition -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Condition</label>
-                                        <select name="condition_id"
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option value="">SELECT CONDITION</option>
+                                    <!-- CONDITION DROPDOWN -->
+                                    <div x-data="{ 
+                                            open: false, 
+                                            selected: '', 
+                                            showGreen: false 
+                                        }" class="relative w-full">
+
+                                        <!-- Label -->
+                                        <div class="flex items-center justify-between">
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Condition <span class="text-red-600" x-show="!showGreen">*</span>
+                                            </label>
+                                        </div>
+
+                                        <!-- Dropdown Button -->
+                                        <button type="button" @click="open = !open" :class="[
+                                                    'mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none',
+                                                    showGreen 
+                                                        ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                        : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                ]">
+                                            <span x-text="selected || 'SELECT CONDITION'"
+                                                class="block truncate uppercase"></span>
+                                            <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown Options -->
+                                        <ul x-show="open" @click.outside="open = false" x-transition
+                                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+
+                                            <li @click="
+                                                    selected = ''; 
+                                                    showGreen = false; 
+                                                    $refs.input.value = ''; 
+                                                    open = false
+                                                "
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                SELECT CONDITION
+                                            </li>
+
                                             @foreach ($conditions as $condition)
-                                                <option value="{{ $condition->condition_id }}">
-                                                    {{ strtoupper($condition->condition_name) }}
-                                                </option>
+                                            <li @click="
+                                                    selected = '{{ strtoupper($condition->condition_name) }}'; 
+                                                    showGreen = true; 
+                                                    $refs.input.value = '{{ $condition->condition_name }}'; 
+                                                    open = false
+                                                "
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                {{ strtoupper($condition->condition_name) }}
+                                            </li>
                                             @endforeach
-                                        </select>
+                                        </ul>
 
+                                        <!-- Hidden Input -->
+                                        <input type="hidden" name="condition_name" x-ref="input">
                                     </div>
 
-                                    <!-- Status -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                                        <select name="status_id"
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option value="">SELECT STATUS</option>
+                                    <!-- STATUS DROPDOWN -->
+                                    <div x-data="{ 
+                                            open: false, 
+                                            selected: '', 
+                                            showGreen: false 
+                                        }" class="relative w-full">
+
+                                        <!-- Label with asterisk toggle -->
+                                        <div class="flex items-center justify-between">
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Status <span class="text-red-600" x-show="!showGreen">*</span>
+                                            </label>
+                                        </div>
+
+                                        <!-- Dropdown button -->
+                                        <button type="button" @click="open = !open" :class="[
+                                                'mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none',
+                                                showGreen 
+                                                    ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                    : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                            ]">
+                                            <span x-text="selected || 'SELECT STATUS'"
+                                                class="block truncate uppercase"></span>
+                                            <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none"
+                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+
+                                        <!-- Dropdown menu -->
+                                        <ul x-show="open" @click.outside="open = false" x-transition
+                                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+
+                                            <li @click="
+                                                    selected = ''; 
+                                                    showGreen = false; 
+                                                    $refs.input.value = ''; 
+                                                    open = false
+                                                "
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                SELECT STATUS
+                                            </li>
+
                                             @foreach ($statuses as $status)
-                                                <option value="{{ $status->status_id }}">
-                                                    {{ strtoupper($status->status_name) }}
-                                                </option>
+                                            <li @click="
+                                                        selected = '{{ strtoupper($status->status_name) }}'; 
+                                                        showGreen = true; 
+                                                        $refs.input.value = '{{ $status->status_name }}'; 
+                                                        open = false
+                                                    "
+                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                {{ strtoupper($status->status_name) }}
+                                            </li>
                                             @endforeach
-                                        </select>
+                                        </ul>
 
+                                        <!-- Hidden input for Livewire/form -->
+                                        <input type="hidden" name="status_name" x-ref="input">
                                     </div>
 
+                                    <!-- ASSET NAME -->
+                                    <div x-data="{ 
+                                                    assetName: '', 
+                                                    showCheck: false,
+                                                    handleBlur() {
+                                                        this.showCheck = this.assetName.trim().length > 0;
+                                                    }
+                                                }">
+                                        <label class="block text-sm font-medium text-gray-700">
+                                            Asset Name <span class="text-red-600" x-show="!showCheck"
+                                                x-transition>*</span>
+                                        </label>
 
+                                        <div class="relative w-full">
 
-                                    <!-- Asset Name -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Asset Name</label>
-                                        <input type="text" x-ref="assetName" placeholder="ASSET NAME"
-                                            class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                    </div>
-
-                                    <!-- BRAND -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Brand Name</label>
-
-                                        <!-- Dropdown for IT Equipment or Mobile Devices -->
-                                        <select name="brand_id"
-                                            x-show="selectedCategory === '1' || selectedCategory === '6'" x-cloak
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                            <option value="">SELECT BRAND</option>
-                                            @foreach ($brands as $brand)
-                                                <option value="{{ $brand->brand_id }}">{{ strtoupper($brand->brand_name) }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                        <!-- Text Input for other categories -->
-                                        <input type="text" name="brand_name_custom"
-                                            x-show="selectedCategory !== '1' && selectedCategory !== '6'" x-cloak
-                                            placeholder="BRAND NAME"
-                                            class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm" />
-                                    </div>
-
-
-                                    <!-- Model -->
-                                    <div>
-                                        <label class="block text-sm font-medium text-gray-700">Model</label>
-                                        <input type="text" x-ref="model" placeholder="MODEL"
-                                            class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                    </div>
-                                </div>
-
-                                <!-- Technical Specs (Conditional) -->
-                                <div x-show="selectedCategory === '1' || selectedCategory === '6'" x-transition
-                                    class="mt-3">
-                                    <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6 mt-3">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Device Serial
-                                                Number</label>
-                                            <input type="text" placeholder="DEVICE SERIAL NUMBER"
-                                                class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+                                            <!-- Input Field -->
+                                            <input type="text" name="asset_name" placeholder="ASSET NAME"
+                                                autocomplete="off" x-model="assetName" @blur="handleBlur" :class="[
+                                                        'uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm  focus:outline-none',
+                                                        showCheck 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
                                         </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Charger Serial
-                                                Number</label>
-                                            <input type="text" placeholder="CHARGER SERIAL NUMBER"
-                                                class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+                                    </div>
+
+                                    <!-- BRAND FIELD -->
+                                    <div x-data="{
+                                                brandName: '',
+                                                showCheck: false,
+                                                handleBrandBlur() {
+                                                    this.showCheck = this.brandName.trim().length > 0;
+                                                }
+                                            }" class="relative w-full">
+                                        <label class="block text-sm font-medium text-gray-700">
+                                            Brand Name <span class="text-red-600" x-show="!showCheck"
+                                                x-transition>*</span>
+                                        </label>
+
+                                        <!-- Styled Dropdown for IT or Mobile -->
+                                        <div x-show="showBrandDropdown()" x-cloak class="relative w-full">
+                                            <button type="button" @click="openBrand = !openBrand" :class="[
+                                                        'mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none',
+                                                        selectedBrandName.trim().length > 0 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                                <span x-text="selectedBrandName || 'SELECT BRAND'"
+                                                    class="block truncate uppercase"></span>
+
+                                                <svg class="absolute right-3 -mt-4 w-4 h-4 text-gray-500 pointer-events-none"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+
+                                            <!-- Dropdown Options -->
+                                            <ul x-show="openBrand" @click.outside="openBrand = false" x-transition
+                                                class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                                                <li @click="selectedBrandName = 'SELECT BRAND'; $refs.brandInput.value = ''; openBrand = false"
+                                                    class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                    SELECT BRAND
+                                                </li>
+                                                @foreach ($brands as $brand)
+                                                <li @click="selectedBrandName = '{{ addslashes(strtoupper($brand->brand_name)) }}'; $refs.brandInput.value = '{{ $brand->brand_name }}'; openBrand = false"
+                                                    class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                    {{ strtoupper($brand->brand_name) }}
+                                                </li>
+                                                @endforeach
+
+                                            </ul>
+
+                                            <input type="hidden" name="brand_name" x-ref="brandInput">
                                         </div>
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Operating
-                                                System</label>
-                                            <input type="text" placeholder="OPERATING SYSTEM"
-                                                class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+
+                                        <!-- Text Input for non-IT or non-Mobile -->
+                                        <div x-show="!showBrandDropdown()" x-cloak class="relative w-full">
+
+                                            <!-- Brand Name Input -->
+                                            <input type="text" name="brand_name_custom" x-model="brandName"
+                                                autocomplete="off" @blur="handleBrandBlur" placeholder="BRAND NAME"
+                                                :class="[
+                                                        'uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm  focus:outline-none',
+                                                        showCheck 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                        </div>
+
+                                    </div>
+
+                                    <!-- MODEL -->
+                                    <div x-data="{
+                                                    modelName: '',
+                                                    showCheck: false,
+                                                    handleModelBlur() {
+                                                        this.showCheck = this.modelName.trim().length > 0;
+                                                    }
+                                                }">
+                                        <label class="block text-sm font-medium text-gray-700">
+                                            Model <span class="text-red-600" x-show="!showCheck" x-transition>*</span>
+                                        </label>
+
+                                        <div class="relative w-full">
+
+                                            <!-- Model Input -->
+                                            <input type="text" name="model_name" x-model="modelName" autocomplete="off"
+                                                @blur="handleModelBlur" placeholder="MODEL" :class="[
+                                                        ' uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm  focus:outline-none',
+                                                        showCheck 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                        </div>
+
+                                    </div>
+
+                                    <!-- TECHNICAL SPECS -->
+                                    <div x-show="showBrandDropdown()" x-transition class="md:col-span-3">
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+
+                                            <!-- Device Serial Number -->
+                                            <div x-data="{ serial: '', touched: false }">
+                                                <label class="block text-sm font-medium text-gray-700">Device Serial
+                                                    Number</label>
+                                                <input type="text" name="device_serial_number" autocomplete="off"
+                                                    placeholder="SERIAL NUMBER" x-model="serial" @blur="touched = true"
+                                                    :class="[
+                                                        'uppercase mt-1 block w-full rounded-md shadow-sm text-sm',
+                                                        touched && serial.trim().length > 0 
+                                                            ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
+                                                            : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                            </div>
+
+                                            <!-- Charger Serial Number -->
+                                            <div x-data="{ serial: '', touched: false }">
+                                                <label class="block text-sm font-medium text-gray-700">Charger Serial
+                                                    Number</label>
+                                                <input type="text" name="charger_serial_number" autocomplete="off"
+                                                    placeholder="SERIAL NUMBER" x-model="serial" @blur="touched = true"
+                                                    :class="[
+                                                            'uppercase mt-1 block w-full rounded-md shadow-sm text-sm',
+                                                            touched && serial.trim().length > 0 
+                                                                ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
+                                                                : 'border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                        ]">
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Assignment -->
-                                <div x-data="{ type: '', assignedTo: '' }"
-                                    class="w-full border-t border-gray-400 mt-3 pt-3">
+                                <div x-data="{
+                                                type: '',
+                                                openType: false,
+                                                openAssignee: false,
+                                                selectedAssigneeLabel: '',
+                                                selectedAssigneeId: '',
+                                                selectedType: '',
+                                            }" class="w-full border-t border-gray-400 mt-3 pt-3">
+
+
+                                    <!-- Header -->
                                     <div class="flex items-center gap-2 mt-2 pb-4">
-                                        <!-- Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-5 text-blue-800">
                                             <path fill-rule="evenodd"
                                                 d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
                                                 clip-rule="evenodd" />
                                         </svg>
-
-
-
-                                        <!-- Heading -->
                                         <h3 class="text-md font-semibold text-blue-800">Asset Assignment</h3>
                                     </div>
+
                                     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Type</label>
-                                            <select x-model="type"
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                                <option class="text-xs" value="">SELECT TYPE</option>
-                                                <option class="text-xs" value="common">COMMON ASSET</option>
-                                                <option class="text-xs" value="non-common">NON-COMMON ASSET</option>
-                                            </select>
+
+                                        <!-- Type Dropdown -->
+                                        <div class="relative w-full">
+                                            <div class="flex items-center justify-between">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Asset Type
+                                                    <span class="text-red-600" x-show="!selectedType"
+                                                        x-transition>*</span>
+                                                </label>
+
+
+                                                <!-- Tooltip Icon -->
+                                                <div class="relative group flex items-center justify-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="size-5 hover:bg-orange-400 hover:text-white rounded-full text-orange-500 cursor-pointer transition">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                                    </svg>
+
+                                                    <!-- Tooltip Content -->
+                                                    <div
+                                                        class="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-64 z-10 p-3 border-l-4 border-orange-400 bg-orange-50 rounded-md shadow text-xs text-justify text-orange-800 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
+                                                        <p>
+                                                            Select Asset Type. Assign <strong>Common Assets</strong> to
+                                                            Departments and <strong>Non-Common Assets</strong> to
+                                                            Employees.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="button" @click="openType = !openType" :class="[
+                                                        'mt-1 w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none relative',
+                                                        selectedType 
+                                                            ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
+                                                            : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                                <span x-text="selectedType || 'SELECT TYPE'"
+                                                    class="block truncate uppercase"></span>
+                                                <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </button>
+                                            <ul x-show="openType" @click.outside="openType = false" x-transition
+                                                class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                                                <li @click="
+                                                        selectedType = 'COMMON ASSET';
+                                                        type = 'common';
+                                                        selectedAssigneeLabel = 'SELECT DEPARTMENT';
+                                                        selectedAssigneeId = '';
+                                                        openType = false"
+                                                    class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                    COMMON ASSET
+                                                </li>
+                                                <li @click="
+                                                        selectedType = 'NON-COMMON ASSET';
+                                                        type = 'non-common';
+                                                        selectedAssigneeLabel = 'SELECT EMPLOYEE';
+                                                        selectedAssigneeId = '';
+                                                        openType = false"
+                                                    class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                    NON-COMMON ASSET
+                                                </li>
+                                            </ul>
+
+                                            <input type="hidden" name="assignment_type" :value="type">
+
                                         </div>
 
-                                        <div>
+                                        <!-- Assigned To Dropdown -->
+                                        <div x-data="{
+                                                    showTypeWarning: false,
+                                                    handleAssigneeClick() {
+                                                        if (!type) {
+                                                            this.showTypeWarning = true;
+                                                            setTimeout(() => this.showTypeWarning = false, 3000);
+                                                            return;
+                                                        }
+                                                        openAssignee = !openAssignee;
+                                                    }
+                                                }" class="relative w-full">
+
                                             <label class="block text-sm font-medium text-gray-700"
-                                                x-text="type === 'common' ? 'Department Assigned' : 'Employee Assigned'"></label>
-                                            <select name="department_id"
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
-                                                x-show="type === 'common'" x-transition>
-                                                <option value="">SELECT DEPARTMENT</option>
-                                                @foreach ($departments as $department)
-                                                    <option value="{{ $department->department_id }}">
+                                                x-html="type === 'common' 
+                                                ? ('Department Assigned' + (selectedAssigneeId === '' ? ' <span class=\'text-red-600\'>*</span>' : '')) 
+                                                : ('Employee Assigned' + (selectedAssigneeId === '' ? ' <span class=\'text-red-600\'>*</span>' : ''))">
+                                            </label>
+
+                                            <!-- Dropdown -->
+                                            <div>
+                                                <button type="button" @click="handleAssigneeClick" :class="[
+                                                        'mt-1 w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none relative',
+                                                        selectedAssigneeId 
+                                                            ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
+                                                            : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
+                                                    <span x-text="selectedAssigneeLabel || 'SELECT EMPLOYEE'"
+                                                        class="block truncate uppercase"></span>
+                                                    <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </button>
+
+                                                <!-- Warning message -->
+                                                <div x-show="showTypeWarning" x-transition
+                                                    class="mt-1 text-xs italic text-orange-600 px-2 py-1 ">
+                                                    Select Asset Type first.
+                                                </div>
+
+                                                <!-- Department Options -->
+                                                <ul x-show="openAssignee && type === 'common'"
+                                                    @click.outside="openAssignee = false" x-transition
+                                                    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                                                    <li @click="
+                                                        selectedAssigneeLabel = 'SELECT DEPARTMENT';
+                                                        selectedAssigneeId = '';
+                                                        openAssignee = false"
+                                                        class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                        SELECT DEPARTMENT
+                                                    </li>
+                                                    @foreach ($departments as $department)
+                                                    <li @click="
+                                                            selectedAssigneeLabel = '{{ strtoupper($department->department_name) }}';
+                                                            selectedAssigneeId = '{{ $department->department_id }}';
+                                                            openAssignee = false"
+                                                        class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                                         {{ strtoupper($department->department_name) }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
 
-
-                                            <select name="employee_id"
-                                                class="uppercase mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
-                                                x-show="type !== 'common'" x-transition>
-                                                <option value="">SELECT EMPLOYEE</option>
-                                                @foreach ($employees as $employee)
-                                                    <option value="{{ $employee->employee_id }}">
+                                                <!-- Employee Options -->
+                                                <ul x-show="openAssignee && type === 'non-common'"
+                                                    @click.outside="openAssignee = false" x-transition
+                                                    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                                                    <li @click="
+                                                            selectedAssigneeLabel = 'SELECT EMPLOYEE';
+                                                            selectedAssigneeId = '';
+                                                            openAssignee = false"
+                                                        class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                        SELECT EMPLOYEE
+                                                    </li>
+                                                    @foreach ($employees as $employee)
+                                                    <li @click="
+                                                            selectedAssigneeLabel = '{{ strtoupper($employee->employee_lastname) }}, {{ strtoupper($employee->employee_firstname) }}';
+                                                            selectedAssigneeId = '{{ $employee->employee_id }}';
+                                                            openAssignee = false"
+                                                        class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                                         {{ strtoupper($employee->employee_lastname) }},
                                                         {{ strtoupper($employee->employee_firstname) }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                                    </li>
+                                                    @endforeach
+                                                </ul>
+
+                                                <!-- Hidden Input -->
+                                                <input type="hidden" name="assignment_type" :value="type">
+                                                <input type="hidden" name="assignee_id" :value="selectedAssigneeId">
+                                                <input type="hidden" name="assigned_to_name"
+                                                    :value="selectedAssigneeLabel">
+                                            </div>
+                                        </div>
+
+                                        <!-- Date Assigned -->
+                                        <div x-data="{
+                                                dateAssigned: '',
+                                                
+                                            }" class="relative w-full">
+
+                                            <!-- Label -->
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Date Assigned
+                                                <span class="text-red-600" x-show="!dateAssigned" x-transition>*</span>
+                                            </label>
+
+                                            <!-- Input -->
+                                            <div x-data="{
+                                                    dateAssigned: '',
+                                                    today: new Date().toISOString().split('T')[0]
+                                                }">
+                                                <input type="date" name="date_assigned" x-model="dateAssigned"
+                                                                                                    :max="today" :class="[
+                                                                'mt-1 block w-full rounded-md shadow-sm text-sm uppercase',
+                                                                dateAssigned 
+                                                                    ? 'border-2 border-green-600 focus:ring-green-600 focus:border-green-600'
+                                                                    : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                                            ]">
+                                            </div>
 
                                         </div>
 
-                                        <div>
-                                            <label class="block text-sm font-medium text-gray-700">Date Assigned</label>
-                                            <input type="date"
-                                                class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                        </div>
                                     </div>
                                 </div>
 
@@ -346,296 +754,233 @@
                                     </div>
 
                                     <div class="grid grid-cols-1 md:grid-cols-5 gap-6" x-data="{
-            purchaseDate: '',
-            expirationDate: '',
-            warrantyYears: '',
-            computeExpiration() {
-                if (this.purchaseDate && this.warrantyYears !== '') {
-                    let purchase = new Date(this.purchaseDate);
-                    purchase.setFullYear(purchase.getFullYear() + parseInt(this.warrantyYears));
-                    this.expirationDate = purchase.toISOString().split('T')[0];
-                }
-            },
-            computeYears() {
-                if (this.purchaseDate && this.expirationDate) {
-                    const start = new Date(this.purchaseDate);
-                    const end = new Date(this.expirationDate);
-                    const diff = end.getFullYear() - start.getFullYear();
-                    this.warrantyYears = diff;
-                }
-            }
-        }" x-init="
-            $watch('warrantyYears', value => computeExpiration());
-            $watch('expirationDate', value => computeYears());
-            $watch('purchaseDate', () => {
-                if (warrantyYears !== '') computeExpiration();
-                else if (expirationDate) computeYears();
-            });
-        ">
+                                                purchaseDate: '',
+                                                expirationDate: '',
+                                                warrantyYears: '',
+                                                computeExpiration() {
+                                                    if (this.purchaseDate && this.warrantyYears !== '') {
+                                                        let purchase = new Date(this.purchaseDate);
+                                                        purchase.setFullYear(purchase.getFullYear() + parseInt(this.warrantyYears));
+                                                        this.expirationDate = purchase.toISOString().split('T')[0];
+                                                    }
+                                                },
+                                                computeYears() {
+                                                    if (this.purchaseDate && this.expirationDate) {
+                                                        const start = new Date(this.purchaseDate);
+                                                        const end = new Date(this.expirationDate);
+                                                        const diff = end.getFullYear() - start.getFullYear();
+                                                        this.warrantyYears = diff;
+                                                    }
+                                                }
+                                            }" x-init="
+                                                $watch('warrantyYears', value => computeExpiration());
+                                                $watch('expirationDate', value => computeYears());
+                                                $watch('purchaseDate', () => {
+                                                    if (warrantyYears !== '') computeExpiration();
+                                                    else if (expirationDate) computeYears();
+                                                });
+                                            ">
 
                                         <!-- Warranty Fields (spans 3/5 = 60%) -->
                                         <div class="col-span-5 md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <!-- Purchase Date -->
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700">Purchase
-                                                    Date</label>
-                                                <input type="date" x-model="purchaseDate"
-                                                    class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Purchase Date <span class="text-red-600" x-show="!purchaseDate"
+                                                        x-transition>*</span>
+                                                </label>
+
+                                                <input type="date" name="purchase_date" x-model="purchaseDate" :class="[
+                                                    'uppercase mt-1 block w-full rounded-md shadow-sm text-sm',
+                                                    purchaseDate 
+                                                        ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
+                                                        : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                ]">
                                             </div>
 
+
                                             <!-- Free Replacement Period -->
-                                            <div x-data="{ unit: 'days' }">
-                                                <label class="block text-sm font-medium text-gray-700">Free Replacement
-                                                    Period</label>
+                                            <div x-data="{
+                                                        replacementValue: '',
+                                                        replacementUnit: '',
+                                                        openUnit: false,
+                                                        clearUnitIfEmpty() {
+                                                            if (!this.replacementValue) {
+                                                                this.replacementUnit = '';
+                                                            }
+                                                        }
+                                                    }" x-effect="clearUnitIfEmpty()" class="relative w-full">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Free Replacement Period
+                                                </label>
+
                                                 <div class="flex gap-2 mt-1 items-start">
-                                                    <input type="number" min="0"
-                                                        class="uppercase w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
+                                                    <input type="number" name="free_replacement_value"
+                                                        x-model="replacementValue" min="0"
+                                                        class="uppercase w-5/12 rounded-md shadow-sm text-sm px-2 py-2 bg-white focus:outline-none"
+                                                        :class="replacementValue 
+                                                            ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"
                                                         placeholder="E.G., 30">
-                                                    <select x-model="unit"
-                                                        class="uppercase w-28 rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
-                                                        <option value="days">DAYS</option>
-                                                        <option value="weeks">WEEKS</option>
-                                                    </select>
+
+                                                    <div class="relative w-7/12">
+                                                        <button type="button" @click="openUnit = !openUnit"
+                                                            class="w-full rounded-md shadow-sm text-sm px-3 py-2 text-left bg-white uppercase focus:outline-none"
+                                                            :class="replacementValue 
+                                                                ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
+                                                                : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
+                                                            <span x-text="replacementUnit || 'SELECT'"
+                                                                class="block truncate"></span>
+                                                            <svg class="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none"
+                                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    stroke-width="2" d="M19 9l-7 7-7-7" />
+                                                            </svg>
+                                                        </button>
+
+                                                        <ul x-show="openUnit" @click.outside="openUnit = false"
+                                                            x-transition
+                                                            class="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-xl py-1 text-sm ring-1 ring-black ring-opacity-5 overflow-auto text-gray-800">
+                                                            <li @click="replacementUnit = 'DAYS'; openUnit = false"
+                                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                                DAYS
+                                                            </li>
+                                                            <li @click="replacementUnit = 'WEEKS'; openUnit = false"
+                                                                class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                                                WEEKS
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
+
+                                                <!-- Hidden Input for form submission -->
+                                                <input type="hidden" name="free_replacement_unit"
+                                                    :value="replacementUnit">
                                             </div>
+
+
 
                                             <!-- Warranty Expiration Date -->
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700">Warranty
-                                                    Expiration Date</label>
-                                                <input type="date" x-model="expirationDate"
-                                                    class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Warranty Expiration Date
+                                                </label>
+                                                <input type="date" name="warranty_exp_date" x-model="expirationDate"
+                                                    :class="[
+                                                        'uppercase mt-1 block w-full rounded-md shadow-sm text-sm',
+                                                        expirationDate 
+                                                            ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]">
                                             </div>
+
 
                                             <!-- Warranty Duration -->
                                             <div>
-                                                <label class="block text-sm font-medium text-gray-700">Warranty Duration
-                                                    (Years)</label>
-                                                <input type="number" min="0" x-model="warrantyYears"
-                                                    class="uppercase mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
-                                                    placeholder="E.G., 2">
+                                                <label class="block text-sm font-medium text-gray-700">
+                                                    Warranty Duration (Years)
+                                                </label>
+                                                <input type="number" name="warranty_years" min="0"
+                                                    x-model="warrantyYears" :class="[
+                                                        'uppercase mt-1 block w-full rounded-md shadow-sm text-sm',
+                                                        warrantyYears 
+                                                            ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
+                                                            : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                    ]" placeholder="E.G., 2">
                                             </div>
+
                                         </div>
 
                                         <!-- Description (spans 2/5 = 40%) -->
-                                        <div class="col-span-5 md:col-span-2 flex flex-col">
-                                            <label class="block text-sm font-medium text-gray-700">Description</label>
-                                            <textarea
-                                                class="uppercase mt-1 block flex-grow resize-none w-full rounded-md border-gray-300 shadow-sm focus:ring-blue-600 focus:border-blue-600 text-sm"
-                                                placeholder="DESCRIPTION"></textarea>
+                                        <div class="col-span-5 md:col-span-2 flex flex-col"
+                                            x-data="{ description: '' }">
+                                            <label class="block text-sm font-medium text-gray-700">
+                                                Description
+                                            </label>
+                                            <textarea name="description" x-model="description" :class="[
+                                                    'uppercase mt-1 block flex-grow resize-none w-full rounded-md shadow-sm text-sm',
+                                                    description 
+                                                        ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
+                                                        : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
+                                                ]" placeholder="DESCRIPTION">
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
 
-
-                            </div>
-
-                            <!-- Add to List Button -->
-                            <div class="flex justify-end mt-6">
-                                <button type="button" @click="addAsset"
-                                    class="btn text-[#151847] px-5 py-2 rounded-lg ring-0  hover:bg-[#F6D400]/80  active:bg-[#F6D400] bg-[#F6D400] text-sm">
-                                    Add
-                                </button>
-                            </div>
-                        </div>
-                    </section>
-                </main>
-            </div>
-            <!-- Right Side Sticky Card -->
-            <div class="w-full lg:w-4/12 mt-8 lg:-mt-3.5 lg:ml-6" x-data="{
-        icons: [
-            `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
-                <path fill-rule='evenodd' d='M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z' clip-rule='evenodd' />
-            </svg>`,
-            `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
-                <path d='M10.5 18.75a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z' />
-                <path fill-rule='evenodd' d='M8.625.75A3.375 3.375 0 0 0 5.25 4.125v15.75a3.375 3.375 0 0 0 3.375 3.375h6.75a3.375 3.375 0 0 0 3.375-3.375V4.125A3.375 3.375 0 0 0 15.375.75h-6.75ZM7.5 4.125C7.5 3.504 8.004 3 8.625 3H9.75v.375c0 .621.504 1.125 1.125 1.125h2.25c.621 0 1.125-.504 1.125-1.125V3h1.125c.621 0 1.125.504 1.125 1.125v15.75c0 .621-.504 1.125-1.125 1.125h-6.75A1.125 1.125 0 0 1 7.5 19.875V4.125Z' clip-rule='evenodd' />
-            </svg>`,
-            `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' class='size-6'>
-                <path d='M10.5 18a.75.75 0 0 0 0 1.5h3a.75.75 0 0 0 0-1.5h-3Z' />
-                <path fill-rule='evenodd' d='M7.125 1.5A3.375 3.375 0 0 0 3.75 4.875v14.25A3.375 3.375 0 0 0 7.125 22.5h9.75a3.375 3.375 0 0 0 3.375-3.375V4.875A3.375 3.375 0 0 0 16.875 1.5h-9.75ZM6 4.875c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v14.25c0 .621-.504 1.125-1.125 1.125h-9.75A1.125 1.125 0 0 1 6 19.125V4.875Z' clip-rule='evenodd' />
-            </svg>`
-        ],
-        currentIndex: 0,
-        get currentIcon() {
-            return this.icons[this.currentIndex];
-        },
-        rotate() {
-            setInterval(() => {
-                this.currentIndex = (this.currentIndex + 1) % this.icons.length;
-            }, 1000);
-        }
-     }" x-init="rotate">
-                <div class="sticky -top-6">
-                    <div class="bg-white rounded-md shadow-xl border border-transparent px-2 py-5 space-y-5">
-                        <div class="flex justify-between items-center">
-                            <div class="flex items-center gap-3">
-                                <div class="bg-blue-100 text-blue-700 p-2 rounded-full">
-                                    <div x-html="currentIcon"></div>
-                                </div>
-                                <div>
-                                    <h2 class="text-lg font-semibold text-blue-900">Asset Summary</h2>
-                                    <p class="text-xs text-gray-500">Review and finalize assets</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div x-data="accordionData" class="bg-transparent p-2 rounded-md space-y-1">
-                            <div class="text-xs font-semibold text-gray-700 mb-1">Total Assets: <span
-                                    x-text="assets.length"></span></div>
-
-                            <template x-for="(asset, index) in assets" :key="asset.id">
-                                <div class="border rounded-md shadow bg-white">
-                                    <!-- Accordion Header -->
-                                    <button @click="selected !== index ? selected = index : selected = null"
-                                        class="w-full flex justify-between items-center px-4 py-2 text-left">
-                                        <span class="font-semibold text-blue-900 text-sm" x-text="asset.name"></span>
-                                        <svg :class="{ 'rotate-180': selected === index }"
-                                            class="w-4 h-4 transform transition-transform duration-300" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
+                                <!-- Add to List Button -->
+                                <div class="flex justify-end mt-6">
+                                    <button type="button" onclick="emitAsset()"
+                                        class="btn text-[#151847] px-5 py-2 rounded-lg ring-0  hover:bg-[#F6D400]/80  active:bg-[#F6D400] bg-[#F6D400] text-sm">
+                                        Add
                                     </button>
 
-                                    <!-- Accordion Content -->
-                                    <div x-show="selected === index" x-collapse x-cloak
-                                        class="px-4 pb-3 pt-2 text-xs text-gray-700 space-y-1">
-                                        <div><strong>Brand:</strong> <span x-text="asset.brand"></span></div>
-                                        <div><strong>Model:</strong> <span x-text="asset.model"></span></div>
-                                        <div><strong>Category:</strong> <span x-text="asset.category"></span></div>
-                                        <div><strong>Status:</strong> <span x-text="asset.status"></span></div>
-                                        <div><strong>Condition:</strong> <span x-text="asset.condition"></span></div>
-                                        <div><strong>Purchase Date:</strong> <span x-text="asset.purchase_date"></span>
-                                        </div>
-                                        <div><strong>Warranty Expiry:</strong> <span
-                                                x-text="asset.warranty_expiry"></span>
-                                        </div>
-                                        <div><strong>Warranty Years:</strong> <span
-                                                x-text="asset.warranty_years"></span>
-                                        </div>
-                                        <div><strong>Replacement Period:</strong> <span
-                                                x-text="asset.replacement_period"></span></div>
-                                        <div><strong>Replacement Unit:</strong> <span
-                                                x-text="asset.replacement_unit"></span></div>
-                                        <div><strong>Assignment Type:</strong> <span
-                                                x-text="asset.assignment_type"></span>
-                                        </div>
-                                        <div><strong>Assigned To:</strong> <span x-text="asset.assigned_to"></span>
-                                        </div>
-                                        <div><strong>Date Assigned:</strong> <span x-text="asset.date_assigned"></span>
-                                        </div>
-                                        <div><strong>Serial #:</strong> <span x-text="asset.device_serial"></span></div>
-                                        <div><strong>Charger Serial #:</strong> <span
-                                                x-text="asset.charger_serial"></span>
-                                        </div>
-                                        <div><strong>Operating System:</strong> <span x-text="asset.os"></span></div>
-                                        <div><strong>Description:</strong> <span x-text="asset.description"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </template>
-                        </div>
 
-                        <script>
-                            document.addEventListener('alpine:init', () => {
-                                Alpine.data('accordionData', () => ({
-                                    selected: null,
-                                    assets: [
-                                        {
-                                            id: 1,
-                                            name: 'Dell Laptop',
-                                            brand: 'DELL',
-                                            model: 'XPS 13',
-                                            category: 'IT EQUIPMENT',
-                                            status: 'IN USE',
-                                            condition: 'BRAND NEW',
-                                            purchase_date: '2023-01-01',
-                                            warranty_expiry: '2025-01-01',
-                                            warranty_years: 2,
-                                            replacement_period: '30',
-                                            replacement_unit: 'DAYS',
-                                            assignment_type: 'NON-COMMON',
-                                            assigned_to: 'DOE, JOHN',
-                                            date_assigned: '2023-01-10',
-                                            device_serial: 'SN123456789',
-                                            charger_serial: 'CH987654321',
-                                            os: 'Windows 11 Pro',
-                                            description: 'Developer laptop with accessories'
-                                        },
-                                        {
-                                            id: 2,
-                                            name: 'Office Chair',
-                                            brand: 'HERMAN MILLER',
-                                            model: 'AERON',
-                                            category: 'FURNITURE',
-                                            status: 'AVAILABLE',
-                                            condition: 'USED - GOOD',
-                                            purchase_date: '2022-06-10',
-                                            warranty_expiry: '2024-06-10',
-                                            warranty_years: 2,
-                                            replacement_period: '0',
-                                            replacement_unit: 'DAYS',
-                                            assignment_type: 'COMMON',
-                                            assigned_to: 'IT DEPARTMENT',
-                                            date_assigned: '2022-06-15',
-                                            device_serial: '',
-                                            charger_serial: '',
-                                            os: '',
-                                            description: 'Ergonomic chair for team lead'
-                                        },
-                                        {
-                                            id: 3,
-                                            name: 'Warehouse Scanner',
-                                            brand: 'HONEYWELL',
-                                            model: 'X123',
-                                            category: 'TOOLS',
-                                            status: 'UNDER MAINTENANCE',
-                                            condition: 'USED - FAIR',
-                                            purchase_date: '2021-09-05',
-                                            warranty_expiry: '2023-09-05',
-                                            warranty_years: 2,
-                                            replacement_period: '7',
-                                            replacement_unit: 'DAYS',
-                                            assignment_type: 'COMMON',
-                                            assigned_to: 'WAREHOUSE',
-                                            date_assigned: '2021-10-01',
-                                            device_serial: 'WS456789123',
-                                            charger_serial: 'CH456789123',
-                                            os: 'Firmware v2.1',
-                                            description: 'Handheld barcode scanner'
+                                    <script>
+                                        function emitAsset() {
+                                            const getVal = (sel) => document.querySelector(sel)?.value?.toUpperCase() || '';
+                                            const getRaw = (sel) => document.querySelector(sel)?.value || '';
+
+                                            const payload = {
+                                                id: Date.now(),
+                                                name: getVal('input[name="asset_name"]'),
+                                                brand: getVal('input[name="brand_name"]') || getVal('input[name="brand_name_custom"]'),
+                                                model: getVal('input[name="model_name"]'),
+                                                category: getVal('input[name="category_name"]'),
+                                                status: getVal('input[name="status_name"]'),
+                                                condition: getRaw('input[name="condition_name"]'),
+                                                purchase_date: getRaw('input[name="purchase_date"]'),
+                                                warranty_expiry: getRaw('input[name="warranty_exp_date"]'),
+                                                warranty_years: getRaw('input[name="warranty_years"]'),
+                                                replacement_period: getRaw('input[name="free_replacement_value"]'),
+                                                replacement_unit: getRaw('select[name="free_replacement_unit"]'),
+                                                assignment_type: getVal('input[name="assignment_type"]'),
+                                                assigned_to: getVal('input[name="assigned_to_name"]'),
+                                                date_assigned: getRaw('input[name="date_assigned"]'),
+                                                device_serial: getVal('input[name="device_serial_number"]'),
+                                                charger_serial: getVal('input[name="charger_serial_number"]'),
+                                                description: getVal('textarea[name="description"]')
+                                            };
+                                            console.log('Dispatching asset to Livewire:', payload);
+                                            Livewire.dispatch('add-asset-to-queue', {payload});
                                         }
-                                        // Add up to 5 assets here...
-                                    ]
-                                }));
-                            });
-                        </script>
-
-
-                        <!-- Buttons -->
-                        <div class="flex flex-col gap-2">
-                            <button
-                                class="w-full bg-red-100 text-red-600 hover:bg-red-200 text-sm font-medium py-2 rounded-md">
-                                Clear Queue
-                            </button>
-                            <button
-                                class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-2 rounded-md">
-                                Submit
-                            </button>
+                                    </script>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </form>
             </div>
+            {{-- @if(session('validatedAsset'))
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                                        const payload = @json(session('validatedAsset'));
+                                        console.log('Dispatching asset to Livewire:', payload);
+                                            
+                                        Livewire.dispatch('add-asset-to-queue', { payload });
+                                    });
+            </script>
+            @endif --}}
+
+            <!-- Right Side Sticky Card -->
+            <livewire:ams.asset.add-asset-summary>
+
         </div>
 
+        <!-- Checkmark Icon -->
+        {{-- <div x-show="showCheck" x-transition
+            class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+            <!-- Checkmark SVG -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                class="size-5 text-green-600">
 
-        <script>
-            new TomSelect("#employeeSelect", {
-                create: false,
-                sortField: {
-                    field: "text",
-                    direction: "asc"
-                }
-            });
-        </script>
+                <!-- Solid Filled Circle -->
+                <path
+                    d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
+
+                <!-- Animated Checkmark (stroke only) -->
+                <path d="M9 12.75 11.25 15 15 9.75" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" class="animate-drawCheck"
+                    style="stroke-dasharray: 24; stroke-dashoffset: 24;" />
+            </svg>
+        </div> --}}
 </x-app-layout>
