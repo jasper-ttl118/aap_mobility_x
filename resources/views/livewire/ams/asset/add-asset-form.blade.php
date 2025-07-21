@@ -35,40 +35,66 @@
 
             <!-- Asset Basic Info -->
             <div x-data="{
-                            // shared state
-                            openCategory: false,
-                            openBrand: false,
-                            openCondition: false,
-                            openStatus: false,
+                    // shared state
+                    openCategory: false,
+                    openBrand: false,
+                    openCondition: false,
+                    openStatus: false,
 
-                            selectedCategoryId: '',
-                            selectedCategoryName: '',
+                    selectedCategoryId: '',
+                    selectedCategoryName: '',
 
-                            selectedBrandId: @entangle('brand_id').defer,
-                            selectedBrandName: @entangle('brand_name').defer,
-                            brandName: @entangle('brand_name_custom').defer,
+                    selectedBrandId: @entangle('brand_id').defer,
+                    selectedBrandName: @entangle('brand_name').defer,
+                    brandName: @entangle('brand_name_custom').defer,
 
-                            selectedConditionId: '',
-                            selectedConditionName:'' ,
+                    selectedConditionId: '',
+                    selectedConditionName: '',
 
-                            selectedStatusId: '',
-                            selectedStatusName: '',
+                    selectedStatusId: '',
+                    selectedStatusName: '',
 
-                            assetName: @entangle('asset_name').defer,
-                            modelName: @entangle('model_name').defer,
+                    assetName: @entangle('asset_name').defer,
+                    modelName: @entangle('model_name').defer,
 
-                            deviceSerial: @entangle('device_serial_number').defer,
-                            chargerSerial: @entangle('charger_serial_number').defer,
+                    deviceSerial: @entangle('device_serial_number').defer,
+                    chargerSerial: @entangle('charger_serial_number').defer,
 
+                    showCheck(field) {
+                        return field && field.trim().length > 0;
+                    },
 
-                            showCheck(field) {
-                                return field && field.trim().length > 0;
-                            },
+                    showBrandDropdown() {
+                        return this.selectedCategoryId === '1' || this.selectedCategoryId === '6';
+                    },
 
-                            showBrandDropdown() {
-                                return this.selectedCategoryId === '1' || this.selectedCategoryId === '6';
-                            }
-                        }" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
+                    resetFields() {
+                        this.openCategory = false;
+                        this.openBrand = false;
+                        this.openCondition = false;
+                        this.openStatus = false;
+
+                        this.selectedCategoryId = '';
+                        this.selectedCategoryName = '';
+
+                        this.selectedBrandId = '';
+                        this.selectedBrandName = '';
+                        this.brandName = '';
+
+                        this.selectedConditionId = '';
+                        this.selectedConditionName = '';
+
+                        this.selectedStatusId = '';
+                        this.selectedStatusName = '';
+
+                        this.assetName = '';
+                        this.modelName = '';
+
+                        this.deviceSerial = '';
+                        this.chargerSerial = '';
+                    }
+                }" x-on:form-cleared.window="resetFields()" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
+
 
                 <!-- CATEGORY DROPDOWN -->
                 <div class="relative w-full">
@@ -906,7 +932,7 @@
                             </label>
                             <input type="number" min="0" placeholder="E.G., 2" x-model="warrantyYears"
                                 @input="$wire.set('warranty_years', warrantyYears)"
-                                    class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="warrantyYears 
+                                class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="warrantyYears 
                                     ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                     : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
                         </div>
@@ -922,19 +948,32 @@
                             class="uppercase mt-1 block flex-grow resize-none w-full rounded-md shadow-sm text-sm"
                             :class="description 
                                 ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
-                                : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"
-                        ></textarea>
+                                : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"></textarea>
                     </div>
                 </div>
             </div>
 
             <!-- Add to List Button -->
             <div class="flex justify-end mt-6">
-                <button type="submit"
-                    class="btn text-[#151847] px-5 py-2 rounded-lg ring-0  hover:bg-[#F6D400]/80  active:bg-[#F6D400] bg-[#F6D400] text-sm">
-                    Add
+                <button type="submit" wire:loading.attr="disabled" wire:target="addAsset" {{-- Optional: target specific
+                    method --}}
+                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium text-white bg-[#F59E0B]/80 hover:bg-[#F59E0B] transition disabled:opacity-50 disabled:cursor-wait">
+                    <!-- Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 16h6" />
+                        <path d="M19 13v6" />
+                        <path
+                            d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                        <path d="m7.5 4.27 9 5.15" />
+                        <polyline points="3.29 7 12 12 20.71 7" />
+                        <line x1="12" y1="22" x2="12" y2="12" />
+                    </svg>
+                    Add Asset
                 </button>
+
             </div>
+
         </div>
     </div>
 </form>

@@ -69,6 +69,8 @@ class AddAssetForm extends Component
     $this->dispatch('add-asset-to-queue', $validated);
 
     $this->reset();
+    $this->dispatch('form-cleared');
+   
     session()->flash('success', 'Asset validated and dispatched to queue.');
 }
 
