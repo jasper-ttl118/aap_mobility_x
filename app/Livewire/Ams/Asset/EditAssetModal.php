@@ -70,6 +70,8 @@ class EditAssetModal extends Component
 
     protected $listeners = ['open-edit-asset-modal' => 'loadSection'];
 
+    
+
     #[On('open-edit-asset-modal')]
     public function loadSection($payload)
     {

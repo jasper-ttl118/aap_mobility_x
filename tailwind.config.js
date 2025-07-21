@@ -61,7 +61,7 @@ export default {
                 fadeInUp: 'fadeInUp 0.5s ease-out',
                 pulseScale: 'pulseScale 2s ease-in-out infinite',
                 shake: 'shake 4s ease-in-out infinite',
-                drawCheck: 'drawCheck 2s ease-in-out forwards',
+                drawCheck: 'drawCheck 2s ease-in-out forwards infinite',
             },
 
             fontFamily: {

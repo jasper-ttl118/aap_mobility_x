@@ -246,14 +246,18 @@ class AssetController extends Controller
 
     public function validateAndEmit(Request $request)
     {
-        // dd($request);
-        $validator = Validator::make($request->all(),[
+        $validated = $request->validate([
             'asset_name' => 'required|string|max:255',
             'model_name' => 'required|string|max:255',
             'category_id' => 'required|exists:asset_categories,category_id',
             'status_id' => 'required|exists:asset_statuses,status_id',
+            'brand_id' => 'required_without:brand_name_custom|nullable',
+            'brand_name_custom' => 'required_without:brand_id|nullable|string|max:255',
             'condition_id' => 'required|exists:asset_conditions,condition_id',
             'asset_type' => 'required|in:1,2',
+            'date_accountable' => 'required|date',
+            'department_id' => 'nullable|required_if:asset_type,1|exists:departments,department_id',
+            'employee_id' => 'nullable|required_if:asset_type,2|exists:employees,employee_id',
             'purchase_date' => 'required|date',
             'warranty_exp_date' => 'nullable|date|after_or_equal:purchase_date',
             'free_replacement_value' => 'nullable|numeric',
@@ -267,9 +271,7 @@ class AssetController extends Controller
             'check_out_date' => 'nullable|date',
             'check_in_date' => 'nullable|date',
             'description' => 'nullable|string',
-            'date_accountable' => 'nullable|date',
-            'department_id' => 'nullable|required_if:asset_type,1|exists:departments,department_id',
-            'employee_id' => 'nullable|required_if:asset_type,2|exists:employees,employee_id',
+
         ], [
             'asset_name.required' => 'Asset name is required.',
             'model_name.required' => 'Model name is required.',
@@ -292,23 +294,14 @@ class AssetController extends Controller
             'employee_id.exists' => 'Selected employee does not exist.',
         ]);
 
-        // $validated['id'] = now()->timestamp;
+       
+        // if ($validator->fails()) {
+        //     dd($validator->errors()->all());
+        // }
 
-        // // Flash to session for JS to read
-        // session()->flash('validatedAsset', $validated);
+        // $validated = $validator->validated();
 
-        // // Redirect back to the same form
-        // return redirect()->back();
-
-        // session()->flash('validatedAsset', $validated);
-if ($validator->fails()) {
-        dd($validator->errors()->all()); // 🔍 See the errors
-    }
-
-    $validated = $validator->validated();
-    dd($validated); // Just to confirm
-
-        return redirect()->back()->with('validatedAsset', $validator);
+        return redirect()->back()->with('validatedAsset', $validated);
     }
 
 
