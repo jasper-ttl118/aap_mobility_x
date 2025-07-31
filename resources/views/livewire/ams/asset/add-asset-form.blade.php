@@ -1,4 +1,4 @@
-<form wire:submit.prevent="addToQueue">
+<div>
     @csrf
     <div class="p-10 space-y-8 space-y-1.5 @lg/main:space-y-14">
         <div class="gap-y-3 flex flex-col">
@@ -41,24 +41,26 @@
                     openCondition: false,
                     openStatus: false,
 
-                    selectedCategoryId: '',
-                    selectedCategoryName: '',
+                    propertyCode: @entangle('property_code').defer,
 
-                    selectedBrandId: @entangle('brand_id').defer,
-                    selectedBrandName: @entangle('brand_name').defer,
-                    brandName: @entangle('brand_name_custom').defer,
+                    selectedCategoryId: @entangle('category_id'),
+                    selectedCategoryName: @entangle('category_name'),
 
-                    selectedConditionId: '',
-                    selectedConditionName: '',
+                    selectedConditionId: @entangle('condition_id'),
+                    selectedConditionName: @entangle('condition_name'),
 
-                    selectedStatusId: '',
-                    selectedStatusName: '',
+                    selectedStatusId: @entangle('status_id'),
+                    selectedStatusName: @entangle('status_name'),
+                   
+                    selectedBrandId: @entangle('brand_id'),
+                    selectedBrandName: @entangle('brand_name'),
+                    brandName: @entangle('brand_name_custom'),
 
-                    assetName: @entangle('asset_name').defer,
-                    modelName: @entangle('model_name').defer,
+                    assetName: @entangle('asset_name'),
+                    modelName: @entangle('model_name'),
 
-                    deviceSerial: @entangle('device_serial_number').defer,
-                    chargerSerial: @entangle('charger_serial_number').defer,
+                    deviceSerial: @entangle('device_serial_number'),
+                    chargerSerial: @entangle('charger_serial_number'),
 
                     showCheck(field) {
                         return field && field.trim().length > 0;
@@ -76,6 +78,7 @@
 
                         this.selectedCategoryId = '';
                         this.selectedCategoryName = '';
+                        this.propertyCode = '';
 
                         this.selectedBrandId = '';
                         this.selectedBrandName = '';
@@ -92,8 +95,20 @@
 
                         this.deviceSerial = '';
                         this.chargerSerial = '';
+                    },
+
+                    generatePropertyCode() {
+                        if (!this.selectedCategoryName) return;
+
+                        const catCode = this.selectedCategoryName.slice(0, 3).toUpperCase();
+                        const date = new Date();
+                        const dateCode = date.toISOString().slice(0, 10).replaceAll('-', '');
+                        const rand = Math.floor(100 + Math.random() * 900); // 3-digit random
+
+                        this.propertyCode = `${catCode}-${dateCode}-${rand}`;
                     }
-                }" x-on:form-cleared.window="resetFields()" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
+                }" x-on:form-cleared.window="resetFields()"
+                class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
 
 
                 <!-- CATEGORY DROPDOWN -->
@@ -106,18 +121,45 @@
                         </label>
 
                         <div class="relative group flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor"
-                                class="size-5 hover:bg-orange-400 hover:text-white rounded-full text-orange-500 cursor-pointer transition">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none"
+                                class="size-5 hover:bg-blue-600 hover:text-white rounded-full text-blue-600 cursor-pointer transition"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-info-icon lucide-info">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
                             </svg>
+
                             <div
-                                class="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-64 z-10 p-3 border-l-4 border-orange-400 bg-orange-50 rounded-md shadow text-xs text-justify text-orange-800 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
-                                <p>
-                                    Select the <strong>Category</strong> first. For <strong>IT Equipments</strong> or
-                                    <strong>Mobile Devices</strong>, choose a brand from the dropdown list. For other
-                                    asset types, manually enter the brand name.
+                                class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300 border border-gray-200">
+                                <!-- Icon Badge -->
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div
+                                        class="flex items-center justify-center w-8 h-8 rounded-full border border-yellow-200 bg-yellow-100 text-yellow-700 shadow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-package-plus-icon">
+                                            <path d="M16 16h6" />
+                                            <path d="M19 13v6" />
+                                            <path
+                                                d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                                            <path d="m7.5 4.27 9 5.15" />
+                                            <polyline points="3.29 7 12 12 20.71 7" />
+                                            <line x1="12" x2="12" y1="22" y2="12" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-gray-800 text-base">Brand Selection Tip</span>
+                                </div>
+
+                                <!-- Tooltip Body -->
+                                <p class="leading-snug text-justify text-xs">
+                                    Start by selecting a <span class="font-medium text-gray-900">category</span>. For
+                                    <span class="font-medium text-gray-900">IT Equipment</span> or
+                                    <span class="font-medium text-gray-900">Mobile Devices</span>, choose a brand from
+                                    the list.
+                                    For other asset types, manually enter the brand name.
                                 </p>
                             </div>
                         </div>
@@ -140,7 +182,7 @@
 
                     <!-- Error Message -->
                     @error('category_id')
-                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs italic text-red-600">The asset category is required.</p>
                     @enderror
 
                     <!-- Dropdown Items -->
@@ -151,8 +193,6 @@
                         <li @click="
                                 selectedCategoryId = '';
                                 selectedCategoryName = '';
-                                $refs.categoryInput.value = '';
-                                $refs.categoryInput.dispatchEvent(new Event('input'));
                                 openCategory = false
                             " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             SELECT CATEGORY
@@ -163,8 +203,8 @@
                         <li @click="
                             selectedCategoryId = '{{ $category->category_id }}';
                             selectedCategoryName = '{{ strtoupper($category->category_name) }}';
-                            $refs.categoryInput.value = selectedCategoryId;
-                            $refs.categoryInput.dispatchEvent(new Event('input'));
+                            generatePropertyCode();
+                            $wire.set('property_code', propertyCode);
                             openCategory = false
                         " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             {{ strtoupper($category->category_name) }}
@@ -172,11 +212,8 @@
                         @endforeach
                     </ul>
 
-                    <input type="hidden" x-ref="categoryInput" wire:model.defer="category_id"
-                        :value="selectedCategoryId">
-
+                    <input type="hidden" name="property_code" x-model="propertyCode" wire:model.defer="property_code">
                 </div>
-
 
                 <!-- CONDITION DROPDOWN -->
                 <div class="relative w-full">
@@ -205,7 +242,7 @@
 
                     <!-- Error -->
                     @error('condition_id')
-                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs italic text-red-600">The asset condition is required.</p>
                     @enderror
 
                     <!-- Dropdown Items -->
@@ -216,8 +253,6 @@
                         <li @click="
                                 selectedConditionId = '';
                                 selectedConditionName = '';
-                                $refs.conditionInput.value = '';
-                                $refs.conditionInput.dispatchEvent(new Event('input'));
                                 openCondition = false
                             " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             SELECT CONDITION
@@ -228,20 +263,13 @@
                         <li @click="
                                 selectedConditionId = '{{ $condition->condition_id }}';
                                 selectedConditionName = '{{ strtoupper($condition->condition_name) }}';
-                                $refs.conditionInput.value = selectedConditionId;
-                                $refs.conditionInput.dispatchEvent(new Event('input'));
                                 openCondition = false"
                             class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             {{ strtoupper($condition->condition_name) }}
                         </li>
                         @endforeach
                     </ul>
-
-                    <input type="hidden" x-ref="conditionInput" wire:model.defer="condition_id"
-                        :value="selectedConditionId">
-
                 </div>
-
 
                 <!-- STATUS DROPDOWN -->
                 <div class="relative w-full">
@@ -269,7 +297,7 @@
 
                     <!-- Error Display -->
                     @error('status_id')
-                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs italic text-red-600">The asset status is required.</p>
                     @enderror
 
                     <!-- Dropdown List -->
@@ -280,8 +308,6 @@
                         <li @click="
                                 selectedStatusId = '';
                                 selectedStatusName = '';
-                                $refs.statusInput.value = '';
-                                $refs.statusInput.dispatchEvent(new Event('input'));
                                 openStatus = false
                             " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             SELECT STATUS
@@ -292,16 +318,12 @@
                         <li @click="
                             selectedStatusId = '{{ $status->status_id }}';
                             selectedStatusName = '{{ strtoupper($status->status_name) }}';
-                            $refs.statusInput.value = selectedStatusId;
-                            $refs.statusInput.dispatchEvent(new Event('input'));
                             openStatus = false"
                             class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             {{ strtoupper($status->status_name) }}
                         </li>
                         @endforeach
                     </ul>
-                    <input type="hidden" x-ref="statusInput" wire:model.defer="status_id" :value="selectedStatusId">
-
                 </div>
 
                 <!-- ASSET NAME -->
@@ -313,7 +335,7 @@
                     </label>
 
                     <!-- Input -->
-                    <input type="text" name="asset_name" x-model="assetName" wire:model.defer="asset_name"
+                    <input type="text" name="asset_name" x-model="assetName" @input="$wire.set('asset_name', assetName)"
                         placeholder="ASSET NAME" autocomplete="off"
                         class="uppercase mt-1 w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                         :class="{
@@ -321,9 +343,10 @@
                             'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(assetName)
                         }">
 
+
                     <!-- Error Message -->
                     @error('asset_name')
-                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs italic text-red-600">The asset name is required.</p>
                     @enderror
                 </div>
 
@@ -343,7 +366,7 @@
                             class="mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none"
                             :class="{
                                 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(selectedBrandName),
-                                'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(selectedBrandName)
+                                'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600': !showCheck(selectedBrandName)
                             }">
                             <span x-text="selectedBrandName || 'SELECT BRAND'" class="block truncate uppercase"></span>
                             <svg class="absolute right-3 mt-1 top-3 w-4 h-4 text-gray-500 pointer-events-none"
@@ -359,8 +382,6 @@
                             <li @click="
                                     selectedBrandName = '';
                                     selectedBrandId = '';
-                                    $refs.brandInput.value = '';
-                                    $refs.brandInput.dispatchEvent(new Event('input'));
                                     openBrand = false
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 SELECT BRAND
@@ -370,8 +391,6 @@
                             <li @click="
                                     selectedBrandName = '{{ strtoupper(addslashes($brand->brand_name)) }}';
                                     selectedBrandId = '{{ $brand->brand_id }}';
-                                    $refs.brandInput.value = selectedBrandId;
-                                    $refs.brandInput.dispatchEvent(new Event('input'));
                                     openBrand = false
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 {{ strtoupper($brand->brand_name) }}
@@ -379,31 +398,27 @@
                             @endforeach
                         </ul>
 
-                        <!-- Hidden Inputs for Livewire -->
-                        <input type="hidden" x-ref="brandInput" name="brand_id" wire:model.defer="brand_id"
-                            :value="selectedBrandId">
-
-
                         <!-- Validation Error -->
                         @error('brand_id')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The asset brand is required.</p>
                         @enderror
                     </div>
 
                     <!-- Text Input for Other Categories -->
                     <div x-show="!showBrandDropdown()" x-cloak class="relative w-full">
                         <input type="text" name="brand_name_custom" x-model="brandName"
-                            wire:model.defer="brand_name_custom" placeholder="BRAND NAME" autocomplete="off"
+                            @input="$wire.set('brand_name_custom', brandName)" placeholder="BRAND NAME"
+                            autocomplete="off"
                             class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                             :class="{
-                                'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(brandName),
-                                'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(brandName)
-                            }">
+                            'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(brandName),
+                            'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(brandName)
+                        }">
 
 
                         <!-- Validation Error -->
                         @error('brand_name_custom')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The asset brand is required.</p>
                         @enderror
                     </div>
                 </div>
@@ -414,7 +429,7 @@
                         Model <span class="text-red-600" x-show="!showCheck(modelName)" x-transition>*</span>
                     </label>
 
-                    <input type="text" name="model_name" x-model="modelName" wire:model.defer="model_name"
+                    <input type="text" name="model_name" x-model="modelName" @input="$wire.set('model_name', modelName)"
                         placeholder="MODEL" autocomplete="off"
                         class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                         :class="{
@@ -422,9 +437,10 @@
                             'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(modelName)
                         }">
 
+
                     <!-- Validation Error -->
                     @error('model_name')
-                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                    <p class="mt-1 text-xs italic text-red-600">The asset model is required.</p>
                     @enderror
                 </div>
 
@@ -438,7 +454,7 @@
                                 Device Serial Number
                             </label>
                             <input type="text" name="device_serial_number" x-model="deviceSerial"
-                                wire:model.defer="device_serial_number" placeholder="SERIAL NUMBER" autocomplete="off"
+                                @input="$wire.set('device_serial_number', deviceSerial)" placeholder="SERIAL NUMBER" autocomplete="off"
                                 class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(deviceSerial),
@@ -456,7 +472,7 @@
                                 Charger Serial Number
                             </label>
                             <input type="text" name="charger_serial_number" x-model="chargerSerial"
-                                wire:model.defer="charger_serial_number" placeholder="SERIAL NUMBER" autocomplete="off"
+                                @input="$wire.set('charger_serial_number', chargerSerial)" placeholder="SERIAL NUMBER" autocomplete="off"
                                 class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(chargerSerial),
@@ -474,23 +490,33 @@
 
             <!-- Assignment -->
             <div x-data="{
-                    // Dropdown State
+                     // Dropdown State
                     openType: false,
                     openAssignee: false,
 
-                    // Input Bindings (Livewire)
-                    type: '',
-                    selectedAssigneeId:'',
-                    selectedAssigneeLabel: '',
-                    dateAssigned: @entangle('date_accountable').defer,
+                    inputText: '',
+                    clearTimeoutId: null,
 
+                    resetSearchInput() {
+                        this.inputText = '';             
+                        this.$wire.set('searchTerm', ''); 
+                    },
+                    
 
-                    // Visual State
-                    selectedType: '',
+                    // Livewire Binds
+                    type: @entangle('asset_type'),
+                    selectedAssigneeId: @entangle('department_id'),
+                    selectedEmployeeId: @entangle('employee_id'),
+                    selectedAssigneeLabel: @entangle('assigned_to_name'),
+                    dateAssigned: @entangle('date_accountable'),
+                    
+
+                    // Visual
+                    selectedType: '', 
                     today: new Date().toISOString().split('T')[0],
                     showTypeWarning: false,
 
-                    // Utility Functions
+                    // Utility
                     showCheck(field) {
                         return field && field.trim().length > 0;
                     },
@@ -501,9 +527,41 @@
                             setTimeout(() => this.showTypeWarning = false, 3000);
                             return;
                         }
+
                         this.openAssignee = !this.openAssignee;
+
+                        // Focus the search input after DOM is rendered
+                        this.$wire.set('searchTerm', '');
+                        this.$nextTick(() => {
+                            if (this.openAssignee && this.$refs.assigneeSearch) {
+                                this.$refs.assigneeSearch.focus();
+                            }
+                        });
+                    },
+                    handleSearchInput(value) {
+                            this.inputText = value;
+                            this.$wire.set('searchTerm', value);
+
+                            if (this.clearTimeoutId) clearTimeout(this.clearTimeoutId);
+                            this.clearTimeoutId = setTimeout(() => {
+                                this.inputText = '';
+                            }, 3000);
+                        },
+
+                    resetAssignmentFields() {
+                        this.openType = false;
+                        this.openAssignee = false;
+
+                        this.type = '';
+                        this.selectedAssigneeId = '';
+                        this.selectedEmployeeId = '';
+                        this.selectedAssigneeLabel = '';
+                        this.dateAssigned = '';
+                        this.inputText = '';
                     }
-                }" class="w-full border-t border-gray-400 mt-3 pt-3">
+
+                }" x-on:form-cleared.window="resetAssignmentFields()"
+                class="w-full border-t border-gray-400 mt-3 pt-3">
 
 
                 <!-- Header -->
@@ -530,20 +588,48 @@
 
                             <!-- Tooltip -->
                             <div class="relative group flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor"
-                                    class="size-5 hover:bg-orange-400 hover:text-white rounded-full text-orange-500 cursor-pointer transition">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021
-                                    M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none"
+                                    class="size-5 hover:bg-blue-600 hover:text-white rounded-full text-blue-600 cursor-pointer transition"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-info-icon lucide-info">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <path d="M12 16v-4" />
+                                    <path d="M12 8h.01" />
                                 </svg>
                                 <div
-                                    class="absolute left-full top-1/2 -translate-y-1/2 ml-2 w-64 z-10 p-3 border-l-4 border-orange-400 bg-orange-50 rounded-md shadow text-xs text-justify text-orange-800 opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-300">
-                                    <p>
-                                        Select <strong>Asset Type</strong>. Assign <strong>Common Assets</strong> to
-                                        Departments,
-                                        and <strong>Non-Common Assets</strong> to Employees.
+                                    class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300">
+                                    <!-- Icon Badge -->
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <div
+                                            class="flex items-center justify-center w-8 h-8 border border-yellow-200 rounded-full bg-yellow-100 text-yellow-700 shadow">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-id-card-lanyard">
+                                                <path d="M13.5 8h-3" />
+                                                <path
+                                                    d="m15 2-1 2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3" />
+                                                <path d="M16.899 22A5 5 0 0 0 7.1 22" />
+                                                <path d="m9 2 3 6" />
+                                                <circle cx="12" cy="15" r="3" />
+                                            </svg>
+                                        </div>
+                                        <span class="font-semibold text-gray-800 text-base">Asset Assignment</span>
+                                    </div>
+
+                                    <!-- Tooltip Body -->
+                                    <p class="leading-snug text-justify text-xs">
+                                        Start by selecting the <span class="font-medium text-gray-900">Asset
+                                            Type</span>.
+                                        <span class="font-medium text-gray-900">Common Assets</span> should be assigned
+                                        to
+                                        <span class="font-medium text-gray-900">Departments</span>, while
+                                        <span class="font-medium text-gray-900">Non-Common Assets</span> are assigned to
+                                        <span class="font-medium text-gray-900">Employees</span>.
                                     </p>
                                 </div>
+
                             </div>
                         </div>
 
@@ -564,7 +650,7 @@
 
                         <!-- Validation Error -->
                         @error('asset_type')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The asset type is required.</p>
                         @enderror
 
                         <!-- Dropdown Options -->
@@ -572,12 +658,11 @@
                             class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
                             <li @click="
                                     selectedType = '';
-                                    type = '';
+                                    type = ''; // Livewire: asset_type
                                     selectedAssigneeLabel = '';
                                     selectedAssigneeId = '';
-                                    $refs.typeInput.value = '';
-                                    $refs.typeInput.dispatchEvent(new Event('input'));
-
+                                    selectedEmployeeId = '';
+                                    resetSearchInput();
                                     openType = false;
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 SELECT TYPE
@@ -587,9 +672,8 @@
                                     type = '1';
                                     selectedAssigneeLabel = 'SELECT DEPARTMENT';
                                     selectedAssigneeId = '';
-                                    $refs.typeInput.value = type;
-                                    $refs.typeInput.dispatchEvent(new Event('input'));
-
+                                    selectedEmployeeId = '';
+                                    resetSearchInput();
                                     openType = false;
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 COMMON ASSET
@@ -599,20 +683,14 @@
                                     type = '2';
                                     selectedAssigneeLabel = 'SELECT EMPLOYEE';
                                     selectedAssigneeId = '';
-                                    $refs.typeInput.value = type;
-                                    $refs.typeInput.dispatchEvent(new Event('input'));
+                                    selectedEmployeeId = '';
                                     openType = false;
+                                    resetSearchInput();
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 NON-COMMON ASSET
                             </li>
                         </ul>
-
-                        <input type="hidden" x-ref="typeInput" name="asset_type" :value="type"
-                            wire:model.defer="asset_type">
-
-
                     </div>
-
 
                     <!-- ASSIGNED TO DROPDOWN -->
                     <div class="relative w-full">
@@ -620,16 +698,17 @@
                         <label class="block text-sm font-medium text-gray-700"
                             x-html="type === '1' 
                             ? ('Department Assigned' + (selectedAssigneeId === '' ? ' <span class=\'text-red-600\'>*</span>' : '')) 
-                            : ('Employee Assigned' + (selectedAssigneeId === '' ? ' <span class=\'text-red-600\'>*</span>' : ''))">
+                            : ('Employee Assigned' + (selectedEmployeeId === '' ? ' <span class=\'text-red-600\'>*</span>' : ''))">
                         </label>
 
                         <!-- Dropdown Toggle -->
                         <button type="button" @click="handleAssigneeClick" :class="[
                                 'mt-1 w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none relative',
-                                selectedAssigneeId 
-                                    ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
+                                (selectedAssigneeId || selectedEmployeeId) 
+                                    ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
                                     : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
                             ]">
+
                             <span
                                 x-text="selectedAssigneeLabel || 'SELECT ' + (type === '1' ? 'DEPARTMENT' : 'EMPLOYEE')"
                                 class="block truncate uppercase"></span>
@@ -644,90 +723,94 @@
                         <div x-show="showTypeWarning" x-transition class="mt-1 text-xs italic text-orange-600 ">
                             Select asset type first.
                         </div>
+                        <input
+                                    x-ref="assigneeSearch"
+                                    type="text"
+                                    :value="inputText"
+                                    @input="handleSearchInput($event.target.value)"
+                                    @keydown.enter.prevent
+                                    autocomplete="off"
+                                    class="absolute opacity-0 pointer-events-none w-0 h-0"
+                                />
 
                         <!-- Department Options -->
                         <ul x-show="openAssignee && type === '1'" @click.outside="openAssignee = false" x-transition
                             class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
-                            <!-- Clear -->
+                            <!-- Clear Option -->
                             <li @click="
-                                    openAssignee = false;
                                     selectedAssigneeLabel = 'SELECT DEPARTMENT';
                                     selectedAssigneeId = '';
-                                    $refs.departmentInput.value = '';
-                                    $refs.departmentInput.dispatchEvent(new Event('input'));
-                                    $refs.assignedToNameInput.value = selectedAssigneeLabel;
-                                    $refs.assignedToNameInput.dispatchEvent(new Event('input'));
-                                
+                                    selectedEmployeeId = '';
+                                    openAssignee = false;
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 SELECT DEPARTMENT
                             </li>
 
-                            <!-- Department List -->
-                            @foreach ($departments as $department)
+                            <!-- Dynamic Filtered Departments -->
+                            @foreach ($filteredDepartments as $department)
+
                             <li @click="
-                                    openAssignee = false;
                                     selectedAssigneeLabel = '{{ strtoupper(addslashes($department->department_name)) }}';
                                     selectedAssigneeId = '{{ $department->department_id }}';
-                                    $refs.departmentInput.value = selectedAssigneeId;
-                                    $refs.departmentInput.dispatchEvent(new Event('input'));
-                                    $refs.assignedToNameInput.value = selectedAssigneeLabel;
-                                    $refs.assignedToNameInput.dispatchEvent(new Event('input'));
+                                    selectedEmployeeId = '';
+                                    openAssignee = false;
                                 " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                                 {{ strtoupper($department->department_name) }}
                             </li>
                             @endforeach
                         </ul>
 
+
                         <!-- Employee Options -->
                         <ul x-show="openAssignee && type === '2'" @click.outside="openAssignee = false" x-transition
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
-                            <!-- Clear -->
-                            <li @click="
-                                    openAssignee = false;
-                                    selectedAssigneeLabel = 'SELECT EMPLOYEE';
-                                    selectedAssigneeId = '';
-                                    $refs.employeeInput.value = '';
-                                    $refs.employeeInput.dispatchEvent(new Event('input'));
-                                    $refs.assignedToNameInput.value = selectedAssigneeLabel;
-                                    $refs.assignedToNameInput.dispatchEvent(new Event('input'));
-                                    
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
-                                SELECT EMPLOYEE
-                            </li>
+    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
 
-                            <!-- Employee List -->
-                            @foreach ($employees as $employee)
-                            <li @click="
-                                    openAssignee = false;
-                                    selectedAssigneeLabel = '{{ strtoupper(addslashes($employee->employee_lastname)) }}, {{ strtoupper(addslashes($employee->employee_firstname)) }}';
-                                    selectedAssigneeId = '{{ $employee->employee_id }}';
-                                    $refs.employeeInput.value = selectedAssigneeId;
-                                    $refs.employeeInput.dispatchEvent(new Event('input'));
-                                    $refs.assignedToNameInput.value = selectedAssigneeLabel;
-                                    $refs.assignedToNameInput.dispatchEvent(new Event('input'));
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
-                                {{ strtoupper($employee->employee_lastname) }},
-                                {{ strtoupper($employee->employee_firstname) }}
-                            </li>
-                            @endforeach
-                        </ul>
+    <!-- Search Input (invisible but functional) -->
+    {{-- <li class="px-4 py-1">
+        <input
+            x-ref="assigneeSearch"
+            type="text"
+            :value="inputText"
+            @input="handleSearchInput($event.target.value)"
+            @keydown.enter.prevent
+            autocomplete="off"
+            class="absolute opacity-0 pointer-events-none w-0 h-0"
+        />
+    </li> --}}
 
-                        <input type="hidden" x-ref="departmentInput" name="department_id" :value="selectedAssigneeId"
-                            wire:model.defer="department_id" x-show="type == 1">
-                        <input type="hidden" x-ref="employeeInput" name="employee_id" :value="selectedAssigneeId"
-                            wire:model.defer="employee_id" x-show="type == 2">
+    <!-- Clear Option -->
+    <li @click="
+        selectedAssigneeLabel = 'SELECT EMPLOYEE';
+        selectedEmployeeId = '';
+        selectedAssigneeId = '';
+        openAssignee = false;
+    " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+        SELECT EMPLOYEE
+    </li>
 
+    <!-- Filtered Employee List -->
+    @foreach ($filteredEmployees as $employee)
+        <li @click="
+            selectedAssigneeLabel = '{{ strtoupper(addslashes($employee->employee_lastname)) }}, {{ strtoupper(addslashes($employee->employee_firstname)) }}';
+            selectedEmployeeId = '{{ $employee->employee_id }}';
+            selectedAssigneeId = '';
+            openAssignee = false;
+        " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+            {{ strtoupper($employee->employee_lastname) }},
+            {{ strtoupper($employee->employee_firstname) }}
+        </li>
+    @endforeach
+</ul>
 
 
                         <!-- Validation Error -->
                         @error('department_id')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The department assignment is required.</p>
                         @enderror
                         @error('employee_id')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The employee assignment is required.</p>
                         @enderror
                     </div>
-
 
                     <!-- DATE ASSIGNED -->
                     <div class="relative w-full">
@@ -738,17 +821,18 @@
                         </label>
 
                         <!-- Date Picker -->
-                        <input type="date" x-model="dateAssigned" @input="$wire.set('date_accountable', dateAssigned)"
-                            :max="today"
+                        <input type="date" x-model="dateAssigned" :max="today"
                             class="mt-1 block w-full rounded-md shadow-sm text-sm uppercase focus:outline-none" :class="[
-                                dateAssigned 
-                                    ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
-                                    : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'
-                            ]" />
+                                    dateAssigned 
+                                        ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
+                                        : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'
+                                ]" />
+
+
 
                         <!-- Validation Error -->
                         @error('date_accountable')
-                        <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                        <p class="mt-1 text-xs italic text-red-600">The date of assignment is required.</p>
                         @enderror
                     </div>
 
@@ -771,13 +855,16 @@
                 </div>
 
                 <div x-data="{
-                        purchaseDate: '',
-                        expirationDate: '',
-                        warrantyYears: '',
-                        replacementValue: '',
-                        replacementUnit: '',
-                        freeReplacementDate: '',
+                        purchaseDate: @entangle('purchase_date'),
+                        expirationDate: @entangle('warranty_exp_date'),
+                        warrantyYears: @entangle('warranty_years'),
+                        replacementValue: @entangle('free_replacement_value'),
+                        replacementUnit: @entangle('free_replacement_unit'),
+                        freeReplacementDate: @entangle('free_replacement_date'),
+                        description: @entangle('description'),
                         openUnit: false,
+
+                        
                         today: new Date().toISOString().split('T')[0],
 
                         computeExpiration() {
@@ -819,6 +906,25 @@
                                 $wire.set('free_replacement_date', this.freeReplacementDate);
                                 
                             }
+                        },
+
+                         resetWarrantyFields() {
+                            this.purchaseDate = '';
+                            this.expirationDate = '';
+                            this.warrantyYears = '';
+                            this.replacementValue = '';
+                            this.replacementUnit = '';
+                            this.freeReplacementDate = '';
+                            this.description = '';
+                            this.openUnit = false;
+
+                            $wire.set('purchase_date', '');
+                            $wire.set('warranty_exp_date', '');
+                            $wire.set('warranty_years', '');
+                            $wire.set('free_replacement_value', '');
+                            $wire.set('free_replacement_unit', '');
+                            $wire.set('free_replacement_date', '');
+                            $wire.set('description', '');
                         }
                     }" x-init="
                         $watch('warrantyYears', value => computeExpiration());
@@ -826,11 +932,11 @@
                         $watch('purchaseDate', () => {
                             if (warrantyYears !== '') computeExpiration();
                             else if (expirationDate) computeYears();
-                            computeFreeReplacementDate(); // ✅ Recompute
+                            computeFreeReplacementDate(); 
                         });
                         $watch('replacementValue', () => computeFreeReplacementDate());
                         $watch('replacementUnit', () => computeFreeReplacementDate());
-                    " class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                    " x-on:form-cleared.window="resetWarrantyFields()" class="grid grid-cols-1 md:grid-cols-5 gap-6">
 
 
                     <!-- Warranty Fields (spans 3/5 = 60%) -->
@@ -842,15 +948,14 @@
                             </label>
 
                             <!-- Visible Date Picker -->
-                            <input type="date" x-model="purchaseDate" @input="$wire.set('purchase_date', purchaseDate)"
-                                :max="today"
+                            <input type="date" x-model="purchaseDate" :max="today"
                                 class="mt-1 block w-full rounded-md shadow-sm text-sm uppercase focus:outline-none"
                                 :class="purchaseDate 
-                                ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
-                                : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'" />
+                                        ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
+                                        : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'" />
 
                             @error('purchase_date')
-                            <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-xs italic text-red-600">The date of purchase is required.</p>
                             @enderror
                         </div>
 
@@ -906,11 +1011,6 @@
                                     </ul>
                                 </div>
                             </div>
-
-                            <!-- HIDDEN INPUTS -->
-                            <input type="hidden" name="free_replacement_value" :value="replacementValue">
-                            <input type="hidden" name="free_replacement_unit" :value="replacementUnit">
-                            <input type="hidden" name="free_replacement_date" :value="freeReplacementDate">
                         </div>
 
                         <!-- Warranty Expiration Date -->
@@ -939,7 +1039,7 @@
                     </div>
 
                     <!-- Description (spans 2/5 = 40%) -->
-                    <div class="col-span-5 md:col-span-2 flex flex-col" x-data="{ description: '' }">
+                    <div class="col-span-5 md:col-span-2 flex flex-col">
                         <label class="block text-sm font-medium text-gray-700">
                             Description
                         </label>
@@ -955,25 +1055,19 @@
 
             <!-- Add to List Button -->
             <div class="flex justify-end mt-6">
-                <button type="submit" wire:loading.attr="disabled" wire:target="addAsset" {{-- Optional: target specific
-                    method --}}
-                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium text-white bg-[#F59E0B]/80 hover:bg-[#F59E0B] transition disabled:opacity-50 disabled:cursor-wait">
+                <button type="button" wire:click="addToQueue" wire:loading.attr="disabled" wire:target="addAsset" {{--
+                    Optional: target specific method --}}
+                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 transition disabled:opacity-50 disabled:cursor-wait">
                     <!-- Icon -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 16h6" />
-                        <path d="M19 13v6" />
-                        <path
-                            d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
-                        <path d="m7.5 4.27 9 5.15" />
-                        <polyline points="3.29 7 12 12 20.71 7" />
-                        <line x1="12" y1="22" x2="12" y2="12" />
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-plus-icon lucide-plus">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
                     </svg>
                     Add Asset
                 </button>
-
             </div>
-
         </div>
     </div>
-</form>
+</div>

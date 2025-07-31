@@ -34,6 +34,10 @@ export default {
                     '0%, 100%': { transform: 'scale(1)' },
                     '50%': { transform: 'scale(1.1)' },
                 },
+                pulseScale1: {
+                    '0%, 100%': { transform: 'scale(1)' },
+                    '50%': { transform: 'scale(1.05)' },
+                },
                 shake: {
                     '0%': { transform: 'rotate(0deg)' },
                     '5%': { transform: 'rotate(-1.5deg)' },
@@ -60,6 +64,7 @@ export default {
                 wiggle: 'wiggle 0.5s ease-in-out infinite',
                 fadeInUp: 'fadeInUp 0.5s ease-out',
                 pulseScale: 'pulseScale 2s ease-in-out infinite',
+                pulseScale1: 'pulseScale1 2s ease-in-out infinite',
                 shake: 'shake 4s ease-in-out infinite',
                 drawCheck: 'drawCheck 2s ease-in-out forwards infinite',
             },

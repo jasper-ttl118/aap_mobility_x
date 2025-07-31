@@ -6,7 +6,15 @@
             <div class="flex justify-between items-center mb-5">
                 <div class="flex items-center gap-3">
                     <div class="bg-blue-100 border border-blue-200 p-2 rounded-full">
-                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list-checks-icon lucide-list-checks text-blue-700 size-8"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-list-checks-icon lucide-list-checks text-blue-700 size-8">
+                            <path d="m3 17 2 2 4-4" />
+                            <path d="m3 7 2 2 4-4" />
+                            <path d="M13 6h8" />
+                            <path d="M13 12h8" />
+                            <path d="M13 18h8" />
+                        </svg>
 
 
                     </div>
@@ -37,7 +45,7 @@
                     setInterval(() => this.rotate(), 1500);
                 }
             }" x-init="init"
-                    class="flex flex-col items-center justify-center bg-[#FAFBFF] border border-[#D6DDF4] rounded-xl py-6 px-6 text-center shadow-sm select-none">
+                class="flex flex-col items-center justify-center bg-[#FAFBFF] border border-[#D6DDF4] rounded-xl py-6 px-6 text-center shadow-sm select-none">
 
                 <!-- Rotating SVG Icons -->
                 <div class="relative w-12 h-12 mb-4 text-[#A6B5E0]">
@@ -102,9 +110,9 @@
             @foreach ($assets as $index => $asset)
             <div
                 class="collapse bg-white overflow-visible border border-gray-300 shadow-lg mb-1 rounded-lg {{ $selected === $index ? 'collapse-open' : '' }} ">
-                <div class="collapse-title font-semibold text-blue-900 text-sm cursor-pointer flex items-center justify-between p-3
+                <div class="collapse-title font-semibold text-blue-900 text-sm cursor-pointer flex items-center justify-between px-3 py-2
                 {{ $selected !== $index ? 'hover:bg-[#EDF0FF] rounded-lg' : '' }}"
-                                wire:click="$set('selected', {{ $selected === $index ? 'null' : $index }})">
+                    wire:click="$set('selected', {{ $selected === $index ? 'null' : $index }})">
 
                     <!-- Left Section: Button + Title -->
                     <div class="flex items-center gap-2">
@@ -126,7 +134,7 @@
 
                             <!-- Tooltip -->
                             <div
-                                class="absolute -top-9 left-1/2 -translate-x-1/2 z-50 hidden group-hover:flex px-2 py-1 rounded bg-black text-white text-[10px] whitespace-nowrap shadow-md">
+                                class="absolute -top-9 left-1/2 -translate-x-1/2 z-50 hidden group-hover:flex px-2 py-2 rounded bg-black text-white text-xs whitespace-nowrap shadow-md">
                                 Mark as Checked
                             </div>
                         </div>
@@ -154,7 +162,45 @@
                 </div>
 
                 <div class="collapse-content text-xs text-gray-700 space-y-0.5">
-                    <div class="border-t border-[A6B5E0]"></div>
+                    <div class="flex justify-end">
+                        <!-- Edit -->
+                        <button wire:click.stop="editAsset({{ $index }})"
+                            class="group relative flex items-center justify-center w-6 h-6  text-blue-600 hover:text-blue-600  hover:bg-blue-100 rounded-full transition-all duration-150 ease-in-out hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-4">
+                                <path
+                                    d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                                <path
+                                    d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+                            </svg>
+
+                            <!-- Tooltip -->
+                            <div
+                                class="absolute bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                                Edit
+                            </div>
+                        </button>
+
+                        <!-- Remove -->
+                        <button wire:click.stop="removeAsset({{ $index }})"
+                            class="group relative flex items-center justify-center w-6 h-6  text-red-600 hover:text-red-600 hover:bg-red-100 rounded-full transition-all duration-150 ease-in-out hover:scale-110">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="size-4">
+                                <path fill-rule="evenodd"
+                                    d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+
+                            <!-- Tooltip -->
+                            <div
+                                class="absolute bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                                Remove
+                            </div>
+                        </button>
+                    </div>
+
+                    <div class="border-t border-[A6B5E0] pb-[1px]"></div>
+
 
                     <!-- Begin striped rows -->
                     <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Asset
@@ -179,28 +225,6 @@
                         <strong>Condition:</strong> <span class="ml-4">{{ $conditions->firstWhere('condition_id',
                             $asset['condition_id'])->condition_name ?? 'N/A' }}</span>
                     </div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
-                        <strong>Purchase Date:</strong> <span class="ml-4">{{ isset($asset['purchase_date']) ?
-                            strtoupper(\Carbon\Carbon::parse($asset['purchase_date'])->format('F j, Y')) : 'N/A'
-                            }}</span>
-                    </div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
-                        <strong>Warranty Expiration Date:</strong> <span class="ml-4">{{
-                            isset($asset['warranty_exp_date']) ?
-                            strtoupper(\Carbon\Carbon::parse($asset['warranty_exp_date'])->format('F j, Y')) : 'N/A'
-                            }}</span>
-                    </div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
-                        <strong>Warranty (Years):</strong> <span class="ml-4">{{ $asset['warranty_years'] ?? 'N/A' }}
-                            YEARS</span>
-                    </div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Free
-                            Replacement Period:</strong> <span class="ml-4">{{ $asset['free_replacement_value'] ?? '' }}
-                            {{ $asset['free_replacement_unit'] ?? '' }}</span></div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Free
-                            Replacement Date:</strong> <span class="ml-4">{{ isset($asset['free_replacement_date']) ?
-                            strtoupper(\Carbon\Carbon::parse($asset['free_replacement_date'])->format('F j, Y')) : 'N/A'
-                            }}</span></div>
                     <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Asset
                             Type:</strong> <span class="ml-4">{{ $asset['asset_type'] === '1' ? 'COMMON ASSET' :
                             ($asset['asset_type'] === '2' ? 'NON-COMMON ASSET' : 'N/A') }}</span></div>
@@ -224,17 +248,53 @@
                             strtoupper(\Carbon\Carbon::parse($asset['date_accountable'])->format('F j, Y')) : 'N/A'
                             }}</span></div>
 
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Purchase Date:</strong> <span class="ml-4">{{ isset($asset['purchase_date']) ?
+                            strtoupper(\Carbon\Carbon::parse($asset['purchase_date'])->format('F j, Y')) : 'N/A'
+                            }}</span>
+                    </div>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Warranty Expiration Date:</strong> <span class="ml-4">{{
+                            isset($asset['warranty_exp_date']) ?
+                            strtoupper(\Carbon\Carbon::parse($asset['warranty_exp_date'])->format('F j, Y')) : 'N/A'
+                            }}</span>
+                    </div>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Warranty (Years):</strong> <span class="ml-4">{{ $asset['warranty_years'] ?? 'N/A' }}
+                            YEARS</span>
+                    </div>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Free
+                            Replacement Period:</strong>
+                        <span class="ml-4">
+                            @if (!empty($asset['free_replacement_value']) && !empty($asset['free_replacement_unit']))
+                            {{ $asset['free_replacement_value'] }} {{ $asset['free_replacement_unit'] }}
+                            @else
+                            N/A
+                            @endif
+                        </span>
+                    </div>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Free
+                            Replacement Date:</strong> <span class="ml-4">{{ isset($asset['free_replacement_date']) ?
+                            strtoupper(\Carbon\Carbon::parse($asset['free_replacement_date'])->format('F j, Y')) : 'N/A'
+                            }}</span></div>
+                    
+
                     @if(in_array($asset['category_id'] ?? null, [1, 6]))
                     <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Device
-                            Serial #:</strong> <span class="ml-4">{{ $asset['device_serial'] ?? 'N/A' }}</span></div>
+                            Serial #:</strong> <span class="ml-4">{{ $asset['device_serial_number'] ?? 'N/A' }}</span>
+                    </div>
                     <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Charger
-                            Serial #:</strong> <span class="ml-4">{{ $asset['charger_serial'] ?? 'N/A' }}</span></div>
+                            Serial #:</strong> <span class="ml-4">{{ $asset['charger_serial_number'] ?? 'N/A' }}</span>
+                    </div>
                     @endif
 
                     <div class="flex justify-between items-start px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
                         <strong>Description:</strong>
-                        <span class="ml-auto text-right">{{ strtoupper($asset['description']) ?? 'N/A' }}</span>
+                        <span class="ml-auto text-right">
+                            {{ !empty($asset['description']) ? strtoupper($asset['description']) : 'N/A' }}
+                        </span>
                     </div>
+
                     <div class="border-t border-[A6B5E0]"></div>
                 </div>
 
@@ -242,35 +302,38 @@
             @endforeach
 
             <!-- Action Buttons -->
-           <div class="flex flex-col gap-2 pt-2 mt-5">
-    <button wire:click="clearQueue"
-        class="w-full bg-red-100 text-red-600 hover:bg-red-200 text-sm font-medium py-2 rounded-md">
-        Clear Assets
-    </button>
+            <div>
+                <div class="flex flex-col gap-2 pt-2 mt-5">
+                    <!-- Clear Assets Button -->
+                    <button wire:click="confirmClear"
+                        class="w-full bg-red-200 text-red-600 hover:bg-red-600 hover:text-white text-sm font-medium py-2 rounded-md">
+                        Clear Assets
+                    </button>
 
-    <div class="relative group">
-        <button wire:click="submitAll"
-            @if(empty($assets) || count($checked) !== count($assets)) disabled @endif
-            class="w-full text-sm font-medium py-2 rounded-md transition
-                {{ empty($assets) || count($checked) !== count($assets)
-                    ? 'bg-blue-300 text-white'
-                    : 'bg-blue-600 hover:bg-blue-700 text-white' }}">
-            Submit
-        </button>
+                    <!-- Submit Button -->
+                    <div class="relative group">
+                        <button wire:click="confirmSubmit" @if(empty($assets) || count($checked) !==count($assets))
+                            disabled @endif class="w-full text-sm font-medium py-2 rounded-md transition
+                            {{ empty($assets) || count($checked) !== count($assets)
+                                ? 'bg-blue-300 text-white'
+                                : 'bg-blue-600 hover:bg-blue-700 text-white' }}">
+                            Submit
+                        </button>
 
-        <!-- Tooltip -->
-        @if(empty($assets))
-            <div class="absolute -top-9 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow">
-                Add assets first.
+                        @if(empty($assets))
+                        <div
+                            class="absolute top-10 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow">
+                            Add assets first.
+                        </div>
+                        @elseif(count($checked) !== count($assets))
+                        <div
+                            class="absolute top-10 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow text-center">
+                            Please review and check all asset details.
+                        </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-        @elseif(count($checked) !== count($assets))
-            <div class="absolute -top-9 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow text-center">
-                Please review and check all asset details.
-            </div>
-        @endif
-    </div>
-</div>
-
         </div>
     </div>
 </div>

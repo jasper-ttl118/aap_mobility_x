@@ -2,72 +2,20 @@
 
 namespace App\Livewire\Ams\Asset;
 
+use App\Models\Asset;
 use Livewire\Component;
 use Livewire\Attributes\On;
 
 class AddAssetSummary extends Component
 {
-    public $assets = [
-        [
-            'category_id' => '1',
-            'condition_id' => '1',
-            'status_id' => '2',
-
-            'asset_name' => 'LAPTOP',
-            'brand_id' => '3',
-            'brand_name_custom' => null,
-            'model_name' => 'INSPIRON 14',
-
-            'asset_type' => '2',
-            'department_id' => null,
-            'employee_id' => '1',
-
-            'date_accountable' => '2025-07-10',
-            'purchase_date' => '2025-07-01',
-            'warranty_exp_date' => '2027-07-01',
-            'warranty_years' => 2,
-
-            'free_replacement_value' => 14,
-            'free_replacement_unit' => 'DAYS',
-            'free_replacement_date' => '2025-07-15',
-
-            'device_serial' => 'DL202507001',
-            'charger_serial' => 'DLCHG5420-2025',
-
-            'description' => 'Assigned for remote work and on-site duties.'
-        ],
-        [
-            'category_id' => '3',
-            'condition_id' => '2',
-            'status_id' => '3',
-
-            'asset_name' => 'PC',
-            'brand_id' => null,
-            'brand_name_custom' => 'HP',
-            'model_name' => '400 G7 SFF',
-
-            'asset_type' => '1',
-            'department_id' => '2',
-            'employee_id' => null,
-
-            'date_accountable' => '2025-06-20',
-            'purchase_date' => '2025-06-15',
-            'warranty_exp_date' => '2026-06-15',
-            'warranty_years' => 1,
-
-            'free_replacement_value' => 30,
-            'free_replacement_unit' => 'DAYS',
-            'free_replacement_date' => '2025-07-15',
-
-            'device_serial' => null,
-            'charger_serial' => null,
-
-            'description' => 'Spare unit for department overflow usage.'
-        ]
-    ];
-
+    public $assets = [];
     public $selected = null;
     public $checked = []; // track which indexes/assets are marked
+    protected $listeners = [
+        'add-asset-to-queue' => 'addAssetToQueue',
+        'clearQueue',
+        'submitAll'
+    ];
 
     public function markChecked($index)
     {
@@ -80,12 +28,13 @@ class AddAssetSummary extends Component
         }
     }
 
-    protected $listeners = ['add-asset-to-queue' => 'addAssetToQueue', 'clearQueue'];
-
-
     #[On('add-asset-to-queue')]
     public function addAssetToQueue($payload)
     {
+        $this->assets = collect($this->assets)
+            ->reject(fn($asset) => $asset['property_code'] === $payload['property_code'])
+            ->values()
+            ->toArray();
 
         $this->assets[] = $payload;
     }
@@ -95,14 +44,74 @@ class AddAssetSummary extends Component
         $this->assets = [];
     }
 
+    public function confirmSubmit()
+    {
+        $this->dispatch('open-confirm');
+    }
+    public function confirmClear()
+    {
+        $this->dispatch('open-clear');
+    }
+
+    public function editAsset($index)
+    {
+        if (!isset($this->assets[$index]))
+            return;
+
+        $asset = $this->assets[$index];
+
+        // Emit event with full asset payload to AddAssetForm
+        $this->dispatch('prefill-asset-form', asset: $asset);
+    }
+    public function removeAsset($index)
+    {
+        if (isset($this->assets[$index])) {
+            unset($this->assets[$index]);
+
+            // Reindex the array to prevent broken indexes
+            $this->assets = array_values($this->assets);
+        }
+    }
+
     public function submitAll()
     {
-        // You can insert into DB here or dispatch a job
         foreach ($this->assets as $asset) {
-            // Asset::create($asset); // or call a service
+
+            $asset['employee_id'] = $asset['employee_id'] ?: null;
+            $asset['department_id'] = $asset['department_id'] ?: null;
+            $asset['free_replacement_date'] = !empty($asset['free_replacement_date']) ? $asset['free_replacement_date'] : null;
+
+            Asset::create([
+                'asset_name' => $asset['asset_name'],
+                'brand_id' => $asset['brand_id'],
+                'brand_name_custom' => $asset['brand_name_custom'],
+                'model_name' => $asset['model_name'],
+                'property_code' => $asset['property_code'],
+
+                'category_id' => $asset['category_id'],
+                'status_id' => $asset['status_id'],
+                'condition_id' => $asset['condition_id'],
+
+                'device_serial_number' => $asset['device_serial_number'],
+                'charger_serial_number' => $asset['charger_serial_number'],
+
+                'asset_type' => $asset['asset_type'],
+                'department_id' => $asset['department_id'],
+                'employee_id' => $asset['employee_id'],
+                'date_accountable' => $asset['date_accountable'],
+
+                'purchase_date' => $asset['purchase_date'],
+                'warranty_exp_date' => $asset['warranty_exp_date'],
+                'free_replacement_period' => $asset['free_replacement_date'],
+
+                'description' => $asset['description'],
+            ]);
         }
 
         $this->assets = [];
+        $this->checked = [];
+        $this->dispatch('form-cleared');
+
         session()->flash('success', 'Assets stored successfully.');
     }
 

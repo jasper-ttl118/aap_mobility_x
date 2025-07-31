@@ -318,7 +318,7 @@
 
                         <!-- Classification -->
                         <div @click="if (editMode) openSectionEditor('info')"
-                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-shake'  : 'border-l-[16px] border-blue-600']">
+                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-pulseScale1'  : 'border-l-[16px] border-blue-600']">
                             <div class="flex justify-between items-center mb-3">
                                 <!-- Icon + Title -->
                                 <div class="flex items-center gap-x-2 text-blue-700">
@@ -380,7 +380,7 @@
 
                         <!-- Maintenance -->
                         <div @click="editMode && openSectionEditor('maintenance')"
-                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-shake'  : 'border-l-[16px] border-blue-600']">
+                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-pulseScale1'  : 'border-l-[16px] border-blue-600']">
                             <div class="flex items-center justify-between mb-3">
                                 <!-- Left Section: Icon + Heading -->
                                 <div class="flex items-center gap-x-2 text-blue-700">
@@ -432,7 +432,7 @@
 
                         <!-- Assignment -->
                         <div @click="editMode && openSectionEditor('assignment')"
-                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110', editMode  ? 'border-l-[16px] border-yellow-400 animate-shake' : 'border-l-[16px] border-blue-600']">
+                            :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110', editMode  ? 'border-l-[16px] border-yellow-400 animate-pulseScale1' : 'border-l-[16px] border-blue-600']">
                             <div class="flex items-center justify-between mb-3">
                                 <!-- Left Side: Icon + Label -->
                                 <div class="flex items-center gap-x-2 text-blue-700">
@@ -493,7 +493,7 @@
 
                         <!-- Warranty -->
                         <div @click="editMode && openSectionEditor('warranty')"
-                            :class="[ 'rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-shake' : 'border-l-[16px] border-blue-600']">
+                            :class="[ 'rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-pulseScale1' : 'border-l-[16px] border-blue-600']">
                             <div class="flex items-center justify-between mb-3">
                                 <!-- Left: Icon + Heading -->
                                 <div class="flex items-center gap-x-2 text-blue-700">
@@ -547,7 +547,7 @@
                         <!-- Description -->
                         @if ($asset->description)
                             <div @click="editMode && openSectionEditor('description')"
-                                :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-shake' : 'border-l-[16px] border-blue-600'
+                                :class="['rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110',editMode  ? 'border-l-[16px] border-yellow-400 animate-pulseScale1' : 'border-l-[16px] border-blue-600'
                                                                                                                                                                                                                     ]">
                                 <div class="flex items-center justify-between mb-3">
                                     <!-- Left: Icon + Label -->

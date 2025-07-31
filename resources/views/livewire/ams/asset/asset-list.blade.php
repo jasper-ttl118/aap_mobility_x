@@ -1,4 +1,4 @@
-<div class="mx-7 mb-10 rounded-sm  overflow-visible hide-scrollbar">
+<div class="mx-7 mb-10 rounded-sm  overflow-auto hide-scrollbar">
     <div class="min-w-[1000px] w-full">
         <script>
             window.addEventListener('filter-changed', event => {

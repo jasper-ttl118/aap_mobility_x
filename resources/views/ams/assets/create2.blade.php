@@ -95,7 +95,7 @@
 
         {{-- Content --}}
         <div class="flex flex-col lg:flex-row">
-            <div x-ref="scrollTarget"
+            <div 
                 class="@container/main rounded-xl border-2 border-gray-100 bg-white justify-center items-center flex w-full lg:w-8/12 flex-col shadow-xl -mt-4">
                 <div class="flex flex-col justify-between w-full mt-3" x-init="setTimeout(() => {
                         $refs.scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -126,20 +126,12 @@
 
                 {{-- Form --}}
                 <livewire:ams.asset.add-asset-form>
-                
+                <livewire:ams.asset.confirm>
+                <livewire:ams.asset.clear>     
             </div>
             <!-- Right Side Sticky Card -->
             <livewire:ams.asset.add-asset-summary>
-                {{-- @if(session('validatedAsset'))
-                <script>
-                    window.addEventListener('livewire:load', () => {
-            const payload = @json(session('validatedAsset'));
-            console.log('Dispatching asset to Livewire:', payload);
-
-            Livewire.dispatch('add-asset-to-queue', { payload });
-            });
-                </script>
-                @endif --}}
+            
             
                 @if(session('validatedAsset'))
                 <script>
@@ -159,27 +151,6 @@
                         });
                 </script>
                 @endif
-
-
-
-
-
         </div>
     </div>
-
-    <!-- Checkmark Icon -->
-    {{-- <div x-show="showCheck" x-transition class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
-        <!-- Checkmark SVG -->
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 text-green-600">
-
-            <!-- Solid Filled Circle -->
-            <path
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Z" />
-
-            <!-- Animated Checkmark (stroke only) -->
-            <path d="M9 12.75 11.25 15 15 9.75" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"
-                stroke-linejoin="round" class="animate-drawCheck"
-                style="stroke-dasharray: 24; stroke-dashoffset: 24;" />
-        </svg>
-    </div> --}}
 </x-app-layout>
