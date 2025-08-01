@@ -66,7 +66,7 @@ class AssetList extends Component
             });
         })
         ->orderBy('property_code')
-        ->paginate(4);
+        ->paginate(8);
 
     return view('livewire.ams.asset.asset-list', compact('assets'));
 }

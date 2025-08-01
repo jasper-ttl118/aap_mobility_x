@@ -545,7 +545,7 @@
                             if (this.clearTimeoutId) clearTimeout(this.clearTimeoutId);
                             this.clearTimeoutId = setTimeout(() => {
                                 this.inputText = '';
-                            }, 3000);
+                            }, 2000);
                         },
 
                     resetAssignmentFields() {

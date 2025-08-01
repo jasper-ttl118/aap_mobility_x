@@ -27,7 +27,7 @@ class AddAssetForm extends Component
     public $searchTerm = '';
     public $filteredDepartments = [];
     public $filteredEmployees = [];
-    protected $listeners = ['prefill-asset-form' => 'loadAsset','form-cleared' => 'render'];
+    protected $listeners = ['prefill-asset-form' => 'loadAsset', 'form-cleared' => 'render'];
 
     public function mount()
     {
@@ -49,7 +49,6 @@ class AddAssetForm extends Component
 
     public function updatedAssetType()
     {
-        // $this->searchTerm = '';
 
         if ($this->asset_type === '1') {
             $this->filteredDepartments = \App\Models\Department::all();
@@ -132,10 +131,23 @@ class AddAssetForm extends Component
     {
         $this->$propertyName = strip_tags($this->$propertyName);
     }
+    public function refreshDropdowns()
+    {
+        if ($this->asset_type === '1') {
+            $this->filteredDepartments = \App\Models\Department::all();
+        } elseif ($this->asset_type === '2') {
+            $this->filteredEmployees = \App\Models\Employee::all();
+        }
+
+        // 🔁 Also handle fallback: if asset_type is now null, preload both
+        if (!$this->asset_type) {
+            $this->filteredDepartments = \App\Models\Department::all();
+            $this->filteredEmployees = \App\Models\Employee::all();
+        }
+    }
 
     public function addToQueue()
     {
-
         // Apply category-based nulling logic
         if (in_array($this->category_id, [1, 6])) {
             // IT Equipment or Mobile Devices: Use dropdown brand
@@ -159,13 +171,15 @@ class AddAssetForm extends Component
             }
         }
 
+
         // Dispatch with transformed payload
         $this->dispatch('add-asset-to-queue', $validated);
 
         // Reset form
         $this->reset();
+        $this->refreshDropdowns();
         $this->dispatch('form-cleared');
-        
+
 
         session()->flash('success', 'Asset validated and dispatched to queue.');
     }
@@ -177,8 +191,8 @@ class AddAssetForm extends Component
             'conditions' => \App\Models\AssetCondition::all(),
             'statuses' => \App\Models\AssetStatus::all(),
             'brands' => \App\Models\Brand::all(),
-            'departments' => \App\Models\Department::all(),
-            'employees' => \App\Models\Employee::all(),
+            'departments' => $this->filteredDepartments,
+            'employees' => $this->filteredEmployees,
         ]);
     }
 }

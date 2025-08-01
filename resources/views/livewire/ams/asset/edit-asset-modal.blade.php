@@ -75,7 +75,7 @@
 
 
         <!-- Modal Body -->
-        <div class="px-6 py-6 space-y-6">
+        <div class="px-6 py-6 ">
             @csrf
             @if ($asset)
             @if ($section === 'name')
@@ -103,38 +103,86 @@
                 </div>
 
                 <!-- BRAND -->
-                <div x-data="{ open: false, categoryId: @entangle('category_id'), brandId: @entangle('brand_id'),
-                                                                                                           selected: '{{ in_array($asset->category_id, [1, 6]) && $asset->brand ? strtoupper($asset->brand->brand_name) : 'SELECT BRAND' }}',
-                                                                                                           toggle(id, label) { this.brandId = id; this.selected = label; this.open = false; $wire.set('brand_id', id); },
-                                                                                                           init() {
-                                                                                                               this.$watch('categoryId', (value) => {
-                                                                                                                   if (!['1', '6'].includes(String(value))) {
-                                                                                                                       this.brandId = '';
-                                                                                                                       this.selected = 'BRAND NAME';
-                                                                                                                   } else if (!this.selected || this.selected === 'BRAND NAME') {
-                                                                                                                       this.selected = 'SELECT BRAND';
-                                                                                                                   }
-                                                                                                               });
-                                                                                                           } }"
-                    x-init="init" class="relative w-full md:col-span-1">
+                <div x-data="{
+                    open: false,
+                    categoryId: @entangle('category_id'),
+                    brandId: @entangle('brand_id'),
+                    selected: '{{ in_array($asset->category_id, [1, 6]) && $asset->brand ? strtoupper($asset->brand->brand_name) : 'SELECT BRAND' }}',
+
+                    toggle(id, label) {
+                        this.brandId = id;
+                        this.selected = label;
+                        this.open = false;
+                        $wire.set('brand_id', id);
+                    },
+
+                    init() {
+                        this.$watch('categoryId', (value) => {
+                            if (!['1', '6'].includes(String(value))) {
+                                this.brandId = '';
+                                this.selected = 'BRAND NAME';
+                            } else if (!this.selected || this.selected === 'BRAND NAME') {
+                                this.selected = 'SELECT BRAND';
+                            }
+                        });
+                    }
+                }"
+                x-init="init"
+                class="relative w-full md:col-span-1">
+
 
                     <label class="block text-sm font-medium text-gray-700 flex justify-between items-center">
                         Brand Name
+
                         <div class="relative group inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor"
-                                class="size-5 hover:bg-orange-400 hover:text-white rounded-full text-orange-500 cursor-pointer">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                            <!-- Tooltip Trigger Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none"
+                                class="size-5 hover:bg-blue-600 hover:text-white rounded-full text-blue-600 cursor-pointer transition"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-info-icon lucide-info">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 16v-4" />
+                                <path d="M12 8h.01" />
                             </svg>
+
+                            <!-- Tooltip -->
                             <div
-                                class="absolute left-full mt-8 -translate-y-1/2 ml-2 w-64 z-10 p-3 border-l-4 border-orange-400 bg-orange-50 rounded-md shadow text-xs text-justify text-orange-800 opacity-0 group-hover:opacity-90 pointer-events-none transition-opacity duration-300">
-                                <p>
-                                    If you're updating the asset to an IT Equipment or Mobile Device, change the
-                                    <strong>Category</strong> first. Then, choose a brand from the dropdown list.
+                                class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-orange-900 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300">
+
+                                <!-- Badge with Icon -->
+                                <div class="flex items-center gap-2 mb-3">
+                                    <div
+                                        class="flex items-center justify-center w-8 h-8 border border-yellow-200 rounded-full bg-yellow-100 text-yellow-700 shadow">
+                                        <!-- Badge Icon: Lucide Info -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-package-plus-icon">
+                                            <path d="M16 16h6" />
+                                            <path d="M19 13v6" />
+                                            <path
+                                                d="M21 10V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l2-1.14" />
+                                            <path d="m7.5 4.27 9 5.15" />
+                                            <polyline points="3.29 7 12 12 20.71 7" />
+                                            <line x1="12" x2="12" y1="22" y2="12" />
+                                        </svg>
+                                    </div>
+                                    <span class="font-semibold text-gray-800 text-base">Brand Assignment Rules</span>
+                                </div>
+
+                                <!-- Tooltip Body -->
+                                <p class="leading-snug text-justify text-xs font-normal text-gray-900">
+                                    If you're updating the asset to an
+                                    <span class="font-medium text-gray-900">IT Equipment</span> or
+                                    <span class="font-medium text-gray-900">Mobile Device</span>,
+                                    change the <span class="font-medium text-gray-900">Category</span> first. Then,
+                                    choose a
+                                    brand from the dropdown list.
                                     For other asset types, manually enter the brand name.
                                 </p>
                             </div>
+
                         </div>
                     </label>
 

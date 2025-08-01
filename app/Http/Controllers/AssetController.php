@@ -323,10 +323,14 @@ class AssetController extends Controller
     {
         return view('ams.assets.repair-request');
     }
-    public function transferAsset()
-    {
-        return view('ams.assets.transfer');
-    }
+    public function showTransferForm($id)
+{
+    $asset = Asset::findOrFail($id);
+    
+
+    return view('ams.assets.transfer', compact('asset'));
+}
+
     public function borrowAsset()
     {
         return view('ams.assets.borrow');

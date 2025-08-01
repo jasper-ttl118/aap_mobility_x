@@ -42,6 +42,7 @@ class AddAssetSummary extends Component
     public function clearQueue()
     {
         $this->assets = [];
+        $this->checked = [];
     }
 
     public function confirmSubmit()
@@ -68,10 +69,17 @@ class AddAssetSummary extends Component
         if (isset($this->assets[$index])) {
             unset($this->assets[$index]);
 
-            // Reindex the array to prevent broken indexes
+            // Also remove corresponding checked status if it exists
+            if (isset($this->checked[$index])) {
+                unset($this->checked[$index]);
+            }
+
+            // Reindex both arrays to maintain alignment
             $this->assets = array_values($this->assets);
+            $this->checked = array_values($this->checked);
         }
     }
+
 
     public function submitAll()
     {
@@ -111,6 +119,7 @@ class AddAssetSummary extends Component
         $this->assets = [];
         $this->checked = [];
         $this->dispatch('form-cleared');
+        $this->dispatch('show-success-modal');
 
         session()->flash('success', 'Assets stored successfully.');
     }
