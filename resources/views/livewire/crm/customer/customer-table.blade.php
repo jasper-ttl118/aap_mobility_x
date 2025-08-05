@@ -1,7 +1,7 @@
-<div class="md:w-full md:justify-center flex">
-    <div class="flex flex-col md:w-[80%] md:ml-0 w-[440px] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg ml-5 lg:ml-0 lg:px-0 px-5 justify-start md:justify-center">
-        <div class="flex flex-col lg:flex-row md:flex-row w-full items-center justify-between p-7 ">
-            <h2 class="font-extrabold text-xl font-inter uppercase tracking-widest text-[#071d49]">List of all Members</h2>
+<div class="w-full justify-center flex">
+    <div class="flex flex-col w-[90%] lg:w-full h-full bg-white shadow-md border-gray-100 border-2 rounded-lg lg:px-0 px-5 justify-center">
+        <div class="flex flex-col lg:flex-row  w-full items-center justify-between p-7 gap-y-2">
+            <h2 class="font-extrabold text-xl font-inter uppercase text-center tracking-widest text-[#071d49]">List of all Members</h2>
 
             <div class="flex justify-center items-center space-x-2">
                 <label for="member_filter" class="text-[#071d49] text-sm">Filter:</label>
@@ -17,7 +17,7 @@
         
         {{-- List of Customers --}}
         <div class="lg:mx-7 mb-10 mr-15 justify-center overflow-x-auto hide-scrollbar -ml-2 lg:ml-7">
-            <table class="w-full text-sm md:justify-center text-gray-500">   
+            <table class="w-[800px] lg:w-full text-sm justify-center text-gray-500">   
                 <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
                     <tr>    
                         <th scope="col" class="w-[10.25%] py-3">Member ID</th>

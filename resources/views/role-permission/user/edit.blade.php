@@ -1,6 +1,6 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
     
-    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-10 gap-7 pt-20 bg-[#f3f4f6]">
+    <div class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 gap-y-3 pt-16 bg-[#f3f4f6]">
         @if ($errors->any())
             <div id="toast-error"
                 class="fixed top-5 right-5 z-50 flex flex-col w-full max-w-xs p-4 text-red-500 bg-white border border-red-300 rounded-lg shadow-sm transition-opacity duration-500 ease-in-out opacity-100 dark:bg-red-900 dark:text-red-200"
@@ -36,7 +36,7 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 bg-white shadow-lg">
+        <div class=" rounded-md border-2 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
             <div class="flex h-14 border-b border-gray-200">
                 <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
                     <a href="#" class="font-semibold text-blue-900 ">Users</a>
@@ -54,23 +54,24 @@
                     <a href="/permission" class="text-gray-600 hover:text-blue-800">Permissions</a>
                 </div> --}}
             </div>
+        </div>
 
+        <div class=" rounded-md border-2 bg-white shadow-lg">
             {{-- Breadcrumbs --}}
-            
             <div class="flex items-center gap-x-1 text-blue-900 text-sm pt-7 px-7">
-                <a href="/user" class="hover:underline">RBAC Management</a>
+                <a href="/user" class="hover:underline truncate">RBAC Management</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="/user" class="hover:underline">Users</a>
+                <a href="/user" class="hover:underline truncate">Users</a>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                     <path fill-rule="evenodd"
                         d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                         clip-rule="evenodd" />
                 </svg>
-                <a href="#" class="hover:underline font-semibold">Edit User</a>
+                <a href="#" class="hover:underline font-semibold truncate">Edit User</a>
             </div>
 
             <div class="flex flex-col px-7 pt-7 pb-4">
