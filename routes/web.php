@@ -94,10 +94,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/assets/history', [AssetController::class, 'assetHistory'])->name('assetHistory');
     Route::get('/ams/common-assets', [AssetController::class, 'commonAssets'])->name('commonAssets');
     Route::get('/ams/assets-for-sale', [AssetController::class, 'assetsForSale'])->name('assetsForSale');
-    Route::get('/ams/cms/branch-department', [AssetController::class, 'cms'])->name('cms');
+    Route::get('/ams/cms/departments', [AssetController::class, 'cms'])->name('cms');
     Route::get('/ams/cms/create-branch', [AssetController::class, 'addBranch'])->name('addBranch');
     Route::get('/ams/cms/create-department', [AssetController::class, 'addDepartment'])->name('addDepartment');
-    Route::get('/ams/cms/employees', [AssetController::class, 'employees'])->name('employees');
+    Route::get('/ams/cms/it-brands', [AssetController::class, 'employees'])->name('it-brands');
     Route::get('/ams/cms/asset-categories', [AssetController::class, 'categories'])->name('category');
     Route::get('/ams/cms/asset-status', [AssetController::class, 'status'])->name('status');
     Route::get('/ams/cms/create-category', [AssetController::class, 'addCategory'])->name('addCategory');

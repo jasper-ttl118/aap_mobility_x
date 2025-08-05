@@ -13,10 +13,11 @@
     $links = [
         'Dashboard' => '/ams',
         'CMS' => [
-            'Branches / Departments' => '/ams/cms/branch-department',
-            'Employees' => '/ams/cms/employees',
+            'Departments' => '/ams/cms/departments',
+            'IT Brands' => '/ams/cms/it-brands',
             'Asset Categories' => '/ams/cms/asset-categories',
             'Asset Status' => '/ams/cms/asset-status',
+            'Asset Conditions' => '/ams/cms/departments'
         ],
         'Assets' => [
             'All Assets' => '/ams/all-assets',

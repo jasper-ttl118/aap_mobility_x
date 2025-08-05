@@ -11,8 +11,8 @@
             </div>
         </div>
 
-        <div class="rounded-md  bg-white flex w-full flex-col shadow-lg">
-            <div class="flex  w-full mt-3">
+        <div class="rounded-lg  bg-white flex w-full flex-col shadow-lg -mt-2">
+            <div class="flex  w-full mt-3 ">
                     {{-- Breadcrumbs --}}
                     <div class="flex flex-wrap items-center gap-x-1 text-blue-900 text-sm px-2 pt-3 lg:p-5">
                         <a href="/ams" class="hover:underline">Asset Management</a>
@@ -37,5 +37,6 @@
                     </div>
                 </div>
             <livewire:ams.asset.transfer-form :asset-id="$asset->asset_id">
+            <livewire:ams.asset.transfer-success>
         </div>
 </x-app-layout>

@@ -1,4 +1,4 @@
-<div class=" bg-white px-6 flex items-center justify-center">
+<div class=" bg-white rounded-lg px-6 flex items-center justify-center">
     <div class="w-full max-w-6xl overflow-hidden px-5 pb-5">
         <!-- Header -->
         <div class="border-b border-gray-300 pb-3 ">
@@ -6,7 +6,7 @@
                 <div>
                     <h2 class="text-2xl font-bold text-[#071d49] mb-1">Transfer Asset</h2>
                     <p class="text-sm text-gray-600 leading-tight">
-                        <em>Enter transfer information.</em>
+                        <em>Enter transfer information for the selected asset below.</em>
                     </p>
                 </div>
             </div>
@@ -22,13 +22,13 @@
                     <div class="flex items-start gap-4">
                         <!-- Shared Icon -->
                         <div
-                            class="w-10 h-10 rounded-lg bg-blue-800 flex items-center justify-center self-center text-white">
+                            class="w-10 h-10 rounded-xl bg-yellow-400 flex items-center justify-center self-center text-blue-800">
                             @switch($asset->category_id)
                             @case(1)
                             {{-- Icon for IT Equipment --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6 lucide lucide-cpu-icon lucide-cpu">
+                                stroke-linejoin="round" class="size-7 lucide lucide-cpu-icon lucide-cpu">
                                 <path d="M12 20v2" />
                                 <path d="M12 2v2" />
                                 <path d="M17 20v2" />
@@ -50,7 +50,7 @@
                             {{-- Icon for Furniture --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6 lucide lucide-sofa-icon lucide-sofa">
+                                stroke-linejoin="round" class="size-7 lucide lucide-sofa-icon lucide-sofa">
                                 <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" />
                                 <path
                                     d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" />
@@ -64,7 +64,7 @@
                             {{-- Icon for Machinery --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6  lucide lucide-cog-icon lucide-cog">
+                                stroke-linejoin="round" class="size-7  lucide lucide-cog-icon lucide-cog">
                                 <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" />
                                 <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
                                 <path d="M12 2v2" />
@@ -86,7 +86,7 @@
                             {{-- Icon for Vehicles --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6  lucide lucide-car-icon lucide-car">
+                                stroke-linejoin="round" class="size-8  lucide lucide-car-icon lucide-car">
                                 <path
                                     d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
                                 <circle cx="7" cy="17" r="2" />
@@ -99,7 +99,7 @@
                             {{-- Icon for facilities --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6  lucide lucide-building-icon lucide-building">
+                                stroke-linejoin="round" class="size-7  lucide lucide-building-icon lucide-building">
                                 <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
                                 <path d="M9 22v-4h6v4" />
                                 <path d="M8 6h.01" />
@@ -119,7 +119,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="size-6  lucide lucide-tablet-smartphone-icon lucide-tablet-smartphone">
+                                class="size-7 lucide lucide-tablet-smartphone-icon lucide-tablet-smartphone">
                                 <rect width="10" height="14" x="3" y="8" rx="2" />
                                 <path d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4" />
                                 <path d="M8 18h.01" />
@@ -130,7 +130,7 @@
                             {{-- Icon for High Value Assets --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6  lucide lucide-microwave-icon lucide-microwave">
+                                stroke-linejoin="round" class="size-7  lucide lucide-microwave-icon lucide-microwave">
                                 <rect width="20" height="15" x="2" y="4" rx="2" />
                                 <rect width="8" height="7" x="6" y="8" rx="1" />
                                 <path d="M18 8v7" />
@@ -143,7 +143,7 @@
                             {{-- Icon for laboratory equipment --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6 lucide lucide-microscope-icon lucide-microscope">
+                                stroke-linejoin="round" class="size-7 lucide lucide-microscope-icon lucide-microscope">
                                 <path d="M6 18h8" />
                                 <path d="M3 22h18" />
                                 <path d="M14 22a7 7 0 1 0 0-14h-1" />
@@ -157,7 +157,7 @@
                             {{-- Icon for Company Owned Tools --}}
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round" class="size-6 lucide lucide-drill-icon lucide-drill">
+                                stroke-linejoin="round" class="size-7 lucide lucide-drill-icon lucide-drill">
                                 <path d="M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z" />
                                 <path
                                     d="M13 10H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1l-.81 3.242a1 1 0 0 1-.97.758H8" />
@@ -173,7 +173,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="size-6 lucide lucide-fire-extinguisher-icon lucide-fire-extinguisher">
+                                class="size-7 lucide lucide-fire-extinguisher-icon lucide-fire-extinguisher">
                                 <path d="M15 6.5V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3.5" />
                                 <path d="M9 18h8" />
                                 <path d="M18 3h-3" />
@@ -255,9 +255,11 @@
                                 </li>
 
 
-                                <li class="flex justify-between items-center">
+                                <li class="flex justify-between items-start">
                                     <span class="text-xs text-gray-500 font-semibold">Category</span>
-                                    <span class="text-sm text-gray-900 font-normal">{{ $asset->category->category_name
+                                    <span
+                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">{{
+                                        $asset->category->category_name
                                         ?? 'N/A'
                                         }}</span>
                                 </li>
@@ -321,7 +323,8 @@
                                 @elseif($asset->asset_type == 2 && $asset->employee)
                                 <li class="flex justify-between items-start">
                                     <span class="text-xs text-gray-500 font-semibold">Department</span>
-                                    <span class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">{{
+                                    <span
+                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">{{
                                         $asset->employee->department->department_name ?? 'N/A' }}</span>
                                 </li>
 
@@ -354,22 +357,308 @@
 
 
             <!-- Main Transfer Form -->
-            <div class="flex-1 p-8">
-                <h2 class="text-lg font-medium flex gap-3 text-gray-900 mb-6 uppercase">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-pen-icon lucide-user-pen"><path d="M11.5 15H7a4 4 0 0 0-4 4v2"/><path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="7" r="4"/></svg>
-                    Transfer Information
-                </h2>
+            <div class="flex-1">
+                <div class=" p-8">
+                    <!-- Header -->
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-semibold flex items-center gap-3 text-blue-700 uppercase">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-user-pen-icon lucide-user-pen">
+                                <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
+                                <path
+                                    d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
+                                <circle cx="10" cy="7" r="4" />
+                            </svg>
+                            Transfer Information
+                        </h2>
+                        <span class="text-xs italic text-red-600 font-medium">* - required fields</span>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Date of Transfer -->
+                        <div>
+                            <label for="transfer_date" class="block text-sm font-medium text-gray-700">Date of Transfer
+                                <span class="text-red-600">*</span></label>
+                            <input type="date" id="transfer_date" name="transfer_date" wire:model.defer="transfer_date"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm" />
+
+                        </div>
+
+                        <!-- Control Number -->
+                        <div>
+                            <label for="control_number" class="block text-sm font-medium text-gray-700">Control Number
+                                <span class="text-red-600">*</span></label>
+                            <input type="text" id="control_number" name="control_number"
+                                wire:model.defer="control_number" placeholder="e.g. ABCD-1234-5678"
+                                pattern="[A-Z]{4}-\d{4}-\d{4}" autocomplete="off"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm uppercase"
+                                required />
+                        </div>
+
+                        <!-- From (conditionally rendered) -->
+                        <div class="md:col-span-1">
+                            @if($asset->asset_type == 1 && $asset->department)
+                            <label class="block text-sm font-medium text-gray-700">Transfer from</label>
+                            <input type="text" value="{{ strtoupper($asset->department->department_name) }}"
+                                class="mt-1 block w-full rounded-md bg-gray-100 border-gray-300 text-sm" disabled>
+                            @else
+                            <label class="block text-sm font-medium text-gray-700">Transfer from</label>
+                            <input type="text" value="{{ strtoupper($asset->employee->employee_lastname) }}, {{
+                                        strtoupper($asset->employee->employee_firstname) ?? 'N/A' }}"
+                                class="mt-1 block w-full rounded-md bg-gray-100 border-gray-300 text-sm" disabled>
+                            @endif
+                        </div>
+
+                        <!-- TO (conditionally rendered dropdowns) -->
+                        <div class="md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700">Transfer to <span
+                                    class="text-red-600">*</span></label>
+
+                            @if($asset->asset_type == 1)
+                            <div x-data="{
+                        openToDept: false,
+                        selectedToDeptId: @entangle('to_department_id'),
+                        selectedToDeptName: @entangle('to_department_name'),
+                        searchDeptText: '',
+                        clearSearchTimeout: null,
+
+                        handleToDeptClick() {
+                        this.openToDept = !this.openToDept;
+
+                        // Focus the hidden input after dropdown opens
+                        this.$nextTick(() => {
+                            if (this.openToDept && this.$refs.toDeptSearch) {
+                                this.$refs.toDeptSearch.focus();
+                            }
+                            });
+                        },
 
 
+                        handleDeptSearch(value) {
+                            this.searchDeptText = value;
+                            console.log('Searching for department:', value); // ✅ Console log added
+                            this.$wire.set('searchTerm', value);
 
-                <!-- Action Buttons -->
-                <div class="flex justify-end mt-8">
-                    <button
-                        class="px-6 py-2 bg-blue-800 hover:bg-blue-900 text-white text-sm rounded-lg font-medium transition-all">
-                        Submit Transfer
-                    </button>
+                            if (this.clearSearchTimeout) clearTimeout(this.clearSearchTimeout);
+                            this.clearSearchTimeout = setTimeout(() => {
+                                this.searchDeptText = '';
+                            }, 2000);
+
+                        },
+
+                        resetToDept() {
+                            this.selectedToDeptId = '';
+                            this.selectedToDeptName = '';
+                        }
+                        }" x-init="
+                            $watch('openToDept', value => {
+                                if (!value) {
+                                    searchDeptText = '';
+                                    $wire.set('searchTerm', '');
+                                }
+                            });
+                        " class="relative mt-1 w-full">
+                                <!-- Toggle -->
+                                <button type="button" @click="handleToDeptClick"
+                                    class="
+                                w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600">
+                                    <span x-text="selectedToDeptName || 'SELECT DEPARTMENT'"
+                                        class="block truncate uppercase"></span>
+                                    <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+
+                                <!-- Hidden Search Input -->
+                                <input x-ref="toDeptSearch" type="text" :value="searchDeptText"
+                                    @input="handleDeptSearch($event.target.value)" @keydown.enter.prevent
+                                    autocomplete="off" class="absolute opacity-0 pointer-events-none  w-0 h-0" />
+
+                                <!-- Dropdown List -->
+                                <ul x-show="openToDept" @click.outside="openToDept = false" x-transition
+                                    class="absolute left-0 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto z-50">
+
+                                    <!-- Clear Option -->
+                                    <li @click="resetToDept(); openToDept = false"
+                                        class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                        SELECT DEPARTMENT
+                                    </li>
+
+                                    <!-- Dynamic List -->
+                                    @foreach($departments as $department)
+                                    <li @click="
+                                    selectedToDeptId = '{{ $department->department_id }}';
+                                    selectedToDeptName = '{{ strtoupper(addslashes($department->department_name)) }}';
+                                    openToDept = false;
+                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                        {{ strtoupper($department->department_name) }}
+                                    </li>
+                                    @endforeach
+                                </ul>
+
+                                <!-- Error Message -->
+                                @error('to_department_id')
+                                <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            @else
+                            <!-- Fallback if asset type is not 1 -->
+                            <div x-data="{
+                            openToEmployee: false,
+                            selectedToEmployeeId: @entangle('to_employee_id'),
+                            selectedToEmployeeName: @entangle('to_employee_name'),
+                            searchEmpText: '',
+                            clearTimeoutId: null,
+
+                            handleEmpSearch(value) {
+                                this.searchEmpText = value;
+                                console.log('Searching Employee:', value);
+                                this.$wire.set('searchTerm', value);
+
+                                if (this.clearTimeoutId) clearTimeout(this.clearTimeoutId);
+                                this.clearTimeoutId = setTimeout(() => {
+                                    this.searchEmpText = '';
+                                }, 2000);
+                            },
+
+                            handleToEmployeeClick() {
+                                this.openToEmployee = !this.openToEmployee;
+
+                                this.$nextTick(() => {
+                                    if (this.openToEmployee && this.$refs.toEmpSearch) {
+                                        this.$refs.toEmpSearch.focus();
+                                    }
+                                });
+                            },
+
+                            resetToEmployee() {
+                                this.selectedToEmployeeId = '';
+                                this.selectedToEmployeeName = '';
+                            }
+                        }" x-init="
+                            $watch('openToEmployee', value => {
+                                if (!value) {
+                                    searchEmpText = '';
+                                    $wire.set('searchTerm', '');
+                                }
+                            });
+                        " class="md:col-span-1">
+                                <div class="relative mt-1 w-full">
+                                    <!-- Toggle Button -->
+                                    <button type="button" @click="handleToEmployeeClick"
+                                        class="
+                                w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600">
+                                        <span x-text="selectedToEmployeeName || 'SELECT EMPLOYEE'"
+                                            class="block truncate uppercase"></span>
+                                        <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+
+                                    <!-- Hidden Search Input -->
+                                    <input x-ref="toEmpSearch" type="text" :value="searchEmpText"
+                                        @input="handleEmpSearch($event.target.value)" @keydown.enter.prevent
+                                        autocomplete="off" class="absolute opacity-0 pointer-events-none w-0 h-0" />
+
+                                    <!-- Dropdown List -->
+                                    <ul x-show="openToEmployee" @click.outside="openToEmployee = false" x-transition
+                                        class="absolute left-0 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto z-50">
+
+                                        <!-- Clear Option -->
+                                        <li @click="resetToEmployee(); openToEmployee = false"
+                                            class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                            SELECT EMPLOYEE
+                                        </li>
+
+                                        <!-- Dynamic List -->
+                                        @foreach($employees as $employee)
+                                        <li @click="
+                                            selectedToEmployeeId = '{{ $employee->employee_id }}';
+                                            selectedToEmployeeName = '{{ strtoupper(addslashes($employee->employee_lastname)) }}, {{ strtoupper(addslashes($employee->employee_firstname)) }}';
+                                            openToEmployee = false;
+                                        " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                            {{ strtoupper($employee->employee_lastname) }},
+                                            {{ strtoupper($employee->employee_firstname) }}
+                                        </li>
+                                        @endforeach
+                                    </ul>
+
+                                    <!-- Validation Error -->
+                                    @error('to_employee_id')
+                                    <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            @endif
+                        </div>
+
+
+                        <!-- Reason for Transfer -->
+                        <div class="md:col-span-2">
+                            <label for="transfer_reason" class="block text-sm font-medium text-gray-700">Reason for
+                                Transfer
+                                <span class="text-red-600">*</span></label>
+                            <textarea id="transfer_reason" name="transfer_reason" wire:model.defer="transfer_reason"
+                                rows="3"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm resize-none uppercase"
+                                placeholder="STATE THE REASON FOR TRANSFER"></textarea>
+                        </div>
+                    </div>
+                    <!-- Action Buttons -->
+                    <div class="flex justify-end mt-8">
+                        <button wire:click='confirmSubmit'
+                            class="px-6 py-2 bg-blue-800 hover:bg-blue-900 text-white text-sm rounded-lg font-medium transition-all">
+                            Submit Transfer
+                        </button>
+                    </div>
                 </div>
+
+
+
             </div>
         </div>
     </div>
+    <!-- Confirmation Modal -->
+    <div x-data="{ show: @entangle('showConfirmModal') }" x-show="show" x-transition.opacity x-cloak
+        class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+
+        <div @click.outside="show = false"
+            class="bg-white rounded-xl shadow-xl p-6 w-full max-w-md text-center space-y-4 mx-4">
+
+            <!-- Icon -->
+            <div class="w-14 h-14 flex items-center justify-center rounded-full bg-yellow-200 text-yellow-800 mx-auto">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M8 3 4 7l4 4" />
+                    <path d="M4 7h16" />
+                    <path d="m16 21 4-4-4-4" />
+                    <path d="M20 17H4" />
+                </svg>
+            </div>
+
+            <!-- Title -->
+            <h3 class="text-lg font-semibold text-gray-800">Confirm Transfer</h3>
+            <p class="text-sm text-gray-600">Are you sure you want to submit this transfer?</p>
+
+            <!-- Actions -->
+            <div class="flex justify-center gap-4 mt-6">
+                <button @click="show = false"
+                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-sm font-medium">
+                    Cancel
+                </button>
+                <button wire:click="submitConfirmed" @click="show = false"
+                    class="px-4 py-2 bg-blue-800 text-white rounded-lg hover:bg-blue-900 text-sm font-medium">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
 </div>
