@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import "@fontsource/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@plugin "daisyui";
+@source "../node_modules/flowbite-datepicker";
+
+@layer components {
+    .profile_edit_input {
+        @apply w-full rounded-lg border-none outline outline-1 outline-sky-500 font-light transition;
+
+        &:focus {
+            @apply outline-2 outline-sky-800;
+        }
+    }
+}
+
+.form-input {
+  @apply w-full mt-1 px-4 py-2 text-sm border border-gray-300 rounded-lg
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+         bg-white text-gray-800 shadow-sm;
+}
+
+:root {
+  --pf: #000000; 
+  --p: #000000;  
+  --bc: #ffffff; 
+}
+
+[data-theme="dark"] {
+  --pf: #000000;
+  --p: #000000;
+  --bc: #ffffff;
+}
+
+input, button, select, textarea {
+  color: black;
+}
+
+body{
+  color: #f3f4f6;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(2);
+    opacity: 1;
+  }
+}
+
+@media (orientation: landscape) {
+  .landscape\:w-full {
+    width: 100%;
+  }
+
+   .landscape\:h-full {
+    height: 100%;
+  }
+
+  .landscape\:flex-row {
+    flex-direction: row;
+  }
+
+  .landscape\:flex-col {
+    flex-direction: column;
+  }
+
+  /* Add other utilities as needed */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
+}
+
+/* Hide arrows in number input for Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

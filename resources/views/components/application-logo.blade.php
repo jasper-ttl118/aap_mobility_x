@@ -1,0 +1,1 @@
+<img src="{{ asset('build/assets/aap_logo.png') }}" alt="aap_logo" style="max-width: 100px">
