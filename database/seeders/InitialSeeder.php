@@ -102,6 +102,31 @@ class InitialSeeder extends Seeder
             'module_updated' => now(),
         ]);
 
+        DB::table('modules')->insert([
+            'module_name' => 'CRM',
+            'module_description' => 'Main dashboard module',
+            'module_status' => 1,
+            'module_created' => now(),
+            'module_updated' => now(),
+        ]);
+
+        DB::table('modules')->insert([
+            'module_name' => 'Asset Management',
+            'module_description' => 'Main dashboard module',
+            'module_status' => 1,
+            'module_created' => now(),
+            'module_updated' => now(),
+        ]);
+
+        DB::table('modules')->insert([
+            'module_name' => 'CMS',
+            'module_description' => 'Main dashboard module',
+            'module_status' => 1,
+            'module_created' => now(),
+            'module_updated' => now(),
+        ]);
+
+
         // Insert submodule
         $submoduleId = DB::table('submodules')->insertGetId([
             'module_id' => $moduleId,
@@ -111,6 +136,70 @@ class InitialSeeder extends Seeder
             'submodule_created' => now(),
             'submodule_updated' => now(),
         ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Dashboard',
+            'submodule_description' => 'Dashboard',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Members',
+            'submodule_description' => 'Members',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Email Marketing',
+            'submodule_description' => 'Email Marketing',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Corporate',
+            'submodule_description' => 'Corporate',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Sales Tracking',
+            'submodule_description' => 'Sales Tracking',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Alphalist',
+            'submodule_description' => 'Alphalist',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+
+        DB::table('submodules')->insertGetId([
+            'module_id' => $moduleId,
+            'submodule_name' => 'Manpower Requisition',
+            'submodule_description' => 'Manpower Requisition',
+            'submodule_status' => 1,
+            'submodule_created' => now(),
+            'submodule_updated' => now(),
+        ]);
+        
 
         // Pivot: submodule_has_permissions
         DB::table('submodule_has_permissions')->insert([

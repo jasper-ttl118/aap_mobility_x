@@ -8,7 +8,10 @@
 @tailwind components;
 @tailwind utilities;
 
-@plugin "daisyui";
+@plugin "daisyui"{
+    exclude: rootscrollgutter;
+}
+
 @source "../node_modules/flowbite-datepicker";
 
 @layer components {
@@ -31,6 +34,7 @@
   --pf: #000000; 
   --p: #000000;  
   --bc: #ffffff; 
+  --color-primary: #1e3a8a; /* blue-900 */
 }
 
 [data-theme="dark"] {

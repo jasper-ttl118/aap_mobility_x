@@ -4,6 +4,7 @@ use App\Livewire\Ams\Main;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::middleware('auth')->group(function () {
     // route for profile
@@ -94,7 +96,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/assets/history', [AssetController::class, 'assetHistory'])->name('assetHistory');
     Route::get('/ams/common-assets', [AssetController::class, 'commonAssets'])->name('commonAssets');
     Route::get('/ams/assets-for-sale', [AssetController::class, 'assetsForSale'])->name('assetsForSale');
-    Route::get('/ams/cms/departments', [AssetController::class, 'cms'])->name('cms');
+
+    // Routes for CMS (romuromu)
+    Route::view('/cms/departments', 'livewire/cms/index')->name('departments');
+    Route::redirect('/cms', '/cms/departments');
+    
+    //Route::view('/ams/cms/departments', 'ams.cms.department.index')->name('department');
     Route::get('/ams/cms/create-branch', [AssetController::class, 'addBranch'])->name('addBranch');
     Route::get('/ams/cms/create-department', [AssetController::class, 'addDepartment'])->name('addDepartment');
     Route::get('/ams/cms/it-brands', [AssetController::class, 'employees'])->name('it-brands');
@@ -102,6 +109,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/cms/asset-status', [AssetController::class, 'status'])->name('status');
     Route::get('/ams/cms/create-category', [AssetController::class, 'addCategory'])->name('addCategory');
     Route::get('/ams/cms/create-status', [AssetController::class, 'addStatus'])->name('addStatus');
+
+
     Route::get('/ams/scan-qr', [AssetController::class, 'scanQr'])->name('scanQr');
 
 
@@ -148,10 +157,10 @@ Route::middleware('auth')->group(function () {
 Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/notes', [NoteController::class, 'index']);
 
-Route::get('/send-message', function () {
-    broadcast(new MessageSent('Hello from Reverb + Livewire!'));
-    return 'Message Sent!';
-});
+// Route::get('/send-message', function () {
+//     broadcast(new MessageSent('Hello from Reverb + Livewire!'));
+//     return 'Message Sent!';
+// });
 
 // Notes
 Route::get('/calendar/departments', [CalendarController::class, 'getDepartments']);
