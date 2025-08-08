@@ -3,36 +3,42 @@
 use Livewire\Attributes\Rule;
 use Livewire\Volt\Component;
 use App\Models\Department;
-use App\Models\Romutest;
 
 new class extends Component {
     #[Rule('required')]
-    public string $department_name;
+    public $department_name;
+
+    public $showCreateModal = false;
 
     public function store()
     {
         $data = $this->validate();
         Department::create($data);
 
-        $this->dispatch('stored');
+        $this->dispatch('refresh-list');
         $this->reset();
     }
 }; ?>
 
 <div>
-    <button class="btn btn-primary" x-on:click="create_modal = true">Add Department</button>
-    <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">      
-            <form method="dialog" wire:submit.prevent="store">
-                <label class="floating-label">
-                    <input wire:model="department_name" type="text" placeholder="Department Name" class="input input-md" />
-                    <span>Department Name</span>
+    <button class="btn btn-primary" x-on:click="$wire.showCreateModal = true" >
+        Add Department
+    </button>
+
+    <x-modal-box wire:show="showCreateModal">
+        <form wire:submit="store">
+            <fieldset class="fieldset">
+                <label class="label text-black">
+                    Department Name
                 </label>
-                <div class="modal-action">
-                    <button class="btn">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>   
-                </div>
-            </form>
-        </div>
-    {{-- </dialog> --}}
+                <input wire:model="department_name" class="input input-primary bg-white" />
+                <button type="button" x-on:click="$wire.showCreateModal = false" class="btn btn-secondary">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </fieldset>
+        </form>
+    </x-modal-box>
 </div>

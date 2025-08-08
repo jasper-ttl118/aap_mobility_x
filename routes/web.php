@@ -98,7 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/assets-for-sale', [AssetController::class, 'assetsForSale'])->name('assetsForSale');
 
     // Routes for CMS (romuromu)
-    Route::view('/cms/departments', 'livewire/cms/index')->name('departments');
+    Route::view('/cms/departments', 'livewire/cms/department/index')->name('departments');
     Route::redirect('/cms', '/cms/departments');
     
     //Route::view('/ams/cms/departments', 'ams.cms.department.index')->name('department');

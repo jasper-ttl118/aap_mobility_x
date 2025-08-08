@@ -58,13 +58,17 @@
 
                 <div class="flex flex-wrap justify-between items-center gap-4 px-0 lg:px-5">
                     {{-- CREATE an instance of a model --}}
-                    <livewire:cms.department.create @stored="$refresh" />
+                    <livewire:cms.department.create />
                 </div>
             </div>
         
-            <!-- Departments Table -->
-            <div x-show="'department'" x-transition>
-                <livewire:ams.cms.department-list wire:key="department-list" />
+            <div class="px-5 pb-5" x-transition>
+                {{-- READ the insances of a model --}}
+                <livewire:cms.department.list />
+                {{-- UPDATE an instance of a model --}}
+                <livewire:cms.department.edit />
+                {{-- DELETE an instance of a model --}}
+                <livewire:cms.department.delete />
             </div>
         </div>
     </div>
