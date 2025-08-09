@@ -1,7 +1,7 @@
 @props(['class' => '', 'x_data' => '', 'navbar_selected' => ''])
 
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="light" lang="en">
 
 <head>
     <meta charset="UTF-8">

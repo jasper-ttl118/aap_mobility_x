@@ -8,8 +8,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@plugin "daisyui"{
-    exclude: rootscrollgutter;
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, cupcake;
 }
 
 @source "../node_modules/flowbite-datepicker";
@@ -45,10 +45,6 @@
 
 input, button, select, textarea {
   color: black;
-}
-
-body{
-  color: #f3f4f6;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
