@@ -9,6 +9,8 @@ new class extends Component {
     #[Rule('required')]
     public string $department_name;
 
+    public $showCreateModal = false;
+
     public function store()
     {
         $data = $this->validate();
@@ -20,19 +22,22 @@ new class extends Component {
 }; ?>
 
 <div>
-    <button class="btn btn-primary" x-on:click="create_modal = true">Add Department</button>
-    <dialog id="my_modal_1" class="modal">
-        <div class="modal-box">      
-            <form method="dialog" wire:submit.prevent="store">
-                <label class="floating-label">
-                    <input wire:model="department_name" type="text" placeholder="Department Name" class="input input-md" />
-                    <span>Department Name</span>
-                </label>
-                <div class="modal-action">
-                    <button class="btn">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>   
-                </div>
-            </form>
-        </div>
-    {{-- </dialog> --}}
+    <button x-on:click="$wire.showCreateModal = true" class="btn btn-primary">
+        Add Department
+    </button>
+
+    <x-modal-box wire:show="showCreateModal">
+       <form wire:submit="store">
+            <fieldset class="fieldset">
+                <label class="label text-black">Department Name</label>
+                <input wire:model="department_name" type="text" class="input input-primary bg-white" placeholder="Enter Department Name" />
+                <button x-on:click="$wire.showCreateModal = false" class="btn btn-outline btn-secondary">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    Submit
+                </button>
+            </fieldset>
+        </form>
+    </x-modal-box>
 </div>
