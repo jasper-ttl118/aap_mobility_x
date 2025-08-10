@@ -44,12 +44,11 @@
     <div class="flex flex-col w-full gap-5 bg-[#f3f4f6] xs:w-full sm:w-full">
         <x-layouts.header />
         {{ $slot }}
+        <div id="toastBox"></div>
     </div>
 
     {{-- <x-layouts.chat /> --}}
-
     @livewireScripts
-    
 
 
 </body>

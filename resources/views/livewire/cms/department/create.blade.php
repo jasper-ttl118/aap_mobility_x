@@ -10,8 +10,6 @@ new class extends Component {
 
     public $showCreateModal = false;
 
-    public $showCreateModal = false;
-
     public function store()
     {
         $data = $this->validate();

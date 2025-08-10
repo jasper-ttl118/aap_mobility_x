@@ -1,19 +1,46 @@
-@props([ 'delay' => 5000, ])
+@props(['delay' => 5000])
 
-@session('toast')
-    <div x-data="{ showToast: false }" x-init="setTimeout(() => showToast = true, 1000 })">
-        <div 
-            x-show="showToast"
-            x-transition:enter="transition ease-out duration-300 transform"
-            x-transition:enter-start="opacity-0 translate-x-10"
-            x-transition:enter-end="opacity-100 translate-x-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 translate-x-0"
-            x-transition:leave-end="opacity-0 translate-x-10"
-            x-data="{ showToast: true }"
-            x-init="setTimeout(() => showToast = false, {{ $delay }})"
-        >
-                {{ $slot }}
+<div
+    x-data="{ show: false, progress: 100 }"
+    x-init="
+        $js('showToast', (time = {{ $delay }}) => {
+            progress = 100;
+            show = true;
+
+            setTimeout(() => {
+                progress = 0;
+            }, 50);
+
+            setTimeout(() => {
+                show = false;
+            }, time);
+        });
+
+        $js('closeToast', () => {
+            show = false;
+            progress = 0;
+        });
+    "
+    class="fixed bottom-4 right-8 z-50"
+>
+    <div
+        x-show="show"
+        x-transition
+        class="shadow-md"
+    >
+        <div {{ $attributes->merge(['class' => 'min-w-32 px-2 py-1 bg-red-100 rounded-t text-sm']) }}>
+            {{ $slot }}
+            <div class="divider divider-horizontal mx-0"></div>
+            <button @click="show = false" class="btn btn-ghost btn-sm p-0.5">
+                <x-icon.x-mark class="size-[1rem]" />
+            </button>
+        </div>
+        <div class="h-1 bg-red-400 rounded-b overflow-hidden">
+            <div
+                class="h-full bg-red-800"
+                :style="{ width: progress + '%' }"
+                style="transition: width {{ $delay }}ms linear;"
+            ></div>
         </div>
     </div>
-@endsession
+</div>
