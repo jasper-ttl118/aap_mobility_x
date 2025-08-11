@@ -35,6 +35,7 @@
   --p: #000000;  
   --bc: #ffffff; 
   --color-primary: #1e3a8a; /* blue-900 */
+  --color-secondary: #F6D400; /* yellow */
 }
 
 [data-theme="dark"] {
@@ -100,3 +101,6 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Alpine.js cloak */
+[x-cloak] { display: none !important; }

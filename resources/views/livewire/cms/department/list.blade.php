@@ -14,33 +14,40 @@ new class extends Component {
         $this->dispatch('$refresh')->self();
     }
 
+    public function paginationView()
+    {
+        return 'custom-pagination-links';
+    }
+
     public function with(): array
     {
         return [
-            'departments' => Department::latest()->paginate(10),
+            'departments' => Department::latest()->paginate(6),
         ];
     }
 }; ?>
 
 <div>
-    <div class="overflow-x-auto">
-        <table class="table">
-            <thead>
+    <div class="overflow-x-auto mt-1 mb-3">
+        <table class="table table-fixed">
+            <thead class="bg-gray-100 text-sm text-gray-700 uppercase">
                 <tr>
-                    <th>Department Name</th>
-                    <th>Actions</th>
+                    <th class="w-32 p-1 m-0 text-center">Code</th>
+                    <th class="p-1 m-0 text-center">Name</th>
+                    <th class="w-32 p-1 m-0 text-center">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($departments as $department)
-                    <tr :wire:key="'$department->id'">
-                        <td>{{ $department->department_name }}</td>
-                        <td class="w-[12.5%] py-4">
-                            <div class="flex flex-row justify-center items-center gap-2">
-                                <button @click="$dispatch('show-edit-modal', { id: {{ $department->department_id }}})" class="btn btn-ghost text-blue-800">
+                    <tr :wire:key="'$department->id'" class="p-0 m-0 text-sm">
+                        <td class="p-1 m-0 text-center">{{ $department->department_code }}</td>
+                        <td class="p-1 m-0 text-center">{{ $department->department_name }}</td>
+                        <td class="p-1 m-0">
+                            <div class="flex flex-row justify-center items-center">
+                                <button @click="$dispatch('show-edit-modal', { id: {{ $department->department_id }}})" class="btn btn-ghost text-blue-800 px-2 py-0.5">
                                     <x-icon.edit />
                                 </button>
-                                <button @click="$dispatch('show-delete-toast', { id: {{ $department->department_id }}})" class="btn btn-ghost text-red-700">
+                                <button @click="$dispatch('show-delete-toast', { id: {{ $department->department_id }}})" class="btn btn-ghost text-red-700 px-2 py-0.5">
                                     <x-icon.delete />
                                 </button>
                             </div>
@@ -51,5 +58,7 @@ new class extends Component {
         </table>
     </div>
 
-    {{ $departments->links(data: ['scrollTo' => false]) }}
+    <div>
+        {{ $departments->links(data: ['scrollTo' => false, ]) }}
+    </div>
 </div>

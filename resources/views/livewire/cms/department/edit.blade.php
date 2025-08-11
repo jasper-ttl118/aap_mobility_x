@@ -7,19 +7,20 @@ use App\Models\Department;
 
 new class extends Component {
     public $department;
-
     public $department_id;
+
     #[Rule('required')]
     public $department_name;
 
-    public $showEditModal = false;
+    #[Rule('nullable')]
+    public $department_code;
 
     #[On('show-edit-modal')]
     public function showEditModal($id)
     {
         $this->department = Department::findOrFail($id);
         $this->fill($this->department);
-        $this->showEditModal = true;
+        $this->js('showEditModal');
     }
 
     public function update()
@@ -27,29 +28,39 @@ new class extends Component {
         $data = $this->validate();
         $this->department->update($data);
 
-        $this->dispatch('refresh-list');
+        $this->js('closeEditModal');
         $this->reset();
+        $this->dispatch('refresh-list');
     }
 }; ?>
 
 <div>
-    <x-modal-box wire:show="showEditModal">
+    <x-modal-box name="EditModal">
         <form wire:submit="update">
-            <fieldset class="fieldset">
-                <legend class="legend">
+            <div class="flex flex-col gap-3">
+                <div class="text-blue-900 font-semibold text-lg">
                     Edit Department
-                </legend>
-                <label class="label text-black">
-                    Department Name
+                </div>
+                {{-- Input Fields --}}
+                <label class="floating-label">
+                    <input wire:model="department_code" placeholder="Enter Department Code" class="input input-sm w-96 placeholder:italic" />
+                    <span>Department Code</span>
                 </label>
-                <input wire:model="department_name" class="input input-primary bg-white" />
-                <button type="button" x-on:click="$wire.showEditModal = false" class="btn btn-secondary">
-                    Cancel
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Submit
-                </button>
-            </fieldset>
+                <label class="floating-label">
+                    <input wire:model="department_name" placeholder="Enter Department Name" class="input input-sm w-96 placeholder:italic" />
+                    <span>Department Name</span>
+                </label>
+               
+                {{-- Action Buttons --}}
+                <div class="flex justify-end gap-2 mt-2">
+                    <button type="button" x-on:click="$js.closeEditModal" class="btn btn-outline btn-secondary text-gray-700 hover:text-white btn-sm">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Submit
+                    </button>
+                </div>
+            </div>
         </form>
     </x-modal-box>
 </div>

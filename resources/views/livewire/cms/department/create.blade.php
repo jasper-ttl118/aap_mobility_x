@@ -8,37 +8,52 @@ new class extends Component {
     #[Rule('required')]
     public $department_name;
 
-    public $showCreateModal = false;
+    #[Rule('nullable')]
+    public $department_code;
 
     public function store()
     {
         $data = $this->validate();
         Department::create($data);
 
-        $this->dispatch('refresh-list');
+        $this->js('closeCreateModal');
         $this->reset();
+        $this->dispatch('refresh-list');
     }
 }; ?>
 
+
 <div>
-    <button x-on:click="$wire.showCreateModal = true" class="btn btn-primary">
+    <button x-on:click="$js.showCreateModal" class="btn btn-primary">
         Add Department
     </button>
 
-    <x-modal-box wire:show="showCreateModal">
+    <x-modal-box name="CreateModal">
         <form wire:submit="store">
-            <fieldset class="fieldset">
-                <label class="label text-black">
-                    Department Name
+            <div class="flex flex-col gap-3">
+                <div class="text-blue-900 font-semibold text-lg">
+                    Add Department
+                </div>
+                {{-- Input Fields --}}
+                <label class="floating-label">
+                    <input wire:model="department_code" placeholder="Enter Department Code" class="input input-sm w-96 placeholder:italic" />
+                    <span>Department Code</span>
                 </label>
-                <input wire:model="department_name" class="input input-primary bg-white" />
-                <button type="button" x-on:click="$wire.showCreateModal = false" class="btn btn-secondary">
-                    Cancel
-                </button>
-                <button type="submit" class="btn btn-primary">
-                    Submit
-                </button>
-            </fieldset>
+                <label class="floating-label">
+                    <input wire:model="department_name" placeholder="Enter Department Name" class="input input-sm w-96 placeholder:italic" />
+                    <span>Department Name</span>
+                </label>
+
+                {{-- Action Buttons --}}
+                <div class="flex justify-end gap-2 mt-2">
+                    <button type="button" x-on:click="$js.closeCreateModal" class="btn btn-outline btn-secondary text-gray-700 hover:text-white btn-sm">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                        Submit
+                    </button>
+                </div>
+            </div>
         </form>
     </x-modal-box>
 </div>

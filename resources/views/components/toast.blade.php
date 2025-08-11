@@ -18,12 +18,12 @@
 
         $js('closeToast', () => {
             show = false;
-            progress = 0;
         });
     "
     class="fixed bottom-4 right-8 z-50"
 >
     <div
+        x-cloak
         x-show="show"
         x-transition
         class="shadow-md"
@@ -31,9 +31,10 @@
         <div {{ $attributes->merge(['class' => 'min-w-32 px-2 py-1 bg-red-100 rounded-t text-sm']) }}>
             {{ $slot }}
             <div class="divider divider-horizontal mx-0"></div>
-            <button @click="show = false" class="btn btn-ghost btn-sm p-0.5">
+            <button @click="show = false" class="btn btn-ghost btn-sm p-0.5 hover:bg-red-800 hover:text-white">
                 <x-icon.x-mark class="size-[1rem]" />
             </button>
+
         </div>
         <div class="h-1 bg-red-400 rounded-b overflow-hidden">
             <div

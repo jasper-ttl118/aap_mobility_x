@@ -6,8 +6,8 @@
     <div 
         class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto py-10 px-5 lg:p-10 gap-7 bg-[#f3f4f6]">
         {{-- Navigation Bar --}}
-        <div class="rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7">
-            <div class="flex h-14 lg:flex-row border-b border-gray-200 relative"
+        <div class="text-sm rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-7">
+            <div class="flex items-center justify-content h-9 lg:flex-row border-b border-gray-200 relative gap-8 pl-3"
                 x-data="{ openCMS: false, openAssets: false }">
                 @php
                     $submodules = [
@@ -19,8 +19,8 @@
                     ]
                 @endphp
                 @foreach ($submodules as $key => $value)
-                    <div class="flex-none w-auto {{ request()->is($value)
-                    ? 'border-b-2 border-blue-900' : '' }} p-4 text-center">
+                    <div class="flex w-auto {{ request()->is($value)
+                    ? 'border-b-2 border-blue-900' : '' }} p-1 text-center">
                         <a href="/cms/{{ $value }}"
                             class="{{ request()->is($value)
                             ? 'font-semibold text-blue-900' : 'text-gray-600 hover:text-blue-800 font-inter' }}">
@@ -36,7 +36,7 @@
 
                 <!-- Breadcrumbs -->
                 <div
-                    class="flex flex-wrap items-center gap-x-1 text-blue-900 text-sm px-2 pt-3 pb-2 lg:pt-5 lg:pb-2 lg:px-5">
+                    class="flex flex-wrap items-center gap-x-1 text-blue-900 text-sm px-4 pt-4">
                     <a href="/cms" class="hover:underline">CMS</a>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
@@ -47,9 +47,9 @@
                 </div>
             </div>
 
-            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-5 py-2 gap-4">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 py-3 gap-4">
                 <div>
-                    <h2 class="font-semibold text-lg text-blue-900"
+                    <h2 class="font-semibold text-md text-blue-900"
                         x-text="'Manage AAP Departments'"></h2>
                     <p class="text-gray-900 text-sm"
                         x-text="'Create, update, and delete department details.'">
