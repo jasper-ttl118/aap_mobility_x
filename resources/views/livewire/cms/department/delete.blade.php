@@ -3,7 +3,6 @@
 use Livewire\Volt\Component;
 use App\Models\Department;
 use Livewire\Attributes\On;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 new class extends Component {
     public $id;
@@ -16,26 +15,18 @@ new class extends Component {
         $department->delete();
 
         $this->dispatch('refresh-list');
-        $this->js('closeToast');
-        $this->js('showToast');
+        $this->dispatch('showDeleteToast');
     }
 
+    #[On('restore')]
     public function restore()
     {
         $department = Department::withTrashed()->findOrFail($this->id);
         $department->restore();
-
-        $this->js('closeToast');
         $this->dispatch('refresh-list');
     }
 }; ?>
 
 <div>
-    <x-toast delay="5000" class="flex items-center text-red-800">
-        <div class="flex justify-center items-center p-0.5 gap-2">
-            <x-icon.exclamation-triangle class="size-7" />
-            <div>Item deleted successfully.</div>
-        </div>
-        <button wire:click="restore" class="btn btn-ghost btn-sm py-0.5 px-2 ml-6 text-md hover:bg-red-800 hover:text-white">Undo</button>
-    </x-toast>
+    <livewire:components.toast.delete />
 </div>
