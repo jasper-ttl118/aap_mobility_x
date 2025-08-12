@@ -38,5 +38,8 @@
                 </div>
             <livewire:ams.asset.transfer-form :asset-id="$asset->asset_id">
             <livewire:ams.asset.transfer-success>
+            <livewire:ams.asset.view-transfer>
+            <livewire:ams.asset.transfer-list>
+   
         </div>
 </x-app-layout>

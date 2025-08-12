@@ -36,7 +36,7 @@
 
                     <!-- Title and Subtitle -->
                     <div>
-                        <h2 class="font-semibold text-lg text-blue-900">Manage Available Assets</h2>
+                        <h2 class="font-semibold text-lg text-blue-900">Available Assets</h2>
                         <p class="text-gray-900 text-sm">Borrow, Transfer and View Asset History</p>
                     </div>
 

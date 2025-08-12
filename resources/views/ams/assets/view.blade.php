@@ -6,7 +6,6 @@
         <!-- Options Container -->
         <div class="rounded-md  bg-white shadow-lg -mt-7 ">
             <div class="flex h-14  border-b border-gray-200 relative" x-data="{ openCMS: false, openAssets: false }">
-
                 <x-ams.submodules selected="Assets" />
             </div>
         </div>
@@ -317,10 +316,10 @@
 
                             <!-- Classification -->
                             <div
-                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[540d6e]">
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-blue-700/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-blue-700">
                                 <div class="flex justify-between items-center mb-3 text-[540d6e]">
                                     <!-- Icon + Title -->
-                                    <div class="flex items-center gap-x-2 text-[540d6e]">
+                                    <div class="flex items-center gap-x-2 text-blue-700">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
                                             <path fill-rule="evenodd"
@@ -389,10 +388,10 @@
 
                             <!-- Maintenance -->
                             <div
-                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[ffd23f]">
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FF5C00]/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[#FF5C00]">
                                 <div class="flex items-center justify-between mb-3">
                                     <!-- Left Section: Icon + Heading -->
-                                    <div class="flex items-center gap-x-2 text-[ffd23f]">
+                                    <div class="flex items-center gap-x-2 text-[#FFA500]">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
                                             <path fill-rule="evenodd"
@@ -462,7 +461,7 @@
 
                             <!-- Assignment -->
                             <div
-                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[3bceac]">
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#3bceac]/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[3bceac]">
                                 <div class="flex items-center justify-between mb-3 text-[3bceac]">
                                     <!-- Left Side: Icon + Label -->
                                     <div class="flex items-center gap-x-2 text-[3bceac]">
@@ -528,10 +527,10 @@
 
                             <!-- Warranty -->
                             <div
-                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[ee4266]">
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-red-600/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-red-600">
                                 <div class="flex items-center justify-between mb-3">
                                     <!-- Left: Icon + Heading -->
-                                    <div class="flex items-center gap-x-2 text-[ee4266]">
+                                    <div class="flex items-center gap-x-2 text-red-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
                                             <path fill-rule="evenodd"
@@ -585,10 +584,10 @@
 
                             <!-- Description -->
                             <div
-                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FAFBFF] hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[0ead69]">
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-yellow-400/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-yellow-400">
                                 <div class="flex items-center justify-between mb-3">
                                     <!-- Left: Icon + Label -->
-                                    <div class="flex items-center gap-x-2 text-[0ead69]">
+                                    <div class="flex items-center gap-x-2 text-yellow-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4">
                                             <path fill-rule="evenodd"

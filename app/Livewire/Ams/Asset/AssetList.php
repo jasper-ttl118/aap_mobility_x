@@ -2,74 +2,139 @@
 
 namespace App\Livewire\Ams\Asset;
 
-use App\Models\Asset;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Asset;
+use App\Models\AssetCategory;
+use App\Models\AssetStatus;
+use App\Models\AssetCondition;
+use App\Models\Department;
 
 class AssetList extends Component
 {
     use WithPagination;
 
-    protected $paginationTheme = 'tailwind';
-
-    //filters
-    public $category = '';
-    public $status = '';
-    public $condition = '';
-    public $department = '';
     public $search = '';
+    public $perPage = 10;
 
+    public $filterCategory = '';
+    public $filterStatus = '';
+    public $filterCondition = '';
+    public $filterDepartment = '';
 
-    protected $listeners = ['apply-filters' => 'applyFilters', 'search-assets' => 'updateSearch'];
+    protected $updatesQueryString = true;
 
-
-
-    #[On('apply-filters')]
-    public function applyFilters($filters)
+    public function updating($property)
     {
-        $this->category = $filters['category'];
-        $this->status = $filters['status'];
-        $this->condition = $filters['condition'];
-        $this->department = $filters['department'];
+        // Reset pagination when any filter or search changes
+        if (in_array($property, ['search', 'perPage', 'filterCategory', 'filterStatus', 'filterCondition', 'filterDepartment'])) {
+            $this->resetPage();
+        }
+    }
 
-    }
-    #[On('search-assets')]
-    public function updateSearch($value)
+    public function resetFilters()
     {
-        $this->search = $value;
+        $this->reset([
+            'search',
+            'filterCategory',
+            'filterStatus',
+            'filterCondition',
+            'filterDepartment',
+        ]);
+        $this->resetPage();
     }
+
 
     public function render()
-{
-    $assets = Asset::with(['employee', 'category', 'status', 'condition', 'department', 'brand'])
-        ->where('ams_active', 1)
-        ->when($this->category, fn($q) => $q->where('category_id', $this->category))
-        ->when($this->status, fn($q) => $q->where('status_id', $this->status))
-        ->when($this->condition, fn($q) => $q->where('condition_id', $this->condition))
-        ->when($this->department, fn($q) => $q->where('department_id', $this->department))
-        ->when($this->search, function ($query) {
-            $searchTerm = '%' . $this->search . '%';
-            $query->where(function ($q) use ($searchTerm) {
-                $q->where('asset_name', 'like', $searchTerm)
-                  ->orWhere('model_name', 'like', $searchTerm)
-                  ->orWhere('brand_name_custom', 'like', $searchTerm)
-                  ->orWhereHas('brand', fn($b) => $b->where('brand_name', 'like', $searchTerm))
-                  ->orWhereHas('category', fn($c) => $c->where('category_name', 'like', $searchTerm))
-                  ->orWhereHas('status', fn($s) => $s->where('status_name', 'like', $searchTerm))
-                  ->orWhereHas('condition', fn($cond) => $cond->where('condition_name', 'like', $searchTerm))
-                  ->orWhereHas('employee', function ($emp) use ($searchTerm) {
-                      $emp->where('employee_firstname', 'like', $searchTerm)
-                          ->orWhere('employee_lastname', 'like', $searchTerm)
-                          ->orWhereRaw("CONCAT(employee_lastname, ', ', employee_firstname) LIKE ?", [$searchTerm]);
-                  })
-                  ->orWhereHas('department', fn($d) => $d->where('department_name', 'like', $searchTerm));
-            });
-        })
-        ->orderBy('property_code')
-        ->paginate(8);
+    {
+        $assets = Asset::with(['employee', 'category', 'status', 'condition', 'department', 'brand'])
+            ->where('ams_active', 1)
 
-    return view('livewire.ams.asset.asset-list', compact('assets'));
-}
+            // ✅ Apply Category Filter
+            ->when(
+                $this->filterCategory,
+                fn($q) =>
+                $q->where('category_id', $this->filterCategory)
+            )
+
+            // ✅ Apply Status Filter
+            ->when(
+                $this->filterStatus,
+                fn($q) =>
+                $q->where('status_id', $this->filterStatus)
+            )
+
+            // ✅ Apply Condition Filter
+            ->when(
+                $this->filterCondition,
+                fn($q) =>
+                $q->where('condition_id', $this->filterCondition)
+            )
+
+            // ✅ Apply Department Filter
+            ->when(
+                $this->filterDepartment,
+                fn($q) =>
+                $q->where('department_id', $this->filterDepartment)
+            )
+
+            // ✅ Apply Search
+            ->when($this->search, function ($query) {
+                $term = '%' . $this->search . '%';
+                $lowered = strtolower(trim($this->search));
+
+                $query->where(function ($q) use ($term, $lowered) {
+                    $q->where('asset_name', 'like', $term)
+                        ->orWhere('model_name', 'like', $term)
+                        ->orWhere('property_code', 'like', $term)
+                        ->orWhere('brand_name_custom', 'like', $term)
+
+                        // Related Brand Name
+                        ->orWhereHas('brand', fn($q) =>
+                            $q->where('brand_name', 'like', $term))
+
+                        // Related Employee First/Last Name
+                        ->orWhereHas('employee', fn($q) =>
+                            $q->where('employee_firstname', 'like', $term)
+                                ->orWhere('employee_lastname', 'like', $term))
+
+                        // Related Department Name
+                        ->orWhereHas('department', fn($q) =>
+                            $q->where('department_name', 'like', $term))
+
+                        // Related Category Name
+                        ->orWhereHas('category', fn($q) =>
+                            $q->where('category_name', 'like', $term))
+
+                        // Related Condition Name
+                        ->orWhereHas('condition', fn($q) =>
+                            $q->where('condition_name', 'like', $term))
+
+                        // Related Status Name
+                        ->orWhereHas('status', fn($q) =>
+                            $q->where('status_name', 'like', $term));
+
+                    // "COMMON" → asset_type = 1, "NON-COMMON" → asset_type = 2
+                    if ($lowered === 'common') {
+                        $q->orWhere('asset_type', 1);
+                    } elseif ($lowered === 'non-common') {
+                        $q->orWhere('asset_type', 2);
+                    }
+                });
+            })
+
+            ->orderBy('created_at', 'desc')
+            ->paginate((int) $this->perPage);
+
+        return view('livewire.ams.asset.asset-list', [
+            'assets' => $assets,
+            'categories' => AssetCategory::all(),
+            'statuses' => AssetStatus::all(),
+            'conditions' => AssetCondition::all(),
+            'departments' => Department::all(),
+        ]);
+    }
+
 
 
 }

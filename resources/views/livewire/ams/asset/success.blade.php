@@ -3,7 +3,7 @@
 
     <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 relative overflow-hidden">
         <!-- Close button -->
-        <button @click="show = false; $wire.closeSuccess()"
+        <button @click="show = false;"
             class="absolute top-5 right-5 p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-full transition-all duration-200">
             <!-- Close Icon (Heroicon X-Mark) -->
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"

@@ -14,7 +14,7 @@ class Employee extends Model
 
     protected $table = 'employees';
     protected $primaryKey = 'employee_id';
-    
+
     // Disable Laravel's default timestamps since we're using custom ones
     public $timestamps = false;
 
@@ -33,7 +33,7 @@ class Employee extends Model
         'employee_birthplace',
         'employee_religion',
         'department_id',
-        
+
         // Address Information
         'employee_present_house_no',
         'employee_present_street',
@@ -48,7 +48,7 @@ class Employee extends Model
         'employee_permanent_city',
         'employee_permanent_province',
         'employee_permanent_zip_code',
-        
+
         // Contact Information
         'employee_contact_no1',
         'employee_contact_no2', // Optional number
@@ -56,58 +56,59 @@ class Employee extends Model
         'employee_viber_number',
         'employee_company_number',
         'employee_company_email',
-        
+
         // Educational Information
         'employee_educational_attainment',
         'employee_school_attended',
         'employee_college_course',
         'employee_section',
-        
+
         // Employment Information
+        'employee_branch',
         'employee_job_position',
         'employee_department',
         'employee_employment_type',
-        
+
         // Civil Status Information
         'employee_civil_status',
         'employee_marriage_certificate_path',
-        
+
         // Government Details Update Status
         'employee_sss_updated',
         'employee_philhealth_updated',
         'employee_pagibig_updated',
         'employee_pagibig_mdf_path',
-        
+
         // Government IDs
         'employee_sss_number',
         'employee_philhealth_number',
         'employee_pagibig_number',
         'employee_tin_number',
-        
+
         // Family Information
         'employee_parents_details',
-        'employee_father_name',     
+        'employee_father_name',
         'employee_father_birthdate',
         'employee_father_birth_certificate',
         'employee_mother_name',
         'employee_mother_birthdate',
         'employee_mother_birth_certificate',
-        
+
         // Medical Information
         'employee_blood_type',
-        
+
         // Emergency Contact 1
         'employee_emergency_contact_1_name',
         'employee_emergency_contact_1_relationship',
         'employee_emergency_contact_1_number',
         'employee_emergency_contact_1_address',
-        
+
         // Emergency Contact 2
         'employee_emergency_contact_2_name',
         'employee_emergency_contact_2_relationship',
         'employee_emergency_contact_2_number',
         'employee_emergency_contact_2_address',
-        
+
         // System fields
         'employee_status',
     ];
@@ -127,17 +128,17 @@ class Employee extends Model
     public function getFullNameAttribute()
     {
         $name = $this->employee_firstname;
-        
+
         if ($this->employee_middlename) {
             $name .= ' ' . $this->employee_middlename;
         }
-        
+
         $name .= ' ' . $this->employee_surname;
-        
+
         if ($this->employee_suffix) {
             $name .= ' ' . $this->employee_suffix;
         }
-        
+
         return $name;
     }
 
@@ -145,15 +146,15 @@ class Employee extends Model
     public function getDisplayNameAttribute()
     {
         $name = $this->employee_surname . ', ' . $this->employee_firstname;
-        
+
         if ($this->employee_middlename) {
             $name .= ' ' . substr($this->employee_middlename, 0, 1) . '.';
         }
-        
+
         if ($this->employee_suffix) {
             $name .= ' ' . $this->employee_suffix;
         }
-        
+
         return $name;
     }
 
@@ -163,6 +164,11 @@ class Employee extends Model
         return $query->where('employee_status', 1);
     }
 
+    // Scope for specific branch
+    public function scopeByBranch($query, $branch)
+    {
+        return $query->where('employee_branch', $branch);
+    }
     // Scope for specific department
     public function scopeByDepartment($query, $department)
     {
@@ -181,7 +187,7 @@ class Employee extends Model
         if ($this->profile_image) {
             return asset('storage/' . $this->profile_image);
         }
-        
+
         // Return default avatar if no profile image
         return asset('images/default-avatar.png');
     }
@@ -204,7 +210,7 @@ class Employee extends Model
         if (!$this->employee_children_details) {
             return null;
         }
-        
+
         return explode("\n", $this->employee_children_details);
     }
 
@@ -214,8 +220,13 @@ class Employee extends Model
         if (!$this->employee_parents_details) {
             return null;
         }
-        
+
         return explode("\n", $this->employee_parents_details);
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'branch_id');
     }
 
     public function department(): BelongsTo

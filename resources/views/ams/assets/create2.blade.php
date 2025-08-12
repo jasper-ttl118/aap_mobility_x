@@ -17,9 +17,7 @@
         <div class="flex flex-col lg:flex-row">
             <div 
                 class="@container/main rounded-xl border-2 border-gray-100 bg-white justify-center items-center flex w-full lg:w-8/12 flex-col shadow-xl -mt-4">
-                <div class="flex flex-col justify-between w-full mt-3" x-init="setTimeout(() => {
-                        $refs.scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 800)">
+                <div class="flex flex-col justify-between w-full mt-3">
                     {{-- Breadcrumbs --}}
                     <div class="flex flex-wrap items-center gap-x-1 text-blue-900 text-sm px-2 pt-3 lg:p-5">
                         <a href="/ams" class="hover:underline">Asset Management</a>
@@ -48,30 +46,11 @@
                 <livewire:ams.asset.add-asset-form>
                 <livewire:ams.asset.confirm>
                 <livewire:ams.asset.clear> 
-                <livewire:ams.asset.success>    
+                <livewire:ams.asset.success> 
+                <livewire:ams.asset.duplicate-error>   
             </div>
             <!-- Right Side Sticky Card -->
             <livewire:ams.asset.add-asset-summary>
-            
-            
-                @if(session('validatedAsset'))
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                            const checkLivewireReady = () => {
-                                if (window.Livewire && typeof window.Livewire.dispatch === 'function') {
-                                    const payload = @json(session('validatedAsset'));
-                                    console.log('Dispatching asset to Livewire:', payload);
-
-                                    $dispatch('add-asset-to-queue', {payload});
-                                } else {
-                                    console.warn('Livewire not ready, retrying...');
-                                    setTimeout(checkLivewireReady, 100); // Retry until Livewire is available
-                                }
-                            };
-                            checkLivewireReady();
-                        });
-                </script>
-                @endif
         </div>
     </div>
 </x-app-layout>

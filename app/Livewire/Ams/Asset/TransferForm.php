@@ -17,6 +17,7 @@ class TransferForm extends Component
     public $searchTerm = '';
     public $filteredDepartments = [];
     public $filteredEmployees = [];
+    public $assets = [];
 
     public $transfer_date;
     public $control_number;
@@ -41,7 +42,27 @@ class TransferForm extends Component
         $this->submit(); // your existing submit() logic
     }
 
+    public function openAssetPicker($id){
+        $this->dispatch(
+            'open-transfer-list',
+            $id
+        );
+    }
 
+    public function viewDetails($id)
+    {
+        $this->dispatch(
+            'open-transfer-view',
+            $id
+        );
+    }
+
+    public function removeAsset($index)
+    {
+        if (isset($this->assets[$index])) {
+            unset($this->assets[$index]);
+        }
+    }
 
     public function mount()
     {
@@ -54,7 +75,7 @@ class TransferForm extends Component
         $this->from_department_id = $this->asset->department?->department_id;
         $this->from_employee_id = $this->asset->employee?->employee_id;
 
-
+        $this->assets = collect([$this->asset]);
     }
 
     public function updatedSearchTerm()
@@ -105,9 +126,6 @@ class TransferForm extends Component
 
         $asset->save();
         $this->dispatch('show-transfer-success-modal');
-
-
-
     }
 
 
