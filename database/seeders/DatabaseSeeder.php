@@ -12,6 +12,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $this->call([
+            // independent migrations
+            AssetCategorySeeder::class,
+            AssetStatusSeeder::class,
+            BranchSeeder::class,
+            BrandSeeder::class,
+
+            CandidateSeeder::class,
+            DepartmentSeeder::class,
+            EmployeeSeeder::class,
+            AssetSeeder::class,
+
+            RolePermissionUserSeeder::class,
+
+            InitialSeeder::class,
+
+            checkRBACSeeder::class,
+            checkSpatieAssignments::class,
+            checkSpatieImplementation::class,
+            ConditionSeeder::class,
+
+            // dependent migrations
+        ]);
     }
 }

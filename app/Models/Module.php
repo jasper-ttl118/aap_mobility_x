@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Submodule;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomRole as Role;
 
 class Module extends Model
 {

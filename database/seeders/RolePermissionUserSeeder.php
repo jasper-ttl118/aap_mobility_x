@@ -9,8 +9,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\CustomRole as Role;
+use App\Models\CustomPermision as Permission;
 use App\Models\User;
 
 use App\Models\Organization;
@@ -22,7 +22,7 @@ class RolePermissionUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $role = Role::findById(30);
+        // $role = Role::findById(30);
         // $permissions = Permission::findById(1);
 
         // echo $role;
@@ -32,10 +32,10 @@ class RolePermissionUserSeeder extends Seeder
         // $role->syncPermissions($permissions);
 
          // Find User
-        $user = User::find(24);
+        // $user = User::find(24);
 
         // Assign Role to User
-        $user->assignRole($role);
+        // $user->assignRole($role);
 
         // $permissions = Permission::whereIn('permission_id', [1, 2])->get();
         // $role->syncPermissions($permissions);

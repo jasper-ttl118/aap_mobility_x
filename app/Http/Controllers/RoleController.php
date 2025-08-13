@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Organization;
 use App\Models\Module;
 use App\Models\Submodule;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomPermision as Permission;
+use App\Models\CustomRole as Role;
 
 class RoleController extends Controller
 {

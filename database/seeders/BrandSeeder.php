@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Brand;
@@ -10,9 +11,17 @@ class BrandSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Brand::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        try {
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            }
+                Brand::truncate();
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            }
+        } catch (Exception $e) {
+            $this->command->warn('Foreign checks skipped. Reason: '  . $e->getMessage());
+        }
 
         $brands = [
             ['brand_name' => 'Dell'],

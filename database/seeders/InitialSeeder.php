@@ -31,7 +31,7 @@ class InitialSeeder extends Seeder
             'employee_middlename' => 'A.',
             'employee_lastname' => 'Doe',
             'employee_personal_email' => 'john.doe@example.com',
-            'employee_job_position' => 'Manager',
+            'employee_position' => 'Manager',
             'branch_id' => 2,
             'department_id' => 10,
             'employee_section' => 'Development Team',
@@ -52,7 +52,7 @@ class InitialSeeder extends Seeder
             'permission_status' => 1,
             'permission_date_created' => now(),
             'permission_date_updated' => now(),
-            'permission_guard_name' => 'web',
+            'guard_name' => 'web',
         ]);
 
         // Insert role
@@ -62,7 +62,7 @@ class InitialSeeder extends Seeder
             'role_status' => 1,
             'role_date_created' => now(),
             'role_date_updated' => now(),
-            'role_guard_name' => 'web',
+            'guard_name' => 'web',
             'org_id' => $orgId,
         ]);
 
