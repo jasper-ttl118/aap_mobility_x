@@ -61,7 +61,7 @@
 $user = auth()->user()->load('organization', 'employee', 'roles');
 
 $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
-
+// dd($user);
 @endphp
 
 <div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">

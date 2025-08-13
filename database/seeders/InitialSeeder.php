@@ -52,17 +52,17 @@ class InitialSeeder extends Seeder
             'permission_status' => 1,
             'permission_date_created' => now(),
             'permission_date_updated' => now(),
-            'guard_name' => 'web',
+            'permission_guard_name' => 'web',
         ]);
 
         // Insert role
-        $roleId = DB::table('roles')->insertGetId([
+    $roleId = DB::table('roles')->insertGetId([
             'role_name' => 'Super Admin',
             'role_description' => 'Full access',
             'role_status' => 1,
             'role_date_created' => now(),
             'role_date_updated' => now(),
-            'guard_name' => 'web',
+            'role_guard_name' => 'web',
             'org_id' => $orgId,
         ]);
 

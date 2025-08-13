@@ -4,10 +4,13 @@ $scrollTo = 'body';
 }
 
 $scrollIntoViewJsSnippet = ($scrollTo !== false)
-? <<<JS (\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView() JS : '' ; @endphp <div>
+?  "(\$el.closest('{$scrollTo}') || document.querySelector('{$scrollTo}')).scrollIntoView()" : '' ;
+
+@endphp 
+<div>
     @if ($paginator->hasPages())
     <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-        <div class="flex justify-between flex-1 sm:hidden">
+        <div class= "flex justify-between flex-1 sm:hidden">
             <span>
                 @if ($paginator->onFirstPage())
                 <span

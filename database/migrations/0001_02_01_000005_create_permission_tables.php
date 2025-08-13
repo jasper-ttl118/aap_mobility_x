@@ -31,11 +31,9 @@ return new class extends Migration
             $table->boolean('permission_status')->default(1);
             $table->timestamp('permission_date_created')->useCurrent();
             $table->timestamp('permission_date_updated')->useCurrent()->useCurrentOnUpdate();
-            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->string('permission_guard_name'); // For MyISAM use string('guard_name', 25);
             
-            $table->unique(['permission_name', 'guard_name']);
-            $table->timestamps();
-
+            $table->unique(['permission_name', 'permission_guard_name']);
         });
 
         Schema::create($tableNames['roles'], static function (Blueprint $table) use ($teams, $columnNames) {
@@ -53,13 +51,12 @@ return new class extends Migration
             $table->boolean('role_status')->default(1);
             $table->timestamp('role_date_created')->useCurrent();
             $table->timestamp('role_date_updated')->useCurrent()->useCurrentOnUpdate();
-            $table->string('guard_name'); // For MyISAM use string('guard_name', 25);
+            $table->string('role_guard_name'); // For MyISAM use string('guard_name', 25);
             if ($teams) {
-                $table->unique([$columnNames['team_foreign_key'], 'role_name', 'guard_name']);
+                $table->unique([$columnNames['team_foreign_key'], 'role_name', 'role_guard_name']);
             } else {
-                $table->unique(['role_name', 'guard_name']);
+                $table->unique(['role_name', 'role_guard_name']);
             }
-            $table->timestamps();
         });
 
         Schema::create($tableNames['model_has_permissions'], static function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
