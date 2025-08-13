@@ -1,7 +1,7 @@
 <div x-data="{ show: @entangle('show') }" x-show="show" x-transition.opacity x-cloak
-    class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
 
-    <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full mx-4 relative overflow-hidden">
+    <div class="relative w-full max-w-sm mx-4 overflow-hidden bg-white shadow-2xl rounded-xl">
         <!-- Close button -->
         <button @click="show = false;"
             class="absolute top-5 right-5 p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-50 rounded-full transition-all duration-200">
@@ -15,8 +15,9 @@
         <!-- Modal content -->
         <div class="px-8 py-10 text-center">
             <!-- Animated Success Icon -->
-            <div class="mx-auto p-4 size-16 bg-green-100 rounded-full flex items-center justify-center">
-                <div class="size-12 text-green-100 bg-green-500 p-2 rounded-full flex items-center justify-center shadow-inner">
+            <div class="flex items-center justify-center p-4 mx-auto bg-green-100 rounded-full size-16">
+                <div
+                    class="flex items-center justify-center p-2 text-green-100 bg-green-500 rounded-full shadow-inner size-12">
                     <!-- CheckCircle Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
@@ -29,16 +30,16 @@
 
 
             <!-- Message -->
-            <h2 class="text-3xl font-bold text-gray-900 mb-2">Success!</h2>
-            <p class="text-gray-500 mb-8 leading-relaxed">
+            <h2 class="mb-2 text-3xl font-bold text-gray-900">Success!</h2>
+            <p class="mb-8 leading-relaxed text-gray-500">
                 The asset has been succesfully added.
             </p>
 
             <!-- Buttons -->
-            <div class="space-y-3 mt-1">
+            <div class="mt-1 space-y-3">
                 <button wire:click="addAnother"
                     class="w-full h-11 inline-flex items-center justify-center px-6 py-4 bg-blue-800 text-white font-semibold rounded-xl hover:bg-blue-900 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5 mr-2" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 size-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
@@ -46,8 +47,8 @@
                 </button>
 
                 <button wire:click="done"
-                    class="w-full h-11 px-6 bg-gray-200 text-gray-800 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-200 inline-flex items-center justify-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5 mr-2">
+                    class="w-full h-11 px-6 bg-gray-200 text-gray-800 font-semibold rounded-xl hover:bg-gray-300 transition-all duration-200 inline-flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mr-2 size-5">
                         <path fill-rule="evenodd"
                             d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z"
                             clip-rule="evenodd" />

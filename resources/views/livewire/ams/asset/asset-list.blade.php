@@ -1,24 +1,24 @@
 <div>
     <!-- Header Title and Controls -->
-    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between -mt-6 px-5 py-6 gap-4">
+    <div class="flex flex-col items-start justify-between gap-4 px-5 py-6 -mt-6 sm:flex-row sm:items-center">
 
         <div>
             <h2 class="font-semibold text-lg text-[#071d49]">AAP Assets</h2>
-            <p class="text-gray-900 text-sm">Add, Edit, View Details, See History and Pull Out Assets</p>
+            <p class="text-sm text-gray-900">Add, Edit, View Details, See History and Pull Out Assets</p>
         </div>
 
         <!-- Right: Controls (search+filter + button) -->
-        <div class="flex flex-row flex-wrap items-stretch  w-full sm:w-auto sm:justify-end">
+        <div class="flex flex-row flex-wrap items-stretch w-full sm:w-auto sm:justify-end">
 
-            <div x-data="{ open: false }" class="flex flex-col sm:flex-row items-center justify-end w-full gap-3">
+            <div x-data="{ open: false }" class="flex flex-col items-center justify-end w-full gap-3 sm:flex-row">
 
                 <div class="relative w-full sm:w-72">
-                    <div class="flex items-center bg-white border border-gray-300 rounded-md shadow-sm overflow-hidden">
+                    <div class="flex items-center overflow-hidden bg-white border border-gray-300 rounded-md shadow-sm">
 
 
                         <!-- Search Icon -->
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="w-5 h-5 text-gray-400 ml-3">
+                            class="w-5 h-5 ml-3 text-gray-400">
                             <path fill-rule="evenodd"
                                 d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
                                 clip-rule="evenodd" />
@@ -27,12 +27,12 @@
 
                         <!-- Search Input -->
                         <input type="text" wire:model.live="search" placeholder="SEARCH ASSETS"
-                            class="uppercase text-sm px-2 py-2 w-full bg-transparent border-white outline-none focus:outline-none focus:ring-0 focus:border-white">
+                            class="w-full px-2 py-2 text-sm uppercase bg-transparent border-white outline-none focus:outline-none focus:ring-0 focus:border-white">
 
                         <!-- Filter Button + Tooltip -->
                         <div class="relative group">
                             <button @click="open = !open"
-                                class="p-2 border-l border-gray-300 hover:bg-gray-100 focus:outline-none relative z-10">
+                                class="relative z-10 p-2 border-l border-gray-300 hover:bg-gray-100 focus:outline-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="w-5 h-5 text-gray-700">
                                     <path
@@ -42,7 +42,7 @@
 
                             <!-- Tooltip -->
                             <div
-                                class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap opacity-0 group-hover:opacity-100 transition z-10">
+                                class="absolute z-10 px-2 py-1 mb-2 text-xs text-white transition -translate-x-1/2 bg-black rounded opacity-0 bottom-full left-1/2 whitespace-nowrap group-hover:opacity-100">
                                 Show Filters
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                     return this.categoryId || this.statusId || this.conditionId || this.departmentId;
                                 }
                             }" x-show="open" @click.away="open = false"
-                            class="absolute top-full mt-2 left-0 w-full bg-white border border-gray-300 rounded-md shadow-lg z-50 text-sm">
+                            class="absolute left-0 z-50 w-full mt-2 text-sm bg-white border border-gray-300 rounded-md shadow-lg top-full">
 
 
                             <div class="p-3 space-y-2 text-gray-700">
@@ -85,13 +85,13 @@
 
                                     <!-- Trigger -->
                                     <button type="button" @click="open = !open"
-                                        class="w-full bg-white border border-gray-300 rounded-xl shadow-sm pl-3 pr-8 py-2 text-left text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 uppercase relative">
+                                        class="relative w-full py-2 pl-3 pr-8 text-xs text-left text-gray-700 uppercase bg-white border border-gray-300 shadow-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600">
 
                                         <!-- Selected Text -->
                                         <span x-text="selected"></span>
 
                                         <!-- Chevron Icon -->
-                                        <span class="absolute right-2 top-2 text-gray-500 pointer-events-none">
+                                        <span class="absolute text-gray-500 pointer-events-none right-2 top-2">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -102,14 +102,14 @@
 
                                     <!-- Options -->
                                     <ul x-show="open" @click.outside="open = false" x-transition
-                                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-xs ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none">
+                                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-xs bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <li @click="selected = 'ALL CATEGORIES'; categoryId=''; open = false"
-                                            class="cursor-pointer select-none px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-100">
                                             ALL CATEGORIES
                                         </li>
                                         @foreach ($categories as $category)
                                         <li @click="selected = '{{ strtoupper($category->category_name) }}'; categoryId = '{{ $category->category_id }}'; open = false"
-                                            class="cursor-pointer select-none px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-100">
                                             {{ strtoupper($category->category_name) }}
                                         </li>
                                         @endforeach
@@ -137,9 +137,9 @@
                                         <label class="font-medium">STATUS</label>
                                     </div>
                                     <button type="button" @click="open = !open"
-                                        class="w-full bg-white border border-gray-300 rounded-xl shadow-sm pl-3 pr-8 py-2 text-left text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 uppercase relative">
+                                        class="relative w-full py-2 pl-3 pr-8 text-xs text-left text-gray-700 uppercase bg-white border border-gray-300 shadow-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600">
                                         <span x-text="selected"></span>
-                                        <span class="absolute right-2 top-2 text-gray-500 pointer-events-none">
+                                        <span class="absolute text-gray-500 pointer-events-none right-2 top-2">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -148,14 +148,14 @@
                                         </span>
                                     </button>
                                     <ul x-show="open" @click.outside="open = false" x-transition
-                                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-xs ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none">
+                                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-xs bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <li @click="selected = 'ALL STATUS'; statusId=''; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             ALL STATUS
                                         </li>
                                         @foreach ($statuses as $status)
                                         <li @click="selected = '{{ strtoupper($status->status_name) }}'; statusId = '{{ $status->status_id }}'; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             {{ strtoupper($status->status_name) }}
                                         </li>
                                         @endforeach
@@ -184,9 +184,9 @@
                                         <label class="font-medium">CONDITION</label>
                                     </div>
                                     <button type="button" @click="open = !open"
-                                        class="w-full bg-white border border-gray-300 rounded-xl shadow-sm pl-3 pr-8 py-2 text-left text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 uppercase relative">
+                                        class="relative w-full py-2 pl-3 pr-8 text-xs text-left text-gray-700 uppercase bg-white border border-gray-300 shadow-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600">
                                         <span x-text="selected"></span>
-                                        <span class="absolute right-2 top-2 text-gray-500 pointer-events-none">
+                                        <span class="absolute text-gray-500 pointer-events-none right-2 top-2">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -195,14 +195,14 @@
                                         </span>
                                     </button>
                                     <ul x-show="open" @click.outside="open = false" x-transition
-                                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-xs ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none">
+                                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-xs bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <li @click="selected = 'ALL CONDITIONS'; conditionId=''; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             ALL CONDITIONS
                                         </li>
                                         @foreach ($conditions as $condition)
                                         <li @click="selected = '{{ strtoupper($condition->condition_name) }}'; conditionId = '{{ $condition->condition_id }}'; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             {{ strtoupper($condition->condition_name) }}
                                         </li>
                                         @endforeach
@@ -231,9 +231,9 @@
                                         <label class="font-medium">DEPARTMENT</label>
                                     </div>
                                     <button type="button" @click="open = !open"
-                                        class="w-full bg-white border border-gray-300 rounded-xl shadow-sm pl-3 pr-8 py-2 text-left text-xs text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 uppercase relative">
+                                        class="relative w-full py-2 pl-3 pr-8 text-xs text-left text-gray-700 uppercase bg-white border border-gray-300 shadow-sm rounded-xl focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600">
                                         <span x-text="selected"></span>
-                                        <span class="absolute right-2 top-2 text-gray-500 pointer-events-none">
+                                        <span class="absolute text-gray-500 pointer-events-none right-2 top-2">
                                             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none"
                                                 viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -242,14 +242,14 @@
                                         </span>
                                     </button>
                                     <ul x-show="open" @click.outside="open = false" x-transition
-                                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-xs ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none">
+                                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-xs bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                                         <li @click="selected = 'ALL DEPARTMENTS'; departmentId=''; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             ALL DEPARTMENTS
                                         </li>
                                         @foreach ($departments as $department)
                                         <li @click="selected = '{{ strtoupper($department->department_name) }}'; departmentId = '{{ $department->department_id }}'; open = false"
-                                            class="cursor-pointer px-4 py-2 hover:bg-blue-100 uppercase">
+                                            class="px-4 py-2 uppercase cursor-pointer hover:bg-blue-100">
                                             {{ strtoupper($department->department_name) }}
                                         </li>
                                         @endforeach
@@ -274,7 +274,7 @@
                                             $wire.resetFilters();
                                             
                                         "
-                                        class="w-full flex items-center justify-center gap-2 bg-gray-100 text-red-600 text-xs font-semibold px-3 py-2 rounded-md hover:text-white hover:bg-red-600 transition">
+                                        class="flex items-center justify-center w-full gap-2 px-3 py-2 text-xs font-semibold text-red-600 transition bg-gray-100 rounded-md hover:text-white hover:bg-red-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -292,8 +292,8 @@
                                 <div class="relative" x-data="{ showTooltip: false }">
                                     <button type="button" @click="open = false" wire:click="$refresh"
                                         :disabled="!hasFilters" @mouseenter="if (!hasFilters) showTooltip = true"
-                                        @mouseleave="showTooltip = false" class="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs font-semibold rounded-md transition
-                                        text-white bg-blue-900 hover:bg-blue-800 disabled:bg-blue-200 disabled:text-blue-600 relative">
+                                        @mouseleave="showTooltip = false"
+                                        class="relative flex items-center justify-center w-full gap-2 px-3 py-2 text-xs font-semibold text-white transition bg-blue-900 rounded-md hover:bg-blue-800 disabled:bg-blue-200 disabled:text-blue-600">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -304,7 +304,7 @@
 
                                     <!-- Tooltip -->
                                     <div x-show="showTooltip" x-cloak x-transition
-                                        class="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded-md px-2 py-1 shadow-md whitespace-nowrap z-50">
+                                        class="absolute z-50 px-2 py-1 mb-1 text-xs text-white transform -translate-x-1/2 bg-gray-800 rounded-md shadow-md bottom-full left-1/2 whitespace-nowrap">
                                         Set filters first
                                     </div>
                                 </div>
@@ -334,8 +334,8 @@
             });
             </script>
 
-            <table class="w-full text-center text-sm text-gray-500 ">
-                <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
+            <table class="w-full text-sm text-center text-gray-500 ">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                     <tr>
                         <th class="py-3">Asset Name</th>
                         <th class="py-3">Brand</th>
@@ -388,12 +388,12 @@
                             </span>
                         </td>
                         <td class="py-3 pr-2">
-                            <div class="flex justify-center items-center gap-3">
+                            <div class="flex items-center justify-center gap-3">
 
                                 <!-- View Details -->
                                 <div class="relative">
                                     <a href="{{ route('ams.asset.view', ['id' => $asset->asset_id]) }}"
-                                        class="group text-gray-700 hover:text-black transition inline-flex items-center justify-center">
+                                        class="inline-flex items-center justify-center text-gray-700 transition group hover:text-black">
 
                                         <!-- Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -405,9 +405,8 @@
                                         </svg>
 
                                         <!-- Tooltip -->
-                                        <div class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2
-                    bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap
-                    opacity-0 group-hover:opacity-100 pointer-events-none transition z-10">
+                                        <div
+                                            class="absolute z-10 px-2 py-1 mb-2 text-xs text-white transition -translate-x-1/2 bg-black rounded opacity-0 pointer-events-none bottom-full left-1/2 whitespace-nowrap group-hover:opacity-100">
                                             View Details
                                         </div>
                                     </a>
@@ -417,7 +416,7 @@
                                 <!-- View History -->
                                 <div class="relative">
                                     <a href="assets/history"
-                                        class="group text-amber-600 hover:text-amber-800 transition inline-flex items-center justify-center">
+                                        class="inline-flex items-center justify-center transition group text-amber-600 hover:text-amber-800">
 
                                         <!-- Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
@@ -429,7 +428,7 @@
 
                                         <!-- Tooltip -->
                                         <div
-                                            class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition z-10">
+                                            class="absolute z-10 px-2 py-1 mb-2 text-xs text-white transition -translate-x-1/2 bg-black rounded opacity-0 pointer-events-none bottom-full left-1/2 whitespace-nowrap group-hover:opacity-100">
                                             View History
                                         </div>
                                     </a>
@@ -439,7 +438,7 @@
                                 <!-- Pull Out -->
                                 <div class="relative">
                                     <a href="assets/pullout"
-                                        class="group text-red-700 hover:text-red-900 transition inline-flex items-center justify-center">
+                                        class="inline-flex items-center justify-center text-red-700 transition group hover:text-red-900">
                                         <!-- Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4 hover:scale-110">
@@ -452,7 +451,7 @@
 
                                         <!-- Tooltip -->
                                         <div
-                                            class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition z-10">
+                                            class="absolute z-10 px-2 py-1 mb-2 text-xs text-white transition -translate-x-1/2 bg-black rounded opacity-0 pointer-events-none bottom-full left-1/2 whitespace-nowrap group-hover:opacity-100">
                                             Pull Out
                                         </div>
                                     </a>
@@ -460,7 +459,7 @@
 
                                 <div class="relative">
                                     <a href="assets/repair-request"
-                                        class="group text-teal-700 hover:text-teal-900 transition inline-flex items-center justify-center">
+                                        class="inline-flex items-center justify-center text-teal-700 transition group hover:text-teal-900">
                                         <!-- Icon -->
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-4 hover:scale-110">
@@ -476,7 +475,7 @@
 
                                         <!-- Tooltip -->
                                         <div
-                                            class="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-black text-white text-xs rounded py-1 px-2 whitespace-nowrap opacity-0 group-hover:opacity-100 pointer-events-none transition z-10">
+                                            class="absolute z-10 px-2 py-1 mb-2 text-xs text-white transition -translate-x-1/2 bg-black rounded opacity-0 pointer-events-none bottom-full left-1/2 whitespace-nowrap group-hover:opacity-100">
                                             Repair Request
                                         </div>
                                     </a>
@@ -494,10 +493,10 @@
             <div class="flex items-center justify-between px-4 text-sm text-gray-600">
 
                 <div x-data="{ localPerPage: @entangle('perPage') }"
-                    class="flex items-center gap-3 text-sm text-gray-700 mt-4">
+                    class="flex items-center gap-3 mt-4 text-sm text-gray-700">
                     <label for="perPage" class="text-gray-600">Show</label>
                     <select id="perPage" x-model="localPerPage" @change="$wire.set('perPage', parseInt(localPerPage))"
-                        class="w-20 border border-gray-300 rounded-lg px-2 py-1 focus:outline-none focus:ring-blue-400 focus:border-blue-400 text-sm">
+                        class="w-20 px-2 py-1 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-400 focus:border-blue-400">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>

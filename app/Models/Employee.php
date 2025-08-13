@@ -14,7 +14,6 @@ class Employee extends Model
 
     protected $table = 'employees';
     protected $primaryKey = 'employee_id';
-
     // Disable Laravel's default timestamps since we're using custom ones
     public $timestamps = false;
 
@@ -33,7 +32,6 @@ class Employee extends Model
         'employee_birthplace',
         'employee_religion',
         'department_id',
-
         // Address Information
         'employee_present_house_no',
         'employee_present_street',
@@ -48,7 +46,6 @@ class Employee extends Model
         'employee_permanent_city',
         'employee_permanent_province',
         'employee_permanent_zip_code',
-
         // Contact Information
         'employee_contact_no1',
         'employee_contact_no2', // Optional number
@@ -56,7 +53,6 @@ class Employee extends Model
         'employee_viber_number',
         'employee_company_number',
         'employee_company_email',
-
         // Educational Information
         'employee_educational_attainment',
         'employee_school_attended',
@@ -78,7 +74,6 @@ class Employee extends Model
         'employee_philhealth_updated',
         'employee_pagibig_updated',
         'employee_pagibig_mdf_path',
-
         // Government IDs
         'employee_sss_number',
         'employee_philhealth_number',
@@ -102,13 +97,11 @@ class Employee extends Model
         'employee_emergency_contact_1_relationship',
         'employee_emergency_contact_1_number',
         'employee_emergency_contact_1_address',
-
         // Emergency Contact 2
         'employee_emergency_contact_2_name',
         'employee_emergency_contact_2_relationship',
         'employee_emergency_contact_2_number',
         'employee_emergency_contact_2_address',
-
         // System fields
         'employee_status',
     ];
@@ -187,7 +180,6 @@ class Employee extends Model
         if ($this->profile_image) {
             return asset('storage/' . $this->profile_image);
         }
-
         // Return default avatar if no profile image
         return asset('images/default-avatar.png');
     }
@@ -210,7 +202,6 @@ class Employee extends Model
         if (!$this->employee_children_details) {
             return null;
         }
-
         return explode("\n", $this->employee_children_details);
     }
 

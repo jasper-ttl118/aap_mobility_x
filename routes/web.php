@@ -4,6 +4,7 @@ use App\Livewire\Ams\Main;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Route;
+use Livewire\Volt\Volt;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -94,7 +95,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/assets/history', [AssetController::class, 'assetHistory'])->name('assetHistory');
     Route::get('/ams/common-assets', [AssetController::class, 'commonAssets'])->name('commonAssets');
     Route::get('/ams/assets-for-sale', [AssetController::class, 'assetsForSale'])->name('assetsForSale');
-    Route::get('/ams/cms/departments', [AssetController::class, 'cms'])->name('cms');
+
+    // Routes for CMS (romuromu)
+    Route::view('/cms/departments', 'livewire/cms/department/index')->name('departments');
+    Route::redirect('/cms', '/cms/departments');
+    
+    //Route::view('/ams/cms/departments', 'ams.cms.department.index')->name('department');
     Route::get('/ams/cms/create-branch', [AssetController::class, 'addBranch'])->name('addBranch');
     Route::get('/ams/cms/create-department', [AssetController::class, 'addDepartment'])->name('addDepartment');
     Route::get('/ams/cms/it-brands', [AssetController::class, 'employees'])->name('it-brands');

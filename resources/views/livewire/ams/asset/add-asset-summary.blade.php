@@ -1,14 +1,14 @@
 <div class="w-full lg:w-4/12 mt-8 lg:-mt-3.5 lg:ml-6">
     <div class="sticky -top-6">
-        <div class="bg-white rounded-xl shadow-xl border border-transparent p-5">
+        <div class="p-5 bg-white border border-transparent shadow-xl rounded-xl">
 
             <!-- Header -->
-            <div class="flex justify-between items-center mb-5">
+            <div class="flex items-center justify-between mb-5">
                 <div class="flex items-center gap-3">
-                    <div class="bg-blue-100 border border-blue-200 p-2 rounded-full">
+                    <div class="p-2 bg-blue-100 border border-blue-200 rounded-full">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-list-checks-icon lucide-list-checks text-blue-700 size-8">
+                            class="text-blue-700 lucide lucide-list-checks-icon lucide-list-checks size-8">
                             <path d="m3 17 2 2 4-4" />
                             <path d="m3 7 2 2 4-4" />
                             <path d="M13 6h8" />
@@ -26,7 +26,7 @@
             </div>
 
             @if (!empty($assets))
-            <div class="flex justify-between items-center mb-5 text-xs font-semibold text-gray-700">
+            <div class="flex items-center justify-between mb-5 text-xs font-semibold text-gray-700">
                 <!-- Left -->
                 <div>
                     Checked Assets: {{ count($checked) }} of {{ count($assets) }}
@@ -76,14 +76,14 @@
 
                 <!-- Rotating SVG Icons -->
                 <div class="relative w-12 h-12 mb-4 text-[#A6B5E0]">
-                    <svg x-ref="icon1" class="absolute inset-0 w-12 h-12 hidden" fill="none" viewBox="0 0 24 24"
+                    <svg x-ref="icon1" class="absolute inset-0 hidden w-12 h-12" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path
                             d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z" />
                         <path d="M20.054 15.987H3.946" />
                     </svg>
 
-                    <svg x-ref="icon2" class="absolute inset-0 w-12 h-12 hidden" fill="none" viewBox="0 0 24 24"
+                    <svg x-ref="icon2" class="absolute inset-0 hidden w-12 h-12" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M19 9V6a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3" />
                         <path
@@ -93,7 +93,7 @@
                     </svg>
 
 
-                    <svg x-ref="icon3" class="absolute inset-0 w-12 h-12 hidden" fill="none" viewBox="0 0 24 24"
+                    <svg x-ref="icon3" class="absolute inset-0 hidden w-12 h-12" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path
                             d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" />
@@ -105,7 +105,7 @@
 
 
 
-                    <svg x-ref="icon4" class="absolute inset-0 w-12 h-12 hidden" fill="none" viewBox="0 0 24 24"
+                    <svg x-ref="icon4" class="absolute inset-0 hidden w-12 h-12" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M10 18a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a3 3 0 0 1-3-3 1 1 0 0 1 1-1z" />
                         <path
@@ -117,7 +117,7 @@
                     </svg>
 
 
-                    <svg x-ref="icon5" class="absolute inset-0 w-12 h-12 hidden" fill="none" viewBox="0 0 24 24"
+                    <svg x-ref="icon5" class="absolute inset-0 hidden w-12 h-12" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8" />
                         <path d="M10 19v-3.96 3.15" />
@@ -161,7 +161,7 @@
 
                             <!-- Tooltip -->
                             <div
-                                class="absolute -top-9 left-1/2 -translate-x-1/2 z-50 hidden group-hover:flex px-2 py-2 rounded bg-black text-white text-xs whitespace-nowrap shadow-md">
+                                class="absolute z-50 hidden px-2 py-2 text-xs text-white -translate-x-1/2 bg-black rounded shadow-md -top-9 left-1/2 group-hover:flex whitespace-nowrap">
                                 Mark as Checked
                             </div>
                         </div>
@@ -192,7 +192,7 @@
                     <div class="flex justify-end">
                         <!-- Edit -->
                         <button wire:click.stop="editAsset({{ $index }})"
-                            class="group relative flex items-center justify-center w-6 h-6  text-blue-600 hover:text-blue-600  hover:bg-blue-100 rounded-full transition-all duration-150 ease-in-out hover:scale-110">
+                            class="relative flex items-center justify-center w-6 h-6 text-blue-600 transition-all duration-150 ease-in-out rounded-full group hover:text-blue-600 hover:bg-blue-100 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-4">
                                 <path
@@ -203,14 +203,14 @@
 
                             <!-- Tooltip -->
                             <div
-                                class="absolute bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                                class="absolute px-2 py-1 mb-2 text-xs text-white transition-opacity duration-200 bg-gray-900 rounded opacity-0 pointer-events-none bottom-full group-hover:opacity-100 whitespace-nowrap">
                                 Edit
                             </div>
                         </button>
 
                         <!-- Remove -->
                         <button wire:click.stop="removeAsset({{ $index }})"
-                            class="group relative flex items-center justify-center w-6 h-6  text-red-600 hover:text-red-600 hover:bg-red-100 rounded-full transition-all duration-150 ease-in-out hover:scale-110">
+                            class="relative flex items-center justify-center w-6 h-6 text-red-600 transition-all duration-150 ease-in-out rounded-full group hover:text-red-600 hover:bg-red-100 hover:scale-110">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="size-4">
                                 <path fill-rule="evenodd"
@@ -220,7 +220,7 @@
 
                             <!-- Tooltip -->
                             <div
-                                class="absolute bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap">
+                                class="absolute px-2 py-1 mb-2 text-xs text-white transition-opacity duration-200 bg-gray-900 rounded opacity-0 pointer-events-none bottom-full group-hover:opacity-100 whitespace-nowrap">
                                 Remove
                             </div>
                         </button>
@@ -364,7 +364,7 @@
                 <div class="flex flex-col gap-2 pt-2 mt-5">
                     <!-- Clear Assets Button -->
                     <button wire:click="confirmClear"
-                        class="w-full bg-red-200 text-red-600 hover:bg-red-600 hover:text-white text-sm font-medium py-2 rounded-md">
+                        class="w-full py-2 text-sm font-medium text-red-600 bg-red-200 rounded-md hover:bg-red-600 hover:text-white">
                         Clear Assets
                     </button>
 
@@ -380,12 +380,12 @@
 
                         @if(empty($assets))
                         <div
-                            class="absolute top-10 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow">
+                            class="absolute z-10 hidden px-3 py-1 text-xs text-white -translate-x-1/2 bg-black rounded shadow top-10 left-1/2 group-hover:flex">
                             Add assets first.
                         </div>
                         @elseif(count($checked) !== count($assets))
                         <div
-                            class="absolute top-10 left-1/2 -translate-x-1/2 z-10 hidden group-hover:flex px-3 py-1 bg-black text-white text-xs rounded shadow text-center">
+                            class="absolute z-10 hidden px-3 py-1 text-xs text-center text-white -translate-x-1/2 bg-black rounded shadow top-10 left-1/2 group-hover:flex">
                             Please review and check all asset details.
                         </div>
                         @endif

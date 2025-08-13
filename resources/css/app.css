@@ -8,12 +8,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@plugin "daisyui";
+@plugin "daisyui" {
+    themes: light --default, dark --prefersdark, cupcake;
+}
+
 @source "../node_modules/flowbite-datepicker";
 
 @layer components {
     .profile_edit_input {
-        @apply w-full rounded-lg border-none outline outline-1 outline-sky-500 font-light transition;
+        @apply w-full font-light transition border-none rounded-lg outline outline-1 outline-sky-500;
 
         &:focus {
             @apply outline-2 outline-sky-800;
@@ -22,15 +25,15 @@
 }
 
 .form-input {
-  @apply w-full mt-1 px-4 py-2 text-sm border border-gray-300 rounded-lg
-         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-         bg-white text-gray-800 shadow-sm;
+  @apply w-full px-4 py-2 mt-1 text-sm text-gray-800 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
 }
 
 :root {
   --pf: #000000; 
   --p: #000000;  
   --bc: #ffffff; 
+  --color-primary: #1e3a8a; /* blue-900 */
+  --color-secondary: #F6D400; /* yellow */
 }
 
 [data-theme="dark"] {
@@ -41,10 +44,6 @@
 
 input, button, select, textarea {
   color: black;
-}
-
-body{
-  color: #f3f4f6;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -100,3 +99,6 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* Alpine.js cloak */
+[x-cloak] { display: none !important; }
