@@ -12,17 +12,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Permission\Contracts\Role as RoleContract;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
-use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
 use Spatie\Permission\Exceptions\RoleDoesNotExist;
 use Spatie\Permission\Guard;
 use Spatie\Permission\PermissionRegistrar;
 use Spatie\Permission\Traits\HasPermissions;
 use Spatie\Permission\Traits\RefreshesPermissionCache;
-use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 
-
+/**
+ * @property ?\Illuminate\Support\Carbon $created_at
+ * @property ?\Illuminate\Support\Carbon $updated_at
+ */
 class CustomRole extends Role
 {
     use HasPermissions;
@@ -31,8 +32,20 @@ class CustomRole extends Role
     protected $table = 'roles';
     protected $primaryKey = 'role_id';
 
+    protected $guarded = [];
+
     // override
-    public static function create(array $attributes = [])
+    public function __construct(array $attributes = [])
+    {
+        $attributes['guard_name'] ??= Guard::getDefaultName(static::class);
+
+        parent::__construct($attributes);
+
+        $this->guarded[] = $this->primaryKey;
+        $this->table = config('permission.table_names.roles') ?: parent::getTable();
+    }
+
+    public static function create(array     $attributes = [])
     {
         $attributes['guard_name'] ??= Guard::getDefaultName(static::class);
 
@@ -124,7 +137,7 @@ class CustomRole extends Role
     {
         $guardName ??= Guard::getDefaultName(static::class);
 
-        $role = static::findByParam(['role_name' => $name, 'guard_name' => $guardName]);
+        $role = static::findByParam(['role_name' => $name, 'uard_name' => $guardName]);
 
         if (! $role) {
             return static::query()->create(['role_name' => $name, 'guard_name' => $guardName] + (app(PermissionRegistrar::class)->teams ? [app(PermissionRegistrar::class)->teamsKey => getPermissionsTeamId()] : []));

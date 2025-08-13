@@ -23,6 +23,16 @@ class CustomPermision extends Permission
     protected $primaryKey = 'permission_id';
 
     // override
+    public function __construct(array $attributes = [])
+    {
+        $attributes['guard_name'] ??= Guard::getDefaultName(static::class);
+
+        parent::__construct($attributes);
+
+        $this->guarded[] = $this->primaryKey;
+        $this->table = config('permission.table_names.permissions') ?: parent::getTable();
+    }
+    
     public static function create(array $attributes = [])
     {
         $attributes['guard_name'] ??= Guard::getDefaultName(static::class);
