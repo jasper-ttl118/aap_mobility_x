@@ -1,7 +1,7 @@
 <?php
 
 use Livewire\Volt\Component;
-use App\Models\Brand;
+use App\Models\AssetCondition;
 use Livewire\Attributes\On;
 
 new class extends Component {
@@ -11,8 +11,8 @@ new class extends Component {
     public function destroy($id)
     {
         $this->id = $id;
-        $brand = Brand::findOrFail($id);
-        $brand->delete();
+        $condition = AssetCondition::findOrFail($id);
+        $condition->delete();
 
         $this->dispatch('refresh-list');
         $this->dispatch('showDeleteToast');
@@ -21,8 +21,8 @@ new class extends Component {
     #[On('restore')]
     public function restore()
     {
-        $brand = Brand::withTrashed()->findOrFail($this->id);
-        $brand->restore();
+        $condition = AssetCondition::withTrashed()->findOrFail($this->id);
+        $condition->restore();
         $this->dispatch('refresh-list');
     }
 }; ?>

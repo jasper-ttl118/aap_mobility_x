@@ -28,6 +28,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware('auth')->group(function () {
     // route for profile
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -96,8 +97,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/common-assets', [AssetController::class, 'commonAssets'])->name('commonAssets');
     Route::get('/ams/assets-for-sale', [AssetController::class, 'assetsForSale'])->name('assetsForSale');
 
-    // Routes for CMS (romuromu)
+    // Routes for CMS (romu-dev)
     Route::view('/cms/departments', 'livewire/cms/department/index')->name('departments');
+    Route::view('/cms/brands', 'livewire/cms/brand/index')->name('brands');
+    Route::view('/cms/asset-categories', 'livewire/cms/assetcategory/index')->name('asset-categories');
+    Route::view('/cms/asset-statuses', 'livewire/cms/assetstatus/index')->name('asset-statuses');
+    Route::view('/cms/asset-conditions', 'livewire/cms/assetcondition/index')->name('asset-conditions');
     Route::redirect('/cms', '/cms/departments');
     
     //Route::view('/ams/cms/departments', 'ams.cms.department.index')->name('department');
@@ -108,6 +113,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/ams/cms/asset-status', [AssetController::class, 'status'])->name('status');
     Route::get('/ams/cms/create-category', [AssetController::class, 'addCategory'])->name('addCategory');
     Route::get('/ams/cms/create-status', [AssetController::class, 'addStatus'])->name('addStatus');
+
+
     Route::get('/ams/scan-qr', [AssetController::class, 'scanQr'])->name('scanQr');
 
 
@@ -154,10 +161,10 @@ Route::middleware('auth')->group(function () {
 Route::get('dashboard', [UserController::class, 'viewDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/notes', [NoteController::class, 'index']);
 
-Route::get('/send-message', function () {
-    broadcast(new MessageSent('Hello from Reverb + Livewire!'));
-    return 'Message Sent!';
-});
+// Route::get('/send-message', function () {
+//     broadcast(new MessageSent('Hello from Reverb + Livewire!'));
+//     return 'Message Sent!';
+// });
 
 // Notes
 Route::get('/calendar/departments', [CalendarController::class, 'getDepartments']);

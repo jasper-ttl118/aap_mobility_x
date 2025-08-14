@@ -3,30 +3,30 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\Attributes\On;
-use App\Models\Brand;
+use App\Models\AssetCondition;
 
 new class extends Component {
-    public $brand;
-    public $brand_id;
-
-    #[Validate('nullable')]
-    public $brand_code;
+    public $condition;
+    public $condition_id;
 
     #[Validate('required')]
-    public $brand_name;
+    public $condition_name;
+
+    #[Validate('nullable')]
+    public $condition_description;
 
     #[On('show-edit-modal')]
     public function showEditModal($id)
     {
-        $this->brand = Brand::findOrFail($id);
-        $this->fill($this->brand);
+        $this->condition = AssetCondition::findOrFail($id);
+        $this->fill($this->condition);
         $this->js('showEditModal');
     }
 
     public function update()
     {
         $data = $this->validate();
-        $this->brand->update($data);
+        $this->condition->update($data);
 
         $this->js('closeEditModal');
         $this->reset();
@@ -39,22 +39,22 @@ new class extends Component {
         <form wire:submit="update">
             <fieldset class="fieldset order-base-300 border rounded-box p-4">
                 <legend class="fieldset-legend text-blue-900 text-lg">
-                    Edit IT Brand
+                    Edit Asset Condition
                 </legend>
     
                 {{-- Input Fields --}}
                 <label class="floating-label">
-                    <input wire:model.blur="brand_code" placeholder="Enter Brand Code" class="input input-sm w-96 placeholder:italic" />
-                    <span>Brand Code</span>
+                    <input wire:model.blur="condition_name" placeholder="Enter Asset Condition Name" class="input input-sm w-96 placeholder:italic"/>
+                    <span>Asset Condition Name</span>
                     <p class="text-error text-xs mt-1"> 
-                        @error('brand_code') {{ $message }} @enderror
+                        @error('condition_name') {{ $message }} @enderror
                     </p>
                 </label>
                 <label class="floating-label">
-                    <input wire:model.blur="brand_name" placeholder="Enter Brand Name" class="input input-sm w-96 placeholder:italic"/>
-                    <span>Brand Name</span>
+                    <input wire:model.blur="condition_description" placeholder="Enter Asset Condition Description" class="input input-sm w-96 placeholder:italic" />
+                    <span>Asset Condition Description</span>
                     <p class="text-error text-xs mt-1"> 
-                        @error('brand_name') {{ $message }} @enderror
+                        @error('condition_description') {{ $message }} @enderror
                     </p>
                 </label>
          

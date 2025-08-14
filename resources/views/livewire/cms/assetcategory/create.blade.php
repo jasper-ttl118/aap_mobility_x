@@ -1,28 +1,28 @@
 <?php
 
 use Livewire\Volt\Component;
-use App\Models\Department;
+use App\Models\AssetCategory;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
-    #[Validate('nullable')]
-    public $department_code;
-
     #[Validate('required')]
-    public $department_name;
+    public $category_name;
+
+    #[Validate('nullable')]
+    public $category_description;
 
     public bool $isCreatingAnother = false;
 
     public function store()
     {
         $data = $this->validate();
-        Department::create($data);
+        AssetCategory::create($data);
 
         if(!$this->isCreatingAnother) {
             $this->js('closeCreateModal');
         }
 
-        $this->reset(['department_code', 'department_name']);
+        $this->reset(['category_description', 'category_name']);
         $this->dispatch('refresh-list');
     }
 }; ?>
@@ -30,33 +30,32 @@ new class extends Component {
 
 <div>
     <button x-on:click="$js.showCreateModal" class="btn btn-primary">
-        Add Department
+        Add Asset Category
     </button>
 
     <x-modal-box name="CreateModal">
         <form wire:submit.prevent="store" x-data="{ isChecked: false }">
             <fieldset class="fieldset border-base-300 border rounded-box p-4">
                 <legend class="fieldset-legend text-blue-900 text-lg">
-                    Add Department
+                    Add Asset Category
                 </legend>
     
                 {{-- Input Fields --}}
                 <label class="floating-label">
-                    <input wire:model.blur="department_code" placeholder="Enter Department Code" class="input input-sm w-96 placeholder:italic" />
-                    <span>Department Code</span>
+                    <input wire:model.blur="category_name" placeholder="Enter Asset Category Name" class="input input-sm w-96 placeholder:italic"/>
+                    <span>Asset Category Name</span>
                     <p class="text-error text-xs mt-1"> 
-                        @error('department_code') {{ $message }} @enderror
+                        @error('category_name') {{ $message }} @enderror
                     </p>
                 </label>
                 <label class="floating-label">
-                    <input wire:model.blur="department_name" placeholder="Enter Department Name" class="input input-sm w-96 placeholder:italic"/>
-                    <span>Department Name</span>
+                    <input wire:model.blur="category_description" placeholder="Enter Asset Category Description" class="input input-sm w-96 placeholder:italic" />
+                    <span>Asset Category Description</span>
                     <p class="text-error text-xs mt-1"> 
-                        @error('department_name') {{ $message }} @enderror
+                        @error('category_description') {{ $message }} @enderror
                     </p>
                 </label>
 
-         
                 {{-- Action Buttons --}}
                 <div class="flex mt-2" x-bind:class="isChecked ? 'justify-between' : 'justify-end'" >
                     <button type="submit" wire:show="isCreatingAnother" x-on:click="$js.closeCreateModal" class="btn btn-ghost btn-sm">
