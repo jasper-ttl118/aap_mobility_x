@@ -1,6 +1,9 @@
 @props(['class' => '', 'x_data' => '', 'navbar_selected' => ''])
 
 <!DOCTYPE html>
+{{-- The color design so far is "light themed", 
+    change this if changes to the design will be made. 
+--}}
 <html data-theme="light" lang="en">
 
 <head>
