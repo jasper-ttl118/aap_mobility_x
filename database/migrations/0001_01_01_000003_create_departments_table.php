@@ -14,8 +14,10 @@ return new class extends Migration
         if (!Schema::hasTable('departments')) {
             Schema::create('departments', function (Blueprint $table) {
                 $table->id('department_id');
+                $table->string('department_code')->nullable();
                 $table->string('department_name');
                 $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

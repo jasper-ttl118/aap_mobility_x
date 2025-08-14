@@ -1,7 +1,7 @@
 @props(['class' => '', 'x_data' => '', 'navbar_selected' => ''])
 
 <!DOCTYPE html>
-<html lang="en">
+<html data-theme="light" lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -45,11 +45,10 @@
         <x-layouts.header />
         {{ $slot }}
     </div>
-
+    {{-- For TOAST --}}
+    <div id="toast-container"></div>
     {{-- <x-layouts.chat /> --}}
-
     @livewireScripts
-    
 
 
 </body>
