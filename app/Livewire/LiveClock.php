@@ -1,7 +1,6 @@
 <?php
-// app/Http/Livewire/LiveClock.php
 
-namespace App\Http\Livewire;
+namespace App\Livewire;
 
 use Livewire\Component;
 use Carbon\Carbon;
@@ -26,7 +25,6 @@ class LiveClock extends Component
 
     public function render()
     {
-        dump("test");
         return view('livewire.live-clock');
     }
 }
