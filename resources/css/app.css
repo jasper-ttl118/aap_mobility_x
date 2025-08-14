@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark, cupcake;
+    themes: light --default;
 }
 
 @source "../node_modules/flowbite-datepicker";

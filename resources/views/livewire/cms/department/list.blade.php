@@ -73,7 +73,7 @@ new class extends Component {
         {{-- READ the instances of a model --}}
         <div>
             <div class="overflow-x-auto mt-2 mb-3 min-h-[330px]">
-                <table class="table table-fixed text-black">
+                <table class="table table-fixed text-gray-900">
                     <thead class="bg-gray-100 text-sm text-gray-700 uppercase">
                         <tr>
                             <th class="w-64 p-1 m-0 text-center">

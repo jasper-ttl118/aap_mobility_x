@@ -74,7 +74,7 @@ new class extends Component {
     <div class="px-5 pb-5" x-transition>
         {{-- READ the instances of a model --}}
         <div>
-            <div class="overflow-x-auto mt-2 mb-3 min-h-[330px]">
+            <div data-theme="light" class="overflow-x-auto mt-2 mb-3 min-h-[330px]">
                 <table class="table table-fixed">
                     <thead class="bg-gray-100 text-sm text-gray-700 uppercase">
                         <tr>

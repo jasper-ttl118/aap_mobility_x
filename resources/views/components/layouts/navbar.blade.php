@@ -69,6 +69,8 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
   <div class="w-28 flex justify-center">
     <a href="{{ route('dashboard') }}">
       <img src="{{ asset('aaplogo1.png') }}" alt="aap-logo" class="max-w-full h-auto" />
+      {{-- <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" /> --}}
+      {{-- Modified by romu-dev, delete this comment and "uncomment" above to reflect the RBAC --}}
     </a>
   </div>
   
