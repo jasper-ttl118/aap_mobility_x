@@ -68,13 +68,7 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
   <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
   <div class="flex justify-center w-28">
     <a href="{{ route('dashboard') }}">
-      @switch($user->organization->org_logo)
-        @case(null)
-        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="h-auto max-w-full" />
-          @break
-        @default
-        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="h-auto max-w-full" />
-      @endswitch
+      <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="h-auto max-w-full" />
     </a>
   </div>
   
