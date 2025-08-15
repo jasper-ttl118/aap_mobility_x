@@ -28,7 +28,7 @@ return new class extends Migration
             $table->bigIncrements('permission_id'); // permission id
             $table->string('permission_name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
             $table->string('permission_description')->nullable();
-            $table->boolean('permission_status')->default(1);
+            $table->boolean('permission_status')->default(value: 1);
             $table->timestamp('permission_date_created')->useCurrent();
             $table->timestamp('permission_date_updated')->useCurrent()->useCurrentOnUpdate();
             $table->string('permission_guard_name'); // For MyISAM use string('guard_name', 25);
