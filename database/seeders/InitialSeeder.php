@@ -32,6 +32,7 @@ class InitialSeeder extends Seeder
             'employee_lastname' => 'Doe',
             'employee_personal_email' => 'john.doe@example.com',
             'employee_job_position' => 'Manager',
+            'branch_id' => 2,
             'department_id' => 10,
             'employee_section' => 'Development Team',
             'employee_status' => 1,

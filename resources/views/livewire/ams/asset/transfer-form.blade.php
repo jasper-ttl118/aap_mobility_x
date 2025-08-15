@@ -15,14 +15,17 @@
         <!-- Body Content -->
         <div class="flex">
             <!-- Asset Summary Sidebar -->
-            <div class="w-[35%] p-5 border-r border-gray-200 space-y-4">
+            <div class="w-[45%] p-5 border-r border-gray-200 space-y-6">
+                {{-- Assets for Transfer --}}
+                @foreach($assets as $asset)
+                <div class="flex justify-between rounded-lg border border-gray-200 p-3 bg-[#FAFBFF] shadow-xl">
 
-                {{-- Top Summary Card --}}
-                <div class="rounded-lg border border-gray-200 p-3 bg-[#FAFBFF] shadow-xl">
+                    <!-- ================= LEFT: ICON + BASIC INFO ================= -->
                     <div class="flex items-start gap-4">
-                        <!-- Shared Icon -->
+
+                        <!-- === ICON SLOT (category-based) === -->
                         <div
-                            class="w-10 h-10 rounded-xl bg-yellow-400 flex items-center justify-center self-center text-blue-800">
+                            class="w-10 h-10 rounded-lg bg-yellow-400 flex items-center justify-center self-center text-blue-800">
                             @switch($asset->category_id)
                             @case(1)
                             {{-- Icon for IT Equipment --}}
@@ -191,31 +194,81 @@
                             </svg>
                             @endswitch
                         </div>
+                        <!-- === END ICON SLOT === -->
 
-                        <!-- Text Info (Two stacked lines) -->
+                        <!-- === BASIC INFO SLOT (brand/model/name) === -->
                         <div class="flex flex-col justify-center uppercase">
                             <div>
-                                <span class="text-sm font-bold text-gray-900 ">{{ $asset['brand_name_custom'] ??
-                                    ($brands->firstWhere('brand_id', $asset['brand_id'])->brand_name ?? 'N/A') }}</span>
+                                <span class="text-sm font-bold text-gray-900">
+                                    {{ $asset['brand_name_custom'] ?? ($brands->firstWhere('brand_id',
+                                    $asset['brand_id'])->brand_name ?? 'N/A') }}
+                                </span>
                                 <span class="text-sm font-bold text-gray-900">{{ $asset->model_name }}</span>
                             </div>
-                            <div class="text-xs text-gray-700 ">{{ $asset->asset_name }}</div>
+                            <div class="text-xs text-gray-700">{{ $asset->asset_name }}</div>
                         </div>
+                        <!-- === END BASIC INFO SLOT === -->
+
                     </div>
+                    <!-- ================= END LEFT ================= -->
+
+                    <!-- ================= RIGHT: TOGGLE BUTTON + DETAILS ================= -->
+                    @if($assets->count() > 1)
+                    <div class="flex flex-row self-center">
+                        <!-- === ACTION BUTTONS === -->
+                        <button type="button" wire:key="asset-{{ $asset->asset_id }}"
+                            wire:click.prevent="viewDetails({{ (int) $asset->asset_id }})"
+                            class="group flex items-center hover:mr-1 px-2 overflow-hidden w-8 hover:w-28 transition-all duration-500 ease-in-out  rounded-lg text-blue-800 hover:text-white  hover:bg-blue-800">
+                            <div class="flex items-center justify-center w-8 h-8">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-eye-icon">
+                                    <path
+                                        d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </div>
+                            <span
+                                class="whitespace-nowrap pl-1 pr-2 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-400"
+                                x-text="showDetails ? 'Hide Details' : 'View Details'">
+
+                            </span>
+                        </button>
+
+                        <button type="button" wire:key="asset-{{ $asset->asset_id }}"
+                            wire:click.prevent="removeAsset({{ (int) $asset->asset_id }})"
+                            class="group flex items-center hover:px-2 overflow-hidden w-8 hover:w-28 transition-all duration-500 ease-in-out  rounded-lg text-red-600 hover:text-white  hover:bg-red-600">
+                            <div class="flex items-center justify-center w-8 h-8">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-trash2-icon lucide-trash-2">
+                                    <path d="M10 11v6" />
+                                    <path d="M14 11v6" />
+                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                                    <path d="M3 6h18" />
+                                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                                </svg>
+                            </div>
+                            <span
+                                class="whitespace-nowrap p-1 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                                Remove
+                            </span>
+                        </button>
+                        <!-- === END ACTION BUTTONS === -->
+
+                    </div>
+                    @endif
+                    <!-- ================= END RIGHT ================= -->
+
                 </div>
+                @endforeach
 
-
-                {{-- Navigation Tabs --}}
-                <div x-data="{ activeTab: 'overview' }" class="space-y-4">
-
-                    <div class="rounded-lg border border-gray-200 bg-[#FAFBFF] shadow-xl">
-                        <nav class="flex items-center px-2">
-                            <!-- Overview Link -->
-                            <button @click="activeTab = 'overview'"
-                                class="w-1/2 flex items-center gap-2 px-4 py-2 text-sm border-b-2 transition-all"
-                                :class="activeTab === 'overview' 
-                    ? 'text-blue-800 font-bold border-blue-800' 
-                    : 'text-gray-500 font-medium border-transparent hover:text-blue-700 hover:border-blue-300'">
+                @if($assets->count() === 1)
+                    <div class="space-y-4">
+                    <div class="rounded-lg border border-gray-200 p-5 bg-[#FAFBFF] shadow-xl">
+                        <div>
+                            {{-- Header --}}
+                            <div class="flex flex-row items-center text-gray-700 mb-2 gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="size-5 lucide lucide-package-icon lucide-package">
@@ -225,29 +278,11 @@
                                     <polyline points="3.29 7 12 12 20.71 7" />
                                     <path d="m7.5 4.27 9 5.15" />
                                 </svg>
-                                Overview
-                            </button>
-
-                            <!-- Assignment Link -->
-                            <button @click="activeTab = 'assignment'"
-                                class="w-1/2 flex items-center gap-2 px-4 py-2 text-sm border-b-2 transition-all"
-                                :class="activeTab === 'assignment' 
-                    ? 'text-blue-800 font-bold border-blue-800' 
-                    : 'text-gray-500 font-medium border-transparent hover:text-blue-700 hover:border-blue-300'">
-                                <svg class="size-5" fill="none" stroke="currentColor" stroke-width="2"
-                                    viewBox="0 0 24 24">
-                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                                    <circle cx="12" cy="7" r="4" />
-                                </svg>
-                                Assignment
-                            </button>
-                        </nav>
-                    </div>
-
-                    <div class="rounded-xl border border-gray-200 p-5 bg-[#FAFBFF] shadow-xl">
-                        <!-- Overview Section -->
-                        <div x-show="activeTab === 'overview'">
-                            <ul class="space-y-1 uppercase">
+                                <span class="text-xs font-semibold uppercase">
+                                    Asset Overview
+                                </span>
+                            </div>
+                            <ul class="space-y-1 uppercase items-center">
                                 <li class="flex justify-between items-center">
                                     <span class="text-xs text-gray-500 font-semibold">Property Code</span>
                                     <span class="text-sm text-gray-900 font-normal">{{ $asset->property_code ?? 'N/A'
@@ -255,10 +290,10 @@
                                 </li>
 
 
-                                <li class="flex justify-between items-start">
+                                <li class="flex justify-between items-center">
                                     <span class="text-xs text-gray-500 font-semibold">Category</span>
                                     <span
-                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">{{
+                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[80%] text-end whitespace-normal break-words">{{
                                         $asset->category->category_name
                                         ?? 'N/A'
                                         }}</span>
@@ -293,14 +328,6 @@
                                         }}</span>
                                 </li>
                                 @endif
-                            </ul>
-
-                        </div>
-
-                        <!-- Assignment Section -->
-                        <div x-show="activeTab === 'assignment'" x-cloak>
-                            <ul class="space-y-1 uppercase">
-
                                 <!-- Asset Type -->
                                 <li class="flex justify-between items-center">
                                     <span class="text-xs text-gray-500 font-semibold">Asset Type</span>
@@ -312,19 +339,19 @@
 
                                 <!-- Assigned To -->
                                 @if($asset->asset_type == 1 && $asset->department)
-                                <li class="flex justify-between items-start">
+                                <li class="flex justify-between items-center">
                                     <span class="text-xs text-gray-500 font-semibold ">Assigned To</span>
                                     <span
-                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">
+                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[80%] text-end whitespace-normal break-words">
                                         {{ $asset->department->department_name }}
                                     </span>
                                 </li>
 
                                 @elseif($asset->asset_type == 2 && $asset->employee)
-                                <li class="flex justify-between items-start">
+                                <li class="flex justify-between items-center">
                                     <span class="text-xs text-gray-500 font-semibold">Department</span>
                                     <span
-                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[70%] text-end whitespace-normal break-words">{{
+                                        class="text-sm text-gray-900 font-normal ml-auto max-w-[80%] text-end whitespace-normal break-words">{{
                                         $asset->employee->department->department_name ?? 'N/A' }}</span>
                                 </li>
 
@@ -352,6 +379,19 @@
                             </ul>
                         </div>
                     </div>
+                    </div>
+                @endif
+                <div class="flex justify-end">
+                    <button type="button" wire:click="openAssetPicker({{ (int) $asset->asset_id }})"
+                        class="flex items-center gap-1 px-2 py-2 text-xs font-medium text-white bg-blue-800 rounded-lg hover:bg-blue-900">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="size-4 lucide lucide-plus-icon lucide-plus">
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                        </svg>
+                        Transfer Multiple Assets
+                    </button>
                 </div>
             </div>
 

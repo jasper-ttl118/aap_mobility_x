@@ -1,7 +1,7 @@
 <div>
     @csrf
-    <div class="p-10 space-y-8 space-y-1.5 @lg/main:space-y-14">
-        <div class="gap-y-3 flex flex-col">
+    <div class="p-10 space-y-4">
+        <div x-data="{selectedCategoryId: @entangle('category_id')}" class="gap-y-3 flex flex-col">
             <div class="w-full flex flex-col gap-y-1 -mt-5">
                 <div class="flex justify-between items-start w-full">
                     <!-- Left Side: Title and Subtitle -->
@@ -35,80 +35,88 @@
 
             <!-- Asset Basic Info -->
             <div x-data="{
-                    // shared state
-                    openCategory: false,
-                    openBrand: false,
-                    openCondition: false,
-                    openStatus: false,
+    
 
-                    propertyCode: @entangle('property_code').defer,
+    // shared state
+    openCategory: false,
+    openBrand: false,
+    openCondition: false,
+    openStatus: false,
 
-                    selectedCategoryId: @entangle('category_id'),
-                    selectedCategoryName: @entangle('category_name'),
+    propertyCode: @entangle('property_code').defer,
 
-                    selectedConditionId: @entangle('condition_id'),
-                    selectedConditionName: @entangle('condition_name'),
+    selectedCategoryName: @entangle('category_name'),
+    selectedCategoryId: @entangle('category_id'),
 
-                    selectedStatusId: @entangle('status_id'),
-                    selectedStatusName: @entangle('status_name'),
-                   
-                    selectedBrandId: @entangle('brand_id'),
-                    selectedBrandName: @entangle('brand_name'),
-                    brandName: @entangle('brand_name_custom'),
+    selectedConditionId: @entangle('condition_id'),
+    selectedConditionName: @entangle('condition_name'),
 
-                    assetName: @entangle('asset_name'),
-                    modelName: @entangle('model_name'),
+    selectedStatusId: @entangle('status_id'),
+    selectedStatusName: @entangle('status_name'),
+    
+    selectedBrandId: @entangle('brand_id'),
+    selectedBrandName: @entangle('brand_name'),
+    brandName: @entangle('brand_name_custom'),
 
-                    deviceSerial: @entangle('device_serial_number'),
-                    chargerSerial: @entangle('charger_serial_number'),
+    assetName: @entangle('asset_name'),
+    modelName: @entangle('model_name'),
 
-                    showCheck(field) {
-                        return field && field.trim().length > 0;
-                    },
+    deviceSerial: @entangle('device_serial_number'),
+    chargerSerial: @entangle('charger_serial_number'),
 
-                    showBrandDropdown() {
-                        return this.selectedCategoryId === '1' || this.selectedCategoryId === '6';
-                    },
+    imei1: @entangle('imei1'),
+    imei2: @entangle('imei2'),
 
-                    resetFields() {
-                        this.openCategory = false;
-                        this.openBrand = false;
-                        this.openCondition = false;
-                        this.openStatus = false;
+    acquisitionCost: @entangle('acquisition_cost'),
 
-                        this.selectedCategoryId = '';
-                        this.selectedCategoryName = '';
-                        this.propertyCode = '';
+    showCheck(field) {
+        return field && field.trim().length > 0;
+    },
 
-                        this.selectedBrandId = '';
-                        this.selectedBrandName = '';
-                        this.brandName = '';
+    showBrandDropdown() {
+        return this.selectedCategoryId == '1' || this.selectedCategoryId == '6';
+    },
 
-                        this.selectedConditionId = '';
-                        this.selectedConditionName = '';
+    showItFields() {
+        return this.selectedCategoryId == '1';
+    },
 
-                        this.selectedStatusId = '';
-                        this.selectedStatusName = '';
+    showMobileFields() {
+        return this.selectedCategoryId == '6';
+    },
 
-                        this.assetName = '';
-                        this.modelName = '';
+    resetFields() {
+        this.openCategory = false;
+        this.openBrand = false;
+        this.openCondition = false;
+        this.openStatus = false;
 
-                        this.deviceSerial = '';
-                        this.chargerSerial = '';
-                    },
+        this.selectedCategoryId = '';
+        this.selectedCategoryName = '';
+        this.propertyCode = '';
 
-                    generatePropertyCode() {
-                        if (!this.selectedCategoryName) return;
+        this.selectedBrandId = '';
+        this.selectedBrandName = '';
+        this.brandName = '';
 
-                        const catCode = this.selectedCategoryName.slice(0, 3).toUpperCase();
-                        const date = new Date();
-                        const dateCode = date.toISOString().slice(0, 10).replaceAll('-', '');
-                        const rand = Math.floor(100 + Math.random() * 900); // 3-digit random
+        this.selectedConditionId = '';
+        this.selectedConditionName = '';
 
-                        this.propertyCode = `${catCode}-${dateCode}-${rand}`;
-                    }
-                }" x-on:form-cleared.window="resetFields()"
-                class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
+        this.selectedStatusId = '';
+        this.selectedStatusName = '';
+
+        this.assetName = '';
+        this.modelName = '';
+
+        this.deviceSerial = '';
+        this.chargerSerial = '';
+        this.imei1 = '';
+        this.imei2 = '';
+        this.acquisitionCost = '';
+    },
+
+}" x-on:form-cleared.window="resetFields()" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-2">
+
 
 
                 <!-- CATEGORY DROPDOWN -->
@@ -132,7 +140,7 @@
                             </svg>
 
                             <div
-                                class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300 border border-gray-200">
+                                class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300  ">
                                 <!-- Icon Badge -->
                                 <div class="flex items-center gap-2 mb-3">
                                     <div
@@ -203,8 +211,8 @@
                         <li @click="
                             selectedCategoryId = '{{ $category->category_id }}';
                             selectedCategoryName = '{{ strtoupper($category->category_name) }}';
-                            generatePropertyCode();
-                            $wire.set('property_code', propertyCode);
+                            {{-- generatePropertyCode(); --}}
+                            {{-- $wire.set('property_code', propertyCode); --}}
                             openCategory = false
                         " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
                             {{ strtoupper($category->category_name) }}
@@ -212,7 +220,8 @@
                         @endforeach
                     </ul>
 
-                    <input type="hidden" name="property_code" x-model="propertyCode" wire:model.defer="property_code">
+                    {{-- <input type="hidden" name="property_code" x-model="propertyCode"
+                        wire:model.defer="property_code"> --}}
                 </div>
 
                 <!-- CONDITION DROPDOWN -->
@@ -444,17 +453,20 @@
                     @enderror
                 </div>
 
-                <!-- TECHNICAL SPECS -->
+                <!-- ADDITIONAL SPECS -->
                 <div x-show="showBrandDropdown()" x-transition class="md:col-span-3">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
 
+                        <!-- IT Fields -->
                         <!-- DEVICE SERIAL NUMBER -->
-                        <div class="relative w-full">
+                        <div x-show="showItFields()" x-transition class="relative w-full">
                             <label class="block text-sm font-medium text-gray-700">
-                                Device Serial Number
+                                Device Serial Number <span class="text-red-600" x-show="!showCheck(deviceSerial)"
+                                    x-transition>*</span>
                             </label>
                             <input type="text" name="device_serial_number" x-model="deviceSerial"
-                                @input="$wire.set('device_serial_number', deviceSerial)" placeholder="SERIAL NUMBER" autocomplete="off"
+                                @input="$wire.set('device_serial_number', deviceSerial)" placeholder="SERIAL NUMBER"
+                                autocomplete="off"
                                 class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(deviceSerial),
@@ -462,17 +474,19 @@
                                 }">
 
                             @error('device_serial_number')
-                            <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-xs italic text-red-600">The device serial number is required.</p>
                             @enderror
                         </div>
 
                         <!-- CHARGER SERIAL NUMBER -->
-                        <div class="relative w-full">
+                        <div x-show="showItFields()" x-transition class="relative w-full">
                             <label class="block text-sm font-medium text-gray-700">
-                                Charger Serial Number
+                                Charger Serial Number <span class="text-red-600" x-show="!showCheck(chargerSerial)"
+                                    x-transition>*</span>
                             </label>
                             <input type="text" name="charger_serial_number" x-model="chargerSerial"
-                                @input="$wire.set('charger_serial_number', chargerSerial)" placeholder="SERIAL NUMBER" autocomplete="off"
+                                @input="$wire.set('charger_serial_number', chargerSerial)" placeholder="SERIAL NUMBER"
+                                autocomplete="off"
                                 class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(chargerSerial),
@@ -480,7 +494,93 @@
                                 }">
 
                             @error('charger_serial_number')
-                            <p class="mt-1 text-xs italic text-red-600">{{ $message }}</p>
+                            <p class="mt-1 text-xs italic text-red-600">The charger serial number is required.</p>
+                            @enderror
+                        </div>
+
+                        <!-- Mobile Fields -->
+                        <!-- IMEI 1 -->
+                        <div x-show="showMobileFields()" x-transition class="relative w-full">
+                            <label class="block text-sm font-medium text-gray-700">
+                                IMEI 1 <span class="text-red-600" x-show="!showCheck(imei1)" x-transition>*</span>
+                            </label>
+                            <input type="text" name="imei1" x-model="imei1" @input="$wire.set('imei1', imei1)"
+                                placeholder="ENTER IMEI 1" autocomplete="off"
+                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                :class="{
+                                    'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(imei1),
+                                    'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(imei1)
+                                }">
+
+                            @error('imei1')
+                            <p class="mt-1 text-xs italic text-red-600">The IMEI 1 is required.</p>
+                            @enderror
+                        </div>
+
+                        <!-- IMEI 2 -->
+                        <div x-show="showMobileFields()" x-transition class="relative w-full">
+                            <label class="block text-sm font-medium text-gray-700">
+                                IMEI 2 <span class="text-red-600" x-show="!showCheck(imei2)" x-transition>*</span>
+                            </label>
+                            <input type="text" name="imei2" x-model="imei2" @input="$wire.set('imei2', imei2)"
+                                placeholder="ENTER IMEI 2" autocomplete="off"
+                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                :class="{
+                                    'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(imei2),
+                                    'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(imei2)
+                                }">
+
+                            @error('charger_serial_number')
+                            <p class="mt-1 text-xs italic text-red-600">The IMEI 2 is required.</p>
+                            @enderror
+                        </div>
+
+                        <!-- ACQUISITION COST -->
+                        <div class="relative w-full">
+                            <label class="block text-sm font-medium text-gray-700">
+                                Acquisition Cost
+                                <span class="text-red-600" x-show="!showCheck(acquisitionCost)" x-transition>*</span>
+                            </label>
+
+                            <div class="relative" x-data="{
+        
+                                    // Allow only digits and decimal
+                                    filterNumeric() {
+                                        this.acquisitionCost = this.acquisitionCost
+                                            .toString()
+                                            .replace(/[^0-9.]/g, '') // allow only numbers and one dot
+                                            .replace(/(\..*)\./g, '$1'); // prevent multiple decimals
+                                    },
+
+                                    // Format with commas on blur
+                                    formatCost() {
+                                        this.filterNumeric(); // sanitize first
+
+                                        if (this.acquisitionCost === '' || isNaN(this.acquisitionCost)) return;
+
+                                        let parts = parseFloat(this.acquisitionCost).toFixed(2).split('.');
+                                        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                                        this.acquisitionCost = parts.join('.');
+                                    }
+                                }">
+                                <!-- Peso Symbol -->
+                                <div class="absolute mt-1 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <span class="text-gray-500 text-sm">₱</span>
+                                </div>
+
+                                <!-- Input Field -->
+                                <input type="text" inputmode="decimal" name="acquisition_cost" x-model="acquisitionCost"
+                                    @input="filterNumeric" @blur="formatCost" placeholder="e.g., 15000.00"
+                                    autocomplete="off"
+                                    class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm pl-7 pr-4 py-2 text-left text-sm focus:outline-none"
+                                    :class="{
+                'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(acquisitionCost),
+                'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(acquisitionCost)
+            }">
+                            </div>
+
+                            @error('acquisition_cost')
+                            <p class="mt-1 text-xs italic text-red-600">The acquisition cost is required.</p>
                             @enderror
                         </div>
 
@@ -723,15 +823,9 @@
                         <div x-show="showTypeWarning" x-transition class="mt-1 text-xs italic text-orange-600 ">
                             Select asset type first.
                         </div>
-                        <input
-                                    x-ref="assigneeSearch"
-                                    type="text"
-                                    :value="inputText"
-                                    @input="handleSearchInput($event.target.value)"
-                                    @keydown.enter.prevent
-                                    autocomplete="off"
-                                    class="absolute opacity-0 pointer-events-none w-0 h-0"
-                                />
+                        <input x-ref="assigneeSearch" type="text" :value="inputText"
+                            @input="handleSearchInput($event.target.value)" @keydown.enter.prevent autocomplete="off"
+                            class="absolute opacity-0 pointer-events-none w-0 h-0" />
 
                         <!-- Department Options -->
                         <ul x-show="openAssignee && type === '1'" @click.outside="openAssignee = false" x-transition
@@ -763,44 +857,33 @@
 
                         <!-- Employee Options -->
                         <ul x-show="openAssignee && type === '2'" @click.outside="openAssignee = false" x-transition
-    class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
 
-    <!-- Search Input (invisible but functional) -->
-    {{-- <li class="px-4 py-1">
-        <input
-            x-ref="assigneeSearch"
-            type="text"
-            :value="inputText"
-            @input="handleSearchInput($event.target.value)"
-            @keydown.enter.prevent
-            autocomplete="off"
-            class="absolute opacity-0 pointer-events-none w-0 h-0"
-        />
-    </li> --}}
 
-    <!-- Clear Option -->
-    <li @click="
+
+                            <!-- Clear Option -->
+                            <li @click="
         selectedAssigneeLabel = 'SELECT EMPLOYEE';
         selectedEmployeeId = '';
         selectedAssigneeId = '';
         openAssignee = false;
     " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
-        SELECT EMPLOYEE
-    </li>
+                                SELECT EMPLOYEE
+                            </li>
 
-    <!-- Filtered Employee List -->
-    @foreach ($filteredEmployees as $employee)
-        <li @click="
+                            <!-- Filtered Employee List -->
+                            @foreach ($filteredEmployees as $employee)
+                            <li @click="
             selectedAssigneeLabel = '{{ strtoupper(addslashes($employee->employee_lastname)) }}, {{ strtoupper(addslashes($employee->employee_firstname)) }}';
             selectedEmployeeId = '{{ $employee->employee_id }}';
             selectedAssigneeId = '';
             openAssignee = false;
         " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
-            {{ strtoupper($employee->employee_lastname) }},
-            {{ strtoupper($employee->employee_firstname) }}
-        </li>
-    @endforeach
-</ul>
+                                {{ strtoupper($employee->employee_lastname) }},
+                                {{ strtoupper($employee->employee_firstname) }}
+                            </li>
+                            @endforeach
+                        </ul>
 
 
                         <!-- Validation Error -->
@@ -855,88 +938,116 @@
                 </div>
 
                 <div x-data="{
-                        purchaseDate: @entangle('purchase_date'),
-                        expirationDate: @entangle('warranty_exp_date'),
-                        warrantyYears: @entangle('warranty_years'),
-                        replacementValue: @entangle('free_replacement_value'),
-                        replacementUnit: @entangle('free_replacement_unit'),
-                        freeReplacementDate: @entangle('free_replacement_date'),
-                        description: @entangle('description'),
-                        openUnit: false,
+                            categoryId: @entangle('category_id'),
+                            purchaseDate: @entangle('purchase_date'),
+                            expirationDate: @entangle('warranty_exp_date'),
+                            warrantyYears: @entangle('warranty_years'),
+                            replacementValue: @entangle('free_replacement_value'),
+                            replacementUnit: @entangle('free_replacement_unit'),
+                            freeReplacementDate: @entangle('free_replacement_date'),
+                            description: @entangle('description'),
+                            openUnit: false,
 
-                        
-                        today: new Date().toISOString().split('T')[0],
+                            today: new Date().toISOString().split('T')[0],
 
-                        computeExpiration() {
-                            if (this.purchaseDate && this.warrantyYears !== '') {
-                                let purchase = new Date(this.purchaseDate);
-                                purchase.setFullYear(purchase.getFullYear() + parseInt(this.warrantyYears));
-                                this.expirationDate = purchase.toISOString().split('T')[0];
-                                $wire.set('warranty_exp_date', this.expirationDate);
-                            }
-                        },
-
-                        computeYears() {
-                            if (this.purchaseDate && this.expirationDate) {
-                                const start = new Date(this.purchaseDate);
-                                const end = new Date(this.expirationDate);
-                                const diff = end.getFullYear() - start.getFullYear();
-                                this.warrantyYears = diff;
-                            }
-                        },
-                        clearUnitIfEmpty() {
-                            if (!this.replacementValue) {
-                                this.replacementUnit = '';
-                                $wire.set('free_replacement_unit', '');
-                            }
-                        },
-
-                        computeFreeReplacementDate() {
-                            if (this.purchaseDate && this.replacementValue && this.replacementUnit) {
-                                let baseDate = new Date(this.purchaseDate);
-                                switch (this.replacementUnit) {
-                                    case 'DAYS':
-                                        baseDate.setDate(baseDate.getDate() + parseInt(this.replacementValue));
-                                        break;
-                                    case 'WEEKS':
-                                        baseDate.setDate(baseDate.getDate() + parseInt(this.replacementValue) * 7);
-                                        break;
+                            computeExpiration() {
+                                if (this.purchaseDate && this.warrantyYears !== '') {
+                                    let purchase = new Date(this.purchaseDate);
+                                    purchase.setFullYear(purchase.getFullYear() + parseInt(this.warrantyYears));
+                                    this.expirationDate = purchase.toISOString().split('T')[0];
+                                    $wire.set('warranty_exp_date', this.expirationDate);
                                 }
-                                this.freeReplacementDate = baseDate.toISOString().split('T')[0];
-                                $wire.set('free_replacement_date', this.freeReplacementDate);
-                                
+                            },
+
+                            computeYears() {
+                                if (this.purchaseDate && this.expirationDate) {
+                                    const start = new Date(this.purchaseDate);
+                                    const end = new Date(this.expirationDate);
+                                    const diff = end.getFullYear() - start.getFullYear();
+                                    this.warrantyYears = diff;
+                                }
+                            },
+
+                            clearUnitIfEmpty() {
+                                if (!this.replacementValue) {
+                                    this.replacementUnit = '';
+                                    $wire.set('free_replacement_unit', '');
+                                }
+                            },
+
+                            computeFreeReplacementDate() {
+                                if (this.purchaseDate && this.replacementValue && this.replacementUnit) {
+                                    let baseDate = new Date(this.purchaseDate);
+                                    switch (this.replacementUnit) {
+                                        case 'DAYS':
+                                            baseDate.setDate(baseDate.getDate() + parseInt(this.replacementValue));
+                                            break;
+                                        case 'WEEKS':
+                                            baseDate.setDate(baseDate.getDate() + parseInt(this.replacementValue) * 7);
+                                            break;
+                                    }
+                                    this.freeReplacementDate = baseDate.toISOString().split('T')[0];
+                                    $wire.set('free_replacement_date', this.freeReplacementDate);
+                                }
+                            },
+
+                            resetWarrantyFields() {
+                                this.purchaseDate = '';
+                                this.expirationDate = '';
+                                this.warrantyYears = '';
+                                this.replacementValue = '';
+                                this.replacementUnit = '';
+                                this.freeReplacementDate = '';
+                                this.description = '';
+                                this.openUnit = false;
+
+                                $wire.set('purchase_date', '');
+                                $wire.set('warranty_exp_date', '');
+                                $wire.set('warranty_years', '');
+                                $wire.set('free_replacement_value', '');
+                                $wire.set('free_replacement_unit', '');
+                                $wire.set('free_replacement_date', '');
+                                $wire.set('description', '');
                             }
-                        },
+                        }" x-init="
+                            $watch('categoryId', (value) => {
+                                const id = parseInt(value);
 
-                         resetWarrantyFields() {
-                            this.purchaseDate = '';
-                            this.expirationDate = '';
-                            this.warrantyYears = '';
-                            this.replacementValue = '';
-                            this.replacementUnit = '';
-                            this.freeReplacementDate = '';
-                            this.description = '';
-                            this.openUnit = false;
+                                if ([1, 6].includes(id)) {
+                                    if (!warrantyYears) {
+                                        warrantyYears = 1;
+                                        $wire.set('warranty_years', 1);
+                                    }
+                                    if (!replacementValue) {
+                                        replacementValue = 7;
+                                        replacementUnit = 'DAYS';
+                                        $wire.set('free_replacement_value', 7);
+                                        $wire.set('free_replacement_unit', 'DAYS');
+                                    }
+                                } else {
+                                    // Clear warranty fields when category is not 1 or 6
+                                    warrantyYears = '';
+                                    replacementValue = '';
+                                    replacementUnit = '';
 
-                            $wire.set('purchase_date', '');
-                            $wire.set('warranty_exp_date', '');
-                            $wire.set('warranty_years', '');
-                            $wire.set('free_replacement_value', '');
-                            $wire.set('free_replacement_unit', '');
-                            $wire.set('free_replacement_date', '');
-                            $wire.set('description', '');
-                        }
-                    }" x-init="
-                        $watch('warrantyYears', value => computeExpiration());
-                        $watch('expirationDate', value => computeYears());
-                        $watch('purchaseDate', () => {
-                            if (warrantyYears !== '') computeExpiration();
-                            else if (expirationDate) computeYears();
-                            computeFreeReplacementDate(); 
-                        });
-                        $watch('replacementValue', () => computeFreeReplacementDate());
-                        $watch('replacementUnit', () => computeFreeReplacementDate());
-                    " x-on:form-cleared.window="resetWarrantyFields()" class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                                    $wire.set('warranty_years', '');
+                                    $wire.set('free_replacement_value', '');
+                                    $wire.set('free_replacement_unit', '');
+                                }
+                            });
+
+
+                            $watch('warrantyYears', value => computeExpiration());
+                            $watch('expirationDate', value => computeYears());
+                            $watch('purchaseDate', () => {
+                                if (warrantyYears !== '') computeExpiration();
+                                else if (expirationDate) computeYears();
+                                computeFreeReplacementDate(); 
+                            });
+                            $watch('replacementValue', () => computeFreeReplacementDate());
+                            $watch('replacementUnit', () => computeFreeReplacementDate());
+                        " x-on:form-cleared.window="resetWarrantyFields()"
+                    class="grid grid-cols-1 md:grid-cols-5 gap-x-6 gap-y-3">
 
 
                     <!-- Warranty Fields (spans 3/5 = 60%) -->
@@ -962,7 +1073,8 @@
                         <!-- FREE REPLACEMENT PERIOD -->
                         <div x-effect="clearUnitIfEmpty()" class="relative w-full">
                             <label class="block text-sm font-medium text-gray-700">
-                                Free Replacement Period
+                                Free Replacement Period <span class="text-red-600"
+                                    x-show="!replacementValue || !replacementUnit" x-transition>*</span>
                             </label>
 
                             <div class="flex gap-2 mt-1 items-start">
@@ -1011,37 +1123,50 @@
                                     </ul>
                                 </div>
                             </div>
+                            @error('free_replacement_value')
+                            <p class="mt-1 text-xs italic text-red-600">The free replacement value is required.</p>
+                            @enderror
                         </div>
 
                         <!-- Warranty Expiration Date -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700">
-                                Warranty Expiration Date
+                                Warranty Expiration Date <span class="text-red-600" x-show="!expirationDate"
+                                    x-transition>*</span>
                             </label>
+
                             <input type="date" x-model="expirationDate"
                                 @input="$wire.set('warranty_exp_date', expirationDate)"
                                 class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="expirationDate 
                                 ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                 : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
+
+                            @error('warranty_exp_date')
+                            <p class="mt-1 text-xs italic text-red-600">The warranty expiration date is required.</p>
+                            @enderror
                         </div>
 
                         <!-- Warranty Duration -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700">
-                                Warranty Duration (Years)
+                                Warranty (Years) <span class="text-red-600" x-show="!warrantyYears"
+                                    x-transition>*</span>
                             </label>
                             <input type="number" min="0" placeholder="E.G., 2" x-model="warrantyYears"
                                 @input="$wire.set('warranty_years', warrantyYears)"
                                 class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="warrantyYears 
                                     ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                     : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
+                            @error('warranty_years')
+                            <p class="mt-1 text-xs italic text-red-600">The warranty is required.</p>
+                            @enderror
                         </div>
                     </div>
 
                     <!-- Description (spans 2/5 = 40%) -->
                     <div class="col-span-5 md:col-span-2 flex flex-col">
                         <label class="block text-sm font-medium text-gray-700">
-                            Description
+                            Description <span class="text-red-600" x-show="!description" x-transition>*</span>
                         </label>
                         <textarea x-model="description" @input="$wire.set('description', description)"
                             placeholder="DESCRIPTION"
@@ -1049,6 +1174,9 @@
                             :class="description 
                                 ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
                                 : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"></textarea>
+                        @error('description')
+                        <p class="mt-1 text-xs italic text-red-600">The description is required.</p>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -1070,4 +1198,31 @@
             </div>
         </div>
     </div>
+    @if($showToast)
+    <div class="toast toast-center toast-middle">
+        <div class="flex flex-row gap-4 p-4 rounded-xl border border-red-600 text-red-600 bg-red-50 items-center">
+            <!-- Icon -->
+            <div class="w-12 h-12 p-2 flex items-center justify-center rounded-full bg-red-200">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="size-9 lucide lucide-triangle-alert">
+                    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+                    <path d="M12 9v4" />
+                    <path d="M12 17h.01" />
+                </svg>
+            </div>
+
+            <!-- Message -->
+            <span class="font-semibold">You can only add up to 5 assets.</span>
+        </div>
+    </div>
+    @endif
+
+    <script>
+        window.addEventListener('hide-toast', event => {
+        setTimeout(() => {
+            @this.set('showToast', false);
+        }, event.detail.timeout || 2000);
+    });
+    </script>
 </div>

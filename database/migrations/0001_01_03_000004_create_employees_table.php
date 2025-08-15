@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('employee_mother_maiden_name', 255);
             $table->string('employee_gender', 50);
             $table->string('employee_profile_picture', 255)->nullable();
+            $table->foreignId('branch_id')->constrained('branches', 'branch_id')->onDelete('cascade');
             $table->foreignId('department_id')->constrained('departments', 'department_id')->onDelete('cascade');
             $table->string('employee_section', 255);
             $table->boolean('employee_status')->default(1);

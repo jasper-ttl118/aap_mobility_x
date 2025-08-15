@@ -26,11 +26,38 @@
             </div>
 
             @if (!empty($assets))
-            <!-- Total Count -->
-            <div class="text-xs font-semibold text-gray-700 mb-5">
-                Checked Assets: {{ count($checked) }} of {{ count($assets) }}
+            <div class="flex justify-between items-center mb-5 text-xs font-semibold text-gray-700">
+                <!-- Left -->
+                <div>
+                    Checked Assets: {{ count($checked) }} of {{ count($assets) }}
+                </div>
+
+                <!-- Right -->
+                @php
+                $allChecked = !empty($assets)
+                && count($checked) === count($assets)
+                && !in_array(false, $checked, true);
+                @endphp
+
+                <div wire:click="checkAll" class="flex items-center gap-2 cursor-pointer">
+                    <span>{{ $allChecked ? 'Uncheck All' : 'Check All' }}</span>
+
+                    <button class="w-5 h-5 p-0.5 flex items-center justify-center rounded-full border transition
+        {{ $allChecked
+            ? 'border-white bg-green-500 text-white hover:bg-transparent hover:text-green-500 hover:border-green-500'
+            : 'border-green-500 text-green-500 hover:border-white hover:bg-green-500 hover:text-white' }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 6 7 17l-5-5" />
+                            <path d="m22 10-7.5 7.5L13 16" />
+                        </svg>
+                    </button>
+                </div>
+
             </div>
             @endif
+
+
 
             @if (empty($assets))
             <div x-data="{
@@ -254,7 +281,7 @@
                             }}</span>
                     </div>
                     <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
-                        <strong>Warranty Expiration Date:</strong> <span class="ml-4">{{
+                        <strong>Warranty Expiration:</strong> <span class="ml-4">{{
                             isset($asset['warranty_exp_date']) ?
                             strtoupper(\Carbon\Carbon::parse($asset['warranty_exp_date'])->format('F j, Y')) : 'N/A'
                             }}</span>
@@ -277,16 +304,47 @@
                             Replacement Date:</strong> <span class="ml-4">{{ isset($asset['free_replacement_date']) ?
                             strtoupper(\Carbon\Carbon::parse($asset['free_replacement_date'])->format('F j, Y')) : 'N/A'
                             }}</span></div>
-                    
 
-                    @if(in_array($asset['category_id'] ?? null, [1, 6]))
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Device
-                            Serial #:</strong> <span class="ml-4">{{ $asset['device_serial_number'] ?? 'N/A' }}</span>
+
+                    {{-- IT Equipment (category_id == 1) --}}
+                    @if(($asset['category_id'] ?? null) == 1)
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Device Serial #:</strong>
+                        <span class="ml-4">{{ $asset['device_serial_number'] ?? 'NO DATA' }}</span>
                     </div>
-                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white"><strong>Charger
-                            Serial #:</strong> <span class="ml-4">{{ $asset['charger_serial_number'] ?? 'N/A' }}</span>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Charger Serial #:</strong>
+                        <span class="ml-4">{{ $asset['charger_serial_number'] ?? 'NO DATA' }}</span>
                     </div>
                     @endif
+
+                    {{-- Mobile Devices (category_id == 6) --}}
+                    @if(($asset['category_id'] ?? null) == 6)
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>IMEI 1:</strong>
+                        <span class="ml-4">{{ $asset['imei1'] ?? 'NO DATA' }}</span>
+                    </div>
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>IMEI 2:</strong>
+                        <span class="ml-4">{{ $asset['imei2'] ?? 'NO DATA' }}</span>
+                    </div>
+                    @endif
+
+                    {{-- Acquisition Cost (IT or Mobile) --}}
+                    @if(in_array($asset['category_id'] ?? null, [1, 6]))
+                    <div class="flex justify-between px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
+                        <strong>Acquisition Cost:</strong>
+                        <span class="ml-4">
+                            @php
+                            $raw = $asset['acquisition_cost'] ?? null;
+                            $num = $raw === null ? null : (float) str_replace([',','₱',' '], '', $raw);
+                            @endphp
+                            {{ $num !== null ? '₱ ' . number_format($num, 2) : 'NO DATA' }}
+                        </span>
+                    </div>
+
+                    @endif
+
 
                     <div class="flex justify-between items-start px-3 py-1 rounded odd:bg-[#EDF0FF] even:bg-white">
                         <strong>Description:</strong>

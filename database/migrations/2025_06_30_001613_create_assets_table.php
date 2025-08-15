@@ -26,6 +26,9 @@ return new class extends Migration {
             $table->foreignId('condition_id');
             $table->string('device_serial_number')->nullable();
             $table->string('charger_serial_number')->nullable();
+            $table->string('imei1')->nullable();
+            $table->string('imei2')->nullable();
+            $table->string('acquisition_cost')->nullable();
 
             $table->enum('asset_type', ['1', '2']); // 1 for common asset, 2 for non-commons
             $table->foreignId('employee_id')->nullable();
