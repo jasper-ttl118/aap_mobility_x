@@ -3,65 +3,60 @@
 <style>
 
 .back {
-  position: relative;
-  background: #F3F4F6;
+    position: relative;
+    background: #F3F4F6;
 }
 
 .back:before {
-  
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: 0;
-  height: 20px;
-  width: 20px;
-  border-bottom-right-radius: 0.25rem;
-  background-color: #071d49;
-  z-index: 2;
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    border-bottom-right-radius: 0.25rem;
+    background-color: #071d49;
+    z-index: 2;
 }
 
 .back::after {
-  
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  right: 0;
-  height: 20px;
-  width: 20px;
-  border-top-right-radius: 0.25rem;
-  background-color: #071d49;
-  z-index: 2;
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    border-top-right-radius: 0.25rem;
+    background-color: #071d49;
+    z-index: 2;
 }
 
 .edge::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  right: 0;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  z-index: 1;
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    z-index: 1;
 }
 
 .edge::after {
-  content: '';
-  position: absolute;
-  bottom: -20px;
-  right: 0;
-  height: 20px;
-  width: 20px;
-  background-color: white;
-  z-index: 1;
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    z-index: 1;
 }
 </style>
 
 @php
-
-$user = auth()->user()->load('organization', 'employee', 'roles');
-
-$modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
-// dd($user);
+    $user = auth()->user()->load('organization', 'employee', 'roles');
+    $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
 @endphp
 
 <div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">
@@ -106,10 +101,10 @@ $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')-
                 @break
               @case('Employee Management')
                 <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
-                @break
+               @break
               @case('RBAC Management')
                 <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122Z" />
-                @break
+                @break 
               @case('Modules')
                 <path d="M6 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H6ZM15.75 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3H18a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3h-2.25Z" />
                 @break
