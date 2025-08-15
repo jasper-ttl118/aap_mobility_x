@@ -277,12 +277,314 @@
                         </div>
 
 
-                        {{-- QR Code --}}
-                        <div x-data="{ showQR: false }"
-                            class="relative flex flex-col items-start self-center ml-auto group">
+                            <!-- Classification -->
+                            <div
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-blue-700/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-blue-700">
+                                <div class="flex justify-between items-center mb-3 text-[540d6e]">
+                                    <!-- Icon + Title -->
+                                    <div class="flex items-center gap-x-2 text-blue-700">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M5.25 2.25a3 3 0 0 0-3 3v4.318a3 3 0 0 0 .879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 0 0 5.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 0 0-2.122-.879H5.25ZM6.375 7.5a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <h3 class="text-sm font-bold uppercase">Asset Information</h3>
+                                    </div>
 
-                            <button @click="showQR = true"
-                                class="inline-flex items-center justify-center text-white transition bg-black size-14 rounded-xl hover:scale-110">
+                                    <!-- Click to Edit -->
+                                    <svg @click="openSectionEditor('info')" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 text-gray-600 hover:scale-110 hover:text-blue-600 self-center">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+
+                                </div>
+
+
+                                <div class="grid grid-cols-1  gap-1 text-sm text-gray-900">
+                                    <!-- Column Items -->
+                                    <div class="flex justify-between">
+                                        <span>PROPERTY CODE:</span>
+                                        <span class="font-semibold text-gray-800">{{ $asset->property_code ?? 'NO DATA'
+                                            }}</span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>CATEGORY:</span>
+                                        <span class="font-semibold  text-gray-800">{{ $asset->category->category_name ??
+                                            'NO DATA'
+                                            }}</span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>STATUS:</span>
+                                        <span class="font-semibold  text-gray-800">{{ $asset->status->status_name ?? 'NO
+                                            DATA'
+                                            }}</span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>CONDITION:</span>
+                                        <span class="font-semibold  text-gray-800">{{ $asset->condition->condition_name
+                                            ?? 'NO DATA'
+                                            }}</span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>DEVICE SERIAL NUMBER:</span>
+                                        <span class="font-semibold  text-gray-800">{{ $asset->device_serial_number ??
+                                            'NO DATA'
+                                            }}</span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>CHARGER SERIAL NUMBER:</span>
+                                        <span class="font-semibold  text-gray-800">{{ $asset->charger_serial_number ??
+                                            'NO DATA'
+                                            }}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Maintenance -->
+                            <div
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#FF5C00]/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[#FF5C00]">
+                                <div class="flex items-center justify-between mb-3">
+                                    <!-- Left Section: Icon + Heading -->
+                                    <div class="flex items-center gap-x-2 text-[#FFA500]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M11.078 2.25c-.917 0-1.699.663-1.85 1.567L9.05 4.889c-.02.12-.115.26-.297.348a7.493 7.493 0 0 0-.986.57c-.166.115-.334.126-.45.083L6.3 5.508a1.875 1.875 0 0 0-2.282.819l-.922 1.597a1.875 1.875 0 0 0 .432 2.385l.84.692c.095.078.17.229.154.43a7.598 7.598 0 0 0 0 1.139c.015.2-.059.352-.153.43l-.841.692a1.875 1.875 0 0 0-.432 2.385l.922 1.597a1.875 1.875 0 0 0 2.282.818l1.019-.382c.115-.043.283-.031.45.082.312.214.641.405.985.57.182.088.277.228.297.35l.178 1.071c.151.904.933 1.567 1.85 1.567h1.844c.916 0 1.699-.663 1.85-1.567l.178-1.072c.02-.12.114-.26.297-.349.344-.165.673-.356.985-.57.167-.114.335-.125.45-.082l1.02.382a1.875 1.875 0 0 0 2.28-.819l.923-1.597a1.875 1.875 0 0 0-.432-2.385l-.84-.692c-.095-.078-.17-.229-.154-.43a7.614 7.614 0 0 0 0-1.139c-.016-.2.059-.352.153-.43l.84-.692c.708-.582.891-1.59.433-2.385l-.922-1.597a1.875 1.875 0 0 0-2.282-.818l-1.02.382c-.114.043-.282.031-.449-.083a7.49 7.49 0 0 0-.985-.57c-.183-.087-.277-.227-.297-.348l-.179-1.072a1.875 1.875 0 0 0-1.85-1.567h-1.843ZM12 15.75a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+
+                                        <h3 class="text-sm font-bold uppercase">Maintenance</h3>
+                                    </div>
+
+                                    <!-- Right Section: Edit Hint -->
+                                    <svg @click="openSectionEditor('maintenance')" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 text-gray-600 hover:scale-110 hover:text-blue-600 self-center">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-1 text-sm text-gray-900">
+                                    <div class="flex justify-between">
+                                        <span>NEXT MAINTENANCE SCHEDULE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->maint_sched ? strtoupper(optional($asset->maint_sched)->format('F
+                                            d, Y')) : 'NO DATA' }}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>LAST MAINTENANCE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->last_maint_sched ?
+                                            strtoupper(optional($asset->last_maint_sched)->format('F d, Y')) : 'NO DATA'
+                                            }}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>MAINTENANCE SERVICE PROVIDER:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->service_provider ?? 'NO DATA' }}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>CHECK-OUT STATUS:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->check_out_status ?? 'NO DATA' }}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>CHECK-OUT DATE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->check_out_date ?
+                                            strtoupper(optional($asset->check_out_date)->format('F d, Y')) : 'NO DATA'
+                                            }}
+                                        </span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span>CHECK-IN DATE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->check_in_date ?
+                                            strtoupper(optional($asset->check_in_date)->format('F d, Y')) : 'NO DATA' }}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Assignment -->
+                            <div
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-[#3bceac]/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-[3bceac]">
+                                <div class="flex items-center justify-between mb-3 text-[3bceac]">
+                                    <!-- Left Side: Icon + Label -->
+                                    <div class="flex items-center gap-x-2 text-[3bceac]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <h3 class="text-sm font-bold  uppercase">Assignment</h3>
+                                    </div>
+
+                                    <!-- Right Side: Edit Tip -->
+                                    <svg @click="openSectionEditor('assignment')" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 text-gray-600 hover:scale-110 hover:text-blue-600 self-center">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                </div>
+
+
+                                <div class="grid grid-cols-1 gap-1 text-sm text-gray-900">
+                                    <div class="flex justify-between">
+                                        <span>ASSET TYPE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            @if ($asset->asset_type === '1')
+                                            COMMON
+                                            @elseif ($asset->asset_type === '2')
+                                            NON-COMMON
+                                            @else
+                                            UNKNOWN
+                                            @endif
+                                        </span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>ASSIGNED TO:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            @if ($asset->asset_type === '2')
+                                            {{ strtoupper(($asset->employee->employee_lastname ?? '') . ', ' .
+                                            ($asset->employee->employee_firstname ?? '')) }}
+                                            @elseif ($asset->asset_type === '1')
+                                            {{ strtoupper($asset->department->department_name ?? 'NO DATA') }}
+                                            @else
+                                            NO DATA
+                                            @endif
+                                        </span>
+                                    </div>
+
+                                    <div class="flex justify-between">
+                                        <span>DATE ASSIGNED:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->date_accountable ?
+                                            strtoupper(optional($asset->date_accountable)->format('F d, Y')) : 'NO DATA'
+                                            }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <!-- Warranty -->
+                            <div
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-red-600/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-red-600">
+                                <div class="flex items-center justify-between mb-3">
+                                    <!-- Left: Icon + Heading -->
+                                    <div class="flex items-center gap-x-2 text-red-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <h3 class="text-sm font-bold uppercase">Warranty</h3>
+                                    </div>
+
+                                    <!-- Right: Conditional Edit Hint -->
+                                    <svg @click="openSectionEditor('warranty')" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 text-gray-600 hover:scale-110 hover:text-blue-600 self-center">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-1 text-sm text-gray-900">
+                                    <!-- Purchase Date -->
+                                    <div class="flex justify-between">
+                                        <span>PURCHASE DATE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->purchase_date ?
+                                            strtoupper(optional($asset->purchase_date)->format('F d, Y')) : 'NO DATA' }}
+                                        </span>
+                                    </div>
+
+                                    <!-- Free Replacement Period -->
+                                    <div class="flex justify-between">
+                                        <span>FREE REPLACEMENT PERIOD:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->free_replacement_period ?
+                                            strtoupper(optional($asset->free_replacement_period)->format('F d, Y')) :
+                                            'NO DATA' }}
+                                        </span>
+                                    </div>
+
+                                    <!-- Warranty Expiration Date -->
+                                    <div class="flex justify-between">
+                                        <span>WARRANTY EXPIRATION DATE:</span>
+                                        <span class="text-gray-800 font-semibold">
+                                            {{ $asset->warranty_exp_date ?
+                                            strtoupper(optional($asset->warranty_exp_date)->format('F d, Y')) : 'NO
+                                            DATA' }}
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Description -->
+                            <div
+                                class="rounded-lg p-4 transform transition duration-200 ease-in-out bg-yellow-400/10 hover:z-10 shadow-[0_-4px_8px_rgba(0,0,0,0.1),4px_0_8px_rgba(0,0,0,0.1),0_4px_8px_rgba(0,0,0,0.1),-4px_0_8px_rgba(0,0,0,0.1)] hover:scale-110 border-l-[16px] border-yellow-400">
+                                <div class="flex items-center justify-between mb-3">
+                                    <!-- Left: Icon + Label -->
+                                    <div class="flex items-center gap-x-2 text-yellow-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                            class="size-4">
+                                            <path fill-rule="evenodd"
+                                                d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0 0 16.5 9h-1.875a1.875 1.875 0 0 1-1.875-1.875V5.25A3.75 3.75 0 0 0 9 1.5H5.625ZM7.5 15a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5A.75.75 0 0 1 7.5 15Zm.75 2.25a.75.75 0 0 0 0 1.5H12a.75.75 0 0 0 0-1.5H8.25Z"
+                                                clip-rule="evenodd" />
+                                            <path
+                                                d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
+                                        </svg>
+                                        <h3 class="text-sm font-bold uppercase">Description</h3>
+                                    </div>
+
+                                    <!-- Right: Edit Mode Hint -->
+                                    <svg @click="openSectionEditor('description')" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                        class="size-5 text-gray-600 hover:scale-110 hover:text-blue-600 self-center">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                    </svg>
+                                </div>
+
+                                <p class="text-sm text-gray-800 text-justify">{{ $asset->description }}</p>
+                            </div>
+
+
+
+                        </div>
+
+                        <livewire:ams.asset.edit-asset-modal />
+
+
+                        <div class="flex justify-end gap-x-3 mt-6">
+                            <!-- Back Button -->
+                            <a href="/ams/all-assets"
+                                class="inline-flex items-center gap-2 px-4 py-2 bg-blue-900 text-white rounded-md text-sm hover:bg-blue-700 transition">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-14">
                                     <path fill-rule="evenodd"
