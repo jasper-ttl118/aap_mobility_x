@@ -3,8 +3,8 @@
         $navbar_selected = 'None';
     //    dd($employee->employee->employee_lastname);
     @endphp
-    @include('layouts.navbar')
-    <div class="@container/main flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:p-10 gap-3.5 bg-[#f3f4f6] mt-10">
+
+<div class="@container/main flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:p-10 gap-3.5 bg-[#f3f4f6] mt-10">
         <header>
             <h2 class="text-2xl text-center lg:text-start font-medium text-[#151847]">User Profile Information</h2>
             <h4 class="text-lg text-center lg:text-start font-light text-[#151847]">View and edit your personal details, username, and password</h4>
@@ -12,13 +12,13 @@
         <hr>
         <main class="space-y-6">
             <section class="space-y-1.5">
-                <div class="flex flex-row justify-between items-center w-full">
+                <div class="flex flex-row items-center justify-between w-full">
                     <h5 class="text-lg font-medium text-[#071d49]">View User Details</h5>
                     <a href="{{ route('profile.edit') }}" class="text-[#071d49] text-lg font-medium hover:text-blue-900 hover:underline pr-1">Edit Profile</a>
                 </div>
                 <div x-data="{step: 1}" class="p-10 bg-white rounded-xl h-full space-y-8 @lg/main:space-y-14 shadow-lg">
                     <!-- Step Indicator -->
-                    <ul class="steps steps-vertical lg:steps-horizontal w-full">
+                    <ul class="w-full steps steps-vertical lg:steps-horizontal">
                         <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 1 }">Basic Info's</li>
                         <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 2 }">Contact Info's</li>
                         <li class="step text-[#071d49]" :class="{ 'step-primary': step >= 3 }">Education and Job Info's</li>
@@ -29,16 +29,16 @@
                     </ul>
 
                     <!-- Step Forms -->
-                    <div x-show="step === 1" class="gap-y-7 flex flex-col">
-                        <div class="w-full flex flex-col items-start justify-start gap-x-5 ">
+                    <div x-show="step === 1" class="flex flex-col gap-y-7">
+                        <div class="flex flex-col items-start justify-start w-full gap-x-5 ">
                             <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 1: Employee's Basic Information</h2>
-                            <p class="text-sm text-gray-600 leading-tight"><em>Enter your real Full Name, Suffix and Maiden Name if youre a married Woman.</em></p>
+                            <p class="text-sm leading-tight text-gray-600"><em>Enter your real Full Name, Suffix and Maiden Name if youre a married Woman.</em></p>
                         </div>
-                        <div class="w-full flex flex-row gap-x-14">
+                        <div class="flex flex-row w-full gap-x-14">
                             <div class="w-[20%] flex flex-col gap-y-5 justify-center items-start">
-                                <div class="flex flex-col w-full items-start justify-start">
+                                <div class="flex flex-col items-start justify-start w-full">
                                     <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Profile Image</h6>
-                                    <p class="text-xs text-gray-600 leading-tight"><em>Choose a new photo to display 
+                                    <p class="text-xs leading-tight text-gray-600"><em>Choose a new photo to display 
                                         as your profile photo.</em></p>
                                 </div>
                                 <div
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="w-full flex flex-col gap-y-6">
+                        <div class="flex flex-col w-full gap-y-6">
                             <div class="flex flex-row w-full gap-x-5">
                                 <div class="space-y-1 flex flex-col w-[33%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="religion">Religion</label>
@@ -126,7 +126,7 @@
                                 </div>
                                 
                                 <div class="flex flex-row w-[33%] gap-x-5">
-                                    <div class="flex flex-col space-y-1 w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <label class="hidden text-aapblue @lg/main:block " for="civilStatus">Civil Status</label>
                                         <input class="profile_edit_input" type="text" name="employee_civil_status" value="{{ $employee->employee->employee_civil_status ?? 'N/A'}}"
                                             placeholder="Enter your birthplace" disabled>
@@ -231,19 +231,19 @@
                         </div>
 
                         {{-- Button --}}
-                        <div class="flex justify-end items-end">
-                            <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                        <div class="flex items-end justify-end">
+                            <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                         </div>
                     </div>
 
                     {{-- Educ and Job Info's --}}
                     <div x-show="step === 2">
-                        <div class="w-full flex flex-col gap-y-7 ">
-                            <div class="w-full flex flex-col justify-start items-start">
+                        <div class="flex flex-col w-full gap-y-7 ">
+                            <div class="flex flex-col items-start justify-start w-full">
                                 <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 2: Employee's Contact Information</h2>
-                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Personal Email, Contact Number, etc.</em></p>
+                                <p class="text-sm leading-tight text-gray-600"><em>Enter your Personal Email, Contact Number, etc.</em></p>
                             </div>
-                            <div class="flex flex-row w-full justify-center items-center">
+                            <div class="flex flex-row items-center justify-center w-full">
                                 <div class="flex flex-col w-full gap-y-2">
                                     <div class="flex flex-row gap-x-5">
                                         <div class="space-y-1 flex flex-col w-[25%]">
@@ -251,12 +251,12 @@
                                                 <label class="hidden text-aapblue @lg/main:block " for="homeAddressPresent">Personal Email</label>
                                                 <label for="homeAddressPresent" class="@lg/main:block hidden text-gray-400">(Active)</label>
                                             </div>
-                                            <input class="profile_edit_input w-full" type="email" name="employee_personal_email" value="{{ $employee->employee->employee_personal_email ?? 'N/A'}}"
+                                            <input class="w-full profile_edit_input" type="email" name="employee_personal_email" value="{{ $employee->employee->employee_personal_email ?? 'N/A'}}"
                                                 placeholder="e.g., john.doe@example.com" disabled>
                                         </div>
                                         <div class="flex flex-col space-y-1 w-[25%]">
                                             <label class="hidden text-aapblue @lg/main:block " for="phoneNumber1">Personal Number </label>
-                                            <input class="profile_edit_input w-full flex" type="text" name="employee_contact_no1" value="{{ $employee->employee->employee_contact_no1 ?? 'N/A'}}"
+                                            <input class="flex w-full profile_edit_input" type="text" name="employee_contact_no1" value="{{ $employee->employee->employee_contact_no1 ?? 'N/A'}}"
                                                     placeholder="e.g., +63 912 345 6789" disabled>
                                         </div>
                                         <div class="flex flex-col space-y-1 w-[25%]">
@@ -264,48 +264,48 @@
                                                 <label class="hidden text-aapblue @lg/main:block " for="phoneNumber2">Phone Number #2 </label>
                                                 <label for="phoneNumber2" class="@lg/main:block hidden text-gray-400"> (Optional) </label>
                                             </div>
-                                            <input class="profile_edit_input w-full flex" type="text" name="employee_contact_no2" value="{{ $employee->employee->employee_contact_no2 ?? 'N/A'}}"
+                                            <input class="flex w-full profile_edit_input" type="text" name="employee_contact_no2" value="{{ $employee->employee->employee_contact_no2 ?? 'N/A'}}"
                                                 placeholder="e.g., +63 912 345 6789">
                                         </div>
                                         <div class="flex flex-col space-y-1 w-[25%]">
                                             <label class="hidden text-aapblue @lg/main:block " for="viberName">Viber Number</label>
-                                            <input class="profile_edit_input w-full flex" type="text" name="employee_viber_number" value="{{ $employee->employee->employee_viber_number ?? 'N/A'}}"
+                                            <input class="flex w-full profile_edit_input" type="text" name="employee_viber_number" value="{{ $employee->employee->employee_viber_number ?? 'N/A'}}"
                                                 placeholder="e.g., +63 912 345 6789" disabled>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-end gap-x-2 items-end">
-                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            <div class="flex items-end justify-end gap-x-2">
+                                <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
+                                <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                             </div>
                         </div>
                     </div>
 
                     {{-- Educ and Job Info's --}}
                     <div x-show="step === 3">
-                        <div class="w-full flex flex-col gap-y-7 ">
-                            <div class="w-full flex flex-col justify-start items-start">
+                        <div class="flex flex-col w-full gap-y-7 ">
+                            <div class="flex flex-col items-start justify-start w-full">
                                 <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 3: Employee's Education and Job Information</h2>
-                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
+                                <p class="text-sm leading-tight text-gray-600"><em>Enter your Educational Attainment, School Attended and Job Information.</em></p>
                             </div>
                             <div class="flex flex-row w-full gap-x-5">
                                 <div class="flex flex-col w-[50%] gap-y-3">
-                                    <div class="w-full flex flex-col justify-start items-start">
+                                    <div class="flex flex-col items-start justify-start w-full">
                                         <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Employee's School Information</h6>
-                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your Educational Attainment and School Attended.</em></p>
+                                        <p class="text-sm leading-tight text-gray-600"><em>Enter your Educational Attainment and School Attended.</em></p>
                                     </div>
                                     <div class="flex flex-row w-full gap-x-5">
                                         <div class="flex flex-col space-y-1 w-[50%]">
                                             <label class="hidden text-aapblue @lg/main:block " for="educationalAttainment">Educational Attainment </label>
-                                            <input class="profile_edit_input w-full flex" type="text" name="employee_educational_attainment" value="{{ $employee->employee->employee_educational_attainment ?? 'N/A'}}"
+                                            <input class="flex w-full profile_edit_input" type="text" name="employee_educational_attainment" value="{{ $employee->employee->employee_educational_attainment ?? 'N/A'}}"
                                                 placeholder="e.g., College Graduate" disabled>
                                         </div>
                                         <div class="flex flex-col space-y-1 w-[50%]">
                                             <div class="flex flex-row w-full gap-x-2">
                                                 <label class="hidden text-aapblue @lg/main:block truncate" for="forCollege">For College/Vocational </label>
                                             </div>
-                                            <input class="profile_edit_input w-full flex" type="text" name="employee_college_vacational_status" value="{{ $employee->employee->employee_college_vacational_status ?? 'N/A'}}"
+                                            <input class="flex w-full profile_edit_input" type="text" name="employee_college_vacational_status" value="{{ $employee->employee->employee_college_vacational_status ?? 'N/A'}}"
                                                 placeholder="e.g., College Graduate" disabled>
                                         </div>
                                     </div>
@@ -314,28 +314,28 @@
                                             <label class="hidden text-aapblue @lg/main:block " for="schoolAttended">School Attended </label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400"> (Base on Educational Attainment) </label>
                                         </div>
-                                        <input class="profile_edit_input w-full flex" type="text" name="employee_school_attended" value="{{ $employee->employee->employee_school_attended ?? 'N/A'}}"
+                                        <input class="flex w-full profile_edit_input" type="text" name="employee_school_attended" value="{{ $employee->employee->employee_school_attended ?? 'N/A'}}"
                                             placeholder="e.g., University of Caloocan City" disabled>
                                     </div>
                                 </div>
                                 {{-- Company Information --}}
                                 <div class="flex flex-col w-[50%] gap-y-2">
-                                    <div class="w-full flex flex-col justify-start items-start">
+                                    <div class="flex flex-col items-start justify-start w-full">
                                         <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]"> Employee's Company Information</h6>
-                                        <p class="text-sm text-gray-600 leading-tight"><em>Enter your Job Position Title, Department, Company Email, etc.</em></p>
+                                        <p class="text-sm leading-tight text-gray-600"><em>Enter your Job Position Title, Department, Company Email, etc.</em></p>
                                     </div>
                                     <div class="flex flex-col gap-y-4">
                                         <div class="flex flex-row w-full gap-x-5">
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <label class="hidden text-aapblue @lg/main:block " for="jobPosition">Job Position Title</label>
-                                                <input class="profile_edit_input w-full flex" type="text" name="employee_job_position" value="{{ $employee->employee->employee_job_position ?? 'N/A'}}"
+                                                <input class="flex w-full profile_edit_input" type="text" name="employee_job_position" value="{{ $employee->employee->employee_job_position ?? 'N/A'}}"
                                                     placeholder="e.g., Accountant" disabled>
                                             </div>
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="department">Department</label>
                                                 </div>
-                                                <input class="profile_edit_input w-full flex" type="text" name="employee_department" value="{{ $employee->employee->department->department_name ?? 'N/A'}}"
+                                                <input class="flex w-full profile_edit_input" type="text" name="employee_department" value="{{ $employee->employee->department->department_name ?? 'N/A'}}"
                                                 placeholder="e.g., College Graduate" disabled>
                                             </div>
                                         </div>
@@ -344,35 +344,35 @@
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block " for="companyEmail">Company Email </label>
                                                 </div>
-                                                <input class="profile_edit_input w-full flex" type="text" name="employee_company_email" value="{{ $employee->employee->employee_company_email ?? 'N/A'}}"
+                                                <input class="flex w-full profile_edit_input" type="text" name="employee_company_email" value="{{ $employee->employee->employee_company_email ?? 'N/A'}}"
                                                     placeholder="e.g., University of Caloocan City" disabled>
                                             </div>
                                             <div class="flex flex-col space-y-1 w-[50%]">
                                                 <div class="flex flex-row w-full gap-x-2">
                                                     <label class="hidden text-aapblue @lg/main:block truncate" for="typeOfEmployment">Type of Employment</label>
                                                 </div>
-                                                <input class="profile_edit_input w-full flex" type="text" name="employee_employment_type" value="{{ $employee->employee->employee_employment_type ?? 'N/A'}}"
+                                                <input class="flex w-full profile_edit_input" type="text" name="employee_employment_type" value="{{ $employee->employee->employee_employment_type ?? 'N/A'}}"
                                                     placeholder="e.g., University of Caloocan City" disabled>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-end gap-x-2 items-end">
-                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            <div class="flex items-end justify-end gap-x-2">
+                                <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
+                                <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                             </div>
                         </div>
                     </div>
 
                     {{-- Government ID's --}}
                     <div x-show="step === 4">
-                        <div class="w-full flex flex-col gap-y-7 ">
-                            <div class="w-full flex flex-col justify-start items-start">
+                        <div class="flex flex-col w-full gap-y-7 ">
+                            <div class="flex flex-col items-start justify-start w-full">
                                 <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 4: Employee's Government ID's</h2>
-                                <p class="text-sm text-gray-600 leading-tight"><em>Enter active government IDs (e.g., SSS, PhilHealth, Pag-IBIG, TIN) with correct and complete details.</em></p>
+                                <p class="text-sm leading-tight text-gray-600"><em>Enter active government IDs (e.g., SSS, PhilHealth, Pag-IBIG, TIN) with correct and complete details.</em></p>
                             </div>
-                            <div class="w-full flex flex-row justify-between gap-x-5">
+                            <div class="flex flex-row justify-between w-full gap-x-5">
                                 <div class="space-y-1 flex flex-col w-[25%]">
                                     <label class="hidden text-aapblue @lg/main:block" for="sssNumber">SSS Number</label>
                                     <input class="profile_edit_input" type="text" name="employee_sss_number" value="{{ $employee->employee->employee_sss_number ?? 'N/A'}}"
@@ -394,46 +394,46 @@
                                         placeholder="TIN Number" disabled>
                                 </div>
                             </div>
-                            <div class="flex justify-end gap-x-2 items-end">
-                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            <div class="flex items-end justify-end gap-x-2">
+                                <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
+                                <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                             </div>
                         </div>
                     </div>
 
                     {{-- Dependents --}}
                     <div x-show="step === 5">
-                        <div class="w-full flex flex-col gap-y-7">
-                            <div class="w-full flex flex-col justify-start items-start">
+                        <div class="flex flex-col w-full gap-y-7">
+                            <div class="flex flex-col items-start justify-start w-full">
                                 <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 5: Employee's Other Information</h2>
-                                <p class="text-sm text-gray-600 leading-tight"><em>Enter your Civil Status, SSS, PhilHealth, Pag-Ibig, TIN, upload Cerfiticates etc.</em></p>
+                                <p class="text-sm leading-tight text-gray-600"><em>Enter your Civil Status, SSS, PhilHealth, Pag-Ibig, TIN, upload Cerfiticates etc.</em></p>
                             </div>
-                            <div class="flex flex-row w-full gap-x-5 justify-center items-center">
+                            <div class="flex flex-row items-center justify-center w-full gap-x-5">
                                 <div class="flex flex-col w-[50%] gap-y-3">
-                                    <div class="flex flex-col space-y-1 w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block truncate" for="ifMarriedCertificate">If married</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-500"> (Please attach your marriage certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="marriage_certificate_path" disabled value="{{ $employee->employee->marriage_certificate_path ?? 'N/A'}}">
+                                        <input class="h-10 border border-blue-400 rounded-lg file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="marriage_certificate_path" disabled value="{{ $employee->employee->marriage_certificate_path ?? 'N/A'}}">
                                     </div>
-                                    <div class="flex flex-col space-y-1 w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block truncate" for="ifSingleCertificate">If single </label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Please attach your parents birth certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="parents_birth_certificate_path[]" multiple disabled value="{{ $employee->employee->parents_birth_certificate_path ?? 'N/A'}}">
+                                        <input class="h-10 border border-blue-400 rounded-lg file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="parents_birth_certificate_path[]" multiple disabled value="{{ $employee->employee->parents_birth_certificate_path ?? 'N/A'}}">
                                     </div>
-                                    <div class="flex flex-col space-y-1 w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
                                             <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(If updated government details, please attach your Pag-ibig MDF.)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" multiple disabled value="{{ $employee->employee->pagibig_mdf_path ?? 'N/A'}}">
+                                        <input class="h-10 border border-blue-400 rounded-lg file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="pagibig_mdf_path[]" multiple disabled value="{{ $employee->employee->pagibig_mdf_path ?? 'N/A'}}">
                                     </div>
                                 </div>
                                 <div class="flex flex-col w-[50%]">
-                                    <div class="flex flex-col space-y-1 w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="forMarriedEmployees">For married Employees</label>
                                             <label for="forMarriedEmployees" class="@lg/main:block hidden text-gray-400">(Have you updated your government details in regard to your name and/or marital status?)</label>
@@ -441,9 +441,9 @@
                                         <table class="w-[80%] h-[200px] mx-auto text-aapblue">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-left p-2"></th>
-                                                    <th class="text-center p-2">YES</th>
-                                                    <th class="text-center p-2">NO</th>
+                                                    <th class="p-2 text-left"></th>
+                                                    <th class="p-2 text-center">YES</th>
+                                                    <th class="p-2 text-center">NO</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -468,38 +468,38 @@
                                 </div>
                             </div>
                             <div class="flex flex-col w-full gap-y-3">
-                                <div class="flex flex-row w-full justify-center items-center gap-x-5">
+                                <div class="flex flex-row items-center justify-center w-full gap-x-5">
                                     <div class="flex flex-col space-y-1 w-[50%]">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="childrenNum">Please state how many children do you have?</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Type n/a if not applicable)</label>
                                         </div>
-                                        <input type="text" name="employee_children_count" placeholder="e.g., 2" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_count ?? 'N/A'}}" disabled>
+                                        <input type="text" name="employee_children_count" placeholder="e.g., 2" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_children_count ?? 'N/A'}}" disabled>
                                     </div>
                                     <div class="flex flex-col space-y-1 w-[50%]">
                                         <div class="flex flex-col w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="middle">For employees who have children</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Please attach their birth certificate/s)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" value="{{ $employee->employee->children_birth_certificates_path ?? 'N/A'}}" multiple disabled>
+                                        <input class="h-10 border border-blue-400 rounded-lg file:h-10 file:w-32" type="file" accept=".pdf,.jpg,.jpeg,.png" id="file-upload" name="children_birth_certificates_path[]" value="{{ $employee->employee->children_birth_certificates_path ?? 'N/A'}}" multiple disabled>
                                     </div>
                                 </div>
-                                <div id="children-container" class="w-full flex flex-col justify-between space-y-1">
+                                <div id="children-container" class="flex flex-col justify-between w-full space-y-1">
                                     <div class="flex flex-col w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">For employees who have children</label>
                                         <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                     </div>
-                                    <div class="flex flex-row w-full justify-center items-center gap-x-5">
-                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
+                                    <div class="flex flex-row items-center justify-center w-full gap-x-5">
+                                        <div class="flex flex-col w-full gap-4 p-6 border border-blue-400 rounded-lg child-input">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Child #1 </label>
                                             <div class="flex flex-row w-full gap-x-5">
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Full Name </label>
-                                                    <input type="text" name="employee_children_1_details[0][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_1_details ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_children_1_details[0][name]" id="childFullName" placeholder="e.g., Juan Dela Cruz" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_children_1_details ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Age</label>
-                                                    <input type="text" name="employee_children_1_age[0][age]" id="childAge" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_children_1_age ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_children_1_age[0][age]" id="childAge" placeholder="e.g., 19 years old" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_children_1_age ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Birthdate</label>
@@ -509,7 +509,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="hidden flex w-full justify-end items-center -mt-5">
+                                <div class="flex items-center justify-end hidden w-full -mt-5">
                                     <button
                                         onclick="addChildFields()"
                                         type="button"
@@ -518,31 +518,31 @@
                                         + Add Another Child
                                     </button>
                                 </div>
-                                <div class="flex flex-row w-full justify-start items-center gap-x-5">
+                                <div class="flex flex-row items-center justify-start w-full gap-x-5">
                                     <div class="flex flex-col space-y-1 w-[49%]">
                                         <div class="flex flex-row w-full gap-x-2">
                                             <label class="hidden text-aapblue @lg/main:block " for="employeeDependents">Employee Dependents</label>
                                             <label for="middle" class="@lg/main:block hidden text-gray-400">(Attached parent's Birth certificate)</label>
                                         </div>
-                                        <input class="border border-blue-400 rounded-lg h-10 file:h-10 file:w-32" type="file" id="file-upload" accept=".pdf,.jpg,.jpeg,.png" name="parents_birth_certificate_dependents_path[]" value="{{ $employee->employee->parents_birth_certificate_dependents_path ?? 'N/A'}}" multiple disabled>
+                                        <input class="h-10 border border-blue-400 rounded-lg file:h-10 file:w-32" type="file" id="file-upload" accept=".pdf,.jpg,.jpeg,.png" name="parents_birth_certificate_dependents_path[]" value="{{ $employee->employee->parents_birth_certificate_dependents_path ?? 'N/A'}}" multiple disabled>
                                     </div>
                                 </div>
-                                <div class="w-full flex flex-col justify-between space-y-1">
+                                <div class="flex flex-col justify-between w-full space-y-1">
                                     <div class="flex flex-col w-full gap-x-2">
                                         <label class="hidden text-aapblue @lg/main:block " for="middle">For employees Parents</label>
                                         <label for="middle" class="@lg/main:block hidden text-gray-400">(Kindly state theie name, birthdate, and age.)</label>
                                     </div>
-                                    <div class="flex flex-col justify-center items-center gap-x-5 gap-y-5">
-                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
+                                    <div class="flex flex-col items-center justify-center gap-x-5 gap-y-5">
+                                        <div class="flex flex-col w-full gap-4 p-6 border border-blue-400 rounded-lg child-input">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Father's Info </label>
                                             <div class="flex flex-row w-full gap-x-5">
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="father">Full Name </label>
-                                                    <input type="text" name="employee_parents_1_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_1_details ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_parents_1_details" placeholder="e.g., Juan Dela Cruz" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_parents_1_details ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="fatherAge">Age</label>
-                                                    <input type="text" name="employee_parents_1_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_1_age ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_parents_1_age" placeholder="e.g., 19 years old" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_parents_1_age ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="fatherBirthdate">Birthdate</label>
@@ -551,16 +551,16 @@
                                             </div>
                                         </div>
     
-                                        <div class="child-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
+                                        <div class="flex flex-col w-full gap-4 p-6 border border-blue-400 rounded-lg child-input">
                                             <label class="hidden text-aapblue @lg/main:block" for="middle">Mother's Info </label>
                                             <div class="flex flex-row w-full gap-x-5">
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="motherName">Full Name </label>
-                                                    <input type="text" name="employee_parents_2_details" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_2_details ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_parents_2_details" placeholder="e.g., Juan Dela Cruz" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_parents_2_details ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="motherAge">Age</label>
-                                                    <input type="text" name="employee_parents_2_age" placeholder="e.g., 19 years old" class="profile_edit_input w-full flex" value="{{ $employee->employee->employee_parents_2_age ?? 'N/A'}}" disabled>
+                                                    <input type="text" name="employee_parents_2_age" placeholder="e.g., 19 years old" class="flex w-full profile_edit_input" value="{{ $employee->employee->employee_parents_2_age ?? 'N/A'}}" disabled>
                                                 </div>
                                                 <div class="space-y-1 flex flex-col w-[33%]">
                                                     <label class="hidden text-aapblue @lg/main:block" for="motherBirthdate">Birthdate</label>
@@ -571,46 +571,46 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex justify-end gap-x-2 items-end">
-                                <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                                <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                            <div class="flex items-end justify-end gap-x-2">
+                                <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
+                                <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                             </div>
                         </div>
                     </div>
 
                     {{-- Emergency Contacts --}}
                     <div x-show="step === 6" class="flex flex-col gap-y-5">
-                        <div class="w-full flex flex-col justify-start items-start h-auto">
+                        <div class="flex flex-col items-start justify-start w-full h-auto">
                             <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 6: Employee's Emergency Contacts</h2>
-                            <p class="text-sm text-gray-600 leading-tight"><em>Emergency Contact that we can call imediately when you have an emergency.</em></p>
+                            <p class="text-sm leading-tight text-gray-600"><em>Emergency Contact that we can call imediately when you have an emergency.</em></p>
                         </div>
                         <div id="contact-container" class="flex flex-col @lg/main:w-full justify-center">
-                            <div class="w-full flex flex-row justify-between gap-6">
-                                <div class="contact-input flex flex-col w-full gap-4 border border-blue-400 rounded-lg p-6">
+                            <div class="flex flex-row justify-between w-full gap-6">
+                                <div class="flex flex-col w-full gap-4 p-6 border border-blue-400 rounded-lg contact-input">
                                     <label class="hidden text-aapblue @lg/main:block" for="middle">Contact Person #1</label>
                                     <div class="flex flex-row w-full gap-x-5">
                                         <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="fullName">Full Name</label>
-                                            <input type="text" name="emergency_contact_1_name[0][name]" placeholder="e.g., Juan Dela Cruz" class="profile_edit_input w-full flex" value="{{ $employee->employee->emergency_contact_1_name ?? 'N/A'}}" disabled>
+                                            <input type="text" name="emergency_contact_1_name[0][name]" placeholder="e.g., Juan Dela Cruz" class="flex w-full profile_edit_input" value="{{ $employee->employee->emergency_contact_1_name ?? 'N/A'}}" disabled>
                                         </div>
                                         <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="relationship">Relationship</label>
-                                            <input type="text" name="emergency_contact_1_relationship[0][relationship]" placeholder="e.g., Brother" class="profile_edit_input w-full flex" value="{{ $employee->employee->emergency_contact_1_relationship ?? 'N/A'}}" disabled>
+                                            <input type="text" name="emergency_contact_1_relationship[0][relationship]" placeholder="e.g., Brother" class="flex w-full profile_edit_input" value="{{ $employee->employee->emergency_contact_1_relationship ?? 'N/A'}}" disabled>
                                         </div>
                                         <div class="space-y-1 flex flex-col w-[33%]">
                                             <label class="hidden text-aapblue @lg/main:block" for="contactNumber">Contact Number</label>
                                             <input class="profile_edit_input" type="text" name="emergency_contact_1_number[0][number]" id="contactNumber" placeholder="e.g., 09123456789" value="{{ $employee->employee->emergency_contact_1_number ?? 'N/A'}}" disabled>
                                         </div>
                                     </div>
-                                    <div class="space-y-1 flex flex-col w-full">
+                                    <div class="flex flex-col w-full space-y-1">
                                         <label class="hidden text-aapblue @lg/main:block" for="address">Contact Address</label>
-                                        <input type="text" class="profile_edit_input w-full resize-none" name="emergency_contact_1_address[0][address]"  value="{{ $employee->employee->emergency_contact_1_address ?? 'N/A'}}"
+                                        <input type="text" class="w-full resize-none profile_edit_input" name="emergency_contact_1_address[0][address]"  value="{{ $employee->employee->emergency_contact_1_address ?? 'N/A'}}"
                                                     placeholder="Contact's full address"></input>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="hidden flex w-full justify-end items-center -mt-5">
+                        <div class="flex items-center justify-end hidden w-full -mt-5">
                             <button
                                 onclick="addContactFields()"
                                 type="button"
@@ -619,21 +619,21 @@
                                 + Add Contact Person
                             </button>
                         </div>
-                        <div class="flex justify-end gap-x-2 items-end">
-                            <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
-                            <button @click="step++" class="btn text-white border-blue-300  px-5 py-2 rounded-lg ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500 bg-blue-500">Next</button>
+                        <div class="flex items-end justify-end gap-x-2">
+                            <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
+                            <button @click="step++" class="px-5 py-2 text-white bg-blue-500 border-blue-300 rounded-lg btn ring-0 ring-blue-500 hover:bg-blue-500 hover:ring-2 active:bg-blue-500">Next</button>
                         </div>
                     </div>
 
                     {{-- Username and Password --}}
-                    <div x-show="step === 7" class="gap-y-2 flex flex-col">
+                    <div x-show="step === 7" class="flex flex-col gap-y-2">
                         <h2 class="text-lg font-bold mb-2 text-[#071d49]">Part 7: Username & Password</h2>
                         <div class="p-5 border rounded-xl space-y-8 @lg/main:space-y-14 border-blue-400 ">
                             <div
                                 class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                                 <div class="w-full place-content-center @lg/main:w-[35%]">
                                     <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Username</h6>
-                                    <p class="text-sm text-gray-600 leading-tight"><em>Create the personal handle that you'll
+                                    <p class="text-sm leading-tight text-gray-600"><em>Create the personal handle that you'll
                                             use to log in and access your account.</em></p>
                                 </div>
                                 <div class="w-full max-w-4xl @lg/main:w-[65%]">
@@ -645,15 +645,15 @@
                                 class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                                 <div class="w-full place-content-center @lg/main:w-[35%]">
                                     <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Password</h6>
-                                    <p class="text-sm text-gray-600 leading-tight"><em>Set up your personal security phrase
+                                    <p class="text-sm leading-tight text-gray-600"><em>Set up your personal security phrase
                                             with at least 8 characters.</em></p>
                                 </div>
                                 <div class="w-full max-w-4xl @lg/main:w-[65%]">
                                     <div class="relative w-full @lg/main:w-1/2">
-                                        <input class="profile_edit_input w-full pr-9" type="password" name="password"
+                                        <input class="w-full profile_edit_input pr-9" type="password" name="password"
                                             id="password" placeholder="Enter a strong password">
                                         <div
-                                            class="group/seepwd absolute top-0 right-0 h-full grid place-items-center aspect-square rounded-r-lg bg-sky-100 cursor-pointer transition-colors hover:bg-sky-200">
+                                            class="absolute top-0 right-0 grid h-full transition-colors rounded-r-lg cursor-pointer group/seepwd place-items-center aspect-square bg-sky-100 hover:bg-sky-200">
                                             <svg class="size-5 fill-sky-700 group-hover/seepwd:fill-sky-800 group-active/seepwd:fill-sky-900"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -670,15 +670,15 @@
                                 class="flex flex-col items-center justify-between gap-3 @lg/main:flex-row @lg/main:gap-[4.5rem]">
                                 <div class="w-full place-content-center @lg/main:w-[35%]">
                                     <h6 class="text-base font-medium leading-relaxed tracking-wide text-[#151847]">Confirm Password</h6>
-                                    <p class="text-sm text-gray-600 leading-tight"><em>Re-enter your password exactly as above
+                                    <p class="text-sm leading-tight text-gray-600"><em>Re-enter your password exactly as above
                                             to confirm.</em></p>
                                 </div>
                                 <div class="w-full max-w-4xl @lg/main:w-[65%]">
                                     <div class="relative w-full @lg/main:w-1/2">
-                                        <input class="profile_edit_input w-full pr-9" type="password" name="confpassword"
+                                        <input class="w-full profile_edit_input pr-9" type="password" name="confpassword"
                                             id="confpassword" placeholder="Confirm your password">
                                         <div
-                                            class="group/seepwd absolute top-0 right-0 h-full grid place-items-center aspect-square rounded-r-lg bg-sky-100 cursor-pointer transition-colors hover:bg-sky-200">
+                                            class="absolute top-0 right-0 grid h-full transition-colors rounded-r-lg cursor-pointer group/seepwd place-items-center aspect-square bg-sky-100 hover:bg-sky-200">
                                             <svg class="size-5 fill-sky-700 group-hover/seepwd:fill-sky-800 group-active/seepwd:fill-sky-900"
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 576 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
@@ -692,8 +692,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-row justify-end items-end gap-x-2">
-                            <button @click="step--" class="btn text-white border-pink-300  px-5 py-2 rounded-lg ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500 bg-pink-500">Back</button>
+                        <div class="flex flex-row items-end justify-end gap-x-2">
+                            <button @click="step--" class="px-5 py-2 text-white bg-pink-500 border-pink-300 rounded-lg btn ring-0 ring-pink-500 hover:bg-pink-500 hover:ring-2 active:bg-pink-500">Back</button>
                             <button type="submit"
                                 class="btn text-[#071d49] border-yellow-300 flex gap-1 justify-center items-center px-6 py-2 bg-amber-300 rounded-lg ring-0 ring-amber-500 transition-colors hover:ring-1 hover:bg-amber-400 hover:shadow-xl active:bg-amber-500">
                                 <p>Submit</p>
