@@ -1,13 +1,12 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    {{-- @include('layouts.navbar') --}}
 
     <div x-data="{ selected : 'employees'}" class="flex flex-1 flex-col lg:ml-52 mt-12 overflow-y-auto p-10 gap-7 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
-                class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
+                class="fixed z-50 flex items-center w-full max-w-xs p-4 text-gray-500 transition-opacity duration-500 ease-in-out bg-white border-2 border-gray-200 rounded-lg shadow-md opacity-100 top-5 right-5"
                 role="alert">
                 <div
-                    class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                    class="inline-flex items-center justify-center w-8 h-8 text-green-500 bg-green-100 rounded-lg shrink-0 dark:bg-green-800 dark:text-green-200">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">    
                         <path
@@ -15,7 +14,7 @@
                     </svg>
                     <span class="sr-only">Check icon</span>
                 </div>
-                <div class="ms-3 text-sm font-normal">{{ session('status') }}</div>
+                <div class="text-sm font-normal ms-3">{{ session('status') }}</div>
                 <button type="button" onclick="closeToast()"
                     class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                     aria-label="Close">
@@ -30,9 +29,9 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg">
-            <div class="flex h-14 border-b border-gray-200">
-                <div class="w-32 border-b-2 border-blue-900 p-4 text-center">
+        <div class="bg-white border-2 border-gray-100 rounded-md shadow-lg ">
+            <div class="flex border-b border-gray-200 h-14">
+                <div class="w-32 p-4 text-center border-b-2 border-blue-900">
                     <a href="#" class="font-semibold text-blue-900 ">Alphalist</a>
                 </div>
                 <div class="flex-none w-auto p-4 text-center">
@@ -45,27 +44,27 @@
 
             <div class="flex justify-between">
                  {{-- Breadcrumbs --}}
-                <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
+                <div class="flex items-center pt-5 text-sm text-blue-900 gap-x-1 px-7">
                     <a href="/employee" class="hover:underline">Employee Management</a>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="#" class="hover:underline font-semibold">Employee Alphalist</a>
+                    <a href="#" class="font-semibold hover:underline">Employee Alphalist</a>
                 </div>
                  {{-- Top-right: Toggle + Add Buttons --}}
-                <div class="flex justify-end px-7 pt-6">
+                <div class="flex justify-end pt-6 px-7">
                     <div class="flex items-center gap-4">
                          {{-- Toggle  --}}
                         <div class="flex border border-[#151847] rounded-md overflow-hidden w-[220px] h-[30px]">
                             <a @click="selected='employees'"
-                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            class="flex items-center justify-center w-1/2 text-xs font-semibold uppercase transition duration-150 cursor-pointer"
                             :class="selected === 'employees' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
                                 Employees
                             </a>
                             <a @click="selected='ojt'"
-                            class="w-1/2 text-xs uppercase font-semibold flex items-center justify-center transition duration-150 cursor-pointer"
+                            class="flex items-center justify-center w-1/2 text-xs font-semibold uppercase transition duration-150 cursor-pointer"
                             :class="selected === 'ojt' ? 'bg-[#151847] text-white' : 'text-[#151847] hover:bg-[#151847] hover:text-white'">
                                 OJT Interns
                             </a>
@@ -74,16 +73,16 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-between px-7 py-6">
+            <div class="flex items-center justify-between py-6 px-7">
                 <div>
-                    <h2 class="font-semibold text-lg text-blue-900" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
-                    <p class="text-gray-900 text-sm" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
+                    <h2 class="text-lg font-semibold text-blue-900" x-text="selected === 'employees' ? 'Manage AAP Employees' : 'Manage OJT Interns' "></h2>
+                    <p class="text-sm text-gray-900" x-text="selected === 'employees' ? 'Create, update, and delete employee details.' : 'Create, update, and delete OJT intern details.' "></p>
                 </div>
 
                 <div class="flex items-center gap-4">
 
                     <a x-show="selected == 'employees'" href="employee/create"
-                    class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors bg-blue-900 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -92,7 +91,7 @@
                     </a>
 
                     <a x-show="selected == 'ojt'" href="#"
-                    class="flex items-center gap-2 rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    class="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white transition-colors bg-blue-900 rounded-md hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                             stroke="currentColor" class="w-5 h-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -103,10 +102,10 @@
             </div>
 
             {{-- List of Employees --}}
-            <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
+            <div class="mb-10 overflow-x-auto rounded-sm mx-7 hide-scrollbar">
                  {{-- <livewire:employee.employee-table :$employees> --}}
                 <table class="w-[800px] lg:w-full text-center text-sm text-gray-500">
-                    <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-100">
                         <tr>    
                             <th scope="col" class="w-[6.25%] py-3">Employee ID</th>
                             <th scope="col" class="w-[19.0%] py-3">Name</th>
@@ -120,7 +119,7 @@
                     </thead>
                     <tbody>
                         @foreach ($employees as $employee)
-                            <tr class="border-b border-gray-200 bg-white">
+                            <tr class="bg-white border-b border-gray-200">
                                 <th scope="row" class="w-[12.5%] py-4 font-medium whitespace-nowrap text-gray-900">
                                     {{ $employee->employee_id }}</th>
                                 <td class="w-[12.5%] py-4  text-gray-900">{{ $employee->employee_firstname }}
@@ -132,14 +131,14 @@
                                 <td class="w-[12.5%] py-4  text-gray-900">
                                     @if ($employee->employee_status == '1')
                                         <span
-                                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Active</span>
+                                            class="px-2 py-1 text-xs font-medium text-white bg-green-600 rounded-full whitespace-nowrap">Active</span>
                                     @else
                                         <span
-                                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">Inactive</span>
+                                            class="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-full whitespace-nowrap">Inactive</span>
                                     @endif
                                 </td>
                                 <td class="w-[12.5%] py-4">
-                                    <div class="flex flex-row justify-center items-center gap-2">
+                                    <div class="flex flex-row items-center justify-center gap-2">
                                 {{-- {{$employee->employee_id}} --}}
                                        <a
                                             x-data="{ disabled: false }"

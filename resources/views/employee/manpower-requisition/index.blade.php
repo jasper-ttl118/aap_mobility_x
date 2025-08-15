@@ -1,5 +1,4 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='Employee Management'>
-    {{-- @include('layouts.navbar') --}}
 
     <div x-data="{ open_add : false, open_delete : false, open_view : false, open_edit : false,
                   open_view : false
@@ -7,10 +6,10 @@
         class="flex flex-1 flex-col lg:ml-52 overflow-y-auto p-5 lg:px-10 gap-7 mt-12 bg-[#f3f4f6]">
         @if (session('status'))
             <div id="toast-success"
-                class="fixed top-5 right-5 z-50 flex items-center w-full max-w-xs p-4 text-gray-500 border-2 border-gray-200 bg-white rounded-lg shadow-md transition-opacity duration-500 ease-in-out opacity-100"
+                class="fixed z-50 flex items-center w-full max-w-xs p-4 text-gray-500 transition-opacity duration-500 ease-in-out bg-white border-2 border-gray-200 rounded-lg shadow-md opacity-100 top-5 right-5"
                 role="alert">
                 <div
-                    class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+                    class="inline-flex items-center justify-center w-8 h-8 text-green-500 bg-green-100 rounded-lg shrink-0 dark:bg-green-800 dark:text-green-200">
                     <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         viewBox="0 0 20 20">    
                         <path
@@ -18,7 +17,7 @@
                     </svg>
                     <span class="sr-only">Check icon</span>
                 </div>
-                <div class="ms-3 text-sm font-normal">{{ session('status') }}</div>
+                <div class="text-sm font-normal ms-3">{{ session('status') }}</div>
                 <button type="button" onclick="closeToast()"
                     class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                     aria-label="Close">
@@ -33,23 +32,23 @@
         @endif
 
         <!-- Options Container -->
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg overflow-x-auto hide-scrollbar flex-shrink-0">
+        <div class="flex-shrink-0 overflow-x-auto bg-white border-2 border-gray-100 rounded-md shadow-lg  hide-scrollbar">
             <div class="flex h-14 ">
                <x-employee.submodules selected="Manpower Requisition" />
             </div>
         </div>
 
-        <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg -mt-4">
-            <div class="flex flex-col lg:flex-row justify-between">
+        <div class="-mt-4 bg-white border-2 border-gray-100 rounded-md shadow-lg ">
+            <div class="flex flex-col justify-between lg:flex-row">
                  {{-- Breadcrumbs --}}
                 <div class="flex items-center gap-x-1 text-[#071d49] text-sm px-7 pt-5">
-                    <a href="/employee" class="hover:underline truncate">Employee Management</a>
+                    <a href="/employee" class="truncate hover:underline">Employee Management</a>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
                         <path fill-rule="evenodd"
                             d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <a href="#" class="hover:underline font-semibold truncate">Manpower Requisition</a>
+                    <a href="#" class="font-semibold truncate hover:underline">Manpower Requisition</a>
                 </div>
                 
                 {{-- Temporary restriction of access. Change this so it will fetch the allowed roles from database --}}
@@ -60,7 +59,7 @@
                 @endphp
 
                  {{-- Top-right: Toggle + Add Buttons --}}
-                <div class="flex justify-start lg:justify-end px-7 pt-6 gap-x-5">
+                <div class="flex justify-start pt-6 lg:justify-end px-7 gap-x-5">
 
                     @if (in_array($role[0]->role_name,$allowedRoles))
                         <div class="flex items-center gap-4">
@@ -92,22 +91,22 @@
             <livewire:employee.manpower-requisition.requisition-table />
         </div>
 
-        {{-- <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.stop>
+        {{-- <div x-show="open_view" x-cloak @click="open_view=false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="w-full max-w-lg mt-3 rounded shadow-lg" @click.stop>
                 <livewire:employee.manpower-requisition.view-requisition-ticket />
             </div>
         </div> --}}
 
         <template x-if="open_add">
-            <div @click="open_add=false" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-                <div class="rounded shadow-lg max-w-sm w-full" @click.stop>
+            <div @click="open_add=false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                <div class="w-full max-w-sm rounded shadow-lg" @click.stop>
                     <livewire:employee.manpower-requisition.add-requisition-req />
                 </div>
             </div>
         </template>
         
-        {{-- <div x-show="open_edit" x-cloak class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-            <div class="rounded shadow-lg max-w-lg w-full mt-3" @click.away="open_edit=false; window.Livewire.dispatch('resetEmployeeProfile')">
+        {{-- <div x-show="open_edit" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="w-full max-w-lg mt-3 rounded shadow-lg" @click.away="open_edit=false; window.Livewire.dispatch('resetEmployeeProfile')">
                 <livewire:employee.manpower-requisition.edit-requisition-ticket />
             </div>
         </div> --}}
