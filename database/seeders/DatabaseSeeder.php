@@ -14,23 +14,25 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             // independent migrations
-            // AssetCategorySeeder::class,
-            // AssetStatusSeeder::class,
+            AssetCategorySeeder::class,
+            AssetStatusSeeder::class,
             BranchSeeder::class,
             DepartmentSeeder::class,
-            // BrandSeeder::class,
+            BrandSeeder::class,
+            CandidateSeeder::class,
+            EmployeeSeeder::class,
+            AssetSeeder::class,
+
 
             InitialSeeder::class,
-            // CandidateSeeder::class,
-            // EmployeeSeeder::class,
-            // AssetSeeder::class,
 
-            // RolePermissionUserSeeder::class,
 
-            // checkRBACSeeder::class,
-            // checkSpatieAssignments::class,
-            // checkSpatieImplementation::class,
-            // ConditionSeeder::class,
+            RolePermissionUserSeeder::class,
+
+            checkRBACSeeder::class,
+            checkSpatieAssignments::class,
+            checkSpatieImplementation::class,
+            ConditionSeeder::class,
 
             // dependent migrations
         ]);
