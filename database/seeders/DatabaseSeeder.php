@@ -20,21 +20,18 @@ class DatabaseSeeder extends Seeder
             DepartmentSeeder::class,
             BrandSeeder::class,
             CandidateSeeder::class,
+
+            // dependent migration
             EmployeeSeeder::class,
             AssetSeeder::class,
 
-
             InitialSeeder::class,
 
-
             RolePermissionUserSeeder::class,
-
             checkRBACSeeder::class,
             checkSpatieAssignments::class,
             checkSpatieImplementation::class,
             ConditionSeeder::class,
-
-            // dependent migrations
         ]);
     }
 }
