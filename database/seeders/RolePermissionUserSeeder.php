@@ -31,10 +31,10 @@ class RolePermissionUserSeeder extends Seeder
         // // Assign Permissions to Role
         // $role->syncPermissions($permissions);
 
-         // Find User
+        // //  Find User
         // $user = User::find(24);
 
-        // Assign Role to User
+        // // Assign Role to User
         // $user->assignRole($role);
 
         // $permissions = Permission::whereIn('permission_id', [1, 2])->get();
