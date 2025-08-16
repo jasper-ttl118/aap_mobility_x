@@ -209,7 +209,7 @@ class InitialSeeder extends Seeder
         ]);
 
         // Pivot: org_has_modules
-      error: commit 8ba6e1c816a48e63c0e9c53cc469a4c712aadc77 is a merge but no -m option was given.  DB::table('org_has_modules')->insert([
+        DB::table('org_has_modules')->insert([
             'org_id' => $orgId,
             'module_id' => $moduleId,
         ]);
