@@ -17,42 +17,38 @@ return new class extends Migration
         $pivotRole = $columnNames['role_pivot_key'] ?? 'role_id';
         $pivotPermission = $columnNames['permission_pivot_key'] ?? 'permission_id';
 
-        if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
-        }
-        if ($teams && empty($columnNames['team_foreign_key'] ?? null)) {
-            throw new \Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.');
-        }
+        throw_if(empty($tableNames), new Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.'));
+        throw_if($teams && empty($columnNames['team_foreign_key'] ?? null), new Exception('Error: team_foreign_key on config/permission.php not loaded. Run [php artisan config:clear] and try again.'));
 
         Schema::create($tableNames['permissions'], static function (Blueprint $table) {
+            // $table->engine('InnoDB');
             $table->bigIncrements('permission_id'); // permission id
             $table->string('permission_name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
             $table->string('permission_description')->nullable();
-            $table->boolean('permission_status')->default(value: 1);
-            $table->timestamp('permission_date_created')->useCurrent();
-            $table->timestamp('permission_date_updated')->useCurrent()->useCurrentOnUpdate();
+            $table->integer("permission_status", false, true)->nullable();
             $table->string('permission_guard_name'); // For MyISAM use string('guard_name', 25);
-            
+            $table->timestamp('permission_date_created')->nullable();
+            $table->timestamp('permission_date_updated')->nullable();
+            $table->timestamps();
+
             $table->unique(['permission_name', 'permission_guard_name']);
         });
 
         Schema::create($tableNames['roles'], static function (Blueprint $table) use ($teams, $columnNames) {
+            // $table->engine('InnoDB');
             $table->bigIncrements('role_id'); // role id
-            if ($teams) {
+            if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
-                $table->foreign($columnNames['team_foreign_key'])
-                    ->references('org_id')
-                    ->on('organizations')
-                    ->onDelete('cascade');
             }
             $table->string('role_name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
-            $table->string('role_description')->nullable();
-            $table->boolean('role_status')->default(1);
-            $table->timestamp('role_date_created')->useCurrent();
-            $table->timestamp('role_date_updated')->useCurrent()->useCurrentOnUpdate();
             $table->string('role_guard_name'); // For MyISAM use string('guard_name', 25);
-            if ($teams) {
+            $table->string('role_description')->nullable();
+            $table->integer("role_status", false, true)->nullable();
+            $table->timestamp('role_date_created')->nullable();
+            $table->timestamp('role_date_updated')->nullable();
+            $table->timestamps();
+            if ($teams || config('permission.testing')) {
                 $table->unique([$columnNames['team_foreign_key'], 'role_name', 'role_guard_name']);
             } else {
                 $table->unique(['role_name', 'role_guard_name']);
@@ -73,10 +69,6 @@ return new class extends Migration
             if ($teams) {
                 $table->unsignedBigInteger($columnNames['team_foreign_key']);
                 $table->index($columnNames['team_foreign_key'], 'model_has_permissions_team_foreign_key_index');
-                $table->foreign($columnNames['team_foreign_key'])
-                    ->references('org_id')
-                    ->on('organizations')
-                    ->onDelete('cascade');
 
                 $table->primary([$columnNames['team_foreign_key'], $pivotPermission, $columnNames['model_morph_key'], 'model_type'],
                     'model_has_permissions_permission_model_type_primary');
@@ -101,10 +93,6 @@ return new class extends Migration
             if ($teams) {
                 $table->unsignedBigInteger($columnNames['team_foreign_key']);
                 $table->index($columnNames['team_foreign_key'], 'model_has_roles_team_foreign_key_index');
-                $table->foreign($columnNames['team_foreign_key'])
-                    ->references('org_id')
-                    ->on('organizations')
-                    ->onDelete('cascade');
 
                 $table->primary([$columnNames['team_foreign_key'], $pivotRole, $columnNames['model_morph_key'], 'model_type'],
                     'model_has_roles_role_model_type_primary');

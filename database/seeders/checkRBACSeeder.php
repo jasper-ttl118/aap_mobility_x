@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Branch;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -37,34 +39,31 @@ class checkRBACSeeder extends Seeder
         ]);
 
         //Create 2 Employees
-        DB::table('employees')->insert([
-            'employee_firstname' => Str::random(10),
-            'employee_middlename' => Str::random(10),
-            'employee_lastname' => Str::random(10),
-            'employee_email' => Str::random(10).'@example.com',
-            'employee_address' => Str::random(10),
-            'employee_position' => Str::random(10),
-            'employee_department' => Str::random(10),
-            'employee_contact_number' => Str::random(10),
-            'employee_status' => 1,
-            'employee_date_created' => Carbon::now(),
-            'employee_date_updated' => Carbon::now(),
-        ]);
+        for ($i = 2; $i > 0; $i--) {
+            DB::table('employees')->insert([
+                'employee_firstname' => Str::random(10),
+                'employee_middlename' => Str::random(10),
+                'employee_lastname' => Str::random(10),
+                'employee_personal_email' => Str::random(10).'@example.com',
+                'employee_address' => Str::random(10),
+                'employee_position' => Str::random(10),
+                'employee_gender' => Str::random(10),
+                'department_id' => Department::inRandomOrder()->value('department_id'),
+                'branch_id' => Branch::inRandomOrder()->value('branch_id'),
+                'employee_section' => Str::random(10),
+                'employee_contact_no1' => Str::random(10),
 
-        DB::table('employees')->insert([
-            'employee_firstname' => Str::random(10),
-            'employee_middlename' => Str::random(10),
-            'employee_lastname' => Str::random(10),
-            'employee_email' => Str::random(10).'@example.com',
-            'employee_address' => Str::random(10),
-            'employee_position' => Str::random(10),
-            'employee_department' => Str::random(10),
-            'employee_contact_number' => Str::random(10),
-            'employee_status' => 1,
-            'employee_date_created' => Carbon::now(),
-            'employee_date_updated' => Carbon::now(),
-        ]);
+                'employee_father_name' => Str::random(10),
+                'employee_father_birthdate' => Str::random(10),
+                'employee_mother_name' => Str::random(10),
+                'employee_mother_birthdate' => Str::random(10),
 
+                'employee_status' => 1,
+                'employee_date_created' => Carbon::now(),
+                'employee_date_updated' => Carbon::now(),
+            ]);
+        }
+        
         //Create User
         DB::table('users')->insert([
             'employee_id' => 1,

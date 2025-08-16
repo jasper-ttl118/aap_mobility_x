@@ -61,15 +61,19 @@
 
 <div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">
   <button class="self-end mr-4 text-white lg:hidden" onclick="menuToggle()">✖</button>
-  <div class="w-28 flex justify-center">
+  <div class="flex justify-center w-28">
     <a href="{{ route('dashboard') }}">
-      <img src="{{ asset('aaplogo1.png') }}" alt="aap-logo" class="max-w-full h-auto" />
-      {{-- <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" /> --}}
-      {{-- Modified by romu-dev, delete this comment and "uncomment" above to reflect the RBAC --}}
+      @switch($user->organization->org_logo)
+        @case(null)
+        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="h-auto max-w-full" />
+          @break
+        @default
+        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="h-auto max-w-full" />
+      @endswitch
     </a>
   </div>
   
-  <div class="text-xs w-full">
+  <div class="w-full text-xs">
     @foreach($modules_access as $module)
    
       @php
@@ -122,22 +126,22 @@
     @endforeach
   </div>
 
-  <div class="items-end w-full h-full flex">
+  <div class="flex items-end w-full h-full">
             <livewire:clock />
   </div>
 
 
-  {{-- <div class="mt-auto w-full px-4 pb-6">
+  {{-- <div class="w-full px-4 pb-6 mt-auto">
     <div class="flex flex-col gap-4">
       <div>
-        <a href="{{ route('profile.edit') }}" class="hover:underline font-medium">
+        <a href="{{ route('profile.edit') }}" class="font-medium hover:underline">
           {{ $user->employee->employee_firstname }} {{ $user->employee->employee_lastname }}
         </a>
-        <span class="text-sm block">{{ $user->roles->first()->role_name ?? 'No Role Assigned' }}</span>
+        <span class="block text-sm">{{ $user->roles->first()->role_name ?? 'No Role Assigned' }}</span>
       </div>
       <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <button class="bg-red-600 hover:bg-red-700 text-white font-medium uppercase px-3 py-2 rounded text-xs" type="submit">Logout</button>
+        <button class="px-3 py-2 text-xs font-medium text-white uppercase bg-red-600 rounded hover:bg-red-700" type="submit">Logout</button>
       </form>
     </div>
   </div> --}}
@@ -158,11 +162,11 @@
 </script>
 
 
-  {{-- <div class="h-dvh fixed top-0 w-64 flex flex-col items-center gap-5 bg-gradient-to-r from-blue-800 to-indigo-900 p-6 font-sans shadow-md">
+  {{-- <div class="fixed top-0 flex flex-col items-center w-64 gap-5 p-6 font-sans shadow-md h-dvh bg-gradient-to-r from-blue-800 to-indigo-900">
     
-    <div class=" flex w-40 items-center justify-center">
+    <div class="flex items-center justify-center w-40 ">
       <a href="https://ibb.co/3m6zQj6d"> 
-        <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="max-w-full h-auto" />
+        <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="h-auto max-w-full" />
     </a>
     </div>
 
@@ -186,7 +190,7 @@
       @endif
 
       @if(in_array('RBAC Management', $modules_access))
-        <div class="flex items-center text-white rounded-md bg-purple-500 w-full ">
+        <div class="flex items-center w-full text-white bg-purple-500 rounded-md ">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
           </svg>
@@ -224,16 +228,16 @@
       </div>
 
     <div class="absolute bottom-0 left-0 px-6 py-10 text-white">
-      <div class="flex flex-col gap-6 justify-between">
+      <div class="flex flex-col justify-between gap-6">
         <div class="flex flex-col">
-          <a href="{{ route('profile.edit') }}" class="hover:underline font-medium">
+          <a href="{{ route('profile.edit') }}" class="font-medium hover:underline">
             {{ $user->employee->employee_firstname }} {{ $user->employee->employee_lastname }}
           </a>
           <span class="text-sm">{{ $user->roles->first()->role_name ?? 'No Role Assigned' }}</span>
         </div>
         <form method="POST" action="{{ route('logout') }}" class="inline">
           @csrf
-          <button class="bg-red-600 hover:bg-red-700 text-white font-medium uppercase px-3 py-2 rounded-md text-xs" type="submit">Logout</button>
+          <button class="px-3 py-2 text-xs font-medium text-white uppercase bg-red-600 rounded-md hover:bg-red-700" type="submit">Logout</button>
         </form>
       </div>
     </div>

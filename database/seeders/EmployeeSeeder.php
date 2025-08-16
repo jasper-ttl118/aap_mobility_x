@@ -10,10 +10,20 @@ class EmployeeSeeder extends Seeder
     public function run(): void
     {
         // Clear existing
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('employees')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        try {
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            }
 
+            DB::table('employees')->truncate();
+
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            }
+        } catch (Exception $e) {
+            $this->command->warn('Foreign checks skipped. Reason: '  . $e->getMessage());
+        }
+        
         $rows = [
             [
                 'employee_firstname' => 'JOHN',
@@ -38,7 +48,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'UNIVERSITY OF THE PHILIPPINES',
                 'employee_college_course' => 'COMPUTER SCIENCE',
-                'employee_job_position' => 'SOFTWARE ENGINEER',
+                'employee_position' => 'SOFTWARE ENGINEER',
                 'employee_company_email' => 'JOHN.SMITH@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1001',
                 'employee_employment_type' => 'FULL TIME',
@@ -99,7 +109,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'ATENEO DE MANILA UNIVERSITY',
                 'employee_college_course' => 'INFORMATION SYSTEMS',
-                'employee_job_position' => 'SYSTEMS ANALYST',
+                'employee_position' => 'SYSTEMS ANALYST',
                 'employee_company_email' => 'JANE.DOE@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1002',
                 'employee_employment_type' => 'FULL TIME',
@@ -161,7 +171,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'UNIVERSITY OF SAN CARLOS',
                 'employee_college_course' => 'ACCOUNTANCY',
-                'employee_job_position' => 'ACCOUNTANT',
+                'employee_position' => 'ACCOUNTANT',
                 'employee_company_email' => 'ROBERT.JOHNSON@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1003',
                 'employee_employment_type' => 'FULL TIME',
@@ -222,7 +232,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'HOLY ANGEL UNIVERSITY',
                 'employee_college_course' => 'COMMUNICATIONS',
-                'employee_job_position' => 'GRAPHIC DESIGNER',
+                'employee_position' => 'GRAPHIC DESIGNER',
                 'employee_company_email' => 'LINDA.BROWN@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1004',
                 'employee_employment_type' => 'FULL TIME',
@@ -283,7 +293,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'UNIVERSITY OF CEBU',
                 'employee_college_course' => 'ACCOUNTANCY',
-                'employee_job_position' => 'SENIOR ACCOUNTANT',
+                'employee_position' => 'SENIOR ACCOUNTANT',
                 'employee_company_email' => 'MICHAEL.DAVIS@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1005',
                 'employee_employment_type' => 'FULL TIME',
@@ -344,7 +354,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'UNIVERSITY OF MINDANAO',
                 'employee_college_course' => 'PSYCHOLOGY',
-                'employee_job_position' => 'HR SPECIALIST',
+                'employee_position' => 'HR SPECIALIST',
                 'employee_company_email' => 'SUSAN.MILLER@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1006',
                 'employee_employment_type' => 'FULL TIME',
@@ -405,7 +415,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'POLYTECHNIC UNIVERSITY OF THE PHILIPPINES',
                 'employee_college_course' => 'BUSINESS ADMINISTRATION',
-                'employee_job_position' => 'MEMBERSHIP OFFICER',
+                'employee_position' => 'MEMBERSHIP OFFICER',
                 'employee_company_email' => 'DAVID.WILSON@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1007',
                 'employee_employment_type' => 'FULL TIME',
@@ -466,7 +476,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'BULACAN STATE UNIVERSITY',
                 'employee_college_course' => 'MARKETING',
-                'employee_job_position' => 'MEMBERSHIP ASSOCIATE',
+                'employee_position' => 'MEMBERSHIP ASSOCIATE',
                 'employee_company_email' => 'KAREN.MOORE@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1008',
                 'employee_employment_type' => 'FULL TIME',
@@ -527,7 +537,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'DE LA SALLE UNIVERSITY - DASMARIÑAS',
                 'employee_college_course' => 'BUSINESS MANAGEMENT',
-                'employee_job_position' => 'MEMBERSHIP OFFICER',
+                'employee_position' => 'MEMBERSHIP OFFICER',
                 'employee_company_email' => 'CHRISTOPHER.TAYLOR@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1009',
                 'employee_employment_type' => 'FULL TIME',
@@ -588,7 +598,7 @@ class EmployeeSeeder extends Seeder
                 'employee_educational_attainment' => 'BACHELOR',
                 'employee_school_attended' => 'UNIVERSITY OF THE EAST',
                 'employee_college_course' => 'INFORMATION TECHNOLOGY',
-                'employee_job_position' => 'IT SUPPORT',
+                'employee_position' => 'IT SUPPORT',
                 'employee_company_email' => 'PATRICIA.ANDERSON@COMPANY.COM',
                 'employee_company_number' => 'LOCAL 1010',
                 'employee_employment_type' => 'FULL TIME',

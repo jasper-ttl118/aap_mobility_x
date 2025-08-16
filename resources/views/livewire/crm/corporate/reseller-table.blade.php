@@ -1,7 +1,7 @@
 <div>
 <table class="w-[1000px] lg:w-full text-sm md:justify-center text-gray-500">   
     <thead class="gap-5 bg-gray-100 text-xs text-gray-700 uppercase w-[440px] lg:w-full">
-        <tr>    
+        <tr>
             <th scope="col" class="w-[10.25%] py-3">Resellers ID</th>
             <th scope="col" class="w-[19.0%] py-3">Name</th>
             <th scope="col" class="w-[12.5%] py-3">Email</th>
@@ -13,25 +13,25 @@
     </thead>
     <tbody>
         @foreach ($corporates as $reseller)
-            <tr class="border-b border-gray-200 bg-white gap-5">
-                <th scope="row" class="w-auto py-4 font-medium whitespace-nowrap text-gray-900">
+            <tr class="gap-5 bg-white border-b border-gray-200">
+                <th scope="row" class="w-auto py-4 font-medium text-gray-900 whitespace-nowrap">
                     {{ $reseller->customer_id }}</th>
-                <td class="w-auto py-4  text-gray-900 pl-5">{{ $reseller->customer_firstname }}
+                <td class="w-auto py-4 pl-5 text-gray-900">{{ $reseller->customer_firstname }}
                     {{ $reseller->customer_surname }}</td>
-                <td class="w-auto py-4  text-gray-900">{{ $reseller->customer_email }}</td>
-                <td class="w-auto py-4  text-gray-900 px-1 ">{{ $reseller->customer_mobile_number }}</td>
-                <td class="w-auto py-4  text-gray-900 px-3 ">{{ $reseller->customer_organization }}</td>
-                <td class="w-auto py-4  text-gray-900 text-center">
+                <td class="w-auto py-4 text-gray-900">{{ $reseller->customer_email }}</td>
+                <td class="w-auto px-1 py-4 text-gray-900 ">{{ $reseller->customer_mobile_number }}</td>
+                <td class="w-auto px-3 py-4 text-gray-900 ">{{ $reseller->customer_organization }}</td>
+                <td class="w-auto py-4 text-center text-gray-900">
                     @if ($reseller->customer_status == '1')
                         <span 
-                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
+                            class="px-2 py-1 text-xs font-medium text-center text-white bg-green-600 rounded-full whitespace-nowrap">Active</span>
                     @else
                         <span
-                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
+                            class="px-2 py-1 text-xs font-medium text-center text-white bg-red-600 rounded-full whitespace-nowrap">Inactive</span>
                     @endif
                 </td>
                 <td class="w-auto py-4">
-                    <div class="flex flex-row justify-center items-center lg:gap-2">
+                    <div class="flex flex-row items-center justify-center lg:gap-2">
                 {{-- {{$customer->customer_id}} --}}
                         <a @click="open=true;" wire:click="openProfileModal({{ $reseller->customer_id }})"
                          class="flex items-center gap-1 font-normal text-[#071d49] cursor-pointer">
@@ -62,7 +62,7 @@
 
 </table>
 
-<div class="flex w-full justify-center">
+<div class="flex justify-center w-full">
 {{ $corporates->onEachSide(1)->links() }}
 </div>
 

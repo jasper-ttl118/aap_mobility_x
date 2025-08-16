@@ -5,7 +5,7 @@
         <!-- Title and Subtitle -->
         {{-- <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">Dashboard</h1>
-            <p class="text-gray-700 text-sm"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem aliquid, in minus voluptate optio illo suscipit possimus fuga explicabo necessitatibus aperiam vel at consequatur corrupti tempora sint veniam libero nisi.</p>
+            <p class="text-sm text-gray-700"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem aliquid, in minus voluptate optio illo suscipit possimus fuga explicabo necessitatibus aperiam vel at consequatur corrupti tempora sint veniam libero nisi.</p>
         </div> --}}
         
         <!-- Options Container -->
@@ -19,13 +19,13 @@
 
         <!-- Breadcrumbs-->
         <div class="flex h-10 items-center gap-x-1 text-[#071d49] text-sm px-12 lg:px-7 pt-2 lg:pt-0 pb-2 lg:pb-4 md:ml-20 lg:ml-0">
-            <a href="{{ route('customer.index') }}" class="hover:underline truncate">Customer Relationship Management</a>
+            <a href="{{ route('customer.index') }}" class="truncate hover:underline">Customer Relationship Management</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                 <path fill-rule="evenodd"
                     d="M16.28 11.47a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 0 1-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 0 1 1.06-1.06l7.5 7.5Z"
                     clip-rule="evenodd" />
             </svg>
-            <a href="{{ route('customer.index') }}" class="hover:underline font-semibold">Dashboard</a>
+            <a href="{{ route('customer.index') }}" class="font-semibold hover:underline">Dashboard</a>
         </div>
         {{-- body --}}
         <div class="bg-[#f3f4f6] flex flex-col lg:flex-row w-full md:w-full h-[1210px] lg:h-[400px] justify-center items-center gap-5 lg:-mt-10 md:items-center">
@@ -35,47 +35,47 @@
                     <div class="flex flex-col lg:flex-row lg:w-full h-[50%] lg:h-[25%] gap-2 justify-center items-start">
                         {{-- Daily Sales --}}
                         <div class="flex flex-col gap-y-2 items-start justify-center bg-gradient-to-r from-[#071d49] via-[#191d56] to-[#0c0c21] shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                            <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-white">
+                            <div class="flex flex-row items-center justify-start gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-white size-6 lg:size-4">
                                     <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
                                     <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                     <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                 </svg>
-                                <span class="text-white font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Daily Sales</span>
+                                <span class="text-sm font-extrabold tracking-widest text-white uppercase truncate lg:text-xs">Daily Sales</span>
                             </div>
-                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
-                                <span class="text-white font-bold text-xl lg:text-lg">₱153.04</span>
-                                <span class="text-white font-bold text-xs lg:text-xs bg-white bg-opacity-20 rounded-md">+25%</span>
+                            <div class="flex flex-row items-center justify-start gap-5 px-4 lg:gap-2">
+                                <span class="text-xl font-bold text-white lg:text-lg">₱153.04</span>
+                                <span class="text-xs font-bold text-white bg-white rounded-md lg:text-xs bg-opacity-20">+25%</span>
                             </div>
                         </div>
                         {{-- Weekly Sales --}}
                         <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                            <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
+                            <div class="flex flex-row items-center justify-start gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-green-400 size-6 lg:size-4">
                                     <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
                                     <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                     <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                 </svg>
                                 <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Weekly Sales</span>
                             </div>
-                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
+                            <div class="flex flex-row items-center justify-start gap-5 px-4 lg:gap-2">
                                 <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱1,240.40</span>
-                                <span class="text-green-400 font-bold text-xs lg:text-xs bg-green-400 bg-opacity-20 rounded-md">+17%</span>
+                                <span class="text-xs font-bold text-green-400 bg-green-400 rounded-md lg:text-xs bg-opacity-20">+17%</span>
                             </div>
                         </div>
                         {{-- Monthly Sales --}}
                         <div class="flex flex-col gap-y-2 items-start justify-center bg-white shadow-lg h-[33.3%] lg:h-full w-full lg:w-[33%] rounded-lg shadow-xs">
-                            <div class="flex flex-row justify-start items-center gap-2 px-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 lg:size-4 text-green-400">
+                            <div class="flex flex-row items-center justify-start gap-2 px-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="text-green-400 size-6 lg:size-4">
                                     <path d="M12 7.5a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
                                     <path fill-rule="evenodd" d="M1.5 4.875C1.5 3.839 2.34 3 3.375 3h17.25c1.035 0 1.875.84 1.875 1.875v9.75c0 1.036-.84 1.875-1.875 1.875H3.375A1.875 1.875 0 0 1 1.5 14.625v-9.75ZM8.25 9.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM18.75 9a.75.75 0 0 0-.75.75v.008c0 .414.336.75.75.75h.008a.75.75 0 0 0 .75-.75V9.75a.75.75 0 0 0-.75-.75h-.008ZM4.5 9.75A.75.75 0 0 1 5.25 9h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H5.25a.75.75 0 0 1-.75-.75V9.75Z" clip-rule="evenodd" />
                                     <path d="M2.25 18a.75.75 0 0 0 0 1.5c5.4 0 10.63.722 15.6 2.075 1.19.324 2.4-.558 2.4-1.82V18.75a.75.75 0 0 0-.75-.75H2.25Z" />
                                 </svg>
                                 <span class="text-[#071d49] font-extrabold text-sm lg:text-xs uppercase tracking-widest truncate">Monthly Sales</span>
                             </div>
-                            <div class="flex flex-row justify-start items-center gap-5 lg:gap-2 px-4">
+                            <div class="flex flex-row items-center justify-start gap-5 px-4 lg:gap-2">
                                 <span class="text-[#071d49] font-bold text-xl lg:text-lg">₱5,192.75</span>
-                                <span class="text-red-600 font-bold text-xs lg:text-xs bg-red-600 bg-opacity-20 rounded-md">-10%</span>
+                                <span class="text-xs font-bold text-red-600 bg-red-600 rounded-md lg:text-xs bg-opacity-20">-10%</span>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                 </div>        
                  {{-- New Members Div --}}
                 <div class="flex justify-between h-[30%] lg:h-full w-full lg:w-[30%] gap-5">
-                    <div class="flex flex-col bg-white shadow-lg h-full w-full rounded-lg shadow-xs items-center py-4 lg:py-0">
+                    <div class="flex flex-col items-center w-full h-full py-4 bg-white rounded-lg shadow-xs shadow-lg lg:py-0">
                         {{-- Header --}}
                         <div class="flex flex-row h-[15%] w-full justify-start items-center px-5 gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4 text-[#071d49]">
@@ -140,7 +140,7 @@
                                 <table class="h-[20%] w-[80%] border-b-2 border-[#071d49] items-center justify-start gap-1">
                                     <tr class="flex flex-row w-full h-16">
                                         <td class="flex items-center w-[20%]">
-                                            <img src="aaplogo1.png" alt="UserImage" class="w-full flex">
+                                            <img src="aap-logo.png" alt="UserImage" class="flex w-full">
                                         </td>         
                                         <td class="flex items-center w-[60%]">
                                             <span class="text-sm font-semibold text-[#071d49]    ">
@@ -181,7 +181,7 @@
                                         @click.away="showCategoriesInfo =false"
                                         @keydown.escape.window="showCategoriesInfo = false"
                                         class="items-center justify-center flex border-2 border-[#071d49] bg-[#071d49] text-white rounded-full hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold transition-colors duration-200">
-                                    <i class="fas fa-info-circle text-xs"></i>
+                                    <i class="text-xs fas fa-info-circle"></i>
                                 </button>
                                 
                                 <!-- Categories Info Modal -->
@@ -189,11 +189,11 @@
                                     x-transition
                                     x-cloak
                                     class="absolute z-50 bg-[#071d49] text-white p-4 rounded-lg shadow-lg text-xs left-0 top-full mt-2 w-60 max-h-64 overflow-hidden">
-                                    <div class="font-semibold mb-3 text-yellow-300 text-center">Departments</div>
-                                    <div class="space-y-2 max-h-48 overflow-y-auto pr-2 hide-scrollbar">
+                                    <div class="mb-3 font-semibold text-center text-yellow-300">Departments</div>
+                                    <div class="pr-2 space-y-2 overflow-y-auto max-h-48 hide-scrollbar">
                                         <template x-for="department in departments" :key="department.id">
                                             <div class="flex items-center gap-3 py-1">
-                                                <div class="w-4 h-4 rounded-full flex-shrink-0" :style="'background-color: ' + department.color"></div>
+                                                <div class="flex-shrink-0 w-4 h-4 rounded-full" :style="'background-color: ' + department.color"></div>
                                                 <span class="text-white" x-text="department.name"></span>
                                             </div>
                                         </template>
@@ -203,7 +203,7 @@
                         </div>
                         <h2 class="text-base uppercase w-[35%] justify-end flex font-extrabold text-[#071d49]" x-text="monthName + ' ' + year"></h2>
                         <div class="flex justify-between w-[15%] h-[70%] px-3 bg-white rounded-md">
-                            <div class="flex justify-between items-center mb-4 w-full h-full">
+                            <div class="flex items-center justify-between w-full h-full mb-4">
                                 <button @click="prevMonth()" class="w-7 h-7 text-[#071d49] font-bold hover:text-[#F6D400]"><i class="fas fa-arrow-circle-left"></i></button>
                                 <button @click="nextMonth()" class="w-7 h-7 text-[#071d49] font-bold hover:text-[#F6D400]"><i class="fas fa-arrow-circle-right"></i></button>
                             </div>
@@ -216,7 +216,7 @@
                         </template>
                     </div>
 
-                    <div class="grid grid-cols-7 gap-2 w-full pb-5">
+                    <div class="grid w-full grid-cols-7 gap-2 pb-5">
                         <template x-for="blank in startDay" :key="blank">
                             <div></div>
                         </template>
@@ -235,17 +235,17 @@
                                 
                                 <!-- Holiday indicator (star icon) -->
                                 <div x-show="isHoliday(day)" 
-                                    class="absolute bottom-1 right-1 text-yellow-400 text-xs">
+                                    class="absolute text-xs text-yellow-400 bottom-1 right-1">
                                     <i class="fas fa-star"></i>
                                 </div>
                                 
                                 <!-- Category indicator (colored bar) -->
                                 <div x-show="hasNote(day)" 
-                                    class="absolute top-1 right-1 w-3 h-1 rounded-full"
+                                    class="absolute w-3 h-1 rounded-full top-1 right-1"
                                     :style="'background-color: ' + getCategoryColor(day)"></div>
                                 
                                 <!-- Note/Holiday preview -->
-                                <div class="text-xs mt-1 truncate" 
+                                <div class="mt-1 text-xs truncate" 
                                     :class="getTextClass(day)" 
                                     x-text="getDisplayText(day)"></div>
                                 
@@ -256,13 +256,13 @@
                                     :class="getTooltipPosition(day)"
                                     style="white-space: normal; word-wrap: break-word;">
                                     <div x-show="isHoliday(day)" class="mb-2">
-                                        <div class="font-semibold text-yellow-300 mb-1">
-                                            <i class="fas fa-star mr-1"></i>Holiday
+                                        <div class="mb-1 font-semibold text-yellow-300">
+                                            <i class="mr-1 fas fa-star"></i>Holiday
                                         </div>
                                         <div class="leading-relaxed text-yellow-100" x-text="getHolidayName(day)"></div>
                                     </div>
                                     <div x-show="hasNote(day)">
-                                        <div class="font-semibold mb-1 text-green-300" x-text="getCategoryName(day)"></div>
+                                        <div class="mb-1 font-semibold text-green-300" x-text="getCategoryName(day)"></div>
                                         <div class="leading-relaxed" x-text="getNote(day)"></div>
                                     </div>
                                 </div>
@@ -271,19 +271,19 @@
                     </div>
                     
                     <!-- Note modal -->
-                    <div x-show="showModal" x-cloak class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+                    <div x-show="showModal" x-cloak class="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
                         <div class="bg-white rounded-lg shadow-lg px-5 py-4 w-96 border-2 h-auto border-[#071d49]">
-                            <div class="flex flex-row w-full justify-between items-start gap-5 mb-3">
+                            <div class="flex flex-row items-start justify-between w-full gap-5 mb-3">
                                 <h3 class="flex flex-col text-lg font-semibold uppercase text-[#071d49]">
                                     Event for:&nbsp<span x-text="monthName + ' ' + activeDay + ', ' + year" class="underline cursor-pointer hover:text-yellow-400"></span>
-                                    <span x-show="isHoliday(activeDay)" class="text-sm font-semibold text-yellow-600 normal-case mt-1">
-                                        <i class="fas fa-star mr-1"></i><span x-text="getHolidayName(activeDay)"></span>
+                                    <span x-show="isHoliday(activeDay)" class="mt-1 text-sm font-semibold text-yellow-600 normal-case">
+                                        <i class="mr-1 fas fa-star"></i><span x-text="getHolidayName(activeDay)"></span>
                                     </span>
                                 </h3>
-                                <div class="flex flex-col justify-start items-end">
+                                <div class="flex flex-col items-end justify-start">
                                     <div class="flex flex-row gap-x-2">
                                         <button @click="saveNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-[#071d49] bg-[#071d49] text-white rounded hover:bg-white hover:text-[#071d49] hover:border-[#071d49] font-bold"><i class="fas fa-save"></i></button>
-                                        <button @click="deleteCurrentNote()" class="w-4 h-8 items-center justify-center flex px-4 py-1 border-2 border-red-600 bg-red-600 text-white rounded hover:bg-white hover:text-red-600 hover:border-red-600 font-bold"><i class="fas fa-trash"></i></button>
+                                        <button @click="deleteCurrentNote()" class="flex items-center justify-center w-4 h-8 px-4 py-1 font-bold text-white bg-red-600 border-2 border-red-600 rounded hover:bg-white hover:text-red-600 hover:border-red-600"><i class="fas fa-trash"></i></button>
                                         <button @click="showModal = false" class="w-4 h-8 items-center justify-center flex px-4 py-1 bg-white border-2 border-[#071d49] rounded hover:bg-[#071d49] hover:text-white"><i class="fas fa-times"></i></button>
                                     </div>
                                 </div>
@@ -332,7 +332,7 @@
                     </div>
                 </div>
                 <div class="flex h-[75%] w-[90%] relative">
-                    <div x-show="activeChart === 'chart1'" x-cloak class="h-full w-full absolute">
+                    <div x-show="activeChart === 'chart1'" x-cloak class="absolute w-full h-full">
                         <x-analytics-display
                                 title="Weekly"
                                 :labels="['Week 1', 'Week 2', 'Week 3', 'Week 4']"
@@ -341,7 +341,7 @@
                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                         />
                     </div>
-                    <div x-show="activeChart === 'chart2'" x-cloak class="h-full w-full absolute">
+                    <div x-show="activeChart === 'chart2'" x-cloak class="absolute w-full h-full">
                         <x-analytics-display
                                 title="Monthly"
                                 :labels="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August']"
@@ -350,7 +350,7 @@
                                 :color="['#071d49', '#D9CD91', '#330000', '#6600cc', '#00ff00', '#660000', '#666600', '#cc3366', '#cc6600', '#ccff00' ,'#ff0000']"
                         />
                     </div>
-                    <div x-show="activeChart === 'chart3'" x-cloak class="h-full w-full absolute">
+                    <div x-show="activeChart === 'chart3'" x-cloak class="absolute w-full h-full">
                         <x-analytics-display
                                 title="Annual"
                                 :labels="['2020', '2021', '2022', '2023' , '2024' , '2025']"

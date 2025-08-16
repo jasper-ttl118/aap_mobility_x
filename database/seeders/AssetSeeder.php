@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Asset;
@@ -14,9 +15,17 @@ class AssetSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        Asset::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        try {
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            }
+                Asset::truncate();
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            }
+        } catch (Exception $e) {
+            $this->command->warn('Foreign checks skipped. Reason: '  . $e->getMessage());
+        }
 
         // SHORT CODES (ALL CAPS) FOR PROPERTY CODE PREFIX
         $shortCodes = [
@@ -66,7 +75,7 @@ class AssetSeeder extends Seeder
         // Only use employees 1..10 for NON-COMMON assignment
         $employeeIds = Employee::whereBetween('employee_id', [1, 10])->pluck('employee_id')->all();
         if (empty($employeeIds)) {
-            throw new \Exception('NO EMPLOYEES WITH IDs 1..10. SEED 10 EMPLOYEES FIRST.');
+            throw new Exception('NO EMPLOYEES WITH IDs 1..10. SEED 10 EMPLOYEES FIRST.');
         }
 
         // Helper: generate 15-digit IMEI
@@ -94,7 +103,7 @@ class AssetSeeder extends Seeder
                 // IT/Mobile: must use brand_id from your provided list
                 $brand = Brand::where('brand_name', strtoupper($item['brand']))->first();
                 if (!$brand) {
-                    throw new \Exception("BRAND '{$item['brand']}' NOT FOUND IN BRANDS TABLE.");
+                    throw new Exception("BRAND '{$item['brand']}' NOT FOUND IN BRANDS TABLE.");
                 }
                 $brand_id = $brand->brand_id;
                 $brand_name_custom = null;

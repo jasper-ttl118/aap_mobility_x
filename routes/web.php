@@ -2,7 +2,7 @@
 
 use App\Livewire\Ams\Main;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomRole as Role;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\NoteController;

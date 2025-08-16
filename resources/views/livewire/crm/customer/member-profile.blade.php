@@ -4,7 +4,7 @@
     </div>
 
     <!-- Modal overlay -->
-    <div wire:loading.remove class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div wire:loading.remove class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
 
     @if ($member)
         <!-- Modal content -->
@@ -19,8 +19,8 @@
         
             <div class="lg:w-[40%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-center items-center ">
                 <div class="w-full h-[30%] bg-gradient-to-t from-[#262c7d] via-[#071d49] to-[#090d40] rounded-b-2xl rounded-t-[36px]">
-                    <div class="flex relative justify-center mt-8 lg:mt-16 h-full w-full">
-                        <img src="{{ asset('aaplogo1.png') }}" alt="aaplogo" class="size-28 lg:size-40 bg-[#f3f4f6] rounded-full p-3 border">
+                    <div class="relative flex justify-center w-full h-full mt-8 lg:mt-16">
+                        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="size-28 lg:size-40 bg-[#f3f4f6] rounded-full p-3 border">
                     </div>
                 </div>
                 <div class="w-full h-[70%] flex flex-col items-center justify-start -gap-1 lg:gap-1 pt-[60px] lg:pt-[75px]">
@@ -32,7 +32,7 @@
                         <div>{{ $member->customer_birthdate }}</div>
                     </div>
                     <div class="text-xs text-[#071d49] flex flex-row justify-center items-center w-full h-auto">
-                        <div class="flex w-full h-full gap-2 justify-center items-center">
+                        <div class="flex items-center justify-center w-full h-full gap-2">
                             <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#071d49] border-2 border-[#071d49] rounded-md font-bold hover:bg-[#071d49] hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
@@ -66,7 +66,7 @@
                         Activity Log
                     </a>
                 </div>
-                <div class="w-full h-full mt-2 lg:mt-5 overflow-x-auto hide-scrollbar px-5">
+                <div class="w-full h-full px-5 mt-2 overflow-x-auto lg:mt-5 hide-scrollbar">
                     <div class="flex flex-col w-full h-[400px] lg:h-full items-center " x-show="profile === 'information'">
                         <div class="flex flex-col w-full h-full lg:h-[70%]">
                             <div class="flex flex-row items-center w-full h-[11.12%]">
@@ -106,7 +106,7 @@
                                             <path d="M7 5a1 1 0 112 0v4a1 1 0 01-.553.894l-2 1a1 1 0 11-.894-1.788L7 8.382V5zm9 10a1 1 0 11-2 0 1 1 0 012 0zm-1-7a1 1 0 00-1 1v3a1 1 0 102 0V9a1 1 0 00-1-1z"/>
                                         </g>
                                     </svg>
-                                    <span class=" truncate">Expiration Date</span>
+                                    <span class="truncate ">Expiration Date</span>
                                 </div>
                                 <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">December 21, 2025</div>
@@ -122,10 +122,10 @@
                                 <div class="w-[50%] h-full flex justify-start items-center px-5">
                                     @if ($member->customer_status == '1')
                                         <span 
-                                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
+                                            class="px-2 py-1 text-xs font-medium text-center text-white bg-green-600 rounded-full whitespace-nowrap">Active</span>
                                     @else
                                         <span
-                                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
+                                            class="px-2 py-1 text-xs font-medium text-center text-white bg-red-600 rounded-full whitespace-nowrap">Inactive</span>
                                     @endif
                                 </td>
                                 </div>  
@@ -135,7 +135,7 @@
                                     <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M15.7993 3C17.2899 3 18.5894 4.01393 18.9518 5.45974L19.337 7H20.25C20.6297 7 20.9435 7.28215 20.9932 7.64823L21 7.75C21 8.1297 20.7178 8.44349 20.3518 8.49315L20.25 8.5H19.714L19.922 9.3265C20.5708 9.72128 21.0041 10.435 21.0041 11.25V19.7468C21.0041 20.7133 20.2206 21.4968 19.2541 21.4968H17.75C16.7835 21.4968 16 20.7133 16 19.7468L15.999 18.5H8.004L8.00408 19.7468C8.00408 20.7133 7.22058 21.4968 6.25408 21.4968H4.75C3.7835 21.4968 3 20.7133 3 19.7468V11.25C3 10.4352 3.43316 9.72148 4.08177 9.32666L4.289 8.5H3.75C3.3703 8.5 3.05651 8.21785 3.00685 7.85177L3 7.75C3 7.3703 3.28215 7.05651 3.64823 7.00685L3.75 7H4.663L5.04898 5.46176C5.41068 4.01497 6.71062 3 8.20194 3H15.7993ZM6.504 18.5H4.499L4.5 19.7468C4.5 19.8848 4.61193 19.9968 4.75 19.9968H6.25408C6.39215 19.9968 6.50408 19.8848 6.50408 19.7468L6.504 18.5ZM19.504 18.5H17.499L17.5 19.7468C17.5 19.8848 17.6119 19.9968 17.75 19.9968H19.2541C19.3922 19.9968 19.5041 19.8848 19.5041 19.7468L19.504 18.5ZM13.7507 14H10.249L10.1472 14.0068C9.78115 14.0565 9.49899 14.3703 9.49899 14.75C9.49899 15.1297 9.78115 15.4435 10.1472 15.4932L10.249 15.5H13.7507L13.8525 15.4932C14.2186 15.4435 14.5007 15.1297 14.5007 14.75C14.5007 14.3358 14.165 14 13.7507 14ZM17 12C16.4477 12 16 12.4477 16 13C16 13.5522 16.4477 13.9999 17 13.9999C17.5522 13.9999 17.9999 13.5522 17.9999 13C17.9999 12.4477 17.5522 12 17 12ZM6.99997 12C6.4477 12 6 12.4477 6 13C6 13.5522 6.4477 13.9999 6.99997 13.9999C7.55225 13.9999 7.99995 13.5522 7.99995 13C7.99995 12.4477 7.55225 12 6.99997 12ZM15.7993 4.5H8.20194C7.39892 4.5 6.69895 5.04652 6.50419 5.82556L5.71058 9H18.2929L17.4968 5.82448C17.3017 5.04596 16.6019 4.5 15.7993 4.5Z"/>
                                     </svg>
-                                    <span class=" truncate">Number of Vehicle(s)</span>
+                                    <span class="truncate ">Number of Vehicle(s)</span>
                                 </div>
                                 <div class="h-[60%] text-[#071d49] items-center flex">:</div>
                                 <div class="w-[50%] text-xs lg:text-sm h-full flex justify-start items-center px-5 text-[#605e5e]">3</div>

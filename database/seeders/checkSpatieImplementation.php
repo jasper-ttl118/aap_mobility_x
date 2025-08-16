@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\CustomRole as Role;
+use App\Models\CustomPermision as Permission;
 use Carbon\Carbon;
 
 class checkSpatieImplementation extends Seeder

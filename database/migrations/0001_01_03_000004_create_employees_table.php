@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('employee_middlename', 255)->nullable();
             $table->string('employee_lastname', 255);
             $table->string('employee_suffix', 100)->nullable();
-            $table->string('employee_mother_maiden_name', 255);
+            $table->string('employee_mother_maiden_name', 255)->nullable();
             $table->string('employee_gender', 50);
             $table->string('employee_profile_picture', 255)->nullable();
             $table->foreignId('branch_id')->constrained('branches', 'branch_id')->onDelete('cascade');
@@ -31,13 +31,14 @@ return new class extends Migration
             $table->string('employee_birthplace', 255)->nullable();
             $table->string('employee_religion', 255)->nullable();
             $table->string('employee_personal_email', 255)->nullable();
+            $table->string('employee_address', 255)->nullable();
             $table->string('employee_contact_no1', 255)->nullable();
             $table->string('employee_contact_no2', 255)->nullable();
             $table->string('employee_viber_number', 255)->nullable();
             $table->string('employee_educational_attainment', 255)->nullable();
             $table->string('employee_school_attended', 255)->nullable();
             $table->string('employee_college_course', 255)->nullable();
-            $table->string('employee_job_position', 255)->nullable();
+            $table->string('employee_position', 255)->nullable();
             $table->string('employee_company_email', 255)->nullable();
             $table->string('employee_company_number', 255)->nullable();
             $table->string('employee_employment_type', 255)->nullable();

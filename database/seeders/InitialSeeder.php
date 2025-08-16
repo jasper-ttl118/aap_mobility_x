@@ -57,7 +57,7 @@ class InitialSeeder extends Seeder
         ]);
 
         // Insert role
-        $roleId = DB::table('roles')->insertGetId([
+    $roleId = DB::table('roles')->insertGetId([
             'role_name' => 'Super Admin',
             'role_description' => 'Full access to the system',
             'role_status' => 1,

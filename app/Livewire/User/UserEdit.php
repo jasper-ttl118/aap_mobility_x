@@ -4,7 +4,7 @@ namespace App\Livewire\User;
 
 use App\Models\Module;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomRole as Role;
 
 class UserEdit extends Component
 {

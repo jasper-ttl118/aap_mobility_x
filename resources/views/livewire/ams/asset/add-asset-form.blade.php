@@ -1,19 +1,19 @@
 <div>
     @csrf
     <div class="p-10 space-y-4">
-        <div x-data="{selectedCategoryId: @entangle('category_id')}" class="gap-y-3 flex flex-col">
-            <div class="w-full flex flex-col gap-y-1 -mt-5">
-                <div class="flex justify-between items-start w-full">
+        <div x-data="{selectedCategoryId: @entangle('category_id')}" class="flex flex-col gap-y-3">
+            <div class="flex flex-col w-full -mt-5 gap-y-1">
+                <div class="flex items-start justify-between w-full">
                     <!-- Left Side: Title and Subtitle -->
                     <div class="flex flex-col items-start">
                         <h2 class="text-xl font-bold text-[#071d49]">Add New Asset</h2>
-                        <p class="text-sm text-gray-600 leading-tight">
+                        <p class="text-sm leading-tight text-gray-600">
                             <em>Enter all relevant information for the asset.</em>
                         </p>
                     </div>
 
                     <!-- Right Side: Required Fields Note -->
-                    <div class="text-xs italic text-red-600 font-medium pt-8">
+                    <div class="pt-8 text-xs italic font-medium text-red-600">
                         * - required fields
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="flex items-center gap-2 mt-2">
                 <!-- Icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                    class="size-5 text-blue-800">
+                    class="text-blue-800 size-5">
                     <path fill-rule="evenodd"
                         d="M5.25 2.25a3 3 0 0 0-3 3v4.318a3 3 0 0 0 .879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 0 0 5.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 0 0-2.122-.879H5.25ZM6.375 7.5a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z"
                         clip-rule="evenodd" />
@@ -30,7 +30,7 @@
 
 
                 <!-- Heading -->
-                <h3 class="text-md font-semibold text-blue-800">Asset Information</h3>
+                <h3 class="font-semibold text-blue-800 text-md">Asset Information</h3>
             </div>
 
             <!-- Asset Basic Info -->
@@ -115,7 +115,7 @@
         this.acquisitionCost = '';
     },
 
-}" x-on:form-cleared.window="resetFields()" class="w-full grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-2">
+}" x-on:form-cleared.window="resetFields()" class="grid w-full grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-2">
 
 
 
@@ -128,10 +128,10 @@
                             <span class="text-red-600" x-show="!selectedCategoryId" x-transition>*</span>
                         </label>
 
-                        <div class="relative group flex items-center justify-center">
+                        <div class="relative flex items-center justify-center group">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none"
-                                class="size-5 hover:bg-blue-600 hover:text-white rounded-full text-blue-600 cursor-pointer transition"
+                                class="text-blue-600 transition rounded-full cursor-pointer size-5 hover:bg-blue-600 hover:text-white"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="lucide lucide-info-icon lucide-info">
                                 <circle cx="12" cy="12" r="10" />
@@ -140,11 +140,11 @@
                             </svg>
 
                             <div
-                                class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300  ">
+                                class="absolute z-30 p-4 ml-4 text-sm text-gray-700 transition duration-300 -translate-y-1/2 bg-white border border-gray-200 shadow-2xl opacity-0 pointer-events-none left-full top-1/2 w-72 rounded-xl group-hover:opacity-100">
                                 <!-- Icon Badge -->
                                 <div class="flex items-center gap-2 mb-3">
                                     <div
-                                        class="flex items-center justify-center w-8 h-8 rounded-full border border-yellow-200 bg-yellow-100 text-yellow-700 shadow">
+                                        class="flex items-center justify-center w-8 h-8 text-yellow-700 bg-yellow-100 border border-yellow-200 rounded-full shadow">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                             stroke-linecap="round" stroke-linejoin="round"
@@ -158,11 +158,11 @@
                                             <line x1="12" x2="12" y1="22" y2="12" />
                                         </svg>
                                     </div>
-                                    <span class="font-semibold text-gray-800 text-base">Brand Selection Tip</span>
+                                    <span class="text-base font-semibold text-gray-800">Brand Selection Tip</span>
                                 </div>
 
                                 <!-- Tooltip Body -->
-                                <p class="leading-snug text-justify text-xs">
+                                <p class="text-xs leading-snug text-justify">
                                     Start by selecting a <span class="font-medium text-gray-900">category</span>. For
                                     <span class="font-medium text-gray-900">IT Equipment</span> or
                                     <span class="font-medium text-gray-900">Mobile Devices</span>, choose a brand from
@@ -181,8 +181,8 @@
                                 : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
                         ]">
                         <span x-text="selectedCategoryName || 'SELECT CATEGORY'"
-                            class="block truncate uppercase"></span>
-                        <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none" fill="none"
+                            class="block uppercase truncate"></span>
+                        <svg class="absolute w-4 h-4 mt-6 text-gray-500 pointer-events-none right-3 top-3" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -195,14 +195,14 @@
 
                     <!-- Dropdown Items -->
                     <ul x-show="openCategory" @click.outside="openCategory = false" x-transition
-                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
 
                         <!-- Clear Option -->
                         <li @click="
                                 selectedCategoryId = '';
                                 selectedCategoryName = '';
                                 openCategory = false
-                            " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                            " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             SELECT CATEGORY
                         </li>
 
@@ -214,7 +214,7 @@
                             {{-- generatePropertyCode(); --}}
                             {{-- $wire.set('property_code', propertyCode); --}}
                             openCategory = false
-                        " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                        " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             {{ strtoupper($category->category_name) }}
                         </li>
                         @endforeach
@@ -242,8 +242,8 @@
                             : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
                     ]">
                         <span x-text="selectedConditionName || 'SELECT CONDITION'"
-                            class="block truncate uppercase"></span>
-                        <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none" fill="none"
+                            class="block uppercase truncate"></span>
+                        <svg class="absolute w-4 h-4 mt-6 text-gray-500 pointer-events-none right-3 top-3" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -256,14 +256,14 @@
 
                     <!-- Dropdown Items -->
                     <ul x-show="openCondition" @click.outside="openCondition = false" x-transition
-                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
 
                         <!-- Clear Option -->
                         <li @click="
                                 selectedConditionId = '';
                                 selectedConditionName = '';
                                 openCondition = false
-                            " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                            " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             SELECT CONDITION
                         </li>
 
@@ -273,7 +273,7 @@
                                 selectedConditionId = '{{ $condition->condition_id }}';
                                 selectedConditionName = '{{ strtoupper($condition->condition_name) }}';
                                 openCondition = false"
-                            class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                            class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             {{ strtoupper($condition->condition_name) }}
                         </li>
                         @endforeach
@@ -297,8 +297,8 @@
                             ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
                             : 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
                     ]">
-                        <span x-text="selectedStatusName || 'SELECT STATUS'" class="block truncate uppercase"></span>
-                        <svg class="absolute right-3 mt-6 top-3 w-4 h-4 text-gray-500 pointer-events-none" fill="none"
+                        <span x-text="selectedStatusName || 'SELECT STATUS'" class="block uppercase truncate"></span>
+                        <svg class="absolute w-4 h-4 mt-6 text-gray-500 pointer-events-none right-3 top-3" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                         </svg>
@@ -311,14 +311,14 @@
 
                     <!-- Dropdown List -->
                     <ul x-show="openStatus" @click.outside="openStatus = false" x-transition
-                        class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
 
                         <!-- Reset Option -->
                         <li @click="
                                 selectedStatusId = '';
                                 selectedStatusName = '';
                                 openStatus = false
-                            " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                            " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             SELECT STATUS
                         </li>
 
@@ -328,7 +328,7 @@
                             selectedStatusId = '{{ $status->status_id }}';
                             selectedStatusName = '{{ strtoupper($status->status_name) }}';
                             openStatus = false"
-                            class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                            class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                             {{ strtoupper($status->status_name) }}
                         </li>
                         @endforeach
@@ -346,7 +346,7 @@
                     <!-- Input -->
                     <input type="text" name="asset_name" x-model="assetName" @input="$wire.set('asset_name', assetName)"
                         placeholder="ASSET NAME" autocomplete="off"
-                        class="uppercase mt-1 w-full bg-white rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                        class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white rounded-md shadow-sm focus:outline-none"
                         :class="{
                             'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(assetName),
                             'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(assetName)
@@ -372,13 +372,13 @@
                     <div x-show="showBrandDropdown()" x-cloak class="relative w-full">
                         <!-- Dropdown Button -->
                         <button type="button" @click="openBrand = !openBrand"
-                            class="mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm cursor-pointer focus:outline-none"
+                            class="w-full px-4 py-2 mt-1 text-sm text-left bg-white border rounded-md shadow-sm cursor-pointer focus:outline-none"
                             :class="{
                                 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(selectedBrandName),
                                 'border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600': !showCheck(selectedBrandName)
                             }">
-                            <span x-text="selectedBrandName || 'SELECT BRAND'" class="block truncate uppercase"></span>
-                            <svg class="absolute right-3 mt-1 top-3 w-4 h-4 text-gray-500 pointer-events-none"
+                            <span x-text="selectedBrandName || 'SELECT BRAND'" class="block uppercase truncate"></span>
+                            <svg class="absolute w-4 h-4 mt-1 text-gray-500 pointer-events-none right-3 top-3"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 9l-7 7-7-7" />
@@ -387,12 +387,12 @@
 
                         <!-- Dropdown Options -->
                         <ul x-show="openBrand" @click.outside="openBrand = false" x-transition
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                            class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
                             <li @click="
                                     selectedBrandName = '';
                                     selectedBrandId = '';
                                     openBrand = false
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 SELECT BRAND
                             </li>
 
@@ -401,7 +401,7 @@
                                     selectedBrandName = '{{ strtoupper(addslashes($brand->brand_name)) }}';
                                     selectedBrandId = '{{ $brand->brand_id }}';
                                     openBrand = false
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 {{ strtoupper($brand->brand_name) }}
                             </li>
                             @endforeach
@@ -418,7 +418,7 @@
                         <input type="text" name="brand_name_custom" x-model="brandName"
                             @input="$wire.set('brand_name_custom', brandName)" placeholder="BRAND NAME"
                             autocomplete="off"
-                            class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                            class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                             :class="{
                             'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(brandName),
                             'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(brandName)
@@ -440,7 +440,7 @@
 
                     <input type="text" name="model_name" x-model="modelName" @input="$wire.set('model_name', modelName)"
                         placeholder="MODEL" autocomplete="off"
-                        class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                        class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                         :class="{
                             'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(modelName),
                             'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(modelName)
@@ -455,7 +455,7 @@
 
                 <!-- ADDITIONAL SPECS -->
                 <div x-show="showBrandDropdown()" x-transition class="md:col-span-3">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+                    <div class="grid grid-cols-1 gap-4 mt-3 md:grid-cols-3">
 
                         <!-- IT Fields -->
                         <!-- DEVICE SERIAL NUMBER -->
@@ -467,7 +467,7 @@
                             <input type="text" name="device_serial_number" x-model="deviceSerial"
                                 @input="$wire.set('device_serial_number', deviceSerial)" placeholder="SERIAL NUMBER"
                                 autocomplete="off"
-                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(deviceSerial),
                                     'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(deviceSerial)
@@ -487,7 +487,7 @@
                             <input type="text" name="charger_serial_number" x-model="chargerSerial"
                                 @input="$wire.set('charger_serial_number', chargerSerial)" placeholder="SERIAL NUMBER"
                                 autocomplete="off"
-                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(chargerSerial),
                                     'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(chargerSerial)
@@ -506,7 +506,7 @@
                             </label>
                             <input type="text" name="imei1" x-model="imei1" @input="$wire.set('imei1', imei1)"
                                 placeholder="ENTER IMEI 1" autocomplete="off"
-                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(imei1),
                                     'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(imei1)
@@ -524,7 +524,7 @@
                             </label>
                             <input type="text" name="imei2" x-model="imei2" @input="$wire.set('imei2', imei2)"
                                 placeholder="ENTER IMEI 2" autocomplete="off"
-                                class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm px-4 py-2 text-left text-sm focus:outline-none"
+                                class="w-full px-4 py-2 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm focus:outline-none"
                                 :class="{
                                     'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(imei2),
                                     'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(imei2)
@@ -564,15 +564,15 @@
                                     }
                                 }">
                                 <!-- Peso Symbol -->
-                                <div class="absolute mt-1 inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <span class="text-gray-500 text-sm">₱</span>
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 mt-1 pointer-events-none">
+                                    <span class="text-sm text-gray-500">₱</span>
                                 </div>
 
                                 <!-- Input Field -->
                                 <input type="text" inputmode="decimal" name="acquisition_cost" x-model="acquisitionCost"
                                     @input="filterNumeric" @blur="formatCost" placeholder="e.g., 15000.00"
                                     autocomplete="off"
-                                    class="uppercase mt-1 w-full bg-white border rounded-md shadow-sm pl-7 pr-4 py-2 text-left text-sm focus:outline-none"
+                                    class="w-full py-2 pr-4 mt-1 text-sm text-left uppercase bg-white border rounded-md shadow-sm pl-7 focus:outline-none"
                                     :class="{
                 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600': showCheck(acquisitionCost),
                 'border-gray-300 focus:ring-blue-600 focus:border-blue-600': !showCheck(acquisitionCost)
@@ -661,18 +661,18 @@
                     }
 
                 }" x-on:form-cleared.window="resetAssignmentFields()"
-                class="w-full border-t border-gray-400 mt-3 pt-3">
+                class="w-full pt-3 mt-3 border-t border-gray-400">
 
 
                 <!-- Header -->
-                <div class="flex items-center gap-2 mt-2 pb-4">
+                <div class="flex items-center gap-2 pb-4 mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="size-5 text-blue-800">
+                        class="text-blue-800 size-5">
                         <path fill-rule="evenodd"
                             d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <h3 class="text-md font-semibold text-blue-800">Asset Assignment</h3>
+                    <h3 class="font-semibold text-blue-800 text-md">Asset Assignment</h3>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-x-3 gap-y-6">
@@ -687,10 +687,10 @@
                             </label>
 
                             <!-- Tooltip -->
-                            <div class="relative group flex items-center justify-center">
+                            <div class="relative flex items-center justify-center group">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none"
-                                    class="size-5 hover:bg-blue-600 hover:text-white rounded-full text-blue-600 cursor-pointer transition"
+                                    class="text-blue-600 transition rounded-full cursor-pointer size-5 hover:bg-blue-600 hover:text-white"
                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" class="lucide lucide-info-icon lucide-info">
                                     <circle cx="12" cy="12" r="10" />
@@ -698,11 +698,11 @@
                                     <path d="M12 8h.01" />
                                 </svg>
                                 <div
-                                    class="absolute left-full top-1/2 -translate-y-1/2 ml-4 w-72 z-30 p-4 bg-white text-gray-700 shadow-2xl rounded-xl border border-gray-200 text-sm opacity-0 group-hover:opacity-100 pointer-events-none transition duration-300">
+                                    class="absolute z-30 p-4 ml-4 text-sm text-gray-700 transition duration-300 -translate-y-1/2 bg-white border border-gray-200 shadow-2xl opacity-0 pointer-events-none left-full top-1/2 w-72 rounded-xl group-hover:opacity-100">
                                     <!-- Icon Badge -->
                                     <div class="flex items-center gap-2 mb-3">
                                         <div
-                                            class="flex items-center justify-center w-8 h-8 border border-yellow-200 rounded-full bg-yellow-100 text-yellow-700 shadow">
+                                            class="flex items-center justify-center w-8 h-8 text-yellow-700 bg-yellow-100 border border-yellow-200 rounded-full shadow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                                 stroke-linecap="round" stroke-linejoin="round"
@@ -715,11 +715,11 @@
                                                 <circle cx="12" cy="15" r="3" />
                                             </svg>
                                         </div>
-                                        <span class="font-semibold text-gray-800 text-base">Asset Assignment</span>
+                                        <span class="text-base font-semibold text-gray-800">Asset Assignment</span>
                                     </div>
 
                                     <!-- Tooltip Body -->
-                                    <p class="leading-snug text-justify text-xs">
+                                    <p class="text-xs leading-snug text-justify">
                                         Start by selecting the <span class="font-medium text-gray-900">Asset
                                             Type</span>.
                                         <span class="font-medium text-gray-900">Common Assets</span> should be assigned
@@ -740,7 +740,7 @@
                                         ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600' 
                                         : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'
                                 ]">
-                            <span x-text="selectedType || 'SELECT TYPE'" class="block truncate uppercase"></span>
+                            <span x-text="selectedType || 'SELECT TYPE'" class="block uppercase truncate"></span>
                             <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -755,7 +755,7 @@
 
                         <!-- Dropdown Options -->
                         <ul x-show="openType" @click.outside="openType = false" x-transition
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                            class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
                             <li @click="
                                     selectedType = '';
                                     type = ''; // Livewire: asset_type
@@ -764,7 +764,7 @@
                                     selectedEmployeeId = '';
                                     resetSearchInput();
                                     openType = false;
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 SELECT TYPE
                             </li>
                             <li @click="
@@ -775,7 +775,7 @@
                                     selectedEmployeeId = '';
                                     resetSearchInput();
                                     openType = false;
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 COMMON ASSET
                             </li>
                             <li @click="
@@ -786,7 +786,7 @@
                                     selectedEmployeeId = '';
                                     openType = false;
                                     resetSearchInput();
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 NON-COMMON ASSET
                             </li>
                         </ul>
@@ -811,7 +811,7 @@
 
                             <span
                                 x-text="selectedAssigneeLabel || 'SELECT ' + (type === '1' ? 'DEPARTMENT' : 'EMPLOYEE')"
-                                class="block truncate uppercase"></span>
+                                class="block uppercase truncate"></span>
                             <svg class="absolute right-3 top-[10px] w-4 h-4 text-gray-500 pointer-events-none"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -825,18 +825,18 @@
                         </div>
                         <input x-ref="assigneeSearch" type="text" :value="inputText"
                             @input="handleSearchInput($event.target.value)" @keydown.enter.prevent autocomplete="off"
-                            class="absolute opacity-0 pointer-events-none w-0 h-0" />
+                            class="absolute w-0 h-0 opacity-0 pointer-events-none" />
 
                         <!-- Department Options -->
                         <ul x-show="openAssignee && type === '1'" @click.outside="openAssignee = false" x-transition
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                            class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
                             <!-- Clear Option -->
                             <li @click="
                                     selectedAssigneeLabel = 'SELECT DEPARTMENT';
                                     selectedAssigneeId = '';
                                     selectedEmployeeId = '';
                                     openAssignee = false;
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 SELECT DEPARTMENT
                             </li>
 
@@ -848,7 +848,7 @@
                                     selectedAssigneeId = '{{ $department->department_id }}';
                                     selectedEmployeeId = '';
                                     openAssignee = false;
-                                " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 {{ strtoupper($department->department_name) }}
                             </li>
                             @endforeach
@@ -857,7 +857,7 @@
 
                         <!-- Employee Options -->
                         <ul x-show="openAssignee && type === '2'" @click.outside="openAssignee = false" x-transition
-                            class="absolute z-10 mt-1 w-full bg-white shadow-lg max-h-60 rounded-xl py-1 text-sm text-gray-800 ring-1 ring-black ring-opacity-5 overflow-auto">
+                            class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg max-h-60 rounded-xl ring-1 ring-black ring-opacity-5">
 
 
 
@@ -867,7 +867,7 @@
         selectedEmployeeId = '';
         selectedAssigneeId = '';
         openAssignee = false;
-    " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+    " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 SELECT EMPLOYEE
                             </li>
 
@@ -878,7 +878,7 @@
             selectedEmployeeId = '{{ $employee->employee_id }}';
             selectedAssigneeId = '';
             openAssignee = false;
-        " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+        " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                 {{ strtoupper($employee->employee_lastname) }},
                                 {{ strtoupper($employee->employee_firstname) }}
                             </li>
@@ -905,7 +905,7 @@
 
                         <!-- Date Picker -->
                         <input type="date" x-model="dateAssigned" :max="today"
-                            class="mt-1 block w-full rounded-md shadow-sm text-sm uppercase focus:outline-none" :class="[
+                            class="block w-full mt-1 text-sm uppercase rounded-md shadow-sm focus:outline-none" :class="[
                                     dateAssigned 
                                         ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
                                         : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'
@@ -923,18 +923,18 @@
             </div>
 
             <!-- Warranty Section -->
-            <div class="w-full border-t border-gray-400 mt-6 pt-3">
-                <div class="flex items-center gap-2 mt-2 pb-4">
+            <div class="w-full pt-3 mt-6 border-t border-gray-400">
+                <div class="flex items-center gap-2 pb-4 mt-2">
                     <!-- Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="size-5 text-blue-800">
+                        class="text-blue-800 size-5">
                         <path fill-rule="evenodd"
                             d="M12.516 2.17a.75.75 0 0 0-1.032 0 11.209 11.209 0 0 1-7.877 3.08.75.75 0 0 0-.722.515A12.74 12.74 0 0 0 2.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 0 0 .374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 0 0-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08Zm3.094 8.016a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
                             clip-rule="evenodd" />
                     </svg>
 
                     <!-- Heading -->
-                    <h3 class="text-md font-semibold text-blue-800">Warranty Information</h3>
+                    <h3 class="font-semibold text-blue-800 text-md">Warranty Information</h3>
                 </div>
 
                 <div x-data="{
@@ -1051,7 +1051,7 @@
 
 
                     <!-- Warranty Fields (spans 3/5 = 60%) -->
-                    <div class="col-span-5 md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="grid grid-cols-1 col-span-5 gap-4 md:col-span-3 md:grid-cols-2">
                         <!-- Purchase Date -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700">
@@ -1060,7 +1060,7 @@
 
                             <!-- Visible Date Picker -->
                             <input type="date" x-model="purchaseDate" :max="today"
-                                class="mt-1 block w-full rounded-md shadow-sm text-sm uppercase focus:outline-none"
+                                class="block w-full mt-1 text-sm uppercase rounded-md shadow-sm focus:outline-none"
                                 :class="purchaseDate 
                                         ? 'border-green-600 border-2 focus:ring-green-600 focus:border-green-600'
                                         : 'border border-gray-300 focus:ring-blue-600 focus:border-blue-600'" />
@@ -1077,13 +1077,13 @@
                                     x-show="!replacementValue || !replacementUnit" x-transition>*</span>
                             </label>
 
-                            <div class="flex gap-2 mt-1 items-start">
+                            <div class="flex items-start gap-2 mt-1">
                                 <!-- VALUE -->
                                 <input type="number" x-model="replacementValue" @input="
                                         $wire.set('free_replacement_value', replacementValue);
                                         
                                     " min="0"
-                                    class="uppercase w-5/12 rounded-md shadow-sm text-sm px-2 py-2 bg-white focus:outline-none"
+                                    class="w-5/12 px-2 py-2 text-sm uppercase bg-white rounded-md shadow-sm focus:outline-none"
                                     :class="replacementValue 
                                     ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                     : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"
@@ -1092,12 +1092,12 @@
                                 <!-- UNIT -->
                                 <div class="relative w-7/12">
                                     <button type="button" @click="openUnit = !openUnit"
-                                        class="w-full rounded-md shadow-sm text-sm px-3 py-2 text-left bg-white uppercase focus:outline-none"
+                                        class="w-full px-3 py-2 text-sm text-left uppercase bg-white rounded-md shadow-sm focus:outline-none"
                                         :class="replacementUnit 
                                         ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                         : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
                                         <span x-text="replacementUnit || 'SELECT'" class="block truncate"></span>
-                                        <svg class="absolute right-2 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none"
+                                        <svg class="absolute w-4 h-4 text-gray-500 -translate-y-1/2 pointer-events-none right-2 top-1/2"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M19 9l-7 7-7-7" />
@@ -1105,19 +1105,19 @@
                                     </button>
 
                                     <ul x-show="openUnit" @click.outside="openUnit = false" x-transition
-                                        class="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-xl py-1 text-sm ring-1 ring-black ring-opacity-5 overflow-auto text-gray-800">
+                                        class="absolute z-10 w-full py-1 mt-1 overflow-auto text-sm text-gray-800 bg-white shadow-lg rounded-xl ring-1 ring-black ring-opacity-5">
                                         <li @click="
                                             openUnit = false
                                             replacementUnit = 'DAYS';
                                             $wire.set('free_replacement_unit', replacementUnit);
-                                            " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                            " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                             DAYS
                                         </li>
                                         <li @click="
                                             openUnit = false
                                             replacementUnit = 'WEEKS';
                                             $wire.set('free_replacement_unit', replacementUnit);
-                                            " class="cursor-pointer select-none px-4 py-2 hover:bg-blue-200 uppercase">
+                                            " class="px-4 py-2 uppercase cursor-pointer select-none hover:bg-blue-200">
                                             WEEKS
                                         </li>
                                     </ul>
@@ -1137,7 +1137,7 @@
 
                             <input type="date" x-model="expirationDate"
                                 @input="$wire.set('warranty_exp_date', expirationDate)"
-                                class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="expirationDate 
+                                class="block w-full mt-1 text-sm uppercase rounded-md shadow-sm" :class="expirationDate 
                                 ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                 : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
 
@@ -1154,7 +1154,7 @@
                             </label>
                             <input type="number" min="0" placeholder="E.G., 2" x-model="warrantyYears"
                                 @input="$wire.set('warranty_years', warrantyYears)"
-                                class="uppercase mt-1 block w-full rounded-md shadow-sm text-sm" :class="warrantyYears 
+                                class="block w-full mt-1 text-sm uppercase rounded-md shadow-sm" :class="warrantyYears 
                                     ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600' 
                                     : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'">
                             @error('warranty_years')
@@ -1164,13 +1164,13 @@
                     </div>
 
                     <!-- Description (spans 2/5 = 40%) -->
-                    <div class="col-span-5 md:col-span-2 flex flex-col">
+                    <div class="flex flex-col col-span-5 md:col-span-2">
                         <label class="block text-sm font-medium text-gray-700">
                             Description <span class="text-red-600" x-show="!description" x-transition>*</span>
                         </label>
                         <textarea x-model="description" @input="$wire.set('description', description)"
                             placeholder="DESCRIPTION"
-                            class="uppercase mt-1 block flex-grow resize-none w-full rounded-md shadow-sm text-sm"
+                            class="flex-grow block w-full mt-1 text-sm uppercase rounded-md shadow-sm resize-none"
                             :class="description 
                                 ? 'border-2 border-green-600 focus:ring-2 focus:ring-green-600 focus:border-green-600'
                                 : 'border border-gray-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600'"></textarea>
@@ -1185,7 +1185,7 @@
             <div class="flex justify-end mt-6">
                 <button type="button" wire:click="addToQueue" wire:loading.attr="disabled" wire:target="addAsset" {{--
                     Optional: target specific method --}}
-                    class="inline-flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-medium text-white bg-blue-700 hover:bg-blue-800 transition disabled:opacity-50 disabled:cursor-wait">
+                    class="inline-flex items-center gap-2 px-5 py-2 text-sm font-medium text-white transition bg-blue-700 rounded-lg hover:bg-blue-800 disabled:opacity-50 disabled:cursor-wait">
                     <!-- Icon -->
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -1200,9 +1200,9 @@
     </div>
     @if($showToast)
     <div class="toast toast-center toast-middle">
-        <div class="flex flex-row gap-4 p-4 rounded-xl border border-red-600 text-red-600 bg-red-50 items-center">
+        <div class="flex flex-row items-center gap-4 p-4 text-red-600 border border-red-600 rounded-xl bg-red-50">
             <!-- Icon -->
-            <div class="w-12 h-12 p-2 flex items-center justify-center rounded-full bg-red-200">
+            <div class="flex items-center justify-center w-12 h-12 p-2 bg-red-200 rounded-full">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="size-9 lucide lucide-triangle-alert">

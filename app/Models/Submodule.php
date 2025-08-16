@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomPermision as Permission;
+use App\Models\CustomRole as Role;
 
 class Submodule extends Model
 {

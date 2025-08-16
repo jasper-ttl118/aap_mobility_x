@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\CustomRole as Role;
+use App\Models\CustomPermision as Permission;
 use App\Models\Module;
 use App\Models\Submodule;
 use App\Models\User;

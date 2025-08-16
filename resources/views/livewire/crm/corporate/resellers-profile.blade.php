@@ -4,7 +4,7 @@
     </div>
 
     <!-- Modal overlay -->
-    <div wire:loading.remove class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+    <div wire:loading.remove class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
 
     @if ($reseller)
         <!-- Modal content -->
@@ -18,8 +18,8 @@
         
             <div class="lg:w-[40%] w-full lg:h-full h-[50%] bg-white rounded-[36px] flex flex-col justify-center items-center ">
                 <div class="w-full h-[30%] bg-gradient-to-t from-[#262c7d] via-[#071d49] to-[#090d40] rounded-b-2xl rounded-t-[36px]">
-                    <div class="flex relative justify-center mt-8 lg:mt-16 h-full w-full">
-                        <img src="{{ asset('aaplogo1.png') }}" alt="aaplogo" class="size-28 lg:size-40 bg-[#f3f4f6] rounded-full p-3 border">
+                    <div class="relative flex justify-center w-full h-full mt-8 lg:mt-16">
+                        <img src="{{ asset('aap-logo.png') }}" alt="aap-logo" class="size-28 lg:size-40 bg-[#f3f4f6] rounded-full p-3 border">
                     </div>
                 </div>
                 <div class="w-full h-[70%] flex flex-col items-center justify-start -gap-1 lg:gap-1 pt-[60px] lg:pt-[75px]">
@@ -31,7 +31,7 @@
                         <div>{{ $reseller->customer_birthdate }}</div>
                     </div>
                     <div class="text-xs text-[#071d49] lowercase flex flex-row justify-center items-center w-full h-auto">
-                        <div class="flex w-full h-full gap-2 justify-center items-center">
+                        <div class="flex items-center justify-center w-full h-full gap-2">
                             <button class="flex justify-center items-center gap-1 h-6 w-[30%] text-[#071d49] border-2 border-[#071d49] rounded-md font-bold hover:bg-[#071d49] hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 0 1 .778-.332 48.294 48.294 0 0 0 5.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z" />
@@ -80,10 +80,10 @@
                                 <div class="w-[50%] h-full flex justify-start items-center px-5">
                                     @if ($reseller->customer_status == '1')
                                         <span 
-                                            class="bg-green-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Active</span>
+                                            class="px-2 py-1 text-xs font-medium text-center text-white bg-green-600 rounded-full whitespace-nowrap">Active</span>
                                     @else
                                         <span
-                                            class="bg-red-600 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full text-center">Inactive</span>
+                                            class="px-2 py-1 text-xs font-medium text-center text-white bg-red-600 rounded-full whitespace-nowrap">Inactive</span>
                                     @endif
                                 </td>
                                 </div>  

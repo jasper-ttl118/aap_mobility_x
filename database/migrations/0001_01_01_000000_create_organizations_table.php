@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('org_name');
             $table->longText('org_description')->nullable();
             $table->string('org_logo')->nullable();
-            $table->string('org_color');
+            $table->string('org_color')->nullable();
             $table->boolean('org_status')->default(1);
             $table->timestamp('org_date_created')->useCurrent();
             $table->timestamp('org_date_updated')->useCurrent()->useCurrentOnUpdate();

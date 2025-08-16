@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Doctrine\DBAL\Query\QueryException;
+use Exception;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\AssetCategory;
@@ -10,9 +12,17 @@ class AssetCategorySeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        AssetCategory::truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        try {
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+            }
+                AssetCategory::truncate();
+            if (DB::getDriverName() !== 'sqlite') {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+            }
+        } catch (Exception $e) {
+            $this->command->warn('Foreign checks skipped. Reason: '  . $e->getMessage());
+        }
 
         $categories = [
             ['category_id' => 1, 'category_name' => 'IT EQUIPMENT', 'category_description' => 'Computers, servers, laptops, printers, networking devices.'],
