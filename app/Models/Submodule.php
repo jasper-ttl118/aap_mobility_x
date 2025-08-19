@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\CustomPermision as Permission;
+use App\Models\CustomPermission as Permission;
 use App\Models\CustomRole as Role;
 
 class Submodule extends Model
@@ -11,8 +11,8 @@ class Submodule extends Model
     public $timestamps = false;
     protected $primaryKey = 'submodule_id';
     protected $fillable = [
-        'submodule_name', 
-        'submodule_description', 
+        'submodule_name',
+        'submodule_description',
         'submodule_status',
         'module_id',
     ];
@@ -20,7 +20,7 @@ class Submodule extends Model
     // Belongs to a Module
     public function module()
     {
-        return $this->belongsTo(Module::class, 'module_id', 'module_id');
+        return $this->belongsTo(Module::class, 'module_id');
     }
 
     public function role()

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomPermision as Permission;
+use App\Models\CustomPermission as Permission;
+use App\Models\CustomRole as Role;
 
 class PermissionController extends Controller
 {
@@ -34,7 +35,7 @@ class PermissionController extends Controller
     }
 
     public function edit(Permission $permission)
-    {   
+    {
         return view('role-permission.permission.edit', [
             'permission' => $permission
         ]);

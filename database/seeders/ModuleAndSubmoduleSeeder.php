@@ -2,24 +2,23 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 use App\Models\Module;
 use App\Models\Submodule;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\CustomPermission as Permission;
+use App\Models\CustomRole as Role;
+use App\Enums\PermissionType;
 
 class ModuleAndSubmoduleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * 
+     *
      * Initiated by: romu-dev
      * Contains the modules and submodules
-     * Note: Ensure that the InitialSeeder has been executed 
+     * Note: Ensure that the SuperAdminSeeder has been executed
      * to create the superadmin role before running this seeder.
-     * 
+     *
      * List of Modules Included:
      * 1. Dashboard
      * 2. RBAC Management
@@ -34,10 +33,10 @@ class ModuleAndSubmoduleSeeder extends Seeder
         /**
          * Define your modules and submodules here
          * Update this if new modules and submodules will be deployed
-         * 
+         *
          * If new modules and submodules will be created, append to this array
          * with this template:
-         * 
+         *
          * [
          *      'name' =>  {moduleName},
          *      'description' => {moduleDescription},
@@ -47,7 +46,7 @@ class ModuleAndSubmoduleSeeder extends Seeder
          *          (add submodules as needed)
          *      ],
          * ]
-         * 
+         *
          * Replace fields enclosed in curly braces {} with their corresponding values.
          */
         $modules = [
@@ -76,7 +75,7 @@ class ModuleAndSubmoduleSeeder extends Seeder
             ],
             [
                 'name' => 'CRM',
-                'description' => '',
+                'description' => 'Manage interactions with leads, customers, and partners',
                 'submodules' => [
                     ['name' => 'Dashboard', 'description' => 'Dashboard'],
                     ['name' => 'Members', 'description' => 'Members'],
@@ -87,7 +86,7 @@ class ModuleAndSubmoduleSeeder extends Seeder
             ],
             [
                 'name' => 'Asset Management',
-                'description' => '',
+                'description' => 'Tracks the lifecycle, status, and location of physical and digital assets',
                 'submodules' => [
                     ['name' => 'Dashboard', 'description' => 'Dashboard'],
                     ['name' => 'Assets', 'description' => 'Assets'],
@@ -96,24 +95,14 @@ class ModuleAndSubmoduleSeeder extends Seeder
             ],
             [
                 'name' => 'CMS',
-                'description' => '',
+                'description' => 'Create, manage, and publish contents for the system',
                 'submodules' => [
-                    
+
                 ],
             ],
         ];
 
         // Checkpoint: End of Module Array
-
-        // Insert submodule
-        $submoduleId = DB::table('submodules')->insertGetId([
-            'module_id' => $moduleId,
-            'submodule_name' => 'User Analytics',
-            'submodule_description' => 'View user analytics',
-            'submodule_status' => 1,
-            'submodule_created' => now(),
-            'submodule_updated' => now(),
-        ]);
 
         $allPermissionNames = [];
 
@@ -133,9 +122,13 @@ class ModuleAndSubmoduleSeeder extends Seeder
             $modulePermissionName = 'access ' . strtolower(str_replace(' ', '_', $mod['name']));
 
             $permission = Permission::updateOrCreate(
-                ['permission_name' => $modulePermissionName, 'permission_guard_name' => 'web'],
+                ['permission_name' => $modulePermissionName,  'permission_type' => PermissionType::MODULE, 'permission_guard_name' => 'web'],
                 [
-                    'permission_description' => 'can access ' . $modulePer
+                    'module_id' => $module->module_id,
+                    'permission_description' => 'Can access module: ' . $mod['name'],
+                    'permission_status' => 1,
+                    'permission_date_created' => now(),
+                    'permission_date_updated' => now(),
                 ],
             );
 
@@ -143,26 +136,37 @@ class ModuleAndSubmoduleSeeder extends Seeder
 
             foreach ($mod['submodules'] as $sub) {
                 // Create or update submodule
-                Submodule::updateOrCreate(
-                    ['submodule_name' => $sub['name'], 'module_id' => $module->id],
+                $submodule = Submodule::updateOrCreate(
+                    ['submodule_name' => $sub['name'], 'module_id' => $module->module_id],
                     [
                         'submodule_description' => $sub['description'],
-                        'module_id' => $module->id,
+                        'module_id' => $module->module_id,
+                        'submodule_status' => 1,
+                        'submodule_created' => now(),
+                        'submodule_updated' => now(),
                     ]
                 );
 
                 // Create a permission for each submodule
-                $subPermissionName = 'access ' . strtolower(str_replace(' ', '_', $sub['name']));
+                $subPermissionName = 'access ' . strtolower(str_replace(' ', '_', $sub['name'])) . ' of ' . strtolower(str_replace(' ', '_', $mod['name']));;
                 $permission = Permission::updateOrCreate(
-                    ['name' => $subPermissionName, 'guard_name' => 'web'],
-                    ['name' => $subPermissionName]
+                    ['name' => $subPermissionName, 'permission_type' => PermissionType::SUBMODULE, 'permission_guard_name' => 'web'],
+                    [
+                        'module_id' => $module->module_id,
+                        'submodule_id' => $submodule->submodule_id,
+                        'permission_description' => 'Can access submodule: ' . $sub['name'],
+                        'permission_status' => 1,
+                        'permission_date_created' => now(),
+                        'permission_date_updated' => now(),
+                    ],
+
                 );
                 $allPermissionNames[] = $permission->name;
             }
         }
 
         // Assign all permissions to superadmin
-        $superadmin = Role::where('name', 'Super Admin')->first();
+        $superadmin = Role::where('role_name', 'Super Admin')->first();
 
         if ($superadmin) {
             $superadmin->syncPermissions($allPermissionNames);

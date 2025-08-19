@@ -56,7 +56,7 @@
 
 @php
     $user = auth()->user()->load('organization', 'employee', 'roles');
-    $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
+    // $modules_access = auth()->user()->roles->flatMap->modules->pluck('module_name')->toArray();
 @endphp
 
 <div class="fixed lg:flex hidden top-0 w-52 h-dvh flex flex-col items-center gap-4 bg-[#071d49] py-4 text-white z-50" id="menu">
@@ -72,12 +72,9 @@
       @endswitch
     </a>
   </div>
-  
-  <div class="w-full text-xs">
-    @foreach($modules_access as $module)
-   
-      @php
 
+  <div class="w-full text-xs">
+    @php
         $links = [
           'Dashboard' => '/dashboard',
           'Roles Management' => '/role',
@@ -89,8 +86,8 @@
           'Asset Management' => '/ams',
           'CMS' => '/cms',
         ];
-      @endphp
-      
+    @endphp
+    @foreach($modules as $module)
       @if(isset($links[$module]))
         <div class="group cursor-pointer flex items-center px-2 py-3 gap-2 ml-2 rounded-l-xl {{ $module === $navbar_selected ? 'bg-[#F3F4F6] text-blue-900 font-medium rounded-1 back' : 'hover:text-[#F6D400]' }}">
           <span class="edge"></span>
@@ -104,7 +101,7 @@
                @break
               @case('RBAC Management')
                 <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122Z" />
-                @break 
+                @break
               @case('Modules')
                 <path d="M6 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H6ZM15.75 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3H18a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3h-2.25Z" />
                 @break
@@ -145,7 +142,7 @@
       </form>
     </div>
   </div> --}}
-  
+
 </div>
 
 <script>
@@ -163,9 +160,9 @@
 
 
   {{-- <div class="fixed top-0 flex flex-col items-center w-64 gap-5 p-6 font-sans shadow-md h-dvh bg-gradient-to-r from-blue-800 to-indigo-900">
-    
+
     <div class="flex items-center justify-center w-40 ">
-      <a href="https://ibb.co/3m6zQj6d"> 
+      <a href="https://ibb.co/3m6zQj6d">
         <img src="{{ asset('storage/'.$user->organization->org_logo) }}" alt="aap-logo" class="h-auto max-w-full" />
     </a>
     </div>
@@ -194,7 +191,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
           </svg>
-          
+
           <a href="/user" class="pl-3">RBAC Management</a>
         </div>
         @endif
@@ -203,7 +200,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path d="M6 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3H6ZM15.75 3a3 3 0 0 0-3 3v2.25a3 3 0 0 0 3 3H18a3 3 0 0 0 3-3V6a3 3 0 0 0-3-3h-2.25ZM6 12.75a3 3 0 0 0-3 3V18a3 3 0 0 0 3 3h2.25a3 3 0 0 0 3-3v-2.25a3 3 0 0 0-3-3H6ZM17.625 13.5a.75.75 0 0 0-1.5 0v2.625H13.5a.75.75 0 0 0 0 1.5h2.625v2.625a.75.75 0 0 0 1.5 0v-2.625h2.625a.75.75 0 0 0 0-1.5h-2.625V13.5Z" />
           </svg>
-                
+
           <a href="/module" class="pl-3">Modules</a>
         </div>
         @endif
@@ -211,7 +208,7 @@
         <div class="flex items-center text-white rounded-md">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path fill-rule="evenodd" d="M4.5 3.75a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V6.75a3 3 0 0 0-3-3h-15Zm4.125 3a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Zm-3.873 8.703a4.126 4.126 0 0 1 7.746 0 .75.75 0 0 1-.351.92 7.47 7.47 0 0 1-3.522.877 7.47 7.47 0 0 1-3.522-.877.75.75 0 0 1-.351-.92ZM15 8.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15ZM14.25 12a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H15a.75.75 0 0 1-.75-.75Zm.75 2.25a.75.75 0 0 0 0 1.5h3.75a.75.75 0 0 0 0-1.5H15Z" clip-rule="evenodd" />
-          </svg>   
+          </svg>
           <a href="/employee" class="pl-3">Employee Management</a>
         </div>
         @endif
@@ -220,7 +217,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
             <path fill-rule="evenodd" d="M15.75 1.5a6.75 6.75 0 0 0-6.651 7.906c.067.39-.032.717-.221.906l-6.5 6.499a3 3 0 0 0-.878 2.121v2.818c0 .414.336.75.75.75H6a.75.75 0 0 0 .75-.75v-1.5h1.5A.75.75 0 0 0 9 19.5V18h1.5a.75.75 0 0 0 .53-.22l2.658-2.658c.19-.189.517-.288.906-.22A6.75 6.75 0 1 0 15.75 1.5Zm0 3a.75.75 0 0 0 0 1.5A2.25 2.25 0 0 1 18 8.25a.75.75 0 0 0 1.5 0 3.75 3.75 0 0 0-3.75-3.75Z" clip-rule="evenodd" />
           </svg>
-          
+
           <a href="/permission" class="pl-3">Permissions</a>
         </div>
         @endif

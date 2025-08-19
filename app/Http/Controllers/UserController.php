@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CustomRole as Role;
-use App\Models\CustomPermision as Permission;
+use App\Models\CustomPermission as Permission;
 use App\Models\Module;
 use App\Models\Submodule;
 use App\Models\User;
@@ -400,7 +400,7 @@ class UserController extends Controller
         $user->save();
 
         return response()->json([
-            'status' => 'success', 
+            'status' => 'success',
             'user_status' => $user->user_status,
             'message' => 'User status updated successfully'
         ]);

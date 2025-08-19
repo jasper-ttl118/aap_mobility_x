@@ -23,6 +23,9 @@ return new class extends Migration
         Schema::create($tableNames['permissions'], static function (Blueprint $table) {
             // $table->engine('InnoDB');
             $table->bigIncrements('permission_id'); // permission id
+            $table->foreignId('module_id')->nullable()->constrained('modules', 'module_id')->onDelete('cascade');
+            $table->foreignId('submodule_id')->nullable()->constrained('submodules', 'submodule_id')->onDelete('cascade');
+            $table->string('permission_type')->default('action');
             $table->string('permission_name');       // For MyISAM use string('name', 225); // (or 166 for InnoDB with Redundant/Compact row format)
             $table->string('permission_description')->nullable();
             $table->integer("permission_status", false, true)->nullable();

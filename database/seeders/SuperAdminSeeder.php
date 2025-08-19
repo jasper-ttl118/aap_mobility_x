@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class InitialSeeder extends Seeder
+class SuperAdminSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -46,18 +46,8 @@ class InitialSeeder extends Seeder
             'employee_mother_birthdate' => '1972-02-02',
         ]);
 
-        // Insert superadmin permission
-        $permissionId = DB::table('permissions')->insertGetId([
-            'permission_name' => 'full_access',
-            'permission_description' => 'Grants full access to all system features',
-            'permission_status' => 1,
-            'permission_date_created' => now(),
-            'permission_date_updated' => now(),
-            'permission_guard_name' => 'web',
-        ]);
-
         // Insert role
-    $roleId = DB::table('roles')->insertGetId([
+        $roleId = DB::table('roles')->insertGetId([
             'role_name' => 'Super Admin',
             'role_description' => 'Full access to the system',
             'role_status' => 1,

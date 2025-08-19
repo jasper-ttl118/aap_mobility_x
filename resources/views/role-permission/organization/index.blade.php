@@ -1,21 +1,21 @@
 <x-app-layout class='flex flex-row w-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
     @php
-        $user = auth()->user()->load('roles.submodules');
-        $submodules = $user->roles
-            ->flatMap(function ($role) {
-                return $role->submodules->map(function ($submodule) use ($role) {
-                    return [
-                        'submodule_name' => $submodule->submodule_name,
-                        'permissions' => $submodule
-                            ->permissionsForRole($role->role_id)
-                            ->pluck('permission_name')
-                            ->toArray(),
-                    ];
-                });
-            })
-            ->unique('submodule_name')
-            ->values();
+        // $user = auth()->user()->load('roles.submodules');
+        // $submodules = $user->roles
+        //     ->flatMap(function ($role) {
+        //         return $role->submodules->map(function ($submodule) use ($role) {
+        //             return [
+        //                 'submodule_name' => $submodule->submodule_name,
+        //                 'permissions' => $submodule
+        //                     ->permissionsForRole($role->role_id)
+        //                     ->pluck('permission_name')
+        //                     ->toArray(),
+        //             ];
+        //         });
+        //     })
+        //     ->unique('submodule_name')
+        //     ->values();
     @endphp
 
     <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-5 lg:px-10 gap-y-3">
@@ -193,7 +193,7 @@
                         Are you sure you want to delete this organization? All users in this organization will need to
                         be reassigned.
                     </p>
-                    
+
                     <div class="mt-4 flex justify-end items-center space-x-3">
                         <button @click="open = false"
                             class="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600">

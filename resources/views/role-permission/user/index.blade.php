@@ -1,22 +1,22 @@
 <x-app-layout class='flex flex-row w-full min-h-screen' :x_data="['open' => false, 'deleteUrl' => '', 'viewOpen' => false, 'employee' => new stdClass()]" navbar_selected='RBAC Management'>
 
     @php
-        $user = auth()->user()->load('roles.submodules');
+        // $user = auth()->user()->load('roles.submodules');
 
-        $submodules = $user->roles
-            ->flatMap(function ($role) {
-                return $role->submodules->map(function ($submodule) use ($role) {
-                    return [
-                        'submodule_name' => $submodule->submodule_name,
-                        'permissions' => $submodule
-                            ->permissionsForRole($role->role_id)
-                            ->pluck('permission_name')
-                            ->toArray(),
-                    ];
-                });
-            })
-            ->unique('submodule_name')
-            ->values();
+        // $submodules = $user->roles
+        //     ->flatMap(function ($role) {
+        //         return $role->submodules->map(function ($submodule) use ($role) {
+        //             return [
+        //                 'submodule_name' => $submodule->submodule_name,
+        //                 'permissions' => $submodule
+        //                     ->permissionsForRole($role->role_id)
+        //                     ->pluck('permission_name')
+        //                     ->toArray(),
+        //             ];
+        //         });
+        //     })
+        //     ->unique('submodule_name')
+        //     ->values();
     @endphp
 
     {{-- @include('layouts.navbar') --}}
@@ -182,7 +182,7 @@
                 </div> --}}
             </div>
         </div>
-        <div class="flex flex-col w-full rounded-md border-2 bg-white shadow-lg"> 
+        <div class="flex flex-col w-full rounded-md border-2 bg-white shadow-lg">
             {{-- Breadcrumbs --}}
             <div class="flex items-center gap-x-1 text-blue-900 text-sm px-7 pt-5">
                 <a href="/user" class="hover:underline">RBAC Management</a>
@@ -280,21 +280,21 @@
                                             {{ $user->user_status == 1 ? 'checked' : '' }}>
 
                                         <div
-                                            class="relative w-14 h-8 bg-red-500 rounded-full 
-                                                       dark:bg-gray-700 
-                                                       peer 
-                                                       peer-checked:bg-green-600 
-                                                       dark:peer-checked:bg-green-600 
-                                                       peer-checked:after:translate-x-full 
-                                                       after:content-[''] 
-                                                       after:absolute 
-                                                       after:top-1 
-                                                       after:start-[4px] 
-                                                       after:w-6 
-                                                       after:h-6 
-                                                       after:bg-white 
-                                                       after:border 
-                                                       after:border-gray-100 
+                                            class="relative w-14 h-8 bg-red-500 rounded-full
+                                                       dark:bg-gray-700
+                                                       peer
+                                                       peer-checked:bg-green-600
+                                                       dark:peer-checked:bg-green-600
+                                                       peer-checked:after:translate-x-full
+                                                       after:content-['']
+                                                       after:absolute
+                                                       after:top-1
+                                                       after:start-[4px]
+                                                       after:w-6
+                                                       after:h-6
+                                                       after:bg-white
+                                                       after:border
+                                                       after:border-gray-100
                                                        after:rounded-full">
                                         </div>
                                     </label>

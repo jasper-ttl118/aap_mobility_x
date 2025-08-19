@@ -13,7 +13,7 @@ return [
          * `Spatie\Permission\Contracts\Permission` contract.
          */
 
-        'permission' => App\Models\CustomPermision::class,
+        'permission' => App\Models\CustomPermission::class,
         /*
          * When using the "HasRoles" trait from this package, we need to know which
          * Eloquent model should be used to retrieve your roles. Of course, it
@@ -74,7 +74,7 @@ return [
 
         'role_guard_name' => 'role_guard_name',
         'permission_guard_name' => 'permission_guard_name',
-        
+
         /*
          * Change this if you want to name the related pivots other than defaults
          */

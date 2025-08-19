@@ -28,33 +28,33 @@
     @endif
 
     @php
-        $user = auth()->user()->load('roles.submodules');
+        // $user = auth()->user()->load('roles.submodules');
 
-        $submodules = $user->roles
-            ->flatMap(function ($role) {
-                return $role->submodules->map(function ($submodule) use ($role) {
-                    return [
-                        'submodule_name' => $submodule->submodule_name,
-                        'permissions' => $submodule
-                            ->permissionsForRole($role->role_id)
-                            ->pluck('permission_name')
-                            ->toArray(),
-                    ];
-                });
-            })
-            ->unique('submodule_name')
-            ->values();
+        // $submodules = $user->roles
+        //     ->flatMap(function ($role) {
+        //         return $role->submodules->map(function ($submodule) use ($role) {
+        //             return [
+        //                 'submodule_name' => $submodule->submodule_name,
+        //                 'permissions' => $submodule
+        //                     ->permissionsForRole($role->role_id)
+        //                     ->pluck('permission_name')
+        //                     ->toArray(),
+        //             ];
+        //         });
+        //     })
+        //     ->unique('submodule_name')
+        //     ->values();
 
     @endphp
 
     <div class="flex flex-1 flex-col lg:ml-52 bg-[#F3F4F6] mt-10 overflow-y-auto p-5 lg:px-10 gap-y-3">
 
         <!-- Title and Subtitle -->
-        {{-- <div class="">
+        <div class="">
             <h1 class="text-2xl font-semibold text-blue-900">RBAC Management</h1>
             <p class="text-gray-700 text-sm"> Manage user access and permissions within the
                 organization.</p>
-        </div> --}}
+        </div>
 
         <!-- Options Container -->
         <div class=" rounded-md border-2 border-gray-100 bg-white shadow-lg hide-scrollbar overflow-x-auto flex-shrink-0">
@@ -113,7 +113,7 @@
             <div class="mx-7 mb-10 rounded-sm overflow-x-auto hide-scrollbar">
 
                 <!-- Alpine.js Data Setup -->
-                <div x-data="{ viewOpen: false, role: {}, organization: {}, modules: [], permissions: [] }">
+                <div x-data="{ viewOpen: false, role: {}, modules: [], permissions: [] }">
 
                     <table class="w-[700px] md:w-full lg:w-full text-center text-sm text-gray-500">
                         <thead class="bg-gray-100 text-xs text-gray-700 uppercase">
@@ -121,7 +121,6 @@
                                 <th scope="col" class="w-1/12 py-3">Role ID</th>
                                 <th scope="col" class="w-2/12 py-3">Role Name</th>
                                 <th scope="col" class="w-4/12 py-3">Role Description</th>
-                                <th scope="col" class="w-3/12 py-3">Organization</th>
                                 <th scope="col" class="w-1/12 py-3">Status</th>
                                 <th scope="col" class="w-1/12 py-3">Actions</th>
                             </tr>
@@ -137,7 +136,7 @@
                                     <!-- Role Name -->
                                     <td class="w-2/12 py-4 text-gray-900">
                                         <div class="flex items-center gap-2 justify-center">
-                                            <div class="h-2 w-2 rounded-full {{ $role->organization->org_color }}">
+                                            <div class="h-2 w-2 rounded-full">
                                             </div>
                                             <span class="break-words">{{ $role->role_name }}</span>
                                         </div>
@@ -148,20 +147,7 @@
                                         {{ $role->role_description }}
                                     </td>
 
-                                    <!-- Organization -->
-                                    <td class="w-3/12 py-4">
-                                        @if ($role->organization)
-                                            <span
-                                                class="{{ $role->organization->org_color }} whitespace-nowrap text-xs font-medium px-2 py-1 rounded-full">
-                                                {{ $role->organization->org_name }}
-                                            </span>
-                                        @else
-                                            <span
-                                                class="bg-gray-500 whitespace-nowrap text-white text-xs font-medium px-2 py-1 rounded-full">
-                                                No Organization Assigned
-                                            </span>
-                                        @endif
-                                    </td>
+
 
                                     <!-- Status -->
                                     <td class="w-1/12 py-4 text-gray-900">
@@ -186,7 +172,6 @@
                                                 @click.prevent="
                                                     viewOpen = true;
                                                     role = {{ json_encode($role) }};
-                                                    organization = {{ json_encode($role->organization) }};
                                                     modules = {{ json_encode($role->prepared_modules) }};
                                                     permissions = {{ json_encode($permissions) }};
                                                 "
@@ -261,18 +246,6 @@
                                         <p class="text-sm text-gray-800" x-text="role.role_name"></p>
                                     </div>
 
-                                    <!-- Role Organization -->
-                                    <div>
-                                        <label class="text-sm font-medium text-blue-900">Organization</label>
-                                        <div class="flex gap-2 items-center">
-                                            <p class="text-sm text-gray-800"
-                                                x-text="organization ? organization.org_name : 'No Organization Assigned'">
-                                            </p>
-                                            <div
-                                                :class="`w-3 h-3 rounded-full ${organization ? organization.org_color : 'text-gray-800'}`">
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <!-- Role Description -->
