@@ -67,6 +67,7 @@ new class extends Component {
             {{-- CREATE an instance of a model --}}
             <livewire:cms.department.create />
         </div>
+        
     </div>
 
     <div class="px-5 pb-5" x-transition>

@@ -35,8 +35,12 @@ class Navbar extends Component
             ->pluck('module_id')
             ->filter();
 
-        return Module::whereIn('module_id', $moduleIds)->pluck('module_name');
-    }
+        if ($moduleIds->isEmpty()) {
+            return collect();
+        }
+
+        return Module::whereIn('module_id', $moduleIds)->get();
+    }   
 
     /**
      * Get the view / contents that represent the component.

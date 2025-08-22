@@ -17,54 +17,54 @@ class RoleController extends Controller
         // Get all roles with their organization
         $roles = Role::all();
 
-        // Load modules, submodules and permissions for each role
-        foreach ($roles as $role) {
-            // Get modules assigned to this role
-            $modules = $role->modules()->with('submodules')->get();
+        // // Load modules, submodules and permissions for each role
+        // foreach ($roles as $role) {
+        //     // Get modules assigned to this role
+        //     $modules = $role->modules()->with('submodules')->get();
 
-            // Get all permissions for this role grouped by submodule
-            $rolePermissions = DB::table('role_has_submodule_permissions')
-                ->where('role_id', $role->role_id)
-                ->join('permissions', 'role_has_submodule_permissions.permission_id', '=', 'permissions.permission_id')
-                ->select('role_has_submodule_permissions.*', 'permissions.permission_name')
-                ->get();
+        //     // Get all permissions for this role grouped by submodule
+        //     $rolePermissions = DB::table('role_has_submodule_permissions')
+        //         ->where('role_id', $role->role_id)
+        //         ->join('permissions', 'role_has_submodule_permissions.permission_id', '=', 'permissions.permission_id')
+        //         ->select('role_has_submodule_permissions.*', 'permissions.permission_name')
+        //         ->get();
 
-            // Prepare the modules structure
-            $preparedModules = [];
+        //     // Prepare the modules structure
+        //     $preparedModules = [];
 
-            foreach ($modules as $module) {
-                $moduleData = [
-                    'module_id' => $module->module_id,
-                    'module_name' => $module->module_name,
-                    'submodules' => []
-                ];
+        //     foreach ($modules as $module) {
+        //         $moduleData = [
+        //             'module_id' => $module->module_id,
+        //             'module_name' => $module->module_name,
+        //             'submodules' => []
+        //         ];
 
-                foreach ($module->submodules as $submodule) {
-                    $submoduleData = [
-                        'submodule_id' => $submodule->submodule_id,
-                        'submodule_name' => $submodule->submodule_name,
-                        'permissions' => []
-                    ];
+        //         foreach ($module->submodules as $submodule) {
+        //             $submoduleData = [
+        //                 'submodule_id' => $submodule->submodule_id,
+        //                 'submodule_name' => $submodule->submodule_name,
+        //                 'permissions' => []
+        //             ];
 
-                    // Find permissions for this submodule
-                    foreach ($rolePermissions as $permission) {
-                        if ($permission->submodule_id == $submodule->submodule_id) {
-                            $submoduleData['permissions'][] = [
-                                'permission_id' => $permission->permission_id,
-                                'permission_name' => $permission->permission_name
-                            ];
-                        }
-                    }
+        //             // Find permissions for this submodule
+        //             foreach ($rolePermissions as $permission) {
+        //                 if ($permission->submodule_id == $submodule->submodule_id) {
+        //                     $submoduleData['permissions'][] = [
+        //                         'permission_id' => $permission->permission_id,
+        //                         'permission_name' => $permission->permission_name
+        //                     ];
+        //                 }
+        //             }
 
-                    $moduleData['submodules'][] = $submoduleData;
-                }
+        //             $moduleData['submodules'][] = $submoduleData;
+        //         }
 
-                $preparedModules[] = $moduleData;
-            }
+        //         $preparedModules[] = $moduleData;
+        //     }
 
-            // Add prepared modules to the role
-            $role->prepared_modules = $preparedModules;
-        }
+        //     // Add prepared modules to the role
+        //     $role->prepared_modules = $preparedModules;
+        // }
 
         // Get all permissions for reference
         $permissions = DB::table('permissions')->get();
@@ -77,8 +77,9 @@ class RoleController extends Controller
         $modules = Module::with('submodules')->get();
         $submodules = Submodule::get();
         $permissions = Permission::all();
+        $organizations = Organization::all();
 
-        return view('role-permission.role.create', compact('modules', 'permissions'));
+        return view('role-permission.role.create', compact('modules', 'permissions', 'organizations'));
     }
 
     public function store(Request $request)
@@ -139,59 +140,60 @@ class RoleController extends Controller
         $all_modules = Module::all();
         $submodules = Submodule::get();
         $permissions = Permission::all();
+        $organizations = Organization::all();
 
 
-        $selected_role = Role::with('organization')->find($role->role_id);
+        $selected_role = Role::find($role->role_id);
 
-        if ($selected_role){
-            // Get modules assigned to this role
-            $modules = $selected_role->modules()->with('submodules')->get();
+        // if ($selected_role){
+        //     // Get modules assigned to this role
+        //     $modules = $selected_role->modules()->with('submodules')->get();
 
-            // Get all permissions for this role grouped by submodule
-            $rolePermissions = DB::table('role_has_submodule_permissions')
-                ->where('role_id', $selected_role->role_id)
-                ->join('permissions', 'role_has_submodule_permissions.permission_id', '=', 'permissions.permission_id')
-                ->select('role_has_submodule_permissions.*', 'permissions.permission_name')
-                ->get();
+        //     // Get all permissions for this role grouped by submodule
+        //     $rolePermissions = DB::table('role_has_submodule_permissions')
+        //         ->where('role_id', $selected_role->role_id)
+        //         ->join('permissions', 'role_has_submodule_permissions.permission_id', '=', 'permissions.permission_id')
+        //         ->select('role_has_submodule_permissions.*', 'permissions.permission_name')
+        //         ->get();
 
-            // Prepare the modules structure
-            $preparedModules = [];
+        //     // Prepare the modules structure
+        //     $preparedModules = [];
 
-            foreach ($modules as $module) {
-                $moduleData = [
-                    'module_id' => $module->module_id,
-                    'module_name' => $module->module_name,
-                    'submodules' => []
-                ];
+        //     foreach ($modules as $module) {
+        //         $moduleData = [
+        //             'module_id' => $module->module_id,
+        //             'module_name' => $module->module_name,
+        //             'submodules' => []
+        //         ];
 
 
-                foreach ($module->submodules as $submodule) {
-                    $submoduleData = [
-                        'submodule_id' => $submodule->submodule_id,
-                        'submodule_name' => $submodule->submodule_name,
-                        'permissions' => []
-                    ];
+        //         foreach ($module->submodules as $submodule) {
+        //             $submoduleData = [
+        //                 'submodule_id' => $submodule->submodule_id,
+        //                 'submodule_name' => $submodule->submodule_name,
+        //                 'permissions' => []
+        //             ];
 
-                    // Find permissions for this submodule
-                    foreach ($rolePermissions as $permission) {
-                        if ($permission->submodule_id == $submodule->submodule_id) {
-                            $submoduleData['permissions'][] = [
-                                'permission_id' => $permission->permission_id,
-                                'permission_name' => $permission->permission_name
-                            ];
-                        }
-                    }
+        //             // Find permissions for this submodule
+        //             foreach ($rolePermissions as $permission) {
+        //                 if ($permission->submodule_id == $submodule->submodule_id) {
+        //                     $submoduleData['permissions'][] = [
+        //                         'permission_id' => $permission->permission_id,
+        //                         'permission_name' => $permission->permission_name
+        //                     ];
+        //                 }
+        //             }
 
-                    $moduleData['submodules'][] = $submoduleData;
-                }
+        //             $moduleData['submodules'][] = $submoduleData;
+        //         }
 
-                $preparedModules[] = $moduleData;
-            }
+        //         $preparedModules[] = $moduleData;
+        //     }
 
-            // Add prepared modules to the role
-            $selected_role->prepared_modules = $preparedModules;
+        //     // Add prepared modules to the role
+        //     $selected_role->prepared_modules = $preparedModules;
 
-        }
+        // }
 
         return view('role-permission.role.edit', compact('role', 'selected_role', 'permissions', 'all_modules', 'organizations' ));
 

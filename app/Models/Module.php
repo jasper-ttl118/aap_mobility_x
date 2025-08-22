@@ -17,6 +17,12 @@ class Module extends Model
         'module_status',
     ];
 
+    public function getModulePermissionName()
+    {
+        $permission = 'access ' . strtolower(str_replace(' ', '_', $this->module_name));
+        return $permission;
+    }
+
     // One-to-Many relationship with Submodule
     public function submodules()
     {

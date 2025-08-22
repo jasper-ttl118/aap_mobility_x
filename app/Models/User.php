@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\CustomRole as Role;
+use App\Models\CustomPermission as Permission;
+use Spatie\Permission\PermissionRegistrar;
 
 class User extends Authenticatable
 {
@@ -134,8 +136,4 @@ class User extends Authenticatable
             }
         }
     }
-
-
-
-
 }

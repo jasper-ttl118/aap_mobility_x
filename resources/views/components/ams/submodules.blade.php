@@ -1,14 +1,21 @@
 @props(['selected' => 'Dashboard'])
 
 @php
-    $moduleId = 5; // Example
+    // $moduleId = 5; // Example
 
-    $submodules = auth()->user()->roles
-        ->flatMap->submodules
-        ->filter(fn($submodule) => $submodule->module_id == $moduleId)
-        ->sortBy('submodule_id') 
-        ->pluck('submodule_name')
-        ->toArray();
+    // $submodules = auth()->user()->roles
+    //     ->flatMap->submodules
+    //     ->filter(fn($submodule) => $submodule->module_id == $moduleId)
+    //     ->sortBy('submodule_id') 
+    //     ->pluck('submodule_name')
+    //     ->toArray();
+
+    use App\Models\Module;
+    use App\Models\Submodule;
+
+    $currentModule = Module::where('module_name', 'Asset Management')->firstOrFail();
+    // submodulePermissions = auth()->user()->getSubmoduleAccessPermissions($currentModule->module_id);
+    $submodules = $currentModule->submodules;
 
     $links = [
         'Dashboard' => '/ams',
