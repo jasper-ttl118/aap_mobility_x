@@ -25,13 +25,14 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             AssetSeeder::class,
 
-            InitialSeeder::class,
+            // InitialSeeder::class,
+            SuperAdminSeeder::class,
 
-            RolePermissionUserSeeder::class,
+            // RolePermissionUserSeeder::class,
             checkRBACSeeder::class,
             checkSpatieAssignments::class,
             checkSpatieImplementation::class,
-            ConditionSeeder::class,
+            // ConditionSeeder::class,
         ]);
     }
 }
