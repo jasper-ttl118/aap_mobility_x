@@ -506,9 +506,9 @@
                 </div>
 
                 <!-- Pagination Links -->
-                <div>
+                {{-- <div>
                     {{ $assets->links() }}
-                </div>
+                </div> --}}
             </div>
 
         </div>

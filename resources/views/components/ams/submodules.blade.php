@@ -1,7 +1,7 @@
 @props(['selected' => 'Dashboard'])
 
 @php
-    // $moduleId = 5; // Example
+    $moduleId = 5; // Example
 
     // $submodules = auth()->user()->roles
     //     ->flatMap->submodules
@@ -10,12 +10,16 @@
     //     ->pluck('submodule_name')
     //     ->toArray();
 
+    $submodules  = [
+        "Dashboard", "Assets", "Scan QR",
+    ];
+
     use App\Models\Module;
     use App\Models\Submodule;
 
-    $currentModule = Module::where('module_name', 'Asset Management')->firstOrFail();
-    // submodulePermissions = auth()->user()->getSubmoduleAccessPermissions($currentModule->module_id);
-    $submodules = $currentModule->submodules;
+    // $currentModule = Module::where('module_name', 'Asset Management')->firstOrFail();
+    // // submodulePermissions = auth()->user()->getSubmoduleAccessPermissions($currentModule->module_id);
+    // $submodules = $currentModule->submodules;
 
     $links = [
         'Dashboard' => '/ams',
