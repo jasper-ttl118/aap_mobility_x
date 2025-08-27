@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\CustomRole as Role;
-use App\Models\CustomPermision as Permission;
+use App\Models\CustomPermission as Permission;
 use Carbon\Carbon;
 
 class checkSpatieImplementation extends Seeder

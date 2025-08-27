@@ -17,21 +17,25 @@ class DatabaseSeeder extends Seeder
             AssetCategorySeeder::class,
             AssetStatusSeeder::class,
             BranchSeeder::class,
-            DepartmentSeeder::class,
             BrandSeeder::class,
             CandidateSeeder::class,
+            DepartmentSeeder::class,
 
             // dependent migration
             EmployeeSeeder::class,
             AssetSeeder::class,
 
-            InitialSeeder::class,
+            // InitialSeeder::class,
+            SuperAdminSeeder::class,
 
-            RolePermissionUserSeeder::class,
+            // RolePermissionUserSeeder::class,
             checkRBACSeeder::class,
             checkSpatieAssignments::class,
             checkSpatieImplementation::class,
-            ConditionSeeder::class,
+            AssetConditionSeeder::class,
+
+            // TODO: WIP, coupled to 'superadmin' entry, then uses syncPermission so treat it as last seeder
+            ModuleAndSubmoduleSeeder::class,
         ]);
     }
 }
